@@ -1,3 +1,3 @@
-# cfbpointsR 0.0.0.9000
+# cfbpointsR 0.0.0.1
 
-* Added a `NEWS.md` file to track changes to the package.
+* Initial commits

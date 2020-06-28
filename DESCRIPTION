@@ -1,29 +1,32 @@
 Package: cfbpointsR
 Title: A Scraping and Aggregating interface to the collegefootballdata.com API by CFB Points
-Version: 0.0.0.9000
-Authors@R: person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('cre', 'aut')),
-             person('Meyappan', 'Subbaiah', email = 'meysubb@gmail.com', role = c('ctb')),
-             person('Parker', 'Fleming', email = 'parkerf@smu.edu', role = c('ctb')))
+Version: 0.0.0.1
+Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('aut','cre')),
+             person('Meyappan', 'Subbaiah', email = 'meysubb@gmail.com', role = c('aut')),
+             person('Parker', 'Fleming', email = 'parkerf@smu.edu', role = c('aut')))
 Description: An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by CFB Points. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
+Depends: R (>= 2.10)
 License: MIT + file LICENSE
 LazyData: true
-URL: http://www.github.com/saiemgilani/cfbpointsR
-BugReports: http://www.github.com/saiemgilani/cfbpointsR/issues
-Encoding: UTF-8
 Imports: 
-    assertthat,
-    attempt,
-    curl,
     dplyr,
     ggplot2,
     ggrepel,
+    tidyr,
+    stringr,
+    stringi,
+    attempt,
+    assertthat,
     httr,
     jsonlite,
     mgcv,
     nnet,
     purrr,
     stats,
-    stringi,
-    stringr,
-    tidyr,
-    utils
+    utils,
+    curl,
+    rlang
+URL: http://www.github.com/saiemgilani/cfbpointsR
+BugReports: http://www.github.com/saiemgilani/cfbpointsR/issues
+Encoding: UTF-8
+RoxygenNote: 7.1.0

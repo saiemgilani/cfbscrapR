@@ -1,0 +1,88 @@
+template:
+  params:
+    bootswatch: cosmo
+title: cfbpointsR
+url: http://saiemgilani.github.io/cfbpointsR
+
+reference:
+  - subtitle: Games Data Functions
+    desc: Functions exported by cfbpointsR sourced from games endpoint of the CollegeFootballData API
+    contents:
+      - '`cfb_game_info`'
+      - '`cfb_game_records`'
+      - '`cfb_game_team_stats`'
+      - '`cfb_game_player_stats`'
+      - '`cfb_game_box_advanced`'
+      - '`cfb_game_media`'
+      - '`cfb_betting_lines`'
+      # - '`cfb_game_box_advanced`'
+  - subtitle: Drives Data Function
+    desc: Functions exported by cfbpointsR sourced from drives endpoint of the CollegeFootballData API
+    contents:
+      - '`cfb_drives`'
+  - subtitle: Plays Data Functions
+    desc: Functions exported by cfbpointsR sourced from plays endpoint of the CollegeFootballData API
+    contents:
+      - '`cfb_pbp_data`'
+      - '`cfb_play_types`'
+      - '`cfb_play_type_df`'
+      - '`cfb_play_stats_player`'
+      - '`cfb_play_stats_types`'
+  - subtitle: Teams Functions
+    desc: Functions exported by cfbpointsR sourced from the teams endpoint of the CollegeFootballData API
+    contents:
+      - '`cfb_team_info`'
+      - '`cfb_team_matchup`'
+      - '`cfb_team_roster`'
+      - '`cfb_team_talent`'
+  - subtitle: Players Functions
+    desc: Functions exported by cfbpointsR sourced from the teams endpoint of the CollegeFootballData API
+    contents:
+      - '`cfb_player_info`'
+      - '`cfb_player_usage`'
+      - '`cfb_player_returning`'
+  - subtitle: Stats Functions
+    desc: Functions exported by cfbpointsR sourced from the conferences endpoint of the CollegeFootballData API
+    contents:
+      - '`cfb_stats_categories`'
+  - subtitle: Conference Functions
+    desc: Functions exported by cfbpointsR sourced from the conferences endpoint of the CollegeFootballData API
+    contents:
+      - '`cfb_conferences`'
+      - '`cfb_conf_types_df`'
+  - subtitle: Rankings and Ratings Functions
+    desc: Functions exported by cfbpointsR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    contents:
+      - '`cfb_rankings`'
+      - '`cfb_ratings_sp`'
+      - '`cfb_ratings_sp_conference`'
+      - '`cfb_ratings_srs`'
+  - subtitle: Recruiting functions
+    desc: Functions exported by cfbpointsR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    contents:
+      - '`cfb_recruiting_player`'
+      - '`cfb_recruiting_team`'
+      - '`cfb_recruiting_position`'
+  - subtitle: School Functions
+    desc: Functions exported by cfbpointsR sourced from venues and coaches endpoints of the CollegeFootballData API
+    contents:
+      - '`cfb_venues`'
+      - '`cfb_coaches`'
+  - subtitle: Plotting Functions
+    desc: Plotting play-by-play sequences and game win probability charts
+    contents:
+      # - '`plot_wpa`'
+      # - '`plot_pbp_sequencing`'
+  - subtitle: Internals
+    desc: Internal functions and helpers
+    contents:
+      - '`add_timeout_cols`'
+      - '`clean_drive_info`'
+      - '`clean_pbp_dat`'
+      - '`create_epa`'
+      - '`create_wpa`'
+      - '`epa_fg_probs`'
+      - '`prep_epa_df_before`'
+      - '`prep_epa_df_after`'
+      - '`check_internet`'
+
