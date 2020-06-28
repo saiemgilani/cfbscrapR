@@ -156,7 +156,170 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_coaches</span>(<span class='kw'>first</span> <span class='kw'>=</span> <span class='st'>"Nick"</span>, <span class='kw'>last</span> <span class='kw'>=</span> <span class='st'>"Saban"</span>,<span class='kw'>team</span><span class='kw'>=</span><span class='st'>'alabama'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_coaches(first = "Nick", last = "Saban", team = "alabama"): could not find function "cfb_coaches"</span></div><div class='input'>
+<span class='fu'>cfb_coaches</span>(<span class='kw'>first</span> <span class='kw'>=</span> <span class='st'>"Nick"</span>, <span class='kw'>last</span> <span class='kw'>=</span> <span class='st'>"Saban"</span>,<span class='kw'>team</span><span class='kw'>=</span><span class='st'>'alabama'</span>)</div><div class='output co'>#&gt;    first_name  last_name  school year games wins losses ties preseason_rank
+#&gt; 1     Wallace       Wade Alabama 1923    10    7      2    1             NA
+#&gt; 2     Wallace       Wade Alabama 1924     9    8      1    0             NA
+#&gt; 3     Wallace       Wade Alabama 1925    10   10      0    0             NA
+#&gt; 4     Wallace       Wade Alabama 1926    10    9      0    1             NA
+#&gt; 5     Wallace       Wade Alabama 1927    10    5      4    1             NA
+#&gt; 6     Wallace       Wade Alabama 1928     9    6      3    0             NA
+#&gt; 7     Wallace       Wade Alabama 1929     9    6      3    0             NA
+#&gt; 8     Wallace       Wade Alabama 1930    10   10      0    0             NA
+#&gt; 9       Frank     Thomas Alabama 1931    10    9      1    0             NA
+#&gt; 10      Frank     Thomas Alabama 1932    10    8      2    0             NA
+#&gt; 11      Frank     Thomas Alabama 1933     9    7      1    1             NA
+#&gt; 12      Frank     Thomas Alabama 1934    10   10      0    0             NA
+#&gt; 13      Frank     Thomas Alabama 1935     9    6      2    1             NA
+#&gt; 14      Frank     Thomas Alabama 1936     9    8      0    1             NA
+#&gt; 15      Frank     Thomas Alabama 1937    10    9      1    0             NA
+#&gt; 16      Frank     Thomas Alabama 1938     9    7      1    1             NA
+#&gt; 17      Frank     Thomas Alabama 1939     9    5      3    1             NA
+#&gt; 18      Frank     Thomas Alabama 1940     9    7      2    0             NA
+#&gt; 19      Frank     Thomas Alabama 1941    11    9      2    0             NA
+#&gt; 20      Frank     Thomas Alabama 1942    11    8      3    0             NA
+#&gt; 21      Frank     Thomas Alabama 1944     9    5      2    2             NA
+#&gt; 22      Frank     Thomas Alabama 1945    10   10      0    0             NA
+#&gt; 23      Frank     Thomas Alabama 1946    11    7      4    0             NA
+#&gt; 24        Red       Drew Alabama 1947    11    8      3    0             NA
+#&gt; 25        Red       Drew Alabama 1948    11    6      4    1             NA
+#&gt; 26        Red       Drew Alabama 1949    10    6      3    1             NA
+#&gt; 27        Red       Drew Alabama 1950    11    9      2    0             NA
+#&gt; 28        Red       Drew Alabama 1951    11    5      6    0              9
+#&gt; 29        Red       Drew Alabama 1952    12   10      2    0             NA
+#&gt; 30        Red       Drew Alabama 1953    12    6      3    3              5
+#&gt; 31        Red       Drew Alabama 1954    11    4      5    2             14
+#&gt; 32       Bear     Bryant Alabama 1958    10    5      4    1             NA
+#&gt; 33       Bear     Bryant Alabama 1959    11    7      2    2             NA
+#&gt; 34       Bear     Bryant Alabama 1960    11    8      1    2             NA
+#&gt; 35       Bear     Bryant Alabama 1961    11   11      0    0              3
+#&gt; 36       Bear     Bryant Alabama 1962    11   10      1    0              3
+#&gt; 37       Bear     Bryant Alabama 1963    11    9      2    0              3
+#&gt; 38       Bear     Bryant Alabama 1964    11   10      1    0              6
+#&gt; 39       Bear     Bryant Alabama 1965    11    9      1    1              5
+#&gt; 40       Bear     Bryant Alabama 1966    11   11      0    0              1
+#&gt; 41       Bear     Bryant Alabama 1967    11    8      2    1              2
+#&gt; 42       Bear     Bryant Alabama 1968    11    8      3    0             10
+#&gt; 43       Bear     Bryant Alabama 1969    11    6      5    0             13
+#&gt; 44       Bear     Bryant Alabama 1970    12    6      5    1             16
+#&gt; 45       Bear     Bryant Alabama 1971    12   11      1    0             16
+#&gt; 46       Bear     Bryant Alabama 1972    12   10      2    0              7
+#&gt; 47       Bear     Bryant Alabama 1973    12   11      1    0              6
+#&gt; 48       Bear     Bryant Alabama 1974    12   11      1    0              4
+#&gt; 49       Bear     Bryant Alabama 1975    12   11      1    0              2
+#&gt; 50       Bear     Bryant Alabama 1976    12    9      3    0              6
+#&gt; 51       Bear     Bryant Alabama 1977    12   11      1    0              6
+#&gt; 52       Bear     Bryant Alabama 1978    12   11      1    0              1
+#&gt; 53       Bear     Bryant Alabama 1979    12   12      0    0              2
+#&gt; 54       Bear     Bryant Alabama 1980    12   10      2    0              2
+#&gt; 55       Bear     Bryant Alabama 1981    12    9      2    1              4
+#&gt; 56       Bear     Bryant Alabama 1982    12    8      4    0              3
+#&gt; 57       Bill      Curry Alabama 1987    12    7      5    0             NA
+#&gt; 58       Bill      Curry Alabama 1988    12    9      3    0             14
+#&gt; 59       Bill      Curry Alabama 1989    12   10      2    0             16
+#&gt; 60       Gene  Stallings Alabama 1990    12    7      5    0             12
+#&gt; 61       Gene  Stallings Alabama 1991    12   11      1    0             22
+#&gt; 62       Gene  Stallings Alabama 1992    13   13      0    0              9
+#&gt; 63       Gene  Stallings Alabama 1993    13    9      3    1              2
+#&gt; 64       Gene  Stallings Alabama 1994    13   12      1    0             12
+#&gt; 65       Gene  Stallings Alabama 1995    11    8      3    0             10
+#&gt; 66       Gene  Stallings Alabama 1996    13   10      3    0             15
+#&gt; 67     Dennis Franchione Alabama 2001    12    7      5    0             25
+#&gt; 68     Dennis Franchione Alabama 2002    13   10      3    0             NA
+#&gt; 69       Nick      Saban Alabama 2007    13    7      6    0             NA
+#&gt; 70       Nick      Saban Alabama 2008    14   12      2    0             24
+#&gt; 71       Nick      Saban Alabama 2009    14   14      0    0              5
+#&gt; 72       Nick      Saban Alabama 2010    13   10      3    0              1
+#&gt; 73       Nick      Saban Alabama 2011    13   12      1    0              2
+#&gt; 74       Nick      Saban Alabama 2012    14   13      1    0              2
+#&gt; 75       Nick      Saban Alabama 2013    13   11      2    0              1
+#&gt; 76       Nick      Saban Alabama 2014    14   12      2    0              2
+#&gt; 77       Nick      Saban Alabama 2015    15   14      1    0              3
+#&gt; 78       Nick      Saban Alabama 2016    15   14      1    0              1
+#&gt; 79       Nick      Saban Alabama 2017    14   13      1    0              1
+#&gt; 80       Nick      Saban Alabama 2018    15   14      1    0              1
+#&gt; 81       Nick      Saban Alabama 2019    13   11      2    0              2
+#&gt;    postseason_rank
+#&gt; 1               NA
+#&gt; 2               NA
+#&gt; 3               NA
+#&gt; 4               NA
+#&gt; 5               NA
+#&gt; 6               NA
+#&gt; 7               NA
+#&gt; 8               NA
+#&gt; 9               NA
+#&gt; 10              NA
+#&gt; 11              NA
+#&gt; 12              NA
+#&gt; 13              NA
+#&gt; 14               4
+#&gt; 15               4
+#&gt; 16              13
+#&gt; 17              NA
+#&gt; 18              NA
+#&gt; 19              20
+#&gt; 20              10
+#&gt; 21              NA
+#&gt; 22               2
+#&gt; 23              NA
+#&gt; 24               6
+#&gt; 25              NA
+#&gt; 26              NA
+#&gt; 27              16
+#&gt; 28              NA
+#&gt; 29               9
+#&gt; 30              13
+#&gt; 31              NA
+#&gt; 32              NA
+#&gt; 33              10
+#&gt; 34               9
+#&gt; 35               1
+#&gt; 36               5
+#&gt; 37               8
+#&gt; 38               1
+#&gt; 39               1
+#&gt; 40               3
+#&gt; 41               8
+#&gt; 42              17
+#&gt; 43              NA
+#&gt; 44              NA
+#&gt; 45               4
+#&gt; 46               7
+#&gt; 47               4
+#&gt; 48               5
+#&gt; 49               3
+#&gt; 50              11
+#&gt; 51               2
+#&gt; 52               1
+#&gt; 53               1
+#&gt; 54               6
+#&gt; 55               7
+#&gt; 56              NA
+#&gt; 57              NA
+#&gt; 58              17
+#&gt; 59               9
+#&gt; 60              NA
+#&gt; 61               5
+#&gt; 62               1
+#&gt; 63              14
+#&gt; 64               5
+#&gt; 65              21
+#&gt; 66              11
+#&gt; 67              NA
+#&gt; 68              11
+#&gt; 69              NA
+#&gt; 70               6
+#&gt; 71               1
+#&gt; 72              10
+#&gt; 73               1
+#&gt; 74               1
+#&gt; 75               7
+#&gt; 76               4
+#&gt; 77               1
+#&gt; 78               2
+#&gt; 79               1
+#&gt; 80              NA
+#&gt; 81               8</div><div class='input'>
 
 </div></pre>
   </div>

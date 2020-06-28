@@ -163,7 +163,36 @@ Can be found using the `cfb_player_info()` function.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_player_usage</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'WR'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_player_usage(year = 2019, position = "WR", team = "Florida State"): could not find function "cfb_player_usage"</span></div><div class='input'>
+<span class='fu'>cfb_player_usage</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'WR'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt;   season      id               name position          team conference
+#&gt; 1   2019 4240028    Tamorrion Terry       WR Florida State        ACC
+#&gt; 2   2019 4240034      D.J. Matthews       WR Florida State        ACC
+#&gt; 3   2019 4363046 Tre'Shaun Harrison       WR Florida State        ACC
+#&gt; 4   2019 4240033     Ontaria Wilson       WR Florida State        ACC
+#&gt; 5   2019 4363032    Keyshawn Helton       WR Florida State        ACC
+#&gt; 6   2019 4035628        Keith Gavin       WR Florida State        ACC
+#&gt; 7   2019 4363030    Warren Thompson       WR Florida State        ACC
+#&gt; 8   2019 4363044       Jordan Young       WR Florida State        ACC
+#&gt; 9   2019 4360473       Adarius Dent       WR Florida State        ACC
+#&gt;   usg_overall usg_pass usg_rush usg_1st_down usg_2nd_down usg_3rd_down
+#&gt; 1      0.1184   0.2181   0.0102       0.1402        0.099        0.112
+#&gt; 2      0.0604   0.1090   0.0077       0.0485        0.076        0.071
+#&gt; 3      0.0459   0.0812   0.0077       0.0404        0.046        0.065
+#&gt; 4      0.0374   0.0673   0.0051       0.0377        0.034        0.047
+#&gt; 5      0.0278   0.0487   0.0051       0.0296        0.027        0.029
+#&gt; 6      0.0254   0.0487   0.0000       0.0216        0.030        0.029
+#&gt; 7      0.0085   0.0162   0.0000       0.0081        0.015        0.000
+#&gt; 8      0.0072   0.0116   0.0026       0.0054        0.008        0.012
+#&gt; 9      0.0012   0.0023   0.0000       0.0027        0.000        0.000
+#&gt;   usg_standard_downs usg_passing_downs
+#&gt; 1              0.113             0.128
+#&gt; 2              0.046             0.089
+#&gt; 3              0.048             0.043
+#&gt; 4              0.038             0.036
+#&gt; 5              0.024             0.036
+#&gt; 6              0.020             0.036
+#&gt; 7              0.007             0.011
+#&gt; 8              0.007             0.007
+#&gt; 9              0.002             0.000</div><div class='input'>
 
 </div></pre>
   </div>

@@ -167,8 +167,942 @@ Can be found using the `cfb_game_info()` function</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'Ind'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_game_player_stats(2018, week = 15, conference = "Ind"): could not find function "cfb_game_player_stats"</span></div><div class='input'>
-<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2013</span>, <span class='kw'>week</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Florida State"</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>'passing'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_game_player_stats(2013, week = 1, team = "Florida State",     category = "passing"): could not find function "cfb_game_player_stats"</span></div><div class='input'>
+<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'Ind'</span>)</div><div class='output co'>#&gt;       game_id school        conference homeAway points      category
+#&gt; 1   401013376   Navy American Athletic     away     10       passing
+#&gt; 2   401013376   Navy American Athletic     away     10       passing
+#&gt; 3   401013376   Navy American Athletic     away     10       passing
+#&gt; 4   401013376   Navy American Athletic     away     10       passing
+#&gt; 5   401013376   Navy American Athletic     away     10       passing
+#&gt; 6   401013376   Navy American Athletic     away     10       passing
+#&gt; 7   401013376   Navy American Athletic     away     10       passing
+#&gt; 8   401013376   Navy American Athletic     away     10       passing
+#&gt; 9   401013376   Navy American Athletic     away     10       passing
+#&gt; 10  401013376   Navy American Athletic     away     10       passing
+#&gt; 11  401013376   Navy American Athletic     away     10       passing
+#&gt; 12  401013376   Navy American Athletic     away     10       passing
+#&gt; 13  401013376   Navy American Athletic     away     10       passing
+#&gt; 14  401013376   Navy American Athletic     away     10       passing
+#&gt; 15  401013376   Navy American Athletic     away     10       passing
+#&gt; 16  401013376   Navy American Athletic     away     10       rushing
+#&gt; 17  401013376   Navy American Athletic     away     10       rushing
+#&gt; 18  401013376   Navy American Athletic     away     10       rushing
+#&gt; 19  401013376   Navy American Athletic     away     10       rushing
+#&gt; 20  401013376   Navy American Athletic     away     10       rushing
+#&gt; 21  401013376   Navy American Athletic     away     10       rushing
+#&gt; 22  401013376   Navy American Athletic     away     10       rushing
+#&gt; 23  401013376   Navy American Athletic     away     10       rushing
+#&gt; 24  401013376   Navy American Athletic     away     10       rushing
+#&gt; 25  401013376   Navy American Athletic     away     10       rushing
+#&gt; 26  401013376   Navy American Athletic     away     10       rushing
+#&gt; 27  401013376   Navy American Athletic     away     10       rushing
+#&gt; 28  401013376   Navy American Athletic     away     10       rushing
+#&gt; 29  401013376   Navy American Athletic     away     10       rushing
+#&gt; 30  401013376   Navy American Athletic     away     10       rushing
+#&gt; 31  401013376   Navy American Athletic     away     10       rushing
+#&gt; 32  401013376   Navy American Athletic     away     10       rushing
+#&gt; 33  401013376   Navy American Athletic     away     10       rushing
+#&gt; 34  401013376   Navy American Athletic     away     10       rushing
+#&gt; 35  401013376   Navy American Athletic     away     10       rushing
+#&gt; 36  401013376   Navy American Athletic     away     10       rushing
+#&gt; 37  401013376   Navy American Athletic     away     10       rushing
+#&gt; 38  401013376   Navy American Athletic     away     10       rushing
+#&gt; 39  401013376   Navy American Athletic     away     10       rushing
+#&gt; 40  401013376   Navy American Athletic     away     10       rushing
+#&gt; 41  401013376   Navy American Athletic     away     10       rushing
+#&gt; 42  401013376   Navy American Athletic     away     10       rushing
+#&gt; 43  401013376   Navy American Athletic     away     10       rushing
+#&gt; 44  401013376   Navy American Athletic     away     10       rushing
+#&gt; 45  401013376   Navy American Athletic     away     10       rushing
+#&gt; 46  401013376   Navy American Athletic     away     10       rushing
+#&gt; 47  401013376   Navy American Athletic     away     10       rushing
+#&gt; 48  401013376   Navy American Athletic     away     10       rushing
+#&gt; 49  401013376   Navy American Athletic     away     10       rushing
+#&gt; 50  401013376   Navy American Athletic     away     10       rushing
+#&gt; 51  401013376   Navy American Athletic     away     10       rushing
+#&gt; 52  401013376   Navy American Athletic     away     10       rushing
+#&gt; 53  401013376   Navy American Athletic     away     10       rushing
+#&gt; 54  401013376   Navy American Athletic     away     10       rushing
+#&gt; 55  401013376   Navy American Athletic     away     10       rushing
+#&gt; 56  401013376   Navy American Athletic     away     10       rushing
+#&gt; 57  401013376   Navy American Athletic     away     10       rushing
+#&gt; 58  401013376   Navy American Athletic     away     10       rushing
+#&gt; 59  401013376   Navy American Athletic     away     10       rushing
+#&gt; 60  401013376   Navy American Athletic     away     10       rushing
+#&gt; 61  401013376   Navy American Athletic     away     10       rushing
+#&gt; 62  401013376   Navy American Athletic     away     10       rushing
+#&gt; 63  401013376   Navy American Athletic     away     10       rushing
+#&gt; 64  401013376   Navy American Athletic     away     10       rushing
+#&gt; 65  401013376   Navy American Athletic     away     10       rushing
+#&gt; 66  401013376   Navy American Athletic     away     10     receiving
+#&gt; 67  401013376   Navy American Athletic     away     10     receiving
+#&gt; 68  401013376   Navy American Athletic     away     10     receiving
+#&gt; 69  401013376   Navy American Athletic     away     10     receiving
+#&gt; 70  401013376   Navy American Athletic     away     10     receiving
+#&gt; 71  401013376   Navy American Athletic     away     10     receiving
+#&gt; 72  401013376   Navy American Athletic     away     10     receiving
+#&gt; 73  401013376   Navy American Athletic     away     10     receiving
+#&gt; 74  401013376   Navy American Athletic     away     10     receiving
+#&gt; 75  401013376   Navy American Athletic     away     10     receiving
+#&gt; 76  401013376   Navy American Athletic     away     10     receiving
+#&gt; 77  401013376   Navy American Athletic     away     10     receiving
+#&gt; 78  401013376   Navy American Athletic     away     10     receiving
+#&gt; 79  401013376   Navy American Athletic     away     10     receiving
+#&gt; 80  401013376   Navy American Athletic     away     10     receiving
+#&gt; 81  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 82  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 83  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 84  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 85  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 86  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 87  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 88  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 89  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 90  401013376   Navy American Athletic     away     10   kickReturns
+#&gt; 91  401013376   Navy American Athletic     away     10   puntReturns
+#&gt; 92  401013376   Navy American Athletic     away     10   puntReturns
+#&gt; 93  401013376   Navy American Athletic     away     10   puntReturns
+#&gt; 94  401013376   Navy American Athletic     away     10   puntReturns
+#&gt; 95  401013376   Navy American Athletic     away     10   puntReturns
+#&gt; 96  401013376   Navy American Athletic     away     10       kicking
+#&gt; 97  401013376   Navy American Athletic     away     10       kicking
+#&gt; 98  401013376   Navy American Athletic     away     10       kicking
+#&gt; 99  401013376   Navy American Athletic     away     10       kicking
+#&gt; 100 401013376   Navy American Athletic     away     10       kicking
+#&gt; 101 401013376   Navy American Athletic     away     10       punting
+#&gt; 102 401013376   Navy American Athletic     away     10       punting
+#&gt; 103 401013376   Navy American Athletic     away     10       punting
+#&gt; 104 401013376   Navy American Athletic     away     10       punting
+#&gt; 105 401013376   Navy American Athletic     away     10       punting
+#&gt; 106 401013376   Navy American Athletic     away     10       punting
+#&gt; 107 401013376   Navy American Athletic     away     10       fumbles
+#&gt; 108 401013376   Navy American Athletic     away     10       fumbles
+#&gt; 109 401013376   Navy American Athletic     away     10       fumbles
+#&gt; 110 401013376   Navy American Athletic     away     10       fumbles
+#&gt; 111 401013376   Navy American Athletic     away     10       fumbles
+#&gt; 112 401013376   Navy American Athletic     away     10       fumbles
+#&gt; 113 401013376   Navy American Athletic     away     10     defensive
+#&gt; 114 401013376   Navy American Athletic     away     10     defensive
+#&gt; 115 401013376   Navy American Athletic     away     10     defensive
+#&gt; 116 401013376   Navy American Athletic     away     10     defensive
+#&gt; 117 401013376   Navy American Athletic     away     10     defensive
+#&gt; 118 401013376   Navy American Athletic     away     10     defensive
+#&gt; 119 401013376   Navy American Athletic     away     10     defensive
+#&gt; 120 401013376   Navy American Athletic     away     10     defensive
+#&gt; 121 401013376   Navy American Athletic     away     10     defensive
+#&gt; 122 401013376   Navy American Athletic     away     10     defensive
+#&gt; 123 401013376   Navy American Athletic     away     10     defensive
+#&gt; 124 401013376   Navy American Athletic     away     10     defensive
+#&gt; 125 401013376   Navy American Athletic     away     10     defensive
+#&gt; 126 401013376   Navy American Athletic     away     10     defensive
+#&gt; 127 401013376   Navy American Athletic     away     10     defensive
+#&gt; 128 401013376   Navy American Athletic     away     10     defensive
+#&gt; 129 401013376   Navy American Athletic     away     10     defensive
+#&gt; 130 401013376   Navy American Athletic     away     10     defensive
+#&gt; 131 401013376   Navy American Athletic     away     10     defensive
+#&gt; 132 401013376   Navy American Athletic     away     10     defensive
+#&gt; 133 401013376   Navy American Athletic     away     10     defensive
+#&gt; 134 401013376   Navy American Athletic     away     10     defensive
+#&gt; 135 401013376   Navy American Athletic     away     10     defensive
+#&gt; 136 401013376   Navy American Athletic     away     10     defensive
+#&gt; 137 401013376   Navy American Athletic     away     10     defensive
+#&gt; 138 401013376   Navy American Athletic     away     10     defensive
+#&gt; 139 401013376   Navy American Athletic     away     10     defensive
+#&gt; 140 401013376   Navy American Athletic     away     10     defensive
+#&gt; 141 401013376   Navy American Athletic     away     10     defensive
+#&gt; 142 401013376   Navy American Athletic     away     10     defensive
+#&gt; 143 401013376   Navy American Athletic     away     10     defensive
+#&gt; 144 401013376   Navy American Athletic     away     10     defensive
+#&gt; 145 401013376   Navy American Athletic     away     10     defensive
+#&gt; 146 401013376   Navy American Athletic     away     10     defensive
+#&gt; 147 401013376   Navy American Athletic     away     10     defensive
+#&gt; 148 401013376   Navy American Athletic     away     10     defensive
+#&gt; 149 401013376   Navy American Athletic     away     10     defensive
+#&gt; 150 401013376   Navy American Athletic     away     10     defensive
+#&gt; 151 401013376   Navy American Athletic     away     10     defensive
+#&gt; 152 401013376   Navy American Athletic     away     10     defensive
+#&gt; 153 401013376   Navy American Athletic     away     10     defensive
+#&gt; 154 401013376   Navy American Athletic     away     10     defensive
+#&gt; 155 401013376   Navy American Athletic     away     10     defensive
+#&gt; 156 401013376   Navy American Athletic     away     10     defensive
+#&gt; 157 401013376   Navy American Athletic     away     10     defensive
+#&gt; 158 401013376   Navy American Athletic     away     10     defensive
+#&gt; 159 401013376   Navy American Athletic     away     10     defensive
+#&gt; 160 401013376   Navy American Athletic     away     10     defensive
+#&gt; 161 401013376   Navy American Athletic     away     10     defensive
+#&gt; 162 401013376   Navy American Athletic     away     10     defensive
+#&gt; 163 401013376   Navy American Athletic     away     10     defensive
+#&gt; 164 401013376   Navy American Athletic     away     10     defensive
+#&gt; 165 401013376   Navy American Athletic     away     10     defensive
+#&gt; 166 401013376   Navy American Athletic     away     10     defensive
+#&gt; 167 401013376   Navy American Athletic     away     10     defensive
+#&gt; 168 401013376   Navy American Athletic     away     10     defensive
+#&gt; 169 401013376   Navy American Athletic     away     10     defensive
+#&gt; 170 401013376   Navy American Athletic     away     10     defensive
+#&gt; 171 401013376   Navy American Athletic     away     10     defensive
+#&gt; 172 401013376   Navy American Athletic     away     10     defensive
+#&gt; 173 401013376   Navy American Athletic     away     10     defensive
+#&gt; 174 401013376   Navy American Athletic     away     10     defensive
+#&gt; 175 401013376   Navy American Athletic     away     10     defensive
+#&gt; 176 401013376   Navy American Athletic     away     10     defensive
+#&gt; 177 401013376   Navy American Athletic     away     10     defensive
+#&gt; 178 401013376   Navy American Athletic     away     10     defensive
+#&gt; 179 401013376   Navy American Athletic     away     10     defensive
+#&gt; 180 401013376   Navy American Athletic     away     10     defensive
+#&gt; 181 401013376   Navy American Athletic     away     10     defensive
+#&gt; 182 401013376   Navy American Athletic     away     10     defensive
+#&gt; 183 401013376   Navy American Athletic     away     10     defensive
+#&gt; 184 401013376   Navy American Athletic     away     10     defensive
+#&gt; 185 401013376   Navy American Athletic     away     10     defensive
+#&gt; 186 401013376   Navy American Athletic     away     10     defensive
+#&gt; 187 401013376   Navy American Athletic     away     10     defensive
+#&gt; 188 401013376   Navy American Athletic     away     10     defensive
+#&gt; 189 401013376   Navy American Athletic     away     10     defensive
+#&gt; 190 401013376   Navy American Athletic     away     10     defensive
+#&gt; 191 401013376   Navy American Athletic     away     10     defensive
+#&gt; 192 401013376   Navy American Athletic     away     10     defensive
+#&gt; 193 401013376   Navy American Athletic     away     10     defensive
+#&gt; 194 401013376   Navy American Athletic     away     10     defensive
+#&gt; 195 401013376   Navy American Athletic     away     10     defensive
+#&gt; 196 401013376   Navy American Athletic     away     10     defensive
+#&gt; 197 401013376   Navy American Athletic     away     10     defensive
+#&gt; 198 401013376   Navy American Athletic     away     10     defensive
+#&gt; 199 401013376   Navy American Athletic     away     10     defensive
+#&gt; 200 401013376   Navy American Athletic     away     10     defensive
+#&gt; 201 401013376   Navy American Athletic     away     10     defensive
+#&gt; 202 401013376   Navy American Athletic     away     10     defensive
+#&gt; 203 401013376   Navy American Athletic     away     10     defensive
+#&gt; 204 401013376   Navy American Athletic     away     10     defensive
+#&gt; 205 401013376   Navy American Athletic     away     10     defensive
+#&gt; 206 401013376   Navy American Athletic     away     10     defensive
+#&gt; 207 401013376   Navy American Athletic     away     10     defensive
+#&gt; 208 401013376   Navy American Athletic     away     10     defensive
+#&gt; 209 401013376   Navy American Athletic     away     10     defensive
+#&gt; 210 401013376   Navy American Athletic     away     10     defensive
+#&gt; 211 401013376   Navy American Athletic     away     10     defensive
+#&gt; 212 401013376   Navy American Athletic     away     10     defensive
+#&gt; 213 401013376   Navy American Athletic     away     10     defensive
+#&gt; 214 401013376   Navy American Athletic     away     10     defensive
+#&gt; 215 401013376   Navy American Athletic     away     10     defensive
+#&gt; 216 401013376   Navy American Athletic     away     10     defensive
+#&gt; 217 401013376   Navy American Athletic     away     10     defensive
+#&gt; 218 401013376   Navy American Athletic     away     10     defensive
+#&gt; 219 401013376   Navy American Athletic     away     10     defensive
+#&gt; 220 401013376   Navy American Athletic     away     10     defensive
+#&gt; 221 401013376   Navy American Athletic     away     10     defensive
+#&gt; 222 401013376   Navy American Athletic     away     10     defensive
+#&gt; 223 401013376   Navy American Athletic     away     10     defensive
+#&gt; 224 401013376   Navy American Athletic     away     10     defensive
+#&gt; 225 401013376   Army  FBS Independents     home     17       passing
+#&gt; 226 401013376   Army  FBS Independents     home     17       passing
+#&gt; 227 401013376   Army  FBS Independents     home     17       passing
+#&gt; 228 401013376   Army  FBS Independents     home     17       passing
+#&gt; 229 401013376   Army  FBS Independents     home     17       passing
+#&gt; 230 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 231 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 232 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 233 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 234 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 235 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 236 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 237 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 238 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 239 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 240 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 241 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 242 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 243 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 244 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 245 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 246 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 247 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 248 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 249 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 250 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 251 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 252 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 253 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 254 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 255 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 256 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 257 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 258 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 259 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 260 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 261 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 262 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 263 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 264 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 265 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 266 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 267 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 268 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 269 401013376   Army  FBS Independents     home     17       rushing
+#&gt; 270 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 271 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 272 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 273 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 274 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 275 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 276 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 277 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 278 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 279 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 280 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 281 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 282 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 283 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 284 401013376   Army  FBS Independents     home     17     receiving
+#&gt; 285 401013376   Army  FBS Independents     home     17 interceptions
+#&gt; 286 401013376   Army  FBS Independents     home     17 interceptions
+#&gt; 287 401013376   Army  FBS Independents     home     17 interceptions
+#&gt; 288 401013376   Army  FBS Independents     home     17 interceptions
+#&gt; 289 401013376   Army  FBS Independents     home     17 interceptions
+#&gt; 290 401013376   Army  FBS Independents     home     17 interceptions
+#&gt; 291 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 292 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 293 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 294 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 295 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 296 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 297 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 298 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 299 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 300 401013376   Army  FBS Independents     home     17   kickReturns
+#&gt; 301 401013376   Army  FBS Independents     home     17   puntReturns
+#&gt; 302 401013376   Army  FBS Independents     home     17   puntReturns
+#&gt; 303 401013376   Army  FBS Independents     home     17   puntReturns
+#&gt; 304 401013376   Army  FBS Independents     home     17   puntReturns
+#&gt; 305 401013376   Army  FBS Independents     home     17   puntReturns
+#&gt; 306 401013376   Army  FBS Independents     home     17       kicking
+#&gt; 307 401013376   Army  FBS Independents     home     17       kicking
+#&gt; 308 401013376   Army  FBS Independents     home     17       kicking
+#&gt; 309 401013376   Army  FBS Independents     home     17       kicking
+#&gt; 310 401013376   Army  FBS Independents     home     17       kicking
+#&gt; 311 401013376   Army  FBS Independents     home     17       punting
+#&gt; 312 401013376   Army  FBS Independents     home     17       punting
+#&gt; 313 401013376   Army  FBS Independents     home     17       punting
+#&gt; 314 401013376   Army  FBS Independents     home     17       punting
+#&gt; 315 401013376   Army  FBS Independents     home     17       punting
+#&gt; 316 401013376   Army  FBS Independents     home     17       punting
+#&gt; 317 401013376   Army  FBS Independents     home     17       fumbles
+#&gt; 318 401013376   Army  FBS Independents     home     17       fumbles
+#&gt; 319 401013376   Army  FBS Independents     home     17       fumbles
+#&gt; 320 401013376   Army  FBS Independents     home     17       fumbles
+#&gt; 321 401013376   Army  FBS Independents     home     17       fumbles
+#&gt; 322 401013376   Army  FBS Independents     home     17       fumbles
+#&gt; 323 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 324 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 325 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 326 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 327 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 328 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 329 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 330 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 331 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 332 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 333 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 334 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 335 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 336 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 337 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 338 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 339 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 340 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 341 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 342 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 343 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 344 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 345 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 346 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 347 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 348 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 349 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 350 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 351 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 352 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 353 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 354 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 355 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 356 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 357 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 358 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 359 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 360 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 361 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 362 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 363 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 364 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 365 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 366 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 367 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 368 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 369 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 370 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 371 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 372 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 373 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 374 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 375 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 376 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 377 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 378 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 379 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 380 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 381 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 382 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 383 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 384 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 385 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 386 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 387 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 388 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 389 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 390 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 391 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 392 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 393 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 394 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 395 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 396 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 397 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 398 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 399 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 400 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 401 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 402 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 403 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 404 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 405 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 406 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 407 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 408 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 409 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 410 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 411 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 412 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 413 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 414 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 415 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 416 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 417 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 418 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 419 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 420 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 421 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 422 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 423 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 424 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 425 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 426 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 427 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 428 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 429 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 430 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 431 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 432 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 433 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 434 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 435 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 436 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 437 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 438 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 439 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 440 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 441 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 442 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 443 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 444 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 445 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 446 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 447 401013376   Army  FBS Independents     home     17     defensive
+#&gt; 448 401013376   Army  FBS Independents     home     17     defensive
+#&gt;     stat_category athlete_id                  name value
+#&gt; 1           C/ATT    3916282          Garret Lewis  5/11
+#&gt; 2           C/ATT    3916251             Zach Abey   0/5
+#&gt; 3           C/ATT    4039425              OJ Davis   0/1
+#&gt; 4             YDS    3916282          Garret Lewis    81
+#&gt; 5             YDS    3916251             Zach Abey     0
+#&gt; 6             YDS    4039425              OJ Davis     0
+#&gt; 7             AVG    3916282          Garret Lewis   7.4
+#&gt; 8             AVG    3916251             Zach Abey   0.0
+#&gt; 9             AVG    4039425              OJ Davis   0.0
+#&gt; 10             TD    3916282          Garret Lewis     0
+#&gt; 11             TD    3916251             Zach Abey     0
+#&gt; 12             TD    4039425              OJ Davis     0
+#&gt; 13            INT    3916282          Garret Lewis     0
+#&gt; 14            INT    3916251             Zach Abey     2
+#&gt; 15            INT    4039425              OJ Davis     0
+#&gt; 16            CAR    4039436         Malcolm Perry     6
+#&gt; 17            CAR    3916268      Anthony Gargiulo     8
+#&gt; 18            CAR    3916282          Garret Lewis     6
+#&gt; 19            CAR    3916305            Tre Walker     3
+#&gt; 20            CAR    4243731          Nelson Smith     4
+#&gt; 21            CAR    4243713           Myles Fells     1
+#&gt; 22            CAR    3916283           Mike Martin     1
+#&gt; 23            CAR    4039418            Tazh Maloy     1
+#&gt; 24            CAR    3916251             Zach Abey     6
+#&gt; 25            CAR    4371891         Mychal Cooper     1
+#&gt; 26            YDS    4039436         Malcolm Perry    52
+#&gt; 27            YDS    3916268      Anthony Gargiulo    38
+#&gt; 28            YDS    3916282          Garret Lewis    14
+#&gt; 29            YDS    3916305            Tre Walker    10
+#&gt; 30            YDS    4243731          Nelson Smith     9
+#&gt; 31            YDS    4243713           Myles Fells     5
+#&gt; 32            YDS    3916283           Mike Martin     2
+#&gt; 33            YDS    4039418            Tazh Maloy     2
+#&gt; 34            YDS    3916251             Zach Abey     0
+#&gt; 35            YDS    4371891         Mychal Cooper    -5
+#&gt; 36            AVG    4039436         Malcolm Perry   8.7
+#&gt; 37            AVG    3916268      Anthony Gargiulo   4.8
+#&gt; 38            AVG    3916282          Garret Lewis   2.3
+#&gt; 39            AVG    3916305            Tre Walker   3.3
+#&gt; 40            AVG    4243731          Nelson Smith   2.3
+#&gt; 41            AVG    4243713           Myles Fells   5.0
+#&gt; 42            AVG    3916283           Mike Martin   2.0
+#&gt; 43            AVG    4039418            Tazh Maloy   2.0
+#&gt; 44            AVG    3916251             Zach Abey   2.0
+#&gt; 45            AVG    4371891         Mychal Cooper  -5.0
+#&gt; 46             TD    4039436         Malcolm Perry     0
+#&gt; 47             TD    3916268      Anthony Gargiulo     0
+#&gt; 48             TD    3916282          Garret Lewis     1
+#&gt; 49             TD    3916305            Tre Walker     0
+#&gt; 50             TD    4243731          Nelson Smith     0
+#&gt; 51             TD    4243713           Myles Fells     0
+#&gt; 52             TD    3916283           Mike Martin     0
+#&gt; 53             TD    4039418            Tazh Maloy     0
+#&gt; 54             TD    3916251             Zach Abey     0
+#&gt; 55             TD    4371891         Mychal Cooper     0
+#&gt; 56           LONG    4039436         Malcolm Perry    43
+#&gt; 57           LONG    3916268      Anthony Gargiulo     7
+#&gt; 58           LONG    3916282          Garret Lewis    13
+#&gt; 59           LONG    3916305            Tre Walker     6
+#&gt; 60           LONG    4243731          Nelson Smith     4
+#&gt; 61           LONG    4243713           Myles Fells     5
+#&gt; 62           LONG    3916283           Mike Martin     2
+#&gt; 63           LONG    4039418            Tazh Maloy     2
+#&gt; 64           LONG    3916251             Zach Abey     4
+#&gt; 65           LONG    4371891         Mychal Cooper     0
+#&gt; 66            REC    4259215 Keoni-Kordell Makekau     2
+#&gt; 67            REC    4039436         Malcolm Perry     2
+#&gt; 68            REC    3916278        Taylor Jackson     1
+#&gt; 69            YDS    4259215 Keoni-Kordell Makekau    52
+#&gt; 70            YDS    4039436         Malcolm Perry    18
+#&gt; 71            YDS    3916278        Taylor Jackson    11
+#&gt; 72            AVG    4259215 Keoni-Kordell Makekau  26.0
+#&gt; 73            AVG    4039436         Malcolm Perry   9.0
+#&gt; 74            AVG    3916278        Taylor Jackson  11.0
+#&gt; 75             TD    4259215 Keoni-Kordell Makekau     0
+#&gt; 76             TD    4039436         Malcolm Perry     0
+#&gt; 77             TD    3916278        Taylor Jackson     0
+#&gt; 78           LONG    4259215 Keoni-Kordell Makekau    34
+#&gt; 79           LONG    4039436         Malcolm Perry    13
+#&gt; 80           LONG    3916278        Taylor Jackson    11
+#&gt; 81             NO    4039436         Malcolm Perry     2
+#&gt; 82             NO    4039418            Tazh Maloy     1
+#&gt; 83            YDS    4039436         Malcolm Perry    49
+#&gt; 84            YDS    4039418            Tazh Maloy    15
+#&gt; 85            AVG    4039436         Malcolm Perry  24.5
+#&gt; 86            AVG    4039418            Tazh Maloy  15.0
+#&gt; 87           LONG    4039436         Malcolm Perry    33
+#&gt; 88           LONG    4039418            Tazh Maloy    15
+#&gt; 89             TD    4039436         Malcolm Perry     0
+#&gt; 90             TD    4039418            Tazh Maloy     0
+#&gt; 91             NO    4243727         Jake Springer     2
+#&gt; 92            YDS    4243727         Jake Springer     8
+#&gt; 93            AVG    4243727         Jake Springer   4.0
+#&gt; 94           LONG    4243727         Jake Springer     4
+#&gt; 95             TD    4243727         Jake Springer     0
+#&gt; 96             FG    3916285      Bennett Moehring   1/1
+#&gt; 97            PCT    3916285      Bennett Moehring 100.0
+#&gt; 98           LONG    3916285      Bennett Moehring    46
+#&gt; 99             XP    3916285      Bennett Moehring   1/1
+#&gt; 100           PTS    3916285      Bennett Moehring     4
+#&gt; 101            NO    4039465            Owen White     4
+#&gt; 102           YDS    4039465            Owen White   145
+#&gt; 103           AVG    4039465            Owen White  36.3
+#&gt; 104            TB    4039465            Owen White     0
+#&gt; 105         In 20    4039465            Owen White     0
+#&gt; 106          LONG    4039465            Owen White    43
+#&gt; 107           FUM    3916251             Zach Abey     1
+#&gt; 108           FUM    3916282          Garret Lewis     1
+#&gt; 109          LOST    3916251             Zach Abey     1
+#&gt; 110          LOST    3916282          Garret Lewis     1
+#&gt; 111           REC    3916251             Zach Abey     0
+#&gt; 112           REC    3916282          Garret Lewis     0
+#&gt; 113           TOT    3916276         Taylor Heflin    14
+#&gt; 114           TOT    3916271           Juan Hailey    13
+#&gt; 115           TOT    3916290           Jarvis Polu     9
+#&gt; 116           TOT    3916296       Hudson Sullivan     9
+#&gt; 117           TOT    2267927         Sean Williams     8
+#&gt; 118           TOT    4039448     Nizaire Cromartie     5
+#&gt; 119           TOT    3916303    Anthony Villalobos     5
+#&gt; 120           TOT    4039423             Elan Nash     5
+#&gt; 121           TOT    4039466       Jackson Pittman     3
+#&gt; 122           TOT    4371866           Diego Fagot     2
+#&gt; 123           TOT    3916293            Jarid Ryan     2
+#&gt; 124           TOT    3916309      Khaylan Williams     2
+#&gt; 125           TOT    3916268      Anthony Gargiulo     1
+#&gt; 126           TOT    4039416         Noruwa Obanor     1
+#&gt; 127           TOT    4039447       Carter Bankston     1
+#&gt; 128           TOT    4243753         Pepe Tanuvasa     1
+#&gt; 129          SOLO    3916276         Taylor Heflin     4
+#&gt; 130          SOLO    3916271           Juan Hailey     7
+#&gt; 131          SOLO    3916290           Jarvis Polu     3
+#&gt; 132          SOLO    3916296       Hudson Sullivan     2
+#&gt; 133          SOLO    2267927         Sean Williams     5
+#&gt; 134          SOLO    4039448     Nizaire Cromartie     2
+#&gt; 135          SOLO    3916303    Anthony Villalobos     1
+#&gt; 136          SOLO    4039423             Elan Nash     1
+#&gt; 137          SOLO    4039466       Jackson Pittman     1
+#&gt; 138          SOLO    4371866           Diego Fagot     2
+#&gt; 139          SOLO    3916293            Jarid Ryan     1
+#&gt; 140          SOLO    3916309      Khaylan Williams     0
+#&gt; 141          SOLO    3916268      Anthony Gargiulo     1
+#&gt; 142          SOLO    4039416         Noruwa Obanor     1
+#&gt; 143          SOLO    4039447       Carter Bankston     0
+#&gt; 144          SOLO    4243753         Pepe Tanuvasa     0
+#&gt; 145         SACKS    3916276         Taylor Heflin     0
+#&gt; 146         SACKS    3916271           Juan Hailey     0
+#&gt; 147         SACKS    3916290           Jarvis Polu     0
+#&gt; 148         SACKS    3916296       Hudson Sullivan   0.5
+#&gt; 149         SACKS    2267927         Sean Williams     0
+#&gt; 150         SACKS    4039448     Nizaire Cromartie   0.5
+#&gt; 151         SACKS    3916303    Anthony Villalobos     0
+#&gt; 152         SACKS    4039423             Elan Nash     0
+#&gt; 153         SACKS    4039466       Jackson Pittman     0
+#&gt; 154         SACKS    4371866           Diego Fagot     0
+#&gt; 155         SACKS    3916293            Jarid Ryan     0
+#&gt; 156         SACKS    3916309      Khaylan Williams     0
+#&gt; 157         SACKS    3916268      Anthony Gargiulo     0
+#&gt; 158         SACKS    4039416         Noruwa Obanor     0
+#&gt; 159         SACKS    4039447       Carter Bankston     0
+#&gt; 160         SACKS    4243753         Pepe Tanuvasa     0
+#&gt; 161           TFL    3916276         Taylor Heflin   2.5
+#&gt; 162           TFL    3916271           Juan Hailey   0.5
+#&gt; 163           TFL    3916290           Jarvis Polu     0
+#&gt; 164           TFL    3916296       Hudson Sullivan   0.5
+#&gt; 165           TFL    2267927         Sean Williams     1
+#&gt; 166           TFL    4039448     Nizaire Cromartie   0.5
+#&gt; 167           TFL    3916303    Anthony Villalobos     0
+#&gt; 168           TFL    4039423             Elan Nash     0
+#&gt; 169           TFL    4039466       Jackson Pittman     0
+#&gt; 170           TFL    4371866           Diego Fagot     0
+#&gt; 171           TFL    3916293            Jarid Ryan     0
+#&gt; 172           TFL    3916309      Khaylan Williams     0
+#&gt; 173           TFL    3916268      Anthony Gargiulo     0
+#&gt; 174           TFL    4039416         Noruwa Obanor     0
+#&gt; 175           TFL    4039447       Carter Bankston     0
+#&gt; 176           TFL    4243753         Pepe Tanuvasa     0
+#&gt; 177            PD    3916276         Taylor Heflin     0
+#&gt; 178            PD    3916271           Juan Hailey     0
+#&gt; 179            PD    3916290           Jarvis Polu     0
+#&gt; 180            PD    3916296       Hudson Sullivan     0
+#&gt; 181            PD    2267927         Sean Williams     1
+#&gt; 182            PD    4039448     Nizaire Cromartie     0
+#&gt; 183            PD    3916303    Anthony Villalobos     0
+#&gt; 184            PD    4039423             Elan Nash     0
+#&gt; 185            PD    4039466       Jackson Pittman     0
+#&gt; 186            PD    4371866           Diego Fagot     0
+#&gt; 187            PD    3916293            Jarid Ryan     0
+#&gt; 188            PD    3916309      Khaylan Williams     0
+#&gt; 189            PD    3916268      Anthony Gargiulo     0
+#&gt; 190            PD    4039416         Noruwa Obanor     0
+#&gt; 191            PD    4039447       Carter Bankston     0
+#&gt; 192            PD    4243753         Pepe Tanuvasa     0
+#&gt; 193        QB HUR    3916276         Taylor Heflin     0
+#&gt; 194        QB HUR    3916271           Juan Hailey     0
+#&gt; 195        QB HUR    3916290           Jarvis Polu     0
+#&gt; 196        QB HUR    3916296       Hudson Sullivan     0
+#&gt; 197        QB HUR    2267927         Sean Williams     0
+#&gt; 198        QB HUR    4039448     Nizaire Cromartie     0
+#&gt; 199        QB HUR    3916303    Anthony Villalobos     0
+#&gt; 200        QB HUR    4039423             Elan Nash     0
+#&gt; 201        QB HUR    4039466       Jackson Pittman     0
+#&gt; 202        QB HUR    4371866           Diego Fagot     0
+#&gt; 203        QB HUR    3916293            Jarid Ryan     0
+#&gt; 204        QB HUR    3916309      Khaylan Williams     0
+#&gt; 205        QB HUR    3916268      Anthony Gargiulo     0
+#&gt; 206        QB HUR    4039416         Noruwa Obanor     0
+#&gt; 207        QB HUR    4039447       Carter Bankston     0
+#&gt; 208        QB HUR    4243753         Pepe Tanuvasa     0
+#&gt; 209            TD    3916276         Taylor Heflin     0
+#&gt; 210            TD    3916271           Juan Hailey     0
+#&gt; 211            TD    3916290           Jarvis Polu     0
+#&gt; 212            TD    3916296       Hudson Sullivan     0
+#&gt; 213            TD    2267927         Sean Williams     0
+#&gt; 214            TD    4039448     Nizaire Cromartie     0
+#&gt; 215            TD    3916303    Anthony Villalobos     0
+#&gt; 216            TD    4039423             Elan Nash     0
+#&gt; 217            TD    4039466       Jackson Pittman     0
+#&gt; 218            TD    4371866           Diego Fagot     0
+#&gt; 219            TD    3916293            Jarid Ryan     0
+#&gt; 220            TD    3916309      Khaylan Williams     0
+#&gt; 221            TD    3916268      Anthony Gargiulo     0
+#&gt; 222            TD    4039416         Noruwa Obanor     0
+#&gt; 223            TD    4039447       Carter Bankston     0
+#&gt; 224            TD    4243753         Pepe Tanuvasa     0
+#&gt; 225         C/ATT    4036923    Kelvin Hopkins Jr.   4/9
+#&gt; 226           YDS    4036923    Kelvin Hopkins Jr.    61
+#&gt; 227           AVG    4036923    Kelvin Hopkins Jr.   6.8
+#&gt; 228            TD    4036923    Kelvin Hopkins Jr.     0
+#&gt; 229           INT    4036923    Kelvin Hopkins Jr.     0
+#&gt; 230           CAR    4036923    Kelvin Hopkins Jr.    18
+#&gt; 231           CAR    3916803      Darnell Woolfolk    16
+#&gt; 232           CAR    4036942           Kell Walker     5
+#&gt; 233           CAR    3916821         Andy Davidson     6
+#&gt; 234           CAR    4036934         Malik Hancock     1
+#&gt; 235           CAR    4036949         Connor Slomka     1
+#&gt; 236           CAR    3916819        Jordan Asberry     2
+#&gt; 237           CAR      -5258                  Team     1
+#&gt; 238           YDS    4036923    Kelvin Hopkins Jr.    64
+#&gt; 239           YDS    3916803      Darnell Woolfolk    62
+#&gt; 240           YDS    4036942           Kell Walker    56
+#&gt; 241           YDS    3916821         Andy Davidson    31
+#&gt; 242           YDS    4036934         Malik Hancock     8
+#&gt; 243           YDS    4036949         Connor Slomka     1
+#&gt; 244           YDS    3916819        Jordan Asberry     1
+#&gt; 245           YDS      -5258                  Team    -1
+#&gt; 246           AVG    4036923    Kelvin Hopkins Jr.   3.6
+#&gt; 247           AVG    3916803      Darnell Woolfolk   3.9
+#&gt; 248           AVG    4036942           Kell Walker  11.2
+#&gt; 249           AVG    3916821         Andy Davidson   5.2
+#&gt; 250           AVG    4036934         Malik Hancock   8.0
+#&gt; 251           AVG    4036949         Connor Slomka   1.0
+#&gt; 252           AVG    3916819        Jordan Asberry   0.5
+#&gt; 253           AVG      -5258                  Team  -1.0
+#&gt; 254            TD    4036923    Kelvin Hopkins Jr.     2
+#&gt; 255            TD    3916803      Darnell Woolfolk     0
+#&gt; 256            TD    4036942           Kell Walker     0
+#&gt; 257            TD    3916821         Andy Davidson     0
+#&gt; 258            TD    4036934         Malik Hancock     0
+#&gt; 259            TD    4036949         Connor Slomka     0
+#&gt; 260            TD    3916819        Jordan Asberry     0
+#&gt; 261            TD      -5258                  Team     0
+#&gt; 262          LONG    4036923    Kelvin Hopkins Jr.    17
+#&gt; 263          LONG    3916803      Darnell Woolfolk    18
+#&gt; 264          LONG    4036942           Kell Walker    51
+#&gt; 265          LONG    3916821         Andy Davidson    22
+#&gt; 266          LONG    4036934         Malik Hancock     8
+#&gt; 267          LONG    4036949         Connor Slomka     1
+#&gt; 268          LONG    3916819        Jordan Asberry     2
+#&gt; 269          LONG      -5258                  Team     0
+#&gt; 270           REC    4036942           Kell Walker     2
+#&gt; 271           REC    4036969           Glen Coates     1
+#&gt; 272           REC    4258460           Zack Boobas     1
+#&gt; 273           YDS    4036942           Kell Walker    30
+#&gt; 274           YDS    4036969           Glen Coates    17
+#&gt; 275           YDS    4258460           Zack Boobas    14
+#&gt; 276           AVG    4036942           Kell Walker  15.0
+#&gt; 277           AVG    4036969           Glen Coates  17.0
+#&gt; 278           AVG    4258460           Zack Boobas  14.0
+#&gt; 279            TD    4036942           Kell Walker     0
+#&gt; 280            TD    4036969           Glen Coates     0
+#&gt; 281            TD    4258460           Zack Boobas     0
+#&gt; 282          LONG    4036942           Kell Walker    25
+#&gt; 283          LONG    4036969           Glen Coates    17
+#&gt; 284          LONG    4258460           Zack Boobas    14
+#&gt; 285           INT    4036925      Jaylon McClinton     1
+#&gt; 286           INT    3916807         Mike Reynolds     1
+#&gt; 287           YDS    4036925      Jaylon McClinton    11
+#&gt; 288           YDS    3916807         Mike Reynolds     0
+#&gt; 289            TD    4036925      Jaylon McClinton     0
+#&gt; 290            TD    3916807         Mike Reynolds     0
+#&gt; 291            NO    4036942           Kell Walker     1
+#&gt; 292            NO    4258467          Sandon McCoy     1
+#&gt; 293           YDS    4036942           Kell Walker    23
+#&gt; 294           YDS    4258467          Sandon McCoy    15
+#&gt; 295           AVG    4036942           Kell Walker  23.0
+#&gt; 296           AVG    4258467          Sandon McCoy  15.0
+#&gt; 297          LONG    4036942           Kell Walker    23
+#&gt; 298          LONG    4258467          Sandon McCoy    15
+#&gt; 299            TD    4036942           Kell Walker     0
+#&gt; 300            TD    4258467          Sandon McCoy     0
+#&gt; 301            NO    3916807         Mike Reynolds     2
+#&gt; 302           YDS    3916807         Mike Reynolds     4
+#&gt; 303           AVG    3916807         Mike Reynolds   2.0
+#&gt; 304          LONG    3916807         Mike Reynolds     3
+#&gt; 305            TD    3916807         Mike Reynolds     0
+#&gt; 306            FG    4077517      John Abercrombie   1/2
+#&gt; 307           PCT    4077517      John Abercrombie  50.0
+#&gt; 308          LONG    4077517      John Abercrombie    33
+#&gt; 309            XP    4077517      John Abercrombie   2/2
+#&gt; 310           PTS    4077517      John Abercrombie     5
+#&gt; 311            NO    3916795          Nick Schrage     4
+#&gt; 312           YDS    3916795          Nick Schrage   156
+#&gt; 313           AVG    3916795          Nick Schrage  39.0
+#&gt; 314            TB    3916795          Nick Schrage     0
+#&gt; 315         In 20    3916795          Nick Schrage     1
+#&gt; 316          LONG    3916795          Nick Schrage    47
+#&gt; 317           FUM    3916832       Kenneth Brinson     0
+#&gt; 318           FUM    4260811          James Gibson     0
+#&gt; 319          LOST    3916832       Kenneth Brinson     0
+#&gt; 320          LOST    4260811          James Gibson     0
+#&gt; 321           REC    3916832       Kenneth Brinson     1
+#&gt; 322           REC    4260811          James Gibson     1
+#&gt; 323           TOT    4036925      Jaylon McClinton     9
+#&gt; 324           TOT    3916813       James Nachtigal     8
+#&gt; 325           TOT    3916860         Wunmi Oyetuga     7
+#&gt; 326           TOT    4036958           Amadeo West     6
+#&gt; 327           TOT    4036959     Cole Christiansen     6
+#&gt; 328           TOT    3916818      Chandler Ramirez     5
+#&gt; 329           TOT    4260811          James Gibson     4
+#&gt; 330           TOT    3916832       Kenneth Brinson     3
+#&gt; 331           TOT    4036924          Elijah Riley     3
+#&gt; 332           TOT    3916850        Raymond Wright     3
+#&gt; 333           TOT    4036944         Donavan Lynch     2
+#&gt; 334           TOT    4258506     Edriece Patterson     2
+#&gt; 335           TOT    3916819        Jordan Asberry     1
+#&gt; 336           TOT    4036929           Ryan Parker     1
+#&gt; 337           TOT    4258457      Javhari Bourdeau     1
+#&gt; 338           TOT    4258521        Landon Salyers     1
+#&gt; 339           TOT    3916807         Mike Reynolds     1
+#&gt; 340           TOT    4036953       Jacob Covington     1
+#&gt; 341          SOLO    4036925      Jaylon McClinton     6
+#&gt; 342          SOLO    3916813       James Nachtigal     3
+#&gt; 343          SOLO    3916860         Wunmi Oyetuga     1
+#&gt; 344          SOLO    4036958           Amadeo West     3
+#&gt; 345          SOLO    4036959     Cole Christiansen     1
+#&gt; 346          SOLO    3916818      Chandler Ramirez     3
+#&gt; 347          SOLO    4260811          James Gibson     1
+#&gt; 348          SOLO    3916832       Kenneth Brinson     2
+#&gt; 349          SOLO    4036924          Elijah Riley     1
+#&gt; 350          SOLO    3916850        Raymond Wright     0
+#&gt; 351          SOLO    4036944         Donavan Lynch     1
+#&gt; 352          SOLO    4258506     Edriece Patterson     0
+#&gt; 353          SOLO    3916819        Jordan Asberry     1
+#&gt; 354          SOLO    4036929           Ryan Parker     1
+#&gt; 355          SOLO    4258457      Javhari Bourdeau     1
+#&gt; 356          SOLO    4258521        Landon Salyers     1
+#&gt; 357          SOLO    3916807         Mike Reynolds     0
+#&gt; 358          SOLO    4036953       Jacob Covington     0
+#&gt; 359         SACKS    4036925      Jaylon McClinton     0
+#&gt; 360         SACKS    3916813       James Nachtigal     0
+#&gt; 361         SACKS    3916860         Wunmi Oyetuga     0
+#&gt; 362         SACKS    4036958           Amadeo West     0
+#&gt; 363         SACKS    4036959     Cole Christiansen     0
+#&gt; 364         SACKS    3916818      Chandler Ramirez     0
+#&gt; 365         SACKS    4260811          James Gibson     0
+#&gt; 366         SACKS    3916832       Kenneth Brinson     1
+#&gt; 367         SACKS    4036924          Elijah Riley     0
+#&gt; 368         SACKS    3916850        Raymond Wright     0
+#&gt; 369         SACKS    4036944         Donavan Lynch     0
+#&gt; 370         SACKS    4258506     Edriece Patterson     0
+#&gt; 371         SACKS    3916819        Jordan Asberry     0
+#&gt; 372         SACKS    4036929           Ryan Parker     0
+#&gt; 373         SACKS    4258457      Javhari Bourdeau     0
+#&gt; 374         SACKS    4258521        Landon Salyers     0
+#&gt; 375         SACKS    3916807         Mike Reynolds     0
+#&gt; 376         SACKS    4036953       Jacob Covington     0
+#&gt; 377           TFL    4036925      Jaylon McClinton     1
+#&gt; 378           TFL    3916813       James Nachtigal     0
+#&gt; 379           TFL    3916860         Wunmi Oyetuga   0.5
+#&gt; 380           TFL    4036958           Amadeo West     0
+#&gt; 381           TFL    4036959     Cole Christiansen   1.5
+#&gt; 382           TFL    3916818      Chandler Ramirez     0
+#&gt; 383           TFL    4260811          James Gibson     0
+#&gt; 384           TFL    3916832       Kenneth Brinson     1
+#&gt; 385           TFL    4036924          Elijah Riley   1.5
+#&gt; 386           TFL    3916850        Raymond Wright     0
+#&gt; 387           TFL    4036944         Donavan Lynch     0
+#&gt; 388           TFL    4258506     Edriece Patterson   0.5
+#&gt; 389           TFL    3916819        Jordan Asberry     0
+#&gt; 390           TFL    4036929           Ryan Parker     0
+#&gt; 391           TFL    4258457      Javhari Bourdeau     0
+#&gt; 392           TFL    4258521        Landon Salyers     0
+#&gt; 393           TFL    3916807         Mike Reynolds     0
+#&gt; 394           TFL    4036953       Jacob Covington     0
+#&gt; 395            PD    4036925      Jaylon McClinton     0
+#&gt; 396            PD    3916813       James Nachtigal     1
+#&gt; 397            PD    3916860         Wunmi Oyetuga     0
+#&gt; 398            PD    4036958           Amadeo West     0
+#&gt; 399            PD    4036959     Cole Christiansen     0
+#&gt; 400            PD    3916818      Chandler Ramirez     0
+#&gt; 401            PD    4260811          James Gibson     0
+#&gt; 402            PD    3916832       Kenneth Brinson     0
+#&gt; 403            PD    4036924          Elijah Riley     2
+#&gt; 404            PD    3916850        Raymond Wright     0
+#&gt; 405            PD    4036944         Donavan Lynch     0
+#&gt; 406            PD    4258506     Edriece Patterson     0
+#&gt; 407            PD    3916819        Jordan Asberry     0
+#&gt; 408            PD    4036929           Ryan Parker     0
+#&gt; 409            PD    4258457      Javhari Bourdeau     0
+#&gt; 410            PD    4258521        Landon Salyers     0
+#&gt; 411            PD    3916807         Mike Reynolds     3
+#&gt; 412            PD    4036953       Jacob Covington     0
+#&gt; 413        QB HUR    4036925      Jaylon McClinton     0
+#&gt; 414        QB HUR    3916813       James Nachtigal     0
+#&gt; 415        QB HUR    3916860         Wunmi Oyetuga     0
+#&gt; 416        QB HUR    4036958           Amadeo West     0
+#&gt; 417        QB HUR    4036959     Cole Christiansen     0
+#&gt; 418        QB HUR    3916818      Chandler Ramirez     0
+#&gt; 419        QB HUR    4260811          James Gibson     0
+#&gt; 420        QB HUR    3916832       Kenneth Brinson     0
+#&gt; 421        QB HUR    4036924          Elijah Riley     0
+#&gt; 422        QB HUR    3916850        Raymond Wright     0
+#&gt; 423        QB HUR    4036944         Donavan Lynch     0
+#&gt; 424        QB HUR    4258506     Edriece Patterson     0
+#&gt; 425        QB HUR    3916819        Jordan Asberry     0
+#&gt; 426        QB HUR    4036929           Ryan Parker     0
+#&gt; 427        QB HUR    4258457      Javhari Bourdeau     0
+#&gt; 428        QB HUR    4258521        Landon Salyers     0
+#&gt; 429        QB HUR    3916807         Mike Reynolds     0
+#&gt; 430        QB HUR    4036953       Jacob Covington     0
+#&gt; 431            TD    4036925      Jaylon McClinton     0
+#&gt; 432            TD    3916813       James Nachtigal     0
+#&gt; 433            TD    3916860         Wunmi Oyetuga     0
+#&gt; 434            TD    4036958           Amadeo West     0
+#&gt; 435            TD    4036959     Cole Christiansen     0
+#&gt; 436            TD    3916818      Chandler Ramirez     0
+#&gt; 437            TD    4260811          James Gibson     0
+#&gt; 438            TD    3916832       Kenneth Brinson     0
+#&gt; 439            TD    4036924          Elijah Riley     0
+#&gt; 440            TD    3916850        Raymond Wright     0
+#&gt; 441            TD    4036944         Donavan Lynch     0
+#&gt; 442            TD    4258506     Edriece Patterson     0
+#&gt; 443            TD    3916819        Jordan Asberry     0
+#&gt; 444            TD    4036929           Ryan Parker     0
+#&gt; 445            TD    4258457      Javhari Bourdeau     0
+#&gt; 446            TD    4258521        Landon Salyers     0
+#&gt; 447            TD    3916807         Mike Reynolds     0
+#&gt; 448            TD    4036953       Jacob Covington     0</div><div class='input'>
+<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2013</span>, <span class='kw'>week</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Florida State"</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>'passing'</span>)</div><div class='output co'>#&gt;      game_id        school conference homeAway points category stat_category
+#&gt; 1  332450221    Pittsburgh        ACC     home     13  passing         C/ATT
+#&gt; 2  332450221    Pittsburgh        ACC     home     13  passing           YDS
+#&gt; 3  332450221    Pittsburgh        ACC     home     13  passing           QBR
+#&gt; 4  332450221    Pittsburgh        ACC     home     13  passing           INT
+#&gt; 5  332450221    Pittsburgh        ACC     home     13  passing            TD
+#&gt; 6  332450221    Pittsburgh        ACC     home     13  passing           AVG
+#&gt; 7  332450221 Florida State        ACC     away     41  passing         C/ATT
+#&gt; 8  332450221 Florida State        ACC     away     41  passing         C/ATT
+#&gt; 9  332450221 Florida State        ACC     away     41  passing           YDS
+#&gt; 10 332450221 Florida State        ACC     away     41  passing           YDS
+#&gt; 11 332450221 Florida State        ACC     away     41  passing           QBR
+#&gt; 12 332450221 Florida State        ACC     away     41  passing           QBR
+#&gt; 13 332450221 Florida State        ACC     away     41  passing           INT
+#&gt; 14 332450221 Florida State        ACC     away     41  passing           INT
+#&gt; 15 332450221 Florida State        ACC     away     41  passing            TD
+#&gt; 16 332450221 Florida State        ACC     away     41  passing            TD
+#&gt; 17 332450221 Florida State        ACC     away     41  passing           AVG
+#&gt; 18 332450221 Florida State        ACC     away     41  passing           AVG
+#&gt;    athlete_id           name value
+#&gt; 1      514116     Tom Savage 15/28
+#&gt; 2      514116     Tom Savage   201
+#&gt; 3      514116     Tom Savage  20.3
+#&gt; 4      514116     Tom Savage     2
+#&gt; 5      514116     Tom Savage     1
+#&gt; 6      514116     Tom Savage   7.2
+#&gt; 7      530308 Jameis Winston 25/27
+#&gt; 8      514124     Jake Coker   2/2
+#&gt; 9      530308 Jameis Winston   356
+#&gt; 10     514124     Jake Coker    21
+#&gt; 11     530308 Jameis Winston  97.3
+#&gt; 12     514124     Jake Coker  99.1
+#&gt; 13     530308 Jameis Winston     0
+#&gt; 14     514124     Jake Coker     0
+#&gt; 15     530308 Jameis Winston     4
+#&gt; 16     514124     Jake Coker     0
+#&gt; 17     530308 Jameis Winston  13.2
+#&gt; 18     514124     Jake Coker  10.5</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

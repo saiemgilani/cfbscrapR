@@ -150,10 +150,24 @@ If left NULL, API default will only provide results for most recent year of fina
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'James'</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'DB'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_player_info(search_term = "James", position = "DB", team = "Florida State",     year = 2017): could not find function "cfb_player_info"</span></div><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Lawrence'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Clemson"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_player_info(search_term = "Lawrence", team = "Clemson"): could not find function "cfb_player_info"</span></div><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Tua'</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'QB'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_player_info(search_term = "Tua", position = "QB"): could not find function "cfb_player_info"</span></div><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Duggan'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_player_info(search_term = "Duggan"): could not find function "cfb_player_info"</span></div><div class='input'>
+<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'James'</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'DB'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt;        id          team         name firstName lastName weight height jersey
+#&gt; 1 3691739 Florida State Derwin James    Derwin    James    211     75      3
+#&gt;   position    hometown teamColor
+#&gt; 1       DB Leander, TX   #782F40</div><div class='input'>
+<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Lawrence'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Clemson"</span>)</div><div class='output co'>#&gt;        id    team            name firstName lastName weight height jersey
+#&gt; 1 4360310 Clemson Trevor Lawrence    Trevor Lawrence    220     78     16
+#&gt;   position         hometown teamColor
+#&gt; 1       QB Cartersville, GA   #F66733</div><div class='input'>
+<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Tua'</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'QB'</span>)</div><div class='output co'>#&gt;        id    team           name firstName   lastName weight height jersey
+#&gt; 1 4241479 Alabama Tua Tagovailoa       Tua Tagovailoa    218     73     13
+#&gt;   position      hometown teamColor
+#&gt; 1       QB Ewa Beach, HI   #690014</div><div class='input'>
+<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Duggan'</span>)</div><div class='output co'>#&gt;        id    team          name firstName lastName weight height jersey
+#&gt; 1 4259319 Rutgers Jaohne Duggan    Jaohne   Duggan    295     73     57
+#&gt; 2 4427105     TCU    Max Duggan       Max   Duggan    190     74     15
+#&gt;   position           hometown teamColor
+#&gt; 1       DL      Bethlehem, PA   #d21034
+#&gt; 2       QB Council Bluffs, IA   #3C377D</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

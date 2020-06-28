@@ -169,9 +169,32 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'ACC'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_betting_lines(year = 2018, week = 1, team = "Florida State",     conference = "ACC"): could not find function "cfb_betting_lines"</span></div><div class='input'>
+<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'ACC'</span>)</div><div class='output co'>#&gt;          id season seasonType week      homeTeam homeConference homeScore
+#&gt; 1 401013096   2018    regular    1 Florida State            ACC         3
+#&gt; 2 401013096   2018    regular    1 Florida State            ACC         3
+#&gt; 3 401013096   2018    regular    1 Florida State            ACC         3
+#&gt; 4 401013096   2018    regular    1 Florida State            ACC         3
+#&gt;        awayTeam awayConference awayScore     provider spread    formattedSpread
+#&gt; 1 Virginia Tech            ACC        24 teamrankings     -7   Florida State -7
+#&gt; 2 Virginia Tech            ACC        24   numberfire   -7.5 Florida State -7.5
+#&gt; 3 Virginia Tech            ACC        24    consensus     -7   Florida State -7
+#&gt; 4 Virginia Tech            ACC        24      Caesars     -7   Florida State -7
+#&gt;   overUnder
+#&gt; 1        54
+#&gt; 2        54
+#&gt; 3      55.5
+#&gt; 4      55.5</div><div class='input'>
 <span class='co'>#7 OTs LSU @ TAMU</span>
-<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>13</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'SEC'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_betting_lines(year = 2018, week = 13, team = "Texas A&amp;M",     conference = "SEC"): could not find function "cfb_betting_lines"</span></div><div class='input'>
+<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>13</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'SEC'</span>)</div><div class='output co'>#&gt;          id season seasonType week  homeTeam homeConference homeScore awayTeam
+#&gt; 1 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
+#&gt; 2 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
+#&gt; 3 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
+#&gt; 4 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
+#&gt;   awayConference awayScore     provider spread formattedSpread overUnder
+#&gt; 1            SEC        72 teamrankings     -3    Texas A&amp;M -3      46.5
+#&gt; 2            SEC        72   numberfire   &lt;NA&gt;       LSU -null      46.5
+#&gt; 3            SEC        72    consensus     -3    Texas A&amp;M -3      45.5
+#&gt; 4            SEC        72      Caesars     -3    Texas A&amp;M -3      45.5</div><div class='input'>
 
 </div></pre>
   </div>

@@ -168,7 +168,557 @@ Can be found using the `cfb_play_stats_types()` function</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>ath_id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='fu'><a href='cfb_player_info.html'>cfb_player_info</a></span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'terry'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"florida state"</span>)$<span class='no'>id</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_player_info(search_term = "terry", team = "florida state"): could not find function "cfb_player_info"</span></div><div class='input'><span class='fu'>cfb_play_stats_player</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>athlete_id</span> <span class='kw'>=</span> <span class='no'>ath_id</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_play_stats_player(year = 2019, week = 1, team = "Florida State",     athlete_id = ath_id): unused arguments (year = 2019, week = 1, team = "Florida State", athlete_id = ath_id)</span></div><div class='input'>
+<span class='no'>ath_id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='fu'><a href='cfb_player_info.html'>cfb_player_info</a></span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'terry'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"florida state"</span>)$<span class='no'>id</span>)
+<span class='fu'>cfb_play_stats_player</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>athlete_id</span> <span class='kw'>=</span> <span class='no'>ath_id</span>)</div><div class='output co'>#&gt;        gameId season week    opponent teamScore opponentScore     driveId
+#&gt; 1   401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 2   401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 3   401112431   2019    1 Boise State         0             0  4011124312
+#&gt; 4   401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 5   401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 6   401112431   2019    1 Boise State         0             0  4011124312
+#&gt; 7   401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 8   401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 9   401112431   2019    1 Boise State        14             3  4011124314
+#&gt; 10  401112431   2019    1 Boise State        14             3  4011124314
+#&gt; 11  401112431   2019    1 Boise State        14             3  4011124314
+#&gt; 12  401112431   2019    1 Boise State        14             3  4011124314
+#&gt; 13  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 14  401112431   2019    1 Boise State         0             0  4011124312
+#&gt; 15  401112431   2019    1 Boise State         0             0  4011124312
+#&gt; 16  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 17  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 18  401112431   2019    1 Boise State         7             0  4011124312
+#&gt; 19  401112431   2019    1 Boise State         7             0  4011124312
+#&gt; 20  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 21  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 22  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 23  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 24  401112431   2019    1 Boise State        14             6  4011124316
+#&gt; 25  401112431   2019    1 Boise State        21             6  4011124316
+#&gt; 26  401112431   2019    1 Boise State        21             6  4011124316
+#&gt; 27  401112431   2019    1 Boise State        21             6  4011124316
+#&gt; 28  401112431   2019    1 Boise State        21             6  4011124316
+#&gt; 29  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 30  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 31  401112431   2019    1 Boise State        31            13 40111243113
+#&gt; 32  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 33  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 34  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 35  401112431   2019    1 Boise State        24             6 40111243110
+#&gt; 36  401112431   2019    1 Boise State        21             6  4011124317
+#&gt; 37  401112431   2019    1 Boise State        24             6 40111243110
+#&gt; 38  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 39  401112431   2019    1 Boise State        24             6 40111243110
+#&gt; 40  401112431   2019    1 Boise State        24             6 40111243110
+#&gt; 41  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 42  401112431   2019    1 Boise State        24             6 40111243110
+#&gt; 43  401112431   2019    1 Boise State        31            16 40111243114
+#&gt; 44  401112431   2019    1 Boise State        31            16 40111243114
+#&gt; 45  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 46  401112431   2019    1 Boise State        24            13 40111243112
+#&gt; 47  401112431   2019    1 Boise State        24            13 40111243112
+#&gt; 48  401112431   2019    1 Boise State        24             6 40111243110
+#&gt; 49  401112431   2019    1 Boise State        24             6 40111243110
+#&gt; 50  401112431   2019    1 Boise State        31            16 40111243114
+#&gt; 51  401112431   2019    1 Boise State        31            16 40111243114
+#&gt; 52  401112431   2019    1 Boise State        31            16 40111243114
+#&gt; 53  401112431   2019    1 Boise State        31            13 40111243112
+#&gt; 54  401112431   2019    1 Boise State        31            13 40111243112
+#&gt; 55  401112431   2019    1 Boise State        31            13 40111243112
+#&gt; 56  401112431   2019    1 Boise State        31            13 40111243112
+#&gt; 57  401112431   2019    1 Boise State        24             6  4011124319
+#&gt; 58  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 59  401112431   2019    1 Boise State        21             6  4011124318
+#&gt; 60  401112431   2019    1 Boise State        31            19 40111243118
+#&gt; 61  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 62  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 63  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 64  401112431   2019    1 Boise State        31            19 40111243122
+#&gt; 65  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 66  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 67  401112431   2019    1 Boise State        31            26 40111243124
+#&gt; 68  401112431   2019    1 Boise State        31            26 40111243124
+#&gt; 69  401112431   2019    1 Boise State        31            19 40111243122
+#&gt; 70  401112431   2019    1 Boise State        31            19 40111243122
+#&gt; 71  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 72  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 73  401112431   2019    1 Boise State        31            26 40111243124
+#&gt; 74  401112431   2019    1 Boise State        31            26 40111243124
+#&gt; 75  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 76  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 77  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 78  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 79  401112431   2019    1 Boise State        31            19 40111243118
+#&gt; 80  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 81  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 82  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 83  401112431   2019    1 Boise State        31            19 40111243119
+#&gt; 84  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 85  401112431   2019    1 Boise State        31            19 40111243116
+#&gt; 86  401112431   2019    1 Boise State        31            26 40111243124
+#&gt; 87  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 88  401112431   2019    1 Boise State        31            19 40111243120
+#&gt; 89  401112431   2019    1 Boise State        31            19 40111243118
+#&gt; 90  401112431   2019    1 Boise State        31            19 40111243118
+#&gt; 91  401112431   2019    1 Boise State        31            19 40111243121
+#&gt; 92  401112431   2019    1 Boise State        31            19 40111243121
+#&gt; 93  401112431   2019    1 Boise State        31            33 40111243126
+#&gt; 94  401112431   2019    1 Boise State        31            33 40111243126
+#&gt; 95  401112431   2019    1 Boise State        31            36 40111243130
+#&gt; 96  401112431   2019    1 Boise State        31            36 40111243130
+#&gt; 97  401112431   2019    1 Boise State        31            36 40111243128
+#&gt; 98  401112431   2019    1 Boise State        31            36 40111243129
+#&gt; 99  401112431   2019    1 Boise State        31            33 40111243126
+#&gt; 100 401112431   2019    1 Boise State        31            33 40111243126
+#&gt; 101 401112431   2019    1 Boise State        31            36 40111243130
+#&gt; 102 401112431   2019    1 Boise State        31            36 40111243130
+#&gt; 103 401112431   2019    1 Boise State        31            33 40111243126
+#&gt; 104 401112431   2019    1 Boise State        31            36 40111243130
+#&gt; 105 401112431   2019    1 Boise State        31            36 40111243128
+#&gt; 106 401112431   2019    1 Boise State        31            36 40111243130
+#&gt; 107 401112431   2019    1 Boise State        31            36 40111243130
+#&gt; 108 401112431   2019    1 Boise State        31            36 40111243128
+#&gt; 109 401112431   2019    1 Boise State        31            36 40111243128
+#&gt;                 playId period secondsRemaining yardsToGoal down distance
+#&gt; 1   401112431101974101      1               58          77    2       11
+#&gt; 2   401112431101974101      1               58          77    2       11
+#&gt; 3   401112431101874401      1               55          47    1       10
+#&gt; 4   401112431101984601      1               53          38    1       10
+#&gt; 5   401112431101984601      1               53          38    1       10
+#&gt; 6   401112431101875401      1               45          47    2       10
+#&gt; 7   401112431101985601      1               43          37    2        9
+#&gt; 8   401112431101985601      1               43          37    2        9
+#&gt; 9   401112431101925701      1               42          75    1       10
+#&gt; 10  401112431101925701      1               42          75    1       10
+#&gt; 11  401112431101925701      1               42          75    1       10
+#&gt; 12  401112431101925701      1               42          75    1       10
+#&gt; 13  401112431101976101      1               38          65    1       10
+#&gt; 14  401112431101876801      1               31          47    3       10
+#&gt; 15  401112431101876801      1               31          47    3       10
+#&gt; 16  401112431101986801      1               31          25    1       10
+#&gt; 17  401112431101986802      1               31          15    1       10
+#&gt; 18  401112431101877101      1               28          38    4        1
+#&gt; 19  401112431101877101      1               28          38    4        1
+#&gt; 20  401112431101977401      1               25          51    1       10
+#&gt; 21  401112431101977401      1               25          51    1       10
+#&gt; 22  401112431101967401      1               25          81    1       15
+#&gt; 23  401112431101978701      1               12          51    2       10
+#&gt; 24  401112431101978701      1               12          51    2       10
+#&gt; 25  401112431101989401      1                5           5    1        5
+#&gt; 26  401112431101989401      1                5           5    1        5
+#&gt; 27  401112431101989401      1                5           5    1        5
+#&gt; 28  401112431101989401      1                5           5    1        5
+#&gt; 29  401112431102864001      2               59          89    1       10
+#&gt; 30  401112431102864001      2               59          89    1       10
+#&gt; 31  401112431102974201      2               57          20    3       10
+#&gt; 32  401112431102864501      2               54          75    1       10
+#&gt; 33  401112431102884601      2               53           2    2        2
+#&gt; 34  401112431102884601      2               53           2    2        2
+#&gt; 35  401112431102924801      2               51          32    2       10
+#&gt; 36  401112431102854901      2               50          70    2        8
+#&gt; 37  401112431102915501      2               44          68    1       10
+#&gt; 38  401112431102865701      2               42          75    2       10
+#&gt; 39  401112431102925701      2               42          29    3        7
+#&gt; 40  401112431102925701      2               42          29    3        7
+#&gt; 41  401112431102876201      2               37           1    1        1
+#&gt; 42  401112431102916201      2               37          63    2        5
+#&gt; 43  401112431102976701      2               32          75    1       10
+#&gt; 44  401112431102976701      2               32          75    1       10
+#&gt; 45  401112431102867301      2               26          63    1       10
+#&gt; 46  401112431102957801      2               21          75    1       10
+#&gt; 47  401112431102957801      2               21          75    1       10
+#&gt; 48  401112431102918501      2               14          32    1       10
+#&gt; 49  401112431102918501      2               14          32    1       10
+#&gt; 50  401112431102978601      2               13          74    2        9
+#&gt; 51  401112431102978601      2               13          74    2        9
+#&gt; 52  401112431102979101      2                8          75    3       10
+#&gt; 53  401112431102959201      2                7          58    1       10
+#&gt; 54  401112431102959201      2                7          58    1       10
+#&gt; 55  401112431102959201      2                7          58    1       10
+#&gt; 56  401112431102959201      2                7          58    1       10
+#&gt; 57  401112431102909501      2                4          39    2        7
+#&gt; 58  401112431102869601      2                3          52    1       10
+#&gt; 59  401112431102869601      2                3          52    1       10
+#&gt; 60  401112431103894301      3               56          74    1       10
+#&gt; 61  401112431103874701      3               52          63    2        8
+#&gt; 62  401112431103874701      3               52          63    2        8
+#&gt; 63  401112431103864801      3               51          74    2        9
+#&gt; 64  401112431103955001      3               49          47    1       10
+#&gt; 65  401112431103875301      3               46          66    3       11
+#&gt; 66  401112431103875301      3               46          66    3       11
+#&gt; 67  401112431103975501      3               44          75    1       10
+#&gt; 68  401112431103975501      3               44          75    1       10
+#&gt; 69  401112431103955701      3               42          33    1       10
+#&gt; 70  401112431103955701      3               42          33    1       10
+#&gt; 71  401112431103865701      3               42          73    3        8
+#&gt; 72  401112431103865701      3               42          73    3        8
+#&gt; 73  401112431103976301      3               36          75    2       10
+#&gt; 74  401112431103976301      3               36          75    2       10
+#&gt; 75  401112431103936301      3               36          60    1       10
+#&gt; 76  401112431103936301      3               36          60    1       10
+#&gt; 77  401112431103937201      3               27          46    1       10
+#&gt; 78  401112431103937201      3               27          46    1       10
+#&gt; 79  401112431103897301      3               26          77    2       13
+#&gt; 80  401112431103867701      3               22          65    1       10
+#&gt; 81  401112431103937801      3               21          46    2       10
+#&gt; 82  401112431103937801      3               21          46    2       10
+#&gt; 83  401112431103928101      3               18          42    3       13
+#&gt; 84  401112431103858301      3               16          85    1       20
+#&gt; 85  401112431103858301      3               16          85    1       20
+#&gt; 86  401112431103978401      3               15          75    3       10
+#&gt; 87  401112431103938801      3               11          46    3       10
+#&gt; 88  401112431103938801      3               11          46    3       10
+#&gt; 89  401112431103899201      3                7          73    3        9
+#&gt; 90  401112431103899201      3                7          73    3        9
+#&gt; 91  401112431103949701      3                2          48    1       10
+#&gt; 92  401112431103949701      3                2          48    1       10
+#&gt; 93  401112431104884201      4               57          74    2        9
+#&gt; 94  401112431104884201      4               57          74    2        9
+#&gt; 95  401112431104984801      4               51          64    1       10
+#&gt; 96  401112431104995101      4               48          67    4       13
+#&gt; 97  401112431104935301      4               46          74    3        9
+#&gt; 98  401112431104975701      4               42          48    3       10
+#&gt; 99  401112431104886101      4               38          75    3       10
+#&gt; 100 401112431104886101      4               38          75    3       10
+#&gt; 101 401112431104986501      4               34          61    2        7
+#&gt; 102 401112431104986501      4               34          61    2        7
+#&gt; 103 401112431104877101      4               28          75    1       10
+#&gt; 104 401112431104988401      4               15          59    3        5
+#&gt; 105 401112431104928801      4               11          75    1       10
+#&gt; 106 401112431104978901      4               10          75    1       10
+#&gt; 107 401112431104978901      4               10          75    1       10
+#&gt; 108 401112431104929501      4                4          74    2        9
+#&gt; 109 401112431104929501      4                4          74    2        9
+#&gt;     athleteId stat            Rush         Fumble              Sack
+#&gt; 1     4035628   12            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 2     4240020   12            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 3     4240021    0       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 4     4240021    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 5     4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 6     4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 7     4240033   12            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 8     4240020   12            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 9     4240028    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 10    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 11    4240028   75            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 12    4240020   75            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 13    4363032   14 Keyshawn Helton           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 14    4240034    9            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 15    4240020    9            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 16    4240021   10       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 17    4240034   10   D.J. Matthews           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 18    4240021    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 19    4240021   38       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 20    4240028    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 21    4240021    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 22    4240021    4       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 23    4240033   13            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 24    4240020   13            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 25    4035611    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 26    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 27    4035611    5            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 28    4240020    5            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 29    4035628   14            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 30    4240020   14            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 31    4426397    1            &lt;NA&gt;           &lt;NA&gt;      Jaleel McRae
+#&gt; 32    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 33    4240020    1            &lt;NA&gt; James Blackman              &lt;NA&gt;
+#&gt; 34    4240020   -2  James Blackman           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 35    4240021    3       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 36    4240026    1            &lt;NA&gt;           &lt;NA&gt;    Joshua Kaindoh
+#&gt; 37    4240021    5       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 38    4240022   12   Khalan Laborn           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 39    4240020    1            &lt;NA&gt; James Blackman              &lt;NA&gt;
+#&gt; 40    4240020   15            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 41    4240022   -1   Khalan Laborn           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 42    4240021   31       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 43    4240033    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 44    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 45    4240020   11            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 46    4240028   17            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 47    4240020   17            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 48    4240034    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 49    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 50    4363030   -1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 51    4240020   -1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 52    4240020    5            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 53    4363032    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 54    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 55    4363032   58            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 56    4240020   58            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 57    4363036    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 58    4363030   51            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 59    4240020   51            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 60    4240022   -3   Khalan Laborn           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 61    4240034   -3            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 62    4240020   -3            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 63    4240021    1       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 64    4240021   14       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 65    4240033    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 66    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 67    4240028    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 68    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 69    4240021    1            &lt;NA&gt;      Cam Akers              &lt;NA&gt;
+#&gt; 70    4240021    4       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 71    4240023    8            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 72    4240020    8            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 73    4363032    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 74    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 75    4240034   14            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 76    4240020   14            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 77    4035628    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 78    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 79    4240020    4  James Blackman           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 80    4240021    2       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 81    4240034    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 82    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 83    4035605    1            &lt;NA&gt;           &lt;NA&gt; Carlos Becker III
+#&gt; 84    4240021   11            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 85    4240020   11            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 86    4240020    9            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 87    4240028   -1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 88    4240020   -1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 89    4240033    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 90    4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 91    4363047    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 92    4240029    1            &lt;NA&gt;           &lt;NA&gt;     Marvin Wilson
+#&gt; 93    4240034   -1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 94    4240020   -1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 95    4240021    3       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 96    4240020    9  James Blackman           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 97    4240020    7            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 98    4035605    1            &lt;NA&gt;           &lt;NA&gt; Carlos Becker III
+#&gt; 99    4240028    8            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 100   4240020    8            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 101   4035628    2            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 102   4240020    2            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 103   4240021    1       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 104   4240021    1       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 105   4240021    1       Cam Akers           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 106   4035628   11            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 107   4240020   11            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 108   4240028    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt; 109   4240020    1            &lt;NA&gt;           &lt;NA&gt;              &lt;NA&gt;
+#&gt;           Touchdown   Incompletion       Reception     Completion
+#&gt; 1              &lt;NA&gt;           &lt;NA&gt;     Keith Gavin           &lt;NA&gt;
+#&gt; 2              &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 3              &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 4              &lt;NA&gt;           &lt;NA&gt;       Cam Akers           &lt;NA&gt;
+#&gt; 5              &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 6              &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 7              &lt;NA&gt;           &lt;NA&gt;  Ontaria Wilson           &lt;NA&gt;
+#&gt; 8              &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 9   Tamorrion Terry           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 10   James Blackman           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 11             &lt;NA&gt;           &lt;NA&gt; Tamorrion Terry           &lt;NA&gt;
+#&gt; 12             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 13             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 14             &lt;NA&gt;           &lt;NA&gt;   D.J. Matthews           &lt;NA&gt;
+#&gt; 15             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 16             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 17             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 18        Cam Akers           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 19             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 20             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 21             &lt;NA&gt;      Cam Akers            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 22             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 23             &lt;NA&gt;           &lt;NA&gt;  Ontaria Wilson           &lt;NA&gt;
+#&gt; 24             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 25      Gabe Nabers           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 26   James Blackman           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 27             &lt;NA&gt;           &lt;NA&gt;     Gabe Nabers           &lt;NA&gt;
+#&gt; 28             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 29             &lt;NA&gt;           &lt;NA&gt;     Keith Gavin           &lt;NA&gt;
+#&gt; 30             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 31             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 32             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 33             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 34             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 35             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 36             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 37             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 38             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 39             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 40             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 41             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 42             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 43             &lt;NA&gt;           &lt;NA&gt;  Ontaria Wilson           &lt;NA&gt;
+#&gt; 44             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 45             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 46             &lt;NA&gt;           &lt;NA&gt; Tamorrion Terry           &lt;NA&gt;
+#&gt; 47             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 48             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 49             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 50             &lt;NA&gt;           &lt;NA&gt; Warren Thompson           &lt;NA&gt;
+#&gt; 51             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 52             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 53  Keyshawn Helton           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 54   James Blackman           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 55             &lt;NA&gt;           &lt;NA&gt; Keyshawn Helton           &lt;NA&gt;
+#&gt; 56             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 57             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 58             &lt;NA&gt;           &lt;NA&gt; Warren Thompson           &lt;NA&gt;
+#&gt; 59             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 60             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 61             &lt;NA&gt;           &lt;NA&gt;   D.J. Matthews           &lt;NA&gt;
+#&gt; 62             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 63             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 64             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 65             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 66             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 67             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 68             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 69             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 70             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 71             &lt;NA&gt;           &lt;NA&gt;    Tre' McKitty           &lt;NA&gt;
+#&gt; 72             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 73             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 74             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 75             &lt;NA&gt;           &lt;NA&gt;   D.J. Matthews           &lt;NA&gt;
+#&gt; 76             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 77             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 78             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 79             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 80             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 81             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 82             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 83             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 84             &lt;NA&gt;           &lt;NA&gt;       Cam Akers           &lt;NA&gt;
+#&gt; 85             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 86             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 87             &lt;NA&gt;           &lt;NA&gt; Tamorrion Terry           &lt;NA&gt;
+#&gt; 88             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 89             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 90             &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 91             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 92             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 93             &lt;NA&gt;           &lt;NA&gt;   D.J. Matthews           &lt;NA&gt;
+#&gt; 94             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 95             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 96             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 97             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 98             &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 99             &lt;NA&gt;           &lt;NA&gt; Tamorrion Terry           &lt;NA&gt;
+#&gt; 100            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 101            &lt;NA&gt;           &lt;NA&gt;     Keith Gavin           &lt;NA&gt;
+#&gt; 102            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 103            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 104            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 105            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 106            &lt;NA&gt;           &lt;NA&gt;     Keith Gavin           &lt;NA&gt;
+#&gt; 107            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt; James Blackman
+#&gt; 108            &lt;NA&gt;           &lt;NA&gt;            &lt;NA&gt;           &lt;NA&gt;
+#&gt; 109            &lt;NA&gt; James Blackman            &lt;NA&gt;           &lt;NA&gt;
+#&gt;              Target     Sack Taken Fumble Recovered Fumble Forced  Interception
+#&gt; 1              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 2              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 3              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 4              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 5              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 6              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 7              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 8              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 9              &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 10             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 11             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 12             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 13             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 14             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 15             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 16             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 17             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 18             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 19             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 20  Tamorrion Terry           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 21             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 22             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 23             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 24             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 25             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 26             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 27             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 28             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 29             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 30             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 31             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 32             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 33             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 34             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 35             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 36             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 37             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 38             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 39             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 40             &lt;NA&gt; James Blackman             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 41             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 42             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 43             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 44             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 45             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 46             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 47             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 48    D.J. Matthews           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 49             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 50             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 51             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 52             &lt;NA&gt; James Blackman             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 53             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 54             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 55             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 56             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 57             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt; Isaiah Bolden
+#&gt; 58             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 59             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 60             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 61             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 62             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 63             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 64             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 65   Ontaria Wilson           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 66             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 67  Tamorrion Terry           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 68             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 69             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 70             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 71             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 72             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 73  Keyshawn Helton           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 74             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 75             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 76             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 77      Keith Gavin           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 78             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 79             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 80             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 81    D.J. Matthews           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 82             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 83             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 84             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 85             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 86             &lt;NA&gt; James Blackman             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 87             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 88             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 89   Ontaria Wilson           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 90             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 91             &lt;NA&gt;           &lt;NA&gt;    Robert Cooper Robert Cooper          &lt;NA&gt;
+#&gt; 92             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 93             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 94             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 95             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 96             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 97             &lt;NA&gt; James Blackman             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 98             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 99             &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 100            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 101            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 102            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 103            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 104            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 105            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 106            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 107            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 108 Tamorrion Terry           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
+#&gt; 109            &lt;NA&gt;           &lt;NA&gt;             &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -150,9 +150,300 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_recruiting_position</span>(<span class='fl'>2018</span>, <span class='kw'>team</span><span class='kw'>=</span><span class='st'>"Texas"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_recruiting_position(2018, team = "Texas"): could not find function "cfb_recruiting_position"</span></div><div class='input'>
-<span class='fu'>cfb_recruiting_position</span>(<span class='fl'>2016</span>, <span class='fl'>2020</span>, <span class='kw'>team</span><span class='kw'>=</span><span class='st'>"Virginia"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_recruiting_position(2016, 2020, team = "Virginia"): could not find function "cfb_recruiting_position"</span></div><div class='input'>
-<span class='fu'>cfb_recruiting_position</span>(<span class='fl'>2015</span>, <span class='fl'>2020</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>"SEC"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in cfb_recruiting_position(2015, 2020, conference = "SEC"): could not find function "cfb_recruiting_position"</span></div><div class='input'>
+<span class='fu'>cfb_recruiting_position</span>(<span class='fl'>2018</span>, <span class='kw'>team</span><span class='kw'>=</span><span class='st'>"Texas"</span>)</div><div class='output co'>#&gt;    team conference  positionGroup averageRating totalRating commits
+#&gt; 1 Texas     Big 12 Defensive Back     0.9480923     12.3252      13
+#&gt; 2 Texas     Big 12 Defensive Line     0.9050300      9.0503      10
+#&gt; 3 Texas     Big 12     Linebacker     0.9040250      7.2322       8
+#&gt; 4 Texas     Big 12 Offensive Line     0.9099364     10.0093      11
+#&gt; 5 Texas     Big 12    Quarterback     0.9323400      4.6617       5
+#&gt; 6 Texas     Big 12       Receiver     0.9238545     10.1624      11
+#&gt; 7 Texas     Big 12   Running Back     0.9463667      2.8391       3
+#&gt; 8 Texas     Big 12  Special Teams     0.8869875      7.0959       8
+#&gt; 9 Texas     Big 12  All Positions     0.9184942     63.3761      69
+#&gt;   averageStars
+#&gt; 1     4.076923
+#&gt; 2     3.500000
+#&gt; 3     3.500000
+#&gt; 4     3.909091
+#&gt; 5     4.000000
+#&gt; 6     3.727273
+#&gt; 7     4.333333
+#&gt; 8     3.625000
+#&gt; 9     3.797101</div><div class='input'>
+<span class='fu'>cfb_recruiting_position</span>(<span class='fl'>2016</span>, <span class='fl'>2020</span>, <span class='kw'>team</span><span class='kw'>=</span><span class='st'>"Virginia"</span>)</div><div class='output co'>#&gt;       team conference  positionGroup averageRating totalRating commits
+#&gt; 1 Virginia        ACC Defensive Back     0.8332929     11.6661      14
+#&gt; 2 Virginia        ACC Defensive Line     0.8512125     13.6194      16
+#&gt; 3 Virginia        ACC     Linebacker     0.8461056     15.2299      18
+#&gt; 4 Virginia        ACC Offensive Line     0.8463294     14.3876      17
+#&gt; 5 Virginia        ACC    Quarterback     0.8487200      4.2436       5
+#&gt; 6 Virginia        ACC       Receiver     0.8392842     15.9464      19
+#&gt; 7 Virginia        ACC   Running Back     0.8453714      5.9176       7
+#&gt; 8 Virginia        ACC  Special Teams     0.8361111      7.5250       9
+#&gt; 9 Virginia        ACC  All Positions     0.8431962     88.5356     105
+#&gt;   averageStars
+#&gt; 1     2.857143
+#&gt; 2     3.125000
+#&gt; 3     3.000000
+#&gt; 4     3.058824
+#&gt; 5     3.000000
+#&gt; 6     2.947368
+#&gt; 7     3.000000
+#&gt; 8     2.888889
+#&gt; 9     2.990476</div><div class='input'>
+<span class='fu'>cfb_recruiting_position</span>(<span class='fl'>2015</span>, <span class='fl'>2020</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>"SEC"</span>)</div><div class='output co'>#&gt;                  team conference  positionGroup averageRating totalRating
+#&gt; 1             Alabama        SEC Defensive Back     0.9456044     21.7489
+#&gt; 2             Alabama        SEC Defensive Line     0.9521448     27.6122
+#&gt; 3             Alabama        SEC     Linebacker     0.9449375     15.1190
+#&gt; 4             Alabama        SEC Offensive Line     0.9320348     21.4368
+#&gt; 5             Alabama        SEC    Quarterback     0.9061222      8.1551
+#&gt; 6             Alabama        SEC       Receiver     0.9244810     19.4141
+#&gt; 7             Alabama        SEC   Running Back     0.9296071     13.0145
+#&gt; 8             Alabama        SEC  Special Teams     0.8858300      8.8583
+#&gt; 9            Arkansas        SEC Defensive Back     0.8603522     19.7881
+#&gt; 10           Arkansas        SEC Defensive Line     0.8792360     21.9809
+#&gt; 11           Arkansas        SEC     Linebacker     0.8497611     15.2957
+#&gt; 12           Arkansas        SEC Offensive Line     0.8514273     18.7314
+#&gt; 13           Arkansas        SEC    Quarterback     0.8728000      6.9824
+#&gt; 14           Arkansas        SEC       Receiver     0.8796667     15.8340
+#&gt; 15           Arkansas        SEC   Running Back     0.8772857      6.1410
+#&gt; 16           Arkansas        SEC  Special Teams     0.8520625      6.8165
+#&gt; 17             Auburn        SEC Defensive Back     0.8866111     15.9590
+#&gt; 18             Auburn        SEC Defensive Line     0.9238227     20.3241
+#&gt; 19             Auburn        SEC     Linebacker     0.8956500     17.9130
+#&gt; 20             Auburn        SEC Offensive Line     0.8970000     15.2490
+#&gt; 21             Auburn        SEC    Quarterback     0.8895400      4.4477
+#&gt; 22             Auburn        SEC       Receiver     0.9000333     21.6008
+#&gt; 23             Auburn        SEC   Running Back     0.9126500      9.1265
+#&gt; 24             Auburn        SEC  Special Teams     0.8959950     17.9199
+#&gt; 25            Florida        SEC Defensive Back     0.9001296     24.3035
+#&gt; 26            Florida        SEC Defensive Line     0.9037500     19.8825
+#&gt; 27            Florida        SEC     Linebacker     0.8848714     12.3882
+#&gt; 28            Florida        SEC Offensive Line     0.8845846     22.9992
+#&gt; 29            Florida        SEC    Quarterback     0.8857143      6.2000
+#&gt; 30            Florida        SEC       Receiver     0.9088958     21.8135
+#&gt; 31            Florida        SEC   Running Back     0.8956125      7.1649
+#&gt; 32            Florida        SEC  Special Teams     0.8576000      4.2880
+#&gt; 33            Georgia        SEC Defensive Back     0.9096519     24.5606
+#&gt; 34            Georgia        SEC Defensive Line     0.9257000     26.8453
+#&gt; 35            Georgia        SEC     Linebacker     0.9416125     15.0658
+#&gt; 36            Georgia        SEC Offensive Line     0.9210885     23.9483
+#&gt; 37            Georgia        SEC    Quarterback     0.9089714      6.3628
+#&gt; 38            Georgia        SEC       Receiver     0.9174240     22.9356
+#&gt; 39            Georgia        SEC   Running Back     0.9415500      7.5324
+#&gt; 40            Georgia        SEC  Special Teams     0.8711818      9.5830
+#&gt; 41           Kentucky        SEC Defensive Back     0.8643550     17.2871
+#&gt; 42           Kentucky        SEC Defensive Line     0.8644333     20.7464
+#&gt; 43           Kentucky        SEC     Linebacker     0.8672545      9.5398
+#&gt; 44           Kentucky        SEC Offensive Line     0.8630727     18.9876
+#&gt; 45           Kentucky        SEC    Quarterback     0.8507000      5.9549
+#&gt; 46           Kentucky        SEC       Receiver     0.8564571     17.9856
+#&gt; 47           Kentucky        SEC   Running Back     0.8686875      6.9495
+#&gt; 48           Kentucky        SEC  Special Teams     0.8501357     11.9019
+#&gt; 49                LSU        SEC Defensive Back     0.9350048     19.6351
+#&gt; 50                LSU        SEC Defensive Line     0.9136714     25.5828
+#&gt; 51                LSU        SEC     Linebacker     0.9198417     11.0381
+#&gt; 52                LSU        SEC Offensive Line     0.9072435     20.8666
+#&gt; 53                LSU        SEC    Quarterback     0.8723375      6.9787
+#&gt; 54                LSU        SEC       Receiver     0.9117375     21.8817
+#&gt; 55                LSU        SEC   Running Back     0.9235500      9.2355
+#&gt; 56                LSU        SEC  Special Teams     0.8536000     11.0968
+#&gt; 57  Mississippi State        SEC Defensive Back     0.8745700     17.4914
+#&gt; 58  Mississippi State        SEC Defensive Line     0.8814954     19.3929
+#&gt; 59  Mississippi State        SEC     Linebacker     0.8978857      6.2852
+#&gt; 60  Mississippi State        SEC Offensive Line     0.8597611     15.4757
+#&gt; 61  Mississippi State        SEC    Quarterback     0.8763167      5.2579
+#&gt; 62  Mississippi State        SEC       Receiver     0.8560118     14.5522
+#&gt; 63  Mississippi State        SEC   Running Back     0.8868833      5.3213
+#&gt; 64  Mississippi State        SEC  Special Teams     0.8602647     14.6245
+#&gt; 65           Missouri        SEC Defensive Back     0.8480762     17.8096
+#&gt; 66           Missouri        SEC Defensive Line     0.8596533     12.8948
+#&gt; 67           Missouri        SEC     Linebacker     0.8507400     12.7611
+#&gt; 68           Missouri        SEC Offensive Line     0.8571368     16.2856
+#&gt; 69           Missouri        SEC    Quarterback     0.8803400      4.4017
+#&gt; 70           Missouri        SEC       Receiver     0.8580182     18.8764
+#&gt; 71           Missouri        SEC   Running Back     0.8418875      6.7351
+#&gt; 72           Missouri        SEC  Special Teams     0.8499800      8.4998
+#&gt; 73           Ole Miss        SEC Defensive Back     0.8611700     17.2234
+#&gt; 74           Ole Miss        SEC Defensive Line     0.8740850     17.4817
+#&gt; 75           Ole Miss        SEC     Linebacker     0.8562667     12.8440
+#&gt; 76           Ole Miss        SEC Offensive Line     0.8751600     21.8790
+#&gt; 77           Ole Miss        SEC    Quarterback     0.8837667      7.9539
+#&gt; 78           Ole Miss        SEC       Receiver     0.9107737     17.3047
+#&gt; 79           Ole Miss        SEC   Running Back     0.8931778      8.0386
+#&gt; 80           Ole Miss        SEC  Special Teams     0.8872000      3.5488
+#&gt; 81     South Carolina        SEC Defensive Back     0.8678158     16.4885
+#&gt; 82     South Carolina        SEC Defensive Line     0.8892520     22.2313
+#&gt; 83     South Carolina        SEC     Linebacker     0.8679385     11.2832
+#&gt; 84     South Carolina        SEC Offensive Line     0.8643846     22.4740
+#&gt; 85     South Carolina        SEC    Quarterback     0.9167714      6.4174
+#&gt; 86     South Carolina        SEC       Receiver     0.8702875     20.8869
+#&gt; 87     South Carolina        SEC   Running Back     0.8800222      7.9202
+#&gt; 88     South Carolina        SEC  Special Teams     0.8657727      9.5235
+#&gt; 89          Tennessee        SEC Defensive Back     0.8828609     20.3058
+#&gt; 90          Tennessee        SEC Defensive Line     0.8997958     21.5951
+#&gt; 91          Tennessee        SEC     Linebacker     0.8929667     13.3945
+#&gt; 92          Tennessee        SEC Offensive Line     0.8971682     19.7377
+#&gt; 93          Tennessee        SEC    Quarterback     0.8852556      7.9673
+#&gt; 94          Tennessee        SEC       Receiver     0.8760783     20.1498
+#&gt; 95          Tennessee        SEC   Running Back     0.8682900      8.6829
+#&gt; 96          Tennessee        SEC  Special Teams     0.8586667     12.8800
+#&gt; 97          Texas A&amp;M        SEC Defensive Back     0.9171850     18.3437
+#&gt; 98          Texas A&amp;M        SEC Defensive Line     0.9104000     21.8496
+#&gt; 99          Texas A&amp;M        SEC     Linebacker     0.8793500     15.8283
+#&gt; 100         Texas A&amp;M        SEC Offensive Line     0.8868846     23.0590
+#&gt; 101         Texas A&amp;M        SEC    Quarterback     0.8889500      7.1116
+#&gt; 102         Texas A&amp;M        SEC       Receiver     0.9113115     23.6941
+#&gt; 103         Texas A&amp;M        SEC   Running Back     0.8864333     10.6372
+#&gt; 104         Texas A&amp;M        SEC  Special Teams     0.8424000      8.4240
+#&gt; 105        Vanderbilt        SEC Defensive Back     0.8577158     16.2966
+#&gt; 106        Vanderbilt        SEC Defensive Line     0.8307143     11.6300
+#&gt; 107        Vanderbilt        SEC     Linebacker     0.8474154     11.0164
+#&gt; 108        Vanderbilt        SEC Offensive Line     0.8457091     18.6056
+#&gt; 109        Vanderbilt        SEC    Quarterback     0.8758167      5.2549
+#&gt; 110        Vanderbilt        SEC       Receiver     0.8459190     17.7643
+#&gt; 111        Vanderbilt        SEC   Running Back     0.8433333      5.0600
+#&gt; 112        Vanderbilt        SEC  Special Teams     0.8228400      8.2284
+#&gt; 113           Alabama        SEC  All Positions     0.9335097    135.3590
+#&gt; 114          Arkansas        SEC  All Positions     0.8648837    111.5700
+#&gt; 115            Auburn        SEC  All Positions     0.9010294    122.5400
+#&gt; 116           Florida        SEC  All Positions     0.8950361    119.0400
+#&gt; 117           Georgia        SEC  All Positions     0.9183477    136.8340
+#&gt; 118          Kentucky        SEC  All Positions     0.8610457    109.3530
+#&gt; 119               LSU        SEC  All Positions     0.9087432    126.3150
+#&gt; 120 Mississippi State        SEC  All Positions     0.8708062     98.4011
+#&gt; 121          Missouri        SEC  All Positions     0.8544704     98.2641
+#&gt; 122          Ole Miss        SEC  All Positions     0.8782983    106.2740
+#&gt; 123    South Carolina        SEC  All Positions     0.8748134    117.2250
+#&gt; 124         Tennessee        SEC  All Positions     0.8844901    124.7130
+#&gt; 125         Texas A&amp;M        SEC  All Positions     0.8954687    128.9470
+#&gt; 126        Vanderbilt        SEC  All Positions     0.8455514     93.8562
+#&gt;     commits averageStars
+#&gt; 1        23     4.000000
+#&gt; 2        29     4.172414
+#&gt; 3        16     4.062500
+#&gt; 4        23     3.956522
+#&gt; 5         9     3.888889
+#&gt; 6        21     3.809524
+#&gt; 7        14     3.928571
+#&gt; 8        10     3.500000
+#&gt; 9        23     3.217391
+#&gt; 10       25     3.320000
+#&gt; 11       18     3.055556
+#&gt; 12       22     3.045455
+#&gt; 13        8     3.500000
+#&gt; 14       18     3.388889
+#&gt; 15        7     3.142857
+#&gt; 16        8     3.125000
+#&gt; 17       18     3.500000
+#&gt; 18       22     3.772727
+#&gt; 19       20     3.650000
+#&gt; 20       17     3.470588
+#&gt; 21        5     3.600000
+#&gt; 22       24     3.541667
+#&gt; 23       10     3.900000
+#&gt; 24       20     3.600000
+#&gt; 25       27     3.481481
+#&gt; 26       22     3.818182
+#&gt; 27       14     3.357143
+#&gt; 28       26     3.461538
+#&gt; 29        7     3.428571
+#&gt; 30       24     3.541667
+#&gt; 31        8     3.500000
+#&gt; 32        5     3.000000
+#&gt; 33       27     3.666667
+#&gt; 34       29     3.931034
+#&gt; 35       16     4.000000
+#&gt; 36       26     3.769231
+#&gt; 37        7     3.857143
+#&gt; 38       25     3.800000
+#&gt; 39        8     4.000000
+#&gt; 40       11     3.454545
+#&gt; 41       20     3.050000
+#&gt; 42       24     3.166667
+#&gt; 43       11     3.363636
+#&gt; 44       22     3.181818
+#&gt; 45        7     3.000000
+#&gt; 46       21     3.047619
+#&gt; 47        8     3.125000
+#&gt; 48       14     3.142857
+#&gt; 49       21     3.952381
+#&gt; 50       28     3.642857
+#&gt; 51       12     3.833333
+#&gt; 52       23     3.521739
+#&gt; 53        8     3.375000
+#&gt; 54       24     3.791667
+#&gt; 55       10     3.900000
+#&gt; 56       13     3.076923
+#&gt; 57       20     3.150000
+#&gt; 58       22     3.409091
+#&gt; 59        7     3.285714
+#&gt; 60       18     3.111111
+#&gt; 61        6     3.500000
+#&gt; 62       17     3.058824
+#&gt; 63        6     3.500000
+#&gt; 64       17     3.000000
+#&gt; 65       21     3.047619
+#&gt; 66       15     3.200000
+#&gt; 67       15     3.000000
+#&gt; 68       19     3.105263
+#&gt; 69        5     3.400000
+#&gt; 70       22     3.045455
+#&gt; 71        8     3.000000
+#&gt; 72       10     2.900000
+#&gt; 73       20     3.050000
+#&gt; 74       20     3.250000
+#&gt; 75       15     3.066667
+#&gt; 76       25     3.200000
+#&gt; 77        9     3.444444
+#&gt; 78       19     3.684211
+#&gt; 79        9     3.555556
+#&gt; 80        4     3.250000
+#&gt; 81       19     3.105263
+#&gt; 82       25     3.520000
+#&gt; 83       13     3.230769
+#&gt; 84       26     3.115385
+#&gt; 85        7     3.714286
+#&gt; 86       24     3.208333
+#&gt; 87        9     3.111111
+#&gt; 88       11     3.363636
+#&gt; 89       23     3.304348
+#&gt; 90       24     3.541667
+#&gt; 91       15     3.533333
+#&gt; 92       22     3.545455
+#&gt; 93        9     3.444444
+#&gt; 94       23     3.260870
+#&gt; 95       10     3.200000
+#&gt; 96       15     3.066667
+#&gt; 97       20     3.750000
+#&gt; 98       24     3.666667
+#&gt; 99       18     3.333333
+#&gt; 100      26     3.461538
+#&gt; 101       8     3.500000
+#&gt; 102      26     3.653846
+#&gt; 103      12     3.416667
+#&gt; 104      10     3.000000
+#&gt; 105      19     3.105263
+#&gt; 106      14     2.785714
+#&gt; 107      13     3.000000
+#&gt; 108      22     3.000000
+#&gt; 109       6     3.166667
+#&gt; 110      21     3.047619
+#&gt; 111       6     3.000000
+#&gt; 112      10     2.700000
+#&gt; 113     145     3.958621
+#&gt; 114     129     3.217054
+#&gt; 115     136     3.617647
+#&gt; 116     133     3.511278
+#&gt; 117     149     3.805369
+#&gt; 118     127     3.133858
+#&gt; 119     139     3.661871
+#&gt; 120     113     3.203540
+#&gt; 121     115     3.069565
+#&gt; 122     121     3.289256
+#&gt; 123     134     3.268657
+#&gt; 124     141     3.375887
+#&gt; 125     144     3.520833
+#&gt; 126     111     2.981982</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
