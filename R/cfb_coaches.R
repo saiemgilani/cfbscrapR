@@ -1,0 +1,89 @@
+#' Coach Information Search
+#'
+#' A coach search function which provides coaching records and school history for a given coach
+#'
+#' @param first (\emph{String} optional): First name for the coach you are trying to look up
+#' @param last (\emph{String} optional): Last name for the coach you are trying to look up
+#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
+#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
+#' @param min_year (\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).
+#' @param max_year (\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY}).
+#' @keywords Recruiting
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils "URLencode"
+#' @importFrom assertthat "assert_that"
+#' @export
+#' @examples
+#'
+#' cfb_coaches(first = "Nick", last = "Saban",team='alabama')
+#'
+#'
+
+cfb_coaches <- function(first = NULL,
+                        last = NULL,
+                        team = NULL,
+                        year = NULL,
+                        min_year = NULL,
+                        max_year = NULL){
+
+
+
+  if(!is.null(first)){
+    # Encode first parameter for URL if not NULL
+    first = URLencode(first, reserved = TRUE)
+  }
+  if(!is.null(last)){
+    # Encode last parameter for URL if not NULL
+    last = URLencode(last, reserved = TRUE)
+  }
+  if(!is.null(team)){
+    # Encode team parameter for URL if not NULL
+    team = URLencode(team, reserved = TRUE)
+  }
+  if(!is.null(year)){
+    ## check if year is numeric
+    assert_that(is.numeric(year) & nchar(year)==4,
+                msg='Enter valid year as integer in 4 digit format (YYYY)')
+  }
+  if(!is.null(min_year)){
+    ## check if min_year is numeric
+    assert_that(is.numeric(min_year) & nchar(min_year)==4,
+                msg='Enter valid min_year as integer in 4 digit format (YYYY)')
+  }
+  if(!is.null(max_year)){
+    ## check if max_year is numeric
+    assert_that(is.numeric(max_year) & nchar(max_year)==4,
+                msg='Enter valid max_year as integer in 4 digit format (YYYY)')
+  }
+  base_url = "https://api.collegefootballdata.com/coaches?"
+
+  # Create full url using base and input arguments
+  full_url = paste0(base_url,
+                    "first=", first,
+                    "&last=", last,
+                    "&team=", team,
+                    "&year=", year,
+                    "&minYear=", min_year,
+                    "&maxYear=", max_year)
+
+  # Check for internet
+  check_internet()
+
+  # Create the GET request and set response as res
+  res <- GET(full_url)
+
+  # Check the result
+  check_status(res)
+
+  # Get the content and return it as data.frame
+  df = fromJSON(full_url) %>%
+    map_if(is.data.frame,lst) %>%
+    as_tibble() %>%
+    unnest(.data$seasons)
+  df <- as.data.frame(df) %>%
+    arrange(.data$year)
+
+  return(df)
+}
