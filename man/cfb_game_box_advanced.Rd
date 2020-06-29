@@ -19,5 +19,7 @@ cfb_game_box_advanced(401012356)
 
 
 }
+\keyword{Advanced}
+\keyword{Box}
 \keyword{Game}
-\keyword{Info}
+\keyword{Score}

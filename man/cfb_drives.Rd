@@ -51,5 +51,4 @@ cfb_drives(2018, week = 1, team = "TCU")
 cfb_drives(2018, team = "Texas A&M", defense_conference = 'SEC')
 
 }
-\keyword{Game}
-\keyword{Info}
+\keyword{Drives}

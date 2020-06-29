@@ -1,9 +1,22 @@
-# College Football Expected Points
-`cfbpointsR` is an R package for working with CFB data. It is an R API wrapper around https://collegefootballdata.com/. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added). 
 
-__Note:__ The API ingests data from ESPN as well as other sources. For details on those source, please go the website linked above. Sometimes there are inconsitences in the underlying data itself. Please report issues here or to https://collegefootballdata.com/. 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# cfbpointsR
+
+A scraping and aggregating package using the CollegeFootballData API
+
+`cfbpointsR` is an R package for working with CFB data. It is an R API
+wrapper around <https://collegefootballdata.com/>. It provides users the
+capability to get a plethora of endpoints, and supplement that data with
+additional information (Expected Points Added/Win Probability added).
+
+**Note:** The API ingests data from ESPN as well as other sources. For
+details on those source, please go the website linked above. Sometimes
+there are inconsitences in the underlying data itself. Please report
+issues here or to <https://collegefootballdata.com/>.
 
 ## Installation
+
 You can install `cfbpointsR` from GitHub with:
 
 ``` r
@@ -11,28 +24,60 @@ You can install `cfbpointsR` from GitHub with:
 devtools::install_github("saiemgilani/cfbpointsR")
 ```
 
-## Functions
+<!-- badges: start -->
+![Lifecycle:stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
 
-### Scraping Data 
-* ```cfb_pbp_data(year,week,team,epa_wpa)```: Extract PBP data (append EPA/WPA data)
-* ```cfb_game_info(2018,team="Texas A&M")```: Get information from games (Multiple options, all year, one week, one team, specific conference)
-* ```cfb_play_stats_player(game_id)```: Gets player info associated by play (Game id )
-* ```cfb_rankings(2018,1)```: Historical CFB poll rankings at a specific week
-* ```cfb_team(conference)```: List all teams in a given D1 conference
-* ```cfb_recruiting(2018,team="Texas")```: CFB recruiting information (General Year, Position groups btw years)
+![Travis-CI:
+build-status](https://travis-ci.com/saiemgilani/cfbpointsR.svg?token=BxsozfUD3VCvCzzJpdFf&branch=master)
+<!-- badges: end -->
 
+The goal of cfbpointsR is to …
 
+## Installation
 
-### EPA/WPA
+You can install the released version of cfbpointsR from
+[CRAN](https://CRAN.R-project.org) with:
 
-* ```calculate_epa <- function(clean_pbp_dat)```: Calculate EPA 
-* ```create_wpa <- function(df)```: Calculate WPA 
+``` r
+install.packages("cfbpointsR")
+```
 
+And the development version from [GitHub](https://github.com/) with:
 
-### Plots
-* ```plot_pbp_sequencing(df)```: Plot Play by Play Sequencing per drive 
-* ```plot_wpa(df,away_color,home_color,winner="away")```: Plot WPA 
+``` r
+# install.packages("devtools")
+devtools::install_github("saiemgilani/cfbpointsR")
+```
 
-## EP/WP Model
-You can find more detailed information and explanation on the EP/WP models in the `cfbpointsR-models` repository.   
-Link: [cfbpointsR-models](https://github.com/saiemgilani/cfbpointsR-models "cfbpointsR-models GitHub repository") 
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(cfbpointsR)
+## basic example code
+```
+
+What is special about using `README.Rmd` instead of just `README.md`?
+You can include R chunks like so:
+
+``` r
+summary(cars)
+#>      speed           dist       
+#>  Min.   : 4.0   Min.   :  2.00  
+#>  1st Qu.:12.0   1st Qu.: 26.00  
+#>  Median :15.0   Median : 36.00  
+#>  Mean   :15.4   Mean   : 42.98  
+#>  3rd Qu.:19.0   3rd Qu.: 56.00  
+#>  Max.   :25.0   Max.   :120.00
+```
+
+You’ll still need to render `README.Rmd` regularly, to keep `README.md`
+up-to-date.
+
+You can also embed plots, for example:
+
+<img src="man/figures/README-pressure-1.png" width="100%" />
+
+In that case, don’t forget to commit and push the resulting figure
+files, so they display on GitHub\!

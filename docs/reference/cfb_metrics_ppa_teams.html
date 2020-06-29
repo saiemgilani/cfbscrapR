@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gets player info associated by play — cfb_play_stats_player • cfbpointsR</title>
+<title>Get team averages for Predicted Points Added (PPA) — cfb_metrics_ppa_teams • cfbpointsR</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Gets player info associated by play — cfb_play_stats_player" />
-<meta property="og:description" content="Information describes the players involved in the play
-this includes passer, receiver, defensive players who
-create sacks or picks, etc" />
+<meta property="og:title" content="Get team averages for Predicted Points Added (PPA) — cfb_metrics_ppa_teams" />
+<meta property="og:description" content="Get team averages for Predicted Points Added (PPA)" />
 
 
 
@@ -108,25 +106,20 @@ create sacks or picks, etc" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gets player info associated by play</h1>
+    <h1>Get team averages for Predicted Points Added (PPA)</h1>
     
-    <div class="hidden name"><code>cfb_play_stats_player.Rd</code></div>
+    <div class="hidden name"><code>cfb_metrics_ppa_teams.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Information describes the players involved in the play
-this includes passer, receiver, defensive players who
-create sacks or picks, etc</p>
+    <p>Get team averages for Predicted Points Added (PPA)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_play_stats_player</span>(
-  <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>cfb_metrics_ppa_teams</span>(
+  <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>,
   <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>game_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>athlete_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stat_type_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>
+  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>excl_garbage_time</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -137,35 +130,39 @@ create sacks or picks, etc</p>
       <td><p>(<em>Integer</em> optional): Year, 4 digit format (<em>YYYY</em>)</p></td>
     </tr>
     <tr>
-      <th>week</th>
-      <td><p>(<em>Integer</em> optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier</p></td>
-    </tr>
-    <tr>
       <th>team</th>
       <td><p>(<em>String</em> optional): D-I Team</p></td>
     </tr>
     <tr>
-      <th>game_id</th>
-      <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game
-Can be found using the `cfb_game_info()` function</p></td>
+      <th>conference</th>
+      <td><p>(<em>String</em> optional): Conference name - select a valid FBS conference\
+Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\
+Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\</p></td>
     </tr>
     <tr>
-      <th>athlete_id</th>
-      <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete
-Can be found using the `cfb_player_info()` function.</p></td>
-    </tr>
-    <tr>
-      <th>stat_type_id</th>
-      <td><p>(<em>Integer</em> optional): Stat Type ID filter for querying a single stat type
-Can be found using the `cfb_play_stats_types()` function</p></td>
-    </tr>
-    <tr>
-      <th>season_type</th>
-      <td><p>(<em>String</em> default regular): Select Season Type: regular, postseason, or both</p></td>
+      <th>excl_garbage_time</th>
+      <td><p>(<em>Logical</em> default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'>cfb_metrics_ppa_teams</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'TCU'</span>)</div><div class='output co'>#&gt;   season conference team            off_overall            off_passing
+#&gt; 1   2019     Big 12  TCU 0.12909161980310249786 0.04742751422716661398
+#&gt;              off_rushing         off_first_down         off_second_down
+#&gt; 1 0.23288426016375148573 0.01568581764596706560 -0.00092967172363113610
+#&gt;           off_third_down   off_cumulative_total off_cumulative_passing
+#&gt; 1 0.56975033416392787532 115.924274583186043078  19.682418404274144800
+#&gt;   off_cumulative_rushing            def_overall            def_passing
+#&gt; 1 106.428106894834428978 0.08605926127839477333 0.17434737448541231006
+#&gt;              def_rushing          def_first_down        def_second_down
+#&gt; 1 0.01013157035575397212 -0.09215142026968735638 0.18327427230916144064
+#&gt;           def_third_down   def_cumulative_total def_cumulative_passing
+#&gt; 1 0.37817609527526796594 66.0074534005287911473 64.8572233085733793423
+#&gt;   def_cumulative_rushing
+#&gt; 1   3.849996735186509405</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

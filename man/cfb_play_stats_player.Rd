@@ -37,12 +37,6 @@ Information describes the players involved in the play
 this includes passer, receiver, defensive players who
 create sacks or picks, etc
 }
-\examples{
-
-ath_id <- as.numeric(cfb_player_info(search_term = 'terry', team = "florida state")$id)
-cfb_play_stats_player(year = 2019, week = 1, team = 'Florida State', athlete_id = ath_id)
-
-}
 \keyword{-}
 \keyword{PBP}
 \keyword{Player}

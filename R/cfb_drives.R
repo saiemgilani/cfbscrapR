@@ -16,7 +16,7 @@
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
 #'
-#' @keywords Game Info
+#' @keywords Drives
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils "URLencode"

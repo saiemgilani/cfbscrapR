@@ -55,8 +55,8 @@ cfb_betting_lines <- function(game_id = NULL,
   }
   if(season_type != 'regular'){
     # Check if season_type is appropriate, if not regular
-    assert_that(season_type %in% c('postseason','both'),
-                msg='Enter valid season_type: regular, postseason, or both')
+    assert_that(season_type %in% c('postseason'),
+                msg='Enter valid season_type: regular or postseason')
   }
   if(!is.null(team)){
     # Encode team parameter for URL, if not NULL

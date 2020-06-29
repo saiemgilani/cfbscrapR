@@ -15,7 +15,7 @@ reference:
       - '`cfb_game_box_advanced`'
       - '`cfb_game_media`'
       - '`cfb_betting_lines`'
-      # - '`cfb_game_box_advanced`'
+      - '`cfb_game_box_advanced`'
   - subtitle: Drives Data Function
     desc: Functions exported by cfbpointsR sourced from drives endpoint of the CollegeFootballData API
     contents:
@@ -45,6 +45,9 @@ reference:
     desc: Functions exported by cfbpointsR sourced from the conferences endpoint of the CollegeFootballData API
     contents:
       - '`cfb_stats_categories`'
+      - '`cfb_stats_season_team`'
+      - '`cfb_stats_game_advanced`'
+      - '`cfb_stats_season_advanced`'
   - subtitle: Conference Functions
     desc: Functions exported by cfbpointsR sourced from the conferences endpoint of the CollegeFootballData API
     contents:
@@ -63,6 +66,16 @@ reference:
       - '`cfb_recruiting_player`'
       - '`cfb_recruiting_team`'
       - '`cfb_recruiting_position`'
+  - subtitle: Metrics Functions
+    desc: Functions exported by cfbpointsR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API
+    contents:
+      - '`cfb_metrics_ppa_predicted`'
+      - '`cfb_metrics_ppa_teams`'
+      - '`cfb_metrics_ppa_games`'
+      - '`cfb_metrics_ppa_players_season`'
+      - '`cfb_metrics_ppa_players_games`'
+      - '`cfb_metrics_wp`'
+      - '`cfb_metrics_wp_pregame`'
   - subtitle: School Functions
     desc: Functions exported by cfbpointsR sourced from venues and coaches endpoints of the CollegeFootballData API
     contents:

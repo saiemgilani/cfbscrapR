@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gets player info associated by play — cfb_play_stats_player • cfbpointsR</title>
+<title>Get Pre-game Win Probability Data from API — cfb_metrics_wp_pregame • cfbpointsR</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Gets player info associated by play — cfb_play_stats_player" />
-<meta property="og:description" content="Information describes the players involved in the play
-this includes passer, receiver, defensive players who
-create sacks or picks, etc" />
+<meta property="og:title" content="Get Pre-game Win Probability Data from API — cfb_metrics_wp_pregame" />
+<meta property="og:description" content="Get Pre-game Win Probability Data from API" />
 
 
 
@@ -108,24 +106,19 @@ create sacks or picks, etc" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gets player info associated by play</h1>
+    <h1>Get Pre-game Win Probability Data from API</h1>
     
-    <div class="hidden name"><code>cfb_play_stats_player.Rd</code></div>
+    <div class="hidden name"><code>cfb_metrics_wp_pregame.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Information describes the players involved in the play
-this includes passer, receiver, defensive players who
-create sacks or picks, etc</p>
+    <p>Get Pre-game Win Probability Data from API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_play_stats_player</span>(
+    <pre class="usage"><span class='fu'>cfb_metrics_wp_pregame</span>(
   <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>game_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>athlete_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>stat_type_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>
 )</pre>
 
@@ -145,27 +138,20 @@ create sacks or picks, etc</p>
       <td><p>(<em>String</em> optional): D-I Team</p></td>
     </tr>
     <tr>
-      <th>game_id</th>
-      <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game
-Can be found using the `cfb_game_info()` function</p></td>
-    </tr>
-    <tr>
-      <th>athlete_id</th>
-      <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete
-Can be found using the `cfb_player_info()` function.</p></td>
-    </tr>
-    <tr>
-      <th>stat_type_id</th>
-      <td><p>(<em>Integer</em> optional): Stat Type ID filter for querying a single stat type
-Can be found using the `cfb_play_stats_types()` function</p></td>
-    </tr>
-    <tr>
       <th>season_type</th>
-      <td><p>(<em>String</em> default regular): Select Season Type: regular, postseason, or both</p></td>
+      <td><p>(<em>String</em> default regular): Select Season Type: regular or postseason</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'>cfb_metrics_wp_pregame</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span><span class='kw'>=</span><span class='fl'>9</span>, <span class='kw'>team</span><span class='kw'>=</span><span class='st'>'Texas A&amp;M'</span>)</div><div class='output co'>#&gt;   season seasonType week    gameId  homeTeam          awayTeam spread
+#&gt; 1   2019    regular    9 401110835 Texas A&amp;M Mississippi State    -11
+#&gt;   homeWinProb
+#&gt; 1       0.741</div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

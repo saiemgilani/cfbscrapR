@@ -14,7 +14,7 @@
 #'  * Special Teams: K, P, LS, PK
 #' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete
 #' Can be found using the `cfb_player_info()` function.
-#' @param garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #'
 #'
 #' @keywords Player Usage
@@ -38,7 +38,7 @@ cfb_player_usage <- function(year = 2019,
                              conference = NULL,
                              position = NULL,
                              athlete_id = NULL,
-                             garbage_time = FALSE){
+                             excl_garbage_time = FALSE){
 
   args <- list(year = year)
 
@@ -76,10 +76,10 @@ cfb_player_usage <- function(year = 2019,
     assert_that(is.numeric(athlete_id),
                 msg='Enter valid athlete_id value (Integer)\nCan be found using the `cfb_player_info()` function')
   }
-  if(garbage_time!=FALSE){
-    # Check if garbage_time is TRUE, if not FALSE
-    assert_that(garbage_time==TRUE,
-                msg='Enter valid garbage_time value (Logical) - TRUE/FALSE')
+  if(excl_garbage_time!=FALSE){
+    # Check if excl_garbage_time is TRUE, if not FALSE
+    assert_that(excl_garbage_time==TRUE,
+                msg='Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
   }
 
   base_url = "https://api.collegefootballdata.com/player/usage?"
@@ -91,7 +91,7 @@ cfb_player_usage <- function(year = 2019,
                     "&conference=", conference,
                     "&position=", position,
                     "&athleteID=", athlete_id,
-                    "&excludeGarbageTime=",garbage_time)
+                    "&excludeGarbageTime=",excl_garbage_time)
 
   # Check for internet
   check_internet()

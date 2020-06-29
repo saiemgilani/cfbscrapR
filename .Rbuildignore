@@ -1,0 +1,16 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^_pkgdown\.yaml$
+^docs$
+^pkgdown$
+^doc$
+^Meta$
+^vignettes
+^\.github
+^.travis.yml
+^data-raw
+^README.Rmd
+^CODE_OF_CONDUCT.md
+^LICENSE.md
+^_pkgdown.yml
+^data-raw

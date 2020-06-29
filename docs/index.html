@@ -62,9 +62,10 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="college-football-expected-points" class="section level1">
+<div id="cfbpointsr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#college-football-expected-points" class="anchor"></a>College Football Expected Points</h1></div>
+<a href="#cfbpointsr" class="anchor"></a>cfbpointsR</h1></div>
+<p>A scraping and aggregating package using the CollegeFootballData API</p>
 <p><code>cfbpointsR</code> is an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).</p>
 <p><strong>Note:</strong> The API ingests data from ESPN as well as other sources. For details on those source, please go the website linked above. Sometimes there are inconsitences in the underlying data itself. Please report issues here or to <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
 <div id="installation" class="section level2">
@@ -73,54 +74,39 @@
 <p>You can install <code>cfbpointsR</code> from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"saiemgilani/cfbpointsR"</span>)</pre></div>
+<!-- badges: start -->
+<p><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle:experimental"></p>
+<p><img src="https://travis-ci.com/saiemgilani/cfbpointsR.svg?token=BxsozfUD3VCvCzzJpdFf&amp;branch=master" alt="Travis-CI: build-status"><!-- badges: end --></p>
+<p>The goal of cfbpointsR is to …</p>
 </div>
-<div id="functions" class="section level2">
+<div id="installation-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#functions" class="anchor"></a>Functions</h2>
-<div id="scraping-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scraping-data" class="anchor"></a>Scraping Data</h3>
-<ul>
-<li>
-<code><a href="reference/cfb_pbp_data.html">cfb_pbp_data(year,week,team,epa_wpa)</a></code>: Extract PBP data (append EPA/WPA data)</li>
-<li>
-<code><a href="reference/cfb_game_info.html">cfb_game_info(2018,team="Texas A&amp;M")</a></code>: Get information from games (Multiple options, all year, one week, one team, specific conference)</li>
-<li>
-<code><a href="reference/cfb_play_stats_player.html">cfb_play_stats_player(game_id)</a></code>: Gets player info associated by play (Game id )</li>
-<li>
-<code><a href="reference/cfb_rankings.html">cfb_rankings(2018,1)</a></code>: Historical CFB poll rankings at a specific week</li>
-<li>
-<code>cfb_team(conference)</code>: List all teams in a given D1 conference</li>
-<li>
-<code>cfb_recruiting(2018,team="Texas")</code>: CFB recruiting information (General Year, Position groups btw years)</li>
-</ul>
+<a href="#installation-1" class="anchor"></a>Installation</h2>
+<p>You can install the released version of cfbpointsR from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"cfbpointsR"</span>)</pre></div>
+<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"saiemgilani/cfbpointsR"</span>)</pre></div>
 </div>
-<div id="epawpa" class="section level3">
-<h3 class="hasAnchor">
-<a href="#epawpa" class="anchor"></a>EPA/WPA</h3>
-<ul>
-<li>
-<code>calculate_epa &lt;- function(clean_pbp_dat)</code>: Calculate EPA</li>
-<li>
-<code>create_wpa &lt;- function(df)</code>: Calculate WPA</li>
-</ul>
-</div>
-<div id="plots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#plots" class="anchor"></a>Plots</h3>
-<ul>
-<li>
-<code>plot_pbp_sequencing(df)</code>: Plot Play by Play Sequencing per drive</li>
-<li>
-<code>plot_wpa(df,away_color,home_color,winner="away")</code>: Plot WPA</li>
-</ul>
-</div>
-</div>
-<div id="epwp-model" class="section level2">
+<div id="example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#epwp-model" class="anchor"></a>EP/WP Model</h2>
-<p>You can find more detailed information and explanation on the EP/WP models in the <code>cfbpointsR-models</code> repository.<br>
-Link: <a href="https://github.com/saiemgilani/cfbpointsR-models" title="cfbpointsR-models GitHub repository">cfbpointsR-models</a></p>
+<a href="#example" class="anchor"></a>Example</h2>
+<p>This is a basic example which shows you how to solve a common problem:</p>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cfbpointsR</span>)
+<span class="co">## basic example code</span></pre></div>
+<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">cars</span>)
+<span class="co">#&gt;      speed           dist       </span>
+<span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span>
+<span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span>
+<span class="co">#&gt;  Median :15.0   Median : 36.00  </span>
+<span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span>
+<span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span>
+<span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></pre></div>
+<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date.</p>
+<p>You can also embed plots, for example:</p>
+<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
+<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub!</p>
 </div>
 </div>
   </div>

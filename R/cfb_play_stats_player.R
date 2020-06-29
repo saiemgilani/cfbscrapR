@@ -26,11 +26,8 @@
 #' @import tidyr
 #' @import purrr
 #' @export
-#' @examples
-#'
-#' ath_id <- as.numeric(cfb_player_info(search_term = 'terry', team = "florida state")$id)
-#' cfb_play_stats_player(year = 2019, week = 1, team = 'Florida State', athlete_id = ath_id)
-#'
+#' 
+
 
 
 cfb_play_stats_player <- function(year = NULL,
@@ -110,14 +107,7 @@ cfb_play_stats_player <- function(year = NULL,
                           names_from = .data$statType,
                           values_from = .data$athleteName) %>%
               arrange(.data$week,.data$period,-.data$secondsRemaining)
-    # group_by(.data$playId) %>%
-    # summarise_all(funs(first(na.omit(.data$.)))) %>%
-    # ungroup() %>%
-    # select(-.data$athleteId, -.data$stat) %>%
-    # unite("Passer",
-    #       .data$Incompletion:.data$Completion,
-    #       remove=TRUE,
-    #       na.rm=TRUE)
+
   clean_df <- as.data.frame(clean_df)
   return(clean_df)
 }

@@ -49,10 +49,11 @@ cfb_ratings_srs <- function(year=NULL,team=NULL,conference=NULL){
     conference = URLencode(conference, reserved = TRUE)
   }
 
-  base_url = 'https://api.collegefootballdata.com/ratings/srs'
+  base_url = 'https://api.collegefootballdata.com/ratings/srs?'
 
   full_url = paste0(base_url,
-                    "?year=",year,
+                    "year=",year,
+                    "&team=",team,
                     "&conference=",conference)
 
   # Check for internet

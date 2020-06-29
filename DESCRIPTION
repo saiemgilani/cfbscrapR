@@ -1,6 +1,6 @@
 Package: cfbpointsR
 Title: A Scraping and Aggregating interface to the collegefootballdata.com API by CFB Points
-Version: 0.0.0.1
+Version: 0.0.1
 Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('aut','cre')),
              person('Meyappan', 'Subbaiah', email = 'meysubb@gmail.com', role = c('aut')),
              person('Parker', 'Fleming', email = 'parkerf@smu.edu', role = c('aut')))
@@ -25,7 +25,8 @@ Imports:
     stats,
     utils,
     curl,
-    rlang
+    rlang,
+    tibble
 URL: http://www.github.com/saiemgilani/cfbpointsR
 BugReports: http://www.github.com/saiemgilani/cfbpointsR/issues
 Encoding: UTF-8

@@ -10,7 +10,7 @@ cfb_player_usage(
   conference = NULL,
   position = NULL,
   athlete_id = NULL,
-  garbage_time = FALSE
+  excl_garbage_time = FALSE
 )
 }
 \arguments{
@@ -31,7 +31,7 @@ Position Group  - options include:
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
 Can be found using the `cfb_player_info()` function.}
 
-\item{garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
+\item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 }
 \description{
 A player usage function with \strong{Year} as a required input.

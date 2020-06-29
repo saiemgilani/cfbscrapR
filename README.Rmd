@@ -29,7 +29,9 @@ devtools::install_github("saiemgilani/cfbpointsR")
 ```
 
   <!-- badges: start -->
-  [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+  ![Lifecycle:stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
+  
+  ![Travis-CI: build-status](https://travis-ci.com/saiemgilani/cfbpointsR.svg?token=BxsozfUD3VCvCzzJpdFf&branch=master)
   <!-- badges: end -->
 
 The goal of cfbpointsR is to ...

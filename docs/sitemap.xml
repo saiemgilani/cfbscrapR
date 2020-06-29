@@ -40,6 +40,27 @@
     <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_game_team_stats.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_games.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_players_games.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_players_season.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_predicted.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_teams.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_wp.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_wp_pregame.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_pbp_data.html</loc>
   </url>
   <url>
@@ -86,6 +107,15 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_categories.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_game_advanced.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_season_advanced.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_season_team.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_team_info.html</loc>
