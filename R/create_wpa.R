@@ -4,7 +4,7 @@
 #'
 #' Extracts raw game by game data.
 #' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
-#' @param wp_model (\emph{model} default `cfbpointsR::wp_model`): Win Probability (WP) Model
+#' @param wp_model (\emph{model} default `cfbscrapR::wp_model`): Win Probability (WP) Model
 #'
 #' @keywords internal
 #' @import dplyr
@@ -13,7 +13,7 @@
 #' @export
 #'
 
-create_wpa <- function(df, wp_model = cfbpointsR:::wp_model) {
+create_wpa <- function(df, wp_model = cfbscrapR:::wp_model) {
   col_nec = c(
     "ExpScoreDiff",
     "TimeSecsRem",

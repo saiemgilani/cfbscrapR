@@ -34,7 +34,7 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
   }
   if(!is.null(conference)){
     # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbpointsR::cfb_conf_types_df$name,
+    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect Conference Name, potential misspelling.\nConference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     conference = URLencode(conference, reserved = TRUE)
   }

@@ -39,15 +39,15 @@ cfb_pbp_data <- function(year,
   options(stringsAsFactors = FALSE)
 
   if (!is.null(play_type)) {
-    text <- play_type %in% cfbpointsR::cfb_play_type_df$text
-    abbr <- play_type %in% cfbpointsR::cfb_play_type_df$abbreviation
+    text <- play_type %in% cfbscrapR::cfb_play_type_df$text
+    abbr <- play_type %in% cfbscrapR::cfb_play_type_df$abbreviation
     pt <-
       assert_that((text |
                      abbr) == TRUE, msg = "Incorrect play type selected, please look at the available options in the Play Type DF.")
     if (text) {
-      pt_id = cfbpointsR::cfb_play_type_df$id[which(cfbpointsR::cfb_play_type_df$text == play_type)]
+      pt_id = cfbscrapR::cfb_play_type_df$id[which(cfbscrapR::cfb_play_type_df$text == play_type)]
     } else{
-      pt_id = cfbpointsR::cfb_play_type_df$id[which(cfbpointsR::cfb_play_type_df$abbreviation == play_type)]
+      pt_id = cfbscrapR::cfb_play_type_df$id[which(cfbscrapR::cfb_play_type_df$abbreviation == play_type)]
     }
   }
   ## Inputs
