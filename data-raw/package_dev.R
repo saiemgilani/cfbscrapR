@@ -8,7 +8,7 @@ unlink("DESCRIPTION")
 my_desc <- description$new("!new")
 
 # Set your package name
-my_desc$set("Package", "cfbpointsR")
+my_desc$set("Package", "cfbscrapR")
 
 #Set your name
 my_desc$set("Authors@R", "person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('cre', 'aut')),
@@ -26,8 +26,8 @@ my_desc$set(Title = "A Scraping and Aggregating interface to the collegefootball
 # The description of your package
 my_desc$set(Description = "An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by CFB Points. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).")
 # The urls
-my_desc$set("URL", "http://www.github.com/saiemgilani/cfbpointsR")
-my_desc$set("BugReports", "http://www.github.com/saiemgilani/cfbpointsR/issues")
+my_desc$set("URL", "http://www.github.com/saiemgilani/cfbscrapR")
+my_desc$set("BugReports", "http://www.github.com/saiemgilani/cfbscrapR/issues")
 # Save everyting
 my_desc$write(file = "DESCRIPTION")
 

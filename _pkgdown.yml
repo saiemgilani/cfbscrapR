@@ -1,12 +1,12 @@
 template:
   params:
     bootswatch: cosmo
-title: cfbpointsR
-url: http://saiemgilani.github.io/cfbpointsR
+title: cfbscrapR
+url: http://saiemgilani.github.io/cfbscrapR
 
 reference:
   - subtitle: Games Data Functions
-    desc: Functions exported by cfbpointsR sourced from games endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from games endpoint of the CollegeFootballData API
     contents:
       - '`cfb_game_info`'
       - '`cfb_game_records`'
@@ -17,11 +17,11 @@ reference:
       - '`cfb_betting_lines`'
       - '`cfb_game_box_advanced`'
   - subtitle: Drives Data Function
-    desc: Functions exported by cfbpointsR sourced from drives endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from drives endpoint of the CollegeFootballData API
     contents:
       - '`cfb_drives`'
   - subtitle: Plays Data Functions
-    desc: Functions exported by cfbpointsR sourced from plays endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from plays endpoint of the CollegeFootballData API
     contents:
       - '`cfb_pbp_data`'
       - '`cfb_play_types`'
@@ -29,45 +29,45 @@ reference:
       - '`cfb_play_stats_player`'
       - '`cfb_play_stats_types`'
   - subtitle: Teams Functions
-    desc: Functions exported by cfbpointsR sourced from the teams endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from the teams endpoint of the CollegeFootballData API
     contents:
       - '`cfb_team_info`'
       - '`cfb_team_matchup`'
       - '`cfb_team_roster`'
       - '`cfb_team_talent`'
   - subtitle: Players Functions
-    desc: Functions exported by cfbpointsR sourced from the teams endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from the teams endpoint of the CollegeFootballData API
     contents:
       - '`cfb_player_info`'
       - '`cfb_player_usage`'
       - '`cfb_player_returning`'
   - subtitle: Stats Functions
-    desc: Functions exported by cfbpointsR sourced from the conferences endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from the conferences endpoint of the CollegeFootballData API
     contents:
       - '`cfb_stats_categories`'
       - '`cfb_stats_season_team`'
       - '`cfb_stats_game_advanced`'
       - '`cfb_stats_season_advanced`'
   - subtitle: Conference Functions
-    desc: Functions exported by cfbpointsR sourced from the conferences endpoint of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from the conferences endpoint of the CollegeFootballData API
     contents:
       - '`cfb_conferences`'
       - '`cfb_conf_types_df`'
   - subtitle: Rankings and Ratings Functions
-    desc: Functions exported by cfbpointsR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
       - '`cfb_rankings`'
       - '`cfb_ratings_sp`'
       - '`cfb_ratings_sp_conference`'
       - '`cfb_ratings_srs`'
   - subtitle: Recruiting functions
-    desc: Functions exported by cfbpointsR sourced from the rankings and ratings endpoints of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
       - '`cfb_recruiting_player`'
       - '`cfb_recruiting_team`'
       - '`cfb_recruiting_position`'
   - subtitle: Metrics Functions
-    desc: Functions exported by cfbpointsR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from the Predicted Points Added (PPA) endpoints of the CollegeFootballData API
     contents:
       - '`cfb_metrics_ppa_predicted`'
       - '`cfb_metrics_ppa_teams`'
@@ -77,7 +77,7 @@ reference:
       - '`cfb_metrics_wp`'
       - '`cfb_metrics_wp_pregame`'
   - subtitle: School Functions
-    desc: Functions exported by cfbpointsR sourced from venues and coaches endpoints of the CollegeFootballData API
+    desc: Functions exported by cfbscrapR sourced from venues and coaches endpoints of the CollegeFootballData API
     contents:
       - '`cfb_venues`'
       - '`cfb_coaches`'
