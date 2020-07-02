@@ -1,4 +1,4 @@
-#' Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
+#' Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame (Naive)
 #' This is only for D1 football
 #'
 #'
