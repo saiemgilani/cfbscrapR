@@ -11,6 +11,7 @@
 #' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param provider (\emph{String} default consensus: Select Line Provider: Caesars, consensus, numberfire, or teamrankings
 #'
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
@@ -37,7 +38,9 @@ cfb_betting_lines <- function(game_id = NULL,
                               team = NULL,
                               home_team = NULL,
                               away_team = NULL,
-                              conference = NULL) {
+                              conference = NULL,
+                              provider = NULL) {
+  
   if(!is.null(game_id)){
     # Check if game_id is numeric, if not NULL
     assert_that(is.numeric(game_id),
@@ -78,6 +81,12 @@ cfb_betting_lines <- function(game_id = NULL,
     conference = URLencode(conference, reserved = TRUE)
   }
 
+  if(!is.na(provider)){
+    # Check provider parameter is a valid entry
+    assert_that(provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"),
+                msg = "Enter valid line provider: Caesars, consensus, numberfire, or teamrankings")
+  }
+  
 
   base_url <- "https://api.collegefootballdata.com/lines?"
 
@@ -104,7 +113,7 @@ cfb_betting_lines <- function(game_id = NULL,
   df = fromJSON(full_url,flatten=TRUE) %>%
     map_if(is.data.frame,list) %>%
     as_tibble() %>%
-    unnest(.data$lines)
+    unnest(.data$lines) %>% filter(provider = "provider")
 
   df <- as.data.frame(df)
   return(df)
