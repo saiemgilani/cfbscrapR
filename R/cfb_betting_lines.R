@@ -113,7 +113,7 @@ cfb_betting_lines <- function(game_id = NULL,
   df = fromJSON(full_url,flatten=TRUE) %>%
     map_if(is.data.frame,list) %>%
     as_tibble() %>%
-    unnest(.data$lines) %>% filter(provider = "provider")
+    unnest(.data$lines) %>% filter(provider == "provider")
 
   df <- as.data.frame(df)
   return(df)
