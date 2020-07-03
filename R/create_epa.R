@@ -2,13 +2,13 @@
 #' Adds Expected Points calculations to Play-by-Play data.frame
 #'
 #' @param clean_pbp_dat (\emph{data.frame} required): Clean PBP as input from `cfb_pbp_dat()`)
-#' @param ep_model (\emph{model} default `cfbpointsR::ep_model`): Expected Points (EP) Model
-#' @param fg_model (\emph{model} default `cfbpointsR::fg_model`): Field Goal (FG) Model
+#' @param ep_model (\emph{model} default `cfbscrapR::ep_model`): Expected Points (EP) Model
+#' @param fg_model (\emph{model} default `cfbscrapR::fg_model`): Field Goal (FG) Model
 #' @keywords internal
 #' @importFrom stats "na.omit"
 #' @importFrom stats "predict"
 #' @importFrom nnet "multinom"
-#' @importFrom rlang .data
+#' @importFrom rlang ".data"
 #' @import stringr
 #' @import dplyr
 #' @import tidyr
@@ -16,8 +16,8 @@
 #'
 
 create_epa <- function(clean_pbp_dat,
-                          ep_model=cfbpointsR:::ep_model,
-                          fg_model=cfbpointsR:::fg_model) {
+                          ep_model=cfbscrapR:::ep_model,
+                          fg_model=cfbscrapR:::fg_model) {
   # constant vectors to be used again
   turnover_play_type = c(
     "Blocked Field Goal",
@@ -281,7 +281,7 @@ create_epa <- function(clean_pbp_dat,
 #'
 #' @param df (\emph{data.frame} required): Clean Play-By-Play data.frame as can be pulled from `cfb_pbp_dat()`
 #' @param current_probs (\emph{data.frame} required): Expected Points (EP) model raw probability outputs from initial prediction
-#' @param fg_mod (\emph{model}, default `cfbpointsR::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
+#' @param fg_mod (\emph{model}, default `cfbscrapR::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #'
 #' @keywords internal
 #' @importFrom mgcv "bam"

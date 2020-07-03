@@ -13,8 +13,8 @@
 #' @source \url{https://api.collegefootballdata.com/conferences}
 #'
 #' @keywords Conferences
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @import dplyr
 #' @import tidyr
 #' @export

@@ -17,8 +17,8 @@
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
 #'
 #' @keywords Drives
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr
@@ -69,21 +69,21 @@ cfb_drives <- function(year,
   }
   if(!is.null(conference)){
     # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbpointsR::cfb_conf_types_df$name,
+    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     # Encode conference parameter for URL, if not NULL
     conference = URLencode(conference, reserved = TRUE)
   }
   if(!is.null(offense_conference)){
     # Check offense_conference parameter in conference names, if not NULL
-    assert_that(offense_conference %in% cfbpointsR::cfb_conf_types_df$name,
+    assert_that(offense_conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect offense_conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     # Encode offense_conference parameter for URL, if not NULL
     offense_conference = URLencode(offense_conference, reserved = TRUE)
   }
   if(!is.null(defense_conference)){
     # Check defense_conference parameter in conference names, if not NULL
-    assert_that(defense_conference %in% cfbpointsR::cfb_conf_types_df$name,
+    assert_that(defense_conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect defense_conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     # Encode defense_conference parameter for URL, if not NULL
     defense_conference = URLencode(defense_conference, reserved = TRUE)

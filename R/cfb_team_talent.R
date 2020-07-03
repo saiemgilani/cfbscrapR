@@ -5,8 +5,8 @@
 #' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
 #'
 #' @keywords Team talent
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export

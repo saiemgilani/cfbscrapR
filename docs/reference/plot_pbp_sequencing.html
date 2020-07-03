@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot the Drive/PBP Sequencing — plot_pbp_sequencing • cfbpointsR</title>
+<title>Plot the Drive/PBP Sequencing — plot_pbp_sequencing • cfbscrapR</title>
 
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -71,8 +71,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">cfbpointsR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.1</span>
+        <a class="navbar-link" href="../index.html">cfbscrapR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>df</th>
-      <td><p>Play-by-Play data frame (can be retrieved from cfb_pbp_data)</p></td>
+      <td><p>Play-by-Play data frame (can be retrieved from `cfb_pbp_data`)</p></td>
     </tr>
     </table>
 
@@ -131,13 +131,10 @@
     <pre class="examples"><div class='input'>
 
 
-<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'><a href='cfb_pbp_data.html'>cfb_pbp_data</a></span>(<span class='kw'>year</span><span class='kw'>=</span><span class='fl'>2019</span>,<span class='kw'>week</span><span class='kw'>=</span><span class='fl'>9</span>,<span class='kw'>team</span><span class='kw'>=</span><span class='st'>'Texas A&amp;M'</span>,<span class='kw'>epa_wpa</span><span class='kw'>=</span><span class='no'>T</span>)</div><div class='output co'>#&gt; <span class='error'>Error: </span></div><div class='input'>
-<span class='fu'>plot_pbp_sequencing</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `arrange_()` is deprecated as of dplyr 0.7.0.</span>
-#&gt; <span class='warning'>Please use `arrange()` instead.</span>
-#&gt; <span class='warning'>See vignette('programming') for more help</span>
-#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
-#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("arrange_"): no applicable method for 'arrange_' applied to an object of class "function"</span></div><div class='input'>
-</div></span></pre>
+<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'><a href='cfb_pbp_data.html'>cfb_pbp_data</a></span>(<span class='kw'>year</span><span class='kw'>=</span><span class='fl'>2019</span>,<span class='kw'>week</span><span class='kw'>=</span><span class='fl'>9</span>,<span class='kw'>team</span><span class='kw'>=</span><span class='st'>'Texas A&amp;M'</span>,<span class='kw'>epa_wpa</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+
+<span class='fu'>plot_pbp_sequencing</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `expand_scale()` is deprecated; use `expansion()` instead.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_tile).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 162 rows containing missing values (geom_text_repel).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 11 rows containing missing values (geom_label_repel).</span></div><div class='img'><img src='plot_pbp_sequencing-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -149,7 +146,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Saiem Gilani, Meyappan Subbaiah.</p>
+  <p>Developed by Saiem Gilani, Meyappan Subbaiah, Parker Fleming.</p>
 </div>
 
 <div class="pkgdown">

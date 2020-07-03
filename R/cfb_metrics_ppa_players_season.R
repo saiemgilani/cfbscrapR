@@ -16,9 +16,9 @@
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
 #' @keywords Players Predicted Points Season Averages
-#' @importFrom attempt stop_if_all
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_all"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" 
 #' @importFrom assertthat "assert_that"
 #' @import dplyr
@@ -56,7 +56,7 @@ cfb_metrics_ppa_players_season <- function(year = NULL,
   }
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assert_that(conference %in% cfbpointsR::cfb_conf_types_df$abbreviation,
+    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
                 msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = URLencode(conference, reserved = TRUE)

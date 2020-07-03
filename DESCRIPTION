@@ -1,10 +1,10 @@
-Package: cfbpointsR
-Title: A Scraping and Aggregating interface to the collegefootballdata.com API by CFB Points
+Package: cfbscrapR
+Title: A Scraping and Aggregating interface to the collegefootballdata.com API 
 Version: 0.0.1
 Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('aut','cre')),
              person('Meyappan', 'Subbaiah', email = 'meysubb@gmail.com', role = c('aut')),
              person('Parker', 'Fleming', email = 'parkerf@smu.edu', role = c('aut')))
-Description: An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by CFB Points. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
+Description: An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by cfbscrapR team. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
 Depends: R (>= 2.10)
 License: MIT + file LICENSE
 LazyData: true
@@ -26,8 +26,10 @@ Imports:
     utils,
     curl,
     rlang,
-    tibble
-URL: http://www.github.com/saiemgilani/cfbpointsR
-BugReports: http://www.github.com/saiemgilani/cfbpointsR/issues
+    tibble,
+    geosphere,
+    glue
+URL: http://www.github.com/saiemgilani/cfbscrapR
+BugReports: http://www.github.com/saiemgilani/cfbscrapR/issues
 Encoding: UTF-8
 RoxygenNote: 7.1.0

@@ -9,9 +9,9 @@
 #' @param min_year (\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).
 #' @param max_year (\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY}).
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_all"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export

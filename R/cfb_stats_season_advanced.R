@@ -7,8 +7,8 @@
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
 #' @keywords Team Season Advanced Stats
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr
@@ -19,7 +19,7 @@
 #'
 #' cfb_stats_season_advanced(2019, team = 'LSU')
 #'
-#' cfb_stats_season_advanced(2013, team = 'Florida State')
+#' cfb_stats_season_advanced(2013, team = "Florida State")
 #'
 
 cfb_stats_season_advanced <- function(year,
@@ -46,7 +46,7 @@ cfb_stats_season_advanced <- function(year,
                 msg='Enter valid start_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
   if(!is.null(end_week)){
-    # Check if end_week is numeric, if not NULL
+    # Check if week is numeric, if not NULL
     assert_that(is.numeric(end_week) & nchar(end_week) <= 2,
                 msg='Enter valid end_week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
@@ -54,6 +54,8 @@ cfb_stats_season_advanced <- function(year,
     assert_that(start_week <= end_week,
                 msg='Enter valid start_week, end_week range')
   }
+
+
 
   base_url <- "https://api.collegefootballdata.com/stats/season/advanced?"
 

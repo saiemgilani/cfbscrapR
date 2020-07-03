@@ -4,9 +4,9 @@
 #' @param distance (\emph{Integer} required): Distance filter
 #'
 #' @keywords Predicted Points 
-#' @importFrom attempt stop_if_any
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_any"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr
 #' @import tidyr

@@ -13,9 +13,9 @@
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #'
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_all"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export

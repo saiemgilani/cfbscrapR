@@ -10,8 +10,8 @@
 #'   ...
 #' }
 #' @keywords Plays
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @export
 #' @examples
 #'

@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot the WPA for a specific game — plot_wpa • cfbpointsR</title>
+<title>Plot the WPA for a specific game — plot_wpa • cfbscrapR</title>
 
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -71,8 +71,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">cfbpointsR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.1</span>
+        <a class="navbar-link" href="../index.html">cfbscrapR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
 
@@ -145,13 +145,9 @@ Can be found using the `cfb_game_info()` function</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='no'>df</span> <span class='kw'>=</span> <span class='fu'><a href='cfb_pbp_data.html'>cfb_pbp_data</a></span>(<span class='kw'>year</span><span class='kw'>=</span><span class='fl'>2019</span>,<span class='kw'>week</span><span class='kw'>=</span><span class='fl'>12</span>,<span class='kw'>team</span><span class='kw'>=</span><span class='st'>'Baylor'</span>,<span class='kw'>epa_wpa</span> <span class='kw'>=</span> <span class='no'>T</span>)</div><div class='output co'>#&gt; <span class='error'>Error: </span></div><div class='input'>
-<span class='fu'>plot_wpa</span>(<span class='no'>df</span>,<span class='kw'>away_color</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>BU</span><span class='kw'>=</span><span class='st'>"#003015"</span>),<span class='kw'>home_color</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>OU</span><span class='kw'>=</span><span class='st'>"#841617"</span>),<span class='kw'>winner</span><span class='kw'>=</span><span class='st'>"away"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `select_()` is deprecated as of dplyr 0.7.0.</span>
-#&gt; <span class='warning'>Please use `select()` instead.</span>
-#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
-#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("select_"): no applicable method for 'select_' applied to an object of class "function"</span></div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>=</span> <span class='fu'><a href='cfb_pbp_data.html'>cfb_pbp_data</a></span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Baylor'</span>, <span class='kw'>epa_wpa</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>plot_wpa</span>(<span class='no'>df</span>, <span class='kw'>away_color</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>OU</span><span class='kw'>=</span><span class='st'>"#841617"</span>), <span class='kw'>home_color</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>BU</span><span class='kw'>=</span><span class='st'>"#003015"</span>), <span class='kw'>winner</span><span class='kw'>=</span><span class='st'>"away"</span>)</div><div class='output co'>#&gt; [1] "Warning. Time was not recorded properly for this PBP"</div><div class='img'><img src='plot_wpa-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -163,7 +159,7 @@ Can be found using the `cfb_game_info()` function</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Saiem Gilani, Meyappan Subbaiah.</p>
+  <p>Developed by Saiem Gilani, Meyappan Subbaiah, Parker Fleming.</p>
 </div>
 
 <div class="pkgdown">

@@ -7,8 +7,8 @@
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
 #'
 #' @keywords Team Info
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr
@@ -34,7 +34,7 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
   }
   if(!is.null(conference)){
     # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbpointsR::cfb_conf_types_df$name,
+    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect Conference Name, potential misspelling.\nConference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     conference = URLencode(conference, reserved = TRUE)
   }
@@ -58,19 +58,15 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
   # Get the content and return it as data.frame
   df = fromJSON(full_url,flatten=TRUE)%>%
     rename(
-      total_games = .data$total.games,
       total_wins = .data$total.wins,
       total_losses = .data$total.losses,
       total_ties = .data$total.ties,
-      conference_games = .data$conferenceGames.games,
       conference_wins = .data$conferenceGames.wins,
       conference_losses = .data$conferenceGames.losses,
       conference_ties = .data$conferenceGames.ties,
-      home_games = .data$homeGames.games,
       home_wins = .data$homeGames.wins,
       home_losses = .data$homeGames.losses,
       home_ties = .data$homeGames.ties,
-      away_games = .data$awayGames.games,
       away_wins = .data$awayGames.wins,
       away_losses = .data$awayGames.losses,
       away_ties = .data$awayGames.ties

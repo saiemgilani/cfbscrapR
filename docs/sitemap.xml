@@ -1,162 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/index.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/index.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/add_timeout_cols.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_timeout_cols.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_betting_lines.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_betting_lines.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_coaches.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_coaches.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_conferences.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_conf_types_df.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_conf_types_df.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_conferences.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_drives.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_game_box_advanced.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_game_box_advanced.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_game_info.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_game_info.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_game_media.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_game_media.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_game_player_stats.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_game_player_stats.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_game_records.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_game_records.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_game_team_stats.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_game_team_stats.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_games.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_ppa_games.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_players_games.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_ppa_players_games.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_players_season.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_ppa_players_season.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_predicted.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_ppa_predicted.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_ppa_teams.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_ppa_teams.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_wp.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_wp.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_metrics_wp_pregame.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_wp_pregame.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_pbp_data.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_player_info.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_stats_player.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_player_returning.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_stats_types.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_player_usage.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_type_df.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_play_stats_player.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_types.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_play_stats_types.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_player_info.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_play_types.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_player_returning.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_play_type_df.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_player_usage.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_rankings.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_rankings.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_ratings_sp.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_sp.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_ratings_sp_conference.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_sp_conference.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_ratings_srs.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_srs.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_recruiting_player.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_recruiting_player.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_recruiting_position.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_recruiting_position.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_recruiting_team.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_recruiting_team.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_categories.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_stats_categories.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_game_advanced.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_stats_game_advanced.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_season_advanced.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_stats_season_advanced.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_stats_season_team.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_stats_season_team.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_team_info.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_team_info.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_team_matchup.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_team_matchup.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_team_roster.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_team_roster.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_team_talent.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_team_talent.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/cfb_venues.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_venues.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/check_internet.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/check_internet.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/clean_drive_info.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/clean_drive_info.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/clean_pbp_dat.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/clean_pbp_dat.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/create_epa.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/create_epa.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/create_wpa.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/create_wpa.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/epa_fg_probs.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/epa_fg_probs.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/prep_epa_df_after.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/plot_away_travel.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/prep_epa_df_before.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/plot_pbp_sequencing.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbpointsR/reference/wpa_calcs.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/plot_wpa.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/prep_df_pbp_overview.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/prep_epa_df_after.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/prep_epa_df_before.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/wpa_calcs.html</loc>
   </url>
 </urlset>

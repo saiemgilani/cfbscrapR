@@ -9,7 +9,7 @@ epa_fg_probs(dat, current_probs, fg_mod)
 \arguments{
 \item{current_probs}{(\emph{data.frame} required): Expected Points (EP) model raw probability outputs from initial prediction}
 
-\item{fg_mod}{(\emph{model}, default `cfbpointsR::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
+\item{fg_mod}{(\emph{model}, default `cfbscrapR::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
 
 \item{df}{(\emph{data.frame} required): Clean Play-By-Play data.frame as can be pulled from `cfb_pbp_dat()`}
 }

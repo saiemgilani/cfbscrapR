@@ -10,8 +10,8 @@
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
 #'
 #' @keywords Teams
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export
@@ -28,7 +28,7 @@ cfb_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assert_that(conference %in% cfbpointsR::cfb_conf_types_df$abbreviation,
+    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
                 msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = URLencode(conference, reserved = TRUE)

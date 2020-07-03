@@ -4,8 +4,8 @@
 #' Can be found using the `cfb_game_info()` function
 #' @param adjust_for_spread (\emph{Logical} default TRUE): Toggles pre-game spread adjustments
 #' @keywords Win Probability Chart Data
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @export
