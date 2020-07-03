@@ -69,7 +69,7 @@ plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home"){
     plot_df <- rbind(c(1,0,0),plot_df)
   }
   # .data notation doesn't work here
-  plot_df <- gather(plot_df, team, wp, -.data$adj_TimeSecsRem)
+  plot_df <- gather(plot_df, "team", "wp", -.data$adj_TimeSecsRem)
 
 
   p1 = ggplot(plot_df,aes(x=.data$adj_TimeSecsRem,y=.data$wp,color=.data$team)) +
