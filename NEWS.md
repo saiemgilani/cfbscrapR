@@ -1,4 +1,4 @@
-# cfbpointsR 1.0.0
+# cfbscrapR 1.0.0
 
 - Prep for CRAN  
 - Full coverage of end-points from CFB Data  
