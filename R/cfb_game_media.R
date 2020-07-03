@@ -10,8 +10,8 @@
 #' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
 #'
 #' @keywords Game Info
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

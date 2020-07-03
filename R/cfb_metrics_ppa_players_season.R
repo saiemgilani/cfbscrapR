@@ -16,9 +16,9 @@
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
 #' @keywords Players Predicted Points Season Averages
-#' @importFrom attempt stop_if_all
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_all"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" 
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

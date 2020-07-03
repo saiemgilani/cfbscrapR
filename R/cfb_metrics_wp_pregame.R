@@ -6,8 +6,8 @@
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
 #' 
 #' @keywords Pre-game Win Probability Data
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @export

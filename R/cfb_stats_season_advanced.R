@@ -7,8 +7,8 @@
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
 #' @keywords Team Season Advanced Stats
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

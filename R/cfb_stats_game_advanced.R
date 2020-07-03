@@ -8,8 +8,8 @@
 #' @param season_type (\emph{String} default both): Select Season Type: regular, postseason, or both.
 #'
 #' @keywords Game Advanced Stats
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

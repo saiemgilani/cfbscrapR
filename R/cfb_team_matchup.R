@@ -6,9 +6,9 @@
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
 #'
 #' @keywords Team Matchup
-#' @importFrom attempt stop_if_any
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_any"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export

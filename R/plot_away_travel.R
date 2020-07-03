@@ -7,8 +7,8 @@
 #' @keywords Plot Travel
 #' @import dplyr
 #' @import ggplot2
-#' @import glue 
-#' @importFrom geosphere distHaversine
+#' @importFrom glue "glue"
+#' @importFrom geosphere "distHaversine"
 #' @export
 #' @examples
 #' 

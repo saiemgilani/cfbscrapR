@@ -18,9 +18,9 @@
 #'
 #'
 #' @keywords Player Usage
-#' @importFrom attempt stop_if_all
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_all"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

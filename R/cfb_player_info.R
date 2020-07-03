@@ -15,9 +15,9 @@
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2019
 #'
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_all"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export

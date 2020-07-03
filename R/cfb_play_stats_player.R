@@ -16,8 +16,8 @@
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
 #'
 #' @keywords Player - PBP
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @importFrom tidyr "pivot_wider"

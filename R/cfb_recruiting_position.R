@@ -11,9 +11,9 @@
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
 #'
 #' @keywords Recruiting
-#' @importFrom attempt stop_if_all
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom attempt "stop_if_all"
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export

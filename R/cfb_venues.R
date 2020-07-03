@@ -3,8 +3,8 @@
 #' Pulls all college football venues and data on capacity, grass, city/state, location,
 #' elevation, dome, timezone and construction year
 #' @keywords Venues
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @export
 #' @examples
 #'

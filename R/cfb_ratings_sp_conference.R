@@ -6,9 +6,9 @@
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #'
 #' @keywords SP+
-#' @importFrom attempt stop_if_all
+#' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
-#' @importFrom httr GET
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @export

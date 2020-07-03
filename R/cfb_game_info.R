@@ -16,8 +16,8 @@
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
 #'
 #' @keywords Game Info
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

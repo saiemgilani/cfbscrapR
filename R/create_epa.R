@@ -8,7 +8,7 @@
 #' @importFrom stats "na.omit"
 #' @importFrom stats "predict"
 #' @importFrom nnet "multinom"
-#' @importFrom rlang .data
+#' @importFrom rlang ".data"
 #' @import stringr
 #' @import dplyr
 #' @import tidyr

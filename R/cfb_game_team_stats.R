@@ -12,8 +12,8 @@
 #' @param rows_per_team (\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'
 #' @keywords Team Game Stats
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

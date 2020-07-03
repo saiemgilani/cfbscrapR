@@ -5,8 +5,8 @@
 #'
 #' @keywords Game Advanced Box Score 
 #' @importFrom tibble "enframe"
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr

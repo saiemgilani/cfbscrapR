@@ -15,8 +15,8 @@
 #' Can be found using the `cfb_game_info()` function
 #'
 #' @keywords Game Info
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom jsonlite "fromJSON"
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr
