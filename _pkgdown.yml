@@ -84,8 +84,9 @@ reference:
   - subtitle: Plotting Functions
     desc: Plotting play-by-play sequences and game win probability charts
     contents:
-      # - '`plot_wpa`'
-      # - '`plot_pbp_sequencing`'
+      - '`plot_wpa`'
+      - '`plot_pbp_sequencing`'
+      - '`plot_away_travel`'
   - subtitle: Internals
     desc: Internal functions and helpers
     contents:
