@@ -73,7 +73,7 @@ plot_pbp_sequencing <- function(df) {
     ) +
     scale_x_reverse(labels = off_team,
                     breaks = nd_id,
-                    expand = expand_scale(add = 1.2)) +
+                    expand = expansion(add = 1.2)) +
     labs(
       x = "",
       y = "",
