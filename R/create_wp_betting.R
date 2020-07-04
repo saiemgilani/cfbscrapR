@@ -13,7 +13,7 @@
 #' @export
 #'
 
-create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model_betting) {
+create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
   col_nec = c(
     "ExpScoreDiff",
     "TimeSecsRem",
