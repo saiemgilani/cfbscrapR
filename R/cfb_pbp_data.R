@@ -163,6 +163,7 @@ cfb_pbp_data <- function(year,
                                })
       play_df = create_epa(play_df)
       play_df = create_wpa(play_df)
+      play_df = create_wpa_betting(play_df)
       play_df = play_df %>%
         group_by(.data$drive_id) %>%
         arrange(.data$new_id, .by_group=T) %>%
