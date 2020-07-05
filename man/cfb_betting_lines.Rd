@@ -12,7 +12,8 @@ cfb_betting_lines(
   team = NULL,
   home_team = NULL,
   away_team = NULL,
-  conference = NULL
+  conference = NULL,
+  line_provider = NULL
 )
 }
 \arguments{
@@ -31,18 +32,20 @@ Can be found using the `cfb_game_info()` function}
 
 \item{away_team}{(\emph{String} optional): Away D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+
+\item{line_provider}{(\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings}
 }
 \description{
 Get Betting information from games
 }
 \examples{
 
-cfb_betting_lines(year = 2018, week = 1, team = 'Florida State', conference = 'ACC')
+cfb_betting_lines(year = 2018, week = 12, team = 'Florida State')
 
-#7 OTs LSU @ TAMU
+#7 OTs LSU at TAMU
 cfb_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = 'SEC')
 
 

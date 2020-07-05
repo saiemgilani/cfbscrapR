@@ -11,9 +11,9 @@ cfb_game_records(year, team = NULL, conference = NULL)
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
-\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
+\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference\cr
+Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 }
 \description{
 Get Team records by year

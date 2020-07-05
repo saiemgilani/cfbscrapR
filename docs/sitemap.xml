@@ -4,6 +4,9 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/index.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_timeout_cols.html</loc>
   </url>
   <url>
@@ -124,6 +127,9 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_team_matchup.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_team_matchup_records.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_team_roster.html</loc>
   </url>
   <url>
@@ -145,7 +151,10 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/create_epa.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/create_wpa.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/create_wpa_betting.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/create_wpa_naive.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/epa_fg_probs.html</loc>
@@ -169,6 +178,15 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/prep_epa_df_before.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/wpa_calcs.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/wpa_calcs_betting.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/wpa_calcs_naive.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/articles/intro.html</loc>
   </url>
 </urlset>

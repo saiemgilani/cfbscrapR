@@ -80,19 +80,61 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-question-circle-o"></span>
+     
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/index.html">Vignettes</a>
+    </li>
+    <li class="dropdown-header">Introductory</li>
+    <li>
+      <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li class="dropdown-header">Expected Points Model Fundamentals</li>
+    <li>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../reference/index.html">
+    <span class="fa fa-file-code-o"></span>
+     
+    Functions
+  </a>
+</li>
+<li>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    News
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://twitter.com/cfbscrapR">
+    <span class="fab fa fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="https://github.com/saiemgilani/cfbscrapR/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -123,7 +165,8 @@
   <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>home_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>away_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>line_provider</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -160,31 +203,35 @@ Can be found using the `cfb_game_info()` function</p></td>
     </tr>
     <tr>
       <th>conference</th>
-      <td><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC</p></td>
+      <td><p>(<em>String</em> optional): Conference abbreviation - Select a valid FBS conference<br />
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC<br />
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<br /></p></td>
+    </tr>
+    <tr>
+      <th>line_provider</th>
+      <td><p>(<em>String</em> optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'ACC'</span>)</div><div class='output co'>#&gt;          id season seasonType week      homeTeam homeConference homeScore
-#&gt; 1 401013096   2018    regular    1 Florida State            ACC         3
-#&gt; 2 401013096   2018    regular    1 Florida State            ACC         3
-#&gt; 3 401013096   2018    regular    1 Florida State            ACC         3
-#&gt; 4 401013096   2018    regular    1 Florida State            ACC         3
-#&gt;        awayTeam awayConference awayScore     provider spread    formattedSpread
-#&gt; 1 Virginia Tech            ACC        24 teamrankings     -7   Florida State -7
-#&gt; 2 Virginia Tech            ACC        24   numberfire   -7.5 Florida State -7.5
-#&gt; 3 Virginia Tech            ACC        24    consensus     -7   Florida State -7
-#&gt; 4 Virginia Tech            ACC        24      Caesars     -7   Florida State -7
-#&gt;   overUnder
-#&gt; 1        54
-#&gt; 2        54
-#&gt; 3      55.5
-#&gt; 4      55.5</div><div class='input'>
-<span class='co'>#7 OTs LSU @ TAMU</span>
+<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt;          id season seasonType week      homeTeam homeConference homeScore
+#&gt; 1 401013175   2018    regular   12 Florida State            ACC        22
+#&gt; 2 401013175   2018    regular   12 Florida State            ACC        22
+#&gt; 3 401013175   2018    regular   12 Florida State            ACC        22
+#&gt; 4 401013175   2018    regular   12 Florida State            ACC        22
+#&gt;         awayTeam awayConference awayScore     provider spread
+#&gt; 1 Boston College            ACC        21 teamrankings    2.5
+#&gt; 2 Boston College            ACC        21   numberfire    2.5
+#&gt; 3 Boston College            ACC        21    consensus      3
+#&gt; 4 Boston College            ACC        21      Caesars      3
+#&gt;       formattedSpread overUnder
+#&gt; 1 Boston College -2.5      47.5
+#&gt; 2 Boston College -2.5        49
+#&gt; 3   Boston College -3      49.5
+#&gt; 4   Boston College -3      48.5</div><div class='input'>
+<span class='co'>#7 OTs LSU at TAMU</span>
 <span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>13</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'SEC'</span>)</div><div class='output co'>#&gt;          id season seasonType week  homeTeam homeConference homeScore awayTeam
 #&gt; 1 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
 #&gt; 2 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
@@ -208,7 +255,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
       <footer>
       <div class="copyright">
-  <p>Developed by Saiem Gilani, Meyappan Subbaiah, Parker Fleming.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">

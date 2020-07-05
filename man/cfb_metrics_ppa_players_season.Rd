@@ -19,17 +19,17 @@ cfb_metrics_ppa_players_season(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - S&P+ information by conference
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+\item{conference}{(\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
-\item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\\
-Position Group  - options include:\\
- * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\\
- * Defense: DB, CB, S, LB,  DE, DT, NT, DL\\
- * Special Teams: K, P, LS, PK\\}
+\item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\cr
+Position Group  - options include:\cr
+ * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
+ * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+ * Special Teams: K, P, LS, PK\cr}
 
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
+\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
 Can be found using the `cfb_player_info()` function.}
 
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}

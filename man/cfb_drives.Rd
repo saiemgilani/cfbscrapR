@@ -29,17 +29,17 @@ cfb_drives(
 
 \item{defense_team}{(\emph{String} optional): Defense D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
+\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference\cr
+Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 
-\item{offense_conference}{(\emph{String} optional): Offense DI Conference name - select an appropriate conference
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
+\item{offense_conference}{(\emph{String} optional): Offense DI Conference name - select an appropriate conference\cr
+Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 
-\item{defense_conference}{(\emph{String} optional): Defense DI Conference name - select an appropriate conference
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
+\item{defense_conference}{(\emph{String} optional): Defense DI Conference name - select an appropriate conference\cr
+Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 }
 \description{
 Get results information from games

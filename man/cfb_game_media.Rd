@@ -22,9 +22,9 @@ cfb_game_media(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional):  Conference Name - select a valid FBS conference
-Conference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-Conference Names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
+\item{conference}{(\emph{String} optional):  Conference Name - select a valid FBS conference\cr
+Conference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+Conference Names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 
 \item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
 }

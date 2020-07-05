@@ -82,19 +82,61 @@ create sacks or picks, etc" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-question-circle-o"></span>
+     
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/index.html">Vignettes</a>
+    </li>
+    <li class="dropdown-header">Introductory</li>
+    <li>
+      <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li class="dropdown-header">Expected Points Model Fundamentals</li>
+    <li>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="../reference/index.html">
+    <span class="fa fa-file-code-o"></span>
+     
+    Functions
+  </a>
+</li>
+<li>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    News
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://twitter.com/cfbscrapR">
+    <span class="fab fa fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="https://github.com/saiemgilani/cfbscrapR/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -146,17 +188,17 @@ create sacks or picks, etc</p>
     </tr>
     <tr>
       <th>game_id</th>
-      <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game
+      <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game<br />
 Can be found using the `cfb_game_info()` function</p></td>
     </tr>
     <tr>
       <th>athlete_id</th>
-      <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete
+      <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete<br />
 Can be found using the `cfb_player_info()` function.</p></td>
     </tr>
     <tr>
       <th>stat_type_id</th>
-      <td><p>(<em>Integer</em> optional): Stat Type ID filter for querying a single stat type
+      <td><p>(<em>Integer</em> optional): Stat Type ID filter for querying a single stat type<br />
 Can be found using the `cfb_play_stats_types()` function</p></td>
     </tr>
     <tr>
@@ -177,7 +219,7 @@ Can be found using the `cfb_play_stats_types()` function</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Saiem Gilani, Meyappan Subbaiah, Parker Fleming.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -1,9 +1,48 @@
 template:
   params:
     bootswatch: cosmo
+    
 title: cfbscrapR
 url: http://saiemgilani.github.io/cfbscrapR
 
+authors:
+  Saiem Gilani:
+   href: https://twitter.com/saiemgilani
+  Meyappan Subbaiah:
+   href: https://twitter.com/msubbaiah1
+  Parker Fleming:
+   href: https://twitter.com/statsowar
+
+home:
+navbar:
+  icon: https://imgur.com/JdMII7N
+  title: "cfbscrapR"
+  left:
+    - icon: fa-home
+      href: index.html
+    - icon: fa-question-circle-o
+      text: "Tutorials"
+      menu:
+      - text: Vignettes
+        href: articles/index.html
+      - text: Introductory
+      - text: CFB Analytics with cfbscrapR
+        href: articles/intro.html
+      - text: Expected Points Model Fundamentals
+      - text: "Part 1"
+        href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html
+    - icon: fa-file-code-o
+      text: "Functions"
+      href: reference/index.html
+    - icon: fa-newspaper-o
+      text: "News"
+      href: news/index.html
+  right:
+   - icon: fab fa-twitter fa-lg
+     href: https://twitter.com/cfbscrapR
+   - icon: fa-github fa-lg
+     text: "GitHub"
+     href: https://github.com/saiemgilani/cfbscrapR/
 reference:
   - subtitle: Games Data Functions
     desc: Functions exported by cfbscrapR sourced from games endpoint of the CollegeFootballData API
@@ -33,6 +72,7 @@ reference:
     contents:
       - '`cfb_team_info`'
       - '`cfb_team_matchup`'
+      - '`cfb_team_matchup_records`'
       - '`cfb_team_roster`'
       - '`cfb_team_talent`'
   - subtitle: Players Functions
@@ -91,10 +131,12 @@ reference:
     desc: Internal functions and helpers
     contents:
       - '`add_timeout_cols`'
+      - '`add_betting_cols`'
       - '`clean_drive_info`'
       - '`clean_pbp_dat`'
       - '`create_epa`'
-      - '`create_wpa`'
+      - '`create_wpa_naive`'
+      - '`create_wpa_betting`'
       - '`epa_fg_probs`'
       - '`prep_epa_df_before`'
       - '`prep_epa_df_after`'

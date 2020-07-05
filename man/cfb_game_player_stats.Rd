@@ -23,14 +23,14 @@ cfb_game_player_stats(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
-\item{category}{(\emph{String} optional): Category filter (e.g defensive)
-Offense: passing, receiving, rushing
-Defense: defensive, fumbles, interceptions
-Special Teams: punting, puntReturns, kicking, kickReturns}
+\item{category}{(\emph{String} optional): Category filter (e.g defensive)\cr
+Offense: passing, receiving, rushing\cr
+Defense: defensive, fumbles, interceptions\cr
+Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the `cfb_game_info()` function}

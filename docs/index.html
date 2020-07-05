@@ -39,18 +39,62 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-question-circle-o"></span>
+     
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/index.html">Vignettes</a>
+    </li>
+    <li class="dropdown-header">Introductory</li>
+    <li>
+      <a href="articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li class="dropdown-header">Expected Points Model Fundamentals</li>
+    <li>
+      <a href="articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="reference/index.html">
+    <span class="fa fa-file-code-o"></span>
+     
+    Functions
+  </a>
+</li>
+<li>
+  <a href="news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    News
+  </a>
+</li>
+      </ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://twitter.com/cfbscrapR">
+    <span class="fab fa fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="news/index.html">Changelog</a>
+  <a href="https://github.com/saiemgilani/cfbscrapR/">
+    <span class="fa fa-github fa-lg"></span>
+     
+    GitHub
+  </a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -69,33 +113,16 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#cfbscrapr" class="anchor"></a>cfbscrapR</h1></div>
 <p>A scraping and aggregating package using the CollegeFootballData API</p>
-<p><code>cfbscrapR</code> is an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).</p>
-<p><strong>Note:</strong> The API ingests data from ESPN as well as other sources. For details on those source, please go the website linked above. Sometimes there are inconsitences in the underlying data itself. Please report issues here or to <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
+<p><a href="https://imgur.com/jBcXRgw"><img src="https://i.imgur.com/jBcXRgw.png" title="Figure: @SaiemGilani"></a></p>
+<p><code>cfbscrapR</code> is an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>. It provides users the capability to retrieve data from a plethora of endpoints and supplement that data with additional information (Expected Points Added/Win Probability added).</p>
+<p><strong>Note:</strong> The API ingests data from ESPN as well as other sources. For details on those source, please go the website linked above. Sometimes there are inconsistencies in the underlying data itself. Please report issues here or to <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install <code>cfbscrapR</code> from GitHub with:</p>
+<p>You can install <code>cfbscrapR</code> from <a href="https://github.com/saiemgilani/cfbscrapR">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"saiemgilani/cfbscrapR"</span>)</pre></div>
-<p>The goal of cfbscrapR is to …</p>
-</div>
-<div id="installation-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation-1" class="anchor"></a>Installation</h2>
-<p>You can install the released version of cfbscrapR from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"cfbscrapR"</span>)</pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"saiemgilani/cfbscrapR"</span>)</pre></div>
-</div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cfbscrapR</span>)
-<span class="co">#&gt; Warning: replacing previous import 'mgcv::multinom' by 'nnet::multinom' when</span>
-<span class="co">#&gt; loading 'cfbscrapR'</span>
-<span class="co">## basic example code</span></pre></div>
+<p>For more information on the package and models, please see the <code>cfbscrapR</code> <a href="https://saiemgilani.github.io/cfbscrapR/">documentation</a>.</p>
 </div>
 </div>
 
@@ -125,9 +152,12 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Saiem Gilani <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Meyappan Subbaiah <br><small class="roles"> Author </small>  </li>
-<li>Parker Fleming <br><small class="roles"> Author </small>  </li>
+<li>
+<a href="https://twitter.com/saiemgilani">Saiem Gilani</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<li>
+<a href="https://twitter.com/msubbaiah1">Meyappan Subbaiah</a> <br><small class="roles"> Author </small>  </li>
+<li>
+<a href="https://twitter.com/statsowar">Parker Fleming</a> <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -136,7 +166,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Saiem Gilani, Meyappan Subbaiah, Parker Fleming.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani">Saiem Gilani</a>, <a href="https://twitter.com/msubbaiah1">Meyappan Subbaiah</a>, <a href="https://twitter.com/statsowar">Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">
