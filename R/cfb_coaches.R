@@ -14,6 +14,8 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @import dplyr
+#' @import tidyr
 #' @export
 #' @examples
 #'
