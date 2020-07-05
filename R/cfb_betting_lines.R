@@ -117,7 +117,7 @@ cfb_betting_lines <- function(game_id = NULL,
   
   if(!is.null(line_provider)){
     if(is.list(df) & length(df)==0){
-      df <- data.frame(id = game_id, spread = 0)
+      df <- data.frame(id = game_id, spread = 0, formattedSpread = "home 0")
       return(df)
     }
     else if(!is.null(df$provider)){
@@ -125,7 +125,7 @@ cfb_betting_lines <- function(game_id = NULL,
         filter(.data$provider == line_provider)
     }
     else{
-      df <- data.frame(id = game_id, spread = 0)
+      df <- data.frame(id = game_id, spread = 0, formattedSpread = "home 0")
       return(df)
     }
   }

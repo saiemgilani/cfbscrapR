@@ -564,8 +564,8 @@ clean_drive_info <- function(drive_df){
 add_betting_cols <- function(play_df, g_id, yr){
   game_spread <- cfb_betting_lines(game_id = g_id, year=yr, line_provider = 'consensus') %>% 
     mutate(spread = as.numeric(.data$spread)) %>% 
-    rename(game_id = .data$id) %>% 
-    select(.data$game_id, .data$spread)
+    rename(game_id = .data$id, formatted_spread = .data$formattedSpread) %>% 
+    select(.data$game_id, .data$spread, .data$formatted_spread)
   pbp_df <- play_df %>% left_join(game_spread, by=c('game_id'))
   return(pbp_df)
 }

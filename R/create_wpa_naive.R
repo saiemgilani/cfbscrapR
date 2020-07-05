@@ -29,7 +29,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
       away_EPA = -.data$home_EPA,
       ExpScoreDiff = .data$score_diff + .data$ep_before,
       half = as.factor(.data$half),
-      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff / (.data$TimeSecsRem + 1)
+      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff / (.data$adj_TimeSecsRem + 1)
     )
   }
 
@@ -87,8 +87,7 @@ wpa_calcs_naive <- function(df) {
                             .data$home_wp - .data$wpa),
       away_wp_post = ifelse(.data$offense_play != .data$home,
                             .data$away_wp + .data$wpa,
-                            .data$away_wp - .data$wpa),
-      adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem)
+                            .data$away_wp - .data$wpa)
     )
   return(df2)
 }

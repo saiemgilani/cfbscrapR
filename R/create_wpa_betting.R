@@ -24,17 +24,16 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
   )
   if (!all(col_nec %in% colnames(df))) {
     df = df %>% mutate(
-      adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
       score_diff = .data$offense_score - .data$defense_score,
       home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -.data$EPA),
       away_EPA = -.data$home_EPA,
-      # ExpScoreDiff = ifelse(.data$offense_play == .data$home,
-      #                       .data$score_diff + .data$ep_before + .data$spread*adj_TimeSecsRem/3600,
-      #                       .data$score_diff + .data$ep_before - .data$spread*adj_TimeSecsRem/3600),
-      ExpScoreDiff = .data$score_diff + .data$ep_before,
+      ExpScoreDiff = ifelse(.data$offense_play == .data$home,
+                            .data$score_diff + .data$ep_before - .data$spread*.data$adj_TimeSecsRem/3600,
+                            .data$score_diff + .data$ep_before + .data$spread*.data$adj_TimeSecsRem/3600),
+      # ExpScoreDiff = .data$score_diff + .data$ep_before,
       ExpScoreDiff = as.numeric(.data$ExpScoreDiff),
       half = as.factor(.data$half),
-      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff / (.data$TimeSecsRem + 1)
+      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff / (.data$adj_TimeSecsRem + 1)
     )
   }
   
@@ -48,7 +47,7 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
   
   Off_Win_Prob = as.vector(predict(wp_model, newdata = df, type = "response"))
   df$wp_bet = Off_Win_Prob
-  df<-df %>% 
+  df <- df %>% 
     mutate(
       spread = ifelse(.data$offense_play ==.data$home, .data$spread,-.data$spread),
       wp_bet = case_when(
@@ -133,7 +132,8 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
         .data$game_play_number == 1 & .data$spread ==  19.5 ~ 0.0160,
         .data$game_play_number == 1 & .data$spread <= -20 ~ 0.9999,
         .data$game_play_number == 1 & .data$spread >=  20 ~ 0.0001,        
-        TRUE ~ .data$wp_bet))
+        TRUE ~ .data$wp_bet)
+      )
   
   g_ids <- sort(unique(df$game_id))
 
@@ -180,14 +180,13 @@ wpa_calcs_betting <- function(df) {
       change_of_poss = ifelse(is.na(.data$change_of_poss), 0, .data$change_of_poss)
     ) %>% ungroup() %>% arrange(.data$id_play)
   
-  df3 = df2 %>% mutate(
-    def_wp_bet = 1 - .data$wp_bet,
-    home_wp_bet = if_else(.data$offense_play == .data$home,
-                      .data$wp_bet, .data$def_wp_bet),
-    away_wp_bet = if_else(.data$offense_play != .data$home,
-                      .data$wp_bet, .data$def_wp_bet)
-  ) %>%
+  df3 = df2 %>% 
     mutate(
+      def_wp_bet = 1 - .data$wp_bet,
+      home_wp_bet = if_else(.data$offense_play == .data$home,
+                        .data$wp_bet, .data$def_wp_bet),
+      away_wp_bet = if_else(.data$offense_play != .data$home,
+                        .data$wp_bet, .data$def_wp_bet),
       # base wpa
       end_of_half = ifelse(.data$half == lead(.data$half), 0, 1),
       lead_wp_bet = dplyr::lead(.data$wp_bet),
@@ -200,8 +199,7 @@ wpa_calcs_betting <- function(df) {
                             .data$home_wp_bet - .data$wpa_bet),
       away_wp_post_bet = ifelse(.data$offense_play != .data$home,
                             .data$away_wp_bet + .data$wpa_bet,
-                            .data$away_wp_bet - .data$wpa_bet),
-      adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem)
+                            .data$away_wp_bet - .data$wpa_bet)
     )
   return(df3)
 }

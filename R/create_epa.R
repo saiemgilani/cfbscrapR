@@ -76,7 +76,8 @@ create_epa <- function(clean_pbp_dat,
 
 
 
-  pred_df = clean_pbp_dat %>% group_by(.data$drive_id) %>%
+  pred_df = clean_pbp_dat %>% 
+    group_by(.data$drive_id) %>%
     arrange(.data$new_id, .by_group = TRUE) %>%
     select(.data$new_id,
            .data$drive_id,
@@ -171,7 +172,8 @@ create_epa <- function(clean_pbp_dat,
 
   # prep some variables for WPA, drop transformed columns
   pred_df = pred_df %>%
-    mutate(EPA = .data$ep_after - .data$ep_before,
+    mutate(adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
+           EPA = .data$ep_after - .data$ep_before,
            score_diff = .data$offense_score - .data$defense_score,
            home_EPA = ifelse(.data$offense_play==.data$home,.data$EPA,-.data$EPA),
            away_EPA = -.data$home_EPA,
