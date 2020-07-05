@@ -42,8 +42,8 @@ cfb_pbp_data <- function(year,
     text <- play_type %in% cfbscrapR::cfb_play_type_df$text
     abbr <- play_type %in% cfbscrapR::cfb_play_type_df$abbreviation
     pt <-
-      assert_that((text |
-                     abbr) == TRUE, msg = "Incorrect play type selected, please look at the available options in the Play Type DF.")
+      assert_that((text | abbr) == TRUE, 
+                  msg = "Incorrect play type selected, please look at the available options in the Play Type DF.")
     if (text) {
       pt_id = cfbscrapR::cfb_play_type_df$id[which(cfbscrapR::cfb_play_type_df$text == play_type)]
     } else{
@@ -159,11 +159,13 @@ cfb_pbp_data <- function(year,
                                function(x) {
                                  play_df %>%
                                    filter(.data$game_id == x) %>%
-                                   add_timeout_cols()
+                                   add_timeout_cols() %>% 
+                                   add_betting_cols(g_id = x, yr=year)
                                })
+
       play_df = create_epa(play_df)
-      play_df = create_wpa(play_df)
       play_df = create_wpa_betting(play_df)
+      play_df = create_wpa_naive(play_df)
       play_df = play_df %>%
         group_by(.data$drive_id) %>%
         arrange(.data$new_id, .by_group=T) %>%
@@ -545,4 +547,25 @@ clean_drive_info <- function(drive_df){
     arrange(.data$game_id, .data$drive_id)
 
   return(clean_drive)
+}
+
+#' Add Betting columns
+#' This is only for DI-FBS football
+#'
+#' @param play_df (\emph{data.frame} required): Play-By-Play data.frame as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`)
+#' @param g_id (\emph{Integer} optional): Game ID filter for querying a single game
+#' Can be found using the `cfb_game_info()` function
+#' @param yr (\emph{Integer} optional): Select year (example: 2018)
+#' @keywords internal
+#' @import stringr
+#' @import dplyr
+#' @import tidyr
+#'
+add_betting_cols <- function(play_df, g_id, yr){
+  game_spread <- cfb_betting_lines(game_id = g_id, year=yr, line_provider = 'consensus') %>% 
+    mutate(spread = as.numeric(.data$spread)) %>% 
+    rename(game_id = .data$id) %>% 
+    select(.data$game_id, .data$spread)
+  pbp_df <- play_df %>% left_join(game_spread, by=c('game_id'))
+  return(pbp_df)
 }

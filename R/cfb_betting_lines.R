@@ -8,13 +8,14 @@
 #' @param team (\emph{String} optional): D-I Team
 #' @param home_team (\emph{String} optional): Home D-I Team
 #' @param away_team (\emph{String} optional): Away D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #'
 #' @keywords Betting Lines
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @import dplyr
@@ -23,9 +24,9 @@
 #'
 #' @examples
 #'
-#' cfb_betting_lines(year = 2018, week = 1, team = 'Florida State', conference = 'ACC')
+#' cfb_betting_lines(year = 2018, week = 12, team = 'Florida State')
 #'
-#' #7 OTs LSU @ TAMU
+#' #7 OTs LSU at TAMU
 #' cfb_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = 'SEC')
 #'
 #'
@@ -37,7 +38,9 @@ cfb_betting_lines <- function(game_id = NULL,
                               team = NULL,
                               home_team = NULL,
                               away_team = NULL,
-                              conference = NULL) {
+                              conference = NULL,
+                              line_provider = NULL) {
+  
   if(!is.null(game_id)){
     # Check if game_id is numeric, if not NULL
     assert_that(is.numeric(game_id),
@@ -46,7 +49,7 @@ cfb_betting_lines <- function(game_id = NULL,
   if(!is.null(year)){
     # Check if year is numeric, if not NULL
     assert_that(is.numeric(year) & nchar(year) == 4,
-              msg='Enter valid year as a number (YYYY)')
+                msg='Enter valid year as a number (YYYY)')
   }
   if(!is.null(week)){
     # Check if week is numeric, if not NULL
@@ -77,10 +80,16 @@ cfb_betting_lines <- function(game_id = NULL,
     # Encode conference parameter for URL, if not NULL
     conference = URLencode(conference, reserved = TRUE)
   }
-
-
+  
+  if(!is.null(line_provider)){
+    # Check line_provider parameter is a valid entry
+    assert_that(line_provider %in% c("Caesars", "consensus", "numberfire", "teamrankings"),
+                msg = "Enter valid line provider: Caesars, consensus, numberfire, or teamrankings")
+  }
+  
+  
   base_url <- "https://api.collegefootballdata.com/lines?"
-
+  
   full_url <- paste0(base_url,
                      "gameId=", game_id,
                      "&year=", year,
@@ -90,23 +99,37 @@ cfb_betting_lines <- function(game_id = NULL,
                      "&home=", home_team,
                      "&away=", away_team,
                      "&conference=", conference)
-
+  
   # Check for internet
   check_internet()
-
+  
   # Create the GET request and set response as res
   res <- GET(full_url)
-
+  
   # Check the result
   check_status(res)
-
+  
   # Get the content and return it as data.frame
   df = fromJSON(full_url,flatten=TRUE) %>%
     map_if(is.data.frame,list) %>%
     as_tibble() %>%
-    unnest(.data$lines)
-
+    unnest(.data$lines) 
+  
+  if(!is.null(line_provider)){
+    if(is.list(df) & length(df)==0){
+      df <- data.frame(id = game_id, spread = 0)
+      return(df)
+    }
+    else if(!is.null(df$provider)){
+      df <- df %>% 
+        filter(.data$provider == line_provider)
+    }
+    else{
+      df <- data.frame(id = game_id, spread = 0)
+      return(df)
+    }
+  }
   df <- as.data.frame(df)
   return(df)
-
+  
 }
