@@ -4,7 +4,14 @@
 \alias{plot_wpa}
 \title{Plot the WPA for a specific game}
 \usage{
-plot_wpa(dat, game_id = NULL, away_color, home_color, winner = "home")
+plot_wpa(
+  dat,
+  game_id = NULL,
+  away_color,
+  home_color,
+  winner = "home",
+  bet = TRUE
+)
 }
 \arguments{
 \item{dat}{(\emph{data.frame} required) Play-by-Play data.frame as can be retrieved from `cfb_pbp_data()`}
@@ -17,6 +24,8 @@ Can be found using the `cfb_game_info()` function}
 \item{home_color}{color selection for the home team}
 
 \item{winner}{Winner of contest, home or away.}
+
+\item{bet}{TRUE or FALSE to use initial Win Probability converted from betting lines.}
 }
 \description{
 Plot the WPA for a specific game

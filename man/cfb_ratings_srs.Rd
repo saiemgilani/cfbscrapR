@@ -11,9 +11,9 @@ cfb_ratings_srs(year = NULL, team = NULL, conference = NULL)
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
+\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference\cr
+Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 }
 \description{
 At least one of \strong{year} or \strong{team} must be specified for the function to run

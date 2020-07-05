@@ -19,9 +19,9 @@ cfb_metrics_ppa_games(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference\\
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\\
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\\}
+\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference\cr
+Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
 }

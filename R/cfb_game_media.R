@@ -4,9 +4,9 @@
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default both): Select Season Type, regular, postseason, or both
 #' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional):  Conference Name - select a valid FBS conference
-#' Conference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-#' Conference Names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
+#' @param conference (\emph{String} optional):  Conference Name - select a valid FBS conference\cr
+#' Conference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+#' Conference Names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
 #' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
 #'
 #' @keywords Game Info

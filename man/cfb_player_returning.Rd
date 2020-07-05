@@ -11,9 +11,9 @@ cfb_player_returning(year = 2019, team = NULL, conference = NULL)
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
-\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference
-Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 }
 \description{
 A player usage function with \strong{Year} as a required input.

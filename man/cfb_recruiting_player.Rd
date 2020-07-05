@@ -24,17 +24,16 @@ or 'PrepSchool'  - For position group information}
 
 \item{state}{(\emph{String} optional): Two letter State abbreviation}
 
-\item{position}{(\emph{String} optional): Position Group  - options include:
-* Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'
-* Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'
-* Special Teams: 'K', 'P'}
+\item{position}{(\emph{String} optional): Position Group  - options include:\cr
+* Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
+* Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
+* Special Teams: 'K', 'P'\cr}
 }
 \description{
 At least one of \strong{year} or \strong{team} must be specified for the function to run
 }
 \details{
-If you would like CFB recruiting information for teams, please
-see the `cfb_recruiting_team()` function
+If you would like CFB recruiting information for teams, please see the `cfb_recruiting_team()` function
 
 If you would like to get cfb recruiting information based on position groups during a
 time period for all FBS teams, please see the `cfb_recruiting_position()` function.

@@ -21,13 +21,13 @@ cfb_play_stats_player(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
 Can be found using the `cfb_game_info()` function}
 
-\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
+\item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
 Can be found using the `cfb_player_info()` function.}
 
-\item{stat_type_id}{(\emph{Integer} optional): Stat Type ID filter for querying a single stat type
+\item{stat_type_id}{(\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
 Can be found using the `cfb_play_stats_types()` function}
 
 \item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, or both}

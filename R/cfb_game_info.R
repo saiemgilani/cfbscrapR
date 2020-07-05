@@ -6,13 +6,13 @@
 #' @param team (\emph{String} optional): D-I Team
 #' @param home_team (\emph{String} optional): Home D-I Team
 #' @param away_team (\emph{String} optional): Away D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
+#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
 #' Can be found using the `cfb_game_info()` function
 #' @param quarter_scores (\emph{Logical} default FALSE): This is a parameter to return the
-#' list columns that give the score at each quarter: home_line_scores and away_line scores.
+#' list columns that give the score at each quarter: home_line_scores and away_line scores.\cr
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
 #'
 #' @keywords Game Info

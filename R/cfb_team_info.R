@@ -2,10 +2,10 @@
 #' Lists all teams in conference or all D-I teams if conference is left NULL
 #' Current support only for D-I
 #'
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
-#' @param only_fbs (\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.
+#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param only_fbs (\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.\cr
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
 #'

@@ -5,11 +5,11 @@
 #' but it is there. May fortune favor you should you choose to use it.
 #'
 #' @param search_term (\emph{String} required): Search term for the player you are trying to look up
-#' @param position (\emph{string} optional): Position of the player you are searching for.
-#' Position Group  - options include:
-#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR
-#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL
-#'  * Special Teams: K, P, LS, PK
+#' @param position (\emph{string} optional): Position of the player you are searching for.\cr
+#' Position Group  - options include:\cr
+#'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
+#'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+#'  * Special Teams: K, P, LS, PK\cr
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2019

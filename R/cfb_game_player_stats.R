@@ -4,13 +4,13 @@
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
 #' @param team (\emph{String} optional): D-I Team
-#' @param category (\emph{String} optional): Category filter (e.g defensive)
-#' Offense: passing, receiving, rushing
-#' Defense: defensive, fumbles, interceptions
-#' Special Teams: punting, puntReturns, kicking, kickReturns
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param category (\emph{String} optional): Category filter (e.g defensive)\cr
+#' Offense: passing, receiving, rushing\cr
+#' Defense: defensive, fumbles, interceptions\cr
+#' Special Teams: punting, puntReturns, kicking, kickReturns\cr
+#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
 #' Can be found using the `cfb_game_info()` function
 #'

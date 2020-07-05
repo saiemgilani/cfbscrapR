@@ -1,9 +1,9 @@
 #' Get conference-level S&P+ historical rating data
 #'
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference
-#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC
-#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
+#' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
 #' @keywords SP+
 #' @importFrom attempt "stop_if_all"

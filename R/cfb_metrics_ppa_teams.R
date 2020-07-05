@@ -2,9 +2,9 @@
 #'
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\\
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\\
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\\
+#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\cr
+#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
 #' @keywords Teams Predicted Points 

@@ -6,15 +6,15 @@
 #' @param team (\emph{String} optional): D-I Team
 #' @param offense_team (\emph{String} optional): Offense D-I Team
 #' @param defense_team (\emph{String} optional): Defense D-I Team
-#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
-#' @param offense_conference (\emph{String} optional): Offense DI Conference name - select an appropriate conference
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
-#' @param defense_conference (\emph{String} optional): Defense DI Conference name - select an appropriate conference
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic
+#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\cr
+#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
+#' @param offense_conference (\emph{String} optional): Offense DI Conference name - select an appropriate conference\cr
+#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
+#' @param defense_conference (\emph{String} optional): Defense DI Conference name - select an appropriate conference\cr
+#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
+#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
 #'
 #' @keywords Drives
 #' @importFrom jsonlite "fromJSON"
