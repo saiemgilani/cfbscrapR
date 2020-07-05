@@ -66,7 +66,7 @@ cfb_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(full_url)
+  df = fromJSON(full_url)$games
 
   return(df)
 }
