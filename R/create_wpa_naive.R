@@ -13,7 +13,7 @@
 #' @export
 #'
 
-create_wpa <- function(df, wp_model = cfbscrapR:::wp_model) {
+create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
   col_nec = c(
     "ExpScoreDiff",
     "TimeSecsRem",
@@ -42,7 +42,7 @@ create_wpa <- function(df, wp_model = cfbscrapR:::wp_model) {
                        function(x) {
                          df %>%
                            filter(.data$game_id == x) %>%
-                           wpa_calcs()
+                           wpa_calcs_naive()
                        })
   return(df2)
 }
@@ -55,7 +55,7 @@ create_wpa <- function(df, wp_model = cfbscrapR:::wp_model) {
 #' @import dplyr
 #' @import tidyr
 #'
-wpa_calcs <- function(df) {
+wpa_calcs_naive <- function(df) {
   ## add change of possession to df----
   ## do this last because we process
   ## new TDs etc
