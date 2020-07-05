@@ -19,45 +19,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-# cfbscrapR
+# cfbscrapR 
 A scraping and aggregating package using the CollegeFootballData API
 
-`cfbscrapR` is an R package for working with CFB data. It is an R API wrapper around https://collegefootballdata.com/. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added). 
+<a href="https://imgur.com/jBcXRgw"><img src="https://i.imgur.com/jBcXRgw.png" title="Figure: @SaiemGilani" /></a>
 
-__Note:__ The API ingests data from ESPN as well as other sources. For details on those source, please go the website linked above. Sometimes there are inconsitences in the underlying data itself. Please report issues here or to https://collegefootballdata.com/. 
+`cfbscrapR` is an R package for working with CFB data. It is an R API wrapper around [https://collegefootballdata.com/](https://collegefootballdata.com/). It provides users the capability to retrieve data from a plethora of endpoints and supplement that data with additional information (Expected Points Added/Win Probability added). 
+
+__Note:__ The API ingests data from ESPN as well as other sources. For details on those source, please go the website linked above. Sometimes there are inconsistencies in the underlying data itself. Please report issues here or to [https://collegefootballdata.com/](https://collegefootballdata.com/). 
 
 ## Installation
-You can install `cfbscrapR` from GitHub with:
+You can install `cfbscrapR` from [GitHub](https://github.com/saiemgilani/cfbscrapR) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("saiemgilani/cfbscrapR")
 ```
-
-The goal of cfbscrapR is to ...
-
-## Installation
-
-You can install the released version of cfbscrapR from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("cfbscrapR")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("saiemgilani/cfbscrapR")
-```
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-library(cfbscrapR)
-## basic example code
-```
-
-
-
+For more information on the package and models, please see the `cfbscrapR` [documentation](https://saiemgilani.github.io/cfbscrapR/).
