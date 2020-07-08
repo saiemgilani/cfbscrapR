@@ -2,8 +2,8 @@
 #' Adds Expected Points calculations to Play-by-Play data.frame
 #'
 #' @param clean_pbp_dat (\emph{data.frame} required): Clean PBP as input from `cfb_pbp_dat()`)
-#' @param ep_model (\emph{model} default `cfbscrapR:::ep_model`): Expected Points (EP) Model
-#' @param fg_model (\emph{model} default `cfbscrapR:::fg_model`): Field Goal (FG) Model
+#' @param ep_model (\emph{model} default \code{\link[cfbscrapR]{ep_model}}): Expected Points (EP) Model
+#' @param fg_model (\emph{model} default \code{\link[cfbscrapR]{fg_model}}): Field Goal (FG) Model
 #' @keywords internal
 #' @importFrom stats "na.omit"
 #' @importFrom stats "predict"
@@ -137,6 +137,7 @@ create_epa <- function(clean_pbp_dat,
   ## kickoff plays
   ## calculate EP before at kickoff as what happens if it was a touchback
   ## 25 yard line in 2012 and onwards
+  ## question for the class: where is the EPA on touchbacks being set to 0?
   kickoff_ind = (pred_df$play_type =='Kickoff')
   if(any(kickoff_ind)){
     new_kick = pred_df[kickoff_ind,]
@@ -179,7 +180,7 @@ create_epa <- function(clean_pbp_dat,
            away_EPA = -.data$home_EPA,
            ExpScoreDiff = .data$score_diff + .data$ep_before,
            half = as.factor(.data$half),
-           ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$TimeSecsRem + 1)) %>%
+           ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>%
     select(-.data$yard_line,
            -.data$log_ydstogo,
            -.data$log_ydstogo_end,
@@ -712,13 +713,14 @@ prep_epa_df_before <- function(df) {
   df[fg_inds, "yards_to_goal"] = df[fg_inds, "yards_to_goal"] + 17
   df[fg_inds, "log_ydstogo"] = log(df[fg_inds, "distance"])
 
-  df = df %>% mutate(Goal_To_Go = ifelse(
-    str_detect(.data$play_type, "Field Goal"),
-    .data$distance >= (.data$yards_to_goal - 17),
-    .data$distance >= .data$yards_to_goal )) %>%
+  df = df %>% 
+    mutate(
+      Goal_To_Go = ifelse(str_detect(.data$play_type, "Field Goal"),
+                          .data$distance >= (.data$yards_to_goal - 17),
+                          .data$distance >= .data$yards_to_goal )) %>%
     filter(.data$log_ydstogo != -Inf) %>%
     group_by(.data$drive_id) %>%
-    arrange(.data$new_id, .by_group =TRUE) %>%
+    arrange(.data$new_id, .by_group = TRUE) %>%
     ungroup()
   return(df)
 }

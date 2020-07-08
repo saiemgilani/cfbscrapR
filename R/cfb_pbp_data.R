@@ -6,7 +6,7 @@
 #' @param year Select year, (example: 2018)
 #' @param week Select week, this is optional (also numeric)
 #' @param team Select team name (example: Texas, Texas A&M, Clemson)
-#' @param play_type Select play type (example: see the cfb_play_type_df)
+#' @param play_type Select play type (example: see the \code{\link{cfb_play_type_df}})
 #' @param drive Enter anything, and you will get general drive information
 #' @param epa_wpa Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables
 #'
@@ -27,14 +27,6 @@ cfb_pbp_data <- function(year,
                          play_type = NULL,
                          drive=NULL,
                          epa_wpa=FALSE) {
-  #require(jsonlite)
-  # year <- 2019
-  # week <- 12
-  # team <- 'Baylor'
-  # epa_wpa <- TRUE
-  # season_type <- 'regular'
-  # drive <- NULL
-  # play_type <- NULL
 
   options(stringsAsFactors = FALSE)
 
@@ -513,7 +505,7 @@ add_timeout_cols <- function(play_df) {
 #' Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column
 #'
 #' @param drive_df (\emph{data.frame} required) Drive DataFrame pulled from API
-#' @keywords Drive-by-Drive
+#' @keywords internal
 #' @import stringr
 #' @import dplyr
 #' @import tidyr
@@ -561,6 +553,7 @@ clean_drive_info <- function(drive_df){
 #' @import dplyr
 #' @import tidyr
 #'
+
 add_betting_cols <- function(play_df, g_id, yr){
   game_spread <- cfb_betting_lines(game_id = g_id, year=yr, line_provider = 'consensus') %>% 
     mutate(spread = as.numeric(.data$spread)) %>% 

@@ -4,7 +4,7 @@
 #'
 #' Extracts raw game by game data.
 #' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
-#' @param wp_model (\emph{model} default `cfbscrapR:::wp_model`): Win Probability (WP) Model
+#' @param wp_model (\emph{model} default \code{\link[cfbscrapR]{wp_model}}): Win Probability (WP) Model
 #'
 #' @keywords internal
 #' @import dplyr
@@ -28,8 +28,8 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
       home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -.data$EPA),
       away_EPA = -.data$home_EPA,
       ExpScoreDiff = ifelse(.data$offense_play == .data$home,
-                            .data$score_diff + .data$ep_before - .data$spread*.data$adj_TimeSecsRem/3600,
-                            .data$score_diff + .data$ep_before + .data$spread*.data$adj_TimeSecsRem/3600),
+                            .data$score_diff + .data$ep_before - .data$spread,
+                            .data$score_diff + .data$ep_before + .data$spread),
       # ExpScoreDiff = .data$score_diff + .data$ep_before,
       ExpScoreDiff = as.numeric(.data$ExpScoreDiff),
       half = as.factor(.data$half),
@@ -38,18 +38,21 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
   }
   
   df = df %>% 
-    arrange(.data$game_id, .data$new_id) %>% 
     group_by(.data$game_id) %>% 
     mutate(
       play_no =1,
       game_play_number = cumsum(.data$play_no)) %>% 
-    select(-.data$play_no)
+    select(-.data$play_no) %>% 
+    ungroup() %>% 
+    arrange(.data$game_id, .data$new_id) 
+    
   
   Off_Win_Prob = as.vector(predict(wp_model, newdata = df, type = "response"))
   df$wp_bet = Off_Win_Prob
   df <- df %>% 
     mutate(
       spread = ifelse(.data$offense_play ==.data$home, .data$spread,-.data$spread),
+      # values taken at face value from Boyds Bets (https://www.boydsbets.com/college-football-spread-to-moneyline-conversion/)
       wp_bet = case_when(
         .data$game_play_number == 1 & .data$spread ==  0 ~ 0.50,
         .data$game_play_number == 1 & .data$spread == -0.5 ~ 0.50,

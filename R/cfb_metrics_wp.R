@@ -1,7 +1,7 @@
 #' Get win probability chart data from API
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
-#' Can be found using the `cfb_game_info()` function
+#' Can be found using the \code{\link{cfb_game_info()}} function
 #' @param adjust_for_spread (\emph{Logical} default TRUE): Toggles pre-game spread adjustments
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite "fromJSON"

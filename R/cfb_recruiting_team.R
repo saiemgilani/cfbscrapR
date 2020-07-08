@@ -4,10 +4,10 @@
 #' At least one of \strong{year} or \strong{team} must be specified for the function to run
 #'
 #' If you would like CFB recruiting information for players, please
-#' see the `cfb_recruiting_player()` function
+#' see the \code{\link{cfb_recruiting_player()}} function
 #'
 #' If you would like to get CFB recruiting information based on position groups during a
-#' time period for all FBS teams, please see the `cfb_recruiting_position()` function.
+#' time period for all FBS teams, please see the \code{\link{cfb_recruiting_position()}} function.
 #'
 #' @param year (\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football

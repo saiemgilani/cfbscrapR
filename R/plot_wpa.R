@@ -3,13 +3,14 @@
 #'
 #' @param dat (\emph{data.frame} required) Play-by-Play data.frame as can be retrieved from `cfb_pbp_data()`
 #' @param game_id (\emph{Integer} optional) Game ID filter for querying a single game
-#' Can be found using the `cfb_game_info()` function
+#' Can be found using the \code{\link{cfb_game_info()}} function
 #' @param away_color color selection for the away team
 #' @param home_color color selection for the home team
 #' @param winner Winner of contest, home or away.
 #' @param bet TRUE or FALSE to use initial Win Probability converted from betting lines.
 #'
 #' @keywords Plot WPA
+#' @importFrom assertthat "assert_that"
 #' @import dplyr
 #' @import ggplot2
 #' @import stringr

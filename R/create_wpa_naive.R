@@ -4,7 +4,7 @@
 #'
 #' Extracts raw game by game data.
 #' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
-#' @param wp_model (\emph{model} default `cfbscrapR:::wp_model`): Win Probability (WP) Model
+#' @param wp_model (\emph{model} default \code{\link[cfbscrapR]{wp_model}}): Win Probability (WP) Model
 #'
 #' @keywords internal
 #' @import dplyr

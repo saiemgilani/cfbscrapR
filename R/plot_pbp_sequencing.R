@@ -1,6 +1,6 @@
 #' Plot the Drive/PBP Sequencing
 #'
-#' @param df Play-by-Play data frame (can be retrieved from `cfb_pbp_data`)
+#' @param df Play-by-Play data frame (can be retrieved from \code{\link{cfb_pbp_data()}})
 #' @keywords Plot PbP
 #' @import dplyr
 #' @import ggplot2
