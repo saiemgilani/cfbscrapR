@@ -17,7 +17,7 @@ plot_wpa(
 \item{dat}{(\emph{data.frame} required) Play-by-Play data.frame as can be retrieved from `cfb_pbp_data()`}
 
 \item{game_id}{(\emph{Integer} optional) Game ID filter for querying a single game
-Can be found using the `cfb_game_info()` function}
+Can be found using the \code{\link{cfb_game_info()}} function}
 
 \item{away_color}{color selection for the away team}
 

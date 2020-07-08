@@ -14,4 +14,4 @@ clean_drive_info(drive_df)
 Clean Drive Information
 Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column
 }
-\keyword{Drive-by-Drive}
+\keyword{internal}

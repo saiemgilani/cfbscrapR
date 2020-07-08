@@ -18,7 +18,7 @@ cfb_betting_lines(
 }
 \arguments{
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
-Can be found using the `cfb_game_info()` function}
+Can be found using the \code{\link{cfb_game_info()}} function}
 
 \item{year}{(\emph{Integer} required): Year, 4 digit format(\emph{YYYY})}
 

@@ -29,7 +29,7 @@ Position Group  - options include:\cr
  * Special Teams: K, P, LS, PK\cr}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
-Can be found using the `cfb_player_info()` function.}
+Can be found using the \code{\link{cfb_player_info()}} function.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 }

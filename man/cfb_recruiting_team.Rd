@@ -17,10 +17,10 @@ At least one of \strong{year} or \strong{team} must be specified for the functio
 }
 \details{
 If you would like CFB recruiting information for players, please
-see the `cfb_recruiting_player()` function
+see the \code{\link{cfb_recruiting_player()}} function
 
 If you would like to get CFB recruiting information based on position groups during a
-time period for all FBS teams, please see the `cfb_recruiting_position()` function.
+time period for all FBS teams, please see the \code{\link{cfb_recruiting_position()}} function.
 }
 \examples{
 

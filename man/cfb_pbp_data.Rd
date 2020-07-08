@@ -23,7 +23,7 @@ cfb_pbp_data(
 
 \item{team}{Select team name (example: Texas, Texas A&M, Clemson)}
 
-\item{play_type}{Select play type (example: see the cfb_play_type_df)}
+\item{play_type}{Select play type (example: see the \code{\link{cfb_play_type_df}})}
 
 \item{drive}{Enter anything, and you will get general drive information}
 

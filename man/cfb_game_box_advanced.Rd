@@ -8,7 +8,7 @@ cfb_game_box_advanced(game_id)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game
-Can be found using the `cfb_game_info()` function}
+Can be found using the \code{\link{cfb_game_info()}} function}
 }
 \description{
 Get game advanced box score information

@@ -33,10 +33,10 @@ or 'PrepSchool'  - For position group information}
 At least one of \strong{year} or \strong{team} must be specified for the function to run
 }
 \details{
-If you would like CFB recruiting information for teams, please see the `cfb_recruiting_team()` function
+If you would like CFB recruiting information for teams, please see the \code{\link{cfb_recruiting_team()}} function
 
 If you would like to get cfb recruiting information based on position groups during a
-time period for all FBS teams, please see the `cfb_recruiting_position()` function.
+time period for all FBS teams, please see the \code{\link{cfb_recruiting_position()}} function.
 }
 \examples{
 
