@@ -1,7 +1,7 @@
 #' Get game advanced box score information
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game
-#' Can be found using the \code{\link{cfb_game_info()}} function
+#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #'
 #' @keywords Game Advanced Box Score 
 #' @importFrom tibble "enframe"

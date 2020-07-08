@@ -33,8 +33,7 @@ cfb_game_info(
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
-\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
-Can be found using the \code{\link{cfb_game_info()}} function}
+\item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr}
 
 \item{quarter_scores}{(\emph{Logical} default FALSE): This is a parameter to return the
 list columns that give the score at each quarter: home_line_scores and away_line scores.\cr

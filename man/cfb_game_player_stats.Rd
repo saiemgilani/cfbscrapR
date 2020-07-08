@@ -33,7 +33,7 @@ Defense: defensive, fumbles, interceptions\cr
 Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
-Can be found using the \code{\link{cfb_game_info()}} function}
+Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
 }
 \description{
 Get results information from games

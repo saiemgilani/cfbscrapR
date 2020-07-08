@@ -8,7 +8,7 @@ cfb_metrics_wp(game_id, adjust_for_spread = TRUE)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
-Can be found using the \code{\link{cfb_game_info()}} function}
+Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
 
 \item{adjust_for_spread}{(\emph{Logical} default TRUE): Toggles pre-game spread adjustments}
 }

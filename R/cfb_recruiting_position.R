@@ -2,7 +2,13 @@
 #'
 #' If only start_year is provided, function will get CFB recruiting information based
 #' on position groups during that year for all FBS teams.
-#'
+#' 
+#' If you would like CFB recruiting information for players, please
+#' see the \code{\link[cfbscrapR:cfb_recruiting_player]{cfbscrapR::cfb_recruiting_player()}} function
+#'  
+#' If you would like CFB recruiting information for teams, please 
+#' see the \code{\link[cfbscrapR:cfb_recruiting_team]{cfbscrapR::cfb_recruiting_team()}} function
+#' 
 #' @param start_year (\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
 #' @param end_year (\emph{Integer} optional): End Year,  4 digit format (\emph{YYYY}). \emph{Note: 2020 is the maximum value currently}
 #' @param team (\emph{String} optional): Team - Select a valid team, D-I football

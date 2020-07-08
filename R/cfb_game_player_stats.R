@@ -12,7 +12,7 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' Can be found using the \code{\link{cfb_game_info()}} function
+#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #'
 #' @keywords Game Info
 #' @importFrom jsonlite "fromJSON"
@@ -121,7 +121,7 @@ cfb_game_player_stats<- function(year,
     unnest(.data$athletes) %>%
     rename(athlete_id = .data$id,
            value = .data$stat) %>% 
-    pivot_wider(names_from=stat_category,values_from=value)
+    pivot_wider(names_from=.data$stat_category,values_from=.data$value)
   
   
   df = as.data.frame(df)

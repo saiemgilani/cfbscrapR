@@ -1,7 +1,7 @@
 #' Get Betting information from games
 #'
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' Can be found using the \code{\link{cfb_game_info()}} function
+#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason

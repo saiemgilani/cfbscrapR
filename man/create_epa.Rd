@@ -12,11 +12,11 @@ create_epa(
 )
 }
 \arguments{
-\item{clean_pbp_dat}{(\emph{data.frame} required): Clean PBP as input from `cfb_pbp_dat()`)}
+\item{clean_pbp_dat}{(\emph{data.frame} required): Clean PBP as input from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})}
 
-\item{ep_model}{(\emph{model} default \code{\link[cfbscrapR]{ep_model}}): Expected Points (EP) Model}
+\item{ep_model}{(\emph{model} default cfbscrapR:ep_model): Expected Points (EP) Model}
 
-\item{fg_model}{(\emph{model} default \code{\link[cfbscrapR]{fg_model}}): Field Goal (FG) Model}
+\item{fg_model}{(\emph{model} default cfbscrapR:fg_model): Field Goal (FG) Model}
 }
 \description{
 Create EPA

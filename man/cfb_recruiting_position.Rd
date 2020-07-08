@@ -26,6 +26,13 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 If only start_year is provided, function will get CFB recruiting information based
 on position groups during that year for all FBS teams.
 }
+\details{
+If you would like CFB recruiting information for players, please
+see the \code{\link[cfbscrapR:cfb_recruiting_player]{cfbscrapR::cfb_recruiting_player()}} function
+ 
+If you would like CFB recruiting information for teams, please 
+see the \code{\link[cfbscrapR:cfb_recruiting_team]{cfbscrapR::cfb_recruiting_team()}} function
+}
 \examples{
 
 cfb_recruiting_position(2018, team="Texas")

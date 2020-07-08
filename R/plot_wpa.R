@@ -1,9 +1,9 @@
 #' Plot the WPA for a specific game
 #' 
 #'
-#' @param dat (\emph{data.frame} required) Play-by-Play data.frame as can be retrieved from `cfb_pbp_data()`
+#' @param dat (\emph{data.frame} required) Play-by-Play data.frame as can be retrieved from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}}
 #' @param game_id (\emph{Integer} optional) Game ID filter for querying a single game
-#' Can be found using the \code{\link{cfb_game_info()}} function
+#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #' @param away_color color selection for the away team
 #' @param home_color color selection for the home team
 #' @param winner Winner of contest, home or away.

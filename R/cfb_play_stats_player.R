@@ -8,11 +8,11 @@
 #' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param team (\emph{String} optional): D-I Team
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link{cfb_game_info()}} function
+#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-#' Can be found using the \code{\link{cfb_player_info()}} function.
+#' Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.
 #' @param stat_type_id (\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
-#' Can be found using the \code{\link{cfb_play_stats_types()}} function
+#' Can be found using the \code{\link[cfbscrapR:cfb_play_stats_types]{cfbscrapR::cfb_play_stats_types()}} function
 #' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
 #'
 #' @keywords Player - PBP

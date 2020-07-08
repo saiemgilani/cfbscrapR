@@ -10,7 +10,7 @@ create_wpa_naive(df, wp_model = cfbscrapR:::wp_model)
 \arguments{
 \item{df}{(\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations}
 
-\item{wp_model}{(\emph{model} default \code{\link[cfbscrapR]{wp_model}}): Win Probability (WP) Model}
+\item{wp_model}{(\emph{model} default cfbscrapR:wp_model): Win Probability (WP) Model}
 }
 \description{
 Extracts raw game by game data.

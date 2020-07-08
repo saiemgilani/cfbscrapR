@@ -1,9 +1,9 @@
 #' Create EPA
 #' Adds Expected Points calculations to Play-by-Play data.frame
 #'
-#' @param clean_pbp_dat (\emph{data.frame} required): Clean PBP as input from `cfb_pbp_dat()`)
-#' @param ep_model (\emph{model} default \code{\link[cfbscrapR]{ep_model}}): Expected Points (EP) Model
-#' @param fg_model (\emph{model} default \code{\link[cfbscrapR]{fg_model}}): Field Goal (FG) Model
+#' @param clean_pbp_dat (\emph{data.frame} required): Clean PBP as input from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})
+#' @param ep_model (\emph{model} default cfbscrapR:ep_model): Expected Points (EP) Model
+#' @param fg_model (\emph{model} default cfbscrapR:fg_model): Field Goal (FG) Model
 #' @keywords internal
 #' @importFrom stats "na.omit"
 #' @importFrom stats "predict"

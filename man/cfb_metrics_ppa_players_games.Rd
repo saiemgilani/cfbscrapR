@@ -28,7 +28,7 @@ Position Group  - options include:\cr
  * Special Teams: K, P, LS, PK\cr}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link{cfb_player_info()}} function.}
+Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.}
 
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
 
