@@ -32,8 +32,10 @@ You can install `cfbscrapR` from
 [GitHub](https://github.com/saiemgilani/cfbscrapR) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("saiemgilani/cfbscrapR")
+# Then can install using the devtools package from either of the following:
+devtools::install_github(repo = "saiemgilani/cfbscrapR")
+# or the following (these are the exact same packages):
+devtools::install_github(repo = "meysubb/cfbscrapR")
 ```
 
 For more information on the package and models, please see the
