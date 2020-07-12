@@ -29,8 +29,12 @@ navbar:
       - text: CFB Analytics with cfbscrapR
         href: articles/intro.html
       - text: Expected Points Model Fundamentals
-      - text: "Part 1"
+      - text: "Part 1 - Model Definition"
         href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html
+      - text: "Part 2 - Regression Models"
+        href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html
+      - text: "Part 3 - History of Expected Points Models"
+        href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html
     - icon: fa-file-code-o
       text: "Functions"
       href: reference/index.html
@@ -88,6 +92,7 @@ reference:
       - '`cfb_stats_season_team`'
       - '`cfb_stats_game_advanced`'
       - '`cfb_stats_season_advanced`'
+      - '`cfb_stats_season_player`'
   - subtitle: Conference Functions
     desc: Functions exported by cfbscrapR sourced from the conferences endpoint of the CollegeFootballData API
     contents:

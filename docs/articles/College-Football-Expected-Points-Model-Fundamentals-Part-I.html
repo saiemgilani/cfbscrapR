@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -61,7 +61,13 @@
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1</a>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1 - Model Definition</a>
+    </li>
+    <li>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html">Part 2 - Regression Models</a>
+    </li>
+    <li>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html">Part 3 - History of Expected Points Models</a>
     </li>
   </ul>
 </li>
@@ -200,7 +206,7 @@
 <h2 class="hasAnchor">
 <a href="#field-position-and-expected-points" class="anchor"></a>Field Position and Expected Points</h2>
 <p>The model was trained on non-overtime data from 2014-2019 using leave-one-season-out cross-validation. This means the model holds one season for test data validation and uses the remaining seasons as the training set, then uses the trained model to make predictions on the season held out. This process is then iterated for each season in the data.</p>
-<p><a href="https://imgur.com/J7NTeGj"><img src="https://i.imgur.com/J7NTeGj.png" title="Figure: @SaiemGilani"></a></p>
+<p><a href="https://imgur.com/g5rSRUX"><img src="https://i.imgur.com/g5rSRUXl.png" title="Figure: @SaiemGilani"></a></p>
 <p>This is the plot of expected points in relation to field position alone, grouped in 10 yard bins and labeled on the plot with the mean expected points for the bin. The point at the bottom left is roughly the expected points from having the ball at the offense’s own 1-yard line, -1.28 expected points. The observed mean expected value for receiving the ball from the offense’s own 21-30-yard line (or 70 to 79 yards from opponent’s end-zone) is 0.29 expected points.</p>
 <p>It should be no surprise that as offenses move closer to their opponent’s goal line, the expected points trend upward for the offense. Notice for the point representing the 30-39-yard line grouping, the expected points is right around the value of a field goal. This aligns with one of the common definitions of a scoring opportunity, giving support to the appropriateness of the definition.</p>
 <p>The observed average expected points in the red-zone are 4.05 in the 10-19-yard line bin and 5.17 inside the 10, with plays at the 1-yard line averaging 6.06 expected points. Note: There are some plays that were input as yard 0 that I interpreted as an “&amp; inches” situation. There are 66 such plays (compared to 5.3k plays at the 1-yard line) and their observed mean expected points is 4.62.</p>
@@ -209,7 +215,7 @@
 <h2 class="hasAnchor">
 <a href="#field-position-and-expected-points-by-down" class="anchor"></a>Field Position and Expected Points by Down</h2>
 <p>Recall that down and down interactions were three of the predictors in the model, so here is the field position view of expected points separated by down. The plot below demonstrates that your expected points are higher (on average) on 1st down than 2nd, and 2nd down than 3rd, etc at every point on the field, except possibly near the offense’s own goal line where there is risk of giving up a safety.</p>
-<p><a href="https://imgur.com/09yN1Ag"><img src="https://i.imgur.com/09yN1Ag.png" title="Figure: @SaiemGilani"></a></p>
+<p><a href="https://imgur.com/S7etCxQ"><img src="https://i.imgur.com/S7etCxQl.png" title="Figure: @SaiemGilani"></a></p>
 <p>This graph should be somewhat intuitive, but to understand what the relative expected points difference for each down at the same field position, we are interested in the vertical distance between each of the lines.</p>
 </div>
 <div id="st-and-2nd-down" class="section level2">
