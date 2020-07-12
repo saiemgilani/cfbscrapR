@@ -16,10 +16,10 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_coaches.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_conferences.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_conf_types_df.html</loc>
   </url>
   <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_conf_types_df.html</loc>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_conferences.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html</loc>
@@ -67,6 +67,18 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_stats_player.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_stats_types.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_type_df.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_types.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_player_info.html</loc>
   </url>
   <url>
@@ -74,18 +86,6 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_player_usage.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_stats_player.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_stats_types.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_types.html</loc>
-  </url>
-  <url>
-    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_play_type_df.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_rankings.html</loc>
