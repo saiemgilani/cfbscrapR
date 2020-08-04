@@ -159,7 +159,7 @@ create_epa <- function(clean_pbp_dat,
   # For turnover and punt plays make sure the ep_after is negative
   # because of poor ESPN data quality,
   # some drives end on 3rd down and we have those listed as turnovers
-  turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind & pred_df$play_type %in% turnover_play_type)
+  turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind)
   pred_df[turnover_plays, "ep_after"] = -1 * pred_df[turnover_plays, "ep_after"]
 
   # game end EP is 0
