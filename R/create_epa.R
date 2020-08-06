@@ -39,7 +39,15 @@ create_epa <- function(clean_pbp_dat,
     "Sack Touchdown",
     "Uncategorized Touchdown"
   )
-
+  normalplay = c(
+    "Rush",
+    "Pass",
+    "Pass Reception",
+    "Pass Incompletion",
+    "Pass Completion",
+    "Sack",
+    "Fumble Recovery (Own)"
+  )
   off_TD = c(
     "Passing Touchdown",
     "Rushing Touchdown",
@@ -159,9 +167,31 @@ create_epa <- function(clean_pbp_dat,
   # For turnover and punt plays make sure the ep_after is negative
   # because of poor ESPN data quality,
   # some drives end on 3rd down and we have those listed as turnovers
-  turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind)
+  turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind & (pred_df$play_type %in% turnover_play_type))
   pred_df[turnover_plays, "ep_after"] = -1 * pred_df[turnover_plays, "ep_after"]
-
+  
+  pred_df = pred_df %>% 
+    group_by(.data$game_id) %>%
+    arrange(.data$new_id, .by_group = TRUE) %>%
+    mutate(
+      downs_turnover = ifelse((.data$play_type %in% normalplay) & (.data$yards_gained < .data$distance) & (.data$down == 4),1,0),
+      ep_after = ifelse(.data$downs_turnover==1,-lead(.data$ep_before,1),.data$ep_after),
+      play = 1,
+      game_play_number = cumsum(.data$play)) %>%
+    group_by(.data$game_id,.data$half) %>% 
+    arrange(.data$new_id, .by_group = TRUE) %>%
+    mutate(
+      half_play = 1,
+      half_play_number = cumsum(.data$half_play),
+      off_timeouts_rem_before = ifelse(half_play_number == 1, 3,lag(.data$offense_timeouts,1)),
+      def_timeouts_rem_before = ifelse(half_play_number == 1, 3,lag(.data$defense_timeouts,1))) %>% 
+    group_by(.data$game_id,.data$half,.data$drive_id) %>% 
+    arrange(.data$new_id, .by_group = TRUE) %>%
+    mutate(drive_play = 1,
+           drive_play_number = cumsum(.data$drive_play)) %>% 
+    ungroup() %>% 
+    select(-.data$play,-.data$half_play,-.data$drive_play)
+  
   # game end EP is 0
   pred_df[pred_df$end_half_game_end == 1, "ep_after"] = 0
 
@@ -173,14 +203,16 @@ create_epa <- function(clean_pbp_dat,
 
   # prep some variables for WPA, drop transformed columns
   pred_df = pred_df %>%
-    mutate(adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
-           EPA = .data$ep_after - .data$ep_before,
-           score_diff = .data$offense_score - .data$defense_score,
-           home_EPA = ifelse(.data$offense_play==.data$home,.data$EPA,-.data$EPA),
-           away_EPA = -.data$home_EPA,
-           ExpScoreDiff = .data$score_diff + .data$ep_before,
-           half = as.factor(.data$half),
-           ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>%
+    mutate(
+      adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
+      EPA = .data$ep_after - .data$ep_before,
+      def_EPA = -.data$EPA,
+      score_diff = .data$offense_score - .data$defense_score,
+      home_EPA = ifelse(.data$offense_play==.data$home,.data$EPA,-.data$EPA),
+      away_EPA = -.data$home_EPA,
+      ExpScoreDiff = .data$score_diff + .data$ep_before,
+      half = as.factor(.data$half),
+      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>%
     select(-.data$yard_line,
            -.data$log_ydstogo,
            -.data$log_ydstogo_end,
@@ -188,33 +220,46 @@ create_epa <- function(clean_pbp_dat,
            -.data$end_half_game_end,
            -.data$Under_two_end) %>%
     select(.data$game_id,
-           .data$drive_id,
-           .data$new_id,
-           .data$id_play,
+           .data$drive_number,
+           .data$drive_play_number,
+           .data$game_play_number,
            .data$offense_play,
            .data$defense_play,
-           .data$home,
-           .data$away,
-           .data$period,
            .data$half,
+           .data$period,
            .data$clock.minutes,
            .data$clock.seconds,
-           .data$offense_score,
-           .data$defense_score,
            .data$play_type,
            .data$play_text,
-           .data$drive_scoring,
-           .data$TimeSecsRem,
-           .data$Under_two,
            .data$down,
            .data$distance,
-           .data$Goal_To_Go,
            .data$yards_to_goal,
            .data$yards_gained,
-           .data$TimeSecsRem_end,
+           .data$offense_score,
+           .data$defense_score,
+           .data$score_diff,
+           .data$EPA,
+           .data$ep_before,
+           .data$ep_after,
+           .data$def_EPA,
+           .data$ppa,
+           .data$Goal_To_Go,
+           .data$offense_timeouts,
+           .data$defense_timeouts,
+           .data$drive_start_yards_to_goal,
+           .data$drive_end_yards_to_goal,
+           .data$drive_yards,
+           .data$drive_scoring,
+           .data$drive_result,
+           .data$drive_pts,
+           .data$home,
+           .data$away,
+           .data$Under_two,
+           .data$TimeSecsRem,
            .data$down_end,
            .data$distance_end,
            .data$yards_to_goal_end,
+           .data$TimeSecsRem_end,
            everything()) %>%
     mutate(
       rz_play = ifelse((.data$yards_to_goal <= 20), 1, 0),
