@@ -38,12 +38,6 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
   }
   
   df = df %>% 
-    group_by(.data$game_id) %>% 
-    mutate(
-      play_no =1,
-      game_play_number = cumsum(.data$play_no)) %>% 
-    select(-.data$play_no) %>% 
-    ungroup() %>% 
     arrange(.data$game_id, .data$new_id) 
     
   
