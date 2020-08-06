@@ -146,25 +146,79 @@ cfb_pbp_data <- function(year,
         )
       }
       play_df = clean_pbp_dat(play_df)
+      
+      play_df = create_epa(play_df)
+      
       g_ids = sort(unique(play_df$game_id))
       play_df = purrr::map_dfr(g_ids,
                                function(x) {
                                  play_df %>%
                                    filter(.data$game_id == x) %>%
-                                   add_timeout_cols() %>% 
+                                   # add_timeout_cols() %>%
                                    add_betting_cols(g_id = x, yr=year)
                                })
-
-      play_df = create_epa(play_df)
+      
       play_df = create_wpa_betting(play_df)
       play_df = create_wpa_naive(play_df)
+      
       play_df = play_df %>%
         group_by(.data$drive_id) %>%
-        arrange(.data$new_id, .by_group=T) %>%
+        arrange(.data$new_id, .by_group=TRUE) %>%
         ungroup()
+      play_df <- play_df %>% 
+        select(-.data$drive_drive_number) %>% 
+        select(.data$game_id,
+               .data$drive_number,
+               .data$drive_play_number,
+               .data$game_play_number,
+               .data$offense_play,
+               .data$defense_play,
+               .data$half,
+               .data$period,
+               .data$clock.minutes,
+               .data$clock.seconds,
+               .data$play_type,
+               .data$play_text,
+               .data$down,
+               .data$distance,
+               .data$yards_to_goal,
+               .data$yards_gained,
+               .data$offense_score,
+               .data$defense_score,
+               .data$score_diff,
+               .data$EPA,
+               .data$ep_before,
+               .data$ep_after,
+               .data$def_EPA,
+               .data$ppa,
+               .data$wpa,
+               .data$wp,
+               .data$def_wp,
+               .data$lead_wp,
+               .data$Goal_To_Go,
+               .data$Under_two,
+               .data$offense_timeouts,
+               .data$defense_timeouts,
+               .data$drive_start_yards_to_goal,
+               .data$drive_end_yards_to_goal,
+               .data$drive_yards,
+               .data$drive_scoring,
+               .data$drive_result,
+               .data$drive_pts,
+               .data$home,
+               .data$away,
+               .data$home_wp,
+               .data$away_wp,
+               .data$TimeSecsRem,
+               .data$down_end,
+               .data$distance_end,
+               .data$yards_to_goal_end,
+               .data$TimeSecsRem_end,
+               everything())
     }
   }
   play_df <- as.data.frame(play_df)
+  
   return(play_df)
 }
 
