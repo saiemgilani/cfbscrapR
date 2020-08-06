@@ -183,8 +183,8 @@ create_epa <- function(clean_pbp_dat,
     mutate(
       half_play = 1,
       half_play_number = cumsum(.data$half_play),
-      off_timeouts_rem_before = ifelse(half_play_number == 1, 3,lag(.data$offense_timeouts,1)),
-      def_timeouts_rem_before = ifelse(half_play_number == 1, 3,lag(.data$defense_timeouts,1))) %>% 
+      off_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$offense_timeouts,1)),
+      def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$defense_timeouts,1))) %>% 
     group_by(.data$game_id,.data$half,.data$drive_id) %>% 
     arrange(.data$new_id, .by_group = TRUE) %>%
     mutate(drive_play = 1,
