@@ -174,24 +174,9 @@ create_epa <- function(clean_pbp_dat,
     group_by(.data$game_id) %>%
     arrange(.data$new_id, .by_group = TRUE) %>%
     mutate(
-      downs_turnover = ifelse((.data$play_type %in% normalplay) & (.data$yards_gained < .data$distance) & (.data$down == 4),1,0),
-      ep_after = ifelse(.data$downs_turnover==1,-lead(.data$ep_before,1),.data$ep_after),
-      play = 1,
-      game_play_number = cumsum(.data$play)) %>%
-    group_by(.data$game_id,.data$half) %>% 
-    arrange(.data$new_id, .by_group = TRUE) %>%
-    mutate(
-      half_play = 1,
-      half_play_number = cumsum(.data$half_play),
-      off_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$offense_timeouts,1)),
-      def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$defense_timeouts,1))) %>% 
-    group_by(.data$game_id,.data$half,.data$drive_id) %>% 
-    arrange(.data$new_id, .by_group = TRUE) %>%
-    mutate(drive_play = 1,
-           drive_play_number = cumsum(.data$drive_play)) %>% 
-    ungroup() %>% 
-    select(-.data$play,-.data$half_play,-.data$drive_play)
-  
+      ep_after = ifelse(.data$downs_turnover==1, -1*lead(.data$ep_before,1),.data$ep_after)) %>% 
+    ungroup()
+    
   # game end EP is 0
   pred_df[pred_df$end_half_game_end == 1, "ep_after"] = 0
 
@@ -523,7 +508,12 @@ prep_epa_df_after <- function(dat) {
   dat$turnover[t_ind] <- 1
 
 
-  dat = dat %>% ungroup() %>% group_by(.data$game_id, .data$half) %>%
+  dat = dat %>% ungroup() %>% 
+    group_by(.data$game_id) %>% arrange(.data$id_play,.by_group=TRUE) %>% 
+    mutate(
+      play = 1,
+      game_play_number = cumsum(.data$play)) %>%
+    group_by(.data$game_id, .data$half) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     mutate(
       turnover_indicator = ifelse(
@@ -640,9 +630,21 @@ prep_epa_df_after <- function(dat) {
       new_Goal_To_Go = ifelse(.data$new_yardline <= .data$new_distance, TRUE, FALSE),
       # new under two minute warnings
       new_Under_two = .data$new_TimeSecsRem <= 120,
-      end_half_game = 0
+      end_half_game = 0,
+      half_play = 1,
+      half_play_number = cumsum(.data$half_play),
+      downs_turnover = ifelse((.data$play_type %in% normalplay) & (.data$yards_gained < .data$distance) & (.data$down == 4),1,0),
+      off_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$offense_timeouts,1)),
+      def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$defense_timeouts,1))
     ) %>%
-    mutate_at(vars(.data$new_TimeSecsRem), ~ replace_na(., 0)) %>% ungroup()
+    mutate_at(vars(.data$new_TimeSecsRem), ~ replace_na(., 0)) %>% 
+    group_by(.data$game_id,.data$half,.data$drive_id) %>% 
+    arrange(.data$id_play, .by_group = TRUE) %>%
+    mutate(drive_play = 1,
+           drive_play_number = cumsum(.data$drive_play)) %>% 
+    ungroup() %>% 
+    select(-.data$play,-.data$half_play,-.data$drive_play)
+    
 
   #--Punt Plays--------------------------
   punt_plays = dat$play_type == "Punt"
@@ -697,8 +699,6 @@ prep_epa_df_after <- function(dat) {
   dat$new_yardline[missing_yd_line] = 99
   dat$new_log_ydstogo[missing_yd_line] = log(99)
 
-
-
   dat = dat %>%
     mutate(new_down = as.factor(.data$new_down)) %>%
     select(
@@ -713,7 +713,13 @@ prep_epa_df_after <- function(dat) {
       .data$new_Goal_To_Go,
       .data$new_Under_two,
       .data$end_half_game,
-      .data$turnover
+      .data$turnover,
+      .data$downs_turnover,
+      .data$game_play_number,
+      .data$half_play_number,
+      .data$drive_play_number,
+      .data$off_timeouts_rem_before,
+      .data$def_timeouts_rem_before,
     ) %>% arrange(.data$id_play) %>%
     mutate(id_play = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
            id_play = as.numeric(.data$id_play))
