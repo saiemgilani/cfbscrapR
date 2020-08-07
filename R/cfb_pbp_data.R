@@ -147,19 +147,18 @@ cfb_pbp_data <- function(year,
       }
       play_df = clean_pbp_dat(play_df)
       
-      play_df = create_epa(play_df)
+      
       
       g_ids = sort(unique(play_df$game_id))
       play_df = purrr::map_dfr(g_ids,
                                function(x) {
                                  play_df %>%
                                    filter(.data$game_id == x) %>%
-                                   # add_timeout_cols() %>%
-                                   add_betting_cols(g_id = x, yr=year)
+                                   create_epa() %>%
+                                   add_betting_cols(g_id = x, yr=year) %>% 
+                                   create_wpa_betting() %>% 
+                                   create_wpa_naive()
                                })
-      
-      play_df = create_wpa_betting(play_df)
-      play_df = create_wpa_naive(play_df)
       
       play_df = play_df %>%
         group_by(.data$drive_id) %>%
