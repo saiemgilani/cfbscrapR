@@ -698,6 +698,8 @@ prep_epa_df_after <- function(dat) {
   missing_yd_line = dat$new_yardline == 0
   dat$new_yardline[missing_yd_line] = 99
   dat$new_log_ydstogo[missing_yd_line] = log(99)
+  dat$missing_yard_flag <- FALSE
+  dat$missing_yard_flag[missing_yd_line] <- TRUE
 
   dat = dat %>%
     mutate(new_down = as.factor(.data$new_down)) %>%
@@ -720,6 +722,7 @@ prep_epa_df_after <- function(dat) {
       .data$drive_play_number,
       .data$off_timeouts_rem_before,
       .data$def_timeouts_rem_before,
+      .data$missing_yard_flag
     ) %>% arrange(.data$id_play) %>%
     mutate(id_play = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
            id_play = as.numeric(.data$id_play))

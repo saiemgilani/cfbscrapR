@@ -23,7 +23,7 @@
 #'
 
 
-plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",bet=TRUE){
+plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",bet=FALSE){
   if(is.null(game_id)){
     total_games <- length(unique(dat$game_id))
     assert_that(total_games == 1, 

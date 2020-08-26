@@ -156,7 +156,7 @@ cfb_pbp_data <- function(year,
                                    filter(.data$game_id == x) %>%
                                    create_epa() %>%
                                    add_betting_cols(g_id = x, yr=year) %>% 
-                                   create_wpa_betting() %>% 
+                                   #create_wpa_betting() %>% 
                                    create_wpa_naive()
                                })
       
