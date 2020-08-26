@@ -110,7 +110,7 @@
 
       
 
-      </header><script src="College-Football-Expected-Points-Model-Fundamentals-Part-II_files/header-attrs-2.3/header-attrs.js"></script><script src="College-Football-Expected-Points-Model-Fundamentals-Part-II_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>College Football Expected Points Model Fundamentals - Part II</h1>
@@ -164,7 +164,7 @@
 <p>Additionally, the linear model indicates that all three factors are significant at a p=0.001 level, which is at least some evidence that our variables have a relationship with drive points. Here is a plot of the linear regression model fitting.</p>
 <p><a href="https://imgur.com/AZVRKf3"><img src="https://i.imgur.com/AZVRKf3l.png" title="Figure: @SaiemGilani"></a></p>
 <p><strong>Figure 4</strong>: Linear Regression model plots | Expected Drive-Points model using Down, Distance, and Field Position as factors</p>
-<p>In the plot on the top left, there are 4 distinct scoring types clearly visible and the model is trying to fire a shot through to fit all of them. The red line in the top-left would be relatively flat if the residuals of the model fit had constant variance. While there are two other non-zero scoring types, Field Goals and Opponent Field Goals, the data excluded 4th down, so they do not appear on the plot. For clarity, there are in fact 7 next score types when we include the absence of a score, i.e. “No Score”, since the absence of a scoring event is also a type of next score.</p>
+<p>In the plot on the top left, there are 4 distinct scoring types clearly visible and the model is trying to fire a shot through to fit all of them. The red line in the top-left would be relatively flat if the residuals of the model fit had constant variance. While there are two other non-zero scoring types, Field Goals and Opponent Field Goals, the data excluded 4th down, so they do not appear on the plot. For clarity, there are in fact 7 next score types when we include the absence of a score, i.e. “No Score”, since the absence of a scoring event is also a type of next score.</p>
 <p>Upon viewing these plots, I quickly realized that several assumptions of linear regression are being violated here, namely the constant variance assumption and normal distribution of error terms (see Figure 4), at minimum. We need to keep adding to our regression toolbox, so let us now take a look at a type of regression that does not restrict us to these assumptions.</p>
 </div>
 </div>

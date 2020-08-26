@@ -10,7 +10,7 @@ plot_wpa(
   away_color,
   home_color,
   winner = "home",
-  bet = TRUE
+  bet = FALSE
 )
 }
 \arguments{
