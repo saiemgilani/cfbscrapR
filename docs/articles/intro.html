@@ -110,7 +110,7 @@
 
       
 
-      </header><script src="intro_files/header-attrs-2.3/header-attrs.js"></script><script src="intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to College Football Analytics with cfbscrapR</h1>
@@ -235,132 +235,117 @@
 <p>Let’s look at it!</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu">glimpse</span>(<span class="no">pbp</span>)</pre></body></html></div>
 <pre><code>## Rows: 100,699
-## Columns: 125
-## $ game_id                     &lt;int&gt; 401110720, 401110720, 401110720, 401110...
-## $ drive_id                    &lt;dbl&gt; 4011107201, 4011107201, 4011107201, 401...
-## $ new_id                      &lt;dbl&gt; 101855301, 101858401, 101866901, 101874...
-## $ id_play                     &lt;chr&gt; "401110720101855301", "4011107201018584...
-## $ offense_play                &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Duke"...
-## $ defense_play                &lt;chr&gt; "Duke", "Duke", "Duke", "Alabama", "Ala...
-## $ home                        &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Alaba...
-## $ away                        &lt;chr&gt; "Duke", "Duke", "Duke", "Duke", "Duke",...
-## $ period                      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ half                        &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ clock.minutes               &lt;dbl&gt; 29, 29, 28, 27, 27, 26, 26, 26, 26, 25,...
-## $ clock.seconds               &lt;int&gt; 46, 15, 30, 50, 27, 55, 42, 24, 11, 46,...
-## $ offense_score               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ defense_score               &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ play_type                   &lt;chr&gt; "Rush", "Pass Reception", "Sack", "Rush...
-## $ play_text                   &lt;chr&gt; "Jerome Ford run for 1 yd to the Alab 2...
-## $ drive_scoring               &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ TimeSecsRem                 &lt;dbl&gt; 1786, 1755, 1710, 1670, 1647, 1615, 160...
-## $ Under_two                   &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ down                        &lt;dbl&gt; 1, 2, 3, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, ...
-## $ distance                    &lt;int&gt; 10, 9, 7, 10, 11, 7, 10, 4, 10, 5, 5, 1...
-## $ Goal_To_Go                  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ yards_to_goal               &lt;int&gt; 78, 77, 75, 55, 56, 52, 83, 77, 26, 21,...
-## $ yards_gained                &lt;int&gt; 1, 2, -6, -1, 4, 0, 6, 3, 5, 0, 5, 2, 0...
-## $ TimeSecsRem_end             &lt;dbl&gt; 1755, 1710, 1677, 1647, 1615, 1609, 158...
-## $ down_end                    &lt;fct&gt; 2, 3, 4, 2, 3, 4, 2, 1, 2, 3, 1, 2, 3, ...
-## $ distance_end                &lt;dbl&gt; 9, 7, 13, 11, 7, 7, 4, 10, 5, 5, 10, 8,...
-## $ yards_to_goal_end           &lt;dbl&gt; 77, 75, 81, 56, 52, 52, 77, 26, 21, 21,...
-## $ offense_conference          &lt;chr&gt; "SEC", "SEC", "SEC", "ACC", "ACC", "ACC...
-## $ drive_number                &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, ...
-## $ play_number                 &lt;int&gt; 2, 3, 4, 1, 2, 3, 1, 2, 1, 2, 3, 4, 5, ...
-## $ ppa                         &lt;chr&gt; "-0.51421952939679995", "-0.22726486202...
-## $ drive_drive_number          &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, ...
-## $ drive_start_yardline        &lt;int&gt; 22, 22, 22, 55, 55, 55, 17, 17, 26, 26,...
-## $ drive_start_yards_to_goal   &lt;int&gt; 78, 78, 78, 55, 55, 55, 83, 83, 26, 26,...
-## $ drive_end_yards_to_goal     &lt;int&gt; 81, 81, 81, 52, 52, 52, 77, 77, 7, 7, 7...
-## $ drive_end_time.hours        &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ drive_elapsed.hours         &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ drive_yards                 &lt;int&gt; -3, -3, -3, 3, 3, 3, 9, 9, 19, 19, 19, ...
-## $ drive_result                &lt;chr&gt; "PUNT", "PUNT", "PUNT", "PUNT", "PUNT",...
-## $ drive_pts                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ penalty_flag                &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ penalty_declined            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ penalty_no_play             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ penalty_offset              &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ penalty_1st_conv            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ timeout_called              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ timeout_team                &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ home_timeout                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ away_timeout                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ off_timeouts_rem_before     &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ def_timeouts_rem_before     &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ off_timeouts_rem_after      &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ def_timeouts_rem_after      &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ home_timeouts_rem_before    &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ away_timeouts_rem_before    &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ home_timeouts_rem_after     &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ away_timeouts_rem_after     &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ spread                      &lt;dbl&gt; -34.5, -34.5, -34.5, 34.5, 34.5, 34.5, ...
-## $ formatted_spread            &lt;chr&gt; "Alabama -34.5", "Alabama -34.5", "Alab...
-## $ turnover                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, ...
-## $ ep_after                    &lt;dbl&gt; -0.3728182, -1.1773705, -3.0542941, 1.5...
-## $ ep_before                   &lt;dbl&gt; 0.383715944, -0.372818190, -1.177370469...
-## $ adj_TimeSecsRem             &lt;dbl&gt; 3586, 3555, 3510, 3470, 3447, 3415, 340...
-## $ EPA                         &lt;dbl&gt; -0.75653413, -0.80455228, -1.87692365, ...
-## $ score_diff                  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ home_EPA                    &lt;dbl&gt; -0.75653413, -0.80455228, -1.87692365, ...
-## $ away_EPA                    &lt;dbl&gt; 0.75653413, 0.80455228, 1.87692365, -0....
-## $ ExpScoreDiff_bet            &lt;dbl&gt; 0.383715944, -0.372818190, -1.177370469...
-## $ ExpScoreDiff_Time_Ratio_bet &lt;dbl&gt; 1.069741e-04, -1.048420e-04, -3.353376e...
-## $ rz_play                     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, ...
-## $ scoring_opp                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, ...
-## $ pass                        &lt;dbl&gt; 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, ...
-## $ rush                        &lt;dbl&gt; 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, ...
-## $ stuffed_run                 &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, ...
-## $ success                     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, ...
-## $ epa_success                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, ...
-## $ game_play_number            &lt;dbl&gt; 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 1...
-## $ wp_bet                      &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.5940...
-## $ change_of_poss              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, ...
-## $ def_wp_bet                  &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.4059...
-## $ home_wp_bet                 &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.4059...
-## $ away_wp_bet                 &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.5940...
-## $ end_of_half                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ lead_wp_bet                 &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.5537...
-## $ wpa_base_bet                &lt;dbl&gt; -0.029134787, -0.029645452, -0.07758371...
-## $ wpa_change_bet              &lt;dbl&gt; -0.029134787, -0.029645452, -0.07758371...
-## $ wpa_bet                     &lt;dbl&gt; -0.029134787, -0.029645452, -0.07758371...
-## $ home_wp_post_bet            &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.4462...
-## $ away_wp_post_bet            &lt;dbl&gt; 0.5428328, 0.5724783, 0.6500620, 0.5537...
-## $ ExpScoreDiff                &lt;dbl&gt; 0.383715944, -0.372818190, -1.177370469...
-## $ ExpScoreDiff_Time_Ratio     &lt;dbl&gt; 1.069741e-04, -1.048420e-04, -3.353376e...
-## $ wp                          &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.5940...
-## $ def_wp                      &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.4059...
-## $ home_wp                     &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.4059...
-## $ away_wp                     &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.5940...
-## $ lead_wp                     &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.5537...
-## $ wpa_base                    &lt;dbl&gt; -0.029134787, -0.029645452, -0.07758371...
-## $ wpa_change                  &lt;dbl&gt; -0.029134787, -0.029645452, -0.07758371...
-## $ wpa                         &lt;dbl&gt; -0.029134787, -0.029645452, -0.07758371...
-## $ home_wp_post                &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.4462...
-## $ away_wp_post                &lt;dbl&gt; 0.5428328, 0.5724783, 0.6500620, 0.5537...
-## $ season                      &lt;int&gt; 2019, 2019, 2019, 2019, 2019, 2019, 201...
-## $ week                        &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ season_type                 &lt;chr&gt; "regular", "regular", "regular", "regul...
-## $ start_date                  &lt;chr&gt; "2019-08-31T19:30:00.000Z", "2019-08-31...
-## $ start_time_tbd              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ neutral_site                &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRU...
-## $ conference_game             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALS...
-## $ attendance                  &lt;int&gt; 71916, 71916, 71916, 71916, 71916, 7191...
-## $ venue_id                    &lt;int&gt; 5348, 5348, 5348, 5348, 5348, 5348, 534...
-## $ venue                       &lt;chr&gt; "Mercedes-Benz Stadium", "Mercedes-Benz...
-## $ home_id                     &lt;int&gt; 333, 333, 333, 333, 333, 333, 333, 333,...
-## $ home_team                   &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Alaba...
-## $ home_conference             &lt;chr&gt; "SEC", "SEC", "SEC", "SEC", "SEC", "SEC...
-## $ home_points                 &lt;int&gt; 42, 42, 42, 42, 42, 42, 42, 42, 42, 42,...
-## $ home_post_win_prob          &lt;chr&gt; "0.999990884676356", "0.999990884676356...
-## $ away_id                     &lt;int&gt; 150, 150, 150, 150, 150, 150, 150, 150,...
-## $ away_team                   &lt;chr&gt; "Duke", "Duke", "Duke", "Duke", "Duke",...
-## $ away_conference             &lt;chr&gt; "ACC", "ACC", "ACC", "ACC", "ACC", "ACC...
-## $ away_points                 &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ away_post_win_prob          &lt;chr&gt; "0.00000911532364400447", "0.0000091153...
-## $ excitement_index            &lt;chr&gt; "2.90320622524523", "2.90320622524523",...
-## $ abs_diff                    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ garbage                     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...</code></pre>
+## Columns: 110
+## $ game_id                   &lt;int&gt; 401110720, 401110720, 401110720, 401110720,…
+## $ drive_number              &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4…
+## $ drive_play_number         &lt;dbl&gt; 2, 3, 4, 1, 2, 3, 1, 2, 1, 2, 3, 4, 5, 6, 7…
+## $ game_play_number          &lt;dbl&gt; 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 1…
+## $ offense_play              &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Duke", "D…
+## $ defense_play              &lt;chr&gt; "Duke", "Duke", "Duke", "Alabama", "Alabama…
+## $ half                      &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ period                    &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ clock.minutes             &lt;dbl&gt; 29, 29, 28, 27, 27, 26, 26, 26, 26, 25, 25,…
+## $ clock.seconds             &lt;int&gt; 46, 15, 30, 50, 27, 55, 42, 24, 11, 46, 13,…
+## $ play_type                 &lt;chr&gt; "Rush", "Pass Reception", "Sack", "Rush", "…
+## $ play_text                 &lt;chr&gt; "Jerome Ford run for 1 yd to the Alab 23", …
+## $ down                      &lt;dbl&gt; 1, 2, 3, 1, 2, 3, 1, 2, 1, 2, 3, 1, 2, 3, 4…
+## $ distance                  &lt;int&gt; 10, 9, 7, 10, 11, 7, 10, 4, 10, 5, 5, 10, 8…
+## $ yards_to_goal             &lt;dbl&gt; 78, 77, 75, 55, 56, 52, 83, 77, 26, 21, 21,…
+## $ yards_gained              &lt;int&gt; 1, 2, -6, -1, 4, 0, 6, 3, 5, 0, 5, 2, 0, 7,…
+## $ offense_score             &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ defense_score             &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ score_diff                &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ EPA                       &lt;dbl&gt; -0.75653413, -0.80455228, -1.87692365, -0.9…
+## $ ep_before                 &lt;dbl&gt; 0.383715944, -0.372818190, -1.177370469, 2.…
+## $ ep_after                  &lt;dbl&gt; -0.3728182, -1.1773705, -3.0542941, 1.51576…
+## $ def_EPA                   &lt;dbl&gt; 0.75653413, 0.80455228, 1.87692365, 0.99761…
+## $ ppa                       &lt;chr&gt; "-0.51421952939679995", "-0.227264862029380…
+## $ wpa                       &lt;dbl&gt; -0.029134787, -0.029645452, -0.077583715, -…
+## $ wp                        &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.5940228,…
+## $ def_wp                    &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.4059772,…
+## $ lead_wp                   &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.5537061,…
+## $ Goal_To_Go                &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ Under_two                 &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ offense_timeouts          &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
+## $ defense_timeouts          &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
+## $ drive_start_yards_to_goal &lt;int&gt; 78, 78, 78, 55, 55, 55, 83, 83, 26, 26, 26,…
+## $ drive_end_yards_to_goal   &lt;int&gt; 81, 81, 81, 52, 52, 52, 77, 77, 7, 7, 7, 7,…
+## $ drive_yards               &lt;int&gt; -3, -3, -3, 3, 3, 3, 9, 9, 19, 19, 19, 19, …
+## $ drive_scoring             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ drive_result              &lt;chr&gt; "PUNT", "PUNT", "PUNT", "PUNT", "PUNT", "PU…
+## $ drive_pts                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ home                      &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Alabama",…
+## $ away                      &lt;chr&gt; "Duke", "Duke", "Duke", "Duke", "Duke", "Du…
+## $ home_wp                   &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.4059772,…
+## $ away_wp                   &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.5940228,…
+## $ TimeSecsRem               &lt;dbl&gt; 1786, 1755, 1710, 1670, 1647, 1615, 1602, 1…
+## $ down_end                  &lt;fct&gt; 2, 3, 4, 2, 3, 4, 2, 1, 2, 3, 1, 2, 3, 4, 1…
+## $ distance_end              &lt;dbl&gt; 9, 7, 13, 11, 7, 7, 4, 10, 5, 5, 10, 8, 8, …
+## $ yards_to_goal_end         &lt;dbl&gt; 77, 75, 81, 56, 52, 52, 77, 26, 21, 21, 16,…
+## $ TimeSecsRem_end           &lt;dbl&gt; 1755, 1710, 1677, 1647, 1615, 1609, 1584, 1…
+## $ id_play                   &lt;chr&gt; "401110720101855301", "401110720101858401",…
+## $ offense_conference        &lt;chr&gt; "SEC", "SEC", "SEC", "ACC", "ACC", "ACC", "…
+## $ drive_id                  &lt;dbl&gt; 4011107201, 4011107201, 4011107201, 4011107…
+## $ play_number               &lt;int&gt; 2, 3, 4, 1, 2, 3, 1, 2, 1, 2, 3, 4, 5, 6, 7…
+## $ scoring                   &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ drive_start_yardline      &lt;int&gt; 22, 22, 22, 55, 55, 55, 17, 17, 26, 26, 26,…
+## $ drive_end_time.hours      &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ drive_elapsed.hours       &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ penalty_flag              &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ penalty_declined          &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ penalty_no_play           &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ penalty_offset            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ penalty_1st_conv          &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ new_id                    &lt;dbl&gt; 101855301, 101858401, 101866901, 101874901,…
+## $ turnover                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1…
+## $ downs_turnover            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1…
+## $ half_play_number          &lt;dbl&gt; 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15, 1…
+## $ off_timeouts_rem_before   &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
+## $ def_timeouts_rem_before   &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
+## $ missing_yard_flag         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ adj_TimeSecsRem           &lt;dbl&gt; 3586, 3555, 3510, 3470, 3447, 3415, 3402, 3…
+## $ home_EPA                  &lt;dbl&gt; -0.75653413, -0.80455228, -1.87692365, 0.99…
+## $ away_EPA                  &lt;dbl&gt; 0.75653413, 0.80455228, 1.87692365, -0.9976…
+## $ ExpScoreDiff              &lt;dbl&gt; 0.383715944, -0.372818190, -1.177370469, 2.…
+## $ ExpScoreDiff_Time_Ratio   &lt;dbl&gt; 1.069741e-04, -1.048420e-04, -3.353376e-04,…
+## $ rz_play                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1…
+## $ scoring_opp               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1…
+## $ pass                      &lt;dbl&gt; 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0…
+## $ rush                      &lt;dbl&gt; 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1…
+## $ stuffed_run               &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1…
+## $ success                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0…
+## $ epa_success               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0…
+## $ spread                    &lt;dbl&gt; -34.5, -34.5, -34.5, -34.5, -34.5, -34.5, -…
+## $ formatted_spread          &lt;chr&gt; "Alabama -34.5", "Alabama -34.5", "Alabama …
+## $ change_of_poss            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1…
+## $ end_of_half               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ wpa_base                  &lt;dbl&gt; -0.029134787, -0.029645452, -0.077583715, -…
+## $ wpa_change                &lt;dbl&gt; -0.029134787, -0.029645452, -0.077583715, -…
+## $ home_wp_post              &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.4462939,…
+## $ away_wp_post              &lt;dbl&gt; 0.5428328, 0.5724783, 0.6500620, 0.5537061,…
+## $ season                    &lt;int&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2…
+## $ week                      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+## $ season_type               &lt;chr&gt; "regular", "regular", "regular", "regular",…
+## $ start_date                &lt;chr&gt; "2019-08-31T19:30:00.000Z", "2019-08-31T19:…
+## $ start_time_tbd            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ neutral_site              &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, T…
+## $ conference_game           &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, F…
+## $ attendance                &lt;int&gt; 71916, 71916, 71916, 71916, 71916, 71916, 7…
+## $ venue_id                  &lt;int&gt; 5348, 5348, 5348, 5348, 5348, 5348, 5348, 5…
+## $ venue                     &lt;chr&gt; "Mercedes-Benz Stadium", "Mercedes-Benz Sta…
+## $ home_id                   &lt;int&gt; 333, 333, 333, 333, 333, 333, 333, 333, 333…
+## $ home_team                 &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Alabama",…
+## $ home_conference           &lt;chr&gt; "SEC", "SEC", "SEC", "SEC", "SEC", "SEC", "…
+## $ home_points               &lt;int&gt; 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42,…
+## $ home_post_win_prob        &lt;chr&gt; "0.999990884676356", "0.999990884676356", "…
+## $ away_id                   &lt;int&gt; 150, 150, 150, 150, 150, 150, 150, 150, 150…
+## $ away_team                 &lt;chr&gt; "Duke", "Duke", "Duke", "Duke", "Duke", "Du…
+## $ away_conference           &lt;chr&gt; "ACC", "ACC", "ACC", "ACC", "ACC", "ACC", "…
+## $ away_points               &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
+## $ away_post_win_prob        &lt;chr&gt; "0.00000911532364400447", "0.00000911532364…
+## $ excitement_index          &lt;chr&gt; "0.4601882762", "0.4601882762", "0.46018827…
+## $ abs_diff                  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ garbage                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</code></pre>
 <p>Ok, wow! We have more than 100,000 observations in our dataset, and 109 variables. These variables include play details, like down, distance, and yard line (yards_to_goal), as well as results - was it a rush or a pass? How many yards were gained? Was it a scoring play? For our initial analysis today, we’ll focus on <em>yards gained</em>, <em>success rate</em>, and <em>expected points added</em>, so let’s use the <code>select()</code> function to grab some play and team details, plus those variables.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">plays</span> <span class="kw">&lt;-</span> <span class="no">pbp</span> <span class="kw">%&gt;%</span> <span class="fu">select</span>(<span class="no">offense_play</span>, <span class="no">defense_play</span>, <span class="no">down</span>, <span class="no">distance</span>, <span class="no">yards_to_goal</span>, <span class="no">rush</span>, <span class="no">pass</span>, <span class="no">yards_gained</span>, <span class="no">play_text</span>, <span class="no">success</span>, <span class="no">EPA</span>, <span class="no">garbage</span>)</pre></body></html></div>
 <p>Now we have our relevant data, so let’s make do some stats!</p>
@@ -389,7 +374,7 @@
 ##  8 Western Michigan   6.61  6.12
 ##  9 Mississippi State  5.82  6.06
 ## 10 Ole Miss           6.20  6.01
-## # ... with 120 more rows</code></pre>
+## # … with 120 more rows</code></pre>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">offense</span> <span class="kw">%&gt;%</span> <span class="fu">arrange</span>(<span class="no">ypa</span>)</pre></body></html></div>
 <pre><code>## # A tibble: 130 x 3
 ##    offense_play       ypa   ypr
@@ -404,7 +389,7 @@
 ##  8 South Florida     4.52  5.59
 ##  9 Georgia Tech      4.53  5.10
 ## 10 Georgia Southern  4.55  5.40
-## # ... with 120 more rows</code></pre>
+## # … with 120 more rows</code></pre>
 <p>I took out the desc() part of the function to display the worst offenses, for fun. We see that Oklahoma had the highest yards per rush, followed by Oklahoma, Kentucky, and Louisiana. The top passing teams were Air Force, Alabama, LSU, and Oklahoma. Bonus points if you can tell me why Air Force is ranked that highly!</p>
 <p>The worst offenses for rushing and passing were West Virginia, who averaged only 3.15 yards per rush, and Northwestern, who averaged an inconceivable 3.96 yards per passing attempt.</p>
 <p>We can easily do the defensive side of the ball as well, grouping plays instead by defense_play. Let’s make a dataset and then use <code>left_join()</code> to put offenses and defenses together, but let’s do EPA instead of yards, because EPA is more fun. (What’s EPA? Glad you asked: <a href="https://www.frogsowar.com/2019/8/13/20802128/expected-points-big-12-college-football-analytics">An EPA Primer</a>.</p>
@@ -418,12 +403,12 @@
 <pre><code>## # A tibble: 6 x 4
 ##   offense_play      epa.pass.off epa.rush.off epa.pass.def
 ##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Air Force               0.624       0.161         0.0170
-## 2 Akron                  -0.223      -0.260         0.0563
-## 3 Alabama                 0.645       0.127         0.0262
-## 4 Appalachian State       0.270       0.0800       -0.0359
-## 5 Arizona                 0.0302      0.0626        0.105 
-## 6 Arizona State           0.148      -0.00498      -0.0869</code></pre>
+## 1 Air Force               0.573        0.0687      -0.0631
+## 2 Akron                  -0.307       -0.310       -0.0280
+## 3 Alabama                 0.520        0.0929      -0.0875
+## 4 Appalachian State       0.202        0.0606      -0.116 
+## 5 Arizona                -0.0446       0.0531       0.0544
+## 6 Arizona State           0.105       -0.0574      -0.137</code></pre>
 <p>In analytics, we often want to break down situations. Let’s use <code>filter</code> to select only first down plays and see which offenses performed the best on first downs only:</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">offense</span> <span class="kw">&lt;-</span> <span class="no">plays</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">down</span> <span class="kw">==</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span> <span class="fu">group_by</span>(<span class="no">offense_play</span>) <span class="kw">%&gt;%</span>
   <span class="fu">summarise</span>(<span class="kw">epa.pass.off</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">EPA</span>[<span class="no">pass</span><span class="kw">==</span><span class="fl">1</span>]), <span class="kw">epa.rush.off</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">EPA</span>[<span class="no">rush</span><span class="kw">==</span><span class="fl">1</span>]))</pre></body></html></div>
@@ -435,12 +420,12 @@
 <pre><code>## # A tibble: 6 x 4
 ##   offense_play      epa.pass.off epa.rush.off epa.pass.def
 ##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Air Force               0.632        0.0170     -0.186  
-## 2 Akron                  -0.234       -0.373       0.00672
-## 3 Alabama                 0.452        0.153      -0.0129 
-## 4 Appalachian State      -0.0288      -0.0536     -0.193  
-## 5 Arizona                -0.0899      -0.108       0.124  
-## 6 Arizona State          -0.0241      -0.138      -0.201</code></pre>
+## 1 Air Force               0.632       -0.0614      -0.241 
+## 2 Akron                  -0.269       -0.368       -0.0394
+## 3 Alabama                 0.375        0.128       -0.0589
+## 4 Appalachian State      -0.0212      -0.0649      -0.211 
+## 5 Arizona                -0.103       -0.0930       0.139 
+## 6 Arizona State          -0.0452      -0.140       -0.224</code></pre>
 <p>Easy! You can make any kind of filter you can think of, and analyse EPA or yards gained in any situation.</p>
 <p>Lastly, let’s do an example of creating some rates and using some advanced filters: We’ll create success rate on early downs and early downs rush rate, filtering out garabge time. We’ll use the same filter, summarise, and mean functions as above!</p>
 <div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">success</span> <span class="kw">&lt;-</span> <span class="no">plays</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">garbage</span> <span class="kw">==</span> <span class="fl">0</span> <span class="kw">&amp;</span> <span class="no">down</span> <span class="kw">&lt;</span> <span class="fl">3</span>) <span class="kw">%&gt;%</span>
@@ -528,39 +513,36 @@
 <p><img src="intro_files/figure-html/tcu2019off-1.png" width="700"></p>
 <p>I added a couple fun features here: a <em>geom_hline()</em> reference line at zero, to help us better understand the graph, and a subtitle to clarify what was on the graph. Notice that TCU’s EPA was spread almost evenly across the field, but you can see some serious negative ouliers that weighed them down. We could call those outliers into our console to explore them more:</p>
 <div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">plays</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">offense_play</span> <span class="kw">==</span> <span class="st">"TCU"</span> <span class="kw">&amp;</span> <span class="no">EPA</span> <span class="kw">&lt;</span> -<span class="fl">4</span>) <span class="kw">%&gt;%</span> <span class="fu">select</span>(<span class="no">offense_play</span>, <span class="no">defense_play</span>, <span class="no">play_text</span>, <span class="no">down</span>, <span class="no">distance</span>, <span class="no">yards_to_goal</span>)</pre></body></html></div>
-<pre><code>##    offense_play   defense_play
-## 1           TCU         Baylor
-## 2           TCU Oklahoma State
-## 3           TCU          Texas
-## 4           TCU  West Virginia
-## 5           TCU         Baylor
-## 6           TCU Oklahoma State
-## 7           TCU Oklahoma State
-## 8           TCU            SMU
-## 9           TCU          Texas
-## 10          TCU  West Virginia
-##                                                                                                                                                                  play_text
-## 1                                                                                            Max Duggan pass intercepted Grayland Arnold return for no gain to the Bayl 14
-## 2                                                                                Max Duggan pass intercepted Kolby Harvell-Peel return for a loss of 4 yards to the OKSt 4
-## 3                           Max Duggan pass intercepted Brandon Jones return for a loss of 3 yards to the Texas 24 TEXAS Penalty, Illegal Block (12 Yards) to the Texas 12
-## 4                                                                                                  Max Duggan pass intercepted Tykee Smith return for 39 yds to the TCU 14
-## 5                                                                                                Max Duggan pass intercepted Terrel Bernard return for 20 yds to the TCU 8
-## 6                                                 Max Duggan pass complete to John Stephens Jr. for 13 yds John Stephens Jr. fumbled, recovered by OKSt Kolby Harvell-Peel
-## 7  Max Duggan pass intercepted Kolby Harvell-Peel return for 5 yds to the OKSt 32 Kolby Harvell-Peel fumbled, forced by Jalen Reagor, recovered by OKSt Kolby Harvell-Peel
-## 8                                                                      Max Duggan run for a loss of 4 yards to the TCU 24 Max Duggan fumbled, recovered by SMU Toby Ndukwe
-## 9                                                                                                                           Max Duggan pass incomplete to Te'Vailance Hunt
-## 10                                                                                                  Max Duggan pass intercepted Sean Mahone return for 3 yds to the TCU 47
-##    down distance yards_to_goal
-## 1     1       10            24
-## 2     2        4            46
-## 3     1       10            24
-## 4     3        4            57
-## 5     1       10            81
-## 6     1       10            31
-## 7     2       10            78
-## 8     2        6            71
-## 9     2        9            97
-## 10    3        7            59</code></pre>
+<pre><code>##   offense_play   defense_play
+## 1          TCU         Baylor
+## 2          TCU Oklahoma State
+## 3          TCU          Texas
+## 4          TCU  West Virginia
+## 5          TCU         Baylor
+## 6          TCU Oklahoma State
+## 7          TCU Oklahoma State
+## 8          TCU            SMU
+## 9          TCU  West Virginia
+##                                                                                                                                                                 play_text
+## 1                                                                                           Max Duggan pass intercepted Grayland Arnold return for no gain to the Bayl 14
+## 2                                                                               Max Duggan pass intercepted Kolby Harvell-Peel return for a loss of 4 yards to the OKSt 4
+## 3                          Max Duggan pass intercepted Brandon Jones return for a loss of 3 yards to the Texas 24 TEXAS Penalty, Illegal Block (12 Yards) to the Texas 12
+## 4                                                                                                 Max Duggan pass intercepted Tykee Smith return for 39 yds to the TCU 14
+## 5                                                                                               Max Duggan pass intercepted Terrel Bernard return for 20 yds to the TCU 8
+## 6                                                Max Duggan pass complete to John Stephens Jr. for 13 yds John Stephens Jr. fumbled, recovered by OKSt Kolby Harvell-Peel
+## 7 Max Duggan pass intercepted Kolby Harvell-Peel return for 5 yds to the OKSt 32 Kolby Harvell-Peel fumbled, forced by Jalen Reagor, recovered by OKSt Kolby Harvell-Peel
+## 8                                                                     Max Duggan run for a loss of 4 yards to the TCU 24 Max Duggan fumbled, recovered by SMU Toby Ndukwe
+## 9                                                                                                  Max Duggan pass intercepted Sean Mahone return for 3 yds to the TCU 47
+##   down distance yards_to_goal
+## 1    1       10            24
+## 2    2        4            46
+## 3    1       10            24
+## 4    3        4            57
+## 5    1       10            81
+## 6    1       10            31
+## 7    2       10            78
+## 8    2        6            71
+## 9    3        7            59</code></pre>
 <p>Lastly, let’s explore the <code>gt()</code> pacakge to list the top ten rushing and passing offenses and defenses in the country. We will take our dataset, sort it by the value we want, add a rank variable using mutate(), then apply gt(), simply enough.</p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co">#Passing</span>
 <span class="no">team.epa</span> <span class="kw">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="no">epa.pass.off</span>)) <span class="kw">%&gt;%</span> <span class="fu">mutate</span>(<span class="kw">rank</span> <span class="kw">=</span> <span class="fu">dense_rank</span>(<span class="fu">desc</span>(<span class="no">epa.pass.off</span>))) <span class="kw">%&gt;%</span>
@@ -569,7 +551,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#actrkcouqu .gt_table {
+#mkneohagkg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -592,7 +574,7 @@
   border-left-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_heading {
+#mkneohagkg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -604,7 +586,7 @@
   border-right-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_title {
+#mkneohagkg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -614,7 +596,7 @@
   border-bottom-width: 0;
 }
 
-#actrkcouqu .gt_subtitle {
+#mkneohagkg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -624,13 +606,13 @@
   border-top-width: 0;
 }
 
-#actrkcouqu .gt_bottom_border {
+#mkneohagkg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_col_headings {
+#mkneohagkg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -645,7 +627,7 @@
   border-right-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_col_heading {
+#mkneohagkg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -665,7 +647,7 @@
   overflow-x: hidden;
 }
 
-#actrkcouqu .gt_column_spanner_outer {
+#mkneohagkg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -677,15 +659,15 @@
   padding-right: 4px;
 }
 
-#actrkcouqu .gt_column_spanner_outer:first-child {
+#mkneohagkg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#actrkcouqu .gt_column_spanner_outer:last-child {
+#mkneohagkg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#actrkcouqu .gt_column_spanner {
+#mkneohagkg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -697,7 +679,7 @@
   width: 100%;
 }
 
-#actrkcouqu .gt_group_heading {
+#mkneohagkg .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -719,7 +701,7 @@
   vertical-align: middle;
 }
 
-#actrkcouqu .gt_empty_group_heading {
+#mkneohagkg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -734,19 +716,19 @@
   vertical-align: middle;
 }
 
-#actrkcouqu .gt_striped {
+#mkneohagkg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#actrkcouqu .gt_from_md > :first-child {
+#mkneohagkg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#actrkcouqu .gt_from_md > :last-child {
+#mkneohagkg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#actrkcouqu .gt_row {
+#mkneohagkg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -765,7 +747,7 @@
   overflow-x: hidden;
 }
 
-#actrkcouqu .gt_stub {
+#mkneohagkg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -777,7 +759,7 @@
   padding-left: 12px;
 }
 
-#actrkcouqu .gt_summary_row {
+#mkneohagkg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -787,7 +769,7 @@
   padding-right: 5px;
 }
 
-#actrkcouqu .gt_first_summary_row {
+#mkneohagkg .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -797,7 +779,7 @@
   border-top-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_grand_summary_row {
+#mkneohagkg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -807,7 +789,7 @@
   padding-right: 5px;
 }
 
-#actrkcouqu .gt_first_grand_summary_row {
+#mkneohagkg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -817,7 +799,7 @@
   border-top-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_table_body {
+#mkneohagkg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -826,7 +808,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_footnotes {
+#mkneohagkg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -840,13 +822,13 @@
   border-right-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_footnote {
+#mkneohagkg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#actrkcouqu .gt_sourcenotes {
+#mkneohagkg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -860,46 +842,46 @@
   border-right-color: #D3D3D3;
 }
 
-#actrkcouqu .gt_sourcenote {
+#mkneohagkg .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#actrkcouqu .gt_left {
+#mkneohagkg .gt_left {
   text-align: left;
 }
 
-#actrkcouqu .gt_center {
+#mkneohagkg .gt_center {
   text-align: center;
 }
 
-#actrkcouqu .gt_right {
+#mkneohagkg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#actrkcouqu .gt_font_normal {
+#mkneohagkg .gt_font_normal {
   font-weight: normal;
 }
 
-#actrkcouqu .gt_font_bold {
+#mkneohagkg .gt_font_bold {
   font-weight: bold;
 }
 
-#actrkcouqu .gt_font_italic {
+#mkneohagkg .gt_font_italic {
   font-style: italic;
 }
 
-#actrkcouqu .gt_super {
+#mkneohagkg .gt_super {
   font-size: 65%;
 }
 
-#actrkcouqu .gt_footnote_marks {
+#mkneohagkg .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="actrkcouqu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="mkneohagkg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_col_headings"><tr>
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">offense_play</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">epa.pass.off</th>
@@ -909,66 +891,66 @@
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td class="gt_row gt_left">Alabama</td>
-      <td class="gt_row gt_right">0.6449159</td>
-      <td class="gt_row gt_right">0.12692037</td>
-      <td class="gt_row gt_right">0.02619089</td>
+<td class="gt_row gt_left">Air Force</td>
+      <td class="gt_row gt_right">0.5734259</td>
+      <td class="gt_row gt_right">0.06874982</td>
+      <td class="gt_row gt_right">-0.063127043</td>
       <td class="gt_row gt_center">1</td>
     </tr>
 <tr>
-<td class="gt_row gt_left">Air Force</td>
-      <td class="gt_row gt_right">0.6237029</td>
-      <td class="gt_row gt_right">0.16063576</td>
-      <td class="gt_row gt_right">0.01698299</td>
+<td class="gt_row gt_left">Alabama</td>
+      <td class="gt_row gt_right">0.5195176</td>
+      <td class="gt_row gt_right">0.09293576</td>
+      <td class="gt_row gt_right">-0.087450967</td>
       <td class="gt_row gt_center">2</td>
     </tr>
 <tr>
 <td class="gt_row gt_left">Minnesota</td>
-      <td class="gt_row gt_right">0.5589411</td>
-      <td class="gt_row gt_right">0.13712833</td>
-      <td class="gt_row gt_right">-0.02053104</td>
+      <td class="gt_row gt_right">0.5032284</td>
+      <td class="gt_row gt_right">0.00246669</td>
+      <td class="gt_row gt_right">-0.021914496</td>
       <td class="gt_row gt_center">3</td>
     </tr>
 <tr>
 <td class="gt_row gt_left">LSU</td>
-      <td class="gt_row gt_right">0.5201766</td>
-      <td class="gt_row gt_right">0.21860254</td>
-      <td class="gt_row gt_right">-0.03284552</td>
+      <td class="gt_row gt_right">0.4510875</td>
+      <td class="gt_row gt_right">0.14949404</td>
+      <td class="gt_row gt_right">-0.138569200</td>
       <td class="gt_row gt_center">4</td>
     </tr>
 <tr>
 <td class="gt_row gt_left">Ohio State</td>
-      <td class="gt_row gt_right">0.4701927</td>
-      <td class="gt_row gt_right">0.17817996</td>
-      <td class="gt_row gt_right">-0.11338930</td>
+      <td class="gt_row gt_right">0.4475847</td>
+      <td class="gt_row gt_right">0.16069942</td>
+      <td class="gt_row gt_right">-0.176863989</td>
       <td class="gt_row gt_center">5</td>
     </tr>
 <tr>
-<td class="gt_row gt_left">Utah</td>
-      <td class="gt_row gt_right">0.4566257</td>
-      <td class="gt_row gt_right">0.11999179</td>
-      <td class="gt_row gt_right">-0.14255055</td>
+<td class="gt_row gt_left">Oklahoma</td>
+      <td class="gt_row gt_right">0.3888950</td>
+      <td class="gt_row gt_right">0.17137410</td>
+      <td class="gt_row gt_right">-0.044480846</td>
       <td class="gt_row gt_center">6</td>
     </tr>
 <tr>
-<td class="gt_row gt_left">Oklahoma</td>
-      <td class="gt_row gt_right">0.4530185</td>
-      <td class="gt_row gt_right">0.25727144</td>
-      <td class="gt_row gt_right">-0.01384824</td>
+<td class="gt_row gt_left">Utah</td>
+      <td class="gt_row gt_right">0.3131092</td>
+      <td class="gt_row gt_right">0.02062003</td>
+      <td class="gt_row gt_right">-0.163977073</td>
       <td class="gt_row gt_center">7</td>
     </tr>
 <tr>
 <td class="gt_row gt_left">Memphis</td>
-      <td class="gt_row gt_right">0.3974152</td>
-      <td class="gt_row gt_right">0.07305304</td>
-      <td class="gt_row gt_right">0.02295212</td>
+      <td class="gt_row gt_right">0.3068856</td>
+      <td class="gt_row gt_right">0.01043691</td>
+      <td class="gt_row gt_right">-0.004850261</td>
       <td class="gt_row gt_center">8</td>
     </tr>
 <tr>
 <td class="gt_row gt_left">Iowa State</td>
-      <td class="gt_row gt_right">0.3947927</td>
-      <td class="gt_row gt_right">0.04650418</td>
-      <td class="gt_row gt_right">0.10741321</td>
+      <td class="gt_row gt_right">0.2685644</td>
+      <td class="gt_row gt_right">-0.04499110</td>
+      <td class="gt_row gt_right">0.002943268</td>
       <td class="gt_row gt_center">9</td>
     </tr>
 </tbody>
@@ -983,7 +965,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#bfrevxbeyl .gt_table {
+#wfogbxuqhg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1006,7 +988,7 @@
   border-left-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_heading {
+#wfogbxuqhg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1018,7 +1000,7 @@
   border-right-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_title {
+#wfogbxuqhg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1028,7 +1010,7 @@
   border-bottom-width: 0;
 }
 
-#bfrevxbeyl .gt_subtitle {
+#wfogbxuqhg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1038,13 +1020,13 @@
   border-top-width: 0;
 }
 
-#bfrevxbeyl .gt_bottom_border {
+#wfogbxuqhg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_col_headings {
+#wfogbxuqhg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1059,7 +1041,7 @@
   border-right-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_col_heading {
+#wfogbxuqhg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1079,7 +1061,7 @@
   overflow-x: hidden;
 }
 
-#bfrevxbeyl .gt_column_spanner_outer {
+#wfogbxuqhg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1091,15 +1073,15 @@
   padding-right: 4px;
 }
 
-#bfrevxbeyl .gt_column_spanner_outer:first-child {
+#wfogbxuqhg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bfrevxbeyl .gt_column_spanner_outer:last-child {
+#wfogbxuqhg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bfrevxbeyl .gt_column_spanner {
+#wfogbxuqhg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1111,7 +1093,7 @@
   width: 100%;
 }
 
-#bfrevxbeyl .gt_group_heading {
+#wfogbxuqhg .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1133,7 +1115,7 @@
   vertical-align: middle;
 }
 
-#bfrevxbeyl .gt_empty_group_heading {
+#wfogbxuqhg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1148,19 +1130,19 @@
   vertical-align: middle;
 }
 
-#bfrevxbeyl .gt_striped {
+#wfogbxuqhg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bfrevxbeyl .gt_from_md > :first-child {
+#wfogbxuqhg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bfrevxbeyl .gt_from_md > :last-child {
+#wfogbxuqhg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bfrevxbeyl .gt_row {
+#wfogbxuqhg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1179,7 +1161,7 @@
   overflow-x: hidden;
 }
 
-#bfrevxbeyl .gt_stub {
+#wfogbxuqhg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1191,7 +1173,7 @@
   padding-left: 12px;
 }
 
-#bfrevxbeyl .gt_summary_row {
+#wfogbxuqhg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1201,7 +1183,7 @@
   padding-right: 5px;
 }
 
-#bfrevxbeyl .gt_first_summary_row {
+#wfogbxuqhg .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1211,7 +1193,7 @@
   border-top-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_grand_summary_row {
+#wfogbxuqhg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1221,7 +1203,7 @@
   padding-right: 5px;
 }
 
-#bfrevxbeyl .gt_first_grand_summary_row {
+#wfogbxuqhg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1231,7 +1213,7 @@
   border-top-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_table_body {
+#wfogbxuqhg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1240,7 +1222,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_footnotes {
+#wfogbxuqhg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1254,13 +1236,13 @@
   border-right-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_footnote {
+#wfogbxuqhg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#bfrevxbeyl .gt_sourcenotes {
+#wfogbxuqhg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1274,46 +1256,46 @@
   border-right-color: #D3D3D3;
 }
 
-#bfrevxbeyl .gt_sourcenote {
+#wfogbxuqhg .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#bfrevxbeyl .gt_left {
+#wfogbxuqhg .gt_left {
   text-align: left;
 }
 
-#bfrevxbeyl .gt_center {
+#wfogbxuqhg .gt_center {
   text-align: center;
 }
 
-#bfrevxbeyl .gt_right {
+#wfogbxuqhg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bfrevxbeyl .gt_font_normal {
+#wfogbxuqhg .gt_font_normal {
   font-weight: normal;
 }
 
-#bfrevxbeyl .gt_font_bold {
+#wfogbxuqhg .gt_font_bold {
   font-weight: bold;
 }
 
-#bfrevxbeyl .gt_font_italic {
+#wfogbxuqhg .gt_font_italic {
   font-style: italic;
 }
 
-#bfrevxbeyl .gt_super {
+#wfogbxuqhg .gt_super {
   font-size: 65%;
 }
 
-#bfrevxbeyl .gt_footnote_marks {
+#wfogbxuqhg .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="bfrevxbeyl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="wfogbxuqhg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_header">
 <tr>
 <th colspan="3" class="gt_heading gt_title gt_font_normal" style>Best Passing Teams</th>
@@ -1330,53 +1312,53 @@
 <tbody class="gt_table_body">
 <tr>
 <td class="gt_row gt_center">1</td>
-      <td class="gt_row gt_left">Alabama</td>
-      <td class="gt_row gt_right">0.6449159</td>
+      <td class="gt_row gt_left">Air Force</td>
+      <td class="gt_row gt_right">0.5734259</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">2</td>
-      <td class="gt_row gt_left">Air Force</td>
-      <td class="gt_row gt_right">0.6237029</td>
+      <td class="gt_row gt_left">Alabama</td>
+      <td class="gt_row gt_right">0.5195176</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">3</td>
       <td class="gt_row gt_left">Minnesota</td>
-      <td class="gt_row gt_right">0.5589411</td>
+      <td class="gt_row gt_right">0.5032284</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">4</td>
       <td class="gt_row gt_left">LSU</td>
-      <td class="gt_row gt_right">0.5201766</td>
+      <td class="gt_row gt_right">0.4510875</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">5</td>
       <td class="gt_row gt_left">Ohio State</td>
-      <td class="gt_row gt_right">0.4701927</td>
+      <td class="gt_row gt_right">0.4475847</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">6</td>
-      <td class="gt_row gt_left">Utah</td>
-      <td class="gt_row gt_right">0.4566257</td>
+      <td class="gt_row gt_left">Oklahoma</td>
+      <td class="gt_row gt_right">0.3888950</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">7</td>
-      <td class="gt_row gt_left">Oklahoma</td>
-      <td class="gt_row gt_right">0.4530185</td>
+      <td class="gt_row gt_left">Utah</td>
+      <td class="gt_row gt_right">0.3131092</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">8</td>
       <td class="gt_row gt_left">Memphis</td>
-      <td class="gt_row gt_right">0.3974152</td>
+      <td class="gt_row gt_right">0.3068856</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">9</td>
       <td class="gt_row gt_left">Iowa State</td>
-      <td class="gt_row gt_right">0.3947927</td>
+      <td class="gt_row gt_right">0.2685644</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">10</td>
-      <td class="gt_row gt_left">Notre Dame</td>
-      <td class="gt_row gt_right">0.3721682</td>
+      <td class="gt_row gt_left">North Carolina</td>
+      <td class="gt_row gt_right">0.2518271</td>
     </tr>
 </tbody>
 </table></div>
