@@ -10,7 +10,6 @@ cfb_pbp_data(
   week = 1,
   team = NULL,
   play_type = NULL,
-  drive = NULL,
   epa_wpa = FALSE
 )
 }
@@ -24,8 +23,6 @@ cfb_pbp_data(
 \item{team}{Select team name (example: Texas, Texas A&M, Clemson)}
 
 \item{play_type}{Select play type (example: see the \code{\link[cfbscrapR:cfb_play_type_df]{cfbscrapR::cfb_play_type_df}})}
-
-\item{drive}{Enter anything, and you will get general drive information}
 
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 }

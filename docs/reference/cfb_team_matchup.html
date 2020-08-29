@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -102,7 +102,13 @@
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1</a>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1 - Model Definition</a>
+    </li>
+    <li>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html">Part 2 - Regression Models</a>
+    </li>
+    <li>
+      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html">Part 3 - History of Expected Points Models</a>
     </li>
   </ul>
 </li>
@@ -768,10 +774,10 @@
 #&gt; 17   1991   14    regular 1991-11-30T00:00:00.000Z       FALSE
 #&gt; 18   1992   14    regular 1992-11-28T00:00:00.000Z       FALSE
 #&gt; 19   1993   14    regular 1993-11-27T00:00:00.000Z       FALSE
-#&gt; 20   1994   19 postseason 1995-01-02T00:00:00.000Z        TRUE
-#&gt; 21   1994   14    regular 1994-11-26T00:00:00.000Z       FALSE
+#&gt; 20   1994   14    regular 1994-11-26T00:00:00.000Z       FALSE
+#&gt; 21   1994    1 postseason 1995-01-02T00:00:00.000Z        TRUE
 #&gt; 22   1995   14    regular 1995-11-25T00:00:00.000Z       FALSE
-#&gt; 23   1996   20 postseason 1997-01-02T00:00:00.000Z        TRUE
+#&gt; 23   1996    1 postseason 1997-01-02T00:00:00.000Z        TRUE
 #&gt; 24   1996   15    regular 1996-11-30T00:00:00.000Z       FALSE
 #&gt; 25   1997   14    regular 1997-11-22T00:00:00.000Z       FALSE
 #&gt; 26   1998   13    regular 1998-11-21T00:00:00.000Z       FALSE
@@ -816,8 +822,8 @@
 #&gt; 17                                        &lt;NA&gt;       Florida        14
 #&gt; 18                                        &lt;NA&gt; Florida State        45
 #&gt; 19                                        &lt;NA&gt;       Florida        21
-#&gt; 20                                        &lt;NA&gt; Florida State        23
-#&gt; 21                                        &lt;NA&gt;       Florida        31
+#&gt; 20                                        &lt;NA&gt;       Florida        31
+#&gt; 21                                        &lt;NA&gt; Florida State        23
 #&gt; 22                                        &lt;NA&gt;       Florida        35
 #&gt; 23                                        &lt;NA&gt;       Florida        52
 #&gt; 24                                        &lt;NA&gt; Florida State        24
@@ -864,8 +870,8 @@
 #&gt; 17 Florida State         9       Florida
 #&gt; 18       Florida        24 Florida State
 #&gt; 19 Florida State        33 Florida State
-#&gt; 20       Florida        17 Florida State
-#&gt; 21 Florida State        31          &lt;NA&gt;
+#&gt; 20 Florida State        31          &lt;NA&gt;
+#&gt; 21       Florida        17 Florida State
 #&gt; 22 Florida State        24       Florida
 #&gt; 23 Florida State        20       Florida
 #&gt; 24       Florida        21 Florida State

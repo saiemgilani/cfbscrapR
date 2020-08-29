@@ -1,3 +1,8 @@
+# cfbscrapR 1.0.2
+- Fix issues with win probability added
+- Remove the betting columns and the current betting win probability function
+# cfbscrapR 1.0.1
+- bug fixes
 # cfbscrapR 1.0.0
 
 - Prep for CRAN  

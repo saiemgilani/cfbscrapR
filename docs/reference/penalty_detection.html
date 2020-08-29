@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CFB Conference Information — cfb_conferences • cfbscrapR</title>
+<title>Penalty Detection
+Adds penalty columns to Play-by-Play data pulled from the API — penalty_detection • cfbscrapR</title>
 
 
 <!-- jquery -->
@@ -39,9 +40,10 @@
 
 
 
-<meta property="og:title" content="CFB Conference Information — cfb_conferences" />
-<meta property="og:description" content="Pulls all college football conferences and returns as
-data.frame the following fields:" />
+<meta property="og:title" content="Penalty Detection
+Adds penalty columns to Play-by-Play data pulled from the API — penalty_detection" />
+<meta property="og:description" content="Penalty Detection
+Adds penalty columns to Play-by-Play data pulled from the API" />
 
 
 
@@ -155,107 +157,29 @@ data.frame the following fields:" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>CFB Conference Information</h1>
+    <h1>Penalty Detection
+Adds penalty columns to Play-by-Play data pulled from the API</h1>
     
-    <div class="hidden name"><code>cfb_conferences.Rd</code></div>
+    <div class="hidden name"><code>penalty_detection.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Pulls all college football conferences and returns as
-data.frame the following fields:</p>
+    <p>Penalty Detection
+Adds penalty columns to Play-by-Play data pulled from the API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_conferences</span>()</pre>
+    <pre class="usage"><span class='fu'>penalty_detection</span>(<span class='no'>raw_df</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>raw_df</th>
+      <td><p>(<em>data.frame</em> required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_dat()`</p></td>
+    </tr>
+    </table>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 11 rows and 4 variables:</p><dl'>
-  <dt>id</dt><dd><p>Referencing conference id</p></dd>
-  <dt>name</dt><dd><p>Conference name</p></dd>
-  <dt>long_name</dt><dd><p>Long name for Conference</p></dd>
-  <dt>abbreviation</dt><dd><p>Conference abbreviation</p></dd>
-  ...
-
-</dl>
-
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://api.collegefootballdata.com/conferences'>https://api.collegefootballdata.com/conferences</a></p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>cfb_conferences</span>()</div><div class='output co'>#&gt;    conference_id              name
-#&gt; 1              1               ACC
-#&gt; 2              4            Big 12
-#&gt; 3              5           Big Ten
-#&gt; 4              8               SEC
-#&gt; 5              9            Pac-12
-#&gt; 6             12    Conference USA
-#&gt; 7             15      Mid-American
-#&gt; 8             17     Mountain West
-#&gt; 9             18  FBS Independents
-#&gt; 10            37          Sun Belt
-#&gt; 11           151 American Athletic
-#&gt; 12           201           Western
-#&gt; 13           202   Missouri Valley
-#&gt; 14           203    Rocky Mountain
-#&gt; 15           204         Southwest
-#&gt; 16           205           Pacific
-#&gt; 17           206          Southern
-#&gt; 18           207             Big 6
-#&gt; 19           208   Missouri Valley
-#&gt; 20           209    Mountain State
-#&gt; 21           210             Big 7
-#&gt; 22           211           Skyline
-#&gt; 23           212               Ivy
-#&gt; 24           213              AAWU
-#&gt; 25           214             Big 8
-#&gt; 26           215  Western Athletic
-#&gt; 27           216             Pac-8
-#&gt; 28           217              PCAA
-#&gt; 29           218         Southland
-#&gt; 30           219              SWAC
-#&gt; 31           220            Pac-10
-#&gt; 32           221          Big West
-#&gt; 33           222          Big East
-#&gt; 34           223            Border
-#&gt;                                               long_name abbreviation
-#&gt; 1                             Atlantic Coast Conference          ACC
-#&gt; 2                                     Big 12 Conference          B12
-#&gt; 3                                    Big Ten Conference          B1G
-#&gt; 4                               Southeastern Conference          SEC
-#&gt; 5                                     Pac-12 Conference          PAC
-#&gt; 6                                        Conference USA         CUSA
-#&gt; 7                               Mid-American Conference          MAC
-#&gt; 8                              Mountain West Conference          MWC
-#&gt; 9                                      FBS Independents          Ind
-#&gt; 10                                  Sun Belt Conference          SBC
-#&gt; 11                         American Athletic Conference          AAC
-#&gt; 12                                   Western Conference      Western
-#&gt; 13 Missouri Valley Intercollegiate Athletic Association        MVIAA
-#&gt; 14                            Rocky Mountain Conference          RMC
-#&gt; 15                                 Southwest Conference          SWC
-#&gt; 16                             Pacific Coast Conference          PCC
-#&gt; 17                                  Southern Conference     Southern
-#&gt; 18                                     Big 6 Conference        Big 6
-#&gt; 19                           Missouri Valley Conference          MVC
-#&gt; 20                   Mountain State Athletic Conference         MSAC
-#&gt; 21                                     Big 7 Conference        Big 7
-#&gt; 22                                   Skyline Conference      Skyline
-#&gt; 23                                       The Ivy League          Ivy
-#&gt; 24         Athletic Association of Western Universities         AAWU
-#&gt; 25                                     Big 8 Conference        Big 8
-#&gt; 26                          Western Athletic Conference          WAC
-#&gt; 27                                 Pacific 8 Conference        Pac-8
-#&gt; 28                   Pacific Coast Athletic Association         PCAA
-#&gt; 29                                 Southland Conference    Southland
-#&gt; 30                        Southwest Athletic Conference         SWAC
-#&gt; 31                                           Pacific 10       Pac-10
-#&gt; 32                                  Big West Conference           BW
-#&gt; 33                                  Big East Conference           BE
-#&gt; 34          Border Intercollegiate Athletic Association         BIAA</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -20,9 +20,10 @@ knitr::opts_chunk$set(
 ```
 
 # cfbscrapR 
+![cfbscrapr-tile-1-300.png](https://i.imgur.com/VnHlLhT.png)
+
 A scraping and aggregating package using the CollegeFootballData API
 
-<a href="https://imgur.com/jBcXRgw"><img src="https://i.imgur.com/jBcXRgw.png" title="Figure: @SaiemGilani" /></a>
 
 `cfbscrapR` is an R package for working with CFB data. It is an R API wrapper around [https://collegefootballdata.com/](https://collegefootballdata.com/). It provides users the capability to retrieve data from a plethora of endpoints and supplement that data with additional information (Expected Points Added/Win Probability added). 
 

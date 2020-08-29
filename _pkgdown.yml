@@ -135,7 +135,6 @@ reference:
   - subtitle: Internals
     desc: Internal functions and helpers
     contents:
-      - '`add_timeout_cols`'
       - '`add_betting_cols`'
       - '`clean_drive_info`'
       - '`clean_pbp_dat`'
