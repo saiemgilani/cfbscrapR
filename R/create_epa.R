@@ -275,8 +275,8 @@ create_epa <- function(clean_pbp_dat,
            .data$yards_to_goal_end,
            .data$TimeSecsRem_end,
            everything()) %>%
-    rename(pass = pass_vec,
-           rush = rush_vec) %>% 
+    rename(pass = .data$pass_vec,
+           rush = .data$rush_vec) %>% 
     mutate(
       rz_play = ifelse((.data$yards_to_goal <= 20), 1, 0),
       scoring_opp = ifelse((.data$yards_to_goal <= 40), 1, 0),
