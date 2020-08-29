@@ -23,7 +23,7 @@
 #'
 
 
-plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",bet=TRUE){
+plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",bet=FALSE){
   if(is.null(game_id)){
     total_games <- length(unique(dat$game_id))
     assert_that(total_games == 1, 
@@ -52,7 +52,7 @@ plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",be
             .data$TimeSecsRem
           )
         ) %>%
-        select(.data$home_wp, .data$away_wp, .data$adj_TimeSecsRem)
+        select(.data$home_wp_before, .data$away_wp_before, .data$adj_TimeSecsRem)
     }else{
       plot_df <- dat %>%
         mutate(
@@ -66,7 +66,7 @@ plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",be
     }
   }else{
     if(bet == FALSE){
-      plot_df <- dat %>% select(.data$home_wp, .data$away_wp, .data$adj_TimeSecsRem)
+      plot_df <- dat %>% select(.data$home_wp_before, .data$away_wp_before, .data$adj_TimeSecsRem)
     }else{
       plot_df <- dat %>% select(.data$home_wp_bet, .data$away_wp_bet, .data$adj_TimeSecsRem)
     }
@@ -89,10 +89,10 @@ plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",be
   }
   if(bet == FALSE){
     # .data notation doesn't work here
-    plot_df <- gather(plot_df, "team", "wp", -.data$adj_TimeSecsRem)
+    plot_df <- gather(plot_df, "team", "wp_before", -.data$adj_TimeSecsRem)
 
 
-    p1 = ggplot(plot_df,aes(x=.data$adj_TimeSecsRem,y=.data$wp,color=.data$team)) +
+    p1 = ggplot(plot_df,aes(x=.data$adj_TimeSecsRem,y=.data$wp_before,color=.data$team)) +
       geom_line(size=2) +
       geom_hline(yintercept = 0.5, color = "gray", linetype = "dashed") +
       scale_x_reverse(breaks = seq(0, 3600, 300)) +
