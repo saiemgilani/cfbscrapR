@@ -189,7 +189,9 @@ wpa_calcs_betting <- function(df) {
       lead_wp_bet = dplyr::lead(.data$wp_bet),
       # account for turnover
       wpa_base_bet = .data$lead_wp_bet - .data$wp_bet,
-      wpa_change_bet = ifelse(.data$change_of_poss == 1, (1 - .data$lead_wp_bet) - .data$wp_bet, .data$wpa_base_bet),
+      wpa_change_bet = ifelse(.data$change_of_poss == 1, 
+                              (1 - .data$lead_wp_bet) - .data$wp_bet, 
+                              .data$wpa_base_bet),
       wpa_bet = ifelse(.data$end_of_half == 1, 0, .data$wpa_change_bet),
       home_wp_post_bet = ifelse(.data$offense_play == .data$home,
                             .data$home_wp_bet + .data$wpa_bet,
