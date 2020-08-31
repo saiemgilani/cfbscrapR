@@ -220,22 +220,15 @@ cfb_pbp_data <- function(year,
 penalty_detection <- function(raw_df) {
   ## penalty detection-----
   #-- penalty in play text----
-  pen_text = str_detect(raw_df$play_text, "Penalty|penalty|PENALTY")
+  pen_text = str_detect(raw_df$play_text, regex("penalty", ignore_case = TRUE))
   #-- declined in play text----
-  pen_declined_text = str_detect(raw_df$play_text,"declined|Declined|DECLINED")
+  pen_declined_text = str_detect(raw_df$play_text, regex("declined", ignore_case = TRUE))
   #--NO PLAY in play text----
-  pen_no_play_text = str_detect(raw_df$play_text,"no play|No Play|NO PLAY")
+  pen_no_play_text = str_detect(raw_df$play_text, regex("no play", ignore_case = TRUE))
   #--off-setting in play text----
-  pen_offset_text = str_detect(raw_df$play_text,"off-setting")|
-    str_detect(raw_df$play_text,"Off-Setting")|
-    str_detect(raw_df$play_text,"OFF-SETTING")
+  pen_offset_text = str_detect(raw_df$play_text, regex("off-setting", ignore_case = TRUE))
   
-  pen_1st_down_text = str_detect(raw_df$play_text,"1st down")|
-    str_detect(raw_df$play_text,"1st Down")|
-    str_detect(raw_df$play_text,"1st DOWN")|
-    str_detect(raw_df$play_text,"1ST Down")|
-    str_detect(raw_df$play_text,"1ST down")|
-    str_detect(raw_df$play_text,"1ST DOWN")
+  pen_1st_down_text = str_detect(raw_df$play_text, regex("1st down", ignore_case = TRUE))
   
   #-- penalty play_types
   pen_type = raw_df$play_type == "Penalty" | raw_df$play_type == "penalty"
@@ -261,6 +254,7 @@ penalty_detection <- function(raw_df) {
   raw_df$penalty_1st_conv[pen_text & pen_1st_down_text] <- TRUE
   raw_df$penalty_1st_conv[pen_type & pen_1st_down_text] <- TRUE
   #-- penalty flag T/F flag for penalty text but not penalty play type -- 
+  raw_df$penalty_text <- FALSE
   raw_df$penalty_text[pen_text & !pen_type] <- TRUE
   
   ## kickoff down adjustment
@@ -399,51 +393,51 @@ clean_pbp_dat <- function(raw_df) {
       #-- touchdowns----
       scoring_play = ifelse(.data$play_type %in% scores_vec, 1, 0),
       pts_scored = case_when(
-        .data$play_type != "Blocked Field Goal Touchdown" ~ -7,
-        .data$play_type != "Blocked Punt Touchdown" ~ -7,
-        .data$play_type != "Missed Field Goal Return Touchdown" ~ -7,
-        .data$play_type != "Fumble Recovery (Opponent) Touchdown" ~ -7,
-        .data$play_type != "Fumble Return Touchdown" ~ -7,
-        .data$play_type != "Interception Return Touchdown" ~ -7,
-        .data$play_type != "Pass Interception Return Touchdown" ~ -7,
-        .data$play_type != "Punt Touchdown" ~ 7,
-        .data$play_type != "Punt Return Touchdown" ~ -7,
-        .data$play_type != "Sack Touchdown" ~ -7,
-        .data$play_type != "Uncategorized Touchdown" ~ 7,
-        .data$play_type != "Defensive 2pt Conversion" ~ -2,
-        .data$play_type != "Safety" ~ -2,
-        .data$play_type != "Passing Touchdown" ~ 7,
-        .data$play_type != "Rushing Touchdown" ~ 7,
-        .data$play_type != "Field Goal Good" ~ 3,
-        .data$play_type != "Pass Reception Touchdown" ~ 7,
-        .data$play_type != "Fumble Recovery (Own) Touchdown" ~ 7,
+        .data$play_type == "Blocked Field Goal Touchdown" ~ -7,
+        .data$play_type == "Blocked Punt Touchdown" ~ -7,
+        .data$play_type == "Missed Field Goal Return Touchdown" ~ -7,
+        .data$play_type == "Fumble Recovery (Opponent) Touchdown" ~ -7,
+        .data$play_type == "Fumble Return Touchdown" ~ -7,
+        .data$play_type == "Interception Return Touchdown" ~ -7,
+        .data$play_type == "Pass Interception Return Touchdown" ~ -7,
+        .data$play_type == "Punt Touchdown" ~ 7,
+        .data$play_type == "Punt Return Touchdown" ~ -7,
+        .data$play_type == "Sack Touchdown" ~ -7,
+        .data$play_type == "Uncategorized Touchdown" ~ 7,
+        .data$play_type == "Defensive 2pt Conversion" ~ -2,
+        .data$play_type == "Safety" ~ -2,
+        .data$play_type == "Passing Touchdown" ~ 7,
+        .data$play_type == "Rushing Touchdown" ~ 7,
+        .data$play_type == "Field Goal Good" ~ 3,
+        .data$play_type == "Pass Reception Touchdown" ~ 7,
+        .data$play_type == "Fumble Recovery (Own) Touchdown" ~ 7,
         TRUE ~ 0),
-      td_play = ifelse(str_detect(.data$play_text, "TD|Touchdown|TOUCHDOWN|touchdown"), 1, 0),
-      touchdown = ifelse(str_detect(.data$play_type, 'Touchdown'), 1, 0),
+      td_play = ifelse(str_detect(.data$play_text, regex("touchdown|td", ignore_case = TRUE)), 1, 0),
+      touchdown = ifelse(str_detect(.data$play_type, regex('touchdown', ignore_case = TRUE)), 1, 0),
       off_td_play = ifelse(.data$play_type %in% offense_score_vec, 1, 0),
       def_td_play = ifelse(.data$play_type %in% defense_score_vec, 1, 0),
       #-- kicks/punts----
       kickoff_play = ifelse(.data$play_type %in% kickoff_vec, 1, 0),
-      kickoff_tb = ifelse(str_detect(.data$play_text,"touchback|Touchback|TOUCHBACK") &
+      kickoff_tb = ifelse(str_detect(.data$play_text,regex("touchback", ignore_case = TRUE)) &
                             (.data$play_type %in% kickoff_vec), 1, 0),
-      kick_play = ifelse(str_detect(.data$play_text, "Kick|KICK|KICKOFF|kickoff|kick") &
+      kick_play = ifelse(str_detect(.data$play_text, regex("kick|kickoff", ignore_case = TRUE)) &
                            !is.na(.data$play_text), 1, 0),
-      punt_play = ifelse(str_detect(.data$play_text, "Punt|punt|PUNT") &
+      punt_play = ifelse(str_detect(.data$play_text, regex("punt", ignore_case = TRUE)) &
                            !is.na(.data$play_text), 1, 0),
       punt = ifelse(.data$play_type %in% punt_vec, 1, 0),
-      punt_tb = ifelse(str_detect(.data$play_text,"touchback|Touchback|TOUCHBACK") &
+      punt_tb = ifelse(str_detect(.data$play_text,regex("touchback", ignore_case = TRUE)) &
                          (.data$play_type %in% punt_vec), 1, 0),
       #-- fumbles----
       fumble_vec = ifelse(str_detect(.data$play_text, "fumble"), 1, 0),
       #-- pass/rush----
       rush_vec = ifelse(
         .data$play_type == "Rush" | .data$play_type == "Rushing Touchdown" | 
-        (.data$play_type == "Safety" & str_detect(.data$play_text, "run")) |
-        (.data$play_type == "Fumble Recovery (Opponent)" & str_detect(.data$play_text, "run")) |
-        (.data$play_type == "Fumble Recovery (Opponent) Touchdown" & str_detect(.data$play_text, "run"))|
-        (.data$play_type == "Fumble Recovery (Own)" & str_detect(.data$play_text, "run"))|
-        (.data$play_type == "Fumble Recovery (Own) Touchdown" & str_detect(.data$play_text, "run"))|
-        (.data$play_type == "Fumble Return Touchdown" & str_detect(.data$play_text, "run"))|
+        (.data$play_type == "Safety" & str_detect(.data$play_text, regex("run", ignore_case = TRUE))) |
+        (.data$play_type == "Fumble Recovery (Opponent)" & str_detect(.data$play_text, regex("run", ignore_case = TRUE))) |
+        (.data$play_type == "Fumble Recovery (Opponent) Touchdown" & str_detect(.data$play_text, regex("run", ignore_case = TRUE)))|
+        (.data$play_type == "Fumble Recovery (Own)" & str_detect(.data$play_text, regex("run", ignore_case = TRUE)))|
+        (.data$play_type == "Fumble Recovery (Own) Touchdown" & str_detect(.data$play_text, regex("run", ignore_case = TRUE)))|
+        (.data$play_type == "Fumble Return Touchdown" & str_detect(.data$play_text, regex("run", ignore_case = TRUE)))|
         (.data$play_type == "Fumble Return Touchdown"), 1, 0),
       pass_vec = if_else(
         .data$play_type == "Pass Reception" |
@@ -452,17 +446,17 @@ clean_pbp_dat <- function(raw_df) {
         .data$play_type == "Sack" | .data$play_type == "Pass Interception Return" |
         .data$play_type == "Interception Return Touchdown" |
         .data$play_type == "Pass Incompletion" | .data$play_type == "Sack Touchdown" |
-        (.data$play_type == "Safety" & str_detect(.data$play_text, "Sacked")) |
-        (.data$play_type == "Fumble Recovery (Own)" & str_detect(.data$play_text, "pass")) |
-        (.data$play_type == "Fumble Recovery (Own) Touchdown" & str_detect(.data$play_text, "pass")) |
-        (.data$play_type == "Fumble Recovery (Opponent)" & str_detect(.data$play_text, "pass"))|
-        (.data$play_type == "Fumble Recovery (Opponent) Touchdown" & str_detect(.data$play_text, "pass"))|
-        (.data$play_type == "Fumble Return Touchdown" & str_detect(.data$play_text, "pass")), 1, 0),
+        (.data$play_type == "Safety" & str_detect(.data$play_text, regex('sacked', ignore_case = TRUE))) |
+        (.data$play_type == "Fumble Recovery (Own)" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE))) |
+        (.data$play_type == "Fumble Recovery (Own) Touchdown" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE))) |
+        (.data$play_type == "Fumble Recovery (Opponent)" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE)))|
+        (.data$play_type == "Fumble Recovery (Opponent) Touchdown" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE)))|
+        (.data$play_type == "Fumble Return Touchdown" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE))), 1, 0),
       #-- sacks----
       #- only want non-safety sacks, otherwise would be an additional condition----
       sack_vec = ifelse(
         (.data$play_type %in% c("Sack","Sack Touchdown")|
-        (.data$play_type == "Safety" & str_detect(.data$play_text, "Sacked"))), 1, 0),
+        (.data$play_type == "Safety" & str_detect(.data$play_text, regex('sacked',ignore_case = TRUE)))), 1, 0),
       #-- change of possession
       turnover_vec = ifelse(.data$play_type %in% turnover_vec, 1, 0),
       #-- ball changes hand----
