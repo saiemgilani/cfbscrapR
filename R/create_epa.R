@@ -227,9 +227,9 @@ create_epa <- function(clean_pbp_dat,
                                 ifelse(.data$scoring_play == 1, 
                                        ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)), 
                                               .data$score_diff)),
-      scored_pts = ifelse(.data$ep_after = 7|.data$ep_after = -7|
-                            (.data$play_type = 'Field Goal Good' & .data$ep_after = 3)|
-                            (.data$play_type = 'Safety' & .data$ep_after = -2), 
+      scored_pts = ifelse(.data$ep_after == 7|.data$ep_after == -7|
+                            (.data$play_type == 'Field Goal Good' & .data$ep_after == 3)|
+                            (.data$play_type == 'Safety' & .data$ep_after == -2), 
                           .data$ep_after,
                           .data$score_diff - .data$score_diff_start),
       EPA = .data$ep_after - .data$ep_before,
