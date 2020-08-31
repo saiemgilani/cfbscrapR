@@ -137,6 +137,7 @@ create_epa <- function(clean_pbp_dat,
     "Blocked Punt Touchdown",
     "Punt Touchdown",
     "Punt Return Touchdown",
+    "Kickoff Return Touchdown",
     "Interception Return Touchdown",
     "Pass Interception Return Touchdown"
   )
@@ -187,14 +188,9 @@ create_epa <- function(clean_pbp_dat,
   # For turnover and punt plays make sure the ep_after is negative
   # 
   turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind & (pred_df$play_type %in% turnover_play_type))
-  pred_df[turnover_plays, "ep_after"] = -1 * pred_df[turnover_plays, "ep_after"]
+  pred_df[turnover_plays, "ep_after"] = -1*pred_df[turnover_plays, "ep_after"]
   
-  pred_df = pred_df %>% 
-    group_by(.data$game_id) %>%
-    arrange(.data$new_id, .by_group = TRUE) %>%
-    mutate(
-      ep_after = ifelse(.data$downs_turnover==1, -1*lead(.data$ep_before,1), .data$ep_after)) %>% 
-    ungroup()
+
     
   # game end EP is 0
   pred_df[pred_df$end_half_game_end == 1, "ep_after"] = 0
@@ -206,22 +202,32 @@ create_epa <- function(clean_pbp_dat,
   pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_after"] = -2
   
   pred_df[pred_df$play_type == "Safety", "ep_after"] = -2
-  pred_df[pred_df$play_type == "Field Goal Good", "ep_after"] = 3
 
+  pred_df[pred_df$play_type == "Field Goal Good", "ep_after"] = 3
+  
+  pred_df = pred_df %>% 
+    group_by(.data$game_id) %>%
+    arrange(.data$new_id, .by_group = TRUE) %>%
+    mutate(
+      ep_after = ifelse(.data$downs_turnover==1, -1*lead(.data$ep_before, 1), .data$ep_after),
+      ep_after = ifelse(str_detect(.data$play_text,regex('safety', ignore_case = TRUE)) &
+                          .data$play_type == 'Blocked Punt', -2, .data$ep_after),
+      ep_after = ifelse(.data$turnover == 1 & is.na(.data$ep_after),
+                        -1*lead(.data$ep_before,1),
+                        .data$ep_after )) %>% 
+    ungroup()
   # prep some variables for WPA, drop transformed columns-----
   pred_df = pred_df %>%
     mutate(
       adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
-      
       play_after_turnover = ifelse(lag(.data$turnover_vec, 1) == 1 & lag(.data$def_td_play, 1) != 1, 1, 0),
       score_diff = .data$offense_score - .data$defense_score,
       score_diff_start = ifelse(.data$play_after_turnover == 1, 
-                                -ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)),
+                                -1*(ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1))),
                                 ifelse(.data$scoring_play == 1, 
                                        ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)), 
-                                       .data$score_diff)),
+                                              .data$score_diff)),
       scored_pts = .data$score_diff - .data$score_diff_start,
-      ep_after = ifelse(.data$off_td_play == 1|.data$def_td_play == 1, .data$scored_pts, .data$ep_after),
       EPA = .data$ep_after - .data$ep_before,
       def_EPA = -.data$EPA,
       home_EPA = ifelse(.data$offense_play==.data$home,.data$EPA,-.data$EPA),
@@ -447,9 +453,12 @@ prep_epa_df_after <- function(dat) {
           (.data$play_type %in% defense_score_vec) | (.data$play_type %in% turnover_vec )|
           (.data$play_type %in% normalplay & .data$yards_gained < .data$distance & 
           .data$down == 4), 1, 0),
+      downs_turnover = ifelse((.data$play_type %in% normalplay) & (.data$yards_gained < .data$distance) & (.data$down == 4),1,0),
       down = as.numeric(.data$down),
       #--New Down-----
       new_down = as.numeric(case_when(
+        #--- turnovers ---
+        .data$turnover == 1 ~ 1,
         ##--Penalty Cases (new_down)-----
         # 8 cases with three T/F penalty flags
         # 4 cases in 1
@@ -481,10 +490,9 @@ prep_epa_df_after <- function(dat) {
         # no other penalty flags true, lead on down (1 case)
         .data$play_type %in% penalty & !.data$penalty_declined &
           !.data$penalty_offset & !.data$penalty_1st_conv ~ lead(.data$down, order_by=id_play),
-        ##--Scores, kickoffs, turnovers, defensive scores----
+        ##--Scores, kickoffs,  defensive scores----
         .data$play_type %in% score ~ 1,
         .data$play_type %in% kickoff ~ 1,
-        .data$play_type %in% turnover_vec ~ 1,
         .data$play_type %in% defense_score_vec ~ 1,
         ##--Regular Plays----
         # regular play 1st down
@@ -498,6 +506,8 @@ prep_epa_df_after <- function(dat) {
       drive_start_yards_to_goal = as.numeric(.data$drive_start_yards_to_goal),
       #--New Distance-----
       new_distance = as.numeric(case_when(
+        ##--turnovers, defensive scores, scores, kickoffs
+        .data$turnover == 1 ~ 10,
         ##--Penalty cases (new_distance)
         #--offsetting penalties, keep same distance
         .data$play_type %in% penalty &
@@ -528,8 +538,7 @@ prep_epa_df_after <- function(dat) {
           .data$yards_gained < .data$distance &
           .data$down == 4 &
           (100 - (.data$yards_to_goal  - .data$yards_gained) <= 10) ~ as.numeric(100 - .data$yards_to_goal),
-        ##--turnovers, defensive scores, scores, kickoffs
-        .data$play_type %in% turnover_vec ~ 10,
+        
         # play_type %in% turnover_vec &
         #   (100 - (yards_to_goal + yards_gained) >= 10) ~ 10,
         # play_type %in% turnover_vec &
@@ -540,6 +549,7 @@ prep_epa_df_after <- function(dat) {
       )),
       #--New Yardline----
       new_yardline = as.numeric(case_when(
+        .data$downs_turnover == 1 ~ 100 - .data$yards_to_goal + .data$yards_gained,
         .data$play_type %in% penalty & .data$penalty_offset ~ .data$yards_to_goal,
         .data$play_type %in% penalty & !.data$penalty_offset ~ .data$yards_to_goal - .data$yards_gained,
         .data$play_type %in% normalplay ~ .data$yards_to_goal - .data$yards_gained,
@@ -557,7 +567,6 @@ prep_epa_df_after <- function(dat) {
       end_half_game = 0,
       half_play = 1,
       half_play_number = cumsum(.data$half_play),
-      downs_turnover = ifelse((.data$play_type %in% normalplay) & (.data$yards_gained < .data$distance) & (.data$down == 4),1,0),
       off_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$offense_timeouts,1)),
       def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3,lag(.data$defense_timeouts,1))
     ) %>%
@@ -580,9 +589,11 @@ prep_epa_df_after <- function(dat) {
     arrange(.data$id_play, .by_group = TRUE) %>%
     mutate(
       firstD_by_poss = ifelse((.data$drive_play_number == 1 & .data$kickoff_play != 1)|
-                             (.data$drive_play_number == 2 & lag(.data$kickoff_play) == 1), 1, 0),
-      firstD_by_penalty = ifelse(lag(.data$first_by_penalty)==1 & .data$kickoff_play != 1, 1, 0),
-      firstD_by_yards = ifelse(lag(.data$first_by_yards)==1 & .data$kickoff_play != 1, 1, 0)
+                             (.data$drive_play_number == 2 & lag(.data$kickoff_play, 1) == 1), 1, 0),
+      firstD_by_penalty = ifelse(lag(.data$first_by_penalty, 1)==1 & .data$kickoff_play != 1, 1, 0),
+      firstD_by_yards = ifelse(lag(.data$first_by_yards, 1)==1 & .data$kickoff_play != 1, 1, 0),
+      new_yardline = ifelse((.data$play_type == 'Blocked Punt'), 
+                            lead(.data$yards_to_goal, 1), .data$new_yardline)
     ) %>% 
     select(-.data$play, -.data$half_play, -.data$drive_play)
     
@@ -703,9 +714,9 @@ prep_epa_df_before <- function(df) {
       half = ifelse(.data$period <= 2, 1, 2),
       new_id = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
       new_id = as.numeric(.data$new_id),
-      log_ydstogo = ifelse(.data$distance == 0,log(0.5),log(.data$distance)),
+      log_ydstogo = ifelse(.data$distance == 0,log(1),log(.data$distance)),
       down = ifelse(.data$down == 5 &
-                      str_detect(.data$play_type, "Kickoff"),1, .data$down)
+                      str_detect(.data$play_type, "Kickoff"), 1, .data$down)
     ) %>% filter(.data$period <= 4, .data$down > 0) %>%
     filter(!is.na(.data$down),!is.na(.data$raw_secs)) %>% 
     rename(TimeSecsRem = .data$raw_secs)
