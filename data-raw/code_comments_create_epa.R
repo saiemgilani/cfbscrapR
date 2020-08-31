@@ -15,6 +15,12 @@
 #-- # Set drive_id to numeric, then join `clean_drive_df` to `raw_play_df` (returned from plays API end point)
 #-- # Use setdiff to find the difference of the names of the play_df and the remove columns vector
 #-- ## Helper `clean_pbp_dat()`:
+#--    * Flag: `scoring_play` play flag
+#--    * Case when to create `pts_scored` 
+#--    * Create flags for td_play (touchdown in play text)
+#--    * Create flags for td_play (touchdown in play text)
+
+#--    * Id: `drive_id` create `drive_id` column from `id` column from drives API end point
 #-- ## Helper `penalty_detection()`:
 
 ###### CREATE EPA FUNCTION ##############################################################################
