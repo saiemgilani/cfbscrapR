@@ -29,7 +29,8 @@ Imports:
     tibble,
     geosphere,
     glue,
-    maps
+    maps,
+    janitor
 URL: http://www.github.com/saiemgilani/cfbscrapR
 BugReports: http://www.github.com/saiemgilani/cfbscrapR/issues
 Encoding: UTF-8
