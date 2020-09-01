@@ -35,3 +35,6 @@ URL: http://www.github.com/saiemgilani/cfbscrapR
 BugReports: http://www.github.com/saiemgilani/cfbscrapR/issues
 Encoding: UTF-8
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat,
+    covr
