@@ -71,7 +71,23 @@ cfb_player_returning <- function(year = 2019,
 
   # Get the content and return it as data.frame
   df = fromJSON(full_url)
-
-
+  if(nrow(df)==0){
+    warning("The data pulled from the API was empty. Returning nothing for this one year .")
+    return(NULL)
+  }
+  df <- df %>% 
+    rename(
+      total_ppa = .data$totalPPA,
+      total_passing_ppa = .data$totalPassingPPA,
+      total_receiving_ppa = .data$totalReceivingPPA,
+      total_rushing_ppa = .data$totalRushingPPA,
+      percent_ppa = .data$percentPPA,
+      percent_passing_ppa = .data$percentPassingPPA,
+      percent_receiving_ppa = .data$percentReceivingPPA,
+      percent_rushing_ppa = .data$percentRushingPPA,
+      passing_usage = .data$passingUsage,
+      receiving_usage = .data$receivingUsage,
+      rushing_usage = .data$rushingUsage) %>% 
+    as.data.frame()
   return(df)
 }
