@@ -171,7 +171,7 @@ This can be used to filter out play stats types when calling functions before ha
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 22 rows and 2 variables:</p><dl'>
-  <dt>id</dt><dd><p>Referencing play id</p></dd>
+  <dt>play_stat_type_id</dt><dd><p>Referencing play stat type ID</p></dd>
   <dt>name</dt><dd><p>Type of play stats</p></dd>
   ...
 
@@ -180,29 +180,29 @@ This can be used to filter out play stats types when calling functions before ha
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_play_stats_types</span>()</div><div class='output co'>#&gt;    id                name
-#&gt; 1   1        Incompletion
-#&gt; 2   2              Target
-#&gt; 3   3        Pass Breakup
-#&gt; 4   4          Completion
-#&gt; 5   5           Reception
-#&gt; 6   6              Tackle
-#&gt; 7   7                Rush
-#&gt; 8   8              Fumble
-#&gt; 9   9       Fumble Forced
-#&gt; 10 10    Fumble Recovered
-#&gt; 11 11          Sack Taken
-#&gt; 12 12                Sack
-#&gt; 13 13             Kickoff
-#&gt; 14 14         Onside Kick
-#&gt; 15 15      Kickoff Return
-#&gt; 16 16                Punt
-#&gt; 17 17          Punt Block
-#&gt; 18 18  FG Attempt Blocked
-#&gt; 19 19    Field Goal Block
-#&gt; 20 20 Interception Thrown
-#&gt; 21 21        Interception
-#&gt; 22 22           Touchdown</div><div class='input'>
+<span class='fu'>cfb_play_stats_types</span>()</div><div class='output co'>#&gt;    play_stat_type_id                name
+#&gt; 1                  1        Incompletion
+#&gt; 2                  2              Target
+#&gt; 3                  3        Pass Breakup
+#&gt; 4                  4          Completion
+#&gt; 5                  5           Reception
+#&gt; 6                  6              Tackle
+#&gt; 7                  7                Rush
+#&gt; 8                  8              Fumble
+#&gt; 9                  9       Fumble Forced
+#&gt; 10                10    Fumble Recovered
+#&gt; 11                11          Sack Taken
+#&gt; 12                12                Sack
+#&gt; 13                13             Kickoff
+#&gt; 14                14         Onside Kick
+#&gt; 15                15      Kickoff Return
+#&gt; 16                16                Punt
+#&gt; 17                17          Punt Block
+#&gt; 18                18  FG Attempt Blocked
+#&gt; 19                19    Field Goal Block
+#&gt; 20                20 Interception Thrown
+#&gt; 21                21        Interception
+#&gt; 22                22           Touchdown</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

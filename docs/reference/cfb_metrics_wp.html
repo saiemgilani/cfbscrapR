@@ -171,7 +171,7 @@
     <tr>
       <th>game_id</th>
       <td><p>(<em>Integer</em> required): Game ID filter for querying a single game<br />
-Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_info()</a></code> function</p></td>
+Can be found using the <code>cfbscrapR::cfb_game_info()</code> function</p></td>
     </tr>
     <tr>
       <th>adjust_for_spread</th>
@@ -182,7 +182,7 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_metrics_wp</span>(<span class='kw'>game_id</span> <span class='kw'>=</span> <span class='fl'>401012356</span>)</div><div class='output co'>#&gt;                 playId
+<span class='fu'>cfb_metrics_wp</span>(<span class='kw'>game_id</span> <span class='kw'>=</span> <span class='fl'>401012356</span>)</div><div class='output co'>#&gt;                play_id
 #&gt; 1   401012356101855402
 #&gt; 2   401012356101855901
 #&gt; 3   401012356101856401
@@ -407,7 +407,7 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 #&gt; 222 401012356111000320
 #&gt; 223 401012356111000321
 #&gt; 224                  0
-#&gt;                                                                                                                                                                                                                                                                                                                                             playText
+#&gt;                                                                                                                                                                                                                                                                                                                                            play_text
 #&gt; 1                                                                                                                                                                                                                                                                               Joe Burrow pass complete to Lanard Fournette for 9 yds to the LSU 34
 #&gt; 2                                                                                                                                                                                                                                                                                             Nick Brossette run for a loss of 2 yards to the LSU 32
 #&gt; 3                                                                                                                                                                                                                                                                                                                         Joe Burrow pass incomplete
@@ -632,456 +632,456 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 #&gt; 222                                                                                                                                                                                                                                                                                       LSU Penalty, Unsportsmanlike Conduct ( Yards) to the LSU 1
 #&gt; 223                                                                                                                                                                                                                                                                                           TEXAS A&amp;M Penalty, False Start (-4 Yards) to the LSU 5
 #&gt; 224                                                                                                                                                                                                                                                                                                                                       Game ended
-#&gt;     homeId      home awayId away spread homeBall homeScore awayScore down
-#&gt; 1      245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    1
-#&gt; 2      245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    2
-#&gt; 3      245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    3
-#&gt; 4      245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    4
-#&gt; 5      245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    1
-#&gt; 6      245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    2
-#&gt; 7      245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    3
-#&gt; 8      245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    4
-#&gt; 9      245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    1
-#&gt; 10     245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    2
-#&gt; 11     245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    3
-#&gt; 12     245 Texas A&amp;M     99  LSU     -3    FALSE         0         0    4
-#&gt; 13     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    1
-#&gt; 14     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    2
-#&gt; 15     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    3
-#&gt; 16     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    1
-#&gt; 17     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    2
-#&gt; 18     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    1
-#&gt; 19     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    2
-#&gt; 20     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    1
-#&gt; 21     245 Texas A&amp;M     99  LSU     -3     TRUE         0         0    2
-#&gt; 22     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    1
-#&gt; 23     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    1
-#&gt; 24     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    2
-#&gt; 25     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    3
-#&gt; 26     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    1
-#&gt; 27     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    2
-#&gt; 28     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    1
-#&gt; 29     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    1
-#&gt; 30     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    2
-#&gt; 31     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    1
-#&gt; 32     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    2
-#&gt; 33     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    3
-#&gt; 34     245 Texas A&amp;M     99  LSU     -3    FALSE         7         0    1
-#&gt; 35     245 Texas A&amp;M     99  LSU     -3    FALSE         7         7    2
-#&gt; 36     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    1
-#&gt; 37     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    2
-#&gt; 38     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    1
-#&gt; 39     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    2
-#&gt; 40     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    3
-#&gt; 41     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    1
-#&gt; 42     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    1
-#&gt; 43     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    2
-#&gt; 44     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    3
-#&gt; 45     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    1
-#&gt; 46     245 Texas A&amp;M     99  LSU     -3     TRUE         7         7    2
-#&gt; 47     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    3
-#&gt; 48     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    1
-#&gt; 49     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    1
-#&gt; 50     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    1
-#&gt; 51     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    2
-#&gt; 52     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    3
-#&gt; 53     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    3
-#&gt; 54     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    1
-#&gt; 55     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    1
-#&gt; 56     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    1
-#&gt; 57     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    2
-#&gt; 58     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    3
-#&gt; 59     245 Texas A&amp;M     99  LSU     -3    FALSE        14         7    4
-#&gt; 60     245 Texas A&amp;M     99  LSU     -3     TRUE        14         7    1
-#&gt; 61     245 Texas A&amp;M     99  LSU     -3     TRUE        14         7    1
-#&gt; 62     245 Texas A&amp;M     99  LSU     -3     TRUE        14         7    2
-#&gt; 63     245 Texas A&amp;M     99  LSU     -3     TRUE        14         7    3
-#&gt; 64     245 Texas A&amp;M     99  LSU     -3     TRUE        14         7    1
-#&gt; 65     245 Texas A&amp;M     99  LSU     -3     TRUE        14         7    2
-#&gt; 66     245 Texas A&amp;M     99  LSU     -3     TRUE        14         7    3
-#&gt; 67     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    4
-#&gt; 68     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    1
-#&gt; 69     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    2
-#&gt; 70     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    3
-#&gt; 71     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    1
-#&gt; 72     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    2
-#&gt; 73     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    1
-#&gt; 74     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    2
-#&gt; 75     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    3
-#&gt; 76     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    1
-#&gt; 77     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    2
-#&gt; 78     245 Texas A&amp;M     99  LSU     -3    FALSE        17         7    3
-#&gt; 79     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    4
-#&gt; 80     245 Texas A&amp;M     99  LSU     -3     TRUE        17        10    1
-#&gt; 81     245 Texas A&amp;M     99  LSU     -3     TRUE        17        10    2
-#&gt; 82     245 Texas A&amp;M     99  LSU     -3     TRUE        17        10    3
-#&gt; 83     245 Texas A&amp;M     99  LSU     -3     TRUE        17        10    4
-#&gt; 84     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    1
-#&gt; 85     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    2
-#&gt; 86     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    1
-#&gt; 87     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    1
-#&gt; 88     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    2
-#&gt; 89     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    3
-#&gt; 90     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    1
-#&gt; 91     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    2
-#&gt; 92     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    3
-#&gt; 93     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    1
-#&gt; 94     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    2
-#&gt; 95     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    3
-#&gt; 96     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    1
-#&gt; 97     245 Texas A&amp;M     99  LSU     -3    FALSE        17        10    2
-#&gt; 98     245 Texas A&amp;M     99  LSU     -3    FALSE        17        17    3
-#&gt; 99     245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    1
-#&gt; 100    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    2
-#&gt; 101    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    3
-#&gt; 102    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    4
-#&gt; 103    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    1
-#&gt; 104    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    2
-#&gt; 105    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    1
-#&gt; 106    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    2
-#&gt; 107    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    3
-#&gt; 108    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    1
-#&gt; 109    245 Texas A&amp;M     99  LSU     -3     TRUE        17        17    2
-#&gt; 110    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    3
-#&gt; 111    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    1
-#&gt; 112    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    2
-#&gt; 113    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    3
-#&gt; 114    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    4
-#&gt; 115    245 Texas A&amp;M     99  LSU     -3     TRUE        24        17    1
-#&gt; 116    245 Texas A&amp;M     99  LSU     -3     TRUE        24        17    2
-#&gt; 117    245 Texas A&amp;M     99  LSU     -3     TRUE        24        17    3
-#&gt; 118    245 Texas A&amp;M     99  LSU     -3     TRUE        24        17    4
-#&gt; 119    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    1
-#&gt; 120    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    1
-#&gt; 121    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    1
-#&gt; 122    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    2
-#&gt; 123    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    3
-#&gt; 124    245 Texas A&amp;M     99  LSU     -3    FALSE        24        17    4
-#&gt; 125    245 Texas A&amp;M     99  LSU     -3     TRUE        24        17    1
-#&gt; 126    245 Texas A&amp;M     99  LSU     -3     TRUE        24        17    2
-#&gt; 127    245 Texas A&amp;M     99  LSU     -3     TRUE        24        17    3
-#&gt; 128    245 Texas A&amp;M     99  LSU     -3    FALSE        24        24    1
-#&gt; 129    245 Texas A&amp;M     99  LSU     -3     TRUE        24        24    1
-#&gt; 130    245 Texas A&amp;M     99  LSU     -3     TRUE        24        24    2
-#&gt; 131    245 Texas A&amp;M     99  LSU     -3     TRUE        24        24    3
-#&gt; 132    245 Texas A&amp;M     99  LSU     -3     TRUE        24        24    4
-#&gt; 133    245 Texas A&amp;M     99  LSU     -3    FALSE        24        24    1
-#&gt; 134    245 Texas A&amp;M     99  LSU     -3    FALSE        24        24    1
-#&gt; 135    245 Texas A&amp;M     99  LSU     -3    FALSE        24        24    2
-#&gt; 136    245 Texas A&amp;M     99  LSU     -3    FALSE        24        31    1
-#&gt; 137    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 138    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    2
-#&gt; 139    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 140    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    2
-#&gt; 141    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 142    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    2
-#&gt; 143    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    3
-#&gt; 144    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 145    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    2
-#&gt; 146    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    3
-#&gt; 147    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    4
-#&gt; 148    245 Texas A&amp;M     99  LSU     -3    FALSE        24        31    1
-#&gt; 149    245 Texas A&amp;M     99  LSU     -3    FALSE        24        31    2
-#&gt; 150    245 Texas A&amp;M     99  LSU     -3    FALSE        24        31    3
-#&gt; 151    245 Texas A&amp;M     99  LSU     -3    FALSE        24        31    4
-#&gt; 152    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 153    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    2
-#&gt; 154    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    3
-#&gt; 155    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 156    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 157    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    2
-#&gt; 158    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    3
-#&gt; 159    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    4
-#&gt; 160    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    1
-#&gt; 161    245 Texas A&amp;M     99  LSU     -3     TRUE        24        31    2
-#&gt; 162    245 Texas A&amp;M     99  LSU     -3    FALSE        31        31    2
-#&gt; 163    245 Texas A&amp;M     99  LSU     -3    FALSE        31        31    1
-#&gt; 164    245 Texas A&amp;M     99  LSU     -3    FALSE        31        31    2
-#&gt; 165    245 Texas A&amp;M     99  LSU     -3    FALSE        31        31    3
-#&gt; 166    245 Texas A&amp;M     99  LSU     -3    FALSE        31        31    3
-#&gt; 167    245 Texas A&amp;M     99  LSU     -3    FALSE        31        34    4
-#&gt; 168    245 Texas A&amp;M     99  LSU     -3     TRUE        31        34    1
-#&gt; 169    245 Texas A&amp;M     99  LSU     -3     TRUE        31        34    2
-#&gt; 170    245 Texas A&amp;M     99  LSU     -3     TRUE        31        34    1
-#&gt; 171    245 Texas A&amp;M     99  LSU     -3     TRUE        31        34    2
-#&gt; 172    245 Texas A&amp;M     99  LSU     -3     TRUE        31        34    1
-#&gt; 173    245 Texas A&amp;M     99  LSU     -3     TRUE        31        34    2
-#&gt; 174    245 Texas A&amp;M     99  LSU     -3     TRUE        31        34    3
-#&gt; 175    245 Texas A&amp;M     99  LSU     -3    FALSE        34        34    4
-#&gt; 176    245 Texas A&amp;M     99  LSU     -3     TRUE        34        34    1
-#&gt; 177    245 Texas A&amp;M     99  LSU     -3     TRUE        34        34    2
-#&gt; 178    245 Texas A&amp;M     99  LSU     -3     TRUE        34        34    1
-#&gt; 179    245 Texas A&amp;M     99  LSU     -3    FALSE        41        34    2
-#&gt; 180    245 Texas A&amp;M     99  LSU     -3    FALSE        41        34    1
-#&gt; 181    245 Texas A&amp;M     99  LSU     -3    FALSE        41        34    2
-#&gt; 182    245 Texas A&amp;M     99  LSU     -3    FALSE        41        34    1
-#&gt; 183    245 Texas A&amp;M     99  LSU     -3    FALSE        41        34    2
-#&gt; 184    245 Texas A&amp;M     99  LSU     -3    FALSE        41        34    3
-#&gt; 185    245 Texas A&amp;M     99  LSU     -3    FALSE        41        41    4
-#&gt; 186    245 Texas A&amp;M     99  LSU     -3    FALSE        41        49    1
-#&gt; 187    245 Texas A&amp;M     99  LSU     -3     TRUE        41        49    1
-#&gt; 188    245 Texas A&amp;M     99  LSU     -3    FALSE        49        49    2
-#&gt; 189    245 Texas A&amp;M     99  LSU     -3     TRUE        49        49    1
-#&gt; 190    245 Texas A&amp;M     99  LSU     -3     TRUE        49        49    1
-#&gt; 191    245 Texas A&amp;M     99  LSU     -3     TRUE        49        49    2
-#&gt; 192    245 Texas A&amp;M     99  LSU     -3     TRUE        49        49    1
-#&gt; 193    245 Texas A&amp;M     99  LSU     -3     TRUE        49        49    2
-#&gt; 194    245 Texas A&amp;M     99  LSU     -3     TRUE        49        49    3
-#&gt; 195    245 Texas A&amp;M     99  LSU     -3    FALSE        52        49    4
-#&gt; 196    245 Texas A&amp;M     99  LSU     -3    FALSE        52        49    1
-#&gt; 197    245 Texas A&amp;M     99  LSU     -3    FALSE        52        49    1
-#&gt; 198    245 Texas A&amp;M     99  LSU     -3    FALSE        52        49    2
-#&gt; 199    245 Texas A&amp;M     99  LSU     -3    FALSE        52        49    3
-#&gt; 200    245 Texas A&amp;M     99  LSU     -3    FALSE        52        49    4
-#&gt; 201    245 Texas A&amp;M     99  LSU     -3    FALSE        52        52    4
-#&gt; 202    245 Texas A&amp;M     99  LSU     -3    FALSE        52        52    1
-#&gt; 203    245 Texas A&amp;M     99  LSU     -3    FALSE        52        52    1
-#&gt; 204    245 Texas A&amp;M     99  LSU     -3    FALSE        52        58    2
-#&gt; 205    245 Texas A&amp;M     99  LSU     -3     TRUE        52        58    1
-#&gt; 206    245 Texas A&amp;M     99  LSU     -3     TRUE        52        58    1
-#&gt; 207    245 Texas A&amp;M     99  LSU     -3     TRUE        52        58    2
-#&gt; 208    245 Texas A&amp;M     99  LSU     -3     TRUE        52        58    3
-#&gt; 209    245 Texas A&amp;M     99  LSU     -3    FALSE        58        58    4
-#&gt; 210    245 Texas A&amp;M     99  LSU     -3    FALSE        64        58    1
-#&gt; 211    245 Texas A&amp;M     99  LSU     -3    FALSE        66        58    1
-#&gt; 212    245 Texas A&amp;M     99  LSU     -3    FALSE        66        58    2
-#&gt; 213    245 Texas A&amp;M     99  LSU     -3    FALSE        66        58    3
-#&gt; 214    245 Texas A&amp;M     99  LSU     -3    FALSE        66        66    1
-#&gt; 215    245 Texas A&amp;M     99  LSU     -3    FALSE        66        66    1
-#&gt; 216    245 Texas A&amp;M     99  LSU     -3    FALSE        66        72    1
-#&gt; 217    245 Texas A&amp;M     99  LSU     -3     TRUE        66        72    1
-#&gt; 218    245 Texas A&amp;M     99  LSU     -3     TRUE        66        72    1
-#&gt; 219    245 Texas A&amp;M     99  LSU     -3     TRUE        66        72    2
-#&gt; 220    245 Texas A&amp;M     99  LSU     -3    FALSE        74        72    3
-#&gt; 221    245 Texas A&amp;M     99  LSU     -3     TRUE        66        72    3
-#&gt; 222    245 Texas A&amp;M     99  LSU     -3     TRUE        66        72    3
-#&gt; 223    245 Texas A&amp;M     99  LSU     -3     TRUE        66        72    3
-#&gt; 224    245 Texas A&amp;M     99  LSU     -3     TRUE        66        72    0
-#&gt;     distance  homeWinProb playNumber yardLine
-#&gt; 1         10 0.5309110582          0       NA
-#&gt; 2          1 0.5110030472          1       NA
-#&gt; 3          3 0.5313439369          2       NA
-#&gt; 4          3 0.5576224923          3       NA
-#&gt; 5         10 0.6078538299          4       NA
-#&gt; 6          6 0.5900158286          5       NA
-#&gt; 7          9 0.5346239805          6       NA
-#&gt; 8         21 0.4619548917          7       NA
-#&gt; 9         10 0.5077472329          8       NA
-#&gt; 10         1 0.5024577379          9       NA
-#&gt; 11         3 0.5092986226         10       NA
-#&gt; 12         3  0.535243541         11       NA
-#&gt; 13        10 0.5653628707         12       NA
-#&gt; 14         7 0.5495890379         13       NA
-#&gt; 15         1 0.5755220652         14       NA
-#&gt; 16        10 0.5871855021         15       NA
-#&gt; 17         3 0.5901114941         16       NA
-#&gt; 18        10 0.6266076565         17       NA
-#&gt; 19        10 0.6321445704         18       NA
-#&gt; 20        10 0.6872162223         19       NA
-#&gt; 21         1 0.6165428758         20       NA
-#&gt; 22        10 0.6440185905         21       NA
-#&gt; 23        10 0.7128997445         22       NA
-#&gt; 24         2 0.6770386994         23       NA
-#&gt; 25         1 0.6811478436         24       NA
-#&gt; 26        10 0.7019272149         25       NA
-#&gt; 27         7 0.7031005919         26       NA
-#&gt; 28        10 0.6371507049         27       NA
-#&gt; 29         5 0.6242846251         28       NA
-#&gt; 30         8 0.6636233628         29       NA
-#&gt; 31        10 0.6298615634         30       NA
-#&gt; 32        10 0.6513129473         31       NA
-#&gt; 33         5  0.657109499         32       NA
-#&gt; 34        10 0.6283326447         33       NA
-#&gt; 35         7 0.5660803914         34       NA
-#&gt; 36        10 0.5500501394         35       NA
-#&gt; 37        10 0.5201901793         36       NA
-#&gt; 38        10 0.5722653866         37       NA
-#&gt; 39         8 0.5602671504         38       NA
-#&gt; 40         8 0.5311129093         39       NA
-#&gt; 41        10 0.5520117283         40       NA
-#&gt; 42        10 0.5676673055         41       NA
-#&gt; 43        10 0.5554324985         42       NA
-#&gt; 44         1 0.5902609229         43       NA
-#&gt; 45        10  0.616245985         44       NA
-#&gt; 46        12 0.6078112125         45       NA
-#&gt; 47        10 0.7114808857         46       NA
-#&gt; 48        10 0.6757408381         47       NA
-#&gt; 49        10 0.6693641245         48       NA
-#&gt; 50        10 0.6737529337         49       NA
-#&gt; 51         5 0.6471390724         50       NA
-#&gt; 52         5 0.6400362849         51       NA
-#&gt; 53        10 0.7055021524         52       NA
-#&gt; 54        10 0.6863663793         53       NA
-#&gt; 55        10 0.6911851466         54       NA
-#&gt; 56        15 0.6948923767         55       NA
-#&gt; 57        24 0.7473595142         56       NA
-#&gt; 58        22 0.7851156145         57       NA
-#&gt; 59        22 0.8120647967         58       NA
-#&gt; 60        10 0.8288086653         59       NA
-#&gt; 61        10 0.8350955844         60       NA
-#&gt; 62         6 0.8179544806         61       NA
-#&gt; 63         8 0.7940586805         62       NA
-#&gt; 64        10 0.8280963898         63       NA
-#&gt; 65         7 0.8336825371         64       NA
-#&gt; 66         7 0.8044400811         65       NA
-#&gt; 67         7 0.8072883338         66       NA
-#&gt; 68        10 0.8207280785         67       NA
-#&gt; 69        10 0.8297352493         68       NA
-#&gt; 70        10   0.84661825         69       NA
-#&gt; 71        10 0.8204991221         70       NA
-#&gt; 72         3 0.7550158501         71       NA
-#&gt; 73        10  0.817411229         72       NA
-#&gt; 74        10 0.8220027089         73       NA
-#&gt; 75         6 0.7843046486         74       NA
-#&gt; 76        10 0.8086663485         75       NA
-#&gt; 77        10  0.824273169         76       NA
-#&gt; 78        10 0.8226787299         77       NA
-#&gt; 79         9 0.9213572741         78       NA
-#&gt; 80        10 0.8177947402         79       NA
-#&gt; 81         8 0.8014702797         80       NA
-#&gt; 82         8 0.7508708835         81       NA
-#&gt; 83         8  0.684730649         82       NA
-#&gt; 84        10 0.7614268959         83       NA
-#&gt; 85         1 0.7558920681         84       NA
-#&gt; 86        10  0.720946312         85       NA
-#&gt; 87        10 0.6694856286         86       NA
-#&gt; 88        10 0.7119632661         87       NA
-#&gt; 89         4 0.7375468612         88       NA
-#&gt; 90        10 0.6473286748         89       NA
-#&gt; 91         8 0.6752532125         90       NA
-#&gt; 92         8 0.7405240238         91       NA
-#&gt; 93        10  0.643884927         92       NA
-#&gt; 94         1 0.7394858897         93       NA
-#&gt; 95         1 0.7258644104         94       NA
-#&gt; 96        10 0.6483596563         95       NA
-#&gt; 97        11 0.6627804339         96       NA
-#&gt; 98         6 0.6540874839         97       NA
-#&gt; 99        10 0.5522078872         98       NA
-#&gt; 100       10 0.5015313625         99       NA
-#&gt; 101       10  0.407189697        100       NA
-#&gt; 102       10 0.3061176538        101       NA
-#&gt; 103       10 0.6661472321        102       NA
-#&gt; 104        6 0.6229013801        103       NA
-#&gt; 105       10 0.6708830595        104       NA
-#&gt; 106       10 0.6854287386        105       NA
-#&gt; 107        7 0.6374052167        106       NA
-#&gt; 108        8 0.6175405383        107       NA
-#&gt; 109        5 0.5816728473        108       NA
-#&gt; 110        1 0.7491999865        109       NA
-#&gt; 111       10 0.7856446505        110       NA
-#&gt; 112       18 0.7965033501        111       NA
-#&gt; 113       11 0.8639397621        112       NA
-#&gt; 114       14 0.8909239769        113       NA
-#&gt; 115       10 0.8165740371        114       NA
-#&gt; 116        9 0.8057007194        115       NA
-#&gt; 117        9 0.7224988937        116       NA
-#&gt; 118       16 0.6318364143        117       NA
-#&gt; 119       10  0.833277449        118       NA
-#&gt; 120       10 0.7858665437        119       NA
-#&gt; 121       10  0.753345713        120       NA
-#&gt; 122        6 0.7688445151        121       NA
-#&gt; 123        9 0.8443227857        122       NA
-#&gt; 124       12  0.893756777        123       NA
-#&gt; 125       10 0.8501077294        124       NA
-#&gt; 126        6 0.8277670741        125       NA
-#&gt; 127        2 0.8273996711        126       NA
-#&gt; 128       10 0.3679335713        127       NA
-#&gt; 129       10 0.5319604278        128       NA
-#&gt; 130       16 0.4428097904        129       NA
-#&gt; 131       16 0.3582325876        130       NA
-#&gt; 132       11  0.293130368        131       NA
-#&gt; 133       10  0.454082787        132       NA
-#&gt; 134       10 0.3702993393        133       NA
-#&gt; 135        1  0.501755476        134       NA
-#&gt; 136       10 0.2263577282        135       NA
-#&gt; 137       10   0.13323991        136       NA
-#&gt; 138        3 0.1303615719        137       NA
-#&gt; 139       10 0.1544567645        138       NA
-#&gt; 140        6 0.1225117967        139       NA
-#&gt; 141       10 0.1834712327        140       NA
-#&gt; 142       10 0.1356659234        141       NA
-#&gt; 143        1 0.1211953685        142       NA
-#&gt; 144       10 0.1941443533        143       NA
-#&gt; 145        5 0.1316401511        144       NA
-#&gt; 146        5 0.1120893732        145       NA
-#&gt; 147        5 0.1135807261        146       NA
-#&gt; 148       10 0.0873672366        147       NA
-#&gt; 149        9  0.063796699        148       NA
-#&gt; 150        4  0.050801754        149       NA
-#&gt; 151        5 0.0528671145        150       NA
-#&gt; 152       10 0.1029520929        151       NA
-#&gt; 153       10 0.1118806303        152       NA
-#&gt; 154       10 0.0820130929        153       NA
-#&gt; 155       10 0.1036973223        154       NA
-#&gt; 156       10 0.1125631779        155       NA
-#&gt; 157       10 0.1138841212        156       NA
-#&gt; 158       18 0.0876323283        157       NA
-#&gt; 159       18 0.0607992336        158       NA
-#&gt; 160       10 0.1266185194        159       NA
-#&gt; 161       10 0.1143968776        160       NA
-#&gt; 162       10 0.2906163335        161       NA
-#&gt; 163       10 0.4246049523        162       NA
-#&gt; 164        7 0.4760936499        163       NA
-#&gt; 165        7 0.4638915658        164       NA
-#&gt; 166       12 0.4106157422        165       NA
-#&gt; 167       17 0.2941554189        166       NA
-#&gt; 168       10  0.357571274        167       NA
-#&gt; 169       10 0.3722866476        168       NA
-#&gt; 170       10 0.3701277971        169       NA
-#&gt; 171        1 0.5529020429        170       NA
-#&gt; 172        1 0.5539122224        171       NA
-#&gt; 173        3 0.5158230662        172       NA
-#&gt; 174        6 0.4505627751        173       NA
-#&gt; 175        6 0.4942849874        174       NA
-#&gt; 176       10 0.5207830667        175       NA
-#&gt; 177       10 0.5406781435        176       NA
-#&gt; 178        8 0.6091351509        177       NA
-#&gt; 179        3 0.4693945646        178       NA
-#&gt; 180       10 0.6463222504        179       NA
-#&gt; 181        4 0.5767605901        180       NA
-#&gt; 182       10 0.6435295939        181       NA
-#&gt; 183       10 0.6498273015        182       NA
-#&gt; 184        4 0.4853217006        183       NA
-#&gt; 185        2 0.7497461438        184       NA
-#&gt; 186       10 0.3133545816        185       NA
-#&gt; 187       10 0.3133545816        186       NA
-#&gt; 188       10 0.5021013319        187       NA
-#&gt; 189       10 0.5708565712        188       NA
-#&gt; 190       10 0.6213651299        189       NA
-#&gt; 191       11 0.5446588993        190       NA
-#&gt; 192        8  0.680134654        191       NA
-#&gt; 193        4 0.6957650781        192       NA
-#&gt; 194        4 0.6936993003        193       NA
-#&gt; 195        4 0.4256520271        194       NA
-#&gt; 196       10 0.5179019868        195       NA
-#&gt; 197        8 0.4203583002        196       NA
-#&gt; 198        6 0.4152936935        197       NA
-#&gt; 199        6 0.4468290806        198       NA
-#&gt; 200        3  0.401830852        199       NA
-#&gt; 201        8   0.59383744        200       NA
-#&gt; 202       10  0.386148572        201       NA
-#&gt; 203       10 0.3303100467        202       NA
-#&gt; 204        8  0.478066802        203       NA
-#&gt; 205       10 0.4319972098        204       NA
-#&gt; 206        4 0.6160120368        205       NA
-#&gt; 207        5 0.5527219772        206       NA
-#&gt; 208        6 0.4902683794        207       NA
-#&gt; 209        6 0.3706777692        208       NA
-#&gt; 210       10 0.4991689324        209       NA
-#&gt; 211       10 0.5436811447        210       NA
-#&gt; 212        2 0.4189081788        211       NA
-#&gt; 213        6 0.5516928434        212       NA
-#&gt; 214        4 0.7975836992        213       NA
-#&gt; 215       10 0.3104194999        214       NA
-#&gt; 216       10 0.5770714879        215       NA
-#&gt; 217       10 0.5218205452        216       NA
-#&gt; 218       10 0.5714426041        217       NA
-#&gt; 219       15 0.4262104332        218       NA
-#&gt; 220       15 0.5140629411        219       NA
-#&gt; 221        3 0.6403118968        220       NA
-#&gt; 222        1 0.6739666462        221       NA
-#&gt; 223        1 0.6739666462        222       NA
-#&gt; 224        0            1        223       65</div><div class='input'>
+#&gt;     home_id      home away_id away spread home_ball home_score away_score down
+#&gt; 1       245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    1
+#&gt; 2       245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    2
+#&gt; 3       245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    3
+#&gt; 4       245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    4
+#&gt; 5       245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    1
+#&gt; 6       245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    2
+#&gt; 7       245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    3
+#&gt; 8       245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    4
+#&gt; 9       245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    1
+#&gt; 10      245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    2
+#&gt; 11      245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    3
+#&gt; 12      245 Texas A&amp;M      99  LSU     -3     FALSE          0          0    4
+#&gt; 13      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    1
+#&gt; 14      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    2
+#&gt; 15      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    3
+#&gt; 16      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    1
+#&gt; 17      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    2
+#&gt; 18      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    1
+#&gt; 19      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    2
+#&gt; 20      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    1
+#&gt; 21      245 Texas A&amp;M      99  LSU     -3      TRUE          0          0    2
+#&gt; 22      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    1
+#&gt; 23      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    1
+#&gt; 24      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    2
+#&gt; 25      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    3
+#&gt; 26      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    1
+#&gt; 27      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    2
+#&gt; 28      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    1
+#&gt; 29      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    1
+#&gt; 30      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    2
+#&gt; 31      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    1
+#&gt; 32      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    2
+#&gt; 33      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    3
+#&gt; 34      245 Texas A&amp;M      99  LSU     -3     FALSE          7          0    1
+#&gt; 35      245 Texas A&amp;M      99  LSU     -3     FALSE          7          7    2
+#&gt; 36      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    1
+#&gt; 37      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    2
+#&gt; 38      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    1
+#&gt; 39      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    2
+#&gt; 40      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    3
+#&gt; 41      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    1
+#&gt; 42      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    1
+#&gt; 43      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    2
+#&gt; 44      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    3
+#&gt; 45      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    1
+#&gt; 46      245 Texas A&amp;M      99  LSU     -3      TRUE          7          7    2
+#&gt; 47      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    3
+#&gt; 48      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    1
+#&gt; 49      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    1
+#&gt; 50      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    1
+#&gt; 51      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    2
+#&gt; 52      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    3
+#&gt; 53      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    3
+#&gt; 54      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    1
+#&gt; 55      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    1
+#&gt; 56      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    1
+#&gt; 57      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    2
+#&gt; 58      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    3
+#&gt; 59      245 Texas A&amp;M      99  LSU     -3     FALSE         14          7    4
+#&gt; 60      245 Texas A&amp;M      99  LSU     -3      TRUE         14          7    1
+#&gt; 61      245 Texas A&amp;M      99  LSU     -3      TRUE         14          7    1
+#&gt; 62      245 Texas A&amp;M      99  LSU     -3      TRUE         14          7    2
+#&gt; 63      245 Texas A&amp;M      99  LSU     -3      TRUE         14          7    3
+#&gt; 64      245 Texas A&amp;M      99  LSU     -3      TRUE         14          7    1
+#&gt; 65      245 Texas A&amp;M      99  LSU     -3      TRUE         14          7    2
+#&gt; 66      245 Texas A&amp;M      99  LSU     -3      TRUE         14          7    3
+#&gt; 67      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    4
+#&gt; 68      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    1
+#&gt; 69      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    2
+#&gt; 70      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    3
+#&gt; 71      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    1
+#&gt; 72      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    2
+#&gt; 73      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    1
+#&gt; 74      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    2
+#&gt; 75      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    3
+#&gt; 76      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    1
+#&gt; 77      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    2
+#&gt; 78      245 Texas A&amp;M      99  LSU     -3     FALSE         17          7    3
+#&gt; 79      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    4
+#&gt; 80      245 Texas A&amp;M      99  LSU     -3      TRUE         17         10    1
+#&gt; 81      245 Texas A&amp;M      99  LSU     -3      TRUE         17         10    2
+#&gt; 82      245 Texas A&amp;M      99  LSU     -3      TRUE         17         10    3
+#&gt; 83      245 Texas A&amp;M      99  LSU     -3      TRUE         17         10    4
+#&gt; 84      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    1
+#&gt; 85      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    2
+#&gt; 86      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    1
+#&gt; 87      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    1
+#&gt; 88      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    2
+#&gt; 89      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    3
+#&gt; 90      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    1
+#&gt; 91      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    2
+#&gt; 92      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    3
+#&gt; 93      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    1
+#&gt; 94      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    2
+#&gt; 95      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    3
+#&gt; 96      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    1
+#&gt; 97      245 Texas A&amp;M      99  LSU     -3     FALSE         17         10    2
+#&gt; 98      245 Texas A&amp;M      99  LSU     -3     FALSE         17         17    3
+#&gt; 99      245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    1
+#&gt; 100     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    2
+#&gt; 101     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    3
+#&gt; 102     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    4
+#&gt; 103     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    1
+#&gt; 104     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    2
+#&gt; 105     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    1
+#&gt; 106     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    2
+#&gt; 107     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    3
+#&gt; 108     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    1
+#&gt; 109     245 Texas A&amp;M      99  LSU     -3      TRUE         17         17    2
+#&gt; 110     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    3
+#&gt; 111     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    1
+#&gt; 112     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    2
+#&gt; 113     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    3
+#&gt; 114     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    4
+#&gt; 115     245 Texas A&amp;M      99  LSU     -3      TRUE         24         17    1
+#&gt; 116     245 Texas A&amp;M      99  LSU     -3      TRUE         24         17    2
+#&gt; 117     245 Texas A&amp;M      99  LSU     -3      TRUE         24         17    3
+#&gt; 118     245 Texas A&amp;M      99  LSU     -3      TRUE         24         17    4
+#&gt; 119     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    1
+#&gt; 120     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    1
+#&gt; 121     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    1
+#&gt; 122     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    2
+#&gt; 123     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    3
+#&gt; 124     245 Texas A&amp;M      99  LSU     -3     FALSE         24         17    4
+#&gt; 125     245 Texas A&amp;M      99  LSU     -3      TRUE         24         17    1
+#&gt; 126     245 Texas A&amp;M      99  LSU     -3      TRUE         24         17    2
+#&gt; 127     245 Texas A&amp;M      99  LSU     -3      TRUE         24         17    3
+#&gt; 128     245 Texas A&amp;M      99  LSU     -3     FALSE         24         24    1
+#&gt; 129     245 Texas A&amp;M      99  LSU     -3      TRUE         24         24    1
+#&gt; 130     245 Texas A&amp;M      99  LSU     -3      TRUE         24         24    2
+#&gt; 131     245 Texas A&amp;M      99  LSU     -3      TRUE         24         24    3
+#&gt; 132     245 Texas A&amp;M      99  LSU     -3      TRUE         24         24    4
+#&gt; 133     245 Texas A&amp;M      99  LSU     -3     FALSE         24         24    1
+#&gt; 134     245 Texas A&amp;M      99  LSU     -3     FALSE         24         24    1
+#&gt; 135     245 Texas A&amp;M      99  LSU     -3     FALSE         24         24    2
+#&gt; 136     245 Texas A&amp;M      99  LSU     -3     FALSE         24         31    1
+#&gt; 137     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 138     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    2
+#&gt; 139     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 140     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    2
+#&gt; 141     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 142     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    2
+#&gt; 143     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    3
+#&gt; 144     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 145     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    2
+#&gt; 146     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    3
+#&gt; 147     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    4
+#&gt; 148     245 Texas A&amp;M      99  LSU     -3     FALSE         24         31    1
+#&gt; 149     245 Texas A&amp;M      99  LSU     -3     FALSE         24         31    2
+#&gt; 150     245 Texas A&amp;M      99  LSU     -3     FALSE         24         31    3
+#&gt; 151     245 Texas A&amp;M      99  LSU     -3     FALSE         24         31    4
+#&gt; 152     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 153     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    2
+#&gt; 154     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    3
+#&gt; 155     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 156     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 157     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    2
+#&gt; 158     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    3
+#&gt; 159     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    4
+#&gt; 160     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    1
+#&gt; 161     245 Texas A&amp;M      99  LSU     -3      TRUE         24         31    2
+#&gt; 162     245 Texas A&amp;M      99  LSU     -3     FALSE         31         31    2
+#&gt; 163     245 Texas A&amp;M      99  LSU     -3     FALSE         31         31    1
+#&gt; 164     245 Texas A&amp;M      99  LSU     -3     FALSE         31         31    2
+#&gt; 165     245 Texas A&amp;M      99  LSU     -3     FALSE         31         31    3
+#&gt; 166     245 Texas A&amp;M      99  LSU     -3     FALSE         31         31    3
+#&gt; 167     245 Texas A&amp;M      99  LSU     -3     FALSE         31         34    4
+#&gt; 168     245 Texas A&amp;M      99  LSU     -3      TRUE         31         34    1
+#&gt; 169     245 Texas A&amp;M      99  LSU     -3      TRUE         31         34    2
+#&gt; 170     245 Texas A&amp;M      99  LSU     -3      TRUE         31         34    1
+#&gt; 171     245 Texas A&amp;M      99  LSU     -3      TRUE         31         34    2
+#&gt; 172     245 Texas A&amp;M      99  LSU     -3      TRUE         31         34    1
+#&gt; 173     245 Texas A&amp;M      99  LSU     -3      TRUE         31         34    2
+#&gt; 174     245 Texas A&amp;M      99  LSU     -3      TRUE         31         34    3
+#&gt; 175     245 Texas A&amp;M      99  LSU     -3     FALSE         34         34    4
+#&gt; 176     245 Texas A&amp;M      99  LSU     -3      TRUE         34         34    1
+#&gt; 177     245 Texas A&amp;M      99  LSU     -3      TRUE         34         34    2
+#&gt; 178     245 Texas A&amp;M      99  LSU     -3      TRUE         34         34    1
+#&gt; 179     245 Texas A&amp;M      99  LSU     -3     FALSE         41         34    2
+#&gt; 180     245 Texas A&amp;M      99  LSU     -3     FALSE         41         34    1
+#&gt; 181     245 Texas A&amp;M      99  LSU     -3     FALSE         41         34    2
+#&gt; 182     245 Texas A&amp;M      99  LSU     -3     FALSE         41         34    1
+#&gt; 183     245 Texas A&amp;M      99  LSU     -3     FALSE         41         34    2
+#&gt; 184     245 Texas A&amp;M      99  LSU     -3     FALSE         41         34    3
+#&gt; 185     245 Texas A&amp;M      99  LSU     -3     FALSE         41         41    4
+#&gt; 186     245 Texas A&amp;M      99  LSU     -3     FALSE         41         49    1
+#&gt; 187     245 Texas A&amp;M      99  LSU     -3      TRUE         41         49    1
+#&gt; 188     245 Texas A&amp;M      99  LSU     -3     FALSE         49         49    2
+#&gt; 189     245 Texas A&amp;M      99  LSU     -3      TRUE         49         49    1
+#&gt; 190     245 Texas A&amp;M      99  LSU     -3      TRUE         49         49    1
+#&gt; 191     245 Texas A&amp;M      99  LSU     -3      TRUE         49         49    2
+#&gt; 192     245 Texas A&amp;M      99  LSU     -3      TRUE         49         49    1
+#&gt; 193     245 Texas A&amp;M      99  LSU     -3      TRUE         49         49    2
+#&gt; 194     245 Texas A&amp;M      99  LSU     -3      TRUE         49         49    3
+#&gt; 195     245 Texas A&amp;M      99  LSU     -3     FALSE         52         49    4
+#&gt; 196     245 Texas A&amp;M      99  LSU     -3     FALSE         52         49    1
+#&gt; 197     245 Texas A&amp;M      99  LSU     -3     FALSE         52         49    1
+#&gt; 198     245 Texas A&amp;M      99  LSU     -3     FALSE         52         49    2
+#&gt; 199     245 Texas A&amp;M      99  LSU     -3     FALSE         52         49    3
+#&gt; 200     245 Texas A&amp;M      99  LSU     -3     FALSE         52         49    4
+#&gt; 201     245 Texas A&amp;M      99  LSU     -3     FALSE         52         52    4
+#&gt; 202     245 Texas A&amp;M      99  LSU     -3     FALSE         52         52    1
+#&gt; 203     245 Texas A&amp;M      99  LSU     -3     FALSE         52         52    1
+#&gt; 204     245 Texas A&amp;M      99  LSU     -3     FALSE         52         58    2
+#&gt; 205     245 Texas A&amp;M      99  LSU     -3      TRUE         52         58    1
+#&gt; 206     245 Texas A&amp;M      99  LSU     -3      TRUE         52         58    1
+#&gt; 207     245 Texas A&amp;M      99  LSU     -3      TRUE         52         58    2
+#&gt; 208     245 Texas A&amp;M      99  LSU     -3      TRUE         52         58    3
+#&gt; 209     245 Texas A&amp;M      99  LSU     -3     FALSE         58         58    4
+#&gt; 210     245 Texas A&amp;M      99  LSU     -3     FALSE         64         58    1
+#&gt; 211     245 Texas A&amp;M      99  LSU     -3     FALSE         66         58    1
+#&gt; 212     245 Texas A&amp;M      99  LSU     -3     FALSE         66         58    2
+#&gt; 213     245 Texas A&amp;M      99  LSU     -3     FALSE         66         58    3
+#&gt; 214     245 Texas A&amp;M      99  LSU     -3     FALSE         66         66    1
+#&gt; 215     245 Texas A&amp;M      99  LSU     -3     FALSE         66         66    1
+#&gt; 216     245 Texas A&amp;M      99  LSU     -3     FALSE         66         72    1
+#&gt; 217     245 Texas A&amp;M      99  LSU     -3      TRUE         66         72    1
+#&gt; 218     245 Texas A&amp;M      99  LSU     -3      TRUE         66         72    1
+#&gt; 219     245 Texas A&amp;M      99  LSU     -3      TRUE         66         72    2
+#&gt; 220     245 Texas A&amp;M      99  LSU     -3     FALSE         74         72    3
+#&gt; 221     245 Texas A&amp;M      99  LSU     -3      TRUE         66         72    3
+#&gt; 222     245 Texas A&amp;M      99  LSU     -3      TRUE         66         72    3
+#&gt; 223     245 Texas A&amp;M      99  LSU     -3      TRUE         66         72    3
+#&gt; 224     245 Texas A&amp;M      99  LSU     -3      TRUE         66         72    0
+#&gt;     distance      home_wp play_number yard_line
+#&gt; 1         10 0.5309110582           0        NA
+#&gt; 2          1 0.5110030472           1        NA
+#&gt; 3          3 0.5313439369           2        NA
+#&gt; 4          3 0.5576224923           3        NA
+#&gt; 5         10 0.6078538299           4        NA
+#&gt; 6          6 0.5900158286           5        NA
+#&gt; 7          9 0.5346239805           6        NA
+#&gt; 8         21 0.4619548917           7        NA
+#&gt; 9         10 0.5077472329           8        NA
+#&gt; 10         1 0.5024577379           9        NA
+#&gt; 11         3 0.5092986226          10        NA
+#&gt; 12         3  0.535243541          11        NA
+#&gt; 13        10 0.5653628707          12        NA
+#&gt; 14         7 0.5495890379          13        NA
+#&gt; 15         1 0.5755220652          14        NA
+#&gt; 16        10 0.5871855021          15        NA
+#&gt; 17         3 0.5901114941          16        NA
+#&gt; 18        10 0.6266076565          17        NA
+#&gt; 19        10 0.6321445704          18        NA
+#&gt; 20        10 0.6872162223          19        NA
+#&gt; 21         1 0.6165428758          20        NA
+#&gt; 22        10 0.6440185905          21        NA
+#&gt; 23        10 0.7128997445          22        NA
+#&gt; 24         2 0.6770386994          23        NA
+#&gt; 25         1 0.6811478436          24        NA
+#&gt; 26        10 0.7019272149          25        NA
+#&gt; 27         7 0.7031005919          26        NA
+#&gt; 28        10 0.6371507049          27        NA
+#&gt; 29         5 0.6242846251          28        NA
+#&gt; 30         8 0.6636233628          29        NA
+#&gt; 31        10 0.6298615634          30        NA
+#&gt; 32        10 0.6513129473          31        NA
+#&gt; 33         5  0.657109499          32        NA
+#&gt; 34        10 0.6283326447          33        NA
+#&gt; 35         7 0.5660803914          34        NA
+#&gt; 36        10 0.5500501394          35        NA
+#&gt; 37        10 0.5201901793          36        NA
+#&gt; 38        10 0.5722653866          37        NA
+#&gt; 39         8 0.5602671504          38        NA
+#&gt; 40         8 0.5311129093          39        NA
+#&gt; 41        10 0.5520117283          40        NA
+#&gt; 42        10 0.5676673055          41        NA
+#&gt; 43        10 0.5554324985          42        NA
+#&gt; 44         1 0.5902609229          43        NA
+#&gt; 45        10  0.616245985          44        NA
+#&gt; 46        12 0.6078112125          45        NA
+#&gt; 47        10 0.7114808857          46        NA
+#&gt; 48        10 0.6757408381          47        NA
+#&gt; 49        10 0.6693641245          48        NA
+#&gt; 50        10 0.6737529337          49        NA
+#&gt; 51         5 0.6471390724          50        NA
+#&gt; 52         5 0.6400362849          51        NA
+#&gt; 53        10 0.7055021524          52        NA
+#&gt; 54        10 0.6863663793          53        NA
+#&gt; 55        10 0.6911851466          54        NA
+#&gt; 56        15 0.6948923767          55        NA
+#&gt; 57        24 0.7473595142          56        NA
+#&gt; 58        22 0.7851156145          57        NA
+#&gt; 59        22 0.8120647967          58        NA
+#&gt; 60        10 0.8288086653          59        NA
+#&gt; 61        10 0.8350955844          60        NA
+#&gt; 62         6 0.8179544806          61        NA
+#&gt; 63         8 0.7940586805          62        NA
+#&gt; 64        10 0.8280963898          63        NA
+#&gt; 65         7 0.8336825371          64        NA
+#&gt; 66         7 0.8044400811          65        NA
+#&gt; 67         7 0.8072883338          66        NA
+#&gt; 68        10 0.8207280785          67        NA
+#&gt; 69        10 0.8297352493          68        NA
+#&gt; 70        10   0.84661825          69        NA
+#&gt; 71        10 0.8204991221          70        NA
+#&gt; 72         3 0.7550158501          71        NA
+#&gt; 73        10  0.817411229          72        NA
+#&gt; 74        10 0.8220027089          73        NA
+#&gt; 75         6 0.7843046486          74        NA
+#&gt; 76        10 0.8086663485          75        NA
+#&gt; 77        10  0.824273169          76        NA
+#&gt; 78        10 0.8226787299          77        NA
+#&gt; 79         9 0.9213572741          78        NA
+#&gt; 80        10 0.8177947402          79        NA
+#&gt; 81         8 0.8014702797          80        NA
+#&gt; 82         8 0.7508708835          81        NA
+#&gt; 83         8  0.684730649          82        NA
+#&gt; 84        10 0.7614268959          83        NA
+#&gt; 85         1 0.7558920681          84        NA
+#&gt; 86        10  0.720946312          85        NA
+#&gt; 87        10 0.6694856286          86        NA
+#&gt; 88        10 0.7119632661          87        NA
+#&gt; 89         4 0.7375468612          88        NA
+#&gt; 90        10 0.6473286748          89        NA
+#&gt; 91         8 0.6752532125          90        NA
+#&gt; 92         8 0.7405240238          91        NA
+#&gt; 93        10  0.643884927          92        NA
+#&gt; 94         1 0.7394858897          93        NA
+#&gt; 95         1 0.7258644104          94        NA
+#&gt; 96        10 0.6483596563          95        NA
+#&gt; 97        11 0.6627804339          96        NA
+#&gt; 98         6 0.6540874839          97        NA
+#&gt; 99        10 0.5522078872          98        NA
+#&gt; 100       10 0.5015313625          99        NA
+#&gt; 101       10  0.407189697         100        NA
+#&gt; 102       10 0.3061176538         101        NA
+#&gt; 103       10 0.6661472321         102        NA
+#&gt; 104        6 0.6229013801         103        NA
+#&gt; 105       10 0.6708830595         104        NA
+#&gt; 106       10 0.6854287386         105        NA
+#&gt; 107        7 0.6374052167         106        NA
+#&gt; 108        8 0.6175405383         107        NA
+#&gt; 109        5 0.5816728473         108        NA
+#&gt; 110        1 0.7491999865         109        NA
+#&gt; 111       10 0.7856446505         110        NA
+#&gt; 112       18 0.7965033501         111        NA
+#&gt; 113       11 0.8639397621         112        NA
+#&gt; 114       14 0.8909239769         113        NA
+#&gt; 115       10 0.8165740371         114        NA
+#&gt; 116        9 0.8057007194         115        NA
+#&gt; 117        9 0.7224988937         116        NA
+#&gt; 118       16 0.6318364143         117        NA
+#&gt; 119       10  0.833277449         118        NA
+#&gt; 120       10 0.7858665437         119        NA
+#&gt; 121       10  0.753345713         120        NA
+#&gt; 122        6 0.7688445151         121        NA
+#&gt; 123        9 0.8443227857         122        NA
+#&gt; 124       12  0.893756777         123        NA
+#&gt; 125       10 0.8501077294         124        NA
+#&gt; 126        6 0.8277670741         125        NA
+#&gt; 127        2 0.8273996711         126        NA
+#&gt; 128       10 0.3679335713         127        NA
+#&gt; 129       10 0.5319604278         128        NA
+#&gt; 130       16 0.4428097904         129        NA
+#&gt; 131       16 0.3582325876         130        NA
+#&gt; 132       11  0.293130368         131        NA
+#&gt; 133       10  0.454082787         132        NA
+#&gt; 134       10 0.3702993393         133        NA
+#&gt; 135        1  0.501755476         134        NA
+#&gt; 136       10 0.2263577282         135        NA
+#&gt; 137       10   0.13323991         136        NA
+#&gt; 138        3 0.1303615719         137        NA
+#&gt; 139       10 0.1544567645         138        NA
+#&gt; 140        6 0.1225117967         139        NA
+#&gt; 141       10 0.1834712327         140        NA
+#&gt; 142       10 0.1356659234         141        NA
+#&gt; 143        1 0.1211953685         142        NA
+#&gt; 144       10 0.1941443533         143        NA
+#&gt; 145        5 0.1316401511         144        NA
+#&gt; 146        5 0.1120893732         145        NA
+#&gt; 147        5 0.1135807261         146        NA
+#&gt; 148       10 0.0873672366         147        NA
+#&gt; 149        9  0.063796699         148        NA
+#&gt; 150        4  0.050801754         149        NA
+#&gt; 151        5 0.0528671145         150        NA
+#&gt; 152       10 0.1029520929         151        NA
+#&gt; 153       10 0.1118806303         152        NA
+#&gt; 154       10 0.0820130929         153        NA
+#&gt; 155       10 0.1036973223         154        NA
+#&gt; 156       10 0.1125631779         155        NA
+#&gt; 157       10 0.1138841212         156        NA
+#&gt; 158       18 0.0876323283         157        NA
+#&gt; 159       18 0.0607992336         158        NA
+#&gt; 160       10 0.1266185194         159        NA
+#&gt; 161       10 0.1143968776         160        NA
+#&gt; 162       10 0.2906163335         161        NA
+#&gt; 163       10 0.4246049523         162        NA
+#&gt; 164        7 0.4760936499         163        NA
+#&gt; 165        7 0.4638915658         164        NA
+#&gt; 166       12 0.4106157422         165        NA
+#&gt; 167       17 0.2941554189         166        NA
+#&gt; 168       10  0.357571274         167        NA
+#&gt; 169       10 0.3722866476         168        NA
+#&gt; 170       10 0.3701277971         169        NA
+#&gt; 171        1 0.5529020429         170        NA
+#&gt; 172        1 0.5539122224         171        NA
+#&gt; 173        3 0.5158230662         172        NA
+#&gt; 174        6 0.4505627751         173        NA
+#&gt; 175        6 0.4942849874         174        NA
+#&gt; 176       10 0.5207830667         175        NA
+#&gt; 177       10 0.5406781435         176        NA
+#&gt; 178        8 0.6091351509         177        NA
+#&gt; 179        3 0.4693945646         178        NA
+#&gt; 180       10 0.6463222504         179        NA
+#&gt; 181        4 0.5767605901         180        NA
+#&gt; 182       10 0.6435295939         181        NA
+#&gt; 183       10 0.6498273015         182        NA
+#&gt; 184        4 0.4853217006         183        NA
+#&gt; 185        2 0.7497461438         184        NA
+#&gt; 186       10 0.3133545816         185        NA
+#&gt; 187       10 0.3133545816         186        NA
+#&gt; 188       10 0.5021013319         187        NA
+#&gt; 189       10 0.5708565712         188        NA
+#&gt; 190       10 0.6213651299         189        NA
+#&gt; 191       11 0.5446588993         190        NA
+#&gt; 192        8  0.680134654         191        NA
+#&gt; 193        4 0.6957650781         192        NA
+#&gt; 194        4 0.6936993003         193        NA
+#&gt; 195        4 0.4256520271         194        NA
+#&gt; 196       10 0.5179019868         195        NA
+#&gt; 197        8 0.4203583002         196        NA
+#&gt; 198        6 0.4152936935         197        NA
+#&gt; 199        6 0.4468290806         198        NA
+#&gt; 200        3  0.401830852         199        NA
+#&gt; 201        8   0.59383744         200        NA
+#&gt; 202       10  0.386148572         201        NA
+#&gt; 203       10 0.3303100467         202        NA
+#&gt; 204        8  0.478066802         203        NA
+#&gt; 205       10 0.4319972098         204        NA
+#&gt; 206        4 0.6160120368         205        NA
+#&gt; 207        5 0.5527219772         206        NA
+#&gt; 208        6 0.4902683794         207        NA
+#&gt; 209        6 0.3706777692         208        NA
+#&gt; 210       10 0.4991689324         209        NA
+#&gt; 211       10 0.5436811447         210        NA
+#&gt; 212        2 0.4189081788         211        NA
+#&gt; 213        6 0.5516928434         212        NA
+#&gt; 214        4 0.7975836992         213        NA
+#&gt; 215       10 0.3104194999         214        NA
+#&gt; 216       10 0.5770714879         215        NA
+#&gt; 217       10 0.5218205452         216        NA
+#&gt; 218       10 0.5714426041         217        NA
+#&gt; 219       15 0.4262104332         218        NA
+#&gt; 220       15 0.5140629411         219        NA
+#&gt; 221        3 0.6403118968         220        NA
+#&gt; 222        1 0.6739666462         221        NA
+#&gt; 223        1 0.6739666462         222        NA
+#&gt; 224        0            1         223        65</div><div class='input'>
 
 </div></pre>
   </div>
