@@ -1,5 +1,6 @@
 #' Get FPI historical rating data (most recent of each year)
-#' Adapted from sabinanalytic's fork of the cfbscrapR repo (https://github.com/sabinanalytics/cfbscrapR/blob/master/R/cfb_ratings_fpi.R)
+#' Adapted from sabinanalytic's fork of the cfbscrapR repo 
+#' @source \url{https://github.com/sabinanalytics/cfbscrapR/blob/master/R/cfb_ratings_fpi.R}
 #' @param year Year
 #'
 #' @keywords Ratings FPI
