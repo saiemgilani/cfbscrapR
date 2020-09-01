@@ -53,7 +53,11 @@ cfb_rankings <- function(year, week = NULL, season_type = 'regular'){
     unnest(.data$ranks) %>%
     group_by(.data$week, .data$poll) %>%
     arrange(.data$rank, .by_group=TRUE) %>%
-    ungroup()
+    ungroup() %>% 
+    rename(
+      season_type = .data$seasonType,
+      first_place_votes = .data$firstPlaceVotes
+    )
   polls <- as.data.frame(polls)
   return(polls)
 }
