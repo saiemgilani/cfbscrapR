@@ -85,6 +85,21 @@ cfb_player_info <- function(search_term,
 
   # Get the content and return it as data.frame
   df = fromJSON(full_url)
-
+  if(nrow(df)==0){
+    warning("The data pulled from the API was empty. Returning nothing
+            for this one search term.")
+    return(NULL)
+  }
+  
+  df <- df %>% 
+    rename(
+      athlete_id = .data$id,
+      home_town = .data$hometown,
+      first_name = .data$firstName,
+      last_name = .data$lastName,
+      team_color = .data$teamColor,
+      team_color_secondary = .data$teamColorSecondary) %>% 
+    as.data.frame()
+  
   return(df)
 }
