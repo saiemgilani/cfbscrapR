@@ -1,0 +1,16 @@
+library(testthat)
+library(cfbscrapR)
+
+
+context("CFB Team Info")
+test_that("CFB Team Info", {
+  x <- cfb_team_info(year = 2019)
+  cols <- c("id","school","mascot","abbreviation","alt_name1","alt_name2",
+            "alt_name3","conference","division",
+            "color","alt_color","logos")
+  expect_equal(nrow(x), 130)
+  expect_equal(ncol(x), 12)
+  expect_s3_class(x, "data.frame")
+  expect_equal(colnames(x), cols)
+  
+})
