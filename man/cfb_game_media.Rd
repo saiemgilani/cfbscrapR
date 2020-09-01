@@ -22,14 +22,19 @@ cfb_game_media(
 
 \item{team}{(\emph{String} optional): D-I Team}
 
-\item{conference}{(\emph{String} optional):  Conference Name - select a valid FBS conference\cr
-Conference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-Conference Names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
 \item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
 }
 \description{
 Get Game media information (TV, radio, etc)
+}
+\examples{
+
+cfb_game_media(2019, week = 1, conference = 'ACC')
+
 }
 \keyword{Game}
 \keyword{Info}
