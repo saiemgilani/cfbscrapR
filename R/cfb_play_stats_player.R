@@ -106,7 +106,7 @@ cfb_play_stats_player <- function(year = NULL,
   clean_df <- pivot_wider(df,
                           names_from = .data$statType,
                           values_from = .data$athleteName) %>%
-              arrange(.data$week,.data$period,-.data$secondsRemaining)
+              arrange(.data$week,.data$period)
 
   clean_df <- as.data.frame(clean_df)
   return(clean_df)
