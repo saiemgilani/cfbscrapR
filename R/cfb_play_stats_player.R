@@ -109,11 +109,26 @@ cfb_play_stats_player <- function(year = NULL,
   coalesce_by_column <- function(df) {
     return(dplyr::coalesce(!!! as.list(df)))
   }
+  df <- df %>% 
+    rename(
+      game_id = .data$gameId,
+      team_score = .data$teamScore,
+      opponent_score = .data$opponentScore,
+      drive_id = .data$driveId,
+      play_id = .data$playId,
+      yards_to_goal = .data$yardsToGoal,
+      athlete_id = .data$athleteId,
+      athlete_name = .data$athleteName,
+      stat_type = .data$statType,
+      stat = .data$stat
+      
+    )
+  colnames(df) <- sub(' ',"_",tolower(colnames(df)))
   clean_df <- pivot_wider(df,
-                          names_from = .data$statType,
-                          values_from = .data$athleteName) 
+                          names_from = .data$stat_type,
+                          values_from = .data$athlete_name) 
   
-
+  colnames(clean_df) <- sub(' ',"_",tolower(colnames(clean_df)))
 
   clean_df <- as.data.frame(clean_df)
   return(clean_df)
