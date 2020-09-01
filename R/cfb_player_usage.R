@@ -107,6 +107,7 @@ cfb_player_usage <- function(year = 2019,
     map_if(is.data.frame,list) %>%
     as_tibble() %>%
     rename(
+      athlete_id = .data$id,
       usg_overall = .data$usage.overall,
       usg_pass = .data$usage.pass,
       usg_rush = .data$usage.rush,
