@@ -222,32 +222,37 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt;          id season seasonType week      homeTeam homeConference homeScore
-#&gt; 1 401013175   2018    regular   12 Florida State            ACC        22
-#&gt; 2 401013175   2018    regular   12 Florida State            ACC        22
-#&gt; 3 401013175   2018    regular   12 Florida State            ACC        22
-#&gt; 4 401013175   2018    regular   12 Florida State            ACC        22
-#&gt;         awayTeam awayConference awayScore     provider spread
-#&gt; 1 Boston College            ACC        21 teamrankings    2.5
-#&gt; 2 Boston College            ACC        21   numberfire    2.5
-#&gt; 3 Boston College            ACC        21    consensus      3
-#&gt; 4 Boston College            ACC        21      Caesars      3
-#&gt;       formattedSpread overUnder
-#&gt; 1 Boston College -2.5      47.5
-#&gt; 2 Boston College -2.5        49
-#&gt; 3   Boston College -3      49.5
-#&gt; 4   Boston College -3      48.5</div><div class='input'>
+<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt;     game_id season season_type week     home_team home_conference home_score
+#&gt; 1 401013175   2018     regular   12 Florida State             ACC         22
+#&gt; 2 401013175   2018     regular   12 Florida State             ACC         22
+#&gt; 3 401013175   2018     regular   12 Florida State             ACC         22
+#&gt; 4 401013175   2018     regular   12 Florida State             ACC         22
+#&gt;        away_team away_conference away_score     provider spread
+#&gt; 1 Boston College             ACC         21 teamrankings    2.5
+#&gt; 2 Boston College             ACC         21   numberfire    2.5
+#&gt; 3 Boston College             ACC         21    consensus      3
+#&gt; 4 Boston College             ACC         21      Caesars      3
+#&gt;      formatted_spread over_under
+#&gt; 1 Boston College -2.5       47.5
+#&gt; 2 Boston College -2.5         49
+#&gt; 3   Boston College -3       49.5
+#&gt; 4   Boston College -3       48.5</div><div class='input'>
 <span class='co'>#7 OTs LSU at TAMU</span>
-<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>13</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'SEC'</span>)</div><div class='output co'>#&gt;          id season seasonType week  homeTeam homeConference homeScore awayTeam
-#&gt; 1 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
-#&gt; 2 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
-#&gt; 3 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
-#&gt; 4 401012356   2018    regular   13 Texas A&amp;M            SEC        74      LSU
-#&gt;   awayConference awayScore     provider spread formattedSpread overUnder
-#&gt; 1            SEC        72 teamrankings     -3    Texas A&amp;M -3      46.5
-#&gt; 2            SEC        72   numberfire   &lt;NA&gt;       LSU -null      46.5
-#&gt; 3            SEC        72    consensus     -3    Texas A&amp;M -3      45.5
-#&gt; 4            SEC        72      Caesars     -3    Texas A&amp;M -3      45.5</div><div class='input'>
+<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>13</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'SEC'</span>)</div><div class='output co'>#&gt;     game_id season season_type week home_team home_conference home_score
+#&gt; 1 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt; 2 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt; 3 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt; 4 401012356   2018     regular   13 Texas A&amp;M             SEC         74
+#&gt;   away_team away_conference away_score     provider spread formatted_spread
+#&gt; 1       LSU             SEC         72 teamrankings     -3     Texas A&amp;M -3
+#&gt; 2       LSU             SEC         72   numberfire   &lt;NA&gt;        LSU -null
+#&gt; 3       LSU             SEC         72    consensus     -3     Texas A&amp;M -3
+#&gt; 4       LSU             SEC         72      Caesars     -3     Texas A&amp;M -3
+#&gt;   over_under
+#&gt; 1       46.5
+#&gt; 2       46.5
+#&gt; 3       45.5
+#&gt; 4       45.5</div><div class='input'>
 
 </div></pre>
   </div>

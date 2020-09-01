@@ -40,6 +40,9 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_game_team_stats.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_espn_wp.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_ppa_games.html</loc>
   </url>
   <url>
@@ -86,6 +89,9 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_rankings.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_fpi.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_sp.html</loc>
