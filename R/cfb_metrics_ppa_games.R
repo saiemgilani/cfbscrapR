@@ -87,6 +87,7 @@ cfb_metrics_ppa_games <- function(year,
   colnames(df) = gsub("offense.","off_",colnames(df))
   colnames(df) = gsub("defense.","def_",colnames(df))
   colnames(df) = gsub("Down","_down",colnames(df))
-  
+  df <- df %>% 
+    rename(game_id = .data$gameId)
   return(df)
 }
