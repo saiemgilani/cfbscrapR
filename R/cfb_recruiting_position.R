@@ -81,6 +81,16 @@ cfb_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
   # Get the content and return it as data.frame
   df = fromJSON(full_url)
-
+  if(length(df)==0){
+    warning(paste0('There is no data in the underlying API call ', full_url))
+    return(NULL)
+  }
+  df <- df %>% 
+    rename(
+      position_group = .data$positionGroup,
+      avg_rating = .data$averageRating,
+      total_rating = .data$totalRating,
+      avg_stars = .data$averageStars) %>% 
+    as.data.frame()
   return(df)
 }
