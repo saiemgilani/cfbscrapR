@@ -67,6 +67,18 @@ cfb_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
   # Get the content and return it as data.frame
   df = fromJSON(full_url)$games
-
+  if(nrow(df)==0){
+    warning("The data pulled from the API was empty.")
+    return(NULL)
+  }
+  df <- df %>% 
+    rename(
+      season_type = .data$seasonType,
+      neutral_site = .data$neutralSite,
+      home_team = .data$homeTeam,
+      home_score = .data$homeScore,
+      away_team = .data$awayTeam,
+      away_score = .data$awayScore) %>% 
+    as.data.frame()
   return(df)
 }
