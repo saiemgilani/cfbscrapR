@@ -1,7 +1,10 @@
 #' Get win probability chart data from ESPN
+#' 
 #' Graciously contributed by MrCaseB: https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07
+#' 
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
 #' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
+#' 
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
