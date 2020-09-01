@@ -1,0 +1,22 @@
+library(testthat)
+library(cfbscrapR)
+
+test_that("ESPN FPI Ratings", {
+  x <- cfb_ratings_fpi(2019)
+  
+  y <- cfb_ratings_fpi(2018)
+  
+  
+  cols <- c(
+    "year","id", "name", "abbr", "row_n",
+    "fpi", "fpi_rk", "trend", "proj_w", "proj_l", "win_out",
+    "win_6", "win_div", "playoff", "nc_game", "nc_win",
+    "win_conf", "w", "l", "t"
+  )
+  
+  expect_s3_class(x, "data.frame")
+  expect_s3_class(y, "data.frame")
+  expect_equal(colnames(x), cols)
+  expect_equal(colnames(y), cols)
+  
+})
