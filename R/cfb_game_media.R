@@ -17,6 +17,9 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
+#' @examples 
+#' 
+#' cfb_game_media(2019, week = 1, conference = 'ACC')
 #'
 
 cfb_game_media <- function(year,
