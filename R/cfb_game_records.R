@@ -16,7 +16,7 @@
 #' @export
 #' @examples
 #'
-#' cfb_game_records(2018, team='Notre Dame')
+#' cfb_game_records(2018, team = 'Notre Dame')
 #'
 #'
 #' cfb_game_records(2013, team = "Florida State")
@@ -58,15 +58,19 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
   # Get the content and return it as data.frame
   df = fromJSON(full_url,flatten=TRUE)%>%
     rename(
+      total_games = .data$total.games,
       total_wins = .data$total.wins,
       total_losses = .data$total.losses,
       total_ties = .data$total.ties,
+      conference_games = .data$conferenceGames.games,
       conference_wins = .data$conferenceGames.wins,
       conference_losses = .data$conferenceGames.losses,
       conference_ties = .data$conferenceGames.ties,
+      home_games = .data$homeGames.games,
       home_wins = .data$homeGames.wins,
       home_losses = .data$homeGames.losses,
       home_ties = .data$homeGames.ties,
+      away_games = .data$awayGames.games,
       away_wins = .data$awayGames.wins,
       away_losses = .data$awayGames.losses,
       away_ties = .data$awayGames.ties
