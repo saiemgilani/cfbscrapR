@@ -61,6 +61,19 @@ cfb_metrics_wp_pregame <- function(year = NULL,
   
   # Get the content and return it as data.frame
   df = fromJSON(full_url)
-  
+  if(nrow(df)==0){
+    warning("Most likely a bye week, the data pulled from the API was empty. Returning nothing
+            for this one week or team.")
+    return(NULL)
+  }
+  df <- df %>% 
+    rename(
+      season_type = .data$seasonType,
+      game_id = .data$gameId,
+      home_team = .data$homeTeam,
+      away_team = .data$awayTeam,
+      home_wp = .data$homeWinProb
+    ) %>% 
+    as.data.frame()
   return(df)
 }
