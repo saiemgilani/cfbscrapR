@@ -117,19 +117,49 @@ cfb_betting_lines <- function(game_id = NULL,
   
   if(!is.null(line_provider)){
     if(is.list(df) & length(df)==0){
-      df <- data.frame(id = game_id, spread = 0, formattedSpread = "home 0")
+      df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
       return(df)
     }
     else if(!is.null(df$provider)){
       df <- df %>% 
-        filter(.data$provider == line_provider)
+        filter(.data$provider == line_provider) %>% 
+        rename(
+          game_id = .data$id,
+          season_type = .data$seasonType,
+          home_team = .data$homeTeam,
+          home_conference = .data$homeConference,
+          home_score = .data$homeScore,
+          away_team = .data$awayTeam,
+          away_conference = .data$awayConference,
+          away_score = .data$awayScore,
+          formatted_spread = .data$formattedSpread,
+          over_under = .data$overUnder
+        ) %>% as.data.frame()
+      return(df)
     }
     else{
-      df <- data.frame(id = game_id, spread = 0, formattedSpread = "home 0")
+      df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
       return(df)
     }
   }
-  df <- as.data.frame(df)
-  return(df)
-  
+  if(is.list(df) & length(df)==0){
+    df <- data.frame(game_id = game_id, spread = 0, formatted_spread = "home 0")
+    return(df)
+  }else{
+    df <- df %>% 
+      rename(
+        game_id = .data$id,
+        season_type = .data$seasonType,
+        home_team = .data$homeTeam,
+        home_conference = .data$homeConference,
+        home_score = .data$homeScore,
+        away_team = .data$awayTeam,
+        away_conference = .data$awayConference,
+        away_score = .data$awayScore,
+        formatted_spread = .data$formattedSpread,
+        over_under = .data$overUnder
+      )
+    df <- as.data.frame(df)
+    return(df)
+  }
 }
