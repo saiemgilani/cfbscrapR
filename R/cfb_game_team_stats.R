@@ -91,9 +91,16 @@ cfb_game_team_stats <- function(year,
   check_status(res)
 
   # Get the content, unnest, and return result as data.frame
-  df = fromJSON(full_url,flatten=TRUE) %>%
+  df = fromJSON(full_url, flatten=TRUE) %>%
     map_if(is.data.frame,list) %>%
-    as_tibble() %>%
+    as_tibble() 
+  
+  if(nrow(df)==0){
+    warning("Most likely a bye week, the data pulled from the API was empty. Returning nothing
+            for this one week or team.")
+    return(NULL)
+  }
+  df = df %>%
     unnest(.data$teams) %>%
     unnest(.data$stats)
 
