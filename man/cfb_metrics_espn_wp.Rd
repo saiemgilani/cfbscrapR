@@ -3,6 +3,9 @@
 \name{cfb_metrics_espn_wp}
 \alias{cfb_metrics_espn_wp}
 \title{Get win probability chart data from ESPN}
+\source{
+\url{https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07}
+}
 \usage{
 cfb_metrics_espn_wp(game_id)
 }
@@ -11,7 +14,7 @@ cfb_metrics_espn_wp(game_id)
 Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
 }
 \description{
-Graciously contributed by MrCaseB: https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07
+Graciously contributed by MrCaseB:
 }
 \examples{
 

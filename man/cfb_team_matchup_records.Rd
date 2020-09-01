@@ -22,11 +22,8 @@ Get matchup history between two teams.
 
 cfb_team_matchup_records('Texas','Oklahoma')
 
-cfb_team_matchup_records('Texas A&M','TCU')
-
 cfb_team_matchup_records('Texas A&M','TCU', min_year = 1975)
 
-cfb_team_matchup_records('Florida State', 'Florida', min_year = 1975)
 
 }
 \keyword{Matchup}

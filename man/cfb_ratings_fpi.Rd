@@ -3,7 +3,10 @@
 \name{cfb_ratings_fpi}
 \alias{cfb_ratings_fpi}
 \title{Get FPI historical rating data (most recent of each year)
-Adapted from sabinanalytic's fork of the cfbscrapR repo (https://github.com/sabinanalytics/cfbscrapR/blob/master/R/cfb_ratings_fpi.R)}
+Adapted from sabinanalytic's fork of the cfbscrapR repo}
+\source{
+\url{https://github.com/sabinanalytics/cfbscrapR/blob/master/R/cfb_ratings_fpi.R}
+}
 \usage{
 cfb_ratings_fpi(year = 2019)
 }
@@ -12,7 +15,7 @@ cfb_ratings_fpi(year = 2019)
 }
 \description{
 Get FPI historical rating data (most recent of each year)
-Adapted from sabinanalytic's fork of the cfbscrapR repo (https://github.com/sabinanalytics/cfbscrapR/blob/master/R/cfb_ratings_fpi.R)
+Adapted from sabinanalytic's fork of the cfbscrapR repo
 }
 \examples{
 

@@ -6,7 +6,7 @@
 \format{
 A data frame with 22 rows and 2 variables:
 \describe{
-  \item{id}{Referencing play id}
+  \item{play_stat_type_id}{Referencing play stat type ID}
   \item{name}{Type of play stats}
   ...
 }
