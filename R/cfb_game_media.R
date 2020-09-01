@@ -4,9 +4,9 @@
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default both): Select Season Type, regular, postseason, or both
 #' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional):  Conference Name - select a valid FBS conference\cr
-#' Conference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-#' Conference Names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
+#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
 #'
 #' @keywords Game Info
@@ -40,9 +40,9 @@ cfb_game_media <- function(year,
     team = URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
-                msg = "Incorrect conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
+    # Check conference parameter in conference abbreviations, if not NULL
+    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = URLencode(conference, reserved = TRUE)
   }
@@ -72,11 +72,7 @@ cfb_game_media <- function(year,
   df <- df %>%
     pivot_wider(names_from = .data$mediaType,
                 values_from = .data$outlet,
-                values_fn = .data$list) %>%
-    unnest_wider(.data$tv, names_sep = "_") %>%
-    unnest_wider(.data$radio, names_sep = "_") %>%
-    unnest_wider(.data$web, names_sep = "_")
-
+                values_fn = .data$list) 
 
   df <- df[!duplicated(df),]
 
