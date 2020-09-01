@@ -32,7 +32,7 @@ cfb_game_box_advanced<- function(game_id) {
   base_url <- "https://api.collegefootballdata.com/game/box/advanced?"
 
   full_url <- paste0(base_url,
-                     "&gameId=", game_id)
+                     "gameId=", game_id)
 
   # Check for internet
   check_internet()
