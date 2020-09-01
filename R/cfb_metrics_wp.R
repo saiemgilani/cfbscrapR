@@ -52,6 +52,22 @@ cfb_metrics_wp <- function(game_id,
 
   # Get the content and return it as data.frame
   df = fromJSON(full_url)
-
+  if(nrow(df)==0){
+    warning("Most likely a bye week, the data pulled from the API was empty. Returning nothing
+            for this one week or team.")
+    return(NULL)
+  }
+  df <- df %>% 
+    rename(play_id = .data$playId,
+           play_text = .data$playText,
+           home_id = .data$homeId,
+           away_id = .data$awayId,
+           home_ball = .data$homeBall,
+           home_score = .data$homeScore,
+           away_score = .data$awayScore,
+           home_wp = .data$homeWinProb,
+           play_number = .data$playNumber,
+           yard_line = .data$yardLine) %>% 
+    as.data.frame()
   return(df)
 }
