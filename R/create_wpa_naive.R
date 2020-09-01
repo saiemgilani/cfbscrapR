@@ -24,14 +24,14 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
   )
   if (!all(col_nec %in% colnames(df))) {
     df = df %>% mutate(
-      play_after_turnover = ifelse(lag(.data$turnover_vec,1) == 1 & lag(.data$def_td_play,1) != 1, 1, 0),
+      play_after_turnover = ifelse(lag(.data$turnover_vec, 1) == 1 & lag(.data$def_td_play, 1) != 1, 1, 0),
       score_diff = .data$offense_score - .data$defense_score,
       score_diff_start = ifelse(.data$play_after_turnover == 1, 
-                                -ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff,1)),
+                                -ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)),
                                 ifelse(.data$scoring_play == 1, 
-                                       ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff,1)), 
+                                       ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)), 
                                        .data$score_diff)),
-      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA,-.data$EPA),
+      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -.data$EPA),
       away_EPA = -.data$home_EPA,
       ExpScoreDiff = .data$score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
@@ -77,8 +77,8 @@ wpa_calcs_naive <- function(df) {
                         .data$def_wp_before)) %>%
     mutate(
       # base wpa
-      end_of_half = ifelse(.data$half == lead(.data$half), 0, 1),
-      lead_wp_before = dplyr::lead(.data$wp_before),
+      end_of_half = ifelse(.data$half == lead(.data$half, 1), 0, 1),
+      lead_wp_before = dplyr::lead(.data$wp_before, 1),
       # account for turnover
       wpa_base = .data$lead_wp_before - .data$wp_before,
       wpa_change = ifelse(.data$change_of_poss == 1, (1 - .data$lead_wp_before) - .data$wp_before, .data$wpa_base),
