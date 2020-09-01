@@ -26,6 +26,9 @@
 #' @import tidyr
 #' @import purrr
 #' @export
+#' @examples 
+#' 
+#' cfb_play_stats_player(game_id = 401110720)
 #' 
 
 
@@ -102,11 +105,15 @@ cfb_play_stats_player <- function(year = NULL,
   }
 
   df = df[!duplicated(df),]
-
+  # Supply lists by splicing them into dots:
+  coalesce_by_column <- function(df) {
+    return(dplyr::coalesce(!!! as.list(df)))
+  }
   clean_df <- pivot_wider(df,
                           names_from = .data$statType,
-                          values_from = .data$athleteName) %>%
-              arrange(.data$week,.data$period)
+                          values_from = .data$athleteName) 
+  
+
 
   clean_df <- as.data.frame(clean_df)
   return(clean_df)
