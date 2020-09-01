@@ -66,7 +66,8 @@ cfb_ratings_srs <- function(year=NULL,team=NULL,conference=NULL){
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(full_url)
+  df = fromJSON(full_url) %>% 
+    as.data.frame()
 
   return(df)
 }
