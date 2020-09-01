@@ -95,7 +95,12 @@ cfb_recruiting_player <- function(year = NULL,
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(full_url)
+  df = fromJSON(full_url) %>% 
+    rename(
+      recruit_type = .data$recruitType,
+      committed_to = .data$committedTo,
+      state_province = .data$stateProvince) %>% 
+    as.data.frame()
 
   return(df)
 }
