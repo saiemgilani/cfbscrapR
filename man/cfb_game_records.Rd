@@ -20,7 +20,7 @@ Get Team records by year
 }
 \examples{
 
-cfb_game_records(2018, team='Notre Dame')
+cfb_game_records(2018, team = 'Notre Dame')
 
 
 cfb_game_records(2013, team = "Florida State")
