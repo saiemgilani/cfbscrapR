@@ -718,7 +718,7 @@ prep_epa_df_before <- function(df) {
       half = ifelse(.data$period <= 2, 1, 2),
       new_id = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
       new_id = as.numeric(.data$new_id),
-      log_ydstogo = ifelse(.data$distance == 0,log(1),log(.data$distance)),
+      log_ydstogo = ifelse(.data$distance == 0|is.nan(log(.data$distance)),log(1),log(.data$distance)),
       down = ifelse(.data$down == 5 &
                       str_detect(.data$play_type, "Kickoff"), 1, .data$down)
     ) %>% filter(.data$period <= 4, .data$down > 0) %>%
