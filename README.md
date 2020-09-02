@@ -3,7 +3,7 @@
 
 <!-- badges: start -->
 
-![Lifecycle:stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
+![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
 
 ![Travis-CI:
 build-status](https://travis-ci.com/saiemgilani/cfbscrapR.svg?token=BxsozfUD3VCvCzzJpdFf&branch=master)
