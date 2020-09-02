@@ -1,6 +1,7 @@
 library(testthat)
 library(cfbscrapR)
 
+context("CFB Betting Lines")
 test_that("CFB Betting Lines", {
   x <- cfb_betting_lines(year = 2018, 
                          week = 12, 
