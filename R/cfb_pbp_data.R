@@ -412,7 +412,7 @@ clean_pbp_dat <- function(raw_df) {
         .data$play_type == "Pass Reception Touchdown" ~ 7,
         .data$play_type == "Fumble Recovery (Own) Touchdown" ~ 7,
         TRUE ~ 0),
-      td_play = ifelse(str_detect(.data$play_text, regex("touchdown|td", ignore_case = TRUE)), 1, 0),
+      td_play = ifelse(str_detect(.data$play_text, regex("touchdown", ignore_case = TRUE)), 1, 0),
       touchdown = ifelse(str_detect(.data$play_type, regex('touchdown', ignore_case = TRUE)), 1, 0),
       off_td_play = ifelse(.data$play_type %in% offense_score_vec, 1, 0),
       def_td_play = ifelse(.data$play_type %in% defense_score_vec, 1, 0),
@@ -495,7 +495,13 @@ clean_pbp_dat <- function(raw_df) {
                          .data$play_type),
       play_type = ifelse(.data$play_type == "Rushing Touchdown Touchdown",
                          "Rushing Touchdown",
-                         .data$play_type)
+                         .data$play_type),
+      play_type = ifelse(str_detect(.data$play_text,"pass intercepted for a TD"),
+                         "Interception Return Touchdown", .data$play_type),
+      play_type = ifelse(str_detect(.data$play_text, regex("sacked", ignore_case = TRUE)) & 
+                         str_detect(.data$play_text, regex("fumbled", ignore_case = TRUE)) &
+                         str_detect(.data$play_text, regex("TD",ignore_case = TRUE)),
+                         "Sack Touchdown", .data$play_type)   
     )
   return(raw_df)
 }
