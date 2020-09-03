@@ -42,7 +42,9 @@ cfb_team_roster <- function(team, year = NULL){
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(full_url)
+  df = fromJSON(full_url) %>% 
+    rename(athlete_id = .data$id) %>% 
+    as.data.frame()
 
   return(df)
 }
