@@ -27,7 +27,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
       play_after_turnover = ifelse(lag(.data$turnover_vec, 1) == 1 & lag(.data$def_td_play, 1) != 1, 1, 0),
       score_diff = .data$offense_score - .data$defense_score,
       score_diff_start = ifelse(.data$play_after_turnover == 1, 
-                                -ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)),
+                                -1*(ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1))),
                                 ifelse(.data$scoring_play == 1, 
                                        ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)), 
                                        .data$score_diff)),
@@ -77,18 +77,33 @@ wpa_calcs_naive <- function(df) {
                         .data$def_wp_before)) %>%
     mutate(
       # base wpa
-      end_of_half = ifelse(.data$half == lead(.data$half, 1), 0, 1),
       lead_wp_before = dplyr::lead(.data$wp_before, 1),
-      # account for turnover
       wpa_base = .data$lead_wp_before - .data$wp_before,
+      # account for turnover
+      
       wpa_change = ifelse(.data$change_of_poss == 1, (1 - .data$lead_wp_before) - .data$wp_before, .data$wpa_base),
       wpa = ifelse(.data$end_of_half == 1, 0, .data$wpa_change),
-      home_wp_post = ifelse(.data$offense_play == .data$home,
+      wp_after = .data$wp_before + .data$wpa,
+      def_wp_after = 1 - .data$wp_after,
+      home_wp_after = ifelse(.data$offense_play == .data$home,
                             .data$home_wp_before + .data$wpa,
                             .data$home_wp_before - .data$wpa),
-      away_wp_post = ifelse(.data$offense_play != .data$home,
+      away_wp_after = ifelse(.data$offense_play != .data$home,
                             .data$away_wp_before + .data$wpa,
-                            .data$away_wp_before - .data$wpa)
+                            .data$away_wp_before - .data$wpa),
+      wp_before = round(.data$wp_before, 7),
+      def_wp_before = round(.data$def_wp_before, 7),
+      home_wp_before = round(.data$home_wp_before, 7),
+      away_wp_before = round(.data$away_wp_before, 7),
+      lead_wp_before = round(.data$lead_wp_before, 7),
+      wpa_base = round(.data$wpa_base, 7),
+      wpa_change = round(.data$wpa_change, 7),
+      wpa = round(.data$wpa, 7),
+      wp_after = round(.data$wp_after, 7),
+      def_wp_after = round(.data$def_wp_after, 7),
+      home_wp_after = round(.data$home_wp_after, 7),
+      away_wp_after = round(.data$away_wp_after, 7),
+      
     )
   return(df2)
 }
