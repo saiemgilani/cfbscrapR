@@ -39,7 +39,7 @@ create sacks or picks, etc
 }
 \examples{
 
-cfb_play_stats_player(game_id = 401110720)
+cfb_play_stats_player(game_id = 401110722)
 
 }
 \keyword{-}
