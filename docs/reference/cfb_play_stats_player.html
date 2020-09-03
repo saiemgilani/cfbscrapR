@@ -8,6 +8,13 @@
 
 <title>Gets player info associated by play — cfb_play_stats_player • cfbscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -43,6 +50,7 @@
 <meta property="og:description" content="Information describes the players involved in the play
 this includes passer, receiver, defensive players who
 create sacks or picks, etc" />
+<meta property="og:image" content="http://saiemgilani.github.io/cfbscrapR/logo.png" />
 
 
 
@@ -195,17 +203,17 @@ create sacks or picks, etc</p>
     <tr>
       <th>game_id</th>
       <td><p>(<em>Integer</em> optional): Game ID filter for querying a single game<br />
-Can be found using the <code>cfbscrapR::cfb_game_info()</code> function</p></td>
+Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_info()</a></code> function</p></td>
     </tr>
     <tr>
       <th>athlete_id</th>
       <td><p>(<em>Integer</em> optional): Athlete ID filter for querying a single athlete<br />
-Can be found using the <code>cfbscrapR::cfb_player_info()</code> function.</p></td>
+Can be found using the <code><a href='cfb_player_info.html'>cfbscrapR::cfb_player_info()</a></code> function.</p></td>
     </tr>
     <tr>
       <th>stat_type_id</th>
       <td><p>(<em>Integer</em> optional): Stat Type ID filter for querying a single stat type<br />
-Can be found using the <code>cfbscrapR::cfb_play_stats_types()</code> function</p></td>
+Can be found using the <code><a href='cfb_play_stats_types.html'>cfbscrapR::cfb_play_stats_types()</a></code> function</p></td>
     </tr>
     <tr>
       <th>season_type</th>
