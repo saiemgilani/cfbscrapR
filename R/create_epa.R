@@ -190,8 +190,6 @@ create_epa <- function(clean_pbp_dat,
   turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind & (pred_df$play_type %in% turnover_play_type))
   pred_df[turnover_plays, "ep_after"] = -1*pred_df[turnover_plays, "ep_after"]
   
-
-    
   # game end EP is 0
   pred_df[pred_df$end_half_game_end == 1, "ep_after"] = 0
 
@@ -227,6 +225,7 @@ create_epa <- function(clean_pbp_dat,
                                 ifelse(.data$scoring_play == 1, 
                                        ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)), 
                                               .data$score_diff)),
+      score_diff_start = ifelse(.data$game_play_number == 1, 0, .data$score_diff_start),
       scored_pts = ifelse(.data$ep_after == 7|.data$ep_after == -7|
                             (.data$play_type == 'Field Goal Good' & .data$ep_after == 3)|
                             (.data$play_type == 'Safety' & .data$ep_after == -2), 
@@ -238,11 +237,11 @@ create_epa <- function(clean_pbp_dat,
       away_EPA = -.data$home_EPA,
       ExpScoreDiff = .data$score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
-      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>%
+      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>% 
+    rename(end_of_half = .data$end_half_game_end) %>%
     select(-.data$log_ydstogo,
            -.data$log_ydstogo_end,
            -.data$Goal_To_Go_end,
-           -.data$end_half_game_end,
            -.data$Under_two_end) %>%
     select(.data$game_id,
            .data$new_id,
@@ -524,7 +523,7 @@ prep_epa_df_after <- function(dat) {
         .data$play_type %in% penalty & !.data$penalty_declined &
           !.data$penalty_1st_conv &
           !.data$penalty_offset ~ as.numeric(ifelse((.data$yards_gained >= .data$distance) &
-                                                (.data$yards_to_goal - .data$yards_gained <= 10),
+                                              (.data$yards_to_goal - .data$yards_gained <= 10),
                                               as.numeric(.data$yards_to_goal),10)),
         ##--normal plays
         .data$play_type %in% normalplay &
@@ -542,11 +541,6 @@ prep_epa_df_after <- function(dat) {
           .data$yards_gained < .data$distance &
           .data$down == 4 &
           (100 - (.data$yards_to_goal  - .data$yards_gained) <= 10) ~ as.numeric(100 - .data$yards_to_goal),
-        
-        # play_type %in% turnover_vec &
-        #   (100 - (yards_to_goal + yards_gained) >= 10) ~ 10,
-        # play_type %in% turnover_vec &
-        #   (100 - (yards_to_goal + yards_gained) <= 10) ~ 100 - (yards_to_goal  + yards_gained),
         .data$play_type %in% defense_score_vec ~ 0,
         .data$play_type %in% score ~ 0,
         .data$play_type %in% kickoff ~ 10
