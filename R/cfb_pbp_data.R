@@ -315,6 +315,7 @@ clean_pbp_dat <- function(raw_df) {
     "Punt Return Touchdown",
     "Fumble Recovery (Opponent) Touchdown",
     "Fumble Return Touchdown",
+    "Kickoff Return Touchdown",
     "Defensive 2pt Conversion",
     "Safety",
     "Sack Touchdown",
