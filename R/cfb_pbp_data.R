@@ -121,7 +121,7 @@ cfb_pbp_data <- function(year,
     play_df = penalty_detection(raw_df)
     
     g_ids = sort(unique(play_df$game_id))
-    epa_wpa_df = purrr::map_dfr(g_ids,
+    play_df = purrr::map_dfr(g_ids,
                              function(x) {
                               play_df %>%
                                 filter(.data$game_id == x) %>%
@@ -131,18 +131,16 @@ cfb_pbp_data <- function(year,
                                 create_wpa_naive()
                               })
       
-    play_df = epa_wpa_df %>%
-      group_by(.data$drive_id) %>%
-      arrange(.data$new_id, .by_group=TRUE) %>%
-      ungroup()
+    # play_df = epa_wpa_df %>%
+    #   group_by(.data$drive_id) %>%
+    #   arrange(.data$new_id, .by_group=TRUE) %>%
+    #   ungroup()
       
       
     play_df <- play_df %>% 
-      select(-.data$drive_drive_number) %>% 
-      select(.data$game_id,
-             .data$drive_number,
-             .data$drive_play_number,
-             .data$game_play_number,
+      select(-.data$drive_drive_number,
+             -.data$play_number) %>% 
+      select(.data$id_play,
              .data$offense_play,
              .data$defense_play,
              .data$half,
@@ -156,39 +154,28 @@ cfb_pbp_data <- function(year,
              .data$yards_to_goal,
              .data$yards_gained,
              .data$TimeSecsRem,
-             .data$down_end,
-             .data$distance_end,
-             .data$yards_to_goal_end,
-             .data$TimeSecsRem_end,
-             .data$Goal_To_Go,
-             .data$Under_two,
-             .data$offense_timeouts,
-             .data$defense_timeouts,
-             .data$change_of_poss,
-             .data$play_after_turnover,
+             .data$offense_score,
+             .data$defense_score,
              .data$EPA,
              .data$def_EPA,
              .data$ep_before,
              .data$ep_after,
              .data$ppa,
              .data$wpa,
-             .data$wpa_base,
-             .data$wpa_change,
              .data$wp_before,
-             .data$def_wp_before,
-             .data$lead_wp_before,
-             .data$home_wp_before,
-             .data$away_wp_before,
-             .data$home_wp_post,
-             .data$away_wp_post,
-             .data$offense_score,
-             .data$defense_score,
-             .data$score_diff,
+             .data$wp_after,
+             .data$game_play_number,
+             .data$drive_number,
+             .data$drive_play_number,
              .data$firstD_by_poss,
              .data$firstD_by_penalty,
              .data$firstD_by_yards,
-             .data$first_by_penalty,
-             .data$first_by_yards,
+             .data$score_diff,
+             .data$Goal_To_Go,
+             .data$Under_two,
+             .data$offense_timeouts,
+             .data$defense_timeouts,
+             .data$change_of_poss,
              .data$drive_start_yards_to_goal,
              .data$drive_end_yards_to_goal,
              .data$drive_yards,
@@ -352,6 +339,7 @@ clean_pbp_dat <- function(raw_df) {
     "Pass Interception Return",
     "Pass Interception Return Touchdown",
     "Punt Touchdown",
+    "Punt Return Touchdown",
     "Sack Touchdown",
     "Uncategorized Touchdown"
   )
@@ -502,7 +490,7 @@ clean_pbp_dat <- function(raw_df) {
                          str_detect(.data$play_text, regex("fumbled", ignore_case = TRUE)) &
                          str_detect(.data$play_text, regex("TD",ignore_case = TRUE)),
                          "Sack Touchdown", .data$play_type)   
-    )
+    ) %>% select(-.data$td_check,-.data$td_play)
   return(raw_df)
 }
 
@@ -523,7 +511,7 @@ clean_drive_info <- function(drive_df){
   clean_drive = drive_df %>%
     mutate(
       pts_drive = case_when(
-        str_detect(.data$drive_result,"TD") ~ 7,
+        .data$drive_result == "TD" ~ 7,
         str_detect(.data$drive_result,"SF") ~ -2,
         .data$drive_result == 'FG GOOD' ~ 3,
         .data$drive_result == 'FG' ~ 3,
@@ -538,6 +526,7 @@ clean_drive_info <- function(drive_df){
         .data$drive_result == 'FUMBLE RETURN TD' ~ -7,
         .data$drive_result == 'FUMBLE TD' ~ -7,
         .data$drive_result == 'DOWNS TD' ~ -7,
+        str_detect(.data$drive_result,"TD") ~ 7,
         TRUE ~ 0),
       scoring = ifelse(.data$pts_drive != 0, TRUE, .data$scoring)) %>%
     mutate(drive_id = as.numeric(.data$id)) %>%
