@@ -60,14 +60,14 @@ cfb_pbp_data <- function(year,
   
   # Check for internet
   check_internet()
-  
+
   # # Create the GET request and set response as res
   # res <- httr::GET(full_url)
   # 
   # # Check the result
   # check_status(res)
 
-  raw_play_df <- jsonlite::fromJSON(full_url)
+  raw_play_df <- fromJSON(full_url)
   raw_play_df <- do.call(data.frame, raw_play_df)
   
   if(nrow(raw_play_df)==0){
@@ -531,7 +531,7 @@ clean_drive_info <- function(drive_df){
         str_detect(.data$drive_result,"TD") ~ 7,
         TRUE ~ 0),
       scoring = ifelse(.data$pts_drive != 0, TRUE, .data$scoring)) %>%
-   dplyr::mutate(drive_id = as.numeric(.data$id)) %>%
+    dplyr::mutate(drive_id = as.numeric(.data$id)) %>%
     dplyr::arrange(.data$game_id, .data$drive_id)
 
   return(clean_drive)
