@@ -14,12 +14,13 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom janitor "clean_names"
 #' @import dplyr
 #' @import tidyr
 #' @export
 #' @examples 
 #' 
-#' cfb_game_media(2019, week = 1, conference = 'ACC')
+#' cfb_game_media(2019, week = 4, conference = 'ACC')
 #'
 
 cfb_game_media <- function(year,
@@ -65,17 +66,29 @@ cfb_game_media <- function(year,
 
   # Check the result
   check_status(res)
-
+  
+  cols <- c("game_id", "season", "week", "season_type", "start_time",
+            "is_start_time_tbd", "home_team", "home_conference", "away_team",
+            "away_conference","tv", "radio", "web")
+  
   # Get the content and return it as data.frame
   df = fromJSON(full_url)
 
   df <- df %>%
     pivot_wider(names_from = .data$mediaType,
                 values_from = .data$outlet,
-                values_fn = .data$list) 
-
+                values_fn = list) %>%
+    clean_names() %>% 
+    rename(game_id = .data$id)
+  
+  df[cols[!(cols %in% colnames(df))]] = NA
+  
   df <- df[!duplicated(df),]
-
+  
+  df <- df %>%
+    select(cols) %>% 
+    as.data.frame()
+  
   return(df)
 
 }
