@@ -106,11 +106,11 @@ cfb_drives <- function(year,
   # Check for internet
   check_internet()
 
-  # Create the GET request and set response as res
-  res <- httr::GET(full_url)
-
-  # Check the result
-  check_status(res)
+  # # Create the GET request and set response as res
+  # res <- httr::GET(full_url)
+  # 
+  # # Check the result
+  # check_status(res)
   
 
   # Get the content and return it as data.frame
