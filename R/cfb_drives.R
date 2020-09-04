@@ -112,32 +112,22 @@ cfb_drives <- function(year,
   # Check the result
   check_status(res)
   
-  df <- data.frame()
-  tryCatch(
-    expr = {
-      # Get the content and return it as data.frame
-      df = jsonlite::fromJSON(full_url, flatten = TRUE) %>%
-        dplyr::rename(
-          time_minutes_start = .data$start_time.minutes,
-          time_seconds_start = .data$start_time.seconds,
-          time_minutes_end = .data$end_time.minutes,
-          time_seconds_end = .data$end_time.seconds,
-          time_minutes_elapsed = .data$elapsed.minutes,
-          time_seconds_elapsed = .data$elapsed.seconds
-        ) %>%
-       dplyr::mutate(
-          time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
-          time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
-        )
-      message(glue::glue("{Sys.time()}: Scraping drives data..."))
-    },
-    error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no drives data available!"))
-    },
-    warning = function(w) {
-    },
-    finally = {
-    }
-  )
+
+  # Get the content and return it as data.frame
+  df = jsonlite::fromJSON(full_url, flatten = TRUE) %>%
+    dplyr::rename(
+      time_minutes_start = .data$start_time.minutes,
+      time_seconds_start = .data$start_time.seconds,
+      time_minutes_end = .data$end_time.minutes,
+      time_seconds_end = .data$end_time.seconds,
+      time_minutes_elapsed = .data$elapsed.minutes,
+      time_seconds_elapsed = .data$elapsed.seconds
+    ) %>%
+   dplyr::mutate(
+      time_minutes_elapsed = ifelse(is.na(.data$time_minutes_elapsed), 0, .data$time_minutes_elapsed),
+      time_seconds_elapsed = ifelse(is.na(.data$time_seconds_elapsed), 0, .data$time_seconds_elapsed)
+    ) %>% 
+    as.data.frame()
+  
   return(df)
 }
