@@ -32,7 +32,7 @@ plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",be
   if(!is.null(game_id)){
     assert_that(length(game_id)==1,
                 msg = "Please specify one game id to plot")
-    dat = dat %>% filter(.data$game_id==game_id)
+    dat = dat %>% dplyr::filter(.data$game_id==game_id)
   }
   
   away_team <- names(away_color)
@@ -45,30 +45,30 @@ plot_wpa <- function(dat, game_id=NULL, away_color, home_color, winner="home",be
   if(!is_adj_time_present){
     if(bet == FALSE){
       plot_df <- dat %>%
-        mutate(
+       dplyr::mutate(
           adj_TimeSecsRem = ifelse(
             .data$period %in% c(1, 3),
             .data$TimeSecsRem + 1800,
             .data$TimeSecsRem
           )
         ) %>%
-        select(.data$home_wp_before, .data$away_wp_before, .data$adj_TimeSecsRem)
+        dplyr::select(.data$home_wp_before, .data$away_wp_before, .data$adj_TimeSecsRem)
     }else{
       plot_df <- dat %>%
-        mutate(
+       dplyr::mutate(
           adj_TimeSecsRem = ifelse(
             .data$period %in% c(1, 3),
             .data$TimeSecsRem + 1800,
             .data$TimeSecsRem
           )
         ) %>%
-        select(.data$home_wp_bet, .data$away_wp_bet, .data$adj_TimeSecsRem)
+        dplyr::select(.data$home_wp_bet, .data$away_wp_bet, .data$adj_TimeSecsRem)
     }
   }else{
     if(bet == FALSE){
-      plot_df <- dat %>% select(.data$home_wp_before, .data$away_wp_before, .data$adj_TimeSecsRem)
+      plot_df <- dat %>% dplyr::select(.data$home_wp_before, .data$away_wp_before, .data$adj_TimeSecsRem)
     }else{
-      plot_df <- dat %>% select(.data$home_wp_bet, .data$away_wp_bet, .data$adj_TimeSecsRem)
+      plot_df <- dat %>% dplyr::select(.data$home_wp_bet, .data$away_wp_bet, .data$adj_TimeSecsRem)
     }
   }
   

@@ -8,6 +8,7 @@
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
 #' @export
@@ -26,15 +27,15 @@ cfb_metrics_ppa_predicted <- function(down,
   
   # Check that none of arguments are null
   stop_if_any(args, is.null,
-              msg="You need to specify both arguments, down and distance, as integers")
+              msg = "You need to specify both arguments, down and distance, as integers")
   
   # Check if down is numeric
-  assert_that(is.numeric(down) & down <= 4,
-              msg='Enter valid down (Integer): values from 1-4')
+  assertthat::assert_that(is.numeric(down) & down <= 4,
+              msg = 'Enter valid down (Integer): values from 1-4')
   
   # Check if distance is numeric
-  assert_that(is.numeric(distance) & distance <= 99,
-              msg='Enter valid distance (Integer): values from 1-99')
+  assertthat::assert_that(is.numeric(distance) & distance <= 99,
+              msg = 'Enter valid distance (Integer): values from 1-99')
 
   base_url <- "https://api.collegefootballdata.com/ppa/predicted?"
 
@@ -46,15 +47,28 @@ cfb_metrics_ppa_predicted <- function(down,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content, flatten and return result as data.frame
-  df = fromJSON(full_url) 
-  colnames(df) = gsub("Line", "_line", colnames(df))
-  colnames(df) = gsub("Points", "_points", colnames(df))
   
+  df <- data.frame()
+  tryCatch(
+    expr ={    
+      # Get the content, flatten and return result as data.frame
+      df = jsonlite::fromJSON(full_url) 
+      colnames(df) = gsub("Line", "_line", colnames(df))
+      colnames(df) = gsub("Points", "_points", colnames(df))
+      
+      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA predicted data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA predicted data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }

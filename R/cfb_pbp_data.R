@@ -29,13 +29,13 @@ cfb_pbp_data <- function(year,
   options(stringsAsFactors = FALSE)
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(play_type)){
     text <- play_type %in% cfbscrapR::cfb_play_type_df$text
     abbr <- play_type %in% cfbscrapR::cfb_play_type_df$abbreviation
     pt <- 
-      assert_that(
+      assertthat::assert_that(
         (text | abbr) == TRUE, 
         msg = "Incorrect play type selected, please look at the available options in the Play Type DF.")
     if(text){
@@ -62,12 +62,12 @@ cfb_pbp_data <- function(year,
   check_internet()
   
   # # Create the GET request and set response as res
-  # res <- GET(full_url)
+  # res <- httr::GET(full_url)
   # 
   # # Check the result
   # check_status(res)
 
-  raw_play_df <- fromJSON(full_url)
+  raw_play_df <- jsonlite::fromJSON(full_url)
   raw_play_df <- do.call(data.frame, raw_play_df)
   
   if(nrow(raw_play_df)==0){
@@ -84,11 +84,11 @@ cfb_pbp_data <- function(year,
   colnames(clean_drive_df) <- paste0("drive_",colnames(clean_drive_df))
     
   play_df = raw_play_df %>%
-    mutate(drive_id = as.numeric(.data$drive_id)) %>%
-    left_join(clean_drive_df,
-              by = c("drive_id" = "drive_drive_id",
-                     "game_id" = "drive_game_id"),
-              suffix = c("_play", "_drive"))
+    dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
+    dplyr::left_join(clean_drive_df,
+                     by = c("drive_id" = "drive_drive_id",
+                            "game_id" = "drive_game_id"),
+                     suffix = c("_play", "_drive"))
 
   rm_cols = c(
     'drive_game_id', 'drive_id_drive',
@@ -103,8 +103,8 @@ cfb_pbp_data <- function(year,
 
 
   play_df <- play_df %>%
-    select(setdiff(names(play_df), rm_cols)) %>%
-    rename(drive_pts = .data$drive_pts_drive,
+    dplyr::select(setdiff(names(play_df), rm_cols)) %>%
+    dplyr::rename(drive_pts = .data$drive_pts_drive,
            drive_result = .data$drive_drive_result,
            id_play = .data$id,
            offense_play = .data$offense,
@@ -124,7 +124,7 @@ cfb_pbp_data <- function(year,
     play_df = purrr::map_dfr(g_ids,
                              function(x) {
                               play_df %>%
-                                filter(.data$game_id == x) %>%
+                                dplyr::filter(.data$game_id == x) %>%
                                 create_epa() %>%
                                 # add_betting_cols(g_id = x, yr=year) %>% 
                                 # create_wpa_betting() %>% 
@@ -132,15 +132,15 @@ cfb_pbp_data <- function(year,
                               })
       
     # play_df = epa_wpa_df %>%
-    #   group_by(.data$drive_id) %>%
-    #   arrange(.data$new_id, .by_group=TRUE) %>%
-    #   ungroup()
+    #   dplyr::group_by(.data$drive_id) %>%
+    #   dplyr::arrange(.data$new_id, .by_group=TRUE) %>%
+    #  dplyr::ungroup()
       
       
     play_df <- play_df %>% 
-      select(-.data$drive_drive_number,
+      dplyr::select(-.data$drive_drive_number,
              -.data$play_number) %>% 
-      select(.data$id_play,
+      dplyr::select(.data$id_play,
              .data$offense_play,
              .data$defense_play,
              .data$half,
@@ -206,47 +206,47 @@ cfb_pbp_data <- function(year,
 
 penalty_detection <- function(raw_df) {
   ## penalty detection-----
-  #-- penalty in play text----
+  #-- 'penalty' in play text----
   pen_text = str_detect(raw_df$play_text, regex("penalty", ignore_case = TRUE))
-  #-- declined in play text----
+  #-- 'Declined' in play text----
   pen_declined_text = str_detect(raw_df$play_text, regex("declined", ignore_case = TRUE))
-  #--NO PLAY in play text----
+  #-- 'No Play' in play text----
   pen_no_play_text = str_detect(raw_df$play_text, regex("no play", ignore_case = TRUE))
-  #--off-setting in play text----
+  #-- 'Off-setting' in play text----
   pen_offset_text = str_detect(raw_df$play_text, regex("off-setting", ignore_case = TRUE))
   
   pen_1st_down_text = str_detect(raw_df$play_text, regex("1st down", ignore_case = TRUE))
   
-  #-- penalty play_types
+  #-- Penalty play_types
   pen_type = raw_df$play_type == "Penalty" | raw_df$play_type == "penalty"
   
-  #-- penalty_flag T/F flag conditions
+  #-- T/F flag conditions penalty_flag 
   raw_df$penalty_flag = FALSE
   raw_df$penalty_flag[pen_type] <- TRUE
   raw_df$penalty_flag[pen_text] <- TRUE
-  #-- penalty_declined T/F flag conditions
+  #-- T/F flag conditions penalty_declined 
   raw_df$penalty_declined = FALSE
   raw_df$penalty_declined[pen_text & pen_declined_text] <- TRUE
   raw_df$penalty_declined[pen_type & pen_declined_text] <- TRUE
-  #-- penalty_no_play T/F flag conditions
+  #-- T/F flag conditions penalty_no_play 
   raw_df$penalty_no_play = FALSE
   raw_df$penalty_no_play[pen_text & pen_no_play_text] <- TRUE
   raw_df$penalty_no_play[pen_type & pen_no_play_text] <- TRUE
-  #-- penalty_offset T/F flag conditions
+  #-- T/F flag conditions penalty_offset 
   raw_df$penalty_offset = FALSE
   raw_df$penalty_offset[pen_text & pen_offset_text] <- TRUE
   raw_df$penalty_offset[pen_type & pen_offset_text] <- TRUE
-  #-- penalty_1st_conv T/F flag conditions
+  #-- T/F flag conditions penalty_1st_conv 
   raw_df$penalty_1st_conv = FALSE
   raw_df$penalty_1st_conv[pen_text & pen_1st_down_text] <- TRUE
   raw_df$penalty_1st_conv[pen_type & pen_1st_down_text] <- TRUE
-  #-- penalty flag T/F flag for penalty text but not penalty play type -- 
+  #-- T/F flag for penalty text but not penalty play type -- 
   raw_df$penalty_text <- FALSE
   raw_df$penalty_text[pen_text & !pen_type] <- TRUE
   
-  ## kickoff down adjustment
+  ##-- Kickoff down adjustment ----
   raw_df = raw_df %>%
-    mutate(down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Kickoff"), 1, .data$down),
+   dplyr::mutate(down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Kickoff"), 1, .data$down),
            down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Penalty"), 1, .data$down),
            half = ifelse(.data$period <= 2, 1, 2))
   
@@ -378,8 +378,8 @@ clean_pbp_dat <- function(raw_df) {
   )
   
   raw_df <- raw_df %>% 
-    mutate(
-      #-- touchdowns----
+   dplyr::mutate(
+      #-- Touchdowns----
       scoring_play = ifelse(.data$play_type %in% scores_vec, 1, 0),
       pts_scored = case_when(
         .data$play_type == "Blocked Field Goal Touchdown" ~ -7,
@@ -405,7 +405,7 @@ clean_pbp_dat <- function(raw_df) {
       touchdown = ifelse(str_detect(.data$play_type, regex('touchdown', ignore_case = TRUE)), 1, 0),
       off_td_play = ifelse(.data$play_type %in% offense_score_vec, 1, 0),
       def_td_play = ifelse(.data$play_type %in% defense_score_vec, 1, 0),
-      #-- kicks/punts----
+      #-- Kicks/Punts----
       kickoff_play = ifelse(.data$play_type %in% kickoff_vec, 1, 0),
       kickoff_tb = ifelse(str_detect(.data$play_text,regex("touchback", ignore_case = TRUE)) &
                             (.data$play_type %in% kickoff_vec), 1, 0),
@@ -416,9 +416,9 @@ clean_pbp_dat <- function(raw_df) {
       punt = ifelse(.data$play_type %in% punt_vec, 1, 0),
       punt_tb = ifelse(str_detect(.data$play_text,regex("touchback", ignore_case = TRUE)) &
                          (.data$play_type %in% punt_vec), 1, 0),
-      #-- fumbles----
+      #-- Fumbles----
       fumble_vec = ifelse(str_detect(.data$play_text, "fumble"), 1, 0),
-      #-- pass/rush----
+      #-- Pass/Rush----
       rush_vec = ifelse(
         .data$play_type == "Rush" | .data$play_type == "Rushing Touchdown" | 
         (.data$play_type == "Safety" & str_detect(.data$play_text, regex("run", ignore_case = TRUE))) |
@@ -441,14 +441,13 @@ clean_pbp_dat <- function(raw_df) {
         (.data$play_type == "Fumble Recovery (Opponent)" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE)))|
         (.data$play_type == "Fumble Recovery (Opponent) Touchdown" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE)))|
         (.data$play_type == "Fumble Return Touchdown" & str_detect(.data$play_text, regex("pass", ignore_case = TRUE))), 1, 0),
-      #-- sacks----
-      #- only want non-safety sacks, otherwise would be an additional condition----
+      #-- Sacks----
       sack_vec = ifelse(
         (.data$play_type %in% c("Sack","Sack Touchdown")|
         (.data$play_type == "Safety" & str_detect(.data$play_text, regex('sacked',ignore_case = TRUE)))), 1, 0),
-      #-- change of possession
+      #-- Change of possession via turnover
       turnover_vec = ifelse(.data$play_type %in% turnover_vec, 1, 0),
-      #-- ball changes hand----
+      #-- Change of possession by lead('offense_play', 1)----
       change_of_poss = ifelse(.data$offense_play == lead(.data$offense_play, order_by = .data$id_play), 0, 1),
       change_of_poss = ifelse(is.na(.data$change_of_poss), 0, .data$change_of_poss),
       ## Fix strip-sacks to fumbles----
@@ -457,25 +456,25 @@ clean_pbp_dat <- function(raw_df) {
                          "Fumble Recovery (Opponent)", .data$play_type),
       play_type = ifelse(.data$fumble_vec == 1 & .data$sack_vec == 1 & .data$td_play == 1, 
                          "Fumble Recovery (Opponent)", .data$play_type),
-      ## touchdown check for plays where touchdown is not listed in the play_type----
+      ## Portion of touchdown check for plays where touchdown is not listed in the play_type--
       td_check = ifelse(!str_detect(.data$play_type, "Touchdown"), 1, 0),
-      #-- fix kickoff fumble return TDs----
+      #-- Fix kickoff fumble return TDs----
       play_type = ifelse(.data$kick_play == 1 & .data$fumble_vec == 1 & 
                          .data$td_play == 1 & .data$td_check == 1,
                          paste0(.data$play_type, " Touchdown"), 
                          .data$play_type),
-      #-- fix punt return TDs----
+      #-- Fix punt return TDs----
       play_type = ifelse(.data$punt_play == 1 & .data$td_play == 1 & .data$td_check == 1,
                          paste0(.data$play_type, " Touchdown"), 
                          .data$play_type),
-      #-- fix rush/pass tds that aren't explicit----
+      #-- Fix rush/pass tds that aren't explicit----
       play_type = ifelse(.data$td_play == 1 & .data$rush_vec == 1,
                          "Rushing Touchdown", 
                          .data$play_type),
       play_type = ifelse(.data$td_play == 1 & .data$pass_vec == 1,
                          "Passing Touchdown", 
                          .data$play_type),
-      #-- fix duplicated TD play_type labels----
+      #-- Fix duplicated TD play_type labels----
       play_type = ifelse(.data$play_type == "Punt Touchdown Touchdown",
                          "Punt Touchdown",
                          .data$play_type),
@@ -485,13 +484,15 @@ clean_pbp_dat <- function(raw_df) {
       play_type = ifelse(.data$play_type == "Rushing Touchdown Touchdown",
                          "Rushing Touchdown",
                          .data$play_type),
+      #-- Fix Pass Interception Return TD play_type labels----
       play_type = ifelse(str_detect(.data$play_text,"pass intercepted for a TD"),
                          "Interception Return Touchdown", .data$play_type),
+      #-- Fix Sack/Fumbles Touchdown play_type labels----
       play_type = ifelse(str_detect(.data$play_text, regex("sacked", ignore_case = TRUE)) & 
                          str_detect(.data$play_text, regex("fumbled", ignore_case = TRUE)) &
                          str_detect(.data$play_text, regex("TD",ignore_case = TRUE)),
                          "Sack Touchdown", .data$play_type)   
-    ) %>% select(-.data$td_check,-.data$td_play)
+    ) %>% dplyr::select(-.data$td_check,-.data$td_play)
   return(raw_df)
 }
 
@@ -510,7 +511,7 @@ clean_pbp_dat <- function(raw_df) {
 clean_drive_info <- function(drive_df){
 
   clean_drive = drive_df %>%
-    mutate(
+   dplyr::mutate(
       pts_drive = case_when(
         .data$drive_result == "TD" ~ 7,
         str_detect(.data$drive_result,"SF") ~ -2,
@@ -530,8 +531,8 @@ clean_drive_info <- function(drive_df){
         str_detect(.data$drive_result,"TD") ~ 7,
         TRUE ~ 0),
       scoring = ifelse(.data$pts_drive != 0, TRUE, .data$scoring)) %>%
-    mutate(drive_id = as.numeric(.data$id)) %>%
-    arrange(.data$game_id, .data$drive_id)
+   dplyr::mutate(drive_id = as.numeric(.data$id)) %>%
+    dplyr::arrange(.data$game_id, .data$drive_id)
 
   return(clean_drive)
 }
@@ -552,14 +553,14 @@ clean_drive_info <- function(drive_df){
 
 add_betting_cols <- function(play_df, g_id, yr){
   
-  game_spread <- cfb_betting_lines(game_id = g_id, year=yr, line_provider = 'consensus') %>% 
-    mutate(spread = as.numeric(.data$spread)) %>% 
-    rename(game_id = .data$id, 
-           formatted_spread = .data$formattedSpread) %>% 
-    select(.data$game_id, .data$spread, .data$formatted_spread)
+  game_spread <- cfb_betting_lines(game_id = g_id, year=yr, line_provider = 'consensus') %>%
+    dplyr::mutate(spread = as.numeric(.data$spread)) %>% 
+    dplyr::rename(game_id = .data$id, 
+                  formatted_spread = .data$formattedSpread) %>% 
+    dplyr::select(.data$game_id, .data$spread, .data$formatted_spread)
   
-  pbp_df <- play_df %>% 
-    left_join(game_spread, by=c('game_id'))
+  pbp_df <- play_df %>%
+    dplyr::left_join(game_spread, by=c('game_id'))
   
   return(pbp_df)
 }

@@ -30,8 +30,6 @@ Get team game averages for Predicted Points Added (PPA)
 }
 \examples{
 
-
-
 cfb_metrics_ppa_games(year = 2019, team = 'TCU')
 
 }

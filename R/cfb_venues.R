@@ -20,13 +20,13 @@ cfb_venues <- function(){
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(base_url)
+  res <- httr::GET(base_url)
 
   # Check the result
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(base_url)
+  df = jsonlite::fromJSON(base_url)
 
   return(df)
 }

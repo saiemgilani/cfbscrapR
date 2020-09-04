@@ -27,7 +27,6 @@ Get Pre-game Win Probability Data from API
 
 cfb_metrics_wp_pregame(year = 2019, week=9, team='Texas A&M')
 
-
 }
 \keyword{Data}
 \keyword{Pre-game}

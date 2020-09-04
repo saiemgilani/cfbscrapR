@@ -20,29 +20,30 @@ plot_away_travel <- function(year,team_name) {
   # get data
   team_sched <- cfb_game_info(year, team = team_name)
   venue_deets <- cfb_venues()
-  # unnest venue location
-  venue <- venue_deets %>%  select(.data$id, .data$name, .data$capacity,.data$location) %>%
-    mutate(loc_x = unlist(.data$location$x),
-           loc_y = unlist(.data$location$y)) %>% select(-.data$location)
+  # tidyr::unnest venue location
+  venue <- venue_deets %>%  dplyr::select(.data$id, .data$name, .data$capacity,.data$location) %>%
+   dplyr::mutate(loc_x = unlist(.data$location$x),
+           loc_y = unlist(.data$location$y)) %>% dplyr::select(-.data$location)
   
-  team_sched_deets = team_sched %>% left_join(venue, by = c("venue_id" = "id")) %>%
-    mutate(win = if_else(
+  team_sched_deets = team_sched %>% 
+    dplyr::left_join(venue, by = c("venue_id" = "id")) %>%
+    dplyr::mutate(win = if_else(
       .data$home_team == team_name,
       .data$home_points > .data$away_points,
       .data$home_points < .data$away_points
     ))
   
-  home_games = team_sched_deets %>% filter(.data$home_team == team_name) %>% slice(1)
-  away_games = team_sched_deets %>% filter(!.data$home_team == team_name) %>%
-    mutate(start_x = home_games %>% pull(.data$loc_x),
-           start_y = home_games %>% pull(.data$loc_y))
+  home_games = team_sched_deets %>% 
+    dplyr::filter(.data$home_team == team_name) %>% 
+    slice(1)
+  away_games = team_sched_deets %>% 
+    dplyr::filter(!.data$home_team == team_name) %>%
+    dplyr::mutate(start_x = home_games %>% pull(.data$loc_x),
+                  start_y = home_games %>% pull(.data$loc_y))
   
   ## meters calculation
-  total_dist <-
-    distHaversine(matrix(c(away_games$loc_y, away_games$loc_x), ncol = 2),
-                  matrix(c(
-                    away_games$start_y, away_games$start_x
-                  ), ncol = 2))
+  total_dist <- distHaversine(matrix(c(away_games$loc_y, away_games$loc_x), ncol = 2),
+                  matrix(c(away_games$start_y, away_games$start_x), ncol = 2))
   
   away_games$dist <- total_dist / 1609.34
   

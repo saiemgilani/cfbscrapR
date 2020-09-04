@@ -28,10 +28,10 @@ cfb_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
                 msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
 
     base_url <-"https://api.collegefootballdata.com/teams?"
 
@@ -41,20 +41,20 @@ cfb_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
     check_internet()
 
     # Create the GET request and set response as res
-    res <- GET(full_url)
+    res <- httr::GET(full_url)
 
     # Check the result
     check_status(res)
 
     # Get the content and return it as data.frame
-    df = fromJSON(full_url)
+    df = jsonlite::fromJSON(full_url)
 
     return(df)
   }else{
 
     if(!is.null(year)){
       # Check if year is numeric, if not NULL
-      assert_that(is.numeric(year) & nchar(year) == 4,
+      assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
                   msg='Enter valid year as a number (YYYY)')
     }
 
@@ -68,13 +68,13 @@ cfb_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
     check_internet()
 
     # Create the GET request and set response as res
-    res <- GET(full_url)
+    res <- httr::GET(full_url)
 
     # Check the result
     check_status(res)
 
     # Get the content and return it as data.frame
-    df = fromJSON(full_url)
+    df = jsonlite::fromJSON(full_url)
 
     return(df)
   }

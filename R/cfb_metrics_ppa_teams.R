@@ -31,29 +31,29 @@ cfb_metrics_ppa_teams <- function(year = 2019,
                team = team)
   
   # Check that at search_term input argument is not null
-  stop_if_all(args, is.null,
-              msg="You need to specify at least one of two arguments:\nyear as an integer 4 digit format (YYYY) or team (String) for a D-I team")
+  attempt::stop_if_all(args, is.null,
+              msg = "You need to specify at least one of two arguments:\nyear as an integer 4 digit format (YYYY) or team (String) for a D-I team")
   
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year as integer in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year as integer in 4 digit format (YYYY)')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect Conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
   if(excl_garbage_time != FALSE){
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assert_that(excl_garbage_time == TRUE,
-                msg='Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
+    assertthat::assert_that(excl_garbage_time == TRUE,
+                msg = 'Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
   }
 
   base_url <- "https://api.collegefootballdata.com/ppa/teams?"
@@ -68,17 +68,30 @@ cfb_metrics_ppa_teams <- function(year = 2019,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
 
-  # Get the content, flatten and return result as data.frame
-  df = fromJSON(full_url,flatten = TRUE) 
-  colnames(df) = gsub("offense.", "off_", colnames(df))
-  colnames(df) = gsub("defense.", "def_", colnames(df))
-  colnames(df) = gsub("cumulative.", "cumulative_", colnames(df))
-  colnames(df) = gsub("Down", "_down", colnames(df))
-  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content, flatten and return result as data.frame
+      df = jsonlite::fromJSON(full_url,flatten = TRUE) 
+      colnames(df) = gsub("offense.", "off_", colnames(df))
+      colnames(df) = gsub("defense.", "def_", colnames(df))
+      colnames(df) = gsub("cumulative.", "cumulative_", colnames(df))
+      colnames(df) = gsub("Down", "_down", colnames(df))
+      
+      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA teams data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA teams data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )    
   return(df)
 }

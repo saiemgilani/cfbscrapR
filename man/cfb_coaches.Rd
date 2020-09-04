@@ -31,8 +31,7 @@ A coach search function which provides coaching records and school history for a
 }
 \examples{
 
-cfb_coaches(first = "Nick", last = "Saban",team='alabama')
-
+cfb_coaches(first = "Nick", last = "Saban", team = 'alabama')
 
 }
 \keyword{Recruiting}

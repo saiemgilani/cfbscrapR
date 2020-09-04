@@ -33,7 +33,7 @@ Get Game media information (TV, radio, etc)
 }
 \examples{
 
-cfb_game_media(2019, week = 1, conference = 'ACC')
+cfb_game_media(2019, week = 4, conference = 'ACC')
 
 }
 \keyword{Game}

@@ -12,6 +12,7 @@
 #' @keywords Plays
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
+#' @importFrom glue "glue"
 #' @export
 #' @examples
 #'
@@ -27,15 +28,27 @@ cfb_play_stats_types <- function(){
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(base_url)
+  res <- httr::GET(base_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(base_url) %>% 
-    rename(play_stat_type_id = .data$id) %>% 
-    as.data.frame()
   
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(base_url) %>% 
+        dplyr::rename(play_stat_type_id = .data$id) %>% 
+        as.data.frame()
+      message(glue::glue("{Sys.time()}: Scraping play stats types data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play stats types data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }

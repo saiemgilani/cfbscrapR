@@ -30,7 +30,6 @@ Get Season Advanced Statistics by Team
 
 cfb_stats_season_advanced(2019, team = 'LSU')
 
-
 }
 \keyword{Advanced}
 \keyword{Season}

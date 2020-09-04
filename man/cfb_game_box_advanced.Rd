@@ -15,7 +15,7 @@ Get game advanced box score information
 }
 \examples{
 
-cfb_game_box_advanced(401012356)
+cfb_game_box_advanced(401114233)
 
 
 }

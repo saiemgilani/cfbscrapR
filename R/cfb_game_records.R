@@ -26,17 +26,17 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
 
 
   ## check if year is numeric
-  assert_that(is.numeric(year) & nchar(year) == 4,
-              msg='Enter valid year (Integer): 4 digits (YYYY)')
+  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
+              msg = 'Enter valid year (Integer): 4 digits (YYYY)')
 
   if(!is.null(team)){
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect Conference Name, potential misspelling.\nConference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
 
   base_url <- "https://api.collegefootballdata.com/records?"
@@ -50,32 +50,44 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url,flatten=TRUE)%>%
-    rename(
-      total_games = .data$total.games,
-      total_wins = .data$total.wins,
-      total_losses = .data$total.losses,
-      total_ties = .data$total.ties,
-      conference_games = .data$conferenceGames.games,
-      conference_wins = .data$conferenceGames.wins,
-      conference_losses = .data$conferenceGames.losses,
-      conference_ties = .data$conferenceGames.ties,
-      home_games = .data$homeGames.games,
-      home_wins = .data$homeGames.wins,
-      home_losses = .data$homeGames.losses,
-      home_ties = .data$homeGames.ties,
-      away_games = .data$awayGames.games,
-      away_wins = .data$awayGames.wins,
-      away_losses = .data$awayGames.losses,
-      away_ties = .data$awayGames.ties
-    )
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url, flatten = TRUE)%>%
+        dplyr::rename(
+          total_games = .data$total.games,
+          total_wins = .data$total.wins,
+          total_losses = .data$total.losses,
+          total_ties = .data$total.ties,
+          conference_games = .data$conferenceGames.games,
+          conference_wins = .data$conferenceGames.wins,
+          conference_losses = .data$conferenceGames.losses,
+          conference_ties = .data$conferenceGames.ties,
+          home_games = .data$homeGames.games,
+          home_wins = .data$homeGames.wins,
+          home_losses = .data$homeGames.losses,
+          home_ties = .data$homeGames.ties,
+          away_games = .data$awayGames.games,
+          away_wins = .data$awayGames.wins,
+          away_losses = .data$awayGames.losses,
+          away_ties = .data$awayGames.ties
+        )
+      message(glue::glue("{Sys.time()}: Scraping game records data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game records data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 
 }

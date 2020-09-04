@@ -8,10 +8,14 @@
 #' 
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite "fromJSON"
+#' @importFrom attempt "stop_if_all"
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
 #' @importFrom janitor "clean_names"
+#' @importFrom stringr "str_sub" "str_length"
+#' @import dplyr
+#' 
 #' @export
 #'
 #' @examples
@@ -25,13 +29,13 @@ cfb_metrics_espn_wp <- function(game_id) {
   args <- list(game_id = game_id)
   
   # Check that at search_term input argument is not null
-  stop_if_all(args, is.null,
-              msg="You need to specify at least one argument: game_id\n Can be found using the `cfb_game_info()` function")
+  attempt::stop_if_all(args, is.null,
+              msg = "You need to specify at least one argument: game_id\n Can be found using the `cfb_game_info()` function")
   
   if(!is.null(game_id)){
     # Check if game_id is numeric, if not NULL
-    assert_that(is.numeric(game_id),
-                msg='Enter valid game_id value (Integer)\nCan be found using the `cfb_game_info()` function')
+    assertthat::assert_that(is.numeric(game_id),
+                msg = 'Enter valid game_id value (Integer)\nCan be found using the `cfb_game_info()` function')
   }
 
   # Check for internet
@@ -62,10 +66,10 @@ cfb_metrics_espn_wp <- function(game_id) {
         )%>%
         dplyr::select(.data$espn_game_id, .data$play_id, .data$seconds_left, 
                       .data$home_win_percentage, .data$away_win_percentage) 
-      message(glue::glue("{Sys.time()}: Scraping ESPN wp data for GameID '{espn_game_id}'..."))
+      message(glue::glue("{Sys.time()}: Scraping ESPN win probability data for game_id '{espn_game_id}'..."))
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: GameID '{espn_game_id}' invalid or no wp data available!"))
+      message(glue::glue("{Sys.time()}: game_id '{espn_game_id}' invalid or no ESPN win probability data available!"))
     },
     warning = function(w) {
     },

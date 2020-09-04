@@ -23,7 +23,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
     "def_timeouts_rem_before"
   )
   if (!all(col_nec %in% colnames(df))) {
-    df = df %>% mutate(
+    df = df %>%dplyr::mutate(
       play_after_turnover = ifelse(lag(.data$turnover_vec, 1) == 1 & lag(.data$def_td_play, 1) != 1, 1, 0),
       score_diff = .data$offense_score - .data$defense_score,
       score_diff_start = ifelse(.data$play_after_turnover == 1, 
@@ -40,7 +40,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
   }
 
   df = df %>% 
-    arrange(.data$game_id, .data$new_id)
+    dplyr::arrange(.data$game_id, .data$new_id)
   
   Off_Win_Prob = as.vector(predict(wp_model, newdata = df, type = "response"))
   df$wp_before = Off_Win_Prob
@@ -49,7 +49,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
   df2 = purrr::map_dfr(g_ids,
                        function(x) {
                          df %>%
-                           filter(.data$game_id == x) %>%
+                           dplyr::filter(.data$game_id == x) %>%
                            wpa_calcs_naive()
                        })
   return(df2)
@@ -67,7 +67,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
 wpa_calcs_naive <- function(df) {
 
   df2 = df %>% 
-    mutate(
+   dplyr::mutate(
       def_wp_before = 1 - .data$wp_before,
       home_wp_before = if_else(.data$offense_play == .data$home,
                         .data$wp_before, 
@@ -75,7 +75,7 @@ wpa_calcs_naive <- function(df) {
       away_wp_before = if_else(.data$offense_play != .data$home,
                         .data$wp_before, 
                         .data$def_wp_before)) %>%
-    mutate(
+   dplyr::mutate(
       # base wpa
       lead_wp_before = dplyr::lead(.data$wp_before, 1),
       wpa_base = .data$lead_wp_before - .data$wp_before,

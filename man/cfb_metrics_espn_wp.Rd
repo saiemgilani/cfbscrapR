@@ -18,7 +18,7 @@ Graciously contributed by MrCaseB:
 }
 \examples{
 
-cfb_metrics_espn_wp(game_id = 401012356)
+cfb_metrics_espn_wp(game_id = 401114164)
 
 
 }
