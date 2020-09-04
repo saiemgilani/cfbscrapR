@@ -16,6 +16,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode" "URLdecode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom janitor "clean_names"
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
@@ -89,7 +90,21 @@ cfb_game_team_stats <- function(year,
 
   # Check the result
   check_status(res)
-
+  
+  
+   cols <- c("id", "school", "conference", "home_away",                     
+            "points", "rushing_t_ds", "punt_return_yards","punt_return_t_ds", 
+            "punt_returns", "passing_t_ds", "kicking_points",
+            "interception_yards", "interception_t_ds", "passes_intercepted", 
+            "fumbles_recovered", "total_fumbles", "tackles_for_loss", 
+            "defensive_t_ds", "tackles", "sacks", "qb_hurries", 
+            "passes_deflected", "possession_time", "interceptions", 
+            "fumbles_lost", "turnovers", "total_penalties_yards", 
+            "yards_per_rush_attempt", "rushing_attempts", "rushing_yards", 
+            "yards_per_pass", "completion_attempts", "net_passing_yards", 
+            "total_yards", "fourth_down_eff", "third_down_eff", 
+            "first_downs", "kick_return_yards", "kick_return_t_ds", 
+            "kick_returns")
   # Get the content, unnest, and return result as data.frame
   df = fromJSON(full_url, flatten=TRUE) %>%
     map_if(is.data.frame,list) %>%
@@ -108,21 +123,60 @@ cfb_game_team_stats <- function(year,
   df <- pivot_wider(df,
                     names_from = .data$category,
                     values_from = .data$stat)
+  df <- df %>% 
+    janitor::clean_names()
+  df[cols[!(cols %in% colnames(df))]] = NA
+  df <- df %>% 
+    rename(
+      game_id = .data$id,
+      rush_tds = .data$rushing_t_ds,
+      punt_return_tds = .data$punt_return_t_ds,
+      passing_tds = .data$passing_t_ds,
+      interception_tds = .data$interception_t_ds,
+      defensive_tds = .data$defensive_t_ds,
+      kick_return_tds = .data$kick_return_t_ds
+    )
 
   if(rows_per_team == 1){
     # Join pivoted data with itself to get ultra-wide row
     # containing all game stats on one row for both teams
     df <- df %>%
       left_join(df,
-                by= c('id','school'),
+                by= c('game_id','school'),
                 suffix = c('', '_allowed'))
-
+    
+    cols1 <- c("game_id", "school",  "conference", "home_away",                    
+               "points", "total_yards", "net_passing_yards", 
+               "completion_attempts","passing_tds","yards_per_pass",
+               "passes_intercepted","interception_yards", "interception_tds", 
+               "rushing_attempts", "rushing_yards","rush_tds", "yards_per_rush_attempt",
+               "first_downs", "third_down_eff", "fourth_down_eff",
+               "punt_returns", "punt_return_yards", "punt_return_tds",               
+               "kick_return_yards", "kick_return_tds", "kick_returns", "kicking_points",    
+               "fumbles_recovered","fumbles_lost", "total_fumbles",                 
+               "tackles", "tackles_for_loss", "sacks", "qb_hurries",  
+               "interceptions", "passes_deflected", "turnovers","defensive_tds", 
+               "total_penalties_yards", "possession_time",
+               "conference_allowed", "home_away_allowed",                    
+               "points_allowed", "total_yards_allowed", "net_passing_yards_allowed", 
+               "completion_attempts_allowed","passing_tds_allowed","yards_per_pass_allowed",
+               "passes_intercepted_allowed","interception_yards_allowed", "interception_tds_allowed", 
+               "rushing_attempts_allowed", "rushing_yards_allowed","rush_tds_allowed", "yards_per_rush_attempt_allowed",
+               "first_downs_allowed", "third_down_eff_allowed", "fourth_down_eff_allowed",
+               "punt_returns_allowed", "punt_return_yards_allowed", "punt_return_tds_allowed",               
+               "kick_return_yards_allowed", "kick_return_tds_allowed", "kick_returns_allowed", "kicking_points_allowed",    
+               "fumbles_recovered_allowed","fumbles_lost_allowed", "total_fumbles_allowed",                 
+               "tackles_allowed", "tackles_for_loss_allowed", "sacks_allowed", "qb_hurries_allowed",  
+               "interceptions_allowed", "passes_deflected_allowed", "turnovers_allowed","defensive_tds_allowed", 
+               "total_penalties_yards_allowed", "possession_time_allowed")
+    
     if(!is.null(team)){
 
       team <- URLdecode(team)
 
       df <- df %>%
-        filter(.data$school == team)
+        filter(.data$school == team) %>% 
+        select(cols1)
 
       return(df)
     } else if(!is.null(conference)){
@@ -134,20 +188,37 @@ cfb_game_team_stats <- function(year,
       conf_name <- confs[confs$abbreviation == conference,]$name
 
       df <- df %>%
-        filter(conference == conf_name)
+        filter(conference == conf_name) %>% 
+        select(cols1)
 
       return(df)
     } else{
+      df<-df %>% 
+        select(cols1)
       return(df)
     }
   } else{
+    cols2 <- c(
+      "game_id", "school",  "conference", "home_away",                    
+      "points", "total_yards", "net_passing_yards", 
+      "completion_attempts","passing_tds","yards_per_pass",
+      "passes_intercepted","interception_yards", "interception_tds", 
+      "rushing_attempts", "rushing_yards","rush_tds", "yards_per_rush_attempt",
+      "first_downs", "third_down_eff", "fourth_down_eff",
+      "punt_returns", "punt_return_yards", "punt_return_tds",               
+      "kick_return_yards", "kick_return_tds", "kick_returns", "kicking_points",    
+      "fumbles_recovered","fumbles_lost", "total_fumbles",                 
+      "tackles", "tackles_for_loss", "sacks", "qb_hurries",  
+      "interceptions", "passes_deflected", "turnovers","defensive_tds", 
+      "total_penalties_yards", "possession_time"
+      )
     if(!is.null(team)){
 
       team <- URLdecode(team <- team)
 
       df <- df %>%
-        filter(.data$school == team)
-
+        filter(.data$school == team) %>% 
+        select(cols2)
       return(df)
     } else if(!is.null(conference)){
 
@@ -158,10 +229,13 @@ cfb_game_team_stats <- function(year,
       conf_name <- confs[confs$abbreviation == conference,]$name
 
       df <- df %>%
-        filter(conference == conf_name)
-
+        filter(conference == conf_name) %>% 
+        select(cols2)
+        
       return(df)
     } else{
+      df <- df %>% 
+        select(cols2)
       return(df)
     }
   }
