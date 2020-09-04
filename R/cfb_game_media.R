@@ -15,6 +15,7 @@
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @importFrom janitor "clean_names"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
 #' @export
@@ -31,25 +32,25 @@ cfb_game_media <- function(year,
                            media_type = NULL) {
 
   ## check if year is numeric
-  assert_that(is.numeric(year) & nchar(year) == 4,
-              msg='Enter valid year as a number (YYYY)')
+  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
+              msg = 'Enter valid year as a number (YYYY)')
   if(!is.null(week)){
-    assert_that(is.numeric(week) & nchar(week) <= 2,
-                msg='Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
+                msg = 'Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
   if(!is.null(team)){
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
                 msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
 
-
   base_url <- "https://api.collegefootballdata.com/games/media?"
+
   full_url <- paste0(base_url,
                      "year=", year,
                      "&week=", week,
@@ -62,7 +63,7 @@ cfb_game_media <- function(year,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
@@ -71,24 +72,34 @@ cfb_game_media <- function(year,
             "is_start_time_tbd", "home_team", "home_conference", "away_team",
             "away_conference","tv", "radio", "web")
   
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url)
-
-  df <- df %>%
-    pivot_wider(names_from = .data$mediaType,
-                values_from = .data$outlet,
-                values_fn = list) %>%
-    clean_names() %>% 
-    rename(game_id = .data$id)
-  
-  df[cols[!(cols %in% colnames(df))]] = NA
-  
-  df <- df[!duplicated(df),]
-  
-  df <- df %>%
-    select(cols) %>% 
-    as.data.frame()
-  
+  df <- data.frame()
+  tryCatch(
+    expr ={
+      # Get the content and return it as data.frame
+      df <- jsonlite::fromJSON(full_url) %>%
+        pivot_wider(names_from = .data$mediaType,
+                    values_from = .data$outlet,
+                    values_fn = list) %>%
+        janitor::clean_names() %>% 
+        dplyr::rename(game_id = .data$id)
+      
+      df[cols[!(cols %in% colnames(df))]] = NA
+      df <- df[!duplicated(df),]
+      
+      df <- df %>%
+        dplyr::select(cols, dplyr::everything()) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping game media data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game media data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 
 }

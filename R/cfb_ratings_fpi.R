@@ -12,6 +12,7 @@
 #' @importFrom utils "URLencode"
 #' @importFrom utils "globalVariables"
 #' @importFrom purrr "pluck"
+#' @importFrom glue "glue"
 #' @export
 #' @examples
 #'
@@ -34,7 +35,8 @@ cfb_ratings_fpi <- function(year = 2019) {
   
   url <- glue::glue("{fpi_full_url}&season={year}&limit=200")
   
-  raw_json_fpi = fromJSON(url)
+
+  raw_json_fpi = jsonlite::fromJSON(url)
   
   ## get team fpi stats
   get_fpi_data <- function(row_n){
@@ -42,11 +44,11 @@ cfb_ratings_fpi <- function(year = 2019) {
   }
   purrr::pluck(raw_json_fpi, "categories", "labels", 1)
   
-  # unnest_wider() name repair is noisy
+  # tidyr::unnest_wider() name repair is noisy
   # Let's make it quiet with purrr::quietly()
   quiet_unnest_wider <- purrr::quietly(tidyr::unnest_wider)
   
-  purrr::pluck(raw_json_fpi, "teams", "team") %>%
+  df <- purrr::pluck(raw_json_fpi, "teams", "team") %>%
     dplyr::as_tibble() %>%
     dplyr::select(.data$id, .data$nickname, .data$abbreviation, .data$logos, .data$links) %>%
     dplyr::mutate(row_n = dplyr::row_number()) %>%
@@ -61,7 +63,10 @@ cfb_ratings_fpi <- function(year = 2019) {
       "win_conf", "w", "l", "t"
     )) %>%
     dplyr::select(-c("logos","links")) %>% 
-    dplyr::mutate(year = year, t = ifelse(is.na(t),0,t)) %>%
+    dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
     dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(str_remove(., "%"))/100 ) %>%
-    dplyr::select(.data$year, dplyr::everything())
+    dplyr::select(.data$year, dplyr::everything()) %>% 
+    as.data.frame()
+
+  return(df)
 }
