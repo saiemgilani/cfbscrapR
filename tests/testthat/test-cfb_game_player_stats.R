@@ -1,6 +1,6 @@
 library(testthat)
 library(cfbscrapR)
-
+context("CFB Game Player Stats")
 test_that("CFB Game Player Stats", {
 
   x <- cfb_game_player_stats(2018, week = 15, conference = 'Ind')

@@ -1,6 +1,6 @@
 library(testthat)
 library(cfbscrapR)
-
+context("CFB Game Records")
 test_that("CFB Game Records", {
   x <- cfb_game_records(2018, team = 'Notre Dame')
   y <- cfb_game_records(2013, team = "Florida State")

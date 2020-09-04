@@ -1,6 +1,6 @@
 library(testthat)
 library(cfbscrapR)
-
+context("CFB Game Box Advanced")
 test_that("CFB Game Box Advanced", {
   x <- cfb_game_box_advanced(game_id = 401012356)
   
