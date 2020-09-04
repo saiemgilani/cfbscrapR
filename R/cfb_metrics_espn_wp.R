@@ -16,7 +16,7 @@
 #'
 #' @examples
 #'
-#' cfb_metrics_espn_wp(game_id = 401012356)
+#' cfb_metrics_espn_wp(game_id = 401114164)
 #'
 #'
 
@@ -40,6 +40,7 @@ cfb_metrics_espn_wp <- function(game_id) {
   espn_game_id <- game_id
   
   espn_wp <- data.frame()
+
   tryCatch(
     expr = {
       espn_wp <-
@@ -49,9 +50,13 @@ cfb_metrics_espn_wp <- function(game_id) {
         purrr::pluck("winprobability") %>%
         janitor::clean_names() %>%
         dplyr::mutate(
-          espn_game_id = stringr::str_sub(.data$play_id, end = stringr::str_length(.data$espn_game_id))
+          espn_game_id = stringr::str_sub(.data$play_id, end = stringr::str_length(espn_game_id))
         ) %>%
-        
+        dplyr::rename(
+          home_win_percentage = .data$home_win_percentage,
+          seconds_left = .data$seconds_left,
+          play_id = .data$play_id
+        ) %>% 
         dplyr::mutate(
           away_win_percentage = 1 - .data$home_win_percentage
         )%>%
