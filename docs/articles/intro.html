@@ -19,7 +19,6 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to College Football Analytics with cfbscrapR">
 <meta property="og:description" content="cfbscrapR">
-<meta property="og:image" content="http://saiemgilani.github.io/cfbscrapR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -242,11 +241,8 @@
 <p>Let’s look at it!</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu">glimpse</span>(<span class="no">pbp</span>)</pre></body></html></div>
 <pre><code>## Rows: 100,831
-## Columns: 139
-## $ game_id                    &lt;int&gt; 401110720, 401110720, 401110720, 4011107...
-## $ drive_number               &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4...
-## $ drive_play_number          &lt;dbl&gt; 2, 3, 4, 1, 2, 3, 1, 2, 1, 2, 3, 4, 5, 6...
-## $ game_play_number           &lt;dbl&gt; 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15...
+## Columns: 138
+## $ id_play                    &lt;chr&gt; "401110720101855301", "40111072010185840...
 ## $ offense_play               &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Duke",...
 ## $ defense_play               &lt;chr&gt; "Duke", "Duke", "Duke", "Alabama", "Alab...
 ## $ half                       &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
@@ -260,39 +256,28 @@
 ## $ yards_to_goal              &lt;dbl&gt; 78, 77, 75, 55, 56, 52, 83, 77, 26, 21, ...
 ## $ yards_gained               &lt;int&gt; 1, 2, -6, -1, 4, 0, 6, 3, 5, 0, 5, 2, 0,...
 ## $ TimeSecsRem                &lt;dbl&gt; 1786, 1755, 1710, 1670, 1647, 1615, 1602...
-## $ down_end                   &lt;fct&gt; 2, 3, 4, 2, 3, 4, 2, 1, 2, 3, 1, 2, 3, 4...
-## $ distance_end               &lt;dbl&gt; 9, 7, 13, 11, 7, 7, 4, 10, 5, 5, 10, 8, ...
-## $ yards_to_goal_end          &lt;dbl&gt; 77, 75, 81, 56, 52, 52, 77, 26, 21, 21, ...
-## $ TimeSecsRem_end            &lt;dbl&gt; 1755, 1710, 1677, 1647, 1615, 1609, 1584...
-## $ Goal_To_Go                 &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
-## $ Under_two                  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
-## $ offense_timeouts           &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3...
-## $ defense_timeouts           &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3...
-## $ change_of_poss             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0...
-## $ play_after_turnover        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0...
+## $ offense_score              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ defense_score              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ EPA                        &lt;dbl&gt; -0.75653413, -0.80455228, -1.87692365, -...
 ## $ def_EPA                    &lt;dbl&gt; 0.75653413, 0.80455228, 1.87692365, 0.99...
 ## $ ep_before                  &lt;dbl&gt; 0.383715944, -0.372818190, -1.177370469,...
 ## $ ep_after                   &lt;dbl&gt; -0.3728182, -1.1773705, -3.0542941, 1.51...
 ## $ ppa                        &lt;chr&gt; "-0.51421952939679995", "-0.227264862029...
-## $ wpa                        &lt;dbl&gt; -0.029134787, -0.029645452, -0.077583715...
-## $ wpa_base                   &lt;dbl&gt; -0.029134787, -0.029645452, -0.077583715...
-## $ wpa_change                 &lt;dbl&gt; -0.029134787, -0.029645452, -0.077583715...
+## $ wpa                        &lt;dbl&gt; -0.0291348, -0.0296455, -0.0775837, -0.0...
 ## $ wp_before                  &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.59402...
-## $ def_wp_before              &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.40597...
-## $ lead_wp_before             &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.55370...
-## $ home_wp_before             &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.40597...
-## $ away_wp_before             &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.59402...
-## $ home_wp_post               &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.44629...
-## $ away_wp_post               &lt;dbl&gt; 0.5428328, 0.5724783, 0.6500620, 0.55370...
-## $ offense_score              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
-## $ defense_score              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
-## $ score_diff                 &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ wp_after                   &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.55370...
+## $ game_play_number           &lt;dbl&gt; 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15...
+## $ drive_number               &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4...
+## $ drive_play_number          &lt;dbl&gt; 2, 3, 4, 1, 2, 3, 1, 2, 1, 2, 3, 4, 5, 6...
 ## $ firstD_by_poss             &lt;dbl&gt; 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0...
 ## $ firstD_by_penalty          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ firstD_by_yards            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0...
-## $ first_by_penalty           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
-## $ first_by_yards             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0...
+## $ score_diff                 &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ Goal_To_Go                 &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
+## $ Under_two                  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
+## $ offense_timeouts           &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3...
+## $ defense_timeouts           &lt;int&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3...
+## $ change_of_poss             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0...
 ## $ drive_start_yards_to_goal  &lt;int&gt; 78, 78, 78, 55, 55, 55, 83, 83, 26, 26, ...
 ## $ drive_end_yards_to_goal    &lt;int&gt; 81, 81, 81, 52, 52, 52, 77, 77, 7, 7, 7,...
 ## $ drive_yards                &lt;int&gt; -3, -3, -3, 3, 3, 3, 9, 9, 19, 19, 19, 1...
@@ -301,13 +286,16 @@
 ## $ drive_pts                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ home                       &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Alabam...
 ## $ away                       &lt;chr&gt; "Duke", "Duke", "Duke", "Duke", "Duke", ...
+## $ game_id                    &lt;int&gt; 401110720, 401110720, 401110720, 4011107...
 ## $ new_id                     &lt;dbl&gt; 101855301, 101858401, 101866901, 1018749...
-## $ id_play                    &lt;chr&gt; "401110720101855301", "40111072010185840...
 ## $ drive_id                   &lt;dbl&gt; 4011107201, 4011107201, 4011107201, 4011...
 ## $ score_diff_start           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ down_end                   &lt;fct&gt; 2, 3, 4, 2, 3, 4, 2, 1, 2, 3, 1, 2, 3, 4...
+## $ distance_end               &lt;dbl&gt; 9, 7, 13, 11, 7, 7, 4, 10, 5, 5, 10, 8, ...
+## $ yards_to_goal_end          &lt;dbl&gt; 77, 75, 81, 56, 52, 52, 77, 26, 21, 21, ...
+## $ TimeSecsRem_end            &lt;dbl&gt; 1755, 1710, 1677, 1647, 1615, 1609, 1584...
 ## $ offense_conference         &lt;chr&gt; "SEC", "SEC", "SEC", "ACC", "ACC", "ACC"...
 ## $ defense_conference         &lt;chr&gt; "ACC", "ACC", "ACC", "SEC", "SEC", "SEC"...
-## $ play_number                &lt;int&gt; 2, 3, 4, 1, 2, 3, 1, 2, 1, 2, 3, 4, 5, 6...
 ## $ yard_line                  &lt;int&gt; 22, 23, 25, 55, 56, 52, 17, 23, 26, 21, ...
 ## $ scoring                    &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
 ## $ drive_start_yardline       &lt;int&gt; 22, 22, 22, 55, 55, 55, 17, 17, 26, 26, ...
@@ -319,7 +307,6 @@
 ## $ drive_time_seconds_elapsed &lt;dbl&gt; 3, 3, 3, 8, 8, 8, 25, 25, 56, 56, 56, 56...
 ## $ scoring_play               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ pts_scored                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
-## $ td_play                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ touchdown                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ off_td_play                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ def_td_play                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
@@ -334,20 +321,23 @@
 ## $ pass                       &lt;dbl&gt; 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0...
 ## $ sack_vec                   &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ turnover_vec               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0...
-## $ td_check                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
 ## $ penalty_flag               &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
 ## $ penalty_declined           &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
 ## $ penalty_no_play            &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
 ## $ penalty_offset             &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
 ## $ penalty_1st_conv           &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
 ## $ penalty_text               &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
+## $ end_of_half                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ turnover                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0...
 ## $ downs_turnover             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ half_play_number           &lt;dbl&gt; 2, 3, 4, 6, 7, 8, 10, 11, 12, 13, 14, 15...
 ## $ off_timeouts_rem_before    &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3...
 ## $ def_timeouts_rem_before    &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3...
 ## $ missing_yard_flag          &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE...
+## $ first_by_penalty           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ first_by_yards             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0...
 ## $ adj_TimeSecsRem            &lt;dbl&gt; 3586, 3555, 3510, 3470, 3447, 3415, 3402...
+## $ play_after_turnover        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0...
 ## $ scored_pts                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ home_EPA                   &lt;dbl&gt; -0.75653413, -0.80455228, -1.87692365, 0...
 ## $ away_EPA                   &lt;dbl&gt; 0.75653413, 0.80455228, 1.87692365, -0.9...
@@ -358,7 +348,15 @@
 ## $ stuffed_run                &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0...
 ## $ success                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0...
 ## $ epa_success                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0...
-## $ end_of_half                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ def_wp_before              &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.40597...
+## $ home_wp_before             &lt;dbl&gt; 0.4863020, 0.4571672, 0.4275217, 0.40597...
+## $ away_wp_before             &lt;dbl&gt; 0.5136980, 0.5428328, 0.5724783, 0.59402...
+## $ lead_wp_before             &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.55370...
+## $ wpa_base                   &lt;dbl&gt; -0.0291348, -0.0296455, -0.0775837, -0.0...
+## $ wpa_change                 &lt;dbl&gt; -0.0291348, -0.0296455, -0.0775837, -0.0...
+## $ def_wp_after               &lt;dbl&gt; 0.5428328, 0.5724783, 0.6500620, 0.44629...
+## $ home_wp_after              &lt;dbl&gt; 0.4571672, 0.4275217, 0.3499380, 0.44629...
+## $ away_wp_after              &lt;dbl&gt; 0.5428328, 0.5724783, 0.6500620, 0.55370...
 ## $ season                     &lt;int&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019...
 ## $ week                       &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
 ## $ season_type                &lt;chr&gt; "regular", "regular", "regular", "regula...
@@ -551,28 +549,28 @@
 <div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">plays</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">offense_play</span> <span class="kw">==</span> <span class="st">"TCU"</span> <span class="kw">&amp;</span> <span class="no">EPA</span> <span class="kw">&lt;</span> -<span class="fl">4</span>) <span class="kw">%&gt;%</span> <span class="fu">select</span>(<span class="no">offense_play</span>, <span class="no">defense_play</span>, <span class="no">play_text</span>, <span class="no">down</span>, <span class="no">distance</span>, <span class="no">yards_to_goal</span>)</pre></body></html></div>
 <pre><code>##   offense_play   defense_play
 ## 1          TCU         Baylor
-## 2          TCU            SMU
-## 3          TCU          Texas
-## 4          TCU  West Virginia
-## 5          TCU         Baylor
-## 6          TCU Oklahoma State
-## 7          TCU            SMU
+## 2          TCU         Baylor
+## 3          TCU Oklahoma State
+## 4          TCU            SMU
+## 5          TCU            SMU
+## 6          TCU          Texas
+## 7          TCU  West Virginia
 ##                                                                                                                                        play_text
 ## 1                                                                  Max Duggan pass intercepted Grayland Arnold return for no gain to the Bayl 14
-## 2                      Sewo Olonilua run for 1 yd to the TCU 4 Sewo Olonilua fumbled, forced by Richard McBryde, recovered by SMU Patrick Nelson
-## 3 Max Duggan pass intercepted Brandon Jones return for a loss of 3 yards to the Texas 24 TEXAS Penalty, Illegal Block (12 Yards) to the Texas 12
-## 4                                                                        Max Duggan pass intercepted Tykee Smith return for 39 yds to the TCU 14
-## 5                                                                      Max Duggan pass intercepted Terrel Bernard return for 20 yds to the TCU 8
-## 6                       Max Duggan pass complete to John Stephens Jr. for 13 yds John Stephens Jr. fumbled, recovered by OKSt Kolby Harvell-Peel
-## 7                                            Max Duggan run for a loss of 4 yards to the TCU 24 Max Duggan fumbled, recovered by SMU Toby Ndukwe
+## 2                                                                      Max Duggan pass intercepted Terrel Bernard return for 20 yds to the TCU 8
+## 3                       Max Duggan pass complete to John Stephens Jr. for 13 yds John Stephens Jr. fumbled, recovered by OKSt Kolby Harvell-Peel
+## 4                      Sewo Olonilua run for 1 yd to the TCU 4 Sewo Olonilua fumbled, forced by Richard McBryde, recovered by SMU Patrick Nelson
+## 5                                            Max Duggan run for a loss of 4 yards to the TCU 24 Max Duggan fumbled, recovered by SMU Toby Ndukwe
+## 6 Max Duggan pass intercepted Brandon Jones return for a loss of 3 yards to the Texas 24 TEXAS Penalty, Illegal Block (12 Yards) to the Texas 12
+## 7                                                                        Max Duggan pass intercepted Tykee Smith return for 39 yds to the TCU 14
 ##   down distance yards_to_goal
 ## 1    1       10            24
-## 2    1       10            99
-## 3    1       10            24
-## 4    3        4            57
-## 5    1       10            81
-## 6    1       10            31
-## 7    2        6            71</code></pre>
+## 2    1       10            81
+## 3    1       10            31
+## 4    1       10            99
+## 5    2        6            71
+## 6    1       10            24
+## 7    3        4            57</code></pre>
 <p>Lastly, let’s explore the <code>gt()</code> pacakge to list the top ten rushing and passing offenses and defenses in the country. We will take our dataset, sort it by the value we want, add a rank variable using mutate(), then apply gt(), simply enough.</p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co">#Passing</span>
 <span class="no">team.epa</span> <span class="kw">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="no">epa.pass.off</span>)) <span class="kw">%&gt;%</span> <span class="fu">mutate</span>(<span class="kw">rank</span> <span class="kw">=</span> <span class="fu">dense_rank</span>(<span class="fu">desc</span>(<span class="no">epa.pass.off</span>))) <span class="kw">%&gt;%</span>
@@ -581,7 +579,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wlljglvwdu .gt_table {
+#lwwgqginsw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -606,7 +604,7 @@
   border-left-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_heading {
+#lwwgqginsw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -618,7 +616,7 @@
   border-right-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_title {
+#lwwgqginsw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -628,7 +626,7 @@
   border-bottom-width: 0;
 }
 
-#wlljglvwdu .gt_subtitle {
+#lwwgqginsw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -638,13 +636,13 @@
   border-top-width: 0;
 }
 
-#wlljglvwdu .gt_bottom_border {
+#lwwgqginsw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_col_headings {
+#lwwgqginsw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -659,7 +657,7 @@
   border-right-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_col_heading {
+#lwwgqginsw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -679,7 +677,7 @@
   overflow-x: hidden;
 }
 
-#wlljglvwdu .gt_column_spanner_outer {
+#lwwgqginsw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -691,15 +689,15 @@
   padding-right: 4px;
 }
 
-#wlljglvwdu .gt_column_spanner_outer:first-child {
+#lwwgqginsw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wlljglvwdu .gt_column_spanner_outer:last-child {
+#lwwgqginsw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wlljglvwdu .gt_column_spanner {
+#lwwgqginsw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -711,7 +709,7 @@
   width: 100%;
 }
 
-#wlljglvwdu .gt_group_heading {
+#lwwgqginsw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -733,7 +731,7 @@
   vertical-align: middle;
 }
 
-#wlljglvwdu .gt_empty_group_heading {
+#lwwgqginsw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -748,15 +746,15 @@
   vertical-align: middle;
 }
 
-#wlljglvwdu .gt_from_md > :first-child {
+#lwwgqginsw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wlljglvwdu .gt_from_md > :last-child {
+#lwwgqginsw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wlljglvwdu .gt_row {
+#lwwgqginsw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -775,7 +773,7 @@
   overflow-x: hidden;
 }
 
-#wlljglvwdu .gt_stub {
+#lwwgqginsw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -787,7 +785,7 @@
   padding-left: 12px;
 }
 
-#wlljglvwdu .gt_summary_row {
+#lwwgqginsw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -797,7 +795,7 @@
   padding-right: 5px;
 }
 
-#wlljglvwdu .gt_first_summary_row {
+#lwwgqginsw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -807,7 +805,7 @@
   border-top-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_grand_summary_row {
+#lwwgqginsw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -817,7 +815,7 @@
   padding-right: 5px;
 }
 
-#wlljglvwdu .gt_first_grand_summary_row {
+#lwwgqginsw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -827,11 +825,11 @@
   border-top-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_striped {
+#lwwgqginsw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wlljglvwdu .gt_table_body {
+#lwwgqginsw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -840,7 +838,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_footnotes {
+#lwwgqginsw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -854,13 +852,13 @@
   border-right-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_footnote {
+#lwwgqginsw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#wlljglvwdu .gt_sourcenotes {
+#lwwgqginsw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -874,46 +872,46 @@
   border-right-color: #D3D3D3;
 }
 
-#wlljglvwdu .gt_sourcenote {
+#lwwgqginsw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#wlljglvwdu .gt_left {
+#lwwgqginsw .gt_left {
   text-align: left;
 }
 
-#wlljglvwdu .gt_center {
+#lwwgqginsw .gt_center {
   text-align: center;
 }
 
-#wlljglvwdu .gt_right {
+#lwwgqginsw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wlljglvwdu .gt_font_normal {
+#lwwgqginsw .gt_font_normal {
   font-weight: normal;
 }
 
-#wlljglvwdu .gt_font_bold {
+#lwwgqginsw .gt_font_bold {
   font-weight: bold;
 }
 
-#wlljglvwdu .gt_font_italic {
+#lwwgqginsw .gt_font_italic {
   font-style: italic;
 }
 
-#wlljglvwdu .gt_super {
+#lwwgqginsw .gt_super {
   font-size: 65%;
 }
 
-#wlljglvwdu .gt_footnote_marks {
+#lwwgqginsw .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="wlljglvwdu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="lwwgqginsw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_col_headings"><tr>
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">offense_play</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">epa.pass.off</th>
@@ -997,7 +995,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ivwkgxsgry .gt_table {
+#iytsfdlwqh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1022,7 +1020,7 @@
   border-left-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_heading {
+#iytsfdlwqh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1034,7 +1032,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_title {
+#iytsfdlwqh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1044,7 +1042,7 @@
   border-bottom-width: 0;
 }
 
-#ivwkgxsgry .gt_subtitle {
+#iytsfdlwqh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1054,13 +1052,13 @@
   border-top-width: 0;
 }
 
-#ivwkgxsgry .gt_bottom_border {
+#iytsfdlwqh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_col_headings {
+#iytsfdlwqh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1075,7 +1073,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_col_heading {
+#iytsfdlwqh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1095,7 +1093,7 @@
   overflow-x: hidden;
 }
 
-#ivwkgxsgry .gt_column_spanner_outer {
+#iytsfdlwqh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1107,15 +1105,15 @@
   padding-right: 4px;
 }
 
-#ivwkgxsgry .gt_column_spanner_outer:first-child {
+#iytsfdlwqh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ivwkgxsgry .gt_column_spanner_outer:last-child {
+#iytsfdlwqh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ivwkgxsgry .gt_column_spanner {
+#iytsfdlwqh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1127,7 +1125,7 @@
   width: 100%;
 }
 
-#ivwkgxsgry .gt_group_heading {
+#iytsfdlwqh .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1149,7 +1147,7 @@
   vertical-align: middle;
 }
 
-#ivwkgxsgry .gt_empty_group_heading {
+#iytsfdlwqh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1164,15 +1162,15 @@
   vertical-align: middle;
 }
 
-#ivwkgxsgry .gt_from_md > :first-child {
+#iytsfdlwqh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ivwkgxsgry .gt_from_md > :last-child {
+#iytsfdlwqh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ivwkgxsgry .gt_row {
+#iytsfdlwqh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1191,7 +1189,7 @@
   overflow-x: hidden;
 }
 
-#ivwkgxsgry .gt_stub {
+#iytsfdlwqh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1203,7 +1201,7 @@
   padding-left: 12px;
 }
 
-#ivwkgxsgry .gt_summary_row {
+#iytsfdlwqh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1213,7 +1211,7 @@
   padding-right: 5px;
 }
 
-#ivwkgxsgry .gt_first_summary_row {
+#iytsfdlwqh .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1223,7 +1221,7 @@
   border-top-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_grand_summary_row {
+#iytsfdlwqh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1233,7 +1231,7 @@
   padding-right: 5px;
 }
 
-#ivwkgxsgry .gt_first_grand_summary_row {
+#iytsfdlwqh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1243,11 +1241,11 @@
   border-top-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_striped {
+#iytsfdlwqh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ivwkgxsgry .gt_table_body {
+#iytsfdlwqh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1256,7 +1254,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_footnotes {
+#iytsfdlwqh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1270,13 +1268,13 @@
   border-right-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_footnote {
+#iytsfdlwqh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ivwkgxsgry .gt_sourcenotes {
+#iytsfdlwqh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1290,46 +1288,46 @@
   border-right-color: #D3D3D3;
 }
 
-#ivwkgxsgry .gt_sourcenote {
+#iytsfdlwqh .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ivwkgxsgry .gt_left {
+#iytsfdlwqh .gt_left {
   text-align: left;
 }
 
-#ivwkgxsgry .gt_center {
+#iytsfdlwqh .gt_center {
   text-align: center;
 }
 
-#ivwkgxsgry .gt_right {
+#iytsfdlwqh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ivwkgxsgry .gt_font_normal {
+#iytsfdlwqh .gt_font_normal {
   font-weight: normal;
 }
 
-#ivwkgxsgry .gt_font_bold {
+#iytsfdlwqh .gt_font_bold {
   font-weight: bold;
 }
 
-#ivwkgxsgry .gt_font_italic {
+#iytsfdlwqh .gt_font_italic {
   font-style: italic;
 }
 
-#ivwkgxsgry .gt_super {
+#iytsfdlwqh .gt_super {
   font-size: 65%;
 }
 
-#ivwkgxsgry .gt_footnote_marks {
+#iytsfdlwqh .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="ivwkgxsgry" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="iytsfdlwqh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_header">
 <tr>
 <th colspan="3" class="gt_heading gt_title gt_font_normal" style>Best Passing Teams</th>
