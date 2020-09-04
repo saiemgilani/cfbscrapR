@@ -194,130 +194,130 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_roster</span>(<span class='st'>"Florida State"</span>)</div><div class='output co'>#&gt;          id first_name    last_name weight height jersey year position
-#&gt; 1   4241674       Josh       Newman    200     72     21    3        S
-#&gt; 2   3921574      Kevin      Robledo    184     72     89    4       PK
-#&gt; 3   4035603      Malik        Henry    195     74     16    3       QB
-#&gt; 4   4052022       Trey       Carter    300     73     63    4       OL
-#&gt; 5   4426817     Jarvis     Brownlee    172     71     19    1       DB
-#&gt; 6   4240023       Tre'      McKitty    245     77     NA    4       TE
-#&gt; 7   4363030     Warren     Thompson    201     75     11    2       WR
-#&gt; 8   4363049    Malcolm        Lamar    277     77     93    2       DL
-#&gt; 9   4240022     Khalan       Laborn    205     71      4    2       RB
-#&gt; 10  3886609       Alex   Hornibrook    220     76     12    4       QB
-#&gt; 11  4428783   Treshaun         Ward    191     70     38    1       RB
-#&gt; 12  4363041     Xavier       Peters    235     76      5    1       DE
-#&gt; 13  4240033    Ontaria       Wilson    174     72     80    3       WR
-#&gt; 14  4035619       Josh        Brown    229     75     51    4       LB
-#&gt; 15  3921955       Ryan      Roberts    300     78     56    4       OL
-#&gt; 16  4035618     Cedric         Wood    318     75     49    3       DT
-#&gt; 17  4035621     Emmett         Rice    222     74     56    4       LB
-#&gt; 18  4035602 Dontavious      Jackson    229     75      5    4       LB
-#&gt; 19  4363037       A.J.       Lytton    179     71     12    2       DB
-#&gt; 20  4035606      Logan        Tyler    191     72     21    4        P
-#&gt; 21  4363045     Camren     McDonald    238     76     87    3       TE
-#&gt; 22  4240030     Hamsah  Nasirildeen    220     76      5    4       DB
-#&gt; 23  4428664        Tru     Thompson    301     72     90    2       DT
-#&gt; 24  4240028  Tamorrion        Terry    210     76      5    3       WR
-#&gt; 25  4426427    Raymond   Woodie III    194     72     31    2       DB
-#&gt; 26  4427291      Kalen      DeLoach    213     73     20    2       LB
-#&gt; 27  4426397     Jaleel        McRae    225     74     14    2       LB
-#&gt; 28  4577580       Gino      English    198     73     15    1       QB
-#&gt; 29  4426456     Dontae        Lucas    315     75     55    2       OL
-#&gt; 30  4035620     Baveon      Johnson    307     75     51    4       OL
-#&gt; 31  4427325    Renardo        Green    185     72     36    2       DB
-#&gt; 32  4240042       Cory       Durden    315     77     16    3       DT
-#&gt; 33  4240021        Cam        Akers    212     71      3    3       RB
-#&gt; 34  4360468     Jaiden Lars-Woodbey    225     73      6    2       DB
-#&gt; 35  4363047     Robert       Cooper    332     74     91    3       DT
-#&gt; 36  4363044     Jordan        Young    208     74     83    2       WR
-#&gt; 37  4430153    Derrick  McLendon II    251     76     55    1       DE
-#&gt; 38  3692942     George     Campbell    183     76     15    4       WR
-#&gt; 39  4363034     Asante   Samuel Jr.    184     70     26    3       DB
-#&gt; 40  4240026     Joshua      Kaindoh    265     79     13    3       DE
-#&gt; 41  4035605     Carlos   Becker III    195     74     15    4       DB
-#&gt; 42  4035613       Kyle       Meyers    174     72     14    4       DB
-#&gt; 43  4363040     Dennis   Briggs Jr.    282     76     58    2       DT
-#&gt; 44  4240031    DeCalon       Brooks    210     70     28    3       LB
-#&gt; 45  4035604   Janarius     Robinson    260     77     11    4       DE
-#&gt; 46  4035601    Levonta       Taylor    190     70      1    4       DB
-#&gt; 47  4035628      Keith        Gavin    212     75     89    4       WR
-#&gt; 48  4360469      Amari       Gainer    227     75     33    2       LB
-#&gt; 49  4568255      Akeem         Dent    191     73     27    2       DB
-#&gt; 50  4240029     Marvin       Wilson    305     77     21    4       DT
-#&gt; 51  4240024   Stanford  Samuels III    185     74      8    3       DB
-#&gt; 52  4240034       D.J.     Matthews    154     70      7    4       WR
-#&gt; 53  4240020      James     Blackman    190     77      1    3       QB
-#&gt; 54  4035608      Ricky       Aguayo    215     74     23    4       PK
-#&gt; 55  4240027      Cyrus        Fagan    195     73      4    4       DB
-#&gt; 56  4363046  Tre'Shaun     Harrison    191     74     88    2       WR
-#&gt; 57  3917228     Tyrell       Moorer    199     71     85    4       WR
-#&gt; 58  4568260  Alexander     Strozier    302     74     62    4       OL
-#&gt; 59  4363029       Alex    Eleyssami    190     73     16    1       QB
-#&gt; 60  3921570      Abdul        Bello    315     78     75    4       OL
-#&gt; 61  4066033     Joseph       Garcia    218     74     47    3       LB
-#&gt; 62  4066034     Tanner      Adkison    192     70     63    3       LS
-#&gt; 63  4363035   D'Marcus        Adams    180     72     19    2       WR
-#&gt; 64  4568256   DeAundre       Emeric    196     69     39    2       DB
-#&gt; 65  4380437     Jeremy     Czerenda    285     75     68    1       OL
-#&gt; 66  4363039  Christian      Meadows    336     76     52    1       OL
-#&gt; 67  4035625      Jauan     Williams    310     79     73    3       OL
-#&gt; 68  4047688    Michael     Barulich    195     71     86    3       WR
-#&gt; 69  4360472  Christian    Armstrong    320     76     77    1       OL
-#&gt; 70  4360474      Peter       Osimen    297     74     93    4       DT
-#&gt; 71  3693281     Calvin      Brewton    184     72      4    4       DB
-#&gt; 72  4035623       Mike       Arnold    340     77     72    3       OL
-#&gt; 73  4240035     Deonte    Sheffield    209     70     14    3       RB
-#&gt; 74  4262804     Parker     Grothaus    220     74     37    3       PK
-#&gt; 75  4035611       Gabe       Nabers    243     75     32    4       TE
-#&gt; 76  3925359     Adonis       Thomas    239     76     22    4       LB
-#&gt; 77  3921569       Cole      Minshew    330     77     70    4       OL
-#&gt; 78  3921562     Marcus        Lewis    197     73      8    4       DB
-#&gt; 79  4363033    Anthony        Grant    197     71     10    2       RB
-#&gt; 80  4360799     Jordan       Travis    200     73     13    2       QB
-#&gt; 81  4240025     Bailey      Hockman    208     74     16    3       QB
-#&gt; 82  4363027      Caleb         Ward    172     73     89    2       WR
-#&gt; 83  4426445    Quashon       Fuller    275     75     30    1       DE
-#&gt; 84  4240036    Leonard   Warner III    245     76     35    4       LB
-#&gt; 85  4426396    Brendan         Gant    195     74     44    2       DB
-#&gt; 86  4273843      Grant      Glennon    233     75     44    3       LS
-#&gt; 87  4363032   Keyshawn       Helton    171     69      6    3       WR
-#&gt; 88  4363036     Isaiah       Bolden    196     74     29    2       DB
-#&gt; 89  4360470    Garrett       Murray    218     72     42    2       LS
-#&gt; 90  4363028      Nolan     McDonald    189     74     41    2       DB
-#&gt; 91  4363042      Jalen         Goss    271     79     61    2       OL
-#&gt; 92  4430678    Ricardo       Watson    245     72     54    1       LB
-#&gt; 93  4577584     Robert     Elder IV    266     74     69    2       OL
-#&gt; 94  4568261        Jay     Williams    315     78     74    4       OL
-#&gt; 95  4568258    Maurice        Smith    286     75     53    1       OL
-#&gt; 96  4568257      Tyler       Gilroy    243     71     53    3       LB
-#&gt; 97  4035622     Andrew      Boselli    321     77     60    4       OL
-#&gt; 98  4577583      Ethan      Umstead    232     73     40    1       LB
-#&gt; 99  4363048   Jamarcus      Chatman    273     74     95    2       DE
-#&gt; 100 4427288      Kevon        Glenn    229     74     10    1       LB
-#&gt; 101 4577585      Caleb        Faris    165     68     81    1       WR
-#&gt; 102 4568259       Axel         Rizo    218     74     57    2       LB
-#&gt; 103 4577582    Raekwon         Webb    203     68     46    4       RB
-#&gt; 104 4363043       Chaz         Neal    317     79     71    2       OL
-#&gt; 105 4426452     Curtis     Fann Jr.    265     75     98    1       DE
-#&gt; 106 4568263       Ryan   Fitzgerald    199     73     88    1       PK
-#&gt; 107 4240039      Brady        Scott    317     78     59    3       OL
-#&gt; 108 4429791        Ira    Henry III    313     76     78    1       OL
-#&gt; 109 4577581        Tre        Young    194     72     29    1       WR
-#&gt; 110 4568262     Darius   Washington    301     76     76    1       OL
-#&gt; 111 4428307    Malcolm          Ray    287     74     99    1       DT
-#&gt; 112 4577586     Austin        White    242     77     82    1       TE
-#&gt; 113 4259260      Tommy       Martin    188     71     30    3        P
-#&gt; 114 4360473    Adarius         Dent    175     73     84    3       WR
-#&gt; 115 4363038     Armani         Kerr    230     71     52    4       LB
-#&gt; 116 4362233      Wyatt       Rector    236     74     19    2       TE
-#&gt; 117 4426429     Travis          Jay    191     74     18    1       DB
-#&gt; 118 4372519    Jashaun       Corbin    220     72      0    2       RB
-#&gt; 119 3917820      Meiko       Dotson    195     71      9    4       DB
-#&gt; 120 4360801    Jarrett      Jackson    295     78     48    2       DT
-#&gt; 121 4426448    Jarrian        Jones    190     72      7    2       DB
-#&gt; 122 4046366   Devontay       Taylor    315     76     58    4       OL
-#&gt; 123 4362905     Fabien       Lovett    315     76      0    2       DT
+<span class='fu'>cfb_team_roster</span>(<span class='st'>"Florida State"</span>)</div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
+#&gt; 1      4241674       Josh       Newman    200     72     21    3        S
+#&gt; 2      3921574      Kevin      Robledo    184     72     89    4       PK
+#&gt; 3      4035603      Malik        Henry    195     74     16    3       QB
+#&gt; 4      4052022       Trey       Carter    300     73     63    4       OL
+#&gt; 5      4426817     Jarvis     Brownlee    172     71     19    1       DB
+#&gt; 6      4240023       Tre'      McKitty    245     77     NA    4       TE
+#&gt; 7      4363030     Warren     Thompson    201     75     11    2       WR
+#&gt; 8      4363049    Malcolm        Lamar    277     77     93    2       DL
+#&gt; 9      4240022     Khalan       Laborn    205     71      4    2       RB
+#&gt; 10     3886609       Alex   Hornibrook    220     76     12    4       QB
+#&gt; 11     4428783   Treshaun         Ward    191     70     38    1       RB
+#&gt; 12     4363041     Xavier       Peters    235     76      5    1       DE
+#&gt; 13     4240033    Ontaria       Wilson    174     72     80    3       WR
+#&gt; 14     4035619       Josh        Brown    229     75     51    4       LB
+#&gt; 15     3921955       Ryan      Roberts    300     78     56    4       OL
+#&gt; 16     4035618     Cedric         Wood    318     75     49    3       DT
+#&gt; 17     4035621     Emmett         Rice    222     74     56    4       LB
+#&gt; 18     4035602 Dontavious      Jackson    229     75      5    4       LB
+#&gt; 19     4363037       A.J.       Lytton    179     71     12    2       DB
+#&gt; 20     4035606      Logan        Tyler    191     72     21    4        P
+#&gt; 21     4363045     Camren     McDonald    238     76     87    3       TE
+#&gt; 22     4240030     Hamsah  Nasirildeen    220     76      5    4       DB
+#&gt; 23     4428664        Tru     Thompson    301     72     90    2       DT
+#&gt; 24     4240028  Tamorrion        Terry    210     76      5    3       WR
+#&gt; 25     4426427    Raymond   Woodie III    194     72     31    2       DB
+#&gt; 26     4427291      Kalen      DeLoach    213     73     20    2       LB
+#&gt; 27     4426397     Jaleel        McRae    225     74     14    2       LB
+#&gt; 28     4577580       Gino      English    198     73     15    1       QB
+#&gt; 29     4426456     Dontae        Lucas    315     75     55    2       OL
+#&gt; 30     4035620     Baveon      Johnson    307     75     51    4       OL
+#&gt; 31     4427325    Renardo        Green    185     72     36    2       DB
+#&gt; 32     4240042       Cory       Durden    315     77     16    3       DT
+#&gt; 33     4240021        Cam        Akers    212     71      3    3       RB
+#&gt; 34     4360468     Jaiden Lars-Woodbey    225     73      6    2       DB
+#&gt; 35     4363047     Robert       Cooper    332     74     91    3       DT
+#&gt; 36     4363044     Jordan        Young    208     74     83    2       WR
+#&gt; 37     4430153    Derrick  McLendon II    251     76     55    1       DE
+#&gt; 38     3692942     George     Campbell    183     76     15    4       WR
+#&gt; 39     4363034     Asante   Samuel Jr.    184     70     26    3       DB
+#&gt; 40     4240026     Joshua      Kaindoh    265     79     13    3       DE
+#&gt; 41     4035605     Carlos   Becker III    195     74     15    4       DB
+#&gt; 42     4035613       Kyle       Meyers    174     72     14    4       DB
+#&gt; 43     4363040     Dennis   Briggs Jr.    282     76     58    2       DT
+#&gt; 44     4240031    DeCalon       Brooks    210     70     28    3       LB
+#&gt; 45     4035604   Janarius     Robinson    260     77     11    4       DE
+#&gt; 46     4035601    Levonta       Taylor    190     70      1    4       DB
+#&gt; 47     4035628      Keith        Gavin    212     75     89    4       WR
+#&gt; 48     4360469      Amari       Gainer    227     75     33    2       LB
+#&gt; 49     4568255      Akeem         Dent    191     73     27    2       DB
+#&gt; 50     4240029     Marvin       Wilson    305     77     21    4       DT
+#&gt; 51     4240024   Stanford  Samuels III    185     74      8    3       DB
+#&gt; 52     4240034       D.J.     Matthews    154     70      7    4       WR
+#&gt; 53     4240020      James     Blackman    190     77      1    3       QB
+#&gt; 54     4035608      Ricky       Aguayo    215     74     23    4       PK
+#&gt; 55     4240027      Cyrus        Fagan    195     73      4    4       DB
+#&gt; 56     4363046  Tre'Shaun     Harrison    191     74     88    2       WR
+#&gt; 57     3917228     Tyrell       Moorer    199     71     85    4       WR
+#&gt; 58     4568260  Alexander     Strozier    302     74     62    4       OL
+#&gt; 59     4363029       Alex    Eleyssami    190     73     16    1       QB
+#&gt; 60     3921570      Abdul        Bello    315     78     75    4       OL
+#&gt; 61     4066033     Joseph       Garcia    218     74     47    3       LB
+#&gt; 62     4066034     Tanner      Adkison    192     70     63    3       LS
+#&gt; 63     4363035   D'Marcus        Adams    180     72     19    2       WR
+#&gt; 64     4568256   DeAundre       Emeric    196     69     39    2       DB
+#&gt; 65     4380437     Jeremy     Czerenda    285     75     68    1       OL
+#&gt; 66     4363039  Christian      Meadows    336     76     52    1       OL
+#&gt; 67     4035625      Jauan     Williams    310     79     73    3       OL
+#&gt; 68     4047688    Michael     Barulich    195     71     86    3       WR
+#&gt; 69     4360472  Christian    Armstrong    320     76     77    1       OL
+#&gt; 70     4360474      Peter       Osimen    297     74     93    4       DT
+#&gt; 71     3693281     Calvin      Brewton    184     72      4    4       DB
+#&gt; 72     4035623       Mike       Arnold    340     77     72    3       OL
+#&gt; 73     4240035     Deonte    Sheffield    209     70     14    3       RB
+#&gt; 74     4262804     Parker     Grothaus    220     74     37    3       PK
+#&gt; 75     4035611       Gabe       Nabers    243     75     32    4       TE
+#&gt; 76     3925359     Adonis       Thomas    239     76     22    4       LB
+#&gt; 77     3921569       Cole      Minshew    330     77     70    4       OL
+#&gt; 78     3921562     Marcus        Lewis    197     73      8    4       DB
+#&gt; 79     4363033    Anthony        Grant    197     71     10    2       RB
+#&gt; 80     4360799     Jordan       Travis    200     73     13    2       QB
+#&gt; 81     4240025     Bailey      Hockman    208     74     16    3       QB
+#&gt; 82     4363027      Caleb         Ward    172     73     89    2       WR
+#&gt; 83     4426445    Quashon       Fuller    275     75     30    1       DE
+#&gt; 84     4240036    Leonard   Warner III    245     76     35    4       LB
+#&gt; 85     4426396    Brendan         Gant    195     74     44    2       DB
+#&gt; 86     4273843      Grant      Glennon    233     75     44    3       LS
+#&gt; 87     4363032   Keyshawn       Helton    171     69      6    3       WR
+#&gt; 88     4363036     Isaiah       Bolden    196     74     29    2       DB
+#&gt; 89     4360470    Garrett       Murray    218     72     42    2       LS
+#&gt; 90     4363028      Nolan     McDonald    189     74     41    2       DB
+#&gt; 91     4363042      Jalen         Goss    271     79     61    2       OL
+#&gt; 92     4430678    Ricardo       Watson    245     72     54    1       LB
+#&gt; 93     4577584     Robert     Elder IV    266     74     69    2       OL
+#&gt; 94     4568261        Jay     Williams    315     78     74    4       OL
+#&gt; 95     4568258    Maurice        Smith    286     75     53    1       OL
+#&gt; 96     4568257      Tyler       Gilroy    243     71     53    3       LB
+#&gt; 97     4035622     Andrew      Boselli    321     77     60    4       OL
+#&gt; 98     4577583      Ethan      Umstead    232     73     40    1       LB
+#&gt; 99     4363048   Jamarcus      Chatman    273     74     95    2       DE
+#&gt; 100    4427288      Kevon        Glenn    229     74     10    1       LB
+#&gt; 101    4577585      Caleb        Faris    165     68     81    1       WR
+#&gt; 102    4568259       Axel         Rizo    218     74     57    2       LB
+#&gt; 103    4577582    Raekwon         Webb    203     68     46    4       RB
+#&gt; 104    4363043       Chaz         Neal    317     79     71    2       OL
+#&gt; 105    4426452     Curtis     Fann Jr.    265     75     98    1       DE
+#&gt; 106    4568263       Ryan   Fitzgerald    199     73     88    1       PK
+#&gt; 107    4240039      Brady        Scott    317     78     59    3       OL
+#&gt; 108    4429791        Ira    Henry III    313     76     78    1       OL
+#&gt; 109    4577581        Tre        Young    194     72     29    1       WR
+#&gt; 110    4568262     Darius   Washington    301     76     76    1       OL
+#&gt; 111    4428307    Malcolm          Ray    287     74     99    1       DT
+#&gt; 112    4577586     Austin        White    242     77     82    1       TE
+#&gt; 113    4259260      Tommy       Martin    188     71     30    3        P
+#&gt; 114    4360473    Adarius         Dent    175     73     84    3       WR
+#&gt; 115    4363038     Armani         Kerr    230     71     52    4       LB
+#&gt; 116    4362233      Wyatt       Rector    236     74     19    2       TE
+#&gt; 117    4426429     Travis          Jay    191     74     18    1       DB
+#&gt; 118    4372519    Jashaun       Corbin    220     72      0    2       RB
+#&gt; 119    3917820      Meiko       Dotson    195     71      9    4       DB
+#&gt; 120    4360801    Jarrett      Jackson    295     78     48    2       DT
+#&gt; 121    4426448    Jarrian        Jones    190     72      7    2       DB
+#&gt; 122    4046366   Devontay       Taylor    315     76     58    4       OL
+#&gt; 123    4362905     Fabien       Lovett    315     76      0    2       DT
 #&gt;            home_city home_state home_country
 #&gt; 1         Cedar Hill         TX          USA
 #&gt; 2      Thousand Oaks         CA          USA

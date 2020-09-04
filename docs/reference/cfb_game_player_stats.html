@@ -223,165 +223,165 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'Ind'</span>)</div><div class='output co'>#&gt;      game_id school        conference homeAway points      category athlete_id
-#&gt; 1  401013376   Navy American Athletic     away     10       passing    3916282
-#&gt; 2  401013376   Navy American Athletic     away     10       passing    3916251
-#&gt; 3  401013376   Navy American Athletic     away     10       passing    4039425
-#&gt; 4  401013376   Navy American Athletic     away     10       rushing    4039436
-#&gt; 5  401013376   Navy American Athletic     away     10       rushing    3916268
-#&gt; 6  401013376   Navy American Athletic     away     10       rushing    3916282
-#&gt; 7  401013376   Navy American Athletic     away     10       rushing    3916305
-#&gt; 8  401013376   Navy American Athletic     away     10       rushing    4243731
-#&gt; 9  401013376   Navy American Athletic     away     10       rushing    4243713
-#&gt; 10 401013376   Navy American Athletic     away     10       rushing    3916283
-#&gt; 11 401013376   Navy American Athletic     away     10       rushing    4039418
-#&gt; 12 401013376   Navy American Athletic     away     10       rushing    3916251
-#&gt; 13 401013376   Navy American Athletic     away     10       rushing    4371891
-#&gt; 14 401013376   Navy American Athletic     away     10     receiving    4259215
-#&gt; 15 401013376   Navy American Athletic     away     10     receiving    4039436
-#&gt; 16 401013376   Navy American Athletic     away     10     receiving    3916278
-#&gt; 17 401013376   Navy American Athletic     away     10   kickReturns    4039436
-#&gt; 18 401013376   Navy American Athletic     away     10   kickReturns    4039418
-#&gt; 19 401013376   Navy American Athletic     away     10   puntReturns    4243727
-#&gt; 20 401013376   Navy American Athletic     away     10       kicking    3916285
-#&gt; 21 401013376   Navy American Athletic     away     10       punting    4039465
-#&gt; 22 401013376   Navy American Athletic     away     10       fumbles    3916251
-#&gt; 23 401013376   Navy American Athletic     away     10       fumbles    3916282
-#&gt; 24 401013376   Navy American Athletic     away     10     defensive    3916276
-#&gt; 25 401013376   Navy American Athletic     away     10     defensive    3916271
-#&gt; 26 401013376   Navy American Athletic     away     10     defensive    3916290
-#&gt; 27 401013376   Navy American Athletic     away     10     defensive    3916296
-#&gt; 28 401013376   Navy American Athletic     away     10     defensive    2267927
-#&gt; 29 401013376   Navy American Athletic     away     10     defensive    4039448
-#&gt; 30 401013376   Navy American Athletic     away     10     defensive    3916303
-#&gt; 31 401013376   Navy American Athletic     away     10     defensive    4039423
-#&gt; 32 401013376   Navy American Athletic     away     10     defensive    4039466
-#&gt; 33 401013376   Navy American Athletic     away     10     defensive    4371866
-#&gt; 34 401013376   Navy American Athletic     away     10     defensive    3916293
-#&gt; 35 401013376   Navy American Athletic     away     10     defensive    3916309
-#&gt; 36 401013376   Navy American Athletic     away     10     defensive    3916268
-#&gt; 37 401013376   Navy American Athletic     away     10     defensive    4039416
-#&gt; 38 401013376   Navy American Athletic     away     10     defensive    4039447
-#&gt; 39 401013376   Navy American Athletic     away     10     defensive    4243753
-#&gt; 40 401013376   Army  FBS Independents     home     17       passing    4036923
-#&gt; 41 401013376   Army  FBS Independents     home     17       rushing    4036923
-#&gt; 42 401013376   Army  FBS Independents     home     17       rushing    3916803
-#&gt; 43 401013376   Army  FBS Independents     home     17       rushing    4036942
-#&gt; 44 401013376   Army  FBS Independents     home     17       rushing    3916821
-#&gt; 45 401013376   Army  FBS Independents     home     17       rushing    4036934
-#&gt; 46 401013376   Army  FBS Independents     home     17       rushing    4036949
-#&gt; 47 401013376   Army  FBS Independents     home     17       rushing    3916819
-#&gt; 48 401013376   Army  FBS Independents     home     17       rushing      -5258
-#&gt; 49 401013376   Army  FBS Independents     home     17     receiving    4036942
-#&gt; 50 401013376   Army  FBS Independents     home     17     receiving    4036969
-#&gt; 51 401013376   Army  FBS Independents     home     17     receiving    4258460
-#&gt; 52 401013376   Army  FBS Independents     home     17 interceptions    4036925
-#&gt; 53 401013376   Army  FBS Independents     home     17 interceptions    3916807
-#&gt; 54 401013376   Army  FBS Independents     home     17   kickReturns    4036942
-#&gt; 55 401013376   Army  FBS Independents     home     17   kickReturns    4258467
-#&gt; 56 401013376   Army  FBS Independents     home     17   puntReturns    3916807
-#&gt; 57 401013376   Army  FBS Independents     home     17       kicking    4077517
-#&gt; 58 401013376   Army  FBS Independents     home     17       punting    3916795
-#&gt; 59 401013376   Army  FBS Independents     home     17       fumbles    3916832
-#&gt; 60 401013376   Army  FBS Independents     home     17       fumbles    4260811
-#&gt; 61 401013376   Army  FBS Independents     home     17     defensive    4036925
-#&gt; 62 401013376   Army  FBS Independents     home     17     defensive    3916813
-#&gt; 63 401013376   Army  FBS Independents     home     17     defensive    3916860
-#&gt; 64 401013376   Army  FBS Independents     home     17     defensive    4036958
-#&gt; 65 401013376   Army  FBS Independents     home     17     defensive    4036959
-#&gt; 66 401013376   Army  FBS Independents     home     17     defensive    3916818
-#&gt; 67 401013376   Army  FBS Independents     home     17     defensive    4260811
-#&gt; 68 401013376   Army  FBS Independents     home     17     defensive    3916832
-#&gt; 69 401013376   Army  FBS Independents     home     17     defensive    4036924
-#&gt; 70 401013376   Army  FBS Independents     home     17     defensive    3916850
-#&gt; 71 401013376   Army  FBS Independents     home     17     defensive    4036944
-#&gt; 72 401013376   Army  FBS Independents     home     17     defensive    4258506
-#&gt; 73 401013376   Army  FBS Independents     home     17     defensive    3916819
-#&gt; 74 401013376   Army  FBS Independents     home     17     defensive    4036929
-#&gt; 75 401013376   Army  FBS Independents     home     17     defensive    4258457
-#&gt; 76 401013376   Army  FBS Independents     home     17     defensive    4258521
-#&gt; 77 401013376   Army  FBS Independents     home     17     defensive    3916807
-#&gt; 78 401013376   Army  FBS Independents     home     17     defensive    4036953
-#&gt;                     name C/ATT  YDS  AVG   TD  INT  CAR LONG  REC   NO   FG
-#&gt; 1           Garret Lewis  5/11   81  7.4    0    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 2              Zach Abey   0/5    0  0.0    0    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 3               OJ Davis   0/1    0  0.0    0    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 4          Malcolm Perry  &lt;NA&gt;   52  8.7    0 &lt;NA&gt;    6   43 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 5       Anthony Gargiulo  &lt;NA&gt;   38  4.8    0 &lt;NA&gt;    8    7 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 6           Garret Lewis  &lt;NA&gt;   14  2.3    1 &lt;NA&gt;    6   13 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 7             Tre Walker  &lt;NA&gt;   10  3.3    0 &lt;NA&gt;    3    6 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 8           Nelson Smith  &lt;NA&gt;    9  2.3    0 &lt;NA&gt;    4    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 9            Myles Fells  &lt;NA&gt;    5  5.0    0 &lt;NA&gt;    1    5 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 10           Mike Martin  &lt;NA&gt;    2  2.0    0 &lt;NA&gt;    1    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 11            Tazh Maloy  &lt;NA&gt;    2  2.0    0 &lt;NA&gt;    1    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 12             Zach Abey  &lt;NA&gt;    0  2.0    0 &lt;NA&gt;    6    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 13         Mychal Cooper  &lt;NA&gt;   -5 -5.0    0 &lt;NA&gt;    1    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 14 Keoni-Kordell Makekau  &lt;NA&gt;   52 26.0    0 &lt;NA&gt; &lt;NA&gt;   34    2 &lt;NA&gt; &lt;NA&gt;
-#&gt; 15         Malcolm Perry  &lt;NA&gt;   18  9.0    0 &lt;NA&gt; &lt;NA&gt;   13    2 &lt;NA&gt; &lt;NA&gt;
-#&gt; 16        Taylor Jackson  &lt;NA&gt;   11 11.0    0 &lt;NA&gt; &lt;NA&gt;   11    1 &lt;NA&gt; &lt;NA&gt;
-#&gt; 17         Malcolm Perry  &lt;NA&gt;   49 24.5    0 &lt;NA&gt; &lt;NA&gt;   33 &lt;NA&gt;    2 &lt;NA&gt;
-#&gt; 18            Tazh Maloy  &lt;NA&gt;   15 15.0    0 &lt;NA&gt; &lt;NA&gt;   15 &lt;NA&gt;    1 &lt;NA&gt;
-#&gt; 19         Jake Springer  &lt;NA&gt;    8  4.0    0 &lt;NA&gt; &lt;NA&gt;    4 &lt;NA&gt;    2 &lt;NA&gt;
-#&gt; 20      Bennett Moehring  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   46 &lt;NA&gt; &lt;NA&gt;  1/1
-#&gt; 21            Owen White  &lt;NA&gt;  145 36.3 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   43 &lt;NA&gt;    4 &lt;NA&gt;
-#&gt; 22             Zach Abey  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt;
-#&gt; 23          Garret Lewis  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt;
-#&gt; 24         Taylor Heflin  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 25           Juan Hailey  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 26           Jarvis Polu  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 27       Hudson Sullivan  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 28         Sean Williams  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 29     Nizaire Cromartie  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 30    Anthony Villalobos  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 31             Elan Nash  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 32       Jackson Pittman  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 33           Diego Fagot  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 34            Jarid Ryan  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 35      Khaylan Williams  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 36      Anthony Gargiulo  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 37         Noruwa Obanor  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 38       Carter Bankston  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 39         Pepe Tanuvasa  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 40    Kelvin Hopkins Jr.   4/9   61  6.8    0    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 41    Kelvin Hopkins Jr.  &lt;NA&gt;   64  3.6    2 &lt;NA&gt;   18   17 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 42      Darnell Woolfolk  &lt;NA&gt;   62  3.9    0 &lt;NA&gt;   16   18 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 43           Kell Walker  &lt;NA&gt;   56 11.2    0 &lt;NA&gt;    5   51 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 44         Andy Davidson  &lt;NA&gt;   31  5.2    0 &lt;NA&gt;    6   22 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 45         Malik Hancock  &lt;NA&gt;    8  8.0    0 &lt;NA&gt;    1    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 46         Connor Slomka  &lt;NA&gt;    1  1.0    0 &lt;NA&gt;    1    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 47        Jordan Asberry  &lt;NA&gt;    1  0.5    0 &lt;NA&gt;    2    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 48                  Team  &lt;NA&gt;   -1 -1.0    0 &lt;NA&gt;    1    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 49           Kell Walker  &lt;NA&gt;   30 15.0    0 &lt;NA&gt; &lt;NA&gt;   25    2 &lt;NA&gt; &lt;NA&gt;
-#&gt; 50           Glen Coates  &lt;NA&gt;   17 17.0    0 &lt;NA&gt; &lt;NA&gt;   17    1 &lt;NA&gt; &lt;NA&gt;
-#&gt; 51           Zack Boobas  &lt;NA&gt;   14 14.0    0 &lt;NA&gt; &lt;NA&gt;   14    1 &lt;NA&gt; &lt;NA&gt;
-#&gt; 52      Jaylon McClinton  &lt;NA&gt;   11 &lt;NA&gt;    0    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 53         Mike Reynolds  &lt;NA&gt;    0 &lt;NA&gt;    0    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 54           Kell Walker  &lt;NA&gt;   23 23.0    0 &lt;NA&gt; &lt;NA&gt;   23 &lt;NA&gt;    1 &lt;NA&gt;
-#&gt; 55          Sandon McCoy  &lt;NA&gt;   15 15.0    0 &lt;NA&gt; &lt;NA&gt;   15 &lt;NA&gt;    1 &lt;NA&gt;
-#&gt; 56         Mike Reynolds  &lt;NA&gt;    4  2.0    0 &lt;NA&gt; &lt;NA&gt;    3 &lt;NA&gt;    2 &lt;NA&gt;
-#&gt; 57      John Abercrombie  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   33 &lt;NA&gt; &lt;NA&gt;  1/2
-#&gt; 58          Nick Schrage  &lt;NA&gt;  156 39.0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   47 &lt;NA&gt;    4 &lt;NA&gt;
-#&gt; 59       Kenneth Brinson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1 &lt;NA&gt; &lt;NA&gt;
-#&gt; 60          James Gibson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1 &lt;NA&gt; &lt;NA&gt;
-#&gt; 61      Jaylon McClinton  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 62       James Nachtigal  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 63         Wunmi Oyetuga  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 64           Amadeo West  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 65     Cole Christiansen  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 66      Chandler Ramirez  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 67          James Gibson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 68       Kenneth Brinson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 69          Elijah Riley  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 70        Raymond Wright  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 71         Donavan Lynch  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 72     Edriece Patterson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 73        Jordan Asberry  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 74           Ryan Parker  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 75      Javhari Bourdeau  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 76        Landon Salyers  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 77         Mike Reynolds  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt; 78       Jacob Covington  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#&gt;      PCT   XP  PTS   TB In 20  FUM LOST  TOT SOLO SACKS  TFL   PD QB HUR
+<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'Ind'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-04 13:09:12: Scraping game player stats data...</span></div><div class='output co'>#&gt;      game_id team        conference home_away points      category athlete_id
+#&gt; 1  401013376 Navy American Athletic      away     10       passing    3916282
+#&gt; 2  401013376 Navy American Athletic      away     10       passing    3916251
+#&gt; 3  401013376 Navy American Athletic      away     10       passing    4039425
+#&gt; 4  401013376 Navy American Athletic      away     10       rushing    4039436
+#&gt; 5  401013376 Navy American Athletic      away     10       rushing    3916268
+#&gt; 6  401013376 Navy American Athletic      away     10       rushing    3916282
+#&gt; 7  401013376 Navy American Athletic      away     10       rushing    3916305
+#&gt; 8  401013376 Navy American Athletic      away     10       rushing    4243731
+#&gt; 9  401013376 Navy American Athletic      away     10       rushing    4243713
+#&gt; 10 401013376 Navy American Athletic      away     10       rushing    3916283
+#&gt; 11 401013376 Navy American Athletic      away     10       rushing    4039418
+#&gt; 12 401013376 Navy American Athletic      away     10       rushing    3916251
+#&gt; 13 401013376 Navy American Athletic      away     10       rushing    4371891
+#&gt; 14 401013376 Navy American Athletic      away     10     receiving    4259215
+#&gt; 15 401013376 Navy American Athletic      away     10     receiving    4039436
+#&gt; 16 401013376 Navy American Athletic      away     10     receiving    3916278
+#&gt; 17 401013376 Navy American Athletic      away     10   kickReturns    4039436
+#&gt; 18 401013376 Navy American Athletic      away     10   kickReturns    4039418
+#&gt; 19 401013376 Navy American Athletic      away     10   puntReturns    4243727
+#&gt; 20 401013376 Navy American Athletic      away     10       kicking    3916285
+#&gt; 21 401013376 Navy American Athletic      away     10       punting    4039465
+#&gt; 22 401013376 Navy American Athletic      away     10       fumbles    3916251
+#&gt; 23 401013376 Navy American Athletic      away     10       fumbles    3916282
+#&gt; 24 401013376 Navy American Athletic      away     10     defensive    3916276
+#&gt; 25 401013376 Navy American Athletic      away     10     defensive    3916271
+#&gt; 26 401013376 Navy American Athletic      away     10     defensive    3916290
+#&gt; 27 401013376 Navy American Athletic      away     10     defensive    3916296
+#&gt; 28 401013376 Navy American Athletic      away     10     defensive    2267927
+#&gt; 29 401013376 Navy American Athletic      away     10     defensive    4039448
+#&gt; 30 401013376 Navy American Athletic      away     10     defensive    3916303
+#&gt; 31 401013376 Navy American Athletic      away     10     defensive    4039423
+#&gt; 32 401013376 Navy American Athletic      away     10     defensive    4039466
+#&gt; 33 401013376 Navy American Athletic      away     10     defensive    4371866
+#&gt; 34 401013376 Navy American Athletic      away     10     defensive    3916293
+#&gt; 35 401013376 Navy American Athletic      away     10     defensive    3916309
+#&gt; 36 401013376 Navy American Athletic      away     10     defensive    3916268
+#&gt; 37 401013376 Navy American Athletic      away     10     defensive    4039416
+#&gt; 38 401013376 Navy American Athletic      away     10     defensive    4039447
+#&gt; 39 401013376 Navy American Athletic      away     10     defensive    4243753
+#&gt; 40 401013376 Army  FBS Independents      home     17       passing    4036923
+#&gt; 41 401013376 Army  FBS Independents      home     17       rushing    4036923
+#&gt; 42 401013376 Army  FBS Independents      home     17       rushing    3916803
+#&gt; 43 401013376 Army  FBS Independents      home     17       rushing    4036942
+#&gt; 44 401013376 Army  FBS Independents      home     17       rushing    3916821
+#&gt; 45 401013376 Army  FBS Independents      home     17       rushing    4036934
+#&gt; 46 401013376 Army  FBS Independents      home     17       rushing    4036949
+#&gt; 47 401013376 Army  FBS Independents      home     17       rushing    3916819
+#&gt; 48 401013376 Army  FBS Independents      home     17       rushing      -5258
+#&gt; 49 401013376 Army  FBS Independents      home     17     receiving    4036942
+#&gt; 50 401013376 Army  FBS Independents      home     17     receiving    4036969
+#&gt; 51 401013376 Army  FBS Independents      home     17     receiving    4258460
+#&gt; 52 401013376 Army  FBS Independents      home     17 interceptions    4036925
+#&gt; 53 401013376 Army  FBS Independents      home     17 interceptions    3916807
+#&gt; 54 401013376 Army  FBS Independents      home     17   kickReturns    4036942
+#&gt; 55 401013376 Army  FBS Independents      home     17   kickReturns    4258467
+#&gt; 56 401013376 Army  FBS Independents      home     17   puntReturns    3916807
+#&gt; 57 401013376 Army  FBS Independents      home     17       kicking    4077517
+#&gt; 58 401013376 Army  FBS Independents      home     17       punting    3916795
+#&gt; 59 401013376 Army  FBS Independents      home     17       fumbles    3916832
+#&gt; 60 401013376 Army  FBS Independents      home     17       fumbles    4260811
+#&gt; 61 401013376 Army  FBS Independents      home     17     defensive    4036925
+#&gt; 62 401013376 Army  FBS Independents      home     17     defensive    3916813
+#&gt; 63 401013376 Army  FBS Independents      home     17     defensive    3916860
+#&gt; 64 401013376 Army  FBS Independents      home     17     defensive    4036958
+#&gt; 65 401013376 Army  FBS Independents      home     17     defensive    4036959
+#&gt; 66 401013376 Army  FBS Independents      home     17     defensive    3916818
+#&gt; 67 401013376 Army  FBS Independents      home     17     defensive    4260811
+#&gt; 68 401013376 Army  FBS Independents      home     17     defensive    3916832
+#&gt; 69 401013376 Army  FBS Independents      home     17     defensive    4036924
+#&gt; 70 401013376 Army  FBS Independents      home     17     defensive    3916850
+#&gt; 71 401013376 Army  FBS Independents      home     17     defensive    4036944
+#&gt; 72 401013376 Army  FBS Independents      home     17     defensive    4258506
+#&gt; 73 401013376 Army  FBS Independents      home     17     defensive    3916819
+#&gt; 74 401013376 Army  FBS Independents      home     17     defensive    4036929
+#&gt; 75 401013376 Army  FBS Independents      home     17     defensive    4258457
+#&gt; 76 401013376 Army  FBS Independents      home     17     defensive    4258521
+#&gt; 77 401013376 Army  FBS Independents      home     17     defensive    3916807
+#&gt; 78 401013376 Army  FBS Independents      home     17     defensive    4036953
+#&gt;                     name c_att  yds  avg   td  int qbr  car long  rec   no   fg
+#&gt; 1           Garret Lewis  5/11   81  7.4    0    0  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 2              Zach Abey   0/5    0  0.0    0    2  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 3               OJ Davis   0/1    0  0.0    0    0  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 4          Malcolm Perry  &lt;NA&gt;   52  8.7    0 &lt;NA&gt;  NA    6   43 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 5       Anthony Gargiulo  &lt;NA&gt;   38  4.8    0 &lt;NA&gt;  NA    8    7 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 6           Garret Lewis  &lt;NA&gt;   14  2.3    1 &lt;NA&gt;  NA    6   13 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 7             Tre Walker  &lt;NA&gt;   10  3.3    0 &lt;NA&gt;  NA    3    6 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 8           Nelson Smith  &lt;NA&gt;    9  2.3    0 &lt;NA&gt;  NA    4    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 9            Myles Fells  &lt;NA&gt;    5  5.0    0 &lt;NA&gt;  NA    1    5 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 10           Mike Martin  &lt;NA&gt;    2  2.0    0 &lt;NA&gt;  NA    1    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 11            Tazh Maloy  &lt;NA&gt;    2  2.0    0 &lt;NA&gt;  NA    1    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 12             Zach Abey  &lt;NA&gt;    0  2.0    0 &lt;NA&gt;  NA    6    4 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 13         Mychal Cooper  &lt;NA&gt;   -5 -5.0    0 &lt;NA&gt;  NA    1    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 14 Keoni-Kordell Makekau  &lt;NA&gt;   52 26.0    0 &lt;NA&gt;  NA &lt;NA&gt;   34    2 &lt;NA&gt; &lt;NA&gt;
+#&gt; 15         Malcolm Perry  &lt;NA&gt;   18  9.0    0 &lt;NA&gt;  NA &lt;NA&gt;   13    2 &lt;NA&gt; &lt;NA&gt;
+#&gt; 16        Taylor Jackson  &lt;NA&gt;   11 11.0    0 &lt;NA&gt;  NA &lt;NA&gt;   11    1 &lt;NA&gt; &lt;NA&gt;
+#&gt; 17         Malcolm Perry  &lt;NA&gt;   49 24.5    0 &lt;NA&gt;  NA &lt;NA&gt;   33 &lt;NA&gt;    2 &lt;NA&gt;
+#&gt; 18            Tazh Maloy  &lt;NA&gt;   15 15.0    0 &lt;NA&gt;  NA &lt;NA&gt;   15 &lt;NA&gt;    1 &lt;NA&gt;
+#&gt; 19         Jake Springer  &lt;NA&gt;    8  4.0    0 &lt;NA&gt;  NA &lt;NA&gt;    4 &lt;NA&gt;    2 &lt;NA&gt;
+#&gt; 20      Bennett Moehring  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt;   46 &lt;NA&gt; &lt;NA&gt;  1/1
+#&gt; 21            Owen White  &lt;NA&gt;  145 36.3 &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt;   43 &lt;NA&gt;    4 &lt;NA&gt;
+#&gt; 22             Zach Abey  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt;
+#&gt; 23          Garret Lewis  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt; &lt;NA&gt;
+#&gt; 24         Taylor Heflin  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 25           Juan Hailey  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 26           Jarvis Polu  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 27       Hudson Sullivan  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 28         Sean Williams  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 29     Nizaire Cromartie  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 30    Anthony Villalobos  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 31             Elan Nash  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 32       Jackson Pittman  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 33           Diego Fagot  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 34            Jarid Ryan  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 35      Khaylan Williams  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 36      Anthony Gargiulo  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 37         Noruwa Obanor  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 38       Carter Bankston  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 39         Pepe Tanuvasa  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 40    Kelvin Hopkins Jr.   4/9   61  6.8    0    0  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 41    Kelvin Hopkins Jr.  &lt;NA&gt;   64  3.6    2 &lt;NA&gt;  NA   18   17 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 42      Darnell Woolfolk  &lt;NA&gt;   62  3.9    0 &lt;NA&gt;  NA   16   18 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 43           Kell Walker  &lt;NA&gt;   56 11.2    0 &lt;NA&gt;  NA    5   51 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 44         Andy Davidson  &lt;NA&gt;   31  5.2    0 &lt;NA&gt;  NA    6   22 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 45         Malik Hancock  &lt;NA&gt;    8  8.0    0 &lt;NA&gt;  NA    1    8 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 46         Connor Slomka  &lt;NA&gt;    1  1.0    0 &lt;NA&gt;  NA    1    1 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 47        Jordan Asberry  &lt;NA&gt;    1  0.5    0 &lt;NA&gt;  NA    2    2 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 48                  Team  &lt;NA&gt;   -1 -1.0    0 &lt;NA&gt;  NA    1    0 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 49           Kell Walker  &lt;NA&gt;   30 15.0    0 &lt;NA&gt;  NA &lt;NA&gt;   25    2 &lt;NA&gt; &lt;NA&gt;
+#&gt; 50           Glen Coates  &lt;NA&gt;   17 17.0    0 &lt;NA&gt;  NA &lt;NA&gt;   17    1 &lt;NA&gt; &lt;NA&gt;
+#&gt; 51           Zack Boobas  &lt;NA&gt;   14 14.0    0 &lt;NA&gt;  NA &lt;NA&gt;   14    1 &lt;NA&gt; &lt;NA&gt;
+#&gt; 52      Jaylon McClinton  &lt;NA&gt;   11 &lt;NA&gt;    0    1  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 53         Mike Reynolds  &lt;NA&gt;    0 &lt;NA&gt;    0    1  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 54           Kell Walker  &lt;NA&gt;   23 23.0    0 &lt;NA&gt;  NA &lt;NA&gt;   23 &lt;NA&gt;    1 &lt;NA&gt;
+#&gt; 55          Sandon McCoy  &lt;NA&gt;   15 15.0    0 &lt;NA&gt;  NA &lt;NA&gt;   15 &lt;NA&gt;    1 &lt;NA&gt;
+#&gt; 56         Mike Reynolds  &lt;NA&gt;    4  2.0    0 &lt;NA&gt;  NA &lt;NA&gt;    3 &lt;NA&gt;    2 &lt;NA&gt;
+#&gt; 57      John Abercrombie  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt;   33 &lt;NA&gt; &lt;NA&gt;  1/2
+#&gt; 58          Nick Schrage  &lt;NA&gt;  156 39.0 &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt;   47 &lt;NA&gt;    4 &lt;NA&gt;
+#&gt; 59       Kenneth Brinson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt;    1 &lt;NA&gt; &lt;NA&gt;
+#&gt; 60          James Gibson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt;    1 &lt;NA&gt; &lt;NA&gt;
+#&gt; 61      Jaylon McClinton  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 62       James Nachtigal  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 63         Wunmi Oyetuga  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 64           Amadeo West  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 65     Cole Christiansen  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 66      Chandler Ramirez  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 67          James Gibson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 68       Kenneth Brinson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 69          Elijah Riley  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 70        Raymond Wright  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 71         Donavan Lynch  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 72     Edriece Patterson  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 73        Jordan Asberry  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 74           Ryan Parker  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 75      Javhari Bourdeau  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 76        Landon Salyers  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 77         Mike Reynolds  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; 78       Jacob Covington  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    0 &lt;NA&gt;  NA &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt;      pct   xp  pts   tb in_20  fum lost  tot solo sacks  tfl   pd qb_hur
 #&gt; 1   &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;
 #&gt; 2   &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;
 #&gt; 3   &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;
@@ -460,14 +460,18 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 #&gt; 76  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1    1     0    0    0      0
 #&gt; 77  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1    0     0    0    3      0
 #&gt; 78  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    1    0     0    0    0      0</div><div class='input'>
-<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2013</span>, <span class='kw'>week</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Florida State"</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>'passing'</span>)</div><div class='output co'>#&gt;     game_id        school conference homeAway points category athlete_id
-#&gt; 1 332450221    Pittsburgh        ACC     home     13  passing     514116
-#&gt; 2 332450221 Florida State        ACC     away     41  passing     530308
-#&gt; 3 332450221 Florida State        ACC     away     41  passing     514124
-#&gt;             name C/ATT YDS  QBR INT TD  AVG
-#&gt; 1     Tom Savage 15/28 201 20.3   2  1  7.2
-#&gt; 2 Jameis Winston 25/27 356 97.3   0  4 13.2
-#&gt; 3     Jake Coker   2/2  21 99.1   0  0 10.5</div><div class='input'>
+<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2013</span>, <span class='kw'>week</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Florida State"</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>'passing'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-04 13:09:12: Scraping game player stats data...</span></div><div class='output co'>#&gt;     game_id          team conference home_away points category athlete_id
+#&gt; 1 332450221    Pittsburgh        ACC      home     13  passing     514116
+#&gt; 2 332450221 Florida State        ACC      away     41  passing     530308
+#&gt; 3 332450221 Florida State        ACC      away     41  passing     514124
+#&gt;             name c_att yds  avg td int  qbr car long rec no fg pct xp pts tb
+#&gt; 1     Tom Savage 15/28 201  7.2  1   2 20.3  NA   NA  NA NA NA  NA NA  NA NA
+#&gt; 2 Jameis Winston 25/27 356 13.2  4   0 97.3  NA   NA  NA NA NA  NA NA  NA NA
+#&gt; 3     Jake Coker   2/2  21 10.5  0   0 99.1  NA   NA  NA NA NA  NA NA  NA NA
+#&gt;   in_20 fum lost tot solo sacks tfl pd qb_hur
+#&gt; 1    NA  NA   NA  NA   NA    NA  NA NA     NA
+#&gt; 2    NA  NA   NA  NA   NA    NA  NA NA     NA
+#&gt; 3    NA  NA   NA  NA   NA    NA  NA NA     NA</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
