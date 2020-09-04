@@ -196,7 +196,7 @@ create_epa <- function(clean_pbp_dat,
   ## scoring plays from here on out
   pred_df[(pred_df$play_type %in% off_TD), "ep_after"] = 7
   pred_df[(pred_df$play_type %in% def_TD), "ep_after"] = -7
-  pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_before"] = 1
+  pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_before"] = 0
   pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_after"] = -2
   
   pred_df[pred_df$play_type == "Safety", "ep_after"] = -2
