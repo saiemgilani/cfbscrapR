@@ -4,11 +4,13 @@
 \alias{cfb_game_box_advanced}
 \title{Get game advanced box score information}
 \usage{
-cfb_game_box_advanced(game_id)
+cfb_game_box_advanced(game_id, long = FALSE)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game
 Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
+
+\item{long}{(\emph{Logical} default `FALSE`): Return the data in a long format.}
 }
 \description{
 Get game advanced box score information

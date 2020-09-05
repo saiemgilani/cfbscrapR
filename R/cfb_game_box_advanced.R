@@ -23,7 +23,7 @@
 #'
 
 cfb_game_box_advanced<- function(game_id, long = FALSE) {
-  
+
   if(!is.null(game_id)){
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
