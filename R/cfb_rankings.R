@@ -25,16 +25,16 @@ cfb_rankings <- function(year, week = NULL, season_type = 'regular'){
 
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year (Integer) in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year (Integer) in 4 digit format (YYYY)')
   }
   if(!is.null(week)){
     # Check if week is numeric, if not NULL
-    assert_that(is.numeric(week) & nchar(week) <= 2,
-                msg='Enter valid week 1-15, 1-14 for seasons pre-playoff, \n(i.e. 2014 or earlier)')
+    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
+                msg = 'Enter valid week 1-15, 1-14 for seasons pre-playoff, \n(i.e. 2014 or earlier)')
   }
   if(season_type != 'regular'){
-    assert_that(season_type == 'postseason',
+    assertthat::assert_that(season_type == 'postseason',
                 msg = 'Enter a valid season_type (String): regular or postseason')
   }
 
@@ -46,14 +46,31 @@ cfb_rankings <- function(year, week = NULL, season_type = 'regular'){
                "&week=", week,
                "&seasonType=", season_type)
 
-  polls <- fromJSON(url, flatten = TRUE) %>%
-    map_if(is.data.frame,list) %>%
-    as_tibble() %>%
-    unnest(.data$polls) %>%
-    unnest(.data$ranks) %>%
-    group_by(.data$week, .data$poll) %>%
-    arrange(.data$rank, .by_group=TRUE) %>%
-    ungroup()
-  polls <- as.data.frame(polls)
+  polls <- data.frame()
+  tryCatch(
+    expr = {
+      polls <- jsonlite::fromJSON(url, flatten = TRUE) %>%
+        purrr::map_if(is.data.frame,list) %>%
+        dplyr::as_tibble() %>%
+        tidyr::unnest(.data$polls) %>%
+        tidyr::unnest(.data$ranks) %>%
+        dplyr::group_by(.data$week, .data$poll) %>%
+        dplyr::arrange(.data$rank, .by_group=TRUE) %>%
+       dplyr::ungroup() %>% 
+        dplyr::rename(
+          season_type = .data$seasonType,
+          first_place_votes = .data$firstPlaceVotes) %>% 
+        as.data.frame()
+  
+      message(glue::glue("{Sys.time()}: Scraping rankings data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no rankings data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )   
   return(polls)
 }

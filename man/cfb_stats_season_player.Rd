@@ -39,7 +39,7 @@ Get Season Statistics by Player
 }
 \examples{
 
-cfb_stats_season_player(year=2018, conference = 'B12', start_week = 1,end_week = 7)
+cfb_stats_season_player(year=2018, conference = 'B12', start_week = 1, end_week = 7)
 
 cfb_stats_season_player(2019, team = 'LSU', category = 'passing')
 

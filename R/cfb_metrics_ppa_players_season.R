@@ -21,9 +21,9 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode" 
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
-#' @import purrr
 #' @export
 #' @examples
 #'
@@ -47,39 +47,39 @@ cfb_metrics_ppa_players_season <- function(year = NULL,
 
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year as integer in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year as integer in 4 digit format (YYYY)')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
                 msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
   if(!is.null(position)){
     ## check if position in position group set
-    assert_that(position %in% pos_groups,
-                msg='Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
+    assertthat::assert_that(position %in% pos_groups,
+                msg = 'Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
   }
   if(!is.null(athlete_id)){
     # Check if athlete_id is numeric, if not NULL
-    assert_that(is.numeric(athlete_id),
-                msg='Enter valid athlete_id value (Integer)\nCan be found using the `cfb_player_info()` function')
+    assertthat::assert_that(is.numeric(athlete_id),
+                msg = 'Enter valid athlete_id value (Integer)\nCan be found using the `cfb_player_info()` function')
   }
   if(!is.null(threshold)){
     # Check if threshold is numeric, if not NULL
-    assert_that(is.numeric(threshold),
-                msg='Enter valid threshold value (Integer)')
+    assertthat::assert_that(is.numeric(threshold),
+                msg = 'Enter valid threshold value (Integer)')
   }
   if(excl_garbage_time!=FALSE){
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assert_that(excl_garbage_time==TRUE,
-                msg='Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
+    assertthat::assert_that(excl_garbage_time==TRUE,
+                msg = 'Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
   }
   
   base_url <- "https://api.collegefootballdata.com/ppa/players/season?"
@@ -97,17 +97,33 @@ cfb_metrics_ppa_players_season <- function(year = NULL,
   check_internet()
   
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
   
   # Check the result
   check_status(res)
-  
-  # Get the content, flatten and return result as data.frame
-  df = fromJSON(full_url,flatten=TRUE) 
-  colnames(df) = gsub("averagePPA.","avg_PPA_",colnames(df))
-  colnames(df) = gsub("totalPPA.","total_PPA_",colnames(df))
-  colnames(df) = gsub("countablePlays","countable_plays",colnames(df))
-  colnames(df) = gsub("Down","_down",colnames(df))
-  df <- df %>% arrange(-.data$countable_plays)
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content, flatten and return result as data.frame
+      df = jsonlite::fromJSON(full_url, flatten = TRUE) 
+      colnames(df) = gsub("averagePPA.", "avg_PPA_", colnames(df))
+      colnames(df) = gsub("totalPPA.", "total_PPA_", colnames(df))
+      colnames(df) = gsub("countablePlays", "countable_plays", colnames(df))
+      colnames(df) = gsub("Down", "_down", colnames(df))
+      
+      df <- df %>% 
+        dplyr::arrange(-.data$countable_plays) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA season-level players data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA season-level players data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )    
   return(df)
 }

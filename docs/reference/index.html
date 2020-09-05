@@ -8,6 +8,13 @@
 
 <title>Function reference • cfbscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -71,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -462,6 +469,13 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
           <p><code><a href="cfb_ratings_srs.html">cfb_ratings_srs()</a></code> </p>
         </td>
         <td><p>Get SRS historical rating data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cfb_ratings_fpi.html">cfb_ratings_fpi()</a></code> </p>
+        </td>
+        <td><p>Get FPI historical rating data (most recent of each year)
+Adapted from sabinanalytic's fork of the cfbscrapR repo</p></td>
       </tr>
     </tbody><tbody>
       
@@ -547,6 +561,12 @@ recruit type, state and position.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="cfb_metrics_espn_wp.html">cfb_metrics_espn_wp()</a></code> </p>
+        </td>
+        <td><p>Get win probability chart data from ESPN</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="cfb_metrics_wp_pregame.html">cfb_metrics_wp_pregame()</a></code> </p>
         </td>
         <td><p>Get Pre-game Win Probability Data from API</p></td>
@@ -620,13 +640,6 @@ recruit type, state and position.</p></td>
       
       
       <tr>
-        
-        <td>
-          <p><code><a href="add_timeout_cols.html">add_timeout_cols()</a></code> </p>
-        </td>
-        <td><p>Add Timeout columns
-This is only for DI-FBS football</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="add_betting_cols.html">add_betting_cols()</a></code> </p>

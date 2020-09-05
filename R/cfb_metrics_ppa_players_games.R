@@ -19,13 +19,11 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode" 
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
-#' @import purrr
 #' @export
 #' @examples
-#'
-#'
 #' 
 #' cfb_metrics_ppa_players_games(year = 2019,week=3, team = 'TCU')
 #'
@@ -46,37 +44,37 @@ cfb_metrics_ppa_players_games <- function(year = NULL,
 
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year as integer in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year as integer in 4 digit format (YYYY)')
   }
   if(!is.null(week)){
     # Check if week is numeric, if not NULL
-    assert_that(is.numeric(week) & nchar(week) <= 2,
-                msg='Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
+                msg = 'Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(position)){
     ## check if position in position group set
-    assert_that(position %in% pos_groups,
-                msg='Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
+    assertthat::assert_that(position %in% pos_groups,
+                msg = 'Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
   }
   if(!is.null(athlete_id)){
     # Check if athlete_id is numeric, if not NULL
-    assert_that(is.numeric(athlete_id),
-                msg='Enter valid athlete_id value (Integer)\nCan be found using the `cfb_player_info()` function')
+    assertthat::assert_that(is.numeric(athlete_id),
+                msg = 'Enter valid athlete_id value (Integer)\nCan be found using the `cfb_player_info()` function')
   }
   if(!is.null(threshold)){
     # Check if threshold is numeric, if not NULL
-    assert_that(is.numeric(threshold),
-                msg='Enter valid threshold value (Integer)')
+    assertthat::assert_that(is.numeric(threshold),
+                msg = 'Enter valid threshold value (Integer)')
   }
   if(excl_garbage_time!=FALSE){
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assert_that(excl_garbage_time==TRUE,
-                msg='Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
+    assertthat::assert_that(excl_garbage_time==TRUE,
+                msg = 'Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
   }
   
   base_url <- "https://api.collegefootballdata.com/ppa/players/games?"
@@ -94,15 +92,27 @@ cfb_metrics_ppa_players_games <- function(year = NULL,
   check_internet()
   
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
   
   # Check the result
   check_status(res)
   
-  # Get the content, flatten and return result as data.frame
-  df = fromJSON(full_url,flatten=TRUE) 
-  colnames(df) = gsub("averagePPA.","avg_PPA_",colnames(df))
-
-  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content, flatten and return result as data.frame
+      df = jsonlite::fromJSON(full_url, flatten = TRUE) 
+      colnames(df) = gsub("averagePPA.", "avg_PPA_", colnames(df))
+      
+      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA game-level players data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA game-level players data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )    
   return(df)
 }

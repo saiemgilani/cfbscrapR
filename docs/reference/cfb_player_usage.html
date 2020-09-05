@@ -8,6 +8,13 @@
 
 <title>Player Information Search — cfb_player_usage • cfbscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -72,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -211,16 +218,16 @@ Can be found using the <code><a href='cfb_player_info.html'>cfbscrapR::cfb_playe
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_player_usage</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'WR'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt;   season      id               name position          team conference
-#&gt; 1   2019 4240028    Tamorrion Terry       WR Florida State        ACC
-#&gt; 2   2019 4240034      D.J. Matthews       WR Florida State        ACC
-#&gt; 3   2019 4363046 Tre'Shaun Harrison       WR Florida State        ACC
-#&gt; 4   2019 4240033     Ontaria Wilson       WR Florida State        ACC
-#&gt; 5   2019 4363032    Keyshawn Helton       WR Florida State        ACC
-#&gt; 6   2019 4035628        Keith Gavin       WR Florida State        ACC
-#&gt; 7   2019 4363030    Warren Thompson       WR Florida State        ACC
-#&gt; 8   2019 4363044       Jordan Young       WR Florida State        ACC
-#&gt; 9   2019 4360473       Adarius Dent       WR Florida State        ACC
+<span class='fu'>cfb_player_usage</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'WR'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-05 16:34:47: Scraping player usage data...</span></div><div class='output co'>#&gt;   season athlete_id               name position          team conference
+#&gt; 1   2019    4240028    Tamorrion Terry       WR Florida State        ACC
+#&gt; 2   2019    4240034      D.J. Matthews       WR Florida State        ACC
+#&gt; 3   2019    4363046 Tre'Shaun Harrison       WR Florida State        ACC
+#&gt; 4   2019    4240033     Ontaria Wilson       WR Florida State        ACC
+#&gt; 5   2019    4363032    Keyshawn Helton       WR Florida State        ACC
+#&gt; 6   2019    4035628        Keith Gavin       WR Florida State        ACC
+#&gt; 7   2019    4363030    Warren Thompson       WR Florida State        ACC
+#&gt; 8   2019    4363044       Jordan Young       WR Florida State        ACC
+#&gt; 9   2019    4360473       Adarius Dent       WR Florida State        ACC
 #&gt;   usg_overall usg_pass usg_rush usg_1st_down usg_2nd_down usg_3rd_down
 #&gt; 1      0.1184   0.2181   0.0102       0.1402        0.099        0.112
 #&gt; 2      0.0604   0.1090   0.0077       0.0485        0.076        0.071
@@ -241,7 +248,6 @@ Can be found using the <code><a href='cfb_player_info.html'>cfbscrapR::cfb_playe
 #&gt; 7              0.007             0.011
 #&gt; 8              0.007             0.007
 #&gt; 9              0.002             0.000</div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

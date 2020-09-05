@@ -8,6 +8,13 @@
 
 <title>Get game advanced box score information — cfb_game_box_advanced • cfbscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -72,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -163,7 +170,7 @@
     <p>Get game advanced box score information</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_game_box_advanced</span>(<span class='no'>game_id</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_game_box_advanced</span>(<span class='no'>game_id</span>, <span class='kw'>long</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,70 +180,78 @@
       <td><p>(<em>Integer</em> required): Game ID filter for querying a single game
 Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_info()</a></code> function</p></td>
     </tr>
+    <tr>
+      <th>long</th>
+      <td><p>(<em>Logical</em> default `FALSE`): Return the data in a long format.</p></td>
+    </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_game_box_advanced</span>(<span class='fl'>401012356</span>)</div><div class='output co'>#&gt;                                     stat     team1     team2
-#&gt; 1                               ppa_team Texas A&amp;M       LSU
-#&gt; 2                      ppa_overall_total    0.2294     0.228
-#&gt; 3                   ppa_overall_quarter1    0.3081    0.1413
-#&gt; 4                   ppa_overall_quarter2    0.4067   -0.0141
-#&gt; 5                   ppa_overall_quarter3   -0.0645    0.3031
-#&gt; 6                   ppa_overall_quarter4     0.237    0.3368
-#&gt; 7                      ppa_passing_total     0.454    0.2202
-#&gt; 8                   ppa_passing_quarter1   -0.1429    0.2161
-#&gt; 9                   ppa_passing_quarter2    1.2737   -0.1453
-#&gt; 10                  ppa_passing_quarter3   -0.3671    0.4569
-#&gt; 11                  ppa_passing_quarter4    0.6557     0.234
-#&gt; 12                     ppa_rushing_total    0.0648    0.1997
-#&gt; 13                  ppa_rushing_quarter1    0.7592    0.0665
-#&gt; 14                  ppa_rushing_quarter2   -0.0855    0.1686
-#&gt; 15                  ppa_rushing_quarter3    0.2382    0.1492
-#&gt; 16                  ppa_rushing_quarter4   -0.6003    0.3882
-#&gt; 17                    success_rates_team Texas A&amp;M       LSU
-#&gt; 18           success_rates_overall_total     0.416     0.473
-#&gt; 19        success_rates_overall_quarter1       0.5     0.444
-#&gt; 20        success_rates_overall_quarter2     0.438      0.45
-#&gt; 21        success_rates_overall_quarter3     0.188     0.444
-#&gt; 22        success_rates_overall_quarter4     0.407       0.5
-#&gt; 23    success_rates_standard_downs_total     0.397     0.508
-#&gt; 24 success_rates_standard_downs_quarter1       0.5       0.4
-#&gt; 25 success_rates_standard_downs_quarter2      0.25     0.545
-#&gt; 26 success_rates_standard_downs_quarter3      0.25     0.545
-#&gt; 27 success_rates_standard_downs_quarter4       0.4       0.6
-#&gt; 28     success_rates_passing_downs_total     0.447     0.393
-#&gt; 29  success_rates_passing_downs_quarter1       0.5     0.667
-#&gt; 30  success_rates_passing_downs_quarter2     0.625     0.333
-#&gt; 31  success_rates_passing_downs_quarter3     0.125     0.286
-#&gt; 32  success_rates_passing_downs_quarter4     0.417         0
-#&gt; 33                    explosiveness_team Texas A&amp;M       LSU
-#&gt; 34           explosiveness_overall_total       1.3      1.22
-#&gt; 35        explosiveness_overall_quarter1      1.15      1.44
-#&gt; 36        explosiveness_overall_quarter2       1.6         1
-#&gt; 37        explosiveness_overall_quarter3      1.07      1.22
-#&gt; 38        explosiveness_overall_quarter4      1.64       1.4
-#&gt; 39                          rushing_team Texas A&amp;M       LSU
-#&gt; 40                 rushing_power_success     0.800     0.500
-#&gt; 41                    rushing_stuff_rate     0.265     0.205
-#&gt; 42                      rushing_line_yds       122       144
-#&gt; 43                   rushing_line_yd_avg       2.5       3.3
-#&gt; 44                rushing_second_lvl_yds        57        60
-#&gt; 45             rushing_second_lvl_yd_avg       1.2       1.4
-#&gt; 46                rushing_open_field_yds        45        56
-#&gt; 47             rushing_open_field_yd_avg       0.9       1.3
-#&gt; 48                            havoc_team       LSU Texas A&amp;M
-#&gt; 49                           havoc_total     0.218     0.209
-#&gt; 50                     havoc_front_seven     0.149     0.143
-#&gt; 51                              havoc_db     0.069     0.066
-#&gt; 52                     scoring_opps_team Texas A&amp;M       LSU
-#&gt; 53            scoring_opps_opportunities         7         5
-#&gt; 54                   scoring_opps_points        17        21
-#&gt; 55              scoring_opps_pts_per_opp      2.43       4.2
-#&gt; 56                        field_pos_team Texas A&amp;M       LSU
-#&gt; 57                   field_pos_avg_start      72.3      74.0
-#&gt; 58  field_pos_avg_starting_predicted_pts      1.18      1.08</div><div class='input'>
+<span class='fu'>cfb_game_box_advanced</span>(<span class='fl'>401114233</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-05 16:34:28: Scraping game advanced box score data for game_id '401114233'...</span></div><div class='output co'>#&gt;                 team ppa_overall_total ppa_overall_quarter1
+#&gt; 1 Eastern Washington           -0.2013              -0.5693
+#&gt; 2         Washington            0.6661               0.7545
+#&gt;   ppa_overall_quarter2 ppa_overall_quarter3 ppa_overall_quarter4
+#&gt; 1               0.1221              -0.6584                2.696
+#&gt; 2               0.3371               0.8374                0.000
+#&gt;   ppa_passing_total ppa_passing_quarter1 ppa_passing_quarter2
+#&gt; 1           -0.3204              -0.7935               0.3817
+#&gt; 2            0.9240               0.8477               0.2330
+#&gt;   ppa_passing_quarter3 ppa_passing_quarter4 ppa_rushing_total
+#&gt; 1              -0.8888                    0            0.0144
+#&gt; 2               1.5519                    0            0.3544
+#&gt;   ppa_rushing_quarter1 ppa_rushing_quarter2 ppa_rushing_quarter3
+#&gt; 1               0.0137              -0.2672              -0.1977
+#&gt; 2               0.6707               0.4931              -0.1450
+#&gt;   ppa_rushing_quarter4 success_rates_overall_total
+#&gt; 1                2.696                       0.289
+#&gt; 2                0.000                       0.528
+#&gt;   success_rates_overall_quarter1 success_rates_overall_quarter2
+#&gt; 1                          0.222                          0.400
+#&gt; 2                          0.579                          0.467
+#&gt;   success_rates_overall_quarter3 success_rates_overall_quarter4
+#&gt; 1                          0.000                              1
+#&gt; 2                          0.526                             NA
+#&gt;   success_rates_standard_downs_total success_rates_standard_downs_quarter1
+#&gt; 1                              0.333                                 0.273
+#&gt; 2                              0.538                                 0.563
+#&gt;   success_rates_standard_downs_quarter2 success_rates_standard_downs_quarter3
+#&gt; 1                                 0.417                                 0.000
+#&gt; 2                                 0.500                                 0.538
+#&gt;   success_rates_standard_downs_quarter4 success_rates_passing_downs_total
+#&gt; 1                                     1                             0.222
+#&gt; 2                                    NA                             0.500
+#&gt;   success_rates_passing_downs_quarter1 success_rates_passing_downs_quarter2
+#&gt; 1                                0.143                                0.375
+#&gt; 2                                0.667                                0.400
+#&gt;   success_rates_passing_downs_quarter3 success_rates_passing_downs_quarter4
+#&gt; 1                                  0.0                                   NA
+#&gt; 2                                  0.5                                   NA
+#&gt;   explosiveness_overall_total explosiveness_overall_quarter1
+#&gt; 1                        0.97                           0.28
+#&gt; 2                        1.69                           1.69
+#&gt;   explosiveness_overall_quarter2 explosiveness_overall_quarter3
+#&gt; 1                           1.10                             NA
+#&gt; 2                           1.34                           1.92
+#&gt;   explosiveness_overall_quarter4 rushing_power_success rushing_stuff_rate
+#&gt; 1                            2.7                     1              0.250
+#&gt; 2                            0.0                     1              0.208
+#&gt;   rushing_line_yds rushing_line_yd_avg rushing_second_lvl_yds
+#&gt; 1               32                 2.0                     10
+#&gt; 2               69                 2.9                     29
+#&gt;   rushing_second_lvl_yd_avg rushing_open_field_yds rushing_open_field_yd_avg
+#&gt; 1                       0.6                      1                       0.1
+#&gt; 2                       1.2                     28                       1.2
+#&gt;   havoc_total havoc_front_seven havoc_db scoring_opps_opportunities
+#&gt; 1       0.467             0.400    0.067                         12
+#&gt; 2       0.189             0.113    0.075                          0
+#&gt;   scoring_opps_points scoring_opps_pts_per_opp field_pos_avg_start
+#&gt; 1                  12                        1                79.6
+#&gt; 2                   0                        0                64.9
+#&gt;   field_pos_avg_starting_predicted_pts
+#&gt; 1                                 0.75
+#&gt; 2                                 1.85</div><div class='input'>
 
 </div></pre>
   </div>

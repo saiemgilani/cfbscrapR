@@ -4,11 +4,11 @@
 #' This can be used to filter out play types when calling functions before hand.
 #'
 #'
-#' @format A data frame with 45 rows and 3 variables:
+#' @format A data frame with 46 rows and 3 variables:
 #' \describe{
-#'   \item{id}{Referencing play id}
+#'   \item{play_type_id}{Referencing play type id}
 #'   \item{text}{play type description}
-#'   \item{abberivation}{play type abberivation used for function call}
+#'   \item{abbreviation}{play type abbreviation used for function call}
 #'   ...
 #' }
 #' @source \url{https://api.collegefootballdata.com/play/types}
@@ -17,6 +17,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #'
 
 
@@ -28,13 +29,27 @@ cfb_play_types <- function(){
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(base_url)
+  res <- httr::GET(base_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(base_url)
-
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(base_url) %>% 
+        dplyr::rename(play_type_id = .data$id) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping play types data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play types data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )        
   return(df)
 }

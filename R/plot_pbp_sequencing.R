@@ -19,13 +19,13 @@
 
 plot_pbp_sequencing <- function(df) {
   clean_game_df = prep_df_pbp_overview(df) %>% 
-    filter(!stringr::str_detect(.data$play_type, "End"))
+    dplyr::filter(!stringr::str_detect(.data$play_type, "End"))
   game_id <- unique(clean_game_df$game_id)
   clean_game_df$new_drive_id = as.numeric(gsub(game_id, "", clean_game_df$drive_id))
   
-  clean_drive_info = clean_game_df %>% group_by(.data$drive_id) %>%
-    filter(row_number() == (n())) %>% ungroup() %>%
-    mutate(
+  clean_drive_info = clean_game_df %>% dplyr::group_by(.data$drive_id) %>%
+    dplyr::filter(row_number() == (n())) %>%dplyr::ungroup() %>%
+   dplyr::mutate(
       y_max = max(.data$play_num) + 5,
       score_text = ifelse(.data$drive_scoring == TRUE, .data$score_text, NA)
     )
@@ -99,8 +99,8 @@ plot_pbp_sequencing <- function(df) {
 #' @import stringi
 #'
 prep_df_pbp_overview <- function(df) {
-  clean_df = df %>% arrange(.data$id_play) %>%
-    mutate(
+  clean_df = df %>% dplyr::arrange(.data$id_play) %>%
+   dplyr::mutate(
       event = case_when(
         str_detect(.data$play_text, "fumble") ~ "Fumble",
         str_detect(.data$play_text, "interception") ~ "INT",
@@ -119,7 +119,7 @@ prep_df_pbp_overview <- function(df) {
       ),
       drive_id = cumsum(.data$offense_play != lead(.data$offense_play)),
       score_text = paste0(.data$offense_score, "-", .data$defense_score)
-    ) %>% group_by(.data$drive_id) %>%  arrange(.data$id_play) %>%
-    mutate(play_num = row_number())  %>% ungroup()
+    ) %>% dplyr::group_by(.data$drive_id) %>%  dplyr::arrange(.data$id_play) %>%
+   dplyr::mutate(play_num = row_number())  %>%dplyr::ungroup()
   return(clean_df)
 }

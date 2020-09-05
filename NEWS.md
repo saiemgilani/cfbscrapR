@@ -1,3 +1,14 @@
+# cfbscrapR 1.0.2
+- Fix issues with win probability added
+- Remove the `add betting columns()` and the current betting win probability model from the `cfb_pbp_data()` function
+- Fix downs turnovers and several other discrepancies in EPA computations
+- Add tests for a majority of the functions
+- Rename several function outputs from camelCase to under_score for consistency
+- Remove `drives` parameter from `cfb_pbp_data()` function, for accessing drives information, please switch to the `cfb_drives()` function. 
+- For more complete summary of changes, see [Pull Request](https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691)
+
+# cfbscrapR 1.0.1
+- bug fixes
 # cfbscrapR 1.0.0
 
 - Prep for CRAN  

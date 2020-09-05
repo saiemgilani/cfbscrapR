@@ -20,6 +20,10 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom janitor "clean_names"
+#' @importFrom glue "glue"
+#' @import dplyr
+#' @import tidyr
 #' @export
 #' @examples
 #'
@@ -40,11 +44,11 @@ cfb_player_info <- function(search_term,
   args <- list(search_term = search_term)
 
   # Check that at search_term input argument is not null
-  stop_if_all(args, is.null,
-              msg="You need to specify at least one argument:\nsearch_term as a string for the player you are trying to look up")
+  attempt::stop_if_all(args, is.null,
+              msg = "You need to specify at least one argument:\nsearch_term as a string for the player you are trying to look up")
 
   # Encode search_term parameter for URL
-  search_term = URLencode(search_term, reserved = TRUE)
+  search_term = utils::URLencode(search_term, reserved = TRUE)
 
   # Position Group vector to check input arguments against
   pos_groups <- c('QB', 'RB', 'FB', 'TE', 'WR', 'OL', 'OT', 'G', 'OC',
@@ -53,17 +57,17 @@ cfb_player_info <- function(search_term,
 
   if(!is.null(position)){
     ## check if position in position group set
-    assert_that(position %in% pos_groups,
-                msg='Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
+    assertthat::assert_that(position %in% pos_groups,
+                msg = 'Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020')
   }
   base_url = "https://api.collegefootballdata.com/player/search?"
 
@@ -78,13 +82,32 @@ cfb_player_info <- function(search_term,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url)
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url) %>% 
+        janitor::clean_names() %>% 
+        dplyr::rename(
+          athlete_id = .data$id,
+          home_town = .data$hometown
+        )
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping player info data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player info data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )        
   return(df)
 }

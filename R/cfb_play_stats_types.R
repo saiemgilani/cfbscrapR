@@ -5,13 +5,14 @@
 #'
 #' @format A data frame with 22 rows and 2 variables:
 #' \describe{
-#'   \item{id}{Referencing play id}
+#'   \item{play_stat_type_id}{Referencing play stat type ID}
 #'   \item{name}{Type of play stats}
 #'   ...
 #' }
 #' @keywords Plays
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
+#' @importFrom glue "glue"
 #' @export
 #' @examples
 #'
@@ -27,13 +28,27 @@ cfb_play_stats_types <- function(){
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(base_url)
+  res <- httr::GET(base_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(base_url)
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(base_url) %>% 
+        dplyr::rename(play_stat_type_id = .data$id) %>% 
+        as.data.frame()
+      message(glue::glue("{Sys.time()}: Scraping play stats types data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no play stats types data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }

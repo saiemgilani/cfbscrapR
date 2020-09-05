@@ -25,6 +25,8 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
+#' @import dplyr
 #' @export
 #' @examples
 #'
@@ -45,34 +47,34 @@ cfb_recruiting_player <- function(year = NULL,
                team = team)
 
   # Check that at least one argument is not null
-  stop_if_all(args, is.null,
-              msg="You need to specify at least one of two arguments:\n year, as a number (YYYY) - Min: 2000, Max: 2020\n or team")
+  attempt::stop_if_all(args, is.null,
+              msg = "You need to specify at least one of two arguments:\n year, as a number (YYYY) - Min: 2000, Max: 2020\n or team")
   # Position Group vector to check arguments against
   pos_groups <- c('PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR',
                   'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT', 'K', 'P')
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year as a number (YYYY) - Min: 2000, Max: 2020')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year as a number (YYYY) - Min: 2000, Max: 2020')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(recruit_type !='HighSchool'){
     # Check if recruit_type is appropriate, if not HighSchool
-    assert_that(recruit_type %in% c('PrepSchool','JUCO'),
-                msg='Enter valid recruit_type (String): HighSchool, PrepSchool, or JUCO')
+    assertthat::assert_that(recruit_type %in% c('PrepSchool','JUCO'),
+                msg = 'Enter valid recruit_type (String): HighSchool, PrepSchool, or JUCO')
   }
   if(!is.null(state)){
     ## check if state is length 2
-    assert_that(nchar(state)==2,
-                msg='Enter valid 2-letter State abbreviation')
+    assertthat::assert_that(nchar(state)==2,
+                msg = 'Enter valid 2-letter State abbreviation')
   }
   if(!is.null(position)){
     ## check if position in position group set
-    assert_that(position %in% pos_groups,
-                msg='Enter valid position group \nOffense: PRO, DUAL, RB, FB, TE, OT, OG, OC, WR\nDefense: CB, S, OLB, ILB, WDE, SDE, DT\nSpecial Teams: K, P')
+    assertthat::assert_that(position %in% pos_groups,
+                msg = 'Enter valid position group \nOffense: PRO, DUAL, RB, FB, TE, OT, OG, OC, WR\nDefense: CB, S, OLB, ILB, WDE, SDE, DT\nSpecial Teams: K, P')
   }
 
   base_url = "https://api.collegefootballdata.com/recruiting/players?"
@@ -89,14 +91,32 @@ cfb_recruiting_player <- function(year = NULL,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url)
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr ={  
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url) %>% 
+        dplyr::rename(
+          recruit_type = .data$recruitType,
+          committed_to = .data$committedTo,
+          state_province = .data$stateProvince) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping player recruiting data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player recruiting data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }
 

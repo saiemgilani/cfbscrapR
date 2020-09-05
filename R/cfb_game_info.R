@@ -19,6 +19,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
 #' @export
@@ -43,41 +44,41 @@ cfb_game_info <- function(year,
                           game_id = NULL,
                           quarter_scores = FALSE) {
   # Check if year is numeric
-  assert_that(is.numeric(year) & nchar(year) == 4,
-              msg='Enter valid year as a number (YYYY)')
+  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
+              msg = 'Enter valid year as a number (YYYY)')
   if(!is.null(week)){
     # Check if week is numeric, if not NULL
-    assert_that(is.numeric(week) & nchar(week) <= 2,
-                msg='Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
+                msg = 'Enter valid week 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
   if(season_type != 'regular'){
     # Check if season_type is appropriate, if not regular
-    assert_that(season_type %in% c('postseason','both'),
-                msg='Enter valid season_type: regular, postseason, or both')
+    assertthat::assert_that(season_type %in% c('postseason','both'),
+                msg = 'Enter valid season_type: regular, postseason, or both')
   }
   if(!is.null(team)){
     # Encode team parameter for URL, if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(home_team)){
     # Encode home_team parameter for URL, if not NULL
-    home_team = URLencode(home_team, reserved = TRUE)
+    home_team = utils::URLencode(home_team, reserved = TRUE)
   }
   if(!is.null(away_team)){
     # Encode away_team parameter for URL, if not NULL
-    away_team = URLencode(away_team, reserved = TRUE)
+    away_team = utils::URLencode(away_team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
                 msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
   if(!is.null(game_id)){
     # Check if game_id is numeric, if not NULL
-    assert_that(is.numeric(game_id),
-                msg='Enter valid game_id (numeric value)')
+    assertthat::assert_that(is.numeric(game_id),
+                msg = 'Enter valid game_id (numeric value)')
   }
 
   base_url <- "https://api.collegefootballdata.com/games?"
@@ -96,24 +97,36 @@ cfb_game_info <- function(year,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url)
-
-  if(!quarter_scores){
-    # line_scores <- c("home_line_scores","away_line_scores")
-    df2 <- select(df,-.data$home_line_scores,-.data$away_line_scores)
-    return(df2)
-  } else{
-    df <- df %>%
-      unnest_wider(.data$home_line_scores, names_sep = "_Q") %>%
-      unnest_wider(.data$away_line_scores, names_sep = "_Q")
-    colnames(df) = gsub("_line_scores","_scores",colnames(df))
-    df <- as.data.frame(df)
-    return(df)
-  }
+  
+  df <- data.frame()
+  tryCatch(
+    expr ={
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url)
+    
+      if(!quarter_scores){
+        df <- dplyr::select(df,-.data$home_line_scores,-.data$away_line_scores)
+      } else{
+        df <- df %>%
+          tidyr::unnest_wider(.data$home_line_scores, names_sep = "_Q") %>%
+          tidyr::unnest_wider(.data$away_line_scores, names_sep = "_Q")
+        
+        colnames(df) = gsub("_line_scores","_scores",colnames(df))
+        df <- as.data.frame(df)
+      }
+      message(glue::glue("{Sys.time()}: Scraping game info data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no game info data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
+  return(df)
 }

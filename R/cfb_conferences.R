@@ -32,17 +32,17 @@ cfb_conferences <- function(){
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(base_url)
+  res <- httr::GET(base_url)
 
   # Check the result
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(base_url)
+  df = jsonlite::fromJSON(base_url)
 
   # Rename id as conference_id, short_name as long_name
   df <- df %>%
-    rename(conference_id = .data$id,
+    dplyr::rename(conference_id = .data$id,
            long_name = .data$short_name)
 
   return(df)

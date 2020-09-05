@@ -23,7 +23,7 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
     "def_timeouts_rem_before"
   )
   if (!all(col_nec %in% colnames(df))) {
-    df = df %>% mutate(
+    df = df %>%dplyr::mutate(
       score_diff = .data$offense_score - .data$defense_score,
       home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -.data$EPA),
       away_EPA = -.data$home_EPA,
@@ -38,19 +38,13 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
   }
   
   df = df %>% 
-    group_by(.data$game_id) %>% 
-    mutate(
-      play_no =1,
-      game_play_number = cumsum(.data$play_no)) %>% 
-    select(-.data$play_no) %>% 
-    ungroup() %>% 
-    arrange(.data$game_id, .data$new_id) 
+    dplyr::arrange(.data$game_id, .data$new_id) 
     
   
   Off_Win_Prob = as.vector(predict(wp_model, newdata = df, type = "response"))
   df$wp_bet = Off_Win_Prob
   df <- df %>% 
-    mutate(
+   dplyr::mutate(
       spread = ifelse(.data$offense_play ==.data$home, .data$spread,-.data$spread),
       # values taken at face value from Boyds Bets (https://www.boydsbets.com/college-football-spread-to-moneyline-conversion/)
       wp_bet = case_when(
@@ -147,14 +141,14 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
   df2 = purrr::map_dfr(g_ids,
                        function(x) {
                          df %>%
-                           filter(.data$game_id == x) %>%
+                           dplyr::filter(.data$game_id == x) %>%
                            wpa_calcs_betting()
                        })
   df2 <- df2 %>% 
-    rename(
+    dplyr::rename(
       ExpScoreDiff_bet = .data$ExpScoreDiff,
       ExpScoreDiff_Time_Ratio_bet = .data$ExpScoreDiff_Time_Ratio) %>% 
-    mutate(
+   dplyr::mutate(
       ExpScoreDiff_bet = as.numeric(.data$ExpScoreDiff_bet),
       ExpScoreDiff_Time_Ratio_bet = as.numeric(.data$ExpScoreDiff_Time_Ratio_bet)
     )
@@ -176,15 +170,15 @@ wpa_calcs_betting <- function(df) {
   ## do this last because we process
   ## new TDs etc
   df2 <- df %>%
-    group_by(.data$half) %>%
-    mutate(
+    dplyr::group_by(.data$half) %>%
+   dplyr::mutate(
       #-- ball changes hand----
       change_of_poss = ifelse(.data$offense_play == lead(.data$offense_play, order_by = .data$id_play), 0, 1),
       change_of_poss = ifelse(is.na(.data$change_of_poss), 0, .data$change_of_poss)
-    ) %>% ungroup() %>% arrange(.data$id_play)
+    ) %>%dplyr::ungroup() %>% dplyr::arrange(.data$id_play)
   
   df3 = df2 %>% 
-    mutate(
+   dplyr::mutate(
       def_wp_bet = 1 - .data$wp_bet,
       home_wp_bet = if_else(.data$offense_play == .data$home,
                         .data$wp_bet, .data$def_wp_bet),
@@ -195,7 +189,9 @@ wpa_calcs_betting <- function(df) {
       lead_wp_bet = dplyr::lead(.data$wp_bet),
       # account for turnover
       wpa_base_bet = .data$lead_wp_bet - .data$wp_bet,
-      wpa_change_bet = ifelse(.data$change_of_poss == 1, (1 - .data$lead_wp_bet) - .data$wp_bet, .data$wpa_base_bet),
+      wpa_change_bet = ifelse(.data$change_of_poss == 1, 
+                              (1 - .data$lead_wp_bet) - .data$wp_bet, 
+                              .data$wpa_base_bet),
       wpa_bet = ifelse(.data$end_of_half == 1, 0, .data$wpa_change_bet),
       home_wp_post_bet = ifelse(.data$offense_play == .data$home,
                             .data$home_wp_bet + .data$wpa_bet,

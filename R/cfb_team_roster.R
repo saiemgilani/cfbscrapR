@@ -24,7 +24,7 @@ cfb_team_roster <- function(team, year = NULL){
   }
 
   # Encode team parameter for URL
-  team = URLencode(team, reserved = TRUE)
+  team = utils::URLencode(team, reserved = TRUE)
 
   base_url <- "https://api.collegefootballdata.com/roster?"
 
@@ -36,13 +36,15 @@ cfb_team_roster <- function(team, year = NULL){
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(full_url)
+  df = jsonlite::fromJSON(full_url) %>% 
+    dplyr::rename(athlete_id = .data$id) %>% 
+    as.data.frame()
 
   return(df)
 }

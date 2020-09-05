@@ -37,6 +37,11 @@ Information describes the players involved in the play
 this includes passer, receiver, defensive players who
 create sacks or picks, etc
 }
+\examples{
+
+cfb_play_stats_player(game_id = 401110722)
+
+}
 \keyword{-}
 \keyword{PBP}
 \keyword{Player}

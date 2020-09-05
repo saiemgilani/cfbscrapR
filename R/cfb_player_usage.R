@@ -16,21 +16,19 @@
 #' Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #'
-#'
 #' @keywords Player Usage
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
-#'
 #' @export
 #' @examples
 #'
 #' cfb_player_usage(year = 2019, position = 'WR', team = 'Florida State')
-#'
 #'
 
 cfb_player_usage <- function(year = 2019,
@@ -43,8 +41,8 @@ cfb_player_usage <- function(year = 2019,
   args <- list(year = year)
 
   # Check that at search_term input argument is not null
-  stop_if_all(args, is.null,
-              msg="You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)")
+  attempt::stop_if_all(args, is.null,
+              msg = "You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)")
 
   # Position Group vector to check input arguments against
   pos_groups <- c('QB', 'RB', 'FB', 'TE', 'WR', 'OL', 'OT', 'G', 'OC',
@@ -52,34 +50,34 @@ cfb_player_usage <- function(year = 2019,
                   'K', 'P','PK','LS')
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
                 msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
   if(!is.null(position)){
     ## check if position in position group set
-    assert_that(position %in% pos_groups,
-                msg='Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
+    assertthat::assert_that(position %in% pos_groups,
+                msg = 'Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
   }
   if(!is.null(athlete_id)){
     # Check if athlete_id is numeric, if not NULL
-    assert_that(is.numeric(athlete_id),
-                msg='Enter valid athlete_id value (Integer)\nCan be found using the `cfb_player_info()` function')
+    assertthat::assert_that(is.numeric(athlete_id),
+                msg = 'Enter valid athlete_id value (Integer)\nCan be found using the `cfb_player_info()` function')
   }
   if(excl_garbage_time!=FALSE){
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assert_that(excl_garbage_time==TRUE,
-                msg='Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
+    assertthat::assert_that(excl_garbage_time==TRUE,
+                msg = 'Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
   }
 
   base_url = "https://api.collegefootballdata.com/player/usage?"
@@ -97,26 +95,39 @@ cfb_player_usage <- function(year = 2019,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url,flatten=TRUE) %>%
-    map_if(is.data.frame,list) %>%
-    as_tibble() %>%
-    rename(
-      usg_overall = .data$usage.overall,
-      usg_pass = .data$usage.pass,
-      usg_rush = .data$usage.rush,
-      usg_1st_down = .data$usage.firstDown,
-      usg_2nd_down = .data$usage.secondDown,
-      usg_3rd_down = .data$usage.thirdDown,
-      usg_standard_downs = .data$usage.standardDowns,
-      usg_passing_downs = .data$usage.passingDowns
-    )
-  df <- as.data.frame(df)
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url, flatten = TRUE) %>%
+        purrr::map_if(is.data.frame,list) %>%
+        dplyr::as_tibble() %>%
+        dplyr::rename(
+          athlete_id = .data$id,
+          usg_overall = .data$usage.overall,
+          usg_pass = .data$usage.pass,
+          usg_rush = .data$usage.rush,
+          usg_1st_down = .data$usage.firstDown,
+          usg_2nd_down = .data$usage.secondDown,
+          usg_3rd_down = .data$usage.thirdDown,
+          usg_standard_downs = .data$usage.standardDowns,
+          usg_passing_downs = .data$usage.passingDowns) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping player usage data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no player usage data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )        
   return(df)
 }

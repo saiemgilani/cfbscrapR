@@ -34,13 +34,13 @@ cfb_team_talent <- function(year = NULL) {
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(full_url)
+  df = jsonlite::fromJSON(full_url)
 
   return(df)
 }

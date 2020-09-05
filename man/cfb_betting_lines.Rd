@@ -48,7 +48,6 @@ cfb_betting_lines(year = 2018, week = 12, team = 'Florida State')
 #7 OTs LSU at TAMU
 cfb_betting_lines(year = 2018, week = 13, team = "Texas A&M", conference = 'SEC')
 
-
 }
 \keyword{Betting}
 \keyword{Lines}

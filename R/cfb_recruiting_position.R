@@ -22,6 +22,8 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
+#' @import dplyr
 #' @export
 #' @examples
 #'
@@ -37,24 +39,24 @@ cfb_recruiting_position <- function(start_year = NULL, end_year = NULL,
 
   if(!is.null(start_year)){
     # check if start_year is numeric
-    assert_that(is.numeric(start_year) & nchar(start_year) == 4,
-                msg='Enter valid start_year as a number (YYYY) - Min: 2000, Max: 2020')
+    assertthat::assert_that(is.numeric(start_year) & nchar(start_year) == 4,
+                msg = 'Enter valid start_year as a number (YYYY) - Min: 2000, Max: 2020')
   }
   if(!is.null(end_year)){
     # check if end_year is numeric
-    assert_that(is.numeric(end_year) & nchar(end_year) == 4,
-                msg='Enter valid end_year as a number (YYYY) - Min: 2000, Max: 2020')
+    assertthat::assert_that(is.numeric(end_year) & nchar(end_year) == 4,
+                msg = 'Enter valid end_year as a number (YYYY) - Min: 2000, Max: 2020')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
 
   base_url = "https://api.collegefootballdata.com/recruiting/groups?"
@@ -74,13 +76,32 @@ cfb_recruiting_position <- function(start_year = NULL, end_year = NULL,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url)
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr ={  
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url)  %>%
+        dplyr::rename(
+          position_group = .data$positionGroup,
+          avg_rating = .data$averageRating,
+          total_rating = .data$totalRating,
+          avg_stars = .data$averageStars) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping position group recruiting data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no position group recruiting data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )      
   return(df)
 }

@@ -12,7 +12,13 @@ authors:
    href: https://twitter.com/msubbaiah1
   Parker Fleming:
    href: https://twitter.com/statsowar
-
+  Nate Manzo:
+   href: https://twitter.com/cfbNate
+  Michael Egle:
+   href: https://twitter.com/deceptivespeed_
+  Jared Lee:
+   href: https://twitter.com/JaredDLee
+  
 home:
 navbar:
   icon: https://imgur.com/JdMII7N
@@ -105,6 +111,7 @@ reference:
       - '`cfb_ratings_sp`'
       - '`cfb_ratings_sp_conference`'
       - '`cfb_ratings_srs`'
+      - '`cfb_ratings_fpi`'
   - subtitle: Recruiting functions
     desc: Functions exported by cfbscrapR sourced from the rankings and ratings endpoints of the CollegeFootballData API
     contents:
@@ -120,6 +127,7 @@ reference:
       - '`cfb_metrics_ppa_players_season`'
       - '`cfb_metrics_ppa_players_games`'
       - '`cfb_metrics_wp`'
+      - '`cfb_metrics_espn_wp`'
       - '`cfb_metrics_wp_pregame`'
   - subtitle: School Functions
     desc: Functions exported by cfbscrapR sourced from venues and coaches endpoints of the CollegeFootballData API
@@ -135,7 +143,6 @@ reference:
   - subtitle: Internals
     desc: Internal functions and helpers
     contents:
-      - '`add_timeout_cols`'
       - '`add_betting_cols`'
       - '`clean_drive_info`'
       - '`clean_pbp_dat`'

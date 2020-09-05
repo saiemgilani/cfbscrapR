@@ -10,6 +10,8 @@
 #' @keywords Stats Categories
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
+#' @importFrom glue "glue"
+#' @import dplyr
 #' @export
 #' @examples
 #'
@@ -25,14 +27,28 @@ cfb_stats_categories <- function(){
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(base_url)
+  res <- httr::GET(base_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as list
-  list = fromJSON(base_url)
-  df <- as.data.frame(matrix(unlist(list),nrow=length(list),byrow = TRUE)) %>%
-    rename(category = .data$V1)
+  
+  df <- data.frame()
+  tryCatch(
+    expr ={
+      # Get the content and return it as list
+      list = jsonlite::fromJSON(base_url)
+      df <- as.data.frame(matrix(unlist(list), nrow=length(list), byrow = TRUE)) %>%
+        dplyr::rename(category = .data$V1)
+      
+      message(glue::glue("{Sys.time()}: Scraping stats categories data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no stats categories data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )   
   return(df)
 }

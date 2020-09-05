@@ -14,13 +14,11 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode" 
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
-#' @import purrr
 #' @export
 #' @examples
-#'
-#'
 #' 
 #' cfb_metrics_ppa_games(year = 2019, team = 'TCU')
 #'
@@ -34,34 +32,33 @@ cfb_metrics_ppa_games <- function(year,
   args <- list(year = year)
   
   # Check that at search_term input argument is not null
-  stop_if_all(args, is.null,
-              msg="You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)")
+  attempt::stop_if_all(args, is.null,
+              msg = "You need to specify at least one argument:\nyear as an integer 4 digit format (YYYY)")
   
-
   ## check if year is numeric
-  assert_that(is.numeric(year) & nchar(year)==4,
-              msg='Enter valid year as integer in 4 digit format (YYYY)')
+  assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+              msg = 'Enter valid year as integer in 4 digit format (YYYY)')
   
   if(!is.null(week)){
     # Check if week is numeric, if not NULL
-    assert_that(is.numeric(week) & nchar(week) <= 2,
-                msg='Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
+    assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
+                msg = 'Enter valid week (Integer): 1-15\n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
     # Check conference parameter in conference names, if not NULL
-    assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
                 msg = "Incorrect Conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     # Encode conference parameter for URL, if not NULL
-    conference = URLencode(conference, reserved = TRUE)
+    conference = utils::URLencode(conference, reserved = TRUE)
   }
   if(excl_garbage_time!=FALSE){
     # Check if excl_garbage_time is TRUE, if not FALSE
-    assert_that(excl_garbage_time==TRUE,
-                msg='Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
+    assertthat::assert_that(excl_garbage_time==TRUE,
+                msg = 'Enter valid excl_garbage_time value (Logical) - TRUE or FALSE')
   }
   
   base_url <- "https://api.collegefootballdata.com/ppa/games?"
@@ -77,16 +74,33 @@ cfb_metrics_ppa_games <- function(year,
   check_internet()
   
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
   
   # Check the result
   check_status(res)
   
-  # Get the content, flatten and return result as data.frame
-  df = fromJSON(full_url,flatten=TRUE) 
-  colnames(df) = gsub("offense.","off_",colnames(df))
-  colnames(df) = gsub("defense.","def_",colnames(df))
-  colnames(df) = gsub("Down","_down",colnames(df))
-  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content, flatten and return result as data.frame
+      df = jsonlite::fromJSON(full_url, flatten = TRUE) 
+      colnames(df) = gsub("offense.", "off_", colnames(df))
+      colnames(df) = gsub("defense.", "def_", colnames(df))
+      colnames(df) = gsub("Down", "_down", colnames(df))
+      
+      df <- df %>% 
+        dplyr::rename(game_id = .data$gameId) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping CFBData metrics PPA games data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no CFBData metrics PPA games data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )    
   return(df)
 }

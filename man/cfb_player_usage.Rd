@@ -40,7 +40,6 @@ A player usage function with \strong{Year} as a required input.
 
 cfb_player_usage(year = 2019, position = 'WR', team = 'Florida State')
 
-
 }
 \keyword{Player}
 \keyword{Usage}

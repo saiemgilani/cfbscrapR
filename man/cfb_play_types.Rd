@@ -4,11 +4,11 @@
 \alias{cfb_play_types}
 \title{College Football Mapping for Play Types}
 \format{
-A data frame with 45 rows and 3 variables:
+A data frame with 46 rows and 3 variables:
 \describe{
-  \item{id}{Referencing play id}
+  \item{play_type_id}{Referencing play type id}
   \item{text}{play type description}
-  \item{abberivation}{play type abberivation used for function call}
+  \item{abbreviation}{play type abbreviation used for function call}
   ...
 }
 }

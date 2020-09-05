@@ -33,20 +33,20 @@ cfb_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
   if(!is.null(min_year)){
     # Check if min_year is numeric, if not NULL
-    assert_that(is.numeric(min_year) & nchar(min_year) == 4,
+    assertthat::assert_that(is.numeric(min_year) & nchar(min_year) == 4,
                 msg='Enter valid min_year as a number (YYYY)')
   }
   if(!is.null(max_year)){
     # Check if max_year is numeric, if not NULL
-    assert_that(is.numeric(max_year) & nchar(max_year) == 4,
+    assertthat::assert_that(is.numeric(max_year) & nchar(max_year) == 4,
                 msg='Enter valid max_year as a number (YYYY)')
   }
 
   # Encode team1 parameter for URL
-  team1 = URLencode(team1, reserved = TRUE)
+  team1 = utils::URLencode(team1, reserved = TRUE)
 
   # Encode team2 parameter for URL
-  team2 = URLencode(team2, reserved = TRUE)
+  team2 = utils::URLencode(team2, reserved = TRUE)
 
   base_url <- "https://api.collegefootballdata.com/teams/matchup?"
 
@@ -60,13 +60,25 @@ cfb_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
 
   # Get the content and return it as data.frame
-  df = fromJSON(full_url)$games
-
+  df = jsonlite::fromJSON(full_url)$games
+  if(nrow(df)==0){
+    warning("The data pulled from the API was empty.")
+    return(NULL)
+  }
+  df <- df %>% 
+    dplyr::rename(
+      season_type = .data$seasonType,
+      neutral_site = .data$neutralSite,
+      home_team = .data$homeTeam,
+      home_score = .data$homeScore,
+      away_team = .data$awayTeam,
+      away_score = .data$awayScore) %>% 
+    as.data.frame()
   return(df)
 }

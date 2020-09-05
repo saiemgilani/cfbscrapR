@@ -14,13 +14,13 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
 #' @export
 #' @examples
 #'
-#' cfb_coaches(first = "Nick", last = "Saban",team='alabama')
-#'
+#' cfb_coaches(first = "Nick", last = "Saban", team = 'alabama')
 #'
 
 cfb_coaches <- function(first = NULL,
@@ -34,31 +34,32 @@ cfb_coaches <- function(first = NULL,
 
   if(!is.null(first)){
     # Encode first parameter for URL if not NULL
-    first = URLencode(first, reserved = TRUE)
+    first = utils::URLencode(first, reserved = TRUE)
   }
   if(!is.null(last)){
     # Encode last parameter for URL if not NULL
-    last = URLencode(last, reserved = TRUE)
+    last = utils::URLencode(last, reserved = TRUE)
   }
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
-    team = URLencode(team, reserved = TRUE)
+    team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(year)){
     ## check if year is numeric
-    assert_that(is.numeric(year) & nchar(year)==4,
-                msg='Enter valid year as integer in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(year) & nchar(year)==4,
+                msg = 'Enter valid year as integer in 4 digit format (YYYY)')
   }
   if(!is.null(min_year)){
     ## check if min_year is numeric
-    assert_that(is.numeric(min_year) & nchar(min_year)==4,
-                msg='Enter valid min_year as integer in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(min_year) & nchar(min_year)==4,
+                msg = 'Enter valid min_year as integer in 4 digit format (YYYY)')
   }
   if(!is.null(max_year)){
     ## check if max_year is numeric
-    assert_that(is.numeric(max_year) & nchar(max_year)==4,
-                msg='Enter valid max_year as integer in 4 digit format (YYYY)')
+    assertthat::assert_that(is.numeric(max_year) & nchar(max_year)==4,
+                msg = 'Enter valid max_year as integer in 4 digit format (YYYY)')
   }
+  
   base_url = "https://api.collegefootballdata.com/coaches?"
 
   # Create full url using base and input arguments
@@ -74,18 +75,31 @@ cfb_coaches <- function(first = NULL,
   check_internet()
 
   # Create the GET request and set response as res
-  res <- GET(full_url)
+  res <- httr::GET(full_url)
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = fromJSON(full_url) %>%
-    map_if(is.data.frame,lst) %>%
-    as_tibble() %>%
-    unnest(.data$seasons)
-  df <- as.data.frame(df) %>%
-    arrange(.data$year)
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr = {
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url) %>%
+        purrr::map_if(is.data.frame, list) %>%
+        dplyr::as_tibble() %>%
+        tidyr::unnest(.data$seasons) %>% 
+        as.data.frame() %>% 
+        dplyr::arrange(.data$year)
+    
+      message(glue::glue("{Sys.time()}: Scraping coaches data..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}: Invalid arguments or no coaches data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }
