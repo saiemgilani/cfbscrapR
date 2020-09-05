@@ -2,7 +2,8 @@
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game
 #' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
-#'
+#' @param long (\emph{Logical} default `FALSE`): Return the data in a long format.
+#' 
 #' @keywords Game Advanced Box Score 
 #' @importFrom tibble "enframe"
 #' @importFrom jsonlite "fromJSON"
@@ -21,25 +22,25 @@
 #'
 #'
 
-cfb_game_box_advanced<- function(game_id) {
-
+cfb_game_box_advanced<- function(game_id, long = FALSE) {
+  
   if(!is.null(game_id)){
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
-                msg = 'Enter valid game_id (numeric value)')
+                            msg = 'Enter valid game_id (numeric value)')
   }
-
+  
   base_url <- "https://api.collegefootballdata.com/game/box/advanced?"
-
+  
   full_url <- paste0(base_url,
                      "gameId=", game_id)
-
+  
   # Check for internet
   check_internet()
-
+  
   # Create the GET request and set response as res
   res <- httr::GET(full_url)
-
+  
   # Check the result
   check_status(res)
   
@@ -61,7 +62,7 @@ cfb_game_box_advanced<- function(game_id) {
       df2 <- df[team2,] %>% 
         dplyr::rename(team2 = .data$value) %>% 
         dplyr::select(.data$team2)
-        
+      
       df <- data.frame(cbind(df1, df2))
       df$stat <- substr(df$stat, 1, nchar(df$stat)-1) 
       df$stat = sub(".overall.", "_overall_", df$stat)
@@ -85,6 +86,23 @@ cfb_game_box_advanced<- function(game_id) {
       df$stat = sub("averageStartingPredictedPoints", "avg_starting_predicted_pts", df$stat)
       df$stat = sub("averageStart", "avg_start", df$stat)
       df$stat = sub(".team", "_team", df$stat)
+      
+      if(!long){
+        team <- df %>%
+          filter(stat == "ppa_team") %>%
+          pivot_longer(cols = c(.data$team1, .data$team2)) %>%
+          transmute(team = .data$value)
+        
+        df <- df %>%
+          filter(!str_detect(.data$stat, "team")) %>%
+          pivot_longer(cols = c(.data$team1, .data$team2)) %>%
+          pivot_wider(names_from = .data$stat, values_from = .data$value) %>%
+          select(-.data$name) %>%
+          mutate_all(as.numeric) %>%
+          bind_cols(team) %>%
+          select(.data$team, everything()) %>% 
+          as.data.frame()
+      }
       
       message(glue::glue("{Sys.time()}: Scraping game advanced box score data for game_id '{game_id}'..."))
     },
