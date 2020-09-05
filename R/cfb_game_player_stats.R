@@ -109,6 +109,9 @@ cfb_game_player_stats<- function(year,
             "athlete_id", "name", "c_att", "yds", "avg", "td", "int", "qbr",
             "car", "long", "rec", "no", "fg", "pct", "xp", "pts", "tb", "in_20", 
             "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur")
+  numeric_cols <- c("yds", "avg", "td", "int", "qbr",
+                    "car", "long", "rec", "no","pct","pts", "tb", "in_20", 
+                    "fum", "lost", "tot", "solo", "sacks", "tfl", "pd", "qb_hur")
   
   df <- data.frame()
   tryCatch(
@@ -140,6 +143,7 @@ cfb_game_player_stats<- function(year,
       
       df <- df %>% 
         dplyr::select(cols, dplyr::everything()) %>% 
+        dplyr::mutate_at(numeric_cols, as.numeric) %>% 
         as.data.frame()
       
       message(glue::glue("{Sys.time()}: Scraping game player stats data..."))
