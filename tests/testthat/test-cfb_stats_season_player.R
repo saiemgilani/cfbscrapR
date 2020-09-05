@@ -7,9 +7,9 @@ y <- cfb_stats_season_player(2019, team = "Florida State", category = 'passing')
 z <- cfb_stats_season_player(2018, team = "Florida State")
 
 cols <- c("team", "conference", "athlete_id", "player", "category", 
-          "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long", 
           "passing_completions", "passing_att", "passing_pct", "passing_yds", 
           "passing_td", "passing_int", "passing_ypa", 
+          "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long", 
           "receiving_rec","receiving_yds","receiving_td", "receiving_ypr", "receiving_long",
           "fumbles_fum", "fumbles_rec", "fumbles_lost",  
           "defensive_solo", "defensive_tot", "defensive_tfl", "defensive_sacks", 

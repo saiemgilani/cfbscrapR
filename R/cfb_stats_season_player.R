@@ -109,9 +109,9 @@ cfb_stats_season_player <- function(year,
   check_status(res)
   
   cols <- c("team", "conference", "athlete_id", "player", "category", 
-            "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long", 
             "passing_completions", "passing_att", "passing_pct", "passing_yds", 
             "passing_td", "passing_int", "passing_ypa", 
+            "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long", 
             "receiving_rec","receiving_yds","receiving_td", "receiving_ypr", "receiving_long",
             "fumbles_fum", "fumbles_rec", "fumbles_lost",  
             "defensive_solo", "defensive_tot", "defensive_tfl", "defensive_sacks", 
@@ -125,6 +125,26 @@ cfb_stats_season_player <- function(year,
             "punting_long", "punting_in_20",  "punting_tb", 
             "punt_returns_no", "punt_returns_yds", "punt_returns_avg", 
             "punt_returns_td", "punt_returns_long")
+  
+  numeric_cols <- c(
+    "passing_completions", "passing_att", "passing_pct", "passing_yds", 
+    "passing_td", "passing_int", "passing_ypa", 
+    "rushing_car", "rushing_yds", "rushing_td", "rushing_ypc", "rushing_long", 
+    "receiving_rec","receiving_yds","receiving_td", "receiving_ypr", "receiving_long",
+    "fumbles_fum", "fumbles_rec", "fumbles_lost",  
+    "defensive_solo", "defensive_tot", "defensive_tfl", "defensive_sacks", 
+    "defensive_qb_hur", "interceptions_int", "interceptions_yds", 
+    "interceptions_avg", "interceptions_td", "defensive_pd", "defensive_td",      
+    "kicking_fgm", "kicking_fga", "kicking_pct", 
+    "kicking_xpa", "kicking_xpm", "kicking_pts",  "kicking_long",
+    "kick_returns_no", "kick_returns_yds", "kick_returns_avg",
+    "kick_returns_td",  "kick_returns_long",
+    "punting_no", "punting_yds", "punting_ypp", 
+    "punting_long", "punting_in_20",  "punting_tb", 
+    "punt_returns_no", "punt_returns_yds", "punt_returns_avg", 
+    "punt_returns_td", "punt_returns_long")
+        
+  
   
   df <- data.frame()
   tryCatch(
@@ -142,6 +162,7 @@ cfb_stats_season_player <- function(year,
       
       df <- df %>% 
         dplyr::select(cols, dplyr::everything()) %>% 
+        dplyr::mutate_at(numeric_cols, as.numeric) %>% 
         as.data.frame()
       
       message(glue::glue("{Sys.time()}: Scraping season stats - player..."))
