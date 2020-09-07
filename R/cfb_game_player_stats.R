@@ -94,7 +94,7 @@ cfb_game_player_stats<- function(year,
                      "&team=", team,
                      "&conference=", conference,
                      "&category=", category,
-                     "&id=", game_id)
+                     "&gameId=", game_id)
 
   # Check for internet
   check_internet()
