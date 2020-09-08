@@ -26,7 +26,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
     df = df %>%dplyr::mutate(
       play_after_turnover = ifelse(lag(.data$turnover_vec, 1) == 1 & lag(.data$def_td_play, 1) != 1, 1, 0),
       score_diff = .data$offense_score - .data$defense_score,
-      lag_score_diff = lag(.data$score_diff,1)
+      lag_score_diff = lag(.data$score_diff,1),
       score_diff_start = ifelse(.data$play_after_turnover == 1, 
                                 -1*(ifelse(.data$game_play_number == 1, 0, lag_score_diff)),
                                 ifelse(.data$scoring_play == 1, 
