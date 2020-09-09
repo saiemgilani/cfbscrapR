@@ -32,6 +32,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
       lag_score_diff = lag(.data$score_diff, 1),
       lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
       offense_play_lag = dplyr::lag(.data$offense_play, 1),
+      offense_play_lag = ifelse(.data$game_play_number == 1, .data$offense_play, .data$offense_play_lag),
       offense_play_lead = dplyr::lead(.data$offense_play, 1),
       offense_play_lead2 = dplyr::lead(.data$offense_play, 2),
       score_pts = ifelse(.data$offense_play_lag == .data$offense_play,
@@ -125,8 +126,7 @@ wpa_calcs_naive <- function(df) {
       wp_after = round(.data$wp_after, 7),
       def_wp_after = round(.data$def_wp_after, 7),
       home_wp_after = round(.data$home_wp_after, 7),
-      away_wp_after = round(.data$away_wp_after, 7),
-      
+      away_wp_after = round(.data$away_wp_after, 7)
     )
   return(df2)
 }
