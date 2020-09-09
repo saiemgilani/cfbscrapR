@@ -9,6 +9,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @export
 #' @examples
 #'
@@ -16,7 +17,7 @@
 #'
 
 cfb_team_roster <- function(team, year = NULL){
-
+  team2 <- team
   if(!is.null(year)){
     # check if year is numeric
     assert_that(is.numeric(year) & nchar(year) == 4,
@@ -40,12 +41,26 @@ cfb_team_roster <- function(team, year = NULL){
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = jsonlite::fromJSON(full_url) %>% 
-    dplyr::rename(athlete_id = .data$id) %>% 
-    as.data.frame()
-
+  
+  df <- data.frame()
+  tryCatch(
+    expr ={
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url) %>% 
+        dplyr::rename(athlete_id = .data$id) %>% 
+        dplyr::mutate(team = team2) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping team roster..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team roster data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }
 
