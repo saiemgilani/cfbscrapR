@@ -1,10 +1,21 @@
-# cfbscrapR 1.0.2
-- Fix issues with win probability added
-- Remove the `add betting columns()` and the current betting win probability model from the `cfb_pbp_data()` function
-- Fix downs turnovers and several other discrepancies in EPA computations
-- Add tests for a majority of the functions
-- Rename several function outputs from camelCase to under_score for consistency
-- Remove `drives` parameter from `cfb_pbp_data()` function, for accessing drives information, please switch to the `cfb_drives()` function. 
+- Fix downs turnovers and several other discrepancies in EPA computations.
+
+![EPA_YardsGained_cfbscrapR.png](https://i.imgur.com/Bw6VO90.png)
+
+![EPA_YardsGained_cfbscrapR2.png](https://i.imgur.com/VYX12pZ.png)
+
+- Fix majority of issues with win probability added.
+
+![WPA_YardsGained_cfbscrapR.png](https://i.imgur.com/OFHTh9Y.jpg)
+
+![WPA_YardsGained_cfbscrapR2.png](https://i.imgur.com/84zh9VY.jpg)
+
+- Remove the [`add_betting_columns()`](https://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html) function and the current betting win probability model from the [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html) function.
+- Added [`cfb_ratings_fpi()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_fpi.html) function from @sabinanalytics's fork of the repository
+- Added the [`cfb_metrics_espn_wp()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_espn_wp.html) function, courtesy of @mrcaseb
+- Add [tests](https://github.com/saiemgilani/cfbscrapR/tree/master/tests/testthat) for a majority of the functions. This is the biggest behind the scenes change that will translate to more reliable functions. 
+- Rename several function outputs from **camelCase to under_score** for consistency. Please adjust your scripts accordingly, apologies for the inconvenience.
+- Remove `drives` parameter from [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html) function. For accessing drives information, please switch to the [`cfb_drives()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html) function. 
 - For more complete summary of changes, see [Pull Request](https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691)
 
 # cfbscrapR 1.0.1
