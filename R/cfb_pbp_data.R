@@ -91,10 +91,10 @@ cfb_pbp_data <- function(year,
 
   rm_cols = c(
     'drive_game_id', 'drive_id_drive',
-    'drive_plays','drive_end_yardline',
+    'drive_plays', 'drive_end_yardline',
     'drive_offense', 'drive_offense_conference',
     'drive_defense', 'drive_defense_conference',
-    'drive_start_time.minutes', 'drive_start_time.seconds',
+    'drive_start_time.hours', 'drive_start_time.minutes', 'drive_start_time.seconds',
     'drive_start_period', 'drive_end_period',
     'drive_end_time.hours', 'drive_end_time.minutes', 'drive_end_time.seconds',
     'drive_elapsed.hours', 'drive_elapsed.minutes', 'drive_elapsed.seconds'
@@ -104,10 +104,10 @@ cfb_pbp_data <- function(year,
   play_df <- play_df %>%
     dplyr::select(setdiff(names(play_df), rm_cols)) %>%
     dplyr::rename(drive_pts = .data$drive_pts_drive,
-           drive_result = .data$drive_drive_result,
-           id_play = .data$id,
-           offense_play = .data$offense,
-           defense_play = .data$defense)
+                  drive_result = .data$drive_drive_result,
+                  id_play = .data$id,
+                  offense_play = .data$offense,
+                  defense_play = .data$defense)
   
   if(epa_wpa){
     if(year<=2005) {
@@ -130,61 +130,66 @@ cfb_pbp_data <- function(year,
                                 create_wpa_naive()
                               })
       
-    # play_df = epa_wpa_df %>%
-    #   dplyr::group_by(.data$drive_id) %>%
-    #   dplyr::arrange(.data$new_id, .by_group=TRUE) %>%
-    #  dplyr::ungroup()
-      
-      
     play_df <- play_df %>% 
       dplyr::select(-.data$drive_drive_number,
-             -.data$play_number) %>% 
+                    -.data$play_number) %>% 
       dplyr::select(.data$id_play,
-             .data$offense_play,
-             .data$defense_play,
-             .data$half,
-             .data$period,
-             .data$clock.minutes,
-             .data$clock.seconds,
-             .data$play_type,
-             .data$play_text,
-             .data$down,
-             .data$distance,
-             .data$yards_to_goal,
-             .data$yards_gained,
-             .data$TimeSecsRem,
-             .data$offense_score,
-             .data$defense_score,
-             .data$EPA,
-             .data$def_EPA,
-             .data$ep_before,
-             .data$ep_after,
-             .data$ppa,
-             .data$wpa,
-             .data$wp_before,
-             .data$wp_after,
-             .data$game_play_number,
-             .data$drive_number,
-             .data$drive_play_number,
-             .data$firstD_by_poss,
-             .data$firstD_by_penalty,
-             .data$firstD_by_yards,
-             .data$score_diff,
-             .data$Goal_To_Go,
-             .data$Under_two,
-             .data$offense_timeouts,
-             .data$defense_timeouts,
-             .data$change_of_poss,
-             .data$drive_start_yards_to_goal,
-             .data$drive_end_yards_to_goal,
-             .data$drive_yards,
-             .data$drive_scoring,
-             .data$drive_result,
-             .data$drive_pts,
-             .data$home,
-             .data$away,
-             everything())
-    
+                    .data$game_id,
+                    .data$offense_play,
+                    .data$defense_play,
+                    .data$half,
+                    .data$period,
+                    .data$clock.minutes,
+                    .data$clock.seconds,
+                    .data$play_type,
+                    .data$play_text,
+                    .data$down,
+                    .data$distance,
+                    .data$yards_to_goal,
+                    .data$yards_to_goal_end,
+                    .data$yards_gained,
+                    .data$TimeSecsRem,
+                    .data$offense_score,
+                    .data$defense_score,
+                    .data$score_diff,
+                    .data$score_diff_start,
+                    .data$EPA,
+                    .data$def_EPA,
+                    .data$ep_before,
+                    .data$ep_after,
+                    .data$score_pts,
+                    .data$wpa,
+                    .data$wp_before,
+                    .data$wp_after,
+                    .data$ppa,
+                    .data$game_play_number,
+                    .data$drive_number,
+                    .data$drive_play_number,
+                    .data$firstD_by_poss,
+                    .data$firstD_by_penalty,
+                    .data$firstD_by_yards,
+                    .data$Goal_To_Go,
+                    .data$Under_two,
+                    .data$offense_timeouts,
+                    .data$defense_timeouts,
+                    .data$change_of_poss,
+                    .data$drive_start_yards_to_goal,
+                    .data$drive_end_yards_to_goal,
+                    .data$drive_yards,
+                    .data$drive_scoring,
+                    .data$drive_result,
+                    .data$drive_pts,
+                    .data$home,
+                    .data$away,
+                    .data$wpa_base,
+                    .data$wpa_base_nxt,
+                    .data$wpa_change,
+                    .data$wpa_change_nxt,
+                    .data$wpa_base_ind,
+                    .data$wpa_base_nxt_ind,
+                    .data$wpa_change_ind,
+                    .data$wpa_change_nxt_ind,
+                    dplyr::everything())
   }
   play_df <- as.data.frame(play_df)
   
@@ -245,9 +250,13 @@ penalty_detection <- function(raw_df) {
   
   ##-- Kickoff down adjustment ----
   raw_df = raw_df %>%
-   dplyr::mutate(down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Kickoff"), 1, .data$down),
-           down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Penalty"), 1, .data$down),
-           half = ifelse(.data$period <= 2, 1, 2))
+   dplyr::mutate(
+     down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Kickoff"), 1, .data$down),
+     down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Penalty"), 1, .data$down),
+     half = ifelse(.data$period <= 2, 1, 2)) %>% 
+   dplyr::filter(
+     !(.data$game_id == '302610012' & .data$down == 5 & .data$play_type == 'Rush')
+   )
   
   return(raw_df)
 }
@@ -422,7 +431,7 @@ clean_pbp_dat <- function(raw_df) {
       fumble_vec = ifelse(str_detect(.data$play_text, "fumble") & !is.na(.data$play_text), 1, 0),
       #-- Pass/Rush----
       rush_vec = ifelse(
-        .data$play_type == "Rush" |
+        (.data$play_type == "Rush" & !is.na(.data$play_text)) |
           .data$play_type == "Rushing Touchdown" |
           (
             .data$play_type == "Safety" &
@@ -465,7 +474,7 @@ clean_pbp_dat <- function(raw_df) {
           .data$play_type == "Sack" |
           .data$play_type == "Pass Interception Return" |
           .data$play_type == "Interception Return Touchdown" |
-          .data$play_type == "Pass Incompletion" |
+          (.data$play_type == "Pass Incompletion" & !is.na(.data$play_text)) |
           .data$play_type == "Sack Touchdown" |
           (
             .data$play_type == "Safety" &

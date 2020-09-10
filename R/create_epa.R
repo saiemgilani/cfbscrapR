@@ -163,10 +163,10 @@ create_epa <- function(clean_pbp_dat,
     "Blocked Field Goal Touchdown",
     "Missed Field Goal Return Touchdown"
   )
-  ## kickoff plays
-  ## calculate EP before at kickoff as what happens if it was a touchback
+  ## Kickoff plays
+  ## Calculate EP before at kickoff as what happens if it was a touchback
   ## 25 yard line in 2012 and onwards
-  ## question for the class: where is the EPA on touchbacks being set to 0?
+  ## Question for the class: where is the EPA on touchbacks being set to 0?
   kickoff_ind = (pred_df$play_type %in% kickoff)
   if(any(kickoff_ind)){
     new_kick = pred_df[kickoff_ind,]
@@ -190,10 +190,10 @@ create_epa <- function(clean_pbp_dat,
   turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind & (pred_df$play_type %in% turnover_play_type))
   pred_df[turnover_plays, "ep_after"] = -1*pred_df[turnover_plays, "ep_after"]
   
-  # game end EP is 0
+  # Game end EP is 0
   pred_df[pred_df$end_half_game_end == 1, "ep_after"] = 0
 
-  ## scoring plays from here on out
+  ## Scoring plays from here on out
   pred_df[(pred_df$play_type %in% off_TD), "ep_after"] = 7
   pred_df[(pred_df$play_type %in% def_TD), "ep_after"] = -7
   pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_before"] = 0
@@ -214,27 +214,30 @@ create_epa <- function(clean_pbp_dat,
                         -1*lead(.data$ep_before,1),
                         .data$ep_after )) %>% 
     dplyr::ungroup()
-  # prep some variables for WPA, drop transformed columns-----
+  # Prep WPA variables, drop transformed columns-----
   pred_df = pred_df %>%
     dplyr::mutate(
       adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
-      play_after_turnover = ifelse(lag(.data$turnover_vec, 1) == 1 & lag(.data$def_td_play, 1) != 1, 1, 0),
+      turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
+      def_td_play_lag = dplyr::lag(.data$def_td_play, 1),
+      play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$def_td_play_lag != 1, 1, 0),
       score_diff = .data$offense_score - .data$defense_score,
-      score_diff_start = ifelse(.data$play_after_turnover == 1, 
-                                -1*(ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1))),
-                                ifelse(.data$scoring_play == 1, 
-                                       ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)), 
-                                              .data$score_diff)),
-      score_diff_start = ifelse(.data$game_play_number == 1, 0, .data$score_diff_start),
-      scored_pts = ifelse(.data$ep_after == 7|.data$ep_after == -7|
-                            (.data$play_type == 'Field Goal Good' & .data$ep_after == 3)|
-                            (.data$play_type == 'Safety' & .data$ep_after == -2), 
-                          .data$ep_after,
-                          .data$score_diff - .data$score_diff_start),
+      lag_score_diff = lag(.data$score_diff, 1),
+      lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
+      offense_play_lag = dplyr::lag(.data$offense_play, 1),
+      offense_play_lag = ifelse(.data$game_play_number == 1, .data$offense_play, .data$offense_play_lag),
+      offense_play_lead = dplyr::lead(.data$offense_play, 1),
+      offense_play_lead2 = dplyr::lead(.data$offense_play, 2),
+      score_pts = ifelse(.data$offense_play_lag == .data$offense_play,
+                         (.data$score_diff - .data$lag_score_diff),
+                         (.data$score_diff + .data$lag_score_diff)),
+      score_diff_start = ifelse(.data$offense_play_lag == .data$offense_play,
+                                .data$lag_score_diff,
+                                -1*.data$lag_score_diff),
       EPA = .data$ep_after - .data$ep_before,
-      def_EPA = -.data$EPA,
-      home_EPA = ifelse(.data$offense_play==.data$home,.data$EPA,-.data$EPA),
-      away_EPA = -.data$home_EPA,
+      def_EPA = -1*.data$EPA,
+      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -1*.data$EPA),
+      away_EPA = -1*.data$home_EPA,
       ExpScoreDiff = .data$score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
       ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>% 
@@ -288,7 +291,7 @@ create_epa <- function(clean_pbp_dat,
                   .data$distance_end,
                   .data$yards_to_goal_end,
                   .data$TimeSecsRem_end,
-                  everything()) %>%
+                  dplyr::everything()) %>%
     dplyr::rename(pass = .data$pass_vec,
                   rush = .data$rush_vec) %>%
     dplyr::mutate(

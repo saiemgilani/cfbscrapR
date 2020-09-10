@@ -11,6 +11,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @export
 #' @examples
 #'
@@ -64,21 +65,34 @@ cfb_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
 
   # Check the result
   check_status(res)
-
-  # Get the content and return it as data.frame
-  df = jsonlite::fromJSON(full_url)$games
-  if(nrow(df)==0){
-    warning("The data pulled from the API was empty.")
-    return(NULL)
-  }
-  df <- df %>% 
-    dplyr::rename(
-      season_type = .data$seasonType,
-      neutral_site = .data$neutralSite,
-      home_team = .data$homeTeam,
-      home_score = .data$homeScore,
-      away_team = .data$awayTeam,
-      away_score = .data$awayScore) %>% 
-    as.data.frame()
+  df <- data.frame()
+  tryCatch(
+    expr ={
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url)$games
+      if(nrow(df)==0){
+        warning("The data pulled from the API was empty.")
+        return(NULL)
+      }
+      df <- df %>% 
+        dplyr::rename(
+          season_type = .data$seasonType,
+          neutral_site = .data$neutralSite,
+          home_team = .data$homeTeam,
+          home_score = .data$homeScore,
+          away_team = .data$awayTeam,
+          away_score = .data$awayScore) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping team matchup..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )
   return(df)
 }

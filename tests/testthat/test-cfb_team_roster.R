@@ -6,7 +6,7 @@ y <- cfb_team_roster(2018, team = 'Texas A&M')
 
 cols <- c("athlete_id", "first_name", "last_name", "weight", "height",
           "jersey", "year", "position","home_city","home_state",
-          "home_country")
+          "home_country","team")
 
 test_that("CFB Team Roster", {
   expect_equal(colnames(x), cols)

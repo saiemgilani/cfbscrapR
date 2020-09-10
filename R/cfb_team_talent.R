@@ -9,6 +9,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @export
 #' @examples
 #'
@@ -39,8 +40,22 @@ cfb_team_talent <- function(year = NULL) {
   # Check the result
   check_status(res)
 
-  # Get the content and return it as data.frame
-  df = jsonlite::fromJSON(full_url)
-
+  df <- data.frame()
+  tryCatch(
+    expr ={
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url) %>% 
+        as.data.frame()
+      
+      message(glue::glue("{Sys.time()}: Scraping team talent..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team talent data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )    
   return(df)
 }

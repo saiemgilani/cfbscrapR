@@ -81,7 +81,11 @@ easypackages::libraries('tidyverse', 'cfbscrapR', 'ggimage', 'gt')
 ```
 
 ```{r pbp_pull,message=FALSE,warning=FALSE}
-pbp_2019 <- cfb_pbp_data(year=2019, season_type = "regular", week=NULL, epa_wpa = TRUE)
+pbp_2019 <- data.frame()
+for(i in 1:15){
+  pbp <- cfb_pbp_data(year=2019, season_type = 'regular', week = i, epa_wpa = TRUE)
+  pbp_2019 <- rbind(pbp_2019, pbp)
+}
 ```
 
 

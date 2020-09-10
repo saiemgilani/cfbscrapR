@@ -11,6 +11,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom glue "glue"
 #' @import dplyr
 #' @import tidyr
 #' @export
@@ -64,20 +65,34 @@ cfb_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = N
   # Check the result
   check_status(res)
 
-  # Get the content and return it as data.frame
-  df = jsonlite::fromJSON(full_url)
-  df1<- enframe(unlist(df,use.names = TRUE))[1:7,]
-  df <- pivot_wider(df1,
-                    names_from = .data$name,
-                    values_from = .data$value) %>% 
-    dplyr::rename(start_year = .data$startYear,
-           end_year = .data$endYear,
-           team1_wins = .data$team1Wins,
-           team2_wins = .data$team2Wins) %>% 
-    dplyr::select(.data$start_year,.data$end_year,
-           .data$team1,.data$team1_wins,
-           .data$team2,.data$team2_wins,
-           .data$ties)
-  df <- as.data.frame(df)
+  df <- data.frame()
+  tryCatch(
+    expr ={
+      # Get the content and return it as data.frame
+      df = jsonlite::fromJSON(full_url)
+      df1<- enframe(unlist(df,use.names = TRUE))[1:7,]
+      df <- pivot_wider(df1,
+                        names_from = .data$name,
+                        values_from = .data$value) %>% 
+        dplyr::rename(start_year = .data$startYear,
+               end_year = .data$endYear,
+               team1_wins = .data$team1Wins,
+               team2_wins = .data$team2Wins) %>% 
+        dplyr::select(.data$start_year,.data$end_year,
+               .data$team1,.data$team1_wins,
+               .data$team2,.data$team2_wins,
+               .data$ties)
+      df <- as.data.frame(df)
+  
+      message(glue::glue("{Sys.time()}: Scraping team matchup records..."))
+    },
+    error = function(e) {
+      message(glue::glue("{Sys.time()}:Invalid arguments or no team matchup records data available!"))
+    },
+    warning = function(w) {
+    },
+    finally = {
+    }
+  )    
   return(df)
 }

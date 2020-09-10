@@ -193,7 +193,7 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_roster</span>(<span class='st'>"Florida State"</span>)</div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
+<span class='fu'>cfb_team_roster</span>(<span class='st'>"Florida State"</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-10 05:59:10: Scraping team roster...</span></div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
 #&gt; 1      4241674       Josh       Newman    200     72     21    3        S
 #&gt; 2      3921574      Kevin      Robledo    184     72     89    4       PK
 #&gt; 3      4035603      Malik        Henry    195     74     16    3       QB
@@ -317,130 +317,130 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 #&gt; 121    4426448    Jarrian        Jones    190     72      7    2       DB
 #&gt; 122    4046366   Devontay       Taylor    315     76     58    4       OL
 #&gt; 123    4362905     Fabien       Lovett    315     76      0    2       DT
-#&gt;            home_city home_state home_country
-#&gt; 1         Cedar Hill         TX          USA
-#&gt; 2      Thousand Oaks         CA          USA
-#&gt; 3         Long Beach         CA          USA
-#&gt; 4        Monroeville         AL          USA
-#&gt; 5      Miami Gardens         FL          USA
-#&gt; 6      Wesley Chapel         FL          USA
-#&gt; 7            Seffner         FL          USA
-#&gt; 8            Seffner         FL          USA
-#&gt; 9     Virginia Beach         VA          USA
-#&gt; 10      West Chester         PA          USA
-#&gt; 11        Plant City         FL          USA
-#&gt; 12      West Chester         OH          USA
-#&gt; 13           Ashburn         GA          USA
-#&gt; 14         Charlotte         NC          USA
-#&gt; 15        Northville         MI          USA
-#&gt; 16       Tallahassee         FL          USA
-#&gt; 17     Miami Gardens         FL          USA
-#&gt; 18             Alief         TX          USA
-#&gt; 19    Upper Marlboro         MD          USA
-#&gt; 20              Nixa         MO          USA
-#&gt; 21        Long Beach         CA          USA
-#&gt; 22           Concord         NC          USA
-#&gt; 23        Loganville         GA          USA
-#&gt; 24           Ashburn         GA          USA
-#&gt; 25          Palmetto         FL          USA
-#&gt; 26          Savannah         GA          USA
-#&gt; 27  New Smyrna Beach         FL          USA
-#&gt; 28       Winter Park         FL          USA
-#&gt; 29          Overtown         FL          USA
-#&gt; 30          Lakeland         FL          USA
-#&gt; 31           Orlando         FL          USA
-#&gt; 32          Newberry         FL          USA
-#&gt; 33           Clinton         MS          USA
-#&gt; 34           Fontana         CA          USA
-#&gt; 35           Lilburn         GA          USA
-#&gt; 36           Conyers         GA          USA
-#&gt; 37           Decatur         GA          USA
-#&gt; 38        Clearwater         FL          USA
-#&gt; 39           Sunrise         FL          USA
-#&gt; 40         Baltimore         MD          USA
-#&gt; 41         Kissimmee         FL          USA
-#&gt; 42       New Orleans         LA          USA
-#&gt; 43         Kissimmee         FL          USA
-#&gt; 44             Tampa         FL          USA
-#&gt; 45       Panama City         FL          USA
-#&gt; 46    Virginia Beach         VA          USA
-#&gt; 47     Crawfordville         FL          USA
-#&gt; 48       Tallahassee         FL          USA
-#&gt; 49           Pahokee         FL          USA
-#&gt; 50           Houston         TX          USA
-#&gt; 51    Pembroke Pines         FL          USA
-#&gt; 52      Jacksonville         FL          USA
-#&gt; 53         South Bay         FL          USA
-#&gt; 54          Mascotte         FL          USA
-#&gt; 55     Daytona Beach         FL          USA
-#&gt; 56           Seattle         WA          USA
-#&gt; 57      Jacksonville         FL          USA
-#&gt; 58            Bartow         FL          USA
-#&gt; 59           Orlando         FL          USA
-#&gt; 60             Warri       &lt;NA&gt;      Nigeria
-#&gt; 61             Miami         FL          USA
-#&gt; 62       Tallahassee         FL          USA
-#&gt; 63      Ormond Beach         FL          USA
-#&gt; 64           Orlando         FL          USA
-#&gt; 65   Fort Lauderdale         FL          USA
-#&gt; 66         Montezuma         GA          USA
-#&gt; 67        Washington         DC          USA
-#&gt; 68           Orlando         FL          USA
-#&gt; 69     Warner Robins         GA          USA
-#&gt; 70             Tampa         FL          USA
-#&gt; 71             Miami         FL          USA
-#&gt; 72      Winter Haven         FL          USA
-#&gt; 73            Destin         FL          USA
-#&gt; 74             Logan         OH          USA
-#&gt; 75            Hahira         GA          USA
-#&gt; 76           Atlanta         GA          USA
-#&gt; 77           Pridgen         GA          USA
-#&gt; 78  District Heights         MD          USA
-#&gt; 79            Buford         GA          USA
-#&gt; 80   West Palm Beach         FL          USA
-#&gt; 81    Powder Springs         GA          USA
-#&gt; 82         Pensacola         FL          USA
-#&gt; 83        Fort Myers         FL          USA
-#&gt; 84        Snellville         GA          USA
-#&gt; 85          Lakeland         FL          USA
-#&gt; 86       Tallahassee         FL          USA
-#&gt; 87         Pensacola         FL          USA
-#&gt; 88             Tampa         FL          USA
-#&gt; 89             Tampa         FL          USA
-#&gt; 90        Long Beach         CA          USA
-#&gt; 91          Valdosta         GA          USA
-#&gt; 92             Tampa         FL          USA
-#&gt; 93            Stuart         FL          USA
-#&gt; 94     Moreno Valley         CA          USA
-#&gt; 95             Miami         FL          USA
-#&gt; 96   Saint Augustine         FL          USA
-#&gt; 97      Jacksonville         FL          USA
-#&gt; 98         Lake City         FL          USA
-#&gt; 99              Rome         GA          USA
-#&gt; 100        Riverdale         GA          USA
-#&gt; 101            Tampa         FL          USA
-#&gt; 102            Miami         FL          USA
-#&gt; 103      Panama City         FL          USA
-#&gt; 104      Zephyrhills         FL          USA
-#&gt; 105        Stillmore         GA          USA
-#&gt; 106         Coolidge         GA          USA
-#&gt; 107   Powder Springs         GA          USA
-#&gt; 108      Saint Louis         MO          USA
-#&gt; 109          Atlanta         GA          USA
-#&gt; 110        Pensacola         FL          USA
-#&gt; 111    Miami Gardens         FL          USA
-#&gt; 112            Tampa         FL          USA
-#&gt; 113       Chesapeake         VA          USA
-#&gt; 114          Pahokee         FL          USA
-#&gt; 115            Miami         FL          USA
-#&gt; 116         Leesburg         FL          USA
-#&gt; 117       Greenville         FL          USA
-#&gt; 118        Rockledge         FL          USA
-#&gt; 119    Daytona Beach         FL          USA
-#&gt; 120  West Palm Beach         FL          USA
-#&gt; 121          Brandon         MS          USA
-#&gt; 122           Odessa         FL          USA
-#&gt; 123     Olive Branch         MS          USA</div><div class='input'>
+#&gt;            home_city home_state home_country          team
+#&gt; 1         Cedar Hill         TX          USA Florida State
+#&gt; 2      Thousand Oaks         CA          USA Florida State
+#&gt; 3         Long Beach         CA          USA Florida State
+#&gt; 4        Monroeville         AL          USA Florida State
+#&gt; 5      Miami Gardens         FL          USA Florida State
+#&gt; 6      Wesley Chapel         FL          USA Florida State
+#&gt; 7            Seffner         FL          USA Florida State
+#&gt; 8            Seffner         FL          USA Florida State
+#&gt; 9     Virginia Beach         VA          USA Florida State
+#&gt; 10      West Chester         PA          USA Florida State
+#&gt; 11        Plant City         FL          USA Florida State
+#&gt; 12      West Chester         OH          USA Florida State
+#&gt; 13           Ashburn         GA          USA Florida State
+#&gt; 14         Charlotte         NC          USA Florida State
+#&gt; 15        Northville         MI          USA Florida State
+#&gt; 16       Tallahassee         FL          USA Florida State
+#&gt; 17     Miami Gardens         FL          USA Florida State
+#&gt; 18             Alief         TX          USA Florida State
+#&gt; 19    Upper Marlboro         MD          USA Florida State
+#&gt; 20              Nixa         MO          USA Florida State
+#&gt; 21        Long Beach         CA          USA Florida State
+#&gt; 22           Concord         NC          USA Florida State
+#&gt; 23        Loganville         GA          USA Florida State
+#&gt; 24           Ashburn         GA          USA Florida State
+#&gt; 25          Palmetto         FL          USA Florida State
+#&gt; 26          Savannah         GA          USA Florida State
+#&gt; 27  New Smyrna Beach         FL          USA Florida State
+#&gt; 28       Winter Park         FL          USA Florida State
+#&gt; 29          Overtown         FL          USA Florida State
+#&gt; 30          Lakeland         FL          USA Florida State
+#&gt; 31           Orlando         FL          USA Florida State
+#&gt; 32          Newberry         FL          USA Florida State
+#&gt; 33           Clinton         MS          USA Florida State
+#&gt; 34           Fontana         CA          USA Florida State
+#&gt; 35           Lilburn         GA          USA Florida State
+#&gt; 36           Conyers         GA          USA Florida State
+#&gt; 37           Decatur         GA          USA Florida State
+#&gt; 38        Clearwater         FL          USA Florida State
+#&gt; 39           Sunrise         FL          USA Florida State
+#&gt; 40         Baltimore         MD          USA Florida State
+#&gt; 41         Kissimmee         FL          USA Florida State
+#&gt; 42       New Orleans         LA          USA Florida State
+#&gt; 43         Kissimmee         FL          USA Florida State
+#&gt; 44             Tampa         FL          USA Florida State
+#&gt; 45       Panama City         FL          USA Florida State
+#&gt; 46    Virginia Beach         VA          USA Florida State
+#&gt; 47     Crawfordville         FL          USA Florida State
+#&gt; 48       Tallahassee         FL          USA Florida State
+#&gt; 49           Pahokee         FL          USA Florida State
+#&gt; 50           Houston         TX          USA Florida State
+#&gt; 51    Pembroke Pines         FL          USA Florida State
+#&gt; 52      Jacksonville         FL          USA Florida State
+#&gt; 53         South Bay         FL          USA Florida State
+#&gt; 54          Mascotte         FL          USA Florida State
+#&gt; 55     Daytona Beach         FL          USA Florida State
+#&gt; 56           Seattle         WA          USA Florida State
+#&gt; 57      Jacksonville         FL          USA Florida State
+#&gt; 58            Bartow         FL          USA Florida State
+#&gt; 59           Orlando         FL          USA Florida State
+#&gt; 60             Warri       &lt;NA&gt;      Nigeria Florida State
+#&gt; 61             Miami         FL          USA Florida State
+#&gt; 62       Tallahassee         FL          USA Florida State
+#&gt; 63      Ormond Beach         FL          USA Florida State
+#&gt; 64           Orlando         FL          USA Florida State
+#&gt; 65   Fort Lauderdale         FL          USA Florida State
+#&gt; 66         Montezuma         GA          USA Florida State
+#&gt; 67        Washington         DC          USA Florida State
+#&gt; 68           Orlando         FL          USA Florida State
+#&gt; 69     Warner Robins         GA          USA Florida State
+#&gt; 70             Tampa         FL          USA Florida State
+#&gt; 71             Miami         FL          USA Florida State
+#&gt; 72      Winter Haven         FL          USA Florida State
+#&gt; 73            Destin         FL          USA Florida State
+#&gt; 74             Logan         OH          USA Florida State
+#&gt; 75            Hahira         GA          USA Florida State
+#&gt; 76           Atlanta         GA          USA Florida State
+#&gt; 77           Pridgen         GA          USA Florida State
+#&gt; 78  District Heights         MD          USA Florida State
+#&gt; 79            Buford         GA          USA Florida State
+#&gt; 80   West Palm Beach         FL          USA Florida State
+#&gt; 81    Powder Springs         GA          USA Florida State
+#&gt; 82         Pensacola         FL          USA Florida State
+#&gt; 83        Fort Myers         FL          USA Florida State
+#&gt; 84        Snellville         GA          USA Florida State
+#&gt; 85          Lakeland         FL          USA Florida State
+#&gt; 86       Tallahassee         FL          USA Florida State
+#&gt; 87         Pensacola         FL          USA Florida State
+#&gt; 88             Tampa         FL          USA Florida State
+#&gt; 89             Tampa         FL          USA Florida State
+#&gt; 90        Long Beach         CA          USA Florida State
+#&gt; 91          Valdosta         GA          USA Florida State
+#&gt; 92             Tampa         FL          USA Florida State
+#&gt; 93            Stuart         FL          USA Florida State
+#&gt; 94     Moreno Valley         CA          USA Florida State
+#&gt; 95             Miami         FL          USA Florida State
+#&gt; 96   Saint Augustine         FL          USA Florida State
+#&gt; 97      Jacksonville         FL          USA Florida State
+#&gt; 98         Lake City         FL          USA Florida State
+#&gt; 99              Rome         GA          USA Florida State
+#&gt; 100        Riverdale         GA          USA Florida State
+#&gt; 101            Tampa         FL          USA Florida State
+#&gt; 102            Miami         FL          USA Florida State
+#&gt; 103      Panama City         FL          USA Florida State
+#&gt; 104      Zephyrhills         FL          USA Florida State
+#&gt; 105        Stillmore         GA          USA Florida State
+#&gt; 106         Coolidge         GA          USA Florida State
+#&gt; 107   Powder Springs         GA          USA Florida State
+#&gt; 108      Saint Louis         MO          USA Florida State
+#&gt; 109          Atlanta         GA          USA Florida State
+#&gt; 110        Pensacola         FL          USA Florida State
+#&gt; 111    Miami Gardens         FL          USA Florida State
+#&gt; 112            Tampa         FL          USA Florida State
+#&gt; 113       Chesapeake         VA          USA Florida State
+#&gt; 114          Pahokee         FL          USA Florida State
+#&gt; 115            Miami         FL          USA Florida State
+#&gt; 116         Leesburg         FL          USA Florida State
+#&gt; 117       Greenville         FL          USA Florida State
+#&gt; 118        Rockledge         FL          USA Florida State
+#&gt; 119    Daytona Beach         FL          USA Florida State
+#&gt; 120  West Palm Beach         FL          USA Florida State
+#&gt; 121          Brandon         MS          USA Florida State
+#&gt; 122           Odessa         FL          USA Florida State
+#&gt; 123     Olive Branch         MS          USA Florida State</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

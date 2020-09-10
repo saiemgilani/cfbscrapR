@@ -23,19 +23,31 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
     "def_timeouts_rem_before"
   )
   if (!all(col_nec %in% colnames(df))) {
-    df = df %>%dplyr::mutate(
-      play_after_turnover = ifelse(lag(.data$turnover_vec, 1) == 1 & lag(.data$def_td_play, 1) != 1, 1, 0),
+    df = df %>% dplyr::mutate(
+      adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
+      turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
+      def_td_play_lag = dplyr::lag(.data$def_td_play, 1),
+      play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$def_td_play_lag != 1, 1, 0),
       score_diff = .data$offense_score - .data$defense_score,
-      score_diff_start = ifelse(.data$play_after_turnover == 1, 
-                                -1*(ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1))),
-                                ifelse(.data$scoring_play == 1, 
-                                       ifelse(.data$game_play_number == 1, 0, lag(.data$score_diff, 1)), 
-                                       .data$score_diff)),
-      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -.data$EPA),
-      away_EPA = -.data$home_EPA,
+      lag_score_diff = lag(.data$score_diff, 1),
+      lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
+      offense_play_lag = dplyr::lag(.data$offense_play, 1),
+      offense_play_lag = ifelse(.data$game_play_number == 1, .data$offense_play, .data$offense_play_lag),
+      offense_play_lead = dplyr::lead(.data$offense_play, 1),
+      offense_play_lead2 = dplyr::lead(.data$offense_play, 2),
+      score_pts = ifelse(.data$offense_play_lag == .data$offense_play,
+                         (.data$score_diff - .data$lag_score_diff),
+                         (.data$score_diff + .data$lag_score_diff)),
+      score_diff_start = ifelse(.data$offense_play_lag == .data$offense_play,
+                                   .data$lag_score_diff,
+                                   -1*.data$lag_score_diff),
+      EPA = .data$ep_after - .data$ep_before,
+      def_EPA = -1*.data$EPA,
+      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -1*.data$EPA),
+      away_EPA = -1*.data$home_EPA,
       ExpScoreDiff = .data$score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
-      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff / (.data$adj_TimeSecsRem + 1)
+      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)
     )
   }
 
@@ -76,19 +88,28 @@ wpa_calcs_naive <- function(df) {
                         .data$wp_before, 
                         .data$def_wp_before)) %>%
    dplyr::mutate(
-      # base wpa
-      lead_wp_before = dplyr::lead(.data$wp_before, 1),
-      wpa_base = .data$lead_wp_before - .data$wp_before,
-      # account for turnover
-      
-      wpa_change = ifelse(.data$change_of_poss == 1, (1 - .data$lead_wp_before) - .data$wp_before, .data$wpa_base),
-      wpa = ifelse(.data$end_of_half == 1, 0, .data$wpa_change),
-      wp_after = .data$wp_before + .data$wpa,
-      def_wp_after = 1 - .data$wp_after,
-      home_wp_after = ifelse(.data$offense_play == .data$home,
+     lead_wp_before = dplyr::lead(.data$wp_before, 1),
+     lead2_wp_before = dplyr::lead(.data$wp_before, 2),
+     # base wpa
+     wpa_base = .data$lead_wp_before - .data$wp_before,
+     wpa_base_nxt = .data$lead2_wp_before - .data$wp_before,
+     wpa_base_ind = ifelse(.data$offense_play == .data$offense_play_lead, 1, 0),
+     wpa_base_nxt_ind = ifelse(.data$offense_play == .data$offense_play_lead2, 1, 0),
+     # account for turnover
+     wpa_change = (1 - .data$lead_wp_before) - .data$wp_before,
+     wpa_change_nxt = (1 - .data$lead2_wp_before) - .data$wp_before,
+     wpa_change_ind = ifelse(.data$offense_play != .data$offense_play_lead, 1, 0),
+     wpa_change_nxt_ind = ifelse(.data$offense_play != .data$offense_play_lead2, 1, 0),
+     wpa = ifelse(.data$end_of_half == 1, 0, 
+                  ifelse(.data$wpa_change_ind == 1, 
+                         .data$wpa_change, 
+                         .data$wpa_base)),
+     wp_after = .data$wp_before + .data$wpa,
+     def_wp_after = 1 - .data$wp_after,
+     home_wp_after = ifelse(.data$offense_play == .data$home,
                             .data$home_wp_before + .data$wpa,
                             .data$home_wp_before - .data$wpa),
-      away_wp_after = ifelse(.data$offense_play != .data$home,
+     away_wp_after = ifelse(.data$offense_play != .data$home,
                             .data$away_wp_before + .data$wpa,
                             .data$away_wp_before - .data$wpa),
       wp_before = round(.data$wp_before, 7),
@@ -96,14 +117,16 @@ wpa_calcs_naive <- function(df) {
       home_wp_before = round(.data$home_wp_before, 7),
       away_wp_before = round(.data$away_wp_before, 7),
       lead_wp_before = round(.data$lead_wp_before, 7),
+      lead2_wp_before = round(.data$lead2_wp_before, 7),
       wpa_base = round(.data$wpa_base, 7),
+      wpa_base_nxt = round(.data$wpa_base_nxt, 7),
       wpa_change = round(.data$wpa_change, 7),
+      wpa_change_nxt = round(.data$wpa_change_nxt, 7),
       wpa = round(.data$wpa, 7),
       wp_after = round(.data$wp_after, 7),
       def_wp_after = round(.data$def_wp_after, 7),
       home_wp_after = round(.data$home_wp_after, 7),
-      away_wp_after = round(.data$away_wp_after, 7),
-      
+      away_wp_after = round(.data$away_wp_after, 7)
     )
   return(df2)
 }
