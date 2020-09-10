@@ -52,19 +52,15 @@ Probability models, please refer to the `cfbscrapR`
 or for the code repository where the models are built, [click
 here](https://github.com/meysubb/cfbscrapR-MISC)
 
+#### Expected Points model calibration plots
+
+![ep\_fg\_cv\_loso\_calibration\_results.png](https://i.imgur.com/bOE4VOU.png)
+
+#### Win Probability model calibration plots
+
+![wp\_cv\_loso\_calibration\_results.png](https://i.imgur.com/4YgfphC.png)
+
 # cfbscrapR v1.0.2
-
-### Fix downs turnovers and several other discrepancies in EPA computations.
-
-![EPA\_YardsGained\_cfbscrapR.png](https://i.imgur.com/Bw6VO90.png)
-
-![EPA\_YardsGained\_cfbscrapR2.png](https://i.imgur.com/VYX12pZ.png)
-
-### Fix majority of issues with win probability added.
-
-![WPA\_YardsGained\_cfbscrapR.png](https://i.imgur.com/OFHTh9Y.jpg)
-
-![WPA\_YardsGained\_cfbscrapR2.png](https://i.imgur.com/84zh9VY.jpg)
 
   - Remove the
     [`add_betting_columns()`](https://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html)
@@ -89,5 +85,17 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
     function. For accessing drives information, please switch to the
     [`cfb_drives()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html)
     function.
-  - For more complete summary of changes, see [Pull
-    Request](https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691)
+
+#### Fix downs turnovers and several other discrepancies in EPA computations.
+
+![EPA\_YardsGained\_cfbscrapR.png](https://i.imgur.com/Bw6VO90.png)
+
+![EPA\_YardsGained\_cfbscrapR2.png](https://i.imgur.com/VYX12pZ.png)
+
+### Fix majority of issues with win probability added.
+
+![WPA\_YardsGained\_cfbscrapR.png](https://i.imgur.com/OFHTh9Y.jpg)
+
+![WPA\_YardsGained\_cfbscrapR2.png](https://i.imgur.com/84zh9VY.jpg) -
+For more complete summary of changes, see [Pull
+Request](https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691)

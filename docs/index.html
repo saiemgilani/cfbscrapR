@@ -146,22 +146,21 @@
 <h2 class="hasAnchor">
 <a href="#expected-points-and-win-probability-models" class="anchor"></a>Expected Points and Win Probability models</h2>
 <p>If you would like to learn more about the Expected Points and Win Probability models, please refer to the <code>cfbscrapR</code> <a href="https://saiemgilani.github.io/cfbscrapR/articles/index.html">tutorials</a> or for the code repository where the models are built, <a href="https://github.com/meysubb/cfbscrapR-MISC">click here</a></p>
+<div id="expected-points-model-calibration-plots" class="section level4">
+<h4 class="hasAnchor">
+<a href="#expected-points-model-calibration-plots" class="anchor"></a>Expected Points model calibration plots</h4>
+<p><img src="https://i.imgur.com/bOE4VOU.png" alt="ep_fg_cv_loso_calibration_results.png"></p>
+</div>
+<div id="win-probability-model-calibration-plots" class="section level4">
+<h4 class="hasAnchor">
+<a href="#win-probability-model-calibration-plots" class="anchor"></a>Win Probability model calibration plots</h4>
+<p><img src="https://i.imgur.com/4YgfphC.png" alt="wp_cv_loso_calibration_results.png"></p>
+</div>
 </div>
 </div>
 <div id="cfbscrapr-v102" class="section level1">
 <h1 class="hasAnchor">
 <a href="#cfbscrapr-v102" class="anchor"></a>cfbscrapR v1.0.2</h1>
-<div id="fix-downs-turnovers-and-several-other-discrepancies-in-epa-computations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fix-downs-turnovers-and-several-other-discrepancies-in-epa-computations" class="anchor"></a>Fix downs turnovers and several other discrepancies in EPA computations.</h3>
-<p><img src="https://i.imgur.com/Bw6VO90.png" alt="EPA_YardsGained_cfbscrapR.png"></p>
-<p><img src="https://i.imgur.com/VYX12pZ.png" alt="EPA_YardsGained_cfbscrapR2.png"></p>
-</div>
-<div id="fix-majority-of-issues-with-win-probability-added" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fix-majority-of-issues-with-win-probability-added" class="anchor"></a>Fix majority of issues with win probability added.</h3>
-<p><img src="https://i.imgur.com/OFHTh9Y.jpg" alt="WPA_YardsGained_cfbscrapR.png"></p>
-<p><img src="https://i.imgur.com/84zh9VY.jpg" alt="WPA_YardsGained_cfbscrapR2.png"></p>
 <ul>
 <li>Remove the <a href="https://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html"><code>add_betting_columns()</code></a> function and the current betting win probability model from the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code></a> function.</li>
 <li>Added <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_fpi.html"><code><a href="reference/cfb_ratings_fpi.html">cfb_ratings_fpi()</a></code></a> function from @sabinanalytics’s fork of the repository</li>
@@ -169,9 +168,18 @@
 <li>Add <a href="https://github.com/saiemgilani/cfbscrapR/tree/master/tests/testthat">tests</a> for a majority of the functions. This is the biggest behind the scenes change that will translate to more reliable functions.</li>
 <li>Rename several function outputs from <strong>camelCase to under_score</strong> for consistency. Please adjust your scripts accordingly, apologies for the inconvenience.</li>
 <li>Remove <code>drives</code> parameter from <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code></a> function. For accessing drives information, please switch to the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html"><code><a href="reference/cfb_drives.html">cfb_drives()</a></code></a> function.</li>
-<li>For more complete summary of changes, see <a href="https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691">Pull Request</a>
-</li>
 </ul>
+<div id="fix-downs-turnovers-and-several-other-discrepancies-in-epa-computations" class="section level4">
+<h4 class="hasAnchor">
+<a href="#fix-downs-turnovers-and-several-other-discrepancies-in-epa-computations" class="anchor"></a>Fix downs turnovers and several other discrepancies in EPA computations.</h4>
+<p><img src="https://i.imgur.com/Bw6VO90.png" alt="EPA_YardsGained_cfbscrapR.png"></p>
+<p><img src="https://i.imgur.com/VYX12pZ.png" alt="EPA_YardsGained_cfbscrapR2.png"></p>
+</div>
+<div id="fix-majority-of-issues-with-win-probability-added" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fix-majority-of-issues-with-win-probability-added" class="anchor"></a>Fix majority of issues with win probability added.</h3>
+<p><img src="https://i.imgur.com/OFHTh9Y.jpg" alt="WPA_YardsGained_cfbscrapR.png"></p>
+<p><img src="https://i.imgur.com/84zh9VY.jpg" alt="WPA_YardsGained_cfbscrapR2.png"> - For more complete summary of changes, see <a href="https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691">Pull Request</a></p>
 </div>
 </div>
 
