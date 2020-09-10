@@ -1,3 +1,4 @@
+# cfbscrapR 1.0.2
 - Fix downs turnovers and several other discrepancies in EPA computations.
 
 ![EPA_YardsGained_cfbscrapR.png](https://i.imgur.com/Bw6VO90.png)
