@@ -17,7 +17,7 @@ cfb_stats_season_player(
 \arguments{
 \item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 
-\item{season_type}{(\emph{String} default both): Select Season Type: regular, postseason, or both.}
+\item{season_type}{(\emph{String} default: regular): Select Season Type - regular, postseason, or both}
 
 \item{team}{(\emph{String} optional): D-I Team}
 
