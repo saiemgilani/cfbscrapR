@@ -38,6 +38,11 @@ cfb_game_media <- function(year,
     assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
                 msg = 'Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
+  if(season_type != 'both'){
+    # Check if season_type is appropriate, if not regular
+    assertthat::assert_that(season_type %in% c('postseason','regular'),
+                            msg = 'Enter valid season_type: regular, postseason, or both')
+  }
   if(!is.null(team)){
     team = utils::URLencode(team, reserved = TRUE)
   }
