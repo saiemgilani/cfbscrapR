@@ -17,6 +17,7 @@
 #' @importFrom utils "URLencode"
 #' @importFrom utils "globalVariables"
 #' @export
+#' 
 #'
 
 cfb_pbp_data <- function(year,
@@ -575,8 +576,8 @@ clean_pbp_dat <- function(raw_df) {
                          str_detect(.data$play_text, regex("TD",ignore_case = TRUE)) &
                          !is.na(.data$play_text), 
                          "Sack Touchdown", .data$play_type),
-      play_type = ifelse(play_type == "Interception", "Interception Return", play_type),
-      play_type = ifelse(play_type == "Pass Interception Return", "Interception Return", play_type)
+      play_type = ifelse(.data$play_type == "Interception", "Interception Return", .data$play_type),
+      play_type = ifelse(.data$play_type == "Pass Interception Return", "Interception Return", .data$play_type)
     ) %>% dplyr::select(-.data$td_check,-.data$td_play)
   return(raw_df)
 }
