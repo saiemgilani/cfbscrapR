@@ -55,7 +55,7 @@ cfb_stats_game_advanced <- function(year,
 
   if(season_type != 'both'){
     # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c('postseason','both'),
+    assertthat::assert_that(season_type %in% c('postseason','regular'),
                 msg = 'Enter valid season_type (String): regular, postseason, or both')
   }
 
