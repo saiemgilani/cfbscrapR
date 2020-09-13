@@ -26,9 +26,19 @@ cfb_pbp_data <- function(year,
                          play_type = NULL,
                          epa_wpa=FALSE) {
   options(stringsAsFactors = FALSE)
+  # Check if year is numeric, if not NULL
+  assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
+                          msg = 'Enter valid year as a number (YYYY)')
+  assertthat::assert_that(is.numeric(week) & nchar(week) <= 2,
+                          msg = 'Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   if(!is.null(team)){
     # Encode team parameter for URL if not NULL
     team = utils::URLencode(team, reserved = TRUE)
+  }
+  if(season_type != 'regular'){
+    # Check if season_type is appropriate, if not regular
+    assertthat::assert_that(season_type %in% c('postseason'),
+                            msg = 'Enter valid season_type: regular or postseason')
   }
   if(!is.null(play_type)){
     text <- play_type %in% cfbscrapR::cfb_play_type_df$text
