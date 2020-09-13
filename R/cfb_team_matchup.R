@@ -11,6 +11,7 @@
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @importFrom janitor "clean_names"
 #' @importFrom glue "glue"
 #' @export
 #' @examples
@@ -75,13 +76,7 @@ cfb_team_matchup <- function(team1, team2, min_year = NULL, max_year = NULL) {
         return(NULL)
       }
       df <- df %>% 
-        dplyr::rename(
-          season_type = .data$seasonType,
-          neutral_site = .data$neutralSite,
-          home_team = .data$homeTeam,
-          home_score = .data$homeScore,
-          away_team = .data$awayTeam,
-          away_score = .data$awayScore) %>% 
+        janitor::clean_names() %>% 
         as.data.frame()
       
       message(glue::glue("{Sys.time()}: Scraping team matchup..."))
