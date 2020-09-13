@@ -37,8 +37,8 @@ cfb_pbp_data <- function(year,
   }
   if(season_type != 'regular'){
     # Check if season_type is appropriate, if not regular
-    assertthat::assert_that(season_type %in% c('postseason'),
-                            msg = 'Enter valid season_type: regular or postseason')
+    assertthat::assert_that(season_type %in% c('postseason','both'),
+                            msg = 'Enter valid season_type: regular, postseason, or both')
   }
   if(!is.null(play_type)){
     text <- play_type %in% cfbscrapR::cfb_play_type_df$text
