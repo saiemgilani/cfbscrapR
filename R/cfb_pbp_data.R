@@ -471,7 +471,8 @@ clean_pbp_dat <- function(raw_df) {
         .data$play_type == "Pass Reception" |
           .data$play_type == "Pass Completion" |
           .data$play_type == "Passing Touchdown" |
-          .data$play_type == "Sack" |
+          .data$play_type == "Sack" | .data$play_type == "Pass" |
+          .data$play_type == "Interception" |
           .data$play_type == "Pass Interception Return" |
           .data$play_type == "Interception Return Touchdown" |
           (.data$play_type == "Pass Incompletion" & !is.na(.data$play_text)) |
@@ -485,12 +486,20 @@ clean_pbp_dat <- function(raw_df) {
               str_detect(.data$play_text, regex("pass", ignore_case = TRUE)) & !is.na(.data$play_text)
           ) |
           (
+            .data$play_type == "Fumble Recovery (Own)" &
+              str_detect(.data$play_text, regex("sacked", ignore_case = TRUE)) & !is.na(.data$play_text)
+          ) |
+          (
             .data$play_type == "Fumble Recovery (Own) Touchdown" &
               str_detect(.data$play_text, regex("pass", ignore_case = TRUE)) & !is.na(.data$play_text)
           ) |
           (
             .data$play_type == "Fumble Recovery (Opponent)" &
               str_detect(.data$play_text, regex("pass", ignore_case = TRUE)) & !is.na(.data$play_text)
+          ) |
+          (
+            .data$play_type == "Fumble Recovery (Opponent)" &
+              str_detect(.data$play_text, regex("sacked", ignore_case = TRUE)) & !is.na(.data$play_text)
           ) |
           (
             .data$play_type == "Fumble Recovery (Opponent) Touchdown" &
@@ -555,7 +564,9 @@ clean_pbp_dat <- function(raw_df) {
                          str_detect(.data$play_text, regex("fumbled", ignore_case = TRUE)) &
                          str_detect(.data$play_text, regex("TD",ignore_case = TRUE)) &
                          !is.na(.data$play_text), 
-                         "Sack Touchdown", .data$play_type)   
+                         "Sack Touchdown", .data$play_type),
+      play_type = ifelse(play_type == "Interception", "Interception Return", play_type),
+      play_type = ifelse(play_type == "Pass Interception Return", "Interception Return", play_type)
     ) %>% dplyr::select(-.data$td_check,-.data$td_play)
   return(raw_df)
 }
