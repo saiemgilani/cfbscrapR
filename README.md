@@ -60,7 +60,7 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
 
 ![wp\_cv\_loso\_calibration\_results.png](https://i.imgur.com/4YgfphC.png)
 
-## cfbscrapR v1.0.3
+## cfbscrapR v1.0.21
 
   - Fix conference parameters to match API (moved to abbreviation
     format)
