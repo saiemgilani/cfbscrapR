@@ -244,8 +244,8 @@
 <p>Now we have a clean dataset of every rush and pass that happened in 2019. (Quick note: unfortunately, due to the way the pbp data is generated on ESPN, QB scrambles from dropbacks are coded as rushes. It’s not ideal, but it’s not a dealbreaker; just something to remember as you do your analysis).</p>
 <p>Let’s look at it!</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu">glimpse</span>(<span class="no">pbp</span>)</pre></body></html></div>
-<pre><code>## Rows: 100,831
-## Columns: 151
+<pre><code>## Rows: 100,963
+## Columns: 153
 ## $ id_play                    &lt;chr&gt; "401110720101855301", "40111072010185840...
 ## $ game_id                    &lt;int&gt; 401110720, 401110720, 401110720, 4011107...
 ## $ offense_play               &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Duke",...
@@ -325,10 +325,12 @@
 ## $ def_td_play                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ kickoff_play               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ kickoff_tb                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ kickoff_oob                &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ kick_play                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ punt_play                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ punt                       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ punt_tb                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+## $ punt_oob                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ fumble_vec                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0...
 ## $ rush                       &lt;dbl&gt; 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1...
 ## $ pass                       &lt;dbl&gt; 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0...
@@ -416,30 +418,30 @@
 ##    offense_play        ypa   ypr
 ##    &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt;
 ##  1 Oklahoma           9.17  6.56
-##  2 Kentucky           4.66  6.55
+##  2 Kentucky           4.63  6.55
 ##  3 Clemson            8.13  6.50
-##  4 Louisiana          7.15  6.39
-##  5 Ohio State         8.37  6.37
+##  4 Louisiana          7.11  6.39
+##  5 Ohio State         8.28  6.37
 ##  6 Navy               9.06  6.32
-##  7 Oklahoma State     6.61  6.19
+##  7 Oklahoma State     6.51  6.19
 ##  8 Western Michigan   6.61  6.12
-##  9 Mississippi State  5.82  6.06
+##  9 Mississippi State  5.79  6.06
 ## 10 Georgia State      5.52  5.97
 ## # ... with 120 more rows</code></pre>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">offense</span> <span class="kw">%&gt;%</span> <span class="fu">arrange</span>(<span class="no">ypa</span>)</pre></body></html></div>
 <pre><code>## # A tibble: 130 x 3
 ##    offense_play       ypa   ypr
 ##    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;
-##  1 Northwestern      3.73  4.78
-##  2 Akron             3.90  3.39
-##  3 Duke              3.99  4.11
-##  4 Maryland          3.99  5.83
-##  5 UMass             4.02  4.29
+##  1 Northwestern      3.63  4.78
+##  2 Akron             3.87  3.39
+##  3 Duke              3.93  4.11
+##  4 Maryland          3.97  5.83
+##  5 UMass             3.97  4.29
 ##  6 Old Dominion      4.03  4.14
-##  7 Bowling Green     4.26  4.17
+##  7 Bowling Green     4.22  4.17
 ##  8 New Mexico State  4.28  5.43
-##  9 Vanderbilt        4.40  4.61
-## 10 Rutgers           4.44  3.97
+##  9 Georgia Tech      4.28  5.10
+## 10 Vanderbilt        4.40  4.61
 ## # ... with 120 more rows</code></pre>
 <p>I took out the desc() part of the function to display the worst offenses, for fun. We see that Oklahoma had the highest yards per rush, followed by Oklahoma, Kentucky, and Louisiana. The top passing teams were Air Force, Alabama, LSU, and Oklahoma. Bonus points if you can tell me why Air Force is ranked that highly!</p>
 <p>The worst offenses for rushing and passing were West Virginia, who averaged only 3.15 yards per rush, and Northwestern, who averaged an inconceivable 3.96 yards per passing attempt.</p>
@@ -454,11 +456,11 @@
 <pre><code>## # A tibble: 6 x 4
 ##   offense_play      epa.pass.off epa.rush.off epa.pass.def
 ##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Air Force               0.591        0.0474      -0.0630
+## 1 Air Force               0.567        0.0474      -0.0630
 ## 2 Akron                  NA           -0.305       -0.0304
 ## 3 Alabama                 0.469        0.0929      -0.0994
 ## 4 Appalachian State       0.194        0.0612      -0.121 
-## 5 Arizona                -0.0174       0.0346       0.0506
+## 5 Arizona                -0.0218       0.0346       0.0506
 ## 6 Arizona State           0.0987      -0.0611      -0.138</code></pre>
 <p>In analytics, we often want to break down situations. Let’s use <code>filter</code> to select only first down plays and see which offenses performed the best on first downs only:</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">offense</span> <span class="kw">&lt;-</span> <span class="no">plays</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">down</span> <span class="kw">==</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span> <span class="fu">group_by</span>(<span class="no">offense_play</span>) <span class="kw">%&gt;%</span>
@@ -472,7 +474,7 @@
 ##   offense_play      epa.pass.off epa.rush.off epa.pass.def
 ##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 Air Force               0.677       -0.0664      -0.241 
-## 2 Akron                  -0.321       -0.358       -0.0450
+## 2 Akron                  -0.329       -0.358       -0.0450
 ## 3 Alabama                 0.298        0.127       -0.0634
 ## 4 Appalachian State       0.0128      -0.0638      -0.213 
 ## 5 Arizona                -0.0734      -0.0932       0.139 
@@ -488,7 +490,7 @@
 ##   offense_play      success.rte rush.rte
 ##   &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 Air Force               0.427    0.862
-## 2 Akron                   0.287    0.393
+## 2 Akron                   0.286    0.391
 ## 3 Alabama                 0.481    0.448
 ## 4 Appalachian State       0.384    0.633
 ## 5 Arizona                 0.36     0.524
@@ -596,7 +598,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rvlbghhshz .gt_table {
+#sefemrjnut .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -621,7 +623,7 @@
   border-left-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_heading {
+#sefemrjnut .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -633,7 +635,7 @@
   border-right-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_title {
+#sefemrjnut .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -643,7 +645,7 @@
   border-bottom-width: 0;
 }
 
-#rvlbghhshz .gt_subtitle {
+#sefemrjnut .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -653,13 +655,13 @@
   border-top-width: 0;
 }
 
-#rvlbghhshz .gt_bottom_border {
+#sefemrjnut .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_col_headings {
+#sefemrjnut .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -674,7 +676,7 @@
   border-right-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_col_heading {
+#sefemrjnut .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -694,7 +696,7 @@
   overflow-x: hidden;
 }
 
-#rvlbghhshz .gt_column_spanner_outer {
+#sefemrjnut .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -706,15 +708,15 @@
   padding-right: 4px;
 }
 
-#rvlbghhshz .gt_column_spanner_outer:first-child {
+#sefemrjnut .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rvlbghhshz .gt_column_spanner_outer:last-child {
+#sefemrjnut .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rvlbghhshz .gt_column_spanner {
+#sefemrjnut .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -726,7 +728,7 @@
   width: 100%;
 }
 
-#rvlbghhshz .gt_group_heading {
+#sefemrjnut .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -748,7 +750,7 @@
   vertical-align: middle;
 }
 
-#rvlbghhshz .gt_empty_group_heading {
+#sefemrjnut .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -763,15 +765,15 @@
   vertical-align: middle;
 }
 
-#rvlbghhshz .gt_from_md > :first-child {
+#sefemrjnut .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rvlbghhshz .gt_from_md > :last-child {
+#sefemrjnut .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rvlbghhshz .gt_row {
+#sefemrjnut .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -790,7 +792,7 @@
   overflow-x: hidden;
 }
 
-#rvlbghhshz .gt_stub {
+#sefemrjnut .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -802,7 +804,7 @@
   padding-left: 12px;
 }
 
-#rvlbghhshz .gt_summary_row {
+#sefemrjnut .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -812,7 +814,7 @@
   padding-right: 5px;
 }
 
-#rvlbghhshz .gt_first_summary_row {
+#sefemrjnut .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -822,7 +824,7 @@
   border-top-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_grand_summary_row {
+#sefemrjnut .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -832,7 +834,7 @@
   padding-right: 5px;
 }
 
-#rvlbghhshz .gt_first_grand_summary_row {
+#sefemrjnut .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -842,11 +844,11 @@
   border-top-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_striped {
+#sefemrjnut .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rvlbghhshz .gt_table_body {
+#sefemrjnut .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -855,7 +857,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_footnotes {
+#sefemrjnut .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -869,13 +871,13 @@
   border-right-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_footnote {
+#sefemrjnut .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#rvlbghhshz .gt_sourcenotes {
+#sefemrjnut .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -889,46 +891,46 @@
   border-right-color: #D3D3D3;
 }
 
-#rvlbghhshz .gt_sourcenote {
+#sefemrjnut .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#rvlbghhshz .gt_left {
+#sefemrjnut .gt_left {
   text-align: left;
 }
 
-#rvlbghhshz .gt_center {
+#sefemrjnut .gt_center {
   text-align: center;
 }
 
-#rvlbghhshz .gt_right {
+#sefemrjnut .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rvlbghhshz .gt_font_normal {
+#sefemrjnut .gt_font_normal {
   font-weight: normal;
 }
 
-#rvlbghhshz .gt_font_bold {
+#sefemrjnut .gt_font_bold {
   font-weight: bold;
 }
 
-#rvlbghhshz .gt_font_italic {
+#sefemrjnut .gt_font_italic {
   font-style: italic;
 }
 
-#rvlbghhshz .gt_super {
+#sefemrjnut .gt_super {
   font-size: 65%;
 }
 
-#rvlbghhshz .gt_footnote_marks {
+#sefemrjnut .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="rvlbghhshz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="sefemrjnut" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_col_headings"><tr>
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">offense_play</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">epa.pass.off</th>
@@ -939,7 +941,7 @@
 <tbody class="gt_table_body">
 <tr>
 <td class="gt_row gt_left">Air Force</td>
-      <td class="gt_row gt_right">0.5913041</td>
+      <td class="gt_row gt_right">0.5669641</td>
       <td class="gt_row gt_right">0.047392351</td>
       <td class="gt_row gt_right">-0.06300459</td>
       <td class="gt_row gt_center">1</td>
@@ -953,7 +955,7 @@
     </tr>
 <tr>
 <td class="gt_row gt_left">Minnesota</td>
-      <td class="gt_row gt_right">0.4591480</td>
+      <td class="gt_row gt_right">0.4490685</td>
       <td class="gt_row gt_right">0.003854265</td>
       <td class="gt_row gt_right">-0.02198829</td>
       <td class="gt_row gt_center">3</td>
@@ -967,7 +969,7 @@
     </tr>
 <tr>
 <td class="gt_row gt_left">Ohio State</td>
-      <td class="gt_row gt_right">0.4181931</td>
+      <td class="gt_row gt_right">0.4030953</td>
       <td class="gt_row gt_right">NA</td>
       <td class="gt_row gt_right">-0.17799170</td>
       <td class="gt_row gt_center">5</td>
@@ -995,7 +997,7 @@
     </tr>
 <tr>
 <td class="gt_row gt_left">USC</td>
-      <td class="gt_row gt_right">0.2485285</td>
+      <td class="gt_row gt_right">0.2434053</td>
       <td class="gt_row gt_right">-0.004757967</td>
       <td class="gt_row gt_right">0.06109192</td>
       <td class="gt_row gt_center">9</td>
@@ -1012,7 +1014,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#imffcadfnr .gt_table {
+#lbcbgmikwf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1037,7 +1039,7 @@
   border-left-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_heading {
+#lbcbgmikwf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1049,7 +1051,7 @@
   border-right-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_title {
+#lbcbgmikwf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1059,7 +1061,7 @@
   border-bottom-width: 0;
 }
 
-#imffcadfnr .gt_subtitle {
+#lbcbgmikwf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1069,13 +1071,13 @@
   border-top-width: 0;
 }
 
-#imffcadfnr .gt_bottom_border {
+#lbcbgmikwf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_col_headings {
+#lbcbgmikwf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1090,7 +1092,7 @@
   border-right-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_col_heading {
+#lbcbgmikwf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1110,7 +1112,7 @@
   overflow-x: hidden;
 }
 
-#imffcadfnr .gt_column_spanner_outer {
+#lbcbgmikwf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1122,15 +1124,15 @@
   padding-right: 4px;
 }
 
-#imffcadfnr .gt_column_spanner_outer:first-child {
+#lbcbgmikwf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#imffcadfnr .gt_column_spanner_outer:last-child {
+#lbcbgmikwf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#imffcadfnr .gt_column_spanner {
+#lbcbgmikwf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1142,7 +1144,7 @@
   width: 100%;
 }
 
-#imffcadfnr .gt_group_heading {
+#lbcbgmikwf .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1164,7 +1166,7 @@
   vertical-align: middle;
 }
 
-#imffcadfnr .gt_empty_group_heading {
+#lbcbgmikwf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1179,15 +1181,15 @@
   vertical-align: middle;
 }
 
-#imffcadfnr .gt_from_md > :first-child {
+#lbcbgmikwf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#imffcadfnr .gt_from_md > :last-child {
+#lbcbgmikwf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#imffcadfnr .gt_row {
+#lbcbgmikwf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1206,7 +1208,7 @@
   overflow-x: hidden;
 }
 
-#imffcadfnr .gt_stub {
+#lbcbgmikwf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1218,7 +1220,7 @@
   padding-left: 12px;
 }
 
-#imffcadfnr .gt_summary_row {
+#lbcbgmikwf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1228,7 +1230,7 @@
   padding-right: 5px;
 }
 
-#imffcadfnr .gt_first_summary_row {
+#lbcbgmikwf .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1238,7 +1240,7 @@
   border-top-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_grand_summary_row {
+#lbcbgmikwf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1248,7 +1250,7 @@
   padding-right: 5px;
 }
 
-#imffcadfnr .gt_first_grand_summary_row {
+#lbcbgmikwf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1258,11 +1260,11 @@
   border-top-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_striped {
+#lbcbgmikwf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#imffcadfnr .gt_table_body {
+#lbcbgmikwf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1271,7 +1273,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_footnotes {
+#lbcbgmikwf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1285,13 +1287,13 @@
   border-right-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_footnote {
+#lbcbgmikwf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#imffcadfnr .gt_sourcenotes {
+#lbcbgmikwf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1305,46 +1307,46 @@
   border-right-color: #D3D3D3;
 }
 
-#imffcadfnr .gt_sourcenote {
+#lbcbgmikwf .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#imffcadfnr .gt_left {
+#lbcbgmikwf .gt_left {
   text-align: left;
 }
 
-#imffcadfnr .gt_center {
+#lbcbgmikwf .gt_center {
   text-align: center;
 }
 
-#imffcadfnr .gt_right {
+#lbcbgmikwf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#imffcadfnr .gt_font_normal {
+#lbcbgmikwf .gt_font_normal {
   font-weight: normal;
 }
 
-#imffcadfnr .gt_font_bold {
+#lbcbgmikwf .gt_font_bold {
   font-weight: bold;
 }
 
-#imffcadfnr .gt_font_italic {
+#lbcbgmikwf .gt_font_italic {
   font-style: italic;
 }
 
-#imffcadfnr .gt_super {
+#lbcbgmikwf .gt_super {
   font-size: 65%;
 }
 
-#imffcadfnr .gt_footnote_marks {
+#lbcbgmikwf .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="imffcadfnr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="lbcbgmikwf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_header">
 <tr>
 <th colspan="3" class="gt_heading gt_title gt_font_normal" style>Best Passing Teams</th>
@@ -1362,7 +1364,7 @@
 <tr>
 <td class="gt_row gt_center">1</td>
       <td class="gt_row gt_left">Air Force</td>
-      <td class="gt_row gt_right">0.5913041</td>
+      <td class="gt_row gt_right">0.5669641</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">2</td>
@@ -1372,7 +1374,7 @@
 <tr>
 <td class="gt_row gt_center">3</td>
       <td class="gt_row gt_left">Minnesota</td>
-      <td class="gt_row gt_right">0.4591480</td>
+      <td class="gt_row gt_right">0.4490685</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">4</td>
@@ -1382,7 +1384,7 @@
 <tr>
 <td class="gt_row gt_center">5</td>
       <td class="gt_row gt_left">Ohio State</td>
-      <td class="gt_row gt_right">0.4181931</td>
+      <td class="gt_row gt_right">0.4030953</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">6</td>
@@ -1402,12 +1404,12 @@
 <tr>
 <td class="gt_row gt_center">9</td>
       <td class="gt_row gt_left">USC</td>
-      <td class="gt_row gt_right">0.2485285</td>
+      <td class="gt_row gt_right">0.2434053</td>
     </tr>
 <tr>
 <td class="gt_row gt_center">10</td>
       <td class="gt_row gt_left">North Carolina</td>
-      <td class="gt_row gt_right">0.2398335</td>
+      <td class="gt_row gt_right">0.2281935</td>
     </tr>
 </tbody>
 </table></div>

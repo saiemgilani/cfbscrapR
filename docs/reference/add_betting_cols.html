@@ -182,7 +182,7 @@ This is only for DI-FBS football</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>play_df</th>
-      <td><p>(<em>data.frame</em> required): Play-By-Play data.frame as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`)</p></td>
+      <td><p>(<em>data.frame</em> required): Play-By-Play dataframe as pulled from `cfb_pbp_dat()`, `clean_pbp_dat()`,`penalty_detection()`</p></td>
     </tr>
     <tr>
       <th>g_id</th>
@@ -194,6 +194,22 @@ Can be found using the `cfb_game_info()` function</p></td>
       <td><p>(<em>Integer</em> optional): Select year (example: 2018)</p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The original `play_df` with the following columns appended to it:</p><dl'>
+<dt>spread</dt><dd><p>The spread for the game</p></dd>
+<dt>formatted_spread</dt><dd><p>Formatted spread with the favored team listed with the numeric spread</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Add Betting columns. Requires the following parameters to be present:</p><ul>
+<li><p>play_dfPlay-By-Play dataframe as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`</p></li>
+<li><p>g_idUnique game identifier - `game_id`</p></li>
+<li><p>yrYear parameter</p></li>
+</ul>
 
 
   </div>

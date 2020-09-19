@@ -211,7 +211,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_coaches</span>(<span class='kw'>first</span> <span class='kw'>=</span> <span class='st'>"Nick"</span>, <span class='kw'>last</span> <span class='kw'>=</span> <span class='st'>"Saban"</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'alabama'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-10 05:58:23: Scraping coaches data...</span></div><div class='output co'>#&gt;    first_name  last_name  school year games wins losses ties preseason_rank
+<span class='fu'>cfb_coaches</span>(<span class='kw'>first</span> <span class='kw'>=</span> <span class='st'>"Nick"</span>, <span class='kw'>last</span> <span class='kw'>=</span> <span class='st'>"Saban"</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'alabama'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:03: Scraping coaches data...</span></div><div class='output co'>#&gt;    first_name  last_name  school year games wins losses ties preseason_rank
 #&gt; 1     Wallace       Wade Alabama 1923    10    7      2    1             NA
 #&gt; 2     Wallace       Wade Alabama 1924     9    8      1    0             NA
 #&gt; 3     Wallace       Wade Alabama 1925    10   10      0    0             NA
@@ -294,89 +294,89 @@
 #&gt; 80       Nick      Saban Alabama 2018    15   14      1    0              1
 #&gt; 81       Nick      Saban Alabama 2019    13   11      2    0              2
 #&gt; 82       Nick      Saban Alabama 2020     0    0      0    0              3
-#&gt;    postseason_rank
-#&gt; 1               NA
-#&gt; 2               NA
-#&gt; 3               NA
-#&gt; 4               NA
-#&gt; 5               NA
-#&gt; 6               NA
-#&gt; 7               NA
-#&gt; 8               NA
-#&gt; 9               NA
-#&gt; 10              NA
-#&gt; 11              NA
-#&gt; 12              NA
-#&gt; 13              NA
-#&gt; 14               4
-#&gt; 15               4
-#&gt; 16              13
-#&gt; 17              NA
-#&gt; 18              NA
-#&gt; 19              20
-#&gt; 20              10
-#&gt; 21              NA
-#&gt; 22               2
-#&gt; 23              NA
-#&gt; 24               6
-#&gt; 25              NA
-#&gt; 26              NA
-#&gt; 27              16
-#&gt; 28              NA
-#&gt; 29               9
-#&gt; 30              13
-#&gt; 31              NA
-#&gt; 32              NA
-#&gt; 33              10
-#&gt; 34               9
-#&gt; 35               1
-#&gt; 36               5
-#&gt; 37               8
-#&gt; 38               1
-#&gt; 39               1
-#&gt; 40               3
-#&gt; 41               8
-#&gt; 42              17
-#&gt; 43              NA
-#&gt; 44              NA
-#&gt; 45               4
-#&gt; 46               7
-#&gt; 47               4
-#&gt; 48               5
-#&gt; 49               3
-#&gt; 50              11
-#&gt; 51               2
-#&gt; 52               1
-#&gt; 53               1
-#&gt; 54               6
-#&gt; 55               7
-#&gt; 56              NA
-#&gt; 57              NA
-#&gt; 58              17
-#&gt; 59               9
-#&gt; 60              NA
-#&gt; 61               5
-#&gt; 62               1
-#&gt; 63              14
-#&gt; 64               5
-#&gt; 65              21
-#&gt; 66              11
-#&gt; 67              NA
-#&gt; 68              11
-#&gt; 69              NA
-#&gt; 70               6
-#&gt; 71               1
-#&gt; 72              10
-#&gt; 73               1
-#&gt; 74               1
-#&gt; 75               7
-#&gt; 76               4
-#&gt; 77               1
-#&gt; 78               2
-#&gt; 79               1
-#&gt; 80              NA
-#&gt; 81               8
-#&gt; 82              NA</div><div class='input'>
+#&gt;    postseason_rank  srs sp_overall sp_offense sp_defense
+#&gt; 1               NA  3.8       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 2               NA 22.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 3               NA 21.7       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 4               NA 21.4       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 5               NA  2.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 6               NA 13.7       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 7               NA  9.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 8               NA 27.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 9               NA 20.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 10              NA 15.8       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 11              NA 11.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 12              NA 30.2       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 13              NA 19.5       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 14               4 20.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 15               4 18.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 16              13 13.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 17              NA 15.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 18              NA  9.2       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 19              20 19.1       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 20              10 23.4       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 21              NA 12.4       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 22               2 36.4       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 23              NA 14.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 24               6 16.8       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 25              NA 12.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 26              NA 13.1       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 27              16 18.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 28              NA  4.1       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 29               9 24.2       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 30              13 13.4       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 31              NA  8.9       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 32              NA 10.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 33              10 11.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 34               9 15.8       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 35               1 27.6       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 36               5 29.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 37               8 20.0       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 38               1 21.3       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 39               1 24.5       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 40               3 28.5       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 41               8 15.5       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 42              17 13.8       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 43              NA 12.5       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 44              NA 17.4       19.7       39.2       21.3
+#&gt; 45               4 33.0         37       42.1        6.5
+#&gt; 46               7 31.1       31.8         43       11.6
+#&gt; 47               4 31.5       32.6       44.6       13.1
+#&gt; 48               5 25.8       29.5       35.7        6.6
+#&gt; 49               3 26.6       28.8       36.2        7.2
+#&gt; 50              11 21.4         26       35.7       10.7
+#&gt; 51               2 28.5       32.5       41.3        9.3
+#&gt; 52               1 26.3       33.9         42        8.2
+#&gt; 53               1 26.4       27.3       35.6        8.6
+#&gt; 54               6 26.8       28.7       36.2        7.7
+#&gt; 55               7 18.0       20.2         32       12.1
+#&gt; 56              NA 18.6       20.4       37.8       18.4
+#&gt; 57              NA 13.1       18.6       32.3       15.3
+#&gt; 58              17 13.6       16.6       32.9       17.7
+#&gt; 59               9 17.5         23       39.4         18
+#&gt; 60              NA  8.2         13       27.1       14.3
+#&gt; 61               5 13.1       17.3       29.9       13.9
+#&gt; 62               1 20.7       27.2       35.4        8.6
+#&gt; 63              14 14.0       18.6         32       14.4
+#&gt; 64               5 12.8       19.9       31.1         12
+#&gt; 65              21  6.8          9       28.7       20.3
+#&gt; 66              11 11.6       17.1       31.2       15.3
+#&gt; 67              NA 10.4       11.8       32.9       22.7
+#&gt; 68              11 17.7       23.6       37.6       14.4
+#&gt; 69              NA  8.3       12.8       30.1       17.2
+#&gt; 70               6 17.9         23       34.2       10.9
+#&gt; 71               1 27.5       30.2         35        6.5
+#&gt; 72              10 24.1       30.1       43.9       14.2
+#&gt; 73               1 30.5       32.5       39.3        6.4
+#&gt; 74               1 32.2       36.5       45.7       10.7
+#&gt; 75               7 25.4       34.1       45.6       12.3
+#&gt; 76               4 26.5       34.3       44.5       10.7
+#&gt; 77               1 27.3         29       37.7        9.1
+#&gt; 78               2 33.6       31.7         40        8.6
+#&gt; 79               1 26.3       33.5       38.7        5.6
+#&gt; 80              NA 33.5       36.3       50.9       14.2
+#&gt; 81               8 28.8       32.4       47.7       14.6
+#&gt; 82              NA &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

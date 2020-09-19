@@ -182,9 +182,27 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>drive_df</th>
-      <td><p>(<em>data.frame</em> required) Drive DataFrame pulled from API</p></td>
+      <td><p>(<em>data.frame</em> required) Drive dataframe pulled from API via the `cfb_drives()` function</p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The original `drive_df` with the following columns appended to it:</p><dl'>
+<dt>drive_id</dt><dd><p>Returned as `drive_id` from original variable `id`</p></dd>
+<dt>pts_drive</dt><dd><p>End result of the drive</p></dd>
+<dt>scoring</dt><dd><p>Logical flag for if drive was a scoring drive updated</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:</p><ul>
+<li><p>idReturned as `drive_id`</p></li>
+<li><p>drive_resultEnd result of the drive</p></li>
+<li><p>scoringLogical flag for if drive was a scoring drive</p></li>
+<li><p>game_idUnique game identifier</p></li>
+</ul>
 
 
   </div>
