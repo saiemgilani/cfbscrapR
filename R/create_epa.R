@@ -16,8 +16,8 @@
 #'
 
 create_epa <- function(clean_pbp_dat,
-                          ep_model=cfbscrapR:::ep_model,
-                          fg_model=cfbscrapR:::fg_model) {
+                       ep_model=cfbscrapR:::ep_model,
+                       fg_model=cfbscrapR:::fg_model) {
   #----------------- Code Description--------
   ## 1) prep_epa_df_before: Use map_dfr to prep before play model variables -> Make predictions 
   ## 2) prep_epa_df_after: Use map_dfr to prep after play model variables -> Make predictions
@@ -36,18 +36,18 @@ create_epa <- function(clean_pbp_dat,
                                      dplyr::filter(.data$game_id == x) %>%
                                      prep_epa_df_before()
                                  })
-
+  
   pred_df = clean_pbp_dat %>% 
     dplyr::select(.data$new_id, .data$drive_id, .data$game_id,
-           .data$TimeSecsRem,
-           .data$down, 
-           .data$distance,
-           .data$yards_to_goal, 
-           .data$log_ydstogo,
-           .data$Under_two, 
-           .data$Goal_To_Go) %>%
-   dplyr::mutate(down = as.factor(.data$down))
-
+                  .data$TimeSecsRem,
+                  .data$down, 
+                  .data$distance,
+                  .data$yards_to_goal, 
+                  .data$log_ydstogo,
+                  .data$Under_two, 
+                  .data$Goal_To_Go) %>%
+    dplyr::mutate(down = as.factor(.data$down))
+  
   # ep_start - make predictions on pred_df_before (the output from `prep_epa_df_before()`)
   ep_start = as.data.frame(predict(ep_model, pred_df, type = 'prob'))
   colnames(ep_start) <- ep_model$lev
@@ -76,7 +76,7 @@ create_epa <- function(clean_pbp_dat,
   prep_df_after$ep_after = apply(ep_end, 1, function(row) {
     sum(row * weights)
   })
-
+  
   # join together multiple dataframes back together
   # to get ep_before and ep_after for plays
   colnames(prep_df_after)[4:11] = paste0(colnames(prep_df_after)[4:11], "_end")
@@ -192,7 +192,7 @@ create_epa <- function(clean_pbp_dat,
   
   # Game end EP is 0
   pred_df[pred_df$end_half_game_end == 1, "ep_after"] = 0
-
+  
   ## Scoring plays from here on out
   pred_df[(pred_df$play_type %in% off_TD), "ep_after"] = 7
   pred_df[(pred_df$play_type %in% def_TD), "ep_after"] = -7
@@ -200,7 +200,7 @@ create_epa <- function(clean_pbp_dat,
   pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_after"] = -2
   
   pred_df[pred_df$play_type == "Safety", "ep_after"] = -2
-
+  
   pred_df[pred_df$play_type == "Field Goal Good", "ep_after"] = 3
   
   pred_df = pred_df %>% 
@@ -300,13 +300,13 @@ create_epa <- function(clean_pbp_dat,
       stuffed_run = ifelse((.data$rush == 1 & .data$yards_gained <= 0), 1, 0),
       success = 
         ifelse(.data$yards_gained >= .5 * .data$distance & .data$down == 1, 1,
-          ifelse(.data$yards_gained >= .7 * .data$distance & .data$down == 2, 1,
-            ifelse(.data$yards_gained >= .data$distance & .data$down == 3, 1,
-              ifelse(.data$yards_gained >= .data$distance & .data$down == 4, 1, 0)))),
+               ifelse(.data$yards_gained >= .7 * .data$distance & .data$down == 2, 1,
+                      ifelse(.data$yards_gained >= .data$distance & .data$down == 3, 1,
+                             ifelse(.data$yards_gained >= .data$distance & .data$down == 4, 1, 0)))),
       success = ifelse(.data$play_type %in% turnover_play_type, 0, .data$success),
       epa_success = ifelse(.data$EPA > 0, 1, 0)
     )
-
+  
   return(pred_df)
 }
 
@@ -423,7 +423,7 @@ prep_epa_df_after <- function(dat) {
     ) %>% 
     dplyr::group_by(.data$game_id, .data$half) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE)
-
+  
   turnover_ind = dat$play_type %in% turnover_play_type
   dat$turnover = 0
   #define turnover on downs
@@ -442,9 +442,9 @@ prep_epa_df_after <- function(dat) {
   t_ind = (turnover_ind | (new_offense)) & 
     !scoring_plays & !end_of_half_plays & 
     (turnover_play_check | downs_turnover)
-
+  
   dat$turnover[t_ind] <- 1
-
+  
   dat = dat %>% 
     dplyr::ungroup() %>% 
     dplyr::group_by(.data$game_id) %>% 
@@ -458,8 +458,8 @@ prep_epa_df_after <- function(dat) {
       turnover_indicator = 
         ifelse(
           (.data$play_type %in% defense_score_vec) | (.data$play_type %in% turnover_vec )|
-          (.data$play_type %in% normalplay & .data$yards_gained < .data$distance & 
-          .data$down == 4), 1, 0),
+            (.data$play_type %in% normalplay & .data$yards_gained < .data$distance & 
+               .data$down == 4), 1, 0),
       downs_turnover = ifelse((.data$play_type %in% normalplay) & (.data$yards_gained < .data$distance) & (.data$down == 4),1,0),
       down = as.numeric(.data$down),
       #--New Down-----
@@ -522,13 +522,13 @@ prep_epa_df_after <- function(dat) {
         #--penalty first down conversions, 10 or to goal
         .data$play_type %in% penalty &
           .data$penalty_1st_conv ~ as.numeric(ifelse(.data$yards_to_goal  - .data$yards_gained <= 10,
-                                               as.numeric(.data$yards_to_goal),10)),
+                                                     as.numeric(.data$yards_to_goal),10)),
         #--penalty without first down conversion
         .data$play_type %in% penalty & !.data$penalty_declined &
           !.data$penalty_1st_conv &
           !.data$penalty_offset ~ as.numeric(ifelse((.data$yards_gained >= .data$distance) &
-                                              (.data$yards_to_goal - .data$yards_gained <= 10),
-                                              as.numeric(.data$yards_to_goal),10)),
+                                                      (.data$yards_to_goal - .data$yards_gained <= 10),
+                                                    as.numeric(.data$yards_to_goal),10)),
         ##--normal plays
         .data$play_type %in% normalplay &
           .data$yards_gained >= .data$distance &
@@ -579,26 +579,26 @@ prep_epa_df_after <- function(dat) {
       drive_play = 1,
       drive_play_number = cumsum(.data$drive_play),
       first_by_penalty = ifelse(.data$play_type %in% penalty & .data$penalty_1st_conv, 1,
-                          ifelse(.data$play_type %in% penalty & .data$penalty_declined &
-                                 .data$penalty_offset & !.data$penalty_1st_conv &
-                                 .data$yards_gained > .data$distance, 1,
-                            ifelse(.data$play_type %in% penalty & .data$penalty_declined &
-                                   !.data$penalty_offset & !.data$penalty_1st_conv &
-                                   .data$yards_gained >= .data$distance, 1, 0))),
+                                ifelse(.data$play_type %in% penalty & .data$penalty_declined &
+                                         .data$penalty_offset & !.data$penalty_1st_conv &
+                                         .data$yards_gained > .data$distance, 1,
+                                       ifelse(.data$play_type %in% penalty & .data$penalty_declined &
+                                                !.data$penalty_offset & !.data$penalty_1st_conv &
+                                                .data$yards_gained >= .data$distance, 1, 0))),
       first_by_yards = ifelse(.data$play_type %in% normalplay & 
-                              .data$yards_gained >= .data$distance, 1, 0)) %>% 
+                                .data$yards_gained >= .data$distance, 1, 0)) %>% 
     dplyr::ungroup() %>% 
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     dplyr::mutate(
       firstD_by_poss = ifelse((.data$drive_play_number == 1 & .data$kickoff_play != 1)|
-                             (.data$drive_play_number == 2 & lag(.data$kickoff_play, 1) == 1), 1, 0),
+                                (.data$drive_play_number == 2 & lag(.data$kickoff_play, 1) == 1), 1, 0),
       firstD_by_penalty = ifelse(lag(.data$first_by_penalty, 1)==1 & .data$kickoff_play != 1, 1, 0),
       firstD_by_yards = ifelse(lag(.data$first_by_yards, 1)==1 & .data$kickoff_play != 1, 1, 0),
       new_yardline = ifelse((.data$play_type == 'Blocked Punt'), 
                             lead(.data$yards_to_goal, 1), .data$new_yardline)
     ) %>% 
     dplyr::select(-.data$play, -.data$half_play, -.data$drive_play)
-    
+  
   #--Punt Plays--------------------------
   punt_plays = dat$play_type == "Punt"
   touchback_punt = ifelse(!is.na(str_detect(dat$play_text,"touchback") & (punt_plays)),
@@ -618,7 +618,7 @@ prep_epa_df_after <- function(dat) {
   punt_yd_line = dat[punt_plays,] %>% pull(.data$yards_to_goal)
   punt_yds_gained = dat[punt_plays,] %>% pull(.data$yards_gained)
   dat[punt_plays,"new_yardline"] = (100 - punt_yd_line) + yds_punted - punt_yds_gained
-
+  
   #--End of Half Plays--------------------------
   end_of_half_plays = (dat$new_TimeSecsRem == 0)
   if (any(end_of_half_plays)) {
@@ -629,7 +629,7 @@ prep_epa_df_after <- function(dat) {
     dat$new_log_ydstogo[end_of_half_plays] <- log(99)
     dat$new_Under_two[end_of_half_plays] <- dat$new_TimeSecsRem[end_of_half_plays] <= 120
   }
-
+  
   # missed field goal needs to be here
   # needs to go before the na check to set to 99
   dat = dat %>% 
@@ -639,7 +639,7 @@ prep_epa_df_after <- function(dat) {
       100 - (.data$yards_to_goal - 9),
       .data$new_yardline
     ))
-
+  
   #--General weird plays that don't have an easy fix----
   na_yd_line = which(is.na(dat$new_yardline) | dat$new_yardline >= 100)
   dat$new_yardline[na_yd_line] = dat$yard_line[na_yd_line+1]
@@ -683,14 +683,14 @@ prep_epa_df_after <- function(dat) {
       .data$firstD_by_poss) %>% 
     dplyr::arrange(.data$id_play) %>%
     dplyr::mutate(id_play = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
-           id_play = as.numeric(.data$id_play))
+                  id_play = as.numeric(.data$id_play))
   
   colnames(dat) = gsub("new_", "", colnames(dat))
   colnames(dat)[3] <- "new_id"
   
   dat = dat %>% 
     dplyr::rename("yards_to_goal"="yardline")
-
+  
   return(dat)
 }
 

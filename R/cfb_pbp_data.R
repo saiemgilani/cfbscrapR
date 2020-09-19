@@ -60,7 +60,7 @@ cfb_pbp_data <- function(year,
   ## Year, Week, Team
   
   play_base_url <- "https://api.collegefootballdata.com/plays?"
-
+  
   full_url <- paste0(play_base_url,
                      "seasonType=", season_type,
                      "&year=", year,
@@ -70,13 +70,13 @@ cfb_pbp_data <- function(year,
   
   # Check for internet
   check_internet()
-
+  
   # # Create the GET request and set response as res
   # res <- httr::GET(full_url)
   # 
   # # Check the result
   # check_status(res)
-
+  
   raw_play_df <- fromJSON(full_url)
   raw_play_df <- do.call(data.frame, raw_play_df)
   
@@ -88,18 +88,18 @@ cfb_pbp_data <- function(year,
   
   ## call/drive information
   drive_info = cfb_drives(year = year, season_type = season_type, team = team, week = week)
-
+  
   clean_drive_df = clean_drive_info(drive_info)
-
+  
   colnames(clean_drive_df) <- paste0("drive_",colnames(clean_drive_df))
-    
+  
   play_df = raw_play_df %>%
     dplyr::mutate(drive_id = as.numeric(.data$drive_id)) %>%
     dplyr::left_join(clean_drive_df,
                      by = c("drive_id" = "drive_drive_id",
                             "game_id" = "drive_game_id"),
                      suffix = c("_play", "_drive"))
-
+  
   rm_cols = c(
     'drive_game_id', 'drive_id_drive',
     'drive_plays', 'drive_end_yardline',
@@ -110,8 +110,8 @@ cfb_pbp_data <- function(year,
     'drive_end_time.hours', 'drive_end_time.minutes', 'drive_end_time.seconds',
     'drive_elapsed.hours', 'drive_elapsed.minutes', 'drive_elapsed.seconds'
   )
-
-
+  
+  
   play_df <- play_df %>%
     dplyr::select(setdiff(names(play_df), rm_cols)) %>%
     dplyr::rename(drive_pts = .data$drive_pts_drive,
@@ -133,14 +133,14 @@ cfb_pbp_data <- function(year,
     g_ids = sort(unique(play_df$game_id))
     play_df = purrr::map_dfr(g_ids,
                              function(x) {
-                              play_df %>%
-                                dplyr::filter(.data$game_id == x) %>%
-                                create_epa() %>%
-                                # add_betting_cols(g_id = x, yr=year) %>% 
-                                # create_wpa_betting() %>% 
-                                create_wpa_naive()
-                              })
-      
+                               play_df %>%
+                                 dplyr::filter(.data$game_id == x) %>%
+                                 create_epa() %>%
+                                 # add_betting_cols(g_id = x, yr=year) %>% 
+                                 # create_wpa_betting() %>% 
+                                 create_wpa_naive()
+                             })
+    
     play_df <- play_df %>% 
       dplyr::select(-.data$drive_drive_number,
                     -.data$play_number) %>% 
@@ -212,6 +212,25 @@ cfb_pbp_data <- function(year,
 #' Adds penalty columns to Play-by-Play data pulled from the API
 #'
 #' @param raw_df (\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_dat()`
+#' @details Runs penalty detection on the play text and play types. Requires the following columns be present:
+#' \itemize{
+#' \item{game_id}
+#' \item{period}
+#' \item{down}
+#' \item{play_type}
+#' \item{play_text}
+#' }
+#' @return The original `raw_df` with the following columns appended to it:
+#' \describe{
+#' \item{penalty_flag}{TRUE/FALSE flag for penalty play types or penalty in play text plays.}
+#' \item{penalty_declined}{TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.}
+#' \item{penalty_no_play}{TRUE/FALSE flag for 'no play' in penalty play types or penalty in play text plays.}
+#' \item{penalty_offset}{TRUE/FALSE flag for 'off-setting' in penalty play types or penalty in play text plays.}
+#' \item{penalty_1st_conv}{TRUE/FALSE flag for 1st Down in penalty play types or penalty in play text plays.}
+#' \item{penalty_text}{TRUE/FALSE flag for penalty in text but not a penalty play type.}
+#' \item{down}{Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.}
+#' \item{half}{Defines the half variable (1, 2).}
+#' }
 #' @keywords internal
 #' @import stringr
 #' @import dplyr
@@ -257,18 +276,18 @@ penalty_detection <- function(raw_df) {
   raw_df$penalty_1st_conv[pen_type & pen_1st_down_text] <- TRUE
   #-- T/F flag for penalty text but not penalty play type -- 
   raw_df$penalty_text <- FALSE
-  raw_df$penalty_text[pen_text & !pen_type] <- TRUE
+  raw_df$penalty_text[pen_text & !pen_type & !pen_declined_text & 
+                        !pen_offset_text & !pen_no_play_text] <- TRUE
   
   ##-- Kickoff down adjustment ----
   raw_df = raw_df %>%
-   dplyr::mutate(
-     down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Kickoff"), 1, .data$down),
-     down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Penalty"), 1, .data$down),
-     half = ifelse(.data$period <= 2, 1, 2)) %>% 
-   dplyr::filter(
-     !(.data$game_id == '302610012' & .data$down == 5 & .data$play_type == 'Rush')
-   )
-  
+    dplyr::mutate(
+      down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Kickoff"), 1, .data$down),
+      down = ifelse(.data$down == 5 & str_detect(.data$play_type, "Penalty"), 1, .data$down),
+      half = ifelse(.data$period <= 2, 1, 2)) %>% 
+    dplyr::filter(
+      !(.data$game_id == '302610012' & .data$down == 5 & .data$play_type == 'Rush')
+    )
   return(raw_df)
 }
 
@@ -397,7 +416,7 @@ clean_pbp_dat <- function(raw_df) {
   )
   
   raw_df <- raw_df %>% 
-   dplyr::mutate(
+    dplyr::mutate(
       #-- Touchdowns----
       scoring_play = ifelse(.data$play_type %in% scores_vec, 1, 0),
       pts_scored = case_when(
@@ -431,6 +450,9 @@ clean_pbp_dat <- function(raw_df) {
       kickoff_play = ifelse(.data$play_type %in% kickoff_vec, 1, 0),
       kickoff_tb = ifelse(str_detect(.data$play_text,regex("touchback", ignore_case = TRUE)) &
                             (.data$play_type %in% kickoff_vec) & !is.na(.data$play_text), 1, 0),
+      kickoff_oob = ifelse(str_detect(.data$play_text,regex("out-of-bounds|out of bounds", ignore_case = TRUE)) &
+                            (.data$play_type %in% kickoff_vec) & !is.na(.data$play_text), 1, 0),
+      
       kick_play = ifelse(str_detect(.data$play_text, regex("kick|kickoff", ignore_case = TRUE)) &
                            !is.na(.data$play_text), 1, 0),
       punt_play = ifelse(str_detect(.data$play_text, regex("punt", ignore_case = TRUE)) &
@@ -438,6 +460,9 @@ clean_pbp_dat <- function(raw_df) {
       punt = ifelse(.data$play_type %in% punt_vec, 1, 0),
       punt_tb = ifelse(str_detect(.data$play_text,regex("touchback", ignore_case = TRUE)) &
                          (.data$play_type %in% punt_vec) & !is.na(.data$play_text), 1, 0),
+      punt_oob = ifelse(str_detect(.data$play_text,regex("out-of-bounds|out of bounds", ignore_case = TRUE)) &
+                         (.data$play_type %in% punt_vec) & !is.na(.data$play_text), 1, 0),
+      
       #-- Fumbles----
       fumble_vec = ifelse(str_detect(.data$play_text, "fumble") & !is.na(.data$play_text), 1, 0),
       #-- Pass/Rush----
@@ -526,7 +551,7 @@ clean_pbp_dat <- function(raw_df) {
       #-- Sacks----
       sack_vec = ifelse(
         (.data$play_type %in% c("Sack","Sack Touchdown") |
-        (.data$play_type == "Safety" & str_detect(.data$play_text, regex('sacked',ignore_case = TRUE)))) 
+           (.data$play_type == "Safety" & str_detect(.data$play_text, regex('sacked',ignore_case = TRUE)))) 
         & !is.na(.data$play_text), 1, 0),
       #-- Change of possession via turnover
       turnover_vec = ifelse(.data$play_type %in% turnover_vec, 1, 0),
@@ -535,7 +560,7 @@ clean_pbp_dat <- function(raw_df) {
       change_of_poss = ifelse(is.na(.data$change_of_poss), 0, .data$change_of_poss),
       ## Fix strip-sacks to fumbles----
       play_type = ifelse(.data$fumble_vec == 1 & .data$sack_vec == 1 & 
-                         .data$change_of_poss == 1 & .data$td_play == 0,
+                           .data$change_of_poss == 1 & .data$td_play == 0,
                          "Fumble Recovery (Opponent)", .data$play_type),
       play_type = ifelse(.data$fumble_vec == 1 & .data$sack_vec == 1 & .data$td_play == 1, 
                          "Fumble Recovery (Opponent)", .data$play_type),
@@ -543,7 +568,7 @@ clean_pbp_dat <- function(raw_df) {
       td_check = ifelse(!str_detect(.data$play_type, "Touchdown"), 1, 0),
       #-- Fix kickoff fumble return TDs----
       play_type = ifelse(.data$kick_play == 1 & .data$fumble_vec == 1 & 
-                         .data$td_play == 1 & .data$td_check == 1,
+                           .data$td_play == 1 & .data$td_check == 1,
                          paste0(.data$play_type, " Touchdown"), 
                          .data$play_type),
       #-- Fix punt return TDs----
@@ -572,9 +597,9 @@ clean_pbp_dat <- function(raw_df) {
                          "Interception Return Touchdown", .data$play_type),
       #-- Fix Sack/Fumbles Touchdown play_type labels----
       play_type = ifelse(str_detect(.data$play_text, regex("sacked", ignore_case = TRUE)) & 
-                         str_detect(.data$play_text, regex("fumbled", ignore_case = TRUE)) &
-                         str_detect(.data$play_text, regex("TD",ignore_case = TRUE)) &
-                         !is.na(.data$play_text), 
+                           str_detect(.data$play_text, regex("fumbled", ignore_case = TRUE)) &
+                           str_detect(.data$play_text, regex("TD",ignore_case = TRUE)) &
+                           !is.na(.data$play_text), 
                          "Sack Touchdown", .data$play_type),
       play_type = ifelse(.data$play_type == "Interception", "Interception Return", .data$play_type),
       play_type = ifelse(.data$play_type == "Pass Interception Return", "Interception Return", .data$play_type)
@@ -586,7 +611,20 @@ clean_pbp_dat <- function(raw_df) {
 #' Clean Drive Information
 #' Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column
 #'
-#' @param drive_df (\emph{data.frame} required) Drive DataFrame pulled from API
+#' @param drive_df (\emph{data.frame} required) Drive dataframe pulled from API via the `cfb_drives()` function
+#' @details Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
+#' \itemize{
+#' \item{id}{Returned as `drive_id`}
+#' \item{drive_result}{End result of the drive}
+#' \item{scoring}{Logical flag for if drive was a scoring drive}
+#' \item{game_id}{Unique game identifier}
+#' }
+#' @return The original `drive_df` with the following columns appended to it:
+#' \describe{
+#' \item{drive_id}{Returned as `drive_id` from original variable `id`}
+#' \item{pts_drive}{End result of the drive}
+#' \item{scoring}{Logical flag for if drive was a scoring drive updated}
+#' }
 #' @keywords internal
 #' @import stringr
 #' @import dplyr
@@ -595,9 +633,9 @@ clean_pbp_dat <- function(raw_df) {
 #'
 
 clean_drive_info <- function(drive_df){
-
+  
   clean_drive = drive_df %>%
-   dplyr::mutate(
+    dplyr::mutate(
       pts_drive = case_when(
         .data$drive_result == "TD" ~ 7,
         str_detect(.data$drive_result,"SF") ~ -2,
@@ -619,17 +657,28 @@ clean_drive_info <- function(drive_df){
       scoring = ifelse(.data$pts_drive != 0, TRUE, .data$scoring)) %>%
     dplyr::mutate(drive_id = as.numeric(.data$id)) %>%
     dplyr::arrange(.data$game_id, .data$drive_id)
-
+  
   return(clean_drive)
 }
 
 #' Add Betting columns
 #' This is only for DI-FBS football
 #'
-#' @param play_df (\emph{data.frame} required): Play-By-Play data.frame as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`)
+#' @param play_df (\emph{data.frame} required): Play-By-Play dataframe as pulled from `cfb_pbp_dat()`, `clean_pbp_dat()`,`penalty_detection()`
 #' @param g_id (\emph{Integer} optional): Game ID filter for querying a single game
 #' Can be found using the `cfb_game_info()` function
 #' @param yr (\emph{Integer} optional): Select year (example: 2018)
+#' @details Add Betting columns. Requires the following parameters to be present:
+#' \itemize{
+#' \item{play_df}{Play-By-Play dataframe as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`}
+#' \item{g_id}{Unique game identifier - `game_id`}
+#' \item{yr}{Year parameter}
+#' }
+#' @return The original `play_df` with the following columns appended to it:
+#' \describe{
+#' \item{spread}{The spread for the game}
+#' \item{formatted_spread}{Formatted spread with the favored team listed with the numeric spread}
+#' }
 #' @keywords internal
 #' @import stringr
 #' @import dplyr
