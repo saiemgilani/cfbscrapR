@@ -2,10 +2,10 @@
 #'
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\cr
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
-#'
+#' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' 
 #' @keywords Team Info
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -33,9 +33,10 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference names, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
-                msg = "Incorrect Conference Name, potential misspelling.\nConference Names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
+    # Check conference parameter in conference abbreviations, if not NULL
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+                            msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }
 

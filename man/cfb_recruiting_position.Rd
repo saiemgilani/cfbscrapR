@@ -18,9 +18,9 @@ cfb_recruiting_position(
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D-I football}
 
-\item{conference}{(\emph{String} optional): Conference name - select a valid FBS conference
-Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12
-Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic}
+\item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 }
 \description{
 If only start_year is provided, function will get CFB recruiting information based

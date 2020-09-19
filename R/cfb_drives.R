@@ -6,16 +6,16 @@
 #' @param team (\emph{String} optional): D-I Team
 #' @param offense_team (\emph{String} optional): Offense D-I Team
 #' @param defense_team (\emph{String} optional): Defense D-I Team
-#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\cr
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
-#' @param offense_conference (\emph{String} optional): Offense DI Conference name - select an appropriate conference\cr
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
-#' @param defense_conference (\emph{String} optional): Defense DI Conference name - select an appropriate conference\cr
-#' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
-#' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
-#'
+#' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param offense_conference (\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' @param defense_conference (\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
+#' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
+#' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
+#' 
 #' @keywords Drives
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -69,23 +69,23 @@ cfb_drives <- function(year,
     defense_team = utils::URLencode(defense_team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference names, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
-                msg = "Incorrect conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
+    # Check conference parameter in conference abbreviations, if not NULL
+    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+                            msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }
   if(!is.null(offense_conference)){
-    # Check offense_conference parameter in conference names, if not NULL
-    assertthat::assert_that(offense_conference %in% cfbscrapR::cfb_conf_types_df$name,
-                msg = "Incorrect offense_conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
+    # Check offense_conference parameter in conference abbreviations, if not NULL
+    assertthat::assert_that(offense_conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+                            msg = "Incorrect offense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode offense_conference parameter for URL, if not NULL
     offense_conference = utils::URLencode(offense_conference, reserved = TRUE)
   }
   if(!is.null(defense_conference)){
-    # Check defense_conference parameter in conference names, if not NULL
-    assertthat::assert_that(defense_conference %in% cfbscrapR::cfb_conf_types_df$name,
-                msg = "Incorrect defense_conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
+    # Check defense_conference parameter in conference abbreviations, if not NULL
+    assertthat::assert_that(defense_conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+                            msg = "Incorrect defense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode defense_conference parameter for URL, if not NULL
     defense_conference = utils::URLencode(defense_conference, reserved = TRUE)
   }

@@ -8,15 +8,30 @@ This is only for DI-FBS football}
 add_betting_cols(play_df, g_id, yr)
 }
 \arguments{
-\item{play_df}{(\emph{data.frame} required): Play-By-Play data.frame as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`)}
+\item{play_df}{(\emph{data.frame} required): Play-By-Play dataframe as pulled from `cfb_pbp_dat()`, `clean_pbp_dat()`,`penalty_detection()`}
 
 \item{g_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the `cfb_game_info()` function}
 
 \item{yr}{(\emph{Integer} optional): Select year (example: 2018)}
 }
+\value{
+The original `play_df` with the following columns appended to it:
+\describe{
+\item{spread}{The spread for the game}
+\item{formatted_spread}{Formatted spread with the favored team listed with the numeric spread}
+}
+}
 \description{
 Add Betting columns
 This is only for DI-FBS football
+}
+\details{
+Add Betting columns. Requires the following parameters to be present:
+\itemize{
+\item{play_df}{Play-By-Play dataframe as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`}
+\item{g_id}{Unique game identifier - `game_id`}
+\item{yr}{Year parameter}
+}
 }
 \keyword{internal}

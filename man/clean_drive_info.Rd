@@ -8,10 +8,27 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column}
 clean_drive_info(drive_df)
 }
 \arguments{
-\item{drive_df}{(\emph{data.frame} required) Drive DataFrame pulled from API}
+\item{drive_df}{(\emph{data.frame} required) Drive dataframe pulled from API via the `cfb_drives()` function}
+}
+\value{
+The original `drive_df` with the following columns appended to it:
+\describe{
+\item{drive_id}{Returned as `drive_id` from original variable `id`}
+\item{pts_drive}{End result of the drive}
+\item{scoring}{Logical flag for if drive was a scoring drive updated}
+}
 }
 \description{
 Clean Drive Information
 Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column
+}
+\details{
+Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
+\itemize{
+\item{id}{Returned as `drive_id`}
+\item{drive_result}{End result of the drive}
+\item{scoring}{Logical flag for if drive was a scoring drive}
+\item{game_id}{Unique game identifier}
+}
 }
 \keyword{internal}

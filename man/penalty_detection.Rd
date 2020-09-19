@@ -10,8 +10,31 @@ penalty_detection(raw_df)
 \arguments{
 \item{raw_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_dat()`}
 }
+\value{
+The original `raw_df` with the following columns appended to it:
+\describe{
+\item{penalty_flag}{TRUE/FALSE flag for penalty play types or penalty in play text plays.}
+\item{penalty_declined}{TRUE/FALSE flag for 'declined' in penalty play types or penalty in play text plays.}
+\item{penalty_no_play}{TRUE/FALSE flag for 'no play' in penalty play types or penalty in play text plays.}
+\item{penalty_offset}{TRUE/FALSE flag for 'off-setting' in penalty play types or penalty in play text plays.}
+\item{penalty_1st_conv}{TRUE/FALSE flag for 1st Down in penalty play types or penalty in play text plays.}
+\item{penalty_text}{TRUE/FALSE flag for penalty in text but not a penalty play type.}
+\item{down}{Defines kickoff downs and penalties on kickoffs and converts them from 5 (as from the API) to 1.}
+\item{half}{Defines the half variable (1, 2).}
+}
+}
 \description{
 Penalty Detection
 Adds penalty columns to Play-by-Play data pulled from the API
+}
+\details{
+Runs penalty detection on the play text and play types. Requires the following columns be present:
+\itemize{
+\item{game_id}
+\item{period}
+\item{down}
+\item{play_type}
+\item{play_text}
+}
 }
 \keyword{internal}
