@@ -1,3 +1,6 @@
+# cfbscrapR 1.0.21
+- Fix conference parameters to match API (moved to abbreviation format)
+
 # cfbscrapR 1.0.2
 - Fix downs turnovers and several other discrepancies in EPA computations.
 

@@ -60,7 +60,12 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
 
 ![wp\_cv\_loso\_calibration\_results.png](https://i.imgur.com/4YgfphC.png)
 
-# cfbscrapR v1.0.2
+## cfbscrapR v1.0.3
+
+  - Fix conference parameters to match API (moved to abbreviation
+    format)
+
+## cfbscrapR v1.0.2
 
   - Remove the
     [`add_betting_columns()`](https://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html)
