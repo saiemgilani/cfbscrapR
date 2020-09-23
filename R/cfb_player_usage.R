@@ -16,6 +16,24 @@
 #' Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #'
+#' @return A data frame with 14 variables:
+#' \describe{
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{athlete_id}}{character.}
+#'   \item{\code{name}}{character.}
+#'   \item{\code{position}}{character.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{usg_overall}}{double.}
+#'   \item{\code{usg_pass}}{double.}
+#'   \item{\code{usg_rush}}{double.}
+#'   \item{\code{usg_1st_down}}{double.}
+#'   \item{\code{usg_2nd_down}}{double.}
+#'   \item{\code{usg_3rd_down}}{double.}
+#'   \item{\code{usg_standard_downs}}{double.}
+#'   \item{\code{usg_passing_downs}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/player/usage}
 #' @keywords Player Usage
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
@@ -58,9 +76,9 @@ cfb_player_usage <- function(year = 2019,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

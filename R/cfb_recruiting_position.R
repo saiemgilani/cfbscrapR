@@ -16,6 +16,17 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' 
+#' @return A data frame with 7 variables:
+#' \describe{
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{position_group}}{character.}
+#'   \item{\code{avg_rating}}{double.}
+#'   \item{\code{total_rating}}{double.}
+#'   \item{\code{commits}}{integer.}
+#'   \item{\code{avg_stars}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/recruiting/groups}
 #' @keywords Recruiting
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
@@ -52,9 +63,9 @@ cfb_recruiting_position <- function(start_year = NULL, end_year = NULL,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                            msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

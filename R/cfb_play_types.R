@@ -1,10 +1,9 @@
 #' College Football Mapping for Play Types
 #'
-#' This data.frame helps identifies all play types identified in the play-by-play data.
+#' This data frame helps identifies all play types identified in the play-by-play data.
 #' This can be used to filter out play types when calling functions before hand.
 #'
-#'
-#' @format A data frame with 46 rows and 3 variables:
+#' @return A data frame with 46 rows and 3 variables:
 #' \describe{
 #'   \item{play_type_id}{Referencing play type id}
 #'   \item{text}{play type description}
@@ -12,7 +11,6 @@
 #'   ...
 #' }
 #' @source \url{https://api.collegefootballdata.com/play/types}
-#'
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"

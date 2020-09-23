@@ -4,7 +4,18 @@
 #' @param team2 (\emph{String} required): D-I Team 2
 #' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
 #' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
-#'
+#' 
+#' @return A data frame with 7 variables:
+#' \describe{
+#'   \item{\code{start_year}}{character.}
+#'   \item{\code{end_year}}{character.}
+#'   \item{\code{team1}}{character.}
+#'   \item{\code{team1_wins}}{character.}
+#'   \item{\code{team2}}{character.}
+#'   \item{\code{team2_wins}}{character.}
+#'   \item{\code{ties}}{character.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/teams/matchup}
 #' @keywords Team Matchup Records
 #' @importFrom attempt "stop_if_any"
 #' @importFrom jsonlite "fromJSON"

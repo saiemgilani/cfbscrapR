@@ -5,6 +5,35 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
+#' @return A data frame with 25 variables:
+#' \describe{
+#'   \item{\code{year}}{integer.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{rating}}{double.}
+#'   \item{\code{second_order_wins}}{logical.}
+#'   \item{\code{sos}}{logical.}
+#'   \item{\code{offense_rating}}{double.}
+#'   \item{\code{offense_success}}{logical.}
+#'   \item{\code{offense_explosiveness}}{logical.}
+#'   \item{\code{offense_rushing}}{logical.}
+#'   \item{\code{offense_passing}}{logical.}
+#'   \item{\code{offense_standard_downs}}{logical.}
+#'   \item{\code{offense_passing_downs}}{logical.}
+#'   \item{\code{offense_run_rate}}{logical.}
+#'   \item{\code{offense_pace}}{logical.}
+#'   \item{\code{defense_rating}}{double.}
+#'   \item{\code{defense_success}}{logical.}
+#'   \item{\code{defense_explosiveness}}{logical.}
+#'   \item{\code{defense_rushing}}{logical.}
+#'   \item{\code{defense_passing}}{logical.}
+#'   \item{\code{defense_standard_downs}}{logical.}
+#'   \item{\code{defense_passing_downs}}{logical.}
+#'   \item{\code{defense_havoc_total}}{logical.}
+#'   \item{\code{defense_havoc_front_seven}}{logical.}
+#'   \item{\code{defense_havoc_db}}{logical.}
+#'   \item{\code{special_teams_rating}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/ratings/sp/conferences}
 #' @keywords SP+
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
@@ -14,9 +43,8 @@
 #' @importFrom glue "glue"
 #' @import dplyr
 #' @export
-#'
 #' @examples
-#'
+#' 
 #' cfb_ratings_sp_conference(year = 2019)
 #'
 #' cfb_ratings_sp_conference(year = 2012, conference = 'SEC')
@@ -39,9 +67,9 @@ cfb_ratings_sp_conference <- function(year = NULL, conference = NULL){
                 msg = 'Enter valid year as a number in 4 digit format (YYYY)')
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

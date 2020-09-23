@@ -14,6 +14,42 @@
 #' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
 #' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #'
+#' @return A data frame with 32 variables:
+#' \describe{
+#'   \item{\code{game_id}}{integer.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{home_away}}{character.}
+#'   \item{\code{points}}{integer.}
+#'   \item{\code{category}}{character.}
+#'   \item{\code{athlete_id}}{character.}
+#'   \item{\code{name}}{character.}
+#'   \item{\code{c_att}}{character.}
+#'   \item{\code{yds}}{double.}
+#'   \item{\code{avg}}{double.}
+#'   \item{\code{td}}{double.}
+#'   \item{\code{int}}{double.}
+#'   \item{\code{qbr}}{double.}
+#'   \item{\code{car}}{double.}
+#'   \item{\code{long}}{double.}
+#'   \item{\code{rec}}{double.}
+#'   \item{\code{no}}{double.}
+#'   \item{\code{fg}}{character.}
+#'   \item{\code{pct}}{double.}
+#'   \item{\code{xp}}{character.}
+#'   \item{\code{pts}}{double.}
+#'   \item{\code{tb}}{double.}
+#'   \item{\code{in_20}}{double.}
+#'   \item{\code{fum}}{double.}
+#'   \item{\code{lost}}{double.}
+#'   \item{\code{tot}}{double.}
+#'   \item{\code{solo}}{double.}
+#'   \item{\code{sacks}}{double.}
+#'   \item{\code{tfl}}{double.}
+#'   \item{\code{pd}}{double.}
+#'   \item{\code{qb_hur}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/games/players}
 #' @keywords Game Info
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -25,9 +61,8 @@
 #' @import tidyr
 #' @import purrr
 #' @export
-#'
 #' @examples
-#'
+#' 
 #' cfb_game_player_stats(2018, week = 15, conference = 'Ind')
 #'
 #' cfb_game_player_stats(2013, week=1, team = "Florida State", category = 'passing')
@@ -66,9 +101,9 @@ cfb_game_player_stats<- function(year,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

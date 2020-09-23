@@ -1,6 +1,5 @@
 #' Plot a teams away travel
 #' 
-#'
 #' @param year Year 
 #' @param team_name Team Name
 #'
@@ -14,19 +13,18 @@
 #' 
 #' plot_away_travel(2019,"Texas")
 #' 
-#'
-#'
+
 plot_away_travel <- function(year,team_name) {
   # get data
   team_sched <- cfb_game_info(year, team = team_name)
   venue_deets <- cfb_venues()
   # tidyr::unnest venue location
-  venue <- venue_deets %>%  dplyr::select(.data$id, .data$name, .data$capacity,.data$location) %>%
+  venue <- venue_deets %>%  dplyr::select(.data$venue_id, .data$name, .data$capacity, .data$location) %>%
    dplyr::mutate(loc_x = unlist(.data$location$x),
            loc_y = unlist(.data$location$y)) %>% dplyr::select(-.data$location)
   
   team_sched_deets = team_sched %>% 
-    dplyr::left_join(venue, by = c("venue_id" = "id")) %>%
+    dplyr::left_join(venue, by = c("venue_id")) %>%
     dplyr::mutate(win = if_else(
       .data$home_team == team_name,
       .data$home_points > .data$away_points,

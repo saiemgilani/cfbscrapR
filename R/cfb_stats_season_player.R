@@ -13,6 +13,69 @@
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns\cr
 #' 
+#' @return A data frame with 59 variables:
+#' \describe{
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{athlete_id}}{character.}
+#'   \item{\code{player}}{character.}
+#'   \item{\code{category}}{character.}
+#'   \item{\code{passing_completions}}{double.}
+#'   \item{\code{passing_att}}{double.}
+#'   \item{\code{passing_pct}}{double.}
+#'   \item{\code{passing_yds}}{double.}
+#'   \item{\code{passing_td}}{double.}
+#'   \item{\code{passing_int}}{double.}
+#'   \item{\code{passing_ypa}}{double.}
+#'   \item{\code{rushing_car}}{double.}
+#'   \item{\code{rushing_yds}}{double.}
+#'   \item{\code{rushing_td}}{double.}
+#'   \item{\code{rushing_ypc}}{double.}
+#'   \item{\code{rushing_long}}{double.}
+#'   \item{\code{receiving_rec}}{double.}
+#'   \item{\code{receiving_yds}}{double.}
+#'   \item{\code{receiving_td}}{double.}
+#'   \item{\code{receiving_ypr}}{double.}
+#'   \item{\code{receiving_long}}{double.}
+#'   \item{\code{fumbles_fum}}{double.}
+#'   \item{\code{fumbles_rec}}{double.}
+#'   \item{\code{fumbles_lost}}{double.}
+#'   \item{\code{defensive_solo}}{double.}
+#'   \item{\code{defensive_tot}}{double.}
+#'   \item{\code{defensive_tfl}}{double.}
+#'   \item{\code{defensive_sacks}}{double.}
+#'   \item{\code{defensive_qb_hur}}{double.}
+#'   \item{\code{interceptions_int}}{double.}
+#'   \item{\code{interceptions_yds}}{double.}
+#'   \item{\code{interceptions_avg}}{double.}
+#'   \item{\code{interceptions_td}}{double.}
+#'   \item{\code{defensive_pd}}{double.}
+#'   \item{\code{defensive_td}}{double.}
+#'   \item{\code{kicking_fgm}}{double.}
+#'   \item{\code{kicking_fga}}{double.}
+#'   \item{\code{kicking_pct}}{double.}
+#'   \item{\code{kicking_xpa}}{double.}
+#'   \item{\code{kicking_xpm}}{double.}
+#'   \item{\code{kicking_pts}}{double.}
+#'   \item{\code{kicking_long}}{double.}
+#'   \item{\code{kick_returns_no}}{double.}
+#'   \item{\code{kick_returns_yds}}{double.}
+#'   \item{\code{kick_returns_avg}}{double.}
+#'   \item{\code{kick_returns_td}}{double.}
+#'   \item{\code{kick_returns_long}}{double.}
+#'   \item{\code{punting_no}}{double.}
+#'   \item{\code{punting_yds}}{double.}
+#'   \item{\code{punting_ypp}}{double.}
+#'   \item{\code{punting_long}}{double.}
+#'   \item{\code{punting_in_20}}{double.}
+#'   \item{\code{punting_tb}}{double.}
+#'   \item{\code{punt_returns_no}}{double.}
+#'   \item{\code{punt_returns_yds}}{double.}
+#'   \item{\code{punt_returns_avg}}{double.}
+#'   \item{\code{punt_returns_td}}{double.}
+#'   \item{\code{punt_returns_long}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/stats/player/season}
 #' @keywords Player Season Stats
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -57,9 +120,9 @@ cfb_stats_season_player <- function(year,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

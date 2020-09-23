@@ -3,7 +3,14 @@
 #' Extracts team talent composite as sourced from 247 rankings
 #'
 #' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
-#'
+#' 
+#' @return A data frame with 3 variables:
+#' \describe{
+#'   \item{\code{year}}{integer.}
+#'   \item{\code{school}}{character.}
+#'   \item{\code{talent}}{character.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/talent}
 #' @keywords Team talent
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"

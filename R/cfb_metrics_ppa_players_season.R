@@ -15,6 +15,33 @@
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
+#' @return A data frame with 23 variables:
+#' \describe{
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{id}}{character.}
+#'   \item{\code{name}}{character.}
+#'   \item{\code{position}}{character.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{countable_plays}}{integer.}
+#'   \item{\code{avg_PPA_all}}{double.}
+#'   \item{\code{avg_PPA_pass}}{double.}
+#'   \item{\code{avg_PPA_rush}}{double.}
+#'   \item{\code{avg_PPA_first_down}}{double.}
+#'   \item{\code{avg_PPA_second_down}}{double.}
+#'   \item{\code{avg_PPA_third_down}}{double.}
+#'   \item{\code{avg_PPA_standard_downs}}{double.}
+#'   \item{\code{avg_PPA_passing_downs}}{double.}
+#'   \item{\code{total_PPA_all}}{double.}
+#'   \item{\code{total_PPA_pass}}{double.}
+#'   \item{\code{total_PPA_rush}}{double.}
+#'   \item{\code{total_PPA_first_down}}{double.}
+#'   \item{\code{total_PPA_second_down}}{double.}
+#'   \item{\code{total_PPA_third_down}}{double.}
+#'   \item{\code{total_PPA_standard_downs}}{double.}
+#'   \item{\code{total_PPA_passing_downs}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/ppa/players/season}
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
@@ -27,8 +54,6 @@
 #' @export
 #' @examples
 #'
-#'
-#' 
 #' cfb_metrics_ppa_players_season(year = 2019, team = 'TCU')
 #'
 
@@ -55,9 +80,9 @@ cfb_metrics_ppa_players_season <- function(year = NULL,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

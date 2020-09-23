@@ -7,6 +7,31 @@
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
+#' @return A data frame with 21 variables:
+#' \describe{
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{off_overall}}{character.}
+#'   \item{\code{off_passing}}{character.}
+#'   \item{\code{off_rushing}}{character.}
+#'   \item{\code{off_first_down}}{character.}
+#'   \item{\code{off_second_down}}{character.}
+#'   \item{\code{off_third_down}}{character.}
+#'   \item{\code{off_cumulative_total}}{character.}
+#'   \item{\code{off_cumulative_passing}}{character.}
+#'   \item{\code{off_cumulative_rushing}}{character.}
+#'   \item{\code{def_overall}}{character.}
+#'   \item{\code{def_passing}}{character.}
+#'   \item{\code{def_rushing}}{character.}
+#'   \item{\code{def_first_down}}{character.}
+#'   \item{\code{def_second_down}}{character.}
+#'   \item{\code{def_third_down}}{character.}
+#'   \item{\code{def_cumulative_total}}{character.}
+#'   \item{\code{def_cumulative_passing}}{character.}
+#'   \item{\code{def_cumulative_rushing}}{character.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/ppa/teams}
 #' @keywords Teams Predicted Points 
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
@@ -44,9 +69,9 @@ cfb_metrics_ppa_teams <- function(year = 2019,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference names, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
-                msg = "Incorrect Conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
+    # # Check conference parameter in conference names, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$name,
+    #             msg = "Incorrect Conference name, potential misspelling.\nConference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\nConference Names G5 and Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

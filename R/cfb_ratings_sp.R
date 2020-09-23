@@ -5,6 +5,36 @@
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): D-I Team
 #'
+#' @return A data frame with 26 variables:
+#' \describe{
+#'   \item{\code{year}}{integer.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{rating}}{double.}
+#'   \item{\code{second_order_wins}}{logical.}
+#'   \item{\code{sos}}{logical.}
+#'   \item{\code{offense_rating}}{double.}
+#'   \item{\code{offense_success}}{logical.}
+#'   \item{\code{offense_explosiveness}}{logical.}
+#'   \item{\code{offense_rushing}}{logical.}
+#'   \item{\code{offense_passing}}{logical.}
+#'   \item{\code{offense_standard_downs}}{logical.}
+#'   \item{\code{offense_passing_downs}}{logical.}
+#'   \item{\code{offense_run_rate}}{logical.}
+#'   \item{\code{offense_pace}}{logical.}
+#'   \item{\code{defense_rating}}{double.}
+#'   \item{\code{defense_success}}{logical.}
+#'   \item{\code{defense_explosiveness}}{logical.}
+#'   \item{\code{defense_rushing}}{logical.}
+#'   \item{\code{defense_passing}}{logical.}
+#'   \item{\code{defense_standard_downs}}{logical.}
+#'   \item{\code{defense_passing_downs}}{logical.}
+#'   \item{\code{defense_havoc_total}}{logical.}
+#'   \item{\code{defense_havoc_front_seven}}{logical.}
+#'   \item{\code{defense_havoc_db}}{logical.}
+#'   \item{\code{special_teams_rating}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/ratings/sp}
 #' @keywords SP+
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"

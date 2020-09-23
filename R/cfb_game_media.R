@@ -8,7 +8,24 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
-#'
+#' 
+#' @return A data frame with 13 variables:
+#' \describe{
+#'   \item{\code{game_id}}{integer.}
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{week}}{integer.}
+#'   \item{\code{season_type}}{character.}
+#'   \item{\code{start_time}}{character.}
+#'   \item{\code{is_start_time_tbd}}{logical.}
+#'   \item{\code{home_team}}{character.}
+#'   \item{\code{home_conference}}{character.}
+#'   \item{\code{away_team}}{character.}
+#'   \item{\code{away_conference}}{character.}
+#'   \item{\code{tv}}{list.}
+#'   \item{\code{radio}}{logical.}
+#'   \item{\code{web}}{list.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/games/media}
 #' @keywords Game Info
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -47,9 +64,9 @@ cfb_game_media <- function(year,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }
