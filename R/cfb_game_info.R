@@ -13,7 +13,33 @@
 #' @param quarter_scores (\emph{Logical} default FALSE): This is a parameter to return the
 #' list columns that give the score at each quarter: home_line_scores and away_line scores.\cr
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
-#'
+#' 
+#' @return A data frame with 22 variables:
+#' \describe{
+#'   \item{\code{game_id}}{integer.}
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{week}}{integer.}
+#'   \item{\code{season_type}}{character.}
+#'   \item{\code{start_date}}{character.}
+#'   \item{\code{start_time_tbd}}{logical.}
+#'   \item{\code{neutral_site}}{logical.}
+#'   \item{\code{conference_game}}{logical.}
+#'   \item{\code{attendance}}{integer.}
+#'   \item{\code{venue_id}}{integer.}
+#'   \item{\code{venue}}{character.}
+#'   \item{\code{home_id}}{integer.}
+#'   \item{\code{home_team}}{character.}
+#'   \item{\code{home_conference}}{character.}
+#'   \item{\code{home_points}}{integer.}
+#'   \item{\code{home_post_win_prob}}{character.}
+#'   \item{\code{away_id}}{integer.}
+#'   \item{\code{away_team}}{character.}
+#'   \item{\code{away_conference}}{character.}
+#'   \item{\code{away_points}}{integer.}
+#'   \item{\code{away_post_win_prob}}{character.}
+#'   \item{\code{excitement_index}}{character.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/games}
 #' @keywords Game Info
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -23,9 +49,8 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
-#'
 #' @examples
-#'
+#' 
 #' cfb_game_info(2018, week = 1)
 #'
 #' cfb_game_info(2018, week = 7, conference = 'Ind')
@@ -69,9 +94,9 @@ cfb_game_info <- function(year,
     away_team = utils::URLencode(away_team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }
@@ -109,14 +134,18 @@ cfb_game_info <- function(year,
       df = jsonlite::fromJSON(full_url)
     
       if(!quarter_scores){
-        df <- dplyr::select(df,-.data$home_line_scores,-.data$away_line_scores)
+        df <- dplyr::select(df,-.data$home_line_scores,-.data$away_line_scores) %>% 
+          dplyr::rename(game_id = .data$id) %>% 
+          as.data.frame()
       } else{
         df <- df %>%
           tidyr::unnest_wider(.data$home_line_scores, names_sep = "_Q") %>%
           tidyr::unnest_wider(.data$away_line_scores, names_sep = "_Q")
         
         colnames(df) = gsub("_line_scores","_scores",colnames(df))
-        df <- as.data.frame(df)
+        df <- df %>% 
+          dplyr::rename(game_id = .data$id) %>% 
+          as.data.frame()
       }
       message(glue::glue("{Sys.time()}: Scraping game info data..."))
     },
