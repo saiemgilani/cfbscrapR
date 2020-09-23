@@ -82,7 +82,7 @@ This is only for DI-FBS football" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -109,6 +109,12 @@ This is only for DI-FBS football" />
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -175,7 +181,7 @@ This is only for DI-FBS football</h1>
 This is only for DI-FBS football</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_betting_cols</span>(<span class='no'>play_df</span>, <span class='no'>g_id</span>, <span class='no'>yr</span>)</pre>
+    <pre class="usage"><span class='fu'>add_betting_cols</span>(<span class='kw'>play_df</span>, <span class='kw'>g_id</span>, <span class='kw'>yr</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,7 +203,7 @@ Can be found using the `cfb_game_info()` function</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The original `play_df` with the following columns appended to it:</p><dl'>
+    <p>The original `play_df` with the following columns appended to it:</p><dl>
 <dt>spread</dt><dd><p>The spread for the game</p></dd>
 <dt>formatted_spread</dt><dd><p>Formatted spread with the favored team listed with the numeric spread</p></dd>
 
@@ -227,7 +233,7 @@ Can be found using the `cfb_game_info()` function</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

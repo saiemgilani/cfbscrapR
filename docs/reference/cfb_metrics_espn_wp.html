@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -170,7 +176,7 @@
     <p>Graciously contributed by MrCaseB:</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_metrics_espn_wp</span>(<span class='no'>game_id</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_metrics_espn_wp</span>(<span class='kw'>game_id</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,10 +191,22 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p><a href='https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07'>https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 5 variables:</p><dl>
+  <dt><code>espn_game_id</code></dt><dd><p>character.</p></dd>
+  <dt><code>play_id</code></dt><dd><p>character.</p></dd>
+  <dt><code>seconds_left</code></dt><dd><p>integer.</p></dd>
+  <dt><code>home_win_percentage</code></dt><dd><p>double.</p></dd>
+  <dt><code>away_win_percentage</code></dt><dd><p>double.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_metrics_espn_wp</span>(<span class='kw'>game_id</span> <span class='kw'>=</span> <span class='fl'>401114164</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:11: Scraping ESPN win probability data for game_id '401114164'...</span></div><div class='output co'>#&gt;     espn_game_id            play_id seconds_left home_win_percentage
+<span class='fu'>cfb_metrics_espn_wp</span>(game_id = <span class='fl'>401114164</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:10: Scraping ESPN win probability data for game_id '401114164'...</span></div><div class='output co'>#&gt;     espn_game_id            play_id seconds_left home_win_percentage
 #&gt; 1      401114164 401114164101849902         3600               0.405
 #&gt; 2      401114164 401114164101854501         3594               0.409
 #&gt; 3      401114164 401114164101857601         3563               0.414
@@ -590,7 +608,6 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 #&gt; 198               0.018
 #&gt; 199               0.000
 #&gt; 200               0.000</div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -607,7 +624,7 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

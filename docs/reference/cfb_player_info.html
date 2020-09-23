@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Player Information Search — cfb_player_info" />
-<meta property="og:description" content="A player search function with search_term as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
+<meta property="og:description" content="A player search function with `search_term` as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
 Would not recommend using the position group filter,it feels arbitrary and pernicious,
 but it is there. May fortune favor you should you choose to use it." />
 
@@ -81,7 +81,7 @@ but it is there. May fortune favor you should you choose to use it." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -108,6 +108,12 @@ but it is there. May fortune favor you should you choose to use it." />
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -169,12 +175,12 @@ but it is there. May fortune favor you should you choose to use it." />
     </div>
 
     <div class="ref-description">
-    <p>A player search function with <strong>search_term</strong> as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
+    <p>A player search function with <strong>`search_term`</strong> as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
 Would not recommend using the position group filter,it feels arbitrary and pernicious,
 but it is there. May fortune favor you should you choose to use it.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_player_info</span>(<span class='no'>search_term</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span>, position = <span class='kw'>NULL</span>, team = <span class='kw'>NULL</span>, year = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,26 +204,51 @@ Position Group  - options include:<br />
     <tr>
       <th>year</th>
       <td><p>(<em>Integer</em> optional): Year, 4 digit format (<em>YYYY</em>).
-If left NULL, API default will only provide results for most recent year of final rosters: 2019</p></td>
+If left NULL, API default will only provide results for most recent year of final rosters: 2020<br /></p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/player/search'>https://api.collegefootballdata.com/player/search</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 12 variables:</p><dl>
+  <dt><code>athlete_id</code></dt><dd><p>character. Unique player identifier - `athlete_id`.</p></dd>
+  <dt><code>team</code></dt><dd><p>character. Team of the player.</p></dd>
+  <dt><code>name</code></dt><dd><p>character. Player name.</p></dd>
+  <dt><code>first_name</code></dt><dd><p>character. Player first name.</p></dd>
+  <dt><code>last_name</code></dt><dd><p>character. Player last name.</p></dd>
+  <dt><code>weight</code></dt><dd><p>integer. Player weight.</p></dd>
+  <dt><code>height</code></dt><dd><p>integer. Player height.</p></dd>
+  <dt><code>jersey</code></dt><dd><p>integer. Player jersey number.</p></dd>
+  <dt><code>position</code></dt><dd><p>character. Player position.</p></dd>
+  <dt><code>home_town</code></dt><dd><p>character. Player home town.</p></dd>
+  <dt><code>team_color</code></dt><dd><p>character. Player team color.</p></dd>
+  <dt><code>team_color_secondary</code></dt><dd><p>character. Player team secondary color.</p></dd>
+
+</dl>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'James'</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'DB'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2017</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:19: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
+<span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'James'</span>, position = <span class='st'>'DB'</span>, team = <span class='st'>'Florida State'</span>, year = <span class='fl'>2017</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:18: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
 #&gt; 1    3691739 Florida State Derwin James     Derwin     James    211     75
 #&gt;   jersey position   home_town team_color team_color_secondary
 #&gt; 1      3       DB Leander, TX    #782F40              #ceb888</div><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Lawrence'</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Clemson"</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:20: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
+<span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'Lawrence'</span>, team = <span class='st'>"Clemson"</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:18: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
 #&gt; 1    4360310 Clemson Trevor Lawrence     Trevor  Lawrence    220     78     16
 #&gt;   position        home_town team_color team_color_secondary
 #&gt; 1       QB Cartersville, GA    #F66733              #522d80</div><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Tua'</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'QB'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:20: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team           name first_name  last_name weight height jersey
+<span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'Tua'</span>, position = <span class='st'>'QB'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:19: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team           name first_name  last_name weight height jersey
 #&gt; 1    4241479 Alabama Tua Tagovailoa        Tua Tagovailoa    218     73     13
 #&gt;   position     home_town team_color team_color_secondary
 #&gt; 1       QB Ewa Beach, HI    #690014              #f1f2f3</div><div class='input'>
-<span class='fu'>cfb_player_info</span>(<span class='kw'>search_term</span> <span class='kw'>=</span> <span class='st'>'Duggan'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:21: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team          name first_name last_name weight height jersey
+<span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'Duggan'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:19: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team          name first_name last_name weight height jersey
 #&gt; 1    4259319 Rutgers Jaohne Duggan     Jaohne    Duggan    295     73     57
 #&gt; 2    4427105     TCU    Max Duggan        Max    Duggan    190     74     15
 #&gt;   position          home_town team_color team_color_secondary
@@ -239,7 +270,7 @@ If left NULL, API default will only provide results for most recent year of fina
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

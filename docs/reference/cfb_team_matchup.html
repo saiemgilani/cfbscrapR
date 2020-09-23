@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -170,7 +176,7 @@
     <p>Get matchup history between two teams.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_matchup</span>(<span class='no'>team1</span>, <span class='no'>team2</span>, <span class='kw'>min_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>max_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_matchup</span>(<span class='kw'>team1</span>, <span class='kw'>team2</span>, min_year = <span class='kw'>NULL</span>, max_year = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,13 +199,34 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/teams/matchup'>https://api.collegefootballdata.com/teams/matchup</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 11 variables:</p><dl>
+  <dt><code>season</code></dt><dd><p>integer.</p></dd>
+  <dt><code>week</code></dt><dd><p>integer.</p></dd>
+  <dt><code>season_type</code></dt><dd><p>character.</p></dd>
+  <dt><code>date</code></dt><dd><p>character.</p></dd>
+  <dt><code>neutral_site</code></dt><dd><p>logical.</p></dd>
+  <dt><code>venue</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_team</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_score</code></dt><dd><p>integer.</p></dd>
+  <dt><code>away_team</code></dt><dd><p>character.</p></dd>
+  <dt><code>away_score</code></dt><dd><p>integer.</p></dd>
+  <dt><code>winner</code></dt><dd><p>character.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Texas'</span>,<span class='st'>'Oklahoma'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:54: Scraping team matchup...</span></div><div class='output co'>#&gt;     season week season_type                     date neutral_site
+<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Texas'</span>,<span class='st'>'Oklahoma'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:56: Scraping team matchup...</span></div><div class='output co'>#&gt;     season week season_type                     date neutral_site
 #&gt; 1     1902    4     regular 1902-10-04T00:00:00.000Z        FALSE
-#&gt; 2     1903   10     regular 1903-11-13T00:00:00.000Z        FALSE
-#&gt; 3     1903    6     regular 1903-10-17T00:00:00.000Z        FALSE
+#&gt; 2     1903    6     regular 1903-10-17T00:00:00.000Z        FALSE
+#&gt; 3     1903   10     regular 1903-11-13T00:00:00.000Z        FALSE
 #&gt; 4     1904   10     regular 1904-11-16T00:00:00.000Z        FALSE
 #&gt; 5     1905    8     regular 1905-11-03T00:00:00.000Z        FALSE
 #&gt; 6     1906    7     regular 1906-11-02T00:00:00.000Z        FALSE
@@ -311,8 +338,8 @@
 #&gt; 112   2019    7     regular 2019-10-12T16:00:00.000Z         TRUE
 #&gt;                                        venue home_team home_score away_team
 #&gt; 1                                       &lt;NA&gt;     Texas         22  Oklahoma
-#&gt; 2                                       &lt;NA&gt;  Oklahoma          5     Texas
-#&gt; 3                                       &lt;NA&gt;  Oklahoma          6     Texas
+#&gt; 2                                       &lt;NA&gt;  Oklahoma          6     Texas
+#&gt; 3                                       &lt;NA&gt;  Oklahoma          5     Texas
 #&gt; 4                                       &lt;NA&gt;     Texas         40  Oklahoma
 #&gt; 5                                       &lt;NA&gt;  Oklahoma          2     Texas
 #&gt; 6                                       &lt;NA&gt;  Oklahoma          9     Texas
@@ -424,8 +451,8 @@
 #&gt; 112                              Cotton Bowl     Texas         27  Oklahoma
 #&gt;     away_score   winner
 #&gt; 1            6    Texas
-#&gt; 2           11    Texas
-#&gt; 3            6     &lt;NA&gt;
+#&gt; 2            6     &lt;NA&gt;
+#&gt; 3           11    Texas
 #&gt; 4           10    Texas
 #&gt; 5            0 Oklahoma
 #&gt; 6           10    Texas
@@ -535,15 +562,16 @@
 #&gt; 110         27 Oklahoma
 #&gt; 111         48    Texas
 #&gt; 112         34 Oklahoma</div><div class='input'>
-<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:55: Scraping team matchup...</span></div><div class='output co'>#&gt;    season week season_type                     date neutral_site venue
+<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:57: Scraping team matchup...</span></div><div class='output co'>#&gt;    season week season_type                     date neutral_site venue
 #&gt; 1    1903    5     regular 1903-10-10T00:00:00.000Z        FALSE    NA
 #&gt; 2    1903   10     regular 1903-11-14T00:00:00.000Z        FALSE    NA
 #&gt; 3    1903   12     regular 1903-11-28T00:00:00.000Z        FALSE    NA
 #&gt; 4    1904    6     regular 1904-10-22T00:00:00.000Z        FALSE    NA
 #&gt; 5    1905    8     regular 1905-11-04T00:00:00.000Z        FALSE    NA
 #&gt; 6    1905    3     regular 1905-09-30T00:00:00.000Z        FALSE    NA
-#&gt; 7    1906    8     regular 1906-11-10T00:00:00.000Z        FALSE    NA
-#&gt; 8    1906    6     regular 1906-10-27T00:00:00.000Z        FALSE    NA
+#&gt; 7    1906    6     regular 1906-10-27T00:00:00.000Z        FALSE    NA
+#&gt; 8    1906    8     regular 1906-11-10T00:00:00.000Z        FALSE    NA
 #&gt; 9    1907    8     regular 1907-11-05T00:00:00.000Z        FALSE    NA
 #&gt; 10   1908    7     regular 1908-10-31T00:00:00.000Z        FALSE    NA
 #&gt; 11   1909    5     regular 1909-10-16T00:00:00.000Z        FALSE    NA
@@ -632,8 +660,8 @@
 #&gt; 4  Texas A&amp;M         29       TCU          0 Texas A&amp;M
 #&gt; 5  Texas A&amp;M         24       TCU         11 Texas A&amp;M
 #&gt; 6  Texas A&amp;M         20       TCU          0 Texas A&amp;M
-#&gt; 7  Texas A&amp;M         22       TCU          0 Texas A&amp;M
-#&gt; 8  Texas A&amp;M         42       TCU          0 Texas A&amp;M
+#&gt; 7  Texas A&amp;M         42       TCU          0 Texas A&amp;M
+#&gt; 8  Texas A&amp;M         22       TCU          0 Texas A&amp;M
 #&gt; 9  Texas A&amp;M         32       TCU          5 Texas A&amp;M
 #&gt; 10 Texas A&amp;M         13       TCU         10 Texas A&amp;M
 #&gt; 11       TCU          0 Texas A&amp;M          0      &lt;NA&gt;
@@ -715,7 +743,8 @@
 #&gt; 87 Texas A&amp;M         34       TCU         17 Texas A&amp;M
 #&gt; 88       TCU          6 Texas A&amp;M         38 Texas A&amp;M
 #&gt; 89 Texas A&amp;M         28       TCU          9 Texas A&amp;M</div><div class='input'>
-<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>, <span class='kw'>min_year</span> <span class='kw'>=</span> <span class='fl'>1975</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:55: Scraping team matchup...</span></div><div class='output co'>#&gt;    season week season_type                     date neutral_site venue
+<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>, min_year = <span class='fl'>1975</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:57: Scraping team matchup...</span></div><div class='output co'>#&gt;    season week season_type                     date neutral_site venue
 #&gt; 1    1975    7     regular 1975-10-18T00:00:00.000Z        FALSE    NA
 #&gt; 2    1976   12     regular 1976-11-20T00:00:00.000Z        FALSE    NA
 #&gt; 3    1977   12     regular 1977-11-19T00:00:00.000Z        FALSE    NA
@@ -761,7 +790,8 @@
 #&gt; 20 Texas A&amp;M         34       TCU         17 Texas A&amp;M
 #&gt; 21       TCU          6 Texas A&amp;M         38 Texas A&amp;M
 #&gt; 22 Texas A&amp;M         28       TCU          9 Texas A&amp;M</div><div class='input'>
-<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Florida State'</span>, <span class='st'>'Florida'</span>, <span class='kw'>min_year</span> <span class='kw'>=</span> <span class='fl'>1975</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:56: Scraping team matchup...</span></div><div class='output co'>#&gt;    season week season_type                     date neutral_site
+<span class='fu'>cfb_team_matchup</span>(<span class='st'>'Florida State'</span>, <span class='st'>'Florida'</span>, min_year = <span class='fl'>1975</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:58: Scraping team matchup...</span></div><div class='output co'>#&gt;    season week season_type                     date neutral_site
 #&gt; 1    1975    7     regular 1975-10-18T00:00:00.000Z        FALSE
 #&gt; 2    1976    7     regular 1976-10-16T00:00:00.000Z        FALSE
 #&gt; 3    1977   14     regular 1977-12-03T00:00:00.000Z        FALSE
@@ -784,8 +814,8 @@
 #&gt; 20   1994   14     regular 1994-11-26T00:00:00.000Z        FALSE
 #&gt; 21   1994    1  postseason 1995-01-02T00:00:00.000Z         TRUE
 #&gt; 22   1995   14     regular 1995-11-25T00:00:00.000Z        FALSE
-#&gt; 23   1996   15     regular 1996-11-30T00:00:00.000Z        FALSE
-#&gt; 24   1996    1  postseason 1997-01-02T00:00:00.000Z         TRUE
+#&gt; 23   1996    1  postseason 1997-01-02T00:00:00.000Z         TRUE
+#&gt; 24   1996   15     regular 1996-11-30T00:00:00.000Z        FALSE
 #&gt; 25   1997   14     regular 1997-11-22T00:00:00.000Z        FALSE
 #&gt; 26   1998   13     regular 1998-11-21T00:00:00.000Z        FALSE
 #&gt; 27   1999   13     regular 1999-11-20T00:00:00.000Z        FALSE
@@ -832,8 +862,8 @@
 #&gt; 20                                        &lt;NA&gt;       Florida         31
 #&gt; 21                                        &lt;NA&gt; Florida State         23
 #&gt; 22                                        &lt;NA&gt;       Florida         35
-#&gt; 23                                        &lt;NA&gt; Florida State         24
-#&gt; 24                                        &lt;NA&gt;       Florida         52
+#&gt; 23                                        &lt;NA&gt;       Florida         52
+#&gt; 24                                        &lt;NA&gt; Florida State         24
 #&gt; 25                                        &lt;NA&gt;       Florida         32
 #&gt; 26                                        &lt;NA&gt; Florida State         23
 #&gt; 27                                        &lt;NA&gt;       Florida         23
@@ -880,8 +910,8 @@
 #&gt; 20 Florida State         31          &lt;NA&gt;
 #&gt; 21       Florida         17 Florida State
 #&gt; 22 Florida State         24       Florida
-#&gt; 23       Florida         21 Florida State
-#&gt; 24 Florida State         20       Florida
+#&gt; 23 Florida State         20       Florida
+#&gt; 24       Florida         21 Florida State
 #&gt; 25 Florida State         29       Florida
 #&gt; 26       Florida         12 Florida State
 #&gt; 27 Florida State         30 Florida State
@@ -921,7 +951,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

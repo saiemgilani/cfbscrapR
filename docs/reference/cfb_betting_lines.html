@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,15 +177,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>cfb_betting_lines</span>(
-  <span class='kw'>game_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>home_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>away_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>line_provider</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  game_id = <span class='kw'>NULL</span>,
+  year = <span class='kw'>NULL</span>,
+  week = <span class='kw'>NULL</span>,
+  season_type = <span class='st'>"regular"</span>,
+  team = <span class='kw'>NULL</span>,
+  home_team = <span class='kw'>NULL</span>,
+  away_team = <span class='kw'>NULL</span>,
+  conference = <span class='kw'>NULL</span>,
+  line_provider = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -226,10 +232,34 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/lines'>https://api.collegefootballdata.com/lines</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Betting information for games with the following columns:</p><dl>
+  <dt><code>game_id</code></dt><dd><p>integer. Unique game identifier - `game_id`.</p></dd>
+  <dt><code>season</code></dt><dd><p>integer. Season parameter.</p></dd>
+  <dt><code>season_type</code></dt><dd><p>character. Season Type (regular, postseason, both).</p></dd>
+  <dt><code>week</code></dt><dd><p>integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).</p></dd>
+  <dt><code>home_team</code></dt><dd><p>character. Home D-I Team.</p></dd>
+  <dt><code>home_conference</code></dt><dd><p>character. Home D-I Conference.</p></dd>
+  <dt><code>home_score</code></dt><dd><p>integer. Home Score.</p></dd>
+  <dt><code>away_team</code></dt><dd><p>character. Away D-I Team.</p></dd>
+  <dt><code>away_conference</code></dt><dd><p>character. Away D-I Conference.</p></dd>
+  <dt><code>away_score</code></dt><dd><p>integer. Away Score.</p></dd>
+  <dt><code>provider</code></dt><dd><p>character. Line provider.</p></dd>
+  <dt><code>spread</code></dt><dd><p>character. Spread for the game.</p></dd>
+  <dt><code>formatted_spread</code></dt><dd><p>character. Formatted spread for the game.</p></dd>
+  <dt><code>over_under</code></dt><dd><p>character. Over/Under for the game.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Florida State'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:02: Scraping betting lines data...</span></div><div class='output co'>#&gt;     game_id season season_type week     home_team home_conference home_score
+<span class='fu'>cfb_betting_lines</span>(year = <span class='fl'>2018</span>, week = <span class='fl'>12</span>, team = <span class='st'>'Florida State'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:00: Scraping betting lines data...</span></div><div class='output co'>#&gt;     game_id season season_type week     home_team home_conference home_score
 #&gt; 1 401013175   2018     regular   12 Florida State             ACC         22
 #&gt; 2 401013175   2018     regular   12 Florida State             ACC         22
 #&gt; 3 401013175   2018     regular   12 Florida State             ACC         22
@@ -245,7 +275,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 3   Boston College -3       49.5
 #&gt; 4   Boston College -3       48.5</div><div class='input'>
 <span class='co'>#7 OTs LSU at TAMU</span>
-<span class='fu'>cfb_betting_lines</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>13</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'SEC'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:03: Scraping betting lines data...</span></div><div class='output co'>#&gt;     game_id season season_type week home_team home_conference home_score
+<span class='fu'>cfb_betting_lines</span>(year = <span class='fl'>2018</span>, week = <span class='fl'>13</span>, team = <span class='st'>"Texas A&amp;M"</span>, conference = <span class='st'>'SEC'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:00: Scraping betting lines data...</span></div><div class='output co'>#&gt;     game_id season season_type week home_team home_conference home_score
 #&gt; 1 401012356   2018     regular   13 Texas A&amp;M             SEC         74
 #&gt; 2 401012356   2018     regular   13 Texas A&amp;M             SEC         74
 #&gt; 3 401012356   2018     regular   13 Texas A&amp;M             SEC         74
@@ -276,7 +307,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

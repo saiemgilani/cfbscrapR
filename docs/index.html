@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.21</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -64,6 +64,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -132,10 +138,12 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install <code>cfbscrapR</code> from <a href="https://github.com/saiemgilani/cfbscrapR">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># Then can install using the devtools package from either of the following:</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="kw">repo</span> <span class="kw">=</span> <span class="st">"saiemgilani/cfbscrapR"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># Then can install using the devtools package from either of the following:</span>
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(repo = <span class="st">"saiemgilani/cfbscrapR"</span>)
 <span class="co"># or the following (these are the exact same packages):</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="kw">repo</span> <span class="kw">=</span> <span class="st">"meysubb/cfbscrapR"</span>)</pre></div>
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(repo = <span class="st">"meysubb/cfbscrapR"</span>)
+</pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -157,23 +165,66 @@
 <p><img src="https://i.imgur.com/4YgfphC.png" alt="wp_cv_loso_calibration_results.png"></p>
 </div>
 </div>
-<div id="cfbscrapr-v1021" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbscrapr-v1021" class="anchor"></a>cfbscrapR v1.0.21</h2>
-<ul>
-<li>Fix conference parameters to match API (moved to abbreviation format)</li>
-</ul>
 </div>
+<div id="cfbscrapr-1022" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbscrapr-1022" class="anchor"></a>cfbscrapR 1.0.22</h1>
+<ul>
+<li><p><del>Fix conference parameters to match API (moved to abbreviation format).</del> Removed assertions for now, so users should be able to access conference data without issue, assuming the input argument is correct. May fortune favor your selection.</p></li>
+<li><p>Add mgcv (&gt;= v1.8.32) dependency and update WP model accordingly. Note on WPA: Kickoffs are problematic and our calculation algorithm does not appear to accomplishing what it needs to. We are working on this, aiming for a quick next version update centered around this.</p></li>
+<li>
+<p>Following play type renamings and merging:</p>
+<ul>
+<li>Pass Interception Return –&gt; Interception Return</li>
+<li>Pass Interception –&gt; Interception Return</li>
+<li>Pass Interception Return Touchdown –&gt; Interception Return Touchdown</li>
+<li>Sack Touchdown –&gt; Fumble Recovery (Opponent) Touchdown</li>
+<li>Punt Touchdown ~ Punt Return Touchdown.</li>
+</ul>
+</li>
+<li><p>Update <code>rush_vec</code> and <code>pass_vec</code> regex definitions to be more precise on pulling rushing plays.</p></li>
+<li><p>Update definition of play_type definition for cleaning “Fumble Recovery (Opponent)” play types to actually distinguish between touchdowns and non-scoring opponent fumble recoveries (prior definition was combining the touchdowns into the non-scoring play type)</p></li>
+<li><p>Reduce the reach of the non-explicit rushing/passing touchdowns to be more careful about merging labels.</p></li>
+<li><p>Similarly, separated punt touchdowns into a specific type of offensive score where the punting team recovers a fumble and scores, all other <code>punt touchdowns</code> prior to this were punt return touchdowns. There is a specific Jalen Reagor (TCU) play where he pulls a Greg Reid and fumbles on the punt return only to recover the fumble and run it in for a 73 yard TD that is explicitly fixed.</p></li>
+<li>
+<p>Add the following columns:</p>
+<ul>
+<li>kickoff_onside</li>
+<li>kickoff_fair_catch</li>
+<li>kickoff_downed</li>
+<li>punt_fair_catch</li>
+<li>punt_downed</li>
+<li>sack</li>
+<li>int</li>
+<li>int_td</li>
+<li>completion</li>
+<li>pass_attempt</li>
+<li>target</li>
+<li>pass_td</li>
+<li>rush_td</li>
+<li>safety</li>
+</ul>
+</li>
+<li><p>add some return skeleton docs</p></li>
+<li><p>add column <code>drive_start_yardline</code> to the remove cols</p></li>
+<li><p>add parsing for kickoff safetys accounting for sign change</p></li>
+<li><p>Added <a href="https://twitter.com/JaredDLee">Jared Lee</a>’s <a href="https://saiemgilani.github.io/cfbscrapR/articles/Animated_WP_Plotting.html">animated win probability plot vignette</a> to the package documentation page</p></li>
+</ul>
+<p><img src="https://kazink36.github.io/images/animated_wp_ex.gif" alt="Result"></p>
+<ul>
+<li><p>Contains important <code>add_player_cols()</code> function useful to parse existing play-by-play datasets and pull passer/rusher/receiver/etc. player names.</p></li>
+<li><p>Added <a href="https://twitter.com/deceptivespeed_">Michael Egle</a>’s <a href="https://saiemgilani.github.io/cfbscrapR/articles/fourth_down_plot_tutorial.html">4th down tendency plot vignette</a> to the package documentation page</p></li>
+</ul>
 <div id="cfbscrapr-v102" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cfbscrapr-v102" class="anchor"></a>cfbscrapR v1.0.2</h2>
 <ul>
-<li>Remove the <a href="https://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html"><code>add_betting_columns()</code></a> function and the current betting win probability model from the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code></a> function.</li>
-<li>Added <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_fpi.html"><code><a href="reference/cfb_ratings_fpi.html">cfb_ratings_fpi()</a></code></a> function from @sabinanalytics’s fork of the repository</li>
-<li>Added the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_espn_wp.html"><code><a href="reference/cfb_metrics_espn_wp.html">cfb_metrics_espn_wp()</a></code></a> function, courtesy of @mrcaseb</li>
+<li>Remove the <a href="https://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html"><code>add_betting_columns()</code></a> function and the current betting win probability model from the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> function.</li>
+<li>Added <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_fpi.html"><code>cfb_ratings_fpi()</code></a> function from @sabinanalytics’s fork of the repository</li>
+<li>Added the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_espn_wp.html"><code>cfb_metrics_espn_wp()</code></a> function, courtesy of @mrcaseb</li>
 <li>Add <a href="https://github.com/saiemgilani/cfbscrapR/tree/master/tests/testthat">tests</a> for a majority of the functions. This is the biggest behind the scenes change that will translate to more reliable functions.</li>
 <li>Rename several function outputs from <strong>camelCase to under_score</strong> for consistency. Please adjust your scripts accordingly, apologies for the inconvenience.</li>
-<li>Remove <code>drives</code> parameter from <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code></a> function. For accessing drives information, please switch to the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html"><code><a href="reference/cfb_drives.html">cfb_drives()</a></code></a> function.</li>
+<li>Remove <code>drives</code> parameter from <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> function. For accessing drives information, please switch to the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html"><code>cfb_drives()</code></a> function.</li>
 </ul>
 <div id="fix-downs-turnovers-and-several-other-discrepancies-in-epa-computations" class="section level4">
 <h4 class="hasAnchor">
@@ -235,7 +286,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

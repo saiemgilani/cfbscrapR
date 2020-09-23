@@ -80,7 +80,7 @@ This can be used to filter out play stats types when calling functions before ha
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -107,6 +107,12 @@ This can be used to filter out play stats types when calling functions before ha
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -175,9 +181,12 @@ This can be used to filter out play stats types when calling functions before ha
     <pre class="usage"><span class='fu'>cfb_play_stats_types</span>()</pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>A data frame with 22 rows and 2 variables:</p><dl'>
+    <p><a href='https://api.collegefootballdata.com/play/stat/types'>https://api.collegefootballdata.com/play/stat/types</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 22 rows and 2 variables:</p><dl>
   <dt>play_stat_type_id</dt><dd><p>Referencing play stat type ID</p></dd>
   <dt>name</dt><dd><p>Type of play stats</p></dd>
   ...
@@ -187,7 +196,8 @@ This can be used to filter out play stats types when calling functions before ha
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_play_stats_types</span>()</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:29: Scraping play stats types data...</span></div><div class='output co'>#&gt;    play_stat_type_id                name
+<span class='fu'>cfb_play_stats_types</span>()
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:28: Scraping play stats types data...</span></div><div class='output co'>#&gt;    play_stat_type_id                name
 #&gt; 1                  1        Incompletion
 #&gt; 2                  2              Target
 #&gt; 3                  3        Pass Breakup
@@ -226,7 +236,7 @@ This can be used to filter out play stats types when calling functions before ha
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -170,7 +176,7 @@
     <p>At least one of <strong>year</strong> or <strong>team</strong> must be specified for the function to run</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_ratings_sp</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_ratings_sp</span>(year = <span class='kw'>NULL</span>, team = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,10 +191,46 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/ratings/sp'>https://api.collegefootballdata.com/ratings/sp</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 26 variables:</p><dl>
+  <dt><code>year</code></dt><dd><p>integer.</p></dd>
+  <dt><code>team</code></dt><dd><p>character.</p></dd>
+  <dt><code>conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>rating</code></dt><dd><p>double.</p></dd>
+  <dt><code>second_order_wins</code></dt><dd><p>logical.</p></dd>
+  <dt><code>sos</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_rating</code></dt><dd><p>double.</p></dd>
+  <dt><code>offense_success</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_explosiveness</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_rushing</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_passing</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_standard_downs</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_passing_downs</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_run_rate</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_pace</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_rating</code></dt><dd><p>double.</p></dd>
+  <dt><code>defense_success</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_explosiveness</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_rushing</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_passing</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_standard_downs</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_passing_downs</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_havoc_total</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_havoc_front_seven</code></dt><dd><p>logical.</p></dd>
+  <dt><code>defense_havoc_db</code></dt><dd><p>logical.</p></dd>
+  <dt><code>special_teams_rating</code></dt><dd><p>double.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_ratings_sp</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:32: Scraping S&amp;P+ ratings data...</span></div><div class='output co'>#&gt;     year                  team        conference     rating second_order_wins
+<span class='fu'>cfb_ratings_sp</span>(year = <span class='fl'>2019</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:31: Scraping S&amp;P+ ratings data...</span></div><div class='output co'>#&gt;     year                  team        conference     rating second_order_wins
 #&gt; 1   2019            Ohio State           Big Ten  35.400000                NA
 #&gt; 2   2019                   LSU               SEC  33.100000                NA
 #&gt; 3   2019               Alabama               SEC  32.400000                NA
@@ -1112,7 +1154,8 @@
 #&gt; 129                        NA               NA         -2.200000000
 #&gt; 130                        NA               NA         -0.500000000
 #&gt; 131                        NA               NA          0.005343511</div><div class='input'>
-<span class='fu'>cfb_ratings_sp</span>(<span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Texas A&amp;M'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:33: Scraping S&amp;P+ ratings data...</span></div><div class='output co'>#&gt;     year             team conference     rating second_order_wins       sos
+<span class='fu'>cfb_ratings_sp</span>(team = <span class='st'>'Texas A&amp;M'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:32: Scraping S&amp;P+ ratings data...</span></div><div class='output co'>#&gt;     year             team conference     rating second_order_wins       sos
 #&gt; 1   1970        Texas A&amp;M        SEC -1.7000000                NA        NA
 #&gt; 2   1971        Texas A&amp;M        SEC -3.5000000                NA        NA
 #&gt; 3   1972        Texas A&amp;M        SEC  3.7000000                NA        NA
@@ -1163,7 +1206,7 @@
 #&gt; 48  2017        Texas A&amp;M        SEC  9.4000000          5.500000 0.8220000
 #&gt; 49  2018        Texas A&amp;M        SEC 21.6000000          9.000000 0.7610000
 #&gt; 50  2019        Texas A&amp;M        SEC 15.0000000                NA        NA
-#&gt; 51  2020        Texas A&amp;M        SEC 20.2000000                NA        NA
+#&gt; 51  2020        Texas A&amp;M        SEC 19.8000000                NA        NA
 #&gt; 52  1970 nationalAverages       &lt;NA&gt;  1.3821138                NA        NA
 #&gt; 53  1971 nationalAverages       &lt;NA&gt;  1.4031250                NA        NA
 #&gt; 54  1972 nationalAverages       &lt;NA&gt;  1.4212598                NA        NA
@@ -1214,7 +1257,7 @@
 #&gt; 99  2017 nationalAverages       &lt;NA&gt;  1.6695312          6.642188 0.8979063
 #&gt; 100 2018 nationalAverages       &lt;NA&gt;  1.4430769          6.693846 0.9053308
 #&gt; 101 2019 nationalAverages       &lt;NA&gt;  0.7595420                NA        NA
-#&gt; 102 2020 nationalAverages       &lt;NA&gt;  0.3100000                NA        NA
+#&gt; 102 2020 nationalAverages       &lt;NA&gt; -0.2587786                NA        NA
 #&gt;     offense_rating offense_success offense_explosiveness offense_rushing
 #&gt; 1         25.50000              NA                    NA              NA
 #&gt; 2         17.20000              NA                    NA              NA
@@ -1266,7 +1309,7 @@
 #&gt; 48        33.10000         93.4000             112.40000        92.90000
 #&gt; 49        40.30000        114.8000             101.50000       111.50000
 #&gt; 50        34.00000              NA                    NA              NA
-#&gt; 51        36.80000              NA                    NA              NA
+#&gt; 51        36.90000              NA                    NA              NA
 #&gt; 52        26.18293              NA                    NA              NA
 #&gt; 53              NA              NA                    NA              NA
 #&gt; 54        25.37953              NA                    NA              NA
@@ -1317,7 +1360,7 @@
 #&gt; 99        28.90469        100.4898             100.11016        99.88516
 #&gt; 100       29.34769        100.7038              99.75462       100.18308
 #&gt; 101       28.34809              NA                    NA              NA
-#&gt; 102       27.73769              NA                    NA              NA
+#&gt; 102       27.38168              NA                    NA              NA
 #&gt;     offense_passing offense_standard_downs offense_passing_downs
 #&gt; 1                NA                     NA                    NA
 #&gt; 2                NA                     NA                    NA
@@ -1472,7 +1515,7 @@
 #&gt; 48         0.5180000 -1.6000000000       25.20000        106.3000
 #&gt; 49         0.4990000  1.8000000000       19.80000        115.7000
 #&gt; 50                NA            NA       19.40000              NA
-#&gt; 51                NA            NA       16.60000              NA
+#&gt; 51                NA            NA       17.20000              NA
 #&gt; 52                NA            NA       24.89350              NA
 #&gt; 53                NA            NA       23.72812              NA
 #&gt; 54                NA            NA       24.05748              NA
@@ -1523,7 +1566,7 @@
 #&gt; 99         0.5186563 -0.0156250000       27.23516        102.1656
 #&gt; 100        0.5196769  0.0000000000       27.90692        102.1492
 #&gt; 101               NA            NA       27.59924              NA
-#&gt; 102               NA            NA       27.42385              NA
+#&gt; 102               NA            NA       27.64275              NA
 #&gt;     defense_explosiveness defense_rushing defense_passing
 #&gt; 1                      NA              NA              NA
 #&gt; 2                      NA              NA              NA
@@ -1833,7 +1876,8 @@
 #&gt; 100                0.09553846       0.06558462         0.0007692308
 #&gt; 101                        NA               NA         0.0053435115
 #&gt; 102                        NA               NA                   NA</div><div class='input'>
-<span class='fu'>cfb_ratings_sp</span>(<span class='kw'>year</span><span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas"</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:33: Scraping S&amp;P+ ratings data...</span></div><div class='output co'>#&gt;   year             team conference    rating second_order_wins sos
+<span class='fu'>cfb_ratings_sp</span>(year= <span class='fl'>2019</span>, team = <span class='st'>"Texas"</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:32: Scraping S&amp;P+ ratings data...</span></div><div class='output co'>#&gt;   year             team conference    rating second_order_wins sos
 #&gt; 1 2019            Texas     Big 12 12.000000                NA  NA
 #&gt; 2 2019 nationalAverages       &lt;NA&gt;  0.759542                NA  NA
 #&gt;   offense_rating offense_success offense_explosiveness offense_rushing
@@ -1870,7 +1914,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,15 +177,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>cfb_game_info</span>(
-  <span class='no'>year</span>,
-  <span class='kw'>week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>home_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>away_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>game_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quarter_scores</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>year</span>,
+  week = <span class='kw'>NULL</span>,
+  season_type = <span class='st'>"regular"</span>,
+  team = <span class='kw'>NULL</span>,
+  home_team = <span class='kw'>NULL</span>,
+  away_team = <span class='kw'>NULL</span>,
+  conference = <span class='kw'>NULL</span>,
+  game_id = <span class='kw'>NULL</span>,
+  quarter_scores = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -227,10 +233,42 @@ I have defaulted the parameter to false so that you will not have to go to the t
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/games'>https://api.collegefootballdata.com/games</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 22 variables:</p><dl>
+  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>season</code></dt><dd><p>integer.</p></dd>
+  <dt><code>week</code></dt><dd><p>integer.</p></dd>
+  <dt><code>season_type</code></dt><dd><p>character.</p></dd>
+  <dt><code>start_date</code></dt><dd><p>character.</p></dd>
+  <dt><code>start_time_tbd</code></dt><dd><p>logical.</p></dd>
+  <dt><code>neutral_site</code></dt><dd><p>logical.</p></dd>
+  <dt><code>conference_game</code></dt><dd><p>logical.</p></dd>
+  <dt><code>attendance</code></dt><dd><p>integer.</p></dd>
+  <dt><code>venue_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>venue</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>home_team</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_points</code></dt><dd><p>integer.</p></dd>
+  <dt><code>home_post_win_prob</code></dt><dd><p>character.</p></dd>
+  <dt><code>away_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>away_team</code></dt><dd><p>character.</p></dd>
+  <dt><code>away_conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>away_points</code></dt><dd><p>integer.</p></dd>
+  <dt><code>away_post_win_prob</code></dt><dd><p>character.</p></dd>
+  <dt><code>excitement_index</code></dt><dd><p>character.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_game_info</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:06: Scraping game info data...</span></div><div class='output co'>#&gt;           id season week season_type               start_date start_time_tbd
+<span class='fu'>cfb_game_info</span>(<span class='fl'>2018</span>, week = <span class='fl'>1</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:04: Scraping game info data...</span></div><div class='output co'>#&gt;      game_id season week season_type               start_date start_time_tbd
 #&gt; 1  401013357   2018    1     regular 2018-08-25T21:30:00.000Z             NA
 #&gt; 2  401014972   2018    1     regular 2018-08-25T23:00:00.000Z             NA
 #&gt; 3  401022510   2018    1     regular 2018-08-25T23:30:00.000Z             NA
@@ -764,7 +802,8 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 86       0.5198478586172812       6.9631012532
 #&gt; 87      0.04404470034418717       3.8470693333
 #&gt; 88       0.6875322954307215   3.91834934429999</div><div class='input'>
-<span class='fu'>cfb_game_info</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>7</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'Ind'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:07: Scraping game info data...</span></div><div class='output co'>#&gt;          id season week season_type               start_date start_time_tbd
+<span class='fu'>cfb_game_info</span>(<span class='fl'>2018</span>, week = <span class='fl'>7</span>, conference = <span class='st'>'Ind'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:04: Scraping game info data...</span></div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
 #&gt; 1 401013452   2018    7     regular 2018-10-13T18:00:00.000Z             NA
 #&gt; 2 401013148   2018    7     regular 2018-10-13T18:30:00.000Z             NA
 #&gt; 3 401013370   2018    7     regular 2018-10-13T19:30:00.000Z             NA
@@ -795,7 +834,8 @@ I have defaulted the parameter to false so that you will not have to go to the t
 #&gt; 4 2.58899975529999
 #&gt; 5 1.08305180749999</div><div class='input'>
 <span class='co'>#7 OTs LSU @ TAMU</span>
-<span class='fu'>cfb_game_info</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>13</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>quarter_scores</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:07: Scraping game info data...</span></div><div class='output co'>#&gt;          id season week season_type               start_date start_time_tbd
+<span class='fu'>cfb_game_info</span>(<span class='fl'>2018</span>, week = <span class='fl'>13</span>, team = <span class='st'>"Texas A&amp;M"</span>, quarter_scores=<span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:05: Scraping game info data...</span></div><div class='output co'>#&gt;     game_id season week season_type               start_date start_time_tbd
 #&gt; 1 401012356   2018   13     regular 2018-11-25T00:30:00.000Z             NA
 #&gt;   neutral_site conference_game attendance venue_id      venue home_id home_team
 #&gt; 1        FALSE            TRUE          0     3795 Kyle Field     245 Texas A&amp;M
@@ -829,7 +869,7 @@ I have defaulted the parameter to false so that you will not have to go to the t
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

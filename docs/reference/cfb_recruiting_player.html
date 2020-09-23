@@ -83,7 +83,7 @@ recruit type, state and position. — cfb_recruiting_player" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -110,6 +110,12 @@ recruit type, state and position. — cfb_recruiting_player" />
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -177,11 +183,11 @@ recruit type, state and position.</h1>
     </div>
 
     <pre class="usage"><span class='fu'>cfb_recruiting_player</span>(
-  <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>recruit_type</span> <span class='kw'>=</span> <span class='st'>"HighSchool"</span>,
-  <span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  year = <span class='kw'>NULL</span>,
+  team = <span class='kw'>NULL</span>,
+  recruit_type = <span class='st'>"HighSchool"</span>,
+  state = <span class='kw'>NULL</span>,
+  position = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -213,6 +219,29 @@ or 'PrepSchool'  - For position group information</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/recruiting/players'>https://api.collegefootballdata.com/recruiting/players</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 14 variables:</p><dl>
+  <dt><code>recruit_type</code></dt><dd><p>character.</p></dd>
+  <dt><code>year</code></dt><dd><p>integer.</p></dd>
+  <dt><code>ranking</code></dt><dd><p>integer.</p></dd>
+  <dt><code>name</code></dt><dd><p>character.</p></dd>
+  <dt><code>school</code></dt><dd><p>character.</p></dd>
+  <dt><code>committed_to</code></dt><dd><p>character.</p></dd>
+  <dt><code>position</code></dt><dd><p>character.</p></dd>
+  <dt><code>height</code></dt><dd><p>double.</p></dd>
+  <dt><code>weight</code></dt><dd><p>integer.</p></dd>
+  <dt><code>stars</code></dt><dd><p>integer.</p></dd>
+  <dt><code>rating</code></dt><dd><p>double.</p></dd>
+  <dt><code>city</code></dt><dd><p>character.</p></dd>
+  <dt><code>state_province</code></dt><dd><p>character.</p></dd>
+  <dt><code>country</code></dt><dd><p>character.</p></dd>
+
+</dl>
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If you would like CFB recruiting information for teams, please see the <code><a href='cfb_recruiting_team.html'>cfbscrapR::cfb_recruiting_team()</a></code>  function</p>
@@ -221,7 +250,8 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2018</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas"</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:36: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking                name               school
+<span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2018</span>, team = <span class='st'>"Texas"</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:35: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking                name               school
 #&gt; 1    HighSchool 2018      19        Caden Sterns               Steele
 #&gt; 2    HighSchool 2018      24         B.J. Foster             Angleton
 #&gt; 3    HighSchool 2018      47         Jalen Green              Heights
@@ -308,7 +338,8 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
 #&gt; 26             TX      &lt;NA&gt;
 #&gt; 27             TX      &lt;NA&gt;
 #&gt; 28             TX      &lt;NA&gt;</div><div class='input'>
-<span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2016</span>, <span class='kw'>recruit_type</span> <span class='kw'>=</span> <span class='st'>'JUCO'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:36: Scraping player recruiting data...</span></div><div class='output co'>#&gt;     recruit_type year ranking                   name
+<span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2016</span>, recruit_type = <span class='st'>'JUCO'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:36: Scraping player recruiting data...</span></div><div class='output co'>#&gt;     recruit_type year ranking                   name
 #&gt; 1           JUCO 2016       1        Jonathan Kongbo
 #&gt; 2           JUCO 2016       2        Charles Baldwin
 #&gt; 3           JUCO 2016       3          Garett Bolles
@@ -1739,7 +1770,8 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
 #&gt; 474   73.0    175     2 0.7000               Longview             TX      NA
 #&gt; 475   71.0    182     2 0.7000               Marietta             GA      NA
 #&gt; 476   75.0    250     2 0.7000             Brownsboro             TX      NA</div><div class='input'>
-<span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2020</span>, <span class='kw'>recruit_type</span> <span class='kw'>=</span> <span class='st'>'HighSchool'</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>'OT'</span>, <span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>'FL'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:37: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking              name                 school
+<span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2020</span>, recruit_type = <span class='st'>'HighSchool'</span>, position = <span class='st'>'OT'</span>, state = <span class='st'>'FL'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:36: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking              name                 school
 #&gt; 1    HighSchool 2020     108   Marcus Dumervil     St. Thomas Aquinas
 #&gt; 2    HighSchool 2020     127      Jalen Rivers                Oakleaf
 #&gt; 3    HighSchool 2020     156 Issiah Walker Jr.                Norland
@@ -1836,7 +1868,7 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

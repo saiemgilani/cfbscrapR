@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,12 +177,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>plot_wpa</span>(
-  <span class='no'>dat</span>,
-  <span class='kw'>game_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>away_color</span>,
-  <span class='no'>home_color</span>,
-  <span class='kw'>winner</span> <span class='kw'>=</span> <span class='st'>"home"</span>,
-  <span class='kw'>bet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>dat</span>,
+  game_id = <span class='kw'>NULL</span>,
+  <span class='kw'>away_color</span>,
+  <span class='kw'>home_color</span>,
+  winner = <span class='st'>"home"</span>,
+  bet = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -211,8 +217,9 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>=</span> <span class='fu'><a href='cfb_pbp_data.html'>cfb_pbp_data</a></span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'Baylor'</span>, <span class='kw'>epa_wpa</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>plot_wpa</span>(<span class='no'>df</span>, <span class='kw'>away_color</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>OU</span><span class='kw'>=</span><span class='st'>"#841617"</span>), <span class='kw'>home_color</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>BU</span><span class='kw'>=</span><span class='st'>"#003015"</span>), <span class='kw'>winner</span><span class='kw'>=</span><span class='st'>"away"</span>)</div><div class='output co'>#&gt; [1] "Warning. Time was not recorded properly for this PBP"</div><div class='img'><img src='plot_wpa-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>df</span> <span class='op'>=</span> <span class='fu'><a href='cfb_pbp_data.html'>cfb_pbp_data</a></span>(year = <span class='fl'>2019</span>, week = <span class='fl'>12</span>, team = <span class='st'>'Baylor'</span>, epa_wpa = <span class='fl'>TRUE</span>)
+<span class='fu'>plot_wpa</span>(<span class='kw'>df</span>, away_color=<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(OU=<span class='st'>"#841617"</span>), home_color=<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(BU=<span class='st'>"#003015"</span>), winner=<span class='st'>"away"</span>)
+</div><div class='output co'>#&gt; [1] "Warning. Time was not recorded properly for this PBP"</div><div class='img'><img src='plot_wpa-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -229,7 +236,7 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
