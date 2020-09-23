@@ -16,6 +16,33 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' 
+#' @return A data frame with 23 variables as follows:
+#' \describe{
+#'   \item{\code{offense}}{character. Drive offense.}
+#'   \item{\code{offense_conference}}{character. Drive offense's conference.}
+#'   \item{\code{defense}}{character. Drive defense.}
+#'   \item{\code{defense_conference}}{character. Drive defense's conference.}
+#'   \item{\code{game_id}}{integer. Unique game identifier - `game_id`.}
+#'   \item{\code{drive_id}}{character. Unique drive identifier - `drive_id`.}
+#'   \item{\code{drive_number}}{integer. Drive number in game.}
+#'   \item{\code{scoring}}{logical. Drive ends in a score.}
+#'   \item{\code{start_period}}{integer. Period (or Quarter) in which the drive starts.}
+#'   \item{\code{start_yardline}}{integer.  Yard line at the drive start.}
+#'   \item{\code{start_yards_to_goal}}{integer. Yards-to-Goal at the drive start.}
+#'   \item{\code{end_period}}{integer. Period (or Quarter) in which the drive ends.}
+#'   \item{\code{end_yardline}}{integer. Yard line at drive end.}
+#'   \item{\code{end_yards_to_goal}}{integer. Yards-to-Goal at drive end.}
+#'   \item{\code{plays}}{integer. Number of drive plays.}
+#'   \item{\code{yards}}{integer. Total drive yards.}
+#'   \item{\code{drive_result}}{character. Result of the drive description.}
+#'   \item{\code{time_minutes_start}}{integer. Minutes at drive start.}
+#'   \item{\code{time_seconds_start}}{integer. Seconds at drive start.}
+#'   \item{\code{time_minutes_end}}{integer. Minutes at drive end.}
+#'   \item{\code{time_seconds_end}}{integer. Seconds at drive end.}
+#'   \item{\code{time_minutes_elapsed}}{double. Minutes elapsed during drive.}
+#'   \item{\code{time_seconds_elapsed}}{integer. Seconds elapsed during drive.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/drives}
 #' @keywords Drives
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -26,7 +53,7 @@
 #' @import tidyr
 #' @export
 #' @examples
-#'
+#' 
 #' cfb_drives(2018, week = 1, team = "TCU")
 #'
 #' cfb_drives(2018, team = "Texas A&M", defense_conference = 'SEC')
@@ -69,23 +96,23 @@ cfb_drives <- function(year,
     defense_team = utils::URLencode(defense_team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                            msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }
   if(!is.null(offense_conference)){
-    # Check offense_conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(offense_conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                            msg = "Incorrect offense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check offense_conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(offense_conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #                         msg = "Incorrect offense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode offense_conference parameter for URL, if not NULL
     offense_conference = utils::URLencode(offense_conference, reserved = TRUE)
   }
   if(!is.null(defense_conference)){
-    # Check defense_conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(defense_conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                            msg = "Incorrect defense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check defense_conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(defense_conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #                         msg = "Incorrect defense_conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode defense_conference parameter for URL, if not NULL
     defense_conference = utils::URLencode(defense_conference, reserved = TRUE)
   }
@@ -116,6 +143,7 @@ cfb_drives <- function(year,
   # Get the content and return it as data.frame
   df = jsonlite::fromJSON(full_url, flatten = TRUE) %>%
     dplyr::rename(
+      drive_id = .data$id,
       time_minutes_start = .data$start_time.minutes,
       time_seconds_start = .data$start_time.seconds,
       time_minutes_end = .data$end_time.minutes,
