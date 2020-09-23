@@ -3,6 +3,9 @@
 \name{cfb_rankings}
 \alias{cfb_rankings}
 \title{Gets Historical CFB poll rankings at a specific week}
+\source{
+\url{https://api.collegefootballdata.com/rankings}
+}
 \usage{
 cfb_rankings(year, week = NULL, season_type = "regular")
 }
@@ -13,12 +16,26 @@ cfb_rankings(year, week = NULL, season_type = "regular")
 
 \item{season_type}{(\emph{String} default regular): Season type - regular or postseason}
 }
+\value{
+A data frame with 9 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{season_type}}{character.}
+  \item{\code{week}}{integer.}
+  \item{\code{poll}}{character.}
+  \item{\code{rank}}{integer.}
+  \item{\code{school}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{first_place_votes}}{integer.}
+  \item{\code{points}}{integer.}
+}
+}
 \description{
 Postseason polls are after Week 13
 }
 \examples{
 
-cfb_rankings(year = 2019, week=12)
+cfb_rankings(year = 2019, week = 12)
 
 cfb_rankings(year = 2018, week = 14)
 

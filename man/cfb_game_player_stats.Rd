@@ -3,6 +3,9 @@
 \name{cfb_game_player_stats}
 \alias{cfb_game_player_stats}
 \title{Get results information from games}
+\source{
+\url{https://api.collegefootballdata.com/games/players}
+}
 \usage{
 cfb_game_player_stats(
   year,
@@ -34,6 +37,43 @@ Special Teams: punting, puntReturns, kicking, kickReturns\cr}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game
 Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
+}
+\value{
+A data frame with 32 variables:
+\describe{
+  \item{\code{game_id}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{home_away}}{character.}
+  \item{\code{points}}{integer.}
+  \item{\code{category}}{character.}
+  \item{\code{athlete_id}}{character.}
+  \item{\code{name}}{character.}
+  \item{\code{c_att}}{character.}
+  \item{\code{yds}}{double.}
+  \item{\code{avg}}{double.}
+  \item{\code{td}}{double.}
+  \item{\code{int}}{double.}
+  \item{\code{qbr}}{double.}
+  \item{\code{car}}{double.}
+  \item{\code{long}}{double.}
+  \item{\code{rec}}{double.}
+  \item{\code{no}}{double.}
+  \item{\code{fg}}{character.}
+  \item{\code{pct}}{double.}
+  \item{\code{xp}}{character.}
+  \item{\code{pts}}{double.}
+  \item{\code{tb}}{double.}
+  \item{\code{in_20}}{double.}
+  \item{\code{fum}}{double.}
+  \item{\code{lost}}{double.}
+  \item{\code{tot}}{double.}
+  \item{\code{solo}}{double.}
+  \item{\code{sacks}}{double.}
+  \item{\code{tfl}}{double.}
+  \item{\code{pd}}{double.}
+  \item{\code{qb_hur}}{double.}
+}
 }
 \description{
 Get results information from games

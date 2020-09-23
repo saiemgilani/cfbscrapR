@@ -3,6 +3,9 @@
 \name{cfb_ratings_srs}
 \alias{cfb_ratings_srs}
 \title{Get SRS historical rating data}
+\source{
+\url{https://api.collegefootballdata.com/ratings/srs}
+}
 \usage{
 cfb_ratings_srs(year = NULL, team = NULL, conference = NULL)
 }
@@ -14,6 +17,16 @@ cfb_ratings_srs(year = NULL, team = NULL, conference = NULL)
 \item{conference}{(\emph{String} optional): Conference abbreviation - SRS information by conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+}
+\value{
+A data frame with 5 variables:
+\describe{
+  \item{\code{year}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{division}}{logical.}
+  \item{\code{rating}}{character.}
+}
 }
 \description{
 At least one of \strong{year} or \strong{team} must be specified for the function to run

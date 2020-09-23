@@ -3,6 +3,9 @@
 \name{cfb_player_info}
 \alias{cfb_player_info}
 \title{Player Information Search}
+\source{
+\url{https://api.collegefootballdata.com/player/search}
+}
 \usage{
 cfb_player_info(search_term, position = NULL, team = NULL, year = NULL)
 }
@@ -18,10 +21,27 @@ Position Group  - options include:\cr
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
-If left NULL, API default will only provide results for most recent year of final rosters: 2019}
+If left NULL, API default will only provide results for most recent year of final rosters: 2020\cr}
+}
+\value{
+A data frame with 12 variables:
+\describe{
+  \item{\code{athlete_id}}{character. Unique player identifier - `athlete_id`.}
+  \item{\code{team}}{character. Team of the player.}
+  \item{\code{name}}{character. Player name.}
+  \item{\code{first_name}}{character. Player first name.}
+  \item{\code{last_name}}{character. Player last name.}
+  \item{\code{weight}}{integer. Player weight.}
+  \item{\code{height}}{integer. Player height.}
+  \item{\code{jersey}}{integer. Player jersey number.}
+  \item{\code{position}}{character. Player position.}
+  \item{\code{home_town}}{character. Player home town.}
+  \item{\code{team_color}}{character. Player team color.}
+  \item{\code{team_color_secondary}}{character. Player team secondary color.}
+}
 }
 \description{
-A player search function with \strong{search_term} as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
+A player search function with \strong{`search_term`} as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
 Would not recommend using the position group filter,it feels arbitrary and pernicious,
 but it is there. May fortune favor you should you choose to use it.
 }

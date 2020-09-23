@@ -3,6 +3,9 @@
 \name{cfb_metrics_ppa_teams}
 \alias{cfb_metrics_ppa_teams}
 \title{Get team averages for Predicted Points Added (PPA)}
+\source{
+\url{https://api.collegefootballdata.com/ppa/teams}
+}
 \usage{
 cfb_metrics_ppa_teams(
   year = 2019,
@@ -21,6 +24,32 @@ Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
 Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
+}
+\value{
+A data frame with 21 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{conference}}{character.}
+  \item{\code{team}}{character.}
+  \item{\code{off_overall}}{character.}
+  \item{\code{off_passing}}{character.}
+  \item{\code{off_rushing}}{character.}
+  \item{\code{off_first_down}}{character.}
+  \item{\code{off_second_down}}{character.}
+  \item{\code{off_third_down}}{character.}
+  \item{\code{off_cumulative_total}}{character.}
+  \item{\code{off_cumulative_passing}}{character.}
+  \item{\code{off_cumulative_rushing}}{character.}
+  \item{\code{def_overall}}{character.}
+  \item{\code{def_passing}}{character.}
+  \item{\code{def_rushing}}{character.}
+  \item{\code{def_first_down}}{character.}
+  \item{\code{def_second_down}}{character.}
+  \item{\code{def_third_down}}{character.}
+  \item{\code{def_cumulative_total}}{character.}
+  \item{\code{def_cumulative_passing}}{character.}
+  \item{\code{def_cumulative_rushing}}{character.}
+}
 }
 \description{
 Get team averages for Predicted Points Added (PPA)

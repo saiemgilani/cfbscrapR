@@ -3,6 +3,9 @@
 \name{cfb_betting_lines}
 \alias{cfb_betting_lines}
 \title{Get Betting information from games}
+\source{
+\url{https://api.collegefootballdata.com/lines}
+}
 \usage{
 cfb_betting_lines(
   game_id = NULL,
@@ -37,6 +40,25 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
 \item{line_provider}{(\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings}
+}
+\value{
+Betting information for games with the following columns:
+\describe{
+  \item{\code{game_id}}{integer. Unique game identifier - `game_id`.}
+  \item{\code{season}}{integer. Season parameter.}
+  \item{\code{season_type}}{character. Season Type (regular, postseason, both).}
+  \item{\code{week}}{integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+  \item{\code{home_team}}{character. Home D-I Team.}
+  \item{\code{home_conference}}{character. Home D-I Conference.}
+  \item{\code{home_score}}{integer. Home Score.}
+  \item{\code{away_team}}{character. Away D-I Team.}
+  \item{\code{away_conference}}{character. Away D-I Conference.}
+  \item{\code{away_score}}{integer. Away Score.}
+  \item{\code{provider}}{character. Line provider.}
+  \item{\code{spread}}{character. Spread for the game.}
+  \item{\code{formatted_spread}}{character. Formatted spread for the game.}
+  \item{\code{over_under}}{character. Over/Under for the game.}
+}
 }
 \description{
 Get Betting information from games

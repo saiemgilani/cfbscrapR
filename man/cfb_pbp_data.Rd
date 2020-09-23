@@ -3,6 +3,9 @@
 \name{cfb_pbp_data}
 \alias{cfb_pbp_data}
 \title{Extract CFB (D-I) Play by Play Data - For plays}
+\source{
+\url{https://api.collegefootballdata.com/plays}
+}
 \usage{
 cfb_pbp_data(
   year,
@@ -27,6 +30,6 @@ cfb_pbp_data(
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 }
 \description{
-Extracts raw game by game data. Data comes from https://api.collegefootballdata.com
+Extracts raw game by game data. \cr
 }
 \keyword{Play-by-Play}

@@ -3,6 +3,9 @@
 \name{cfb_player_usage}
 \alias{cfb_player_usage}
 \title{Player Information Search}
+\source{
+\url{https://api.collegefootballdata.com/player/usage}
+}
 \usage{
 cfb_player_usage(
   year = 2019,
@@ -32,6 +35,25 @@ Position Group  - options include:\cr
 Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
+}
+\value{
+A data frame with 14 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{athlete_id}}{character.}
+  \item{\code{name}}{character.}
+  \item{\code{position}}{character.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{usg_overall}}{double.}
+  \item{\code{usg_pass}}{double.}
+  \item{\code{usg_rush}}{double.}
+  \item{\code{usg_1st_down}}{double.}
+  \item{\code{usg_2nd_down}}{double.}
+  \item{\code{usg_3rd_down}}{double.}
+  \item{\code{usg_standard_downs}}{double.}
+  \item{\code{usg_passing_downs}}{double.}
+}
 }
 \description{
 A player usage function with \strong{Year} as a required input.

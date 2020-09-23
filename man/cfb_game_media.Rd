@@ -3,6 +3,9 @@
 \name{cfb_game_media}
 \alias{cfb_game_media}
 \title{Get Game media information (TV, radio, etc)}
+\source{
+\url{https://api.collegefootballdata.com/games/media}
+}
 \usage{
 cfb_game_media(
   year,
@@ -27,6 +30,24 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 
 \item{media_type}{(\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile}
+}
+\value{
+A data frame with 13 variables:
+\describe{
+  \item{\code{game_id}}{integer.}
+  \item{\code{season}}{integer.}
+  \item{\code{week}}{integer.}
+  \item{\code{season_type}}{character.}
+  \item{\code{start_time}}{character.}
+  \item{\code{is_start_time_tbd}}{logical.}
+  \item{\code{home_team}}{character.}
+  \item{\code{home_conference}}{character.}
+  \item{\code{away_team}}{character.}
+  \item{\code{away_conference}}{character.}
+  \item{\code{tv}}{list.}
+  \item{\code{radio}}{logical.}
+  \item{\code{web}}{list.}
+}
 }
 \description{
 Get Game media information (TV, radio, etc)

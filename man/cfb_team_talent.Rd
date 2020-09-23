@@ -3,11 +3,22 @@
 \name{cfb_team_talent}
 \alias{cfb_team_talent}
 \title{Get composite team talent rankings for all teams in a given year}
+\source{
+\url{https://api.collegefootballdata.com/talent}
+}
 \usage{
 cfb_team_talent(year = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} optional): Year 4 digit format (\emph{YYYY})}
+}
+\value{
+A data frame with 3 variables:
+\describe{
+  \item{\code{year}}{integer.}
+  \item{\code{school}}{character.}
+  \item{\code{talent}}{character.}
+}
 }
 \description{
 Extracts team talent composite as sourced from 247 rankings

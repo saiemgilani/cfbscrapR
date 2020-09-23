@@ -3,6 +3,9 @@
 \name{cfb_metrics_ppa_players_games}
 \alias{cfb_metrics_ppa_players_games}
 \title{Get player game averages for Predicted Points Added (PPA)}
+\source{
+\url{https://api.collegefootballdata.com/ppa/players/games}
+}
 \usage{
 cfb_metrics_ppa_players_games(
   year = NULL,
@@ -33,6 +36,20 @@ Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_pla
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
+}
+\value{
+A data frame with 9 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{week}}{integer.}
+  \item{\code{name}}{character.}
+  \item{\code{position}}{character.}
+  \item{\code{team}}{character.}
+  \item{\code{opponent}}{character.}
+  \item{\code{avg_PPA_all}}{double.}
+  \item{\code{avg_PPA_pass}}{double.}
+  \item{\code{avg_PPA_rush}}{double.}
+}
 }
 \description{
 Get player game averages for Predicted Points Added (PPA)

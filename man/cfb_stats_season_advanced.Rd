@@ -3,6 +3,9 @@
 \name{cfb_stats_season_advanced}
 \alias{cfb_stats_season_advanced}
 \title{Get Season Advanced Statistics by Team}
+\source{
+\url{https://api.collegefootballdata.com/stats/season/advanced}
+}
 \usage{
 cfb_stats_season_advanced(
   year,
@@ -22,6 +25,87 @@ cfb_stats_season_advanced(
 \item{start_week}{(\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
+}
+\value{
+A data frame with 76 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{off_plays}}{integer.}
+  \item{\code{off_drives}}{integer.}
+  \item{\code{off_ppa}}{double.}
+  \item{\code{off_total_ppa}}{double.}
+  \item{\code{off_success_rate}}{double.}
+  \item{\code{off_explosiveness}}{double.}
+  \item{\code{off_power_success}}{double.}
+  \item{\code{off_stuff_rate}}{double.}
+  \item{\code{off_line_yds}}{double.}
+  \item{\code{off_line_yds_total}}{integer.}
+  \item{\code{off_second_lvl_yds}}{double.}
+  \item{\code{off_second_lvl_yds_total}}{integer.}
+  \item{\code{off_open_field_yds}}{double.}
+  \item{\code{off_open_field_yds_total}}{integer.}
+  \item{\code{off_pts_per_opp}}{double.}
+  \item{\code{off_field_pos_avg_start}}{double.}
+  \item{\code{off_field_pos_avg_predicted_points}}{double.}
+  \item{\code{off_standard_downs_rate}}{double.}
+  \item{\code{off_standard_downs_ppa}}{double.}
+  \item{\code{off_standard_downs_success_rate}}{double.}
+  \item{\code{off_standard_downs_explosiveness}}{double.}
+  \item{\code{off_passing_downs_rate}}{double.}
+  \item{\code{off_passing_downs_ppa}}{double.}
+  \item{\code{off_passing_downs_success_rate}}{double.}
+  \item{\code{off_passing_downs_explosiveness}}{double.}
+  \item{\code{off_rushing_plays_rate}}{double.}
+  \item{\code{off_rushing_plays_ppa}}{double.}
+  \item{\code{off_rushing_plays_total_ppa}}{double.}
+  \item{\code{off_rushing_plays_success_rate}}{double.}
+  \item{\code{off_rushing_plays_explosiveness}}{double.}
+  \item{\code{off_passing_plays_rate}}{double.}
+  \item{\code{off_passing_plays_ppa}}{double.}
+  \item{\code{off_passing_plays_total_ppa}}{double.}
+  \item{\code{off_passing_plays_success_rate}}{double.}
+  \item{\code{off_passing_plays_explosiveness}}{double.}
+  \item{\code{def_plays}}{integer.}
+  \item{\code{def_drives}}{integer.}
+  \item{\code{def_ppa}}{double.}
+  \item{\code{def_total_ppa}}{double.}
+  \item{\code{def_success_rate}}{double.}
+  \item{\code{def_explosiveness}}{double.}
+  \item{\code{def_power_success}}{double.}
+  \item{\code{def_stuff_rate}}{double.}
+  \item{\code{def_line_yds}}{double.}
+  \item{\code{def_line_yds_total}}{integer.}
+  \item{\code{def_second_lvl_yds}}{double.}
+  \item{\code{def_second_lvl_yds_total}}{integer.}
+  \item{\code{def_open_field_yds}}{double.}
+  \item{\code{def_open_field_yds_total}}{integer.}
+  \item{\code{def_pts_per_opp}}{double.}
+  \item{\code{def_field_pos_avg_start}}{integer.}
+  \item{\code{def_field_pos_avg_predicted_points}}{double.}
+  \item{\code{def_havoc_total}}{double.}
+  \item{\code{def_havoc_front_seven}}{double.}
+  \item{\code{def_havoc_db}}{double.}
+  \item{\code{def_standard_downs_rate}}{double.}
+  \item{\code{def_standard_downs_ppa}}{double.}
+  \item{\code{def_standard_downs_success_rate}}{double.}
+  \item{\code{def_standard_downs_explosiveness}}{double.}
+  \item{\code{def_passing_downs_rate}}{double.}
+  \item{\code{def_passing_downs_ppa}}{double.}
+  \item{\code{def_passing_downs_total_ppa}}{double.}
+  \item{\code{def_passing_downs_success_rate}}{double.}
+  \item{\code{def_passing_downs_explosiveness}}{double.}
+  \item{\code{def_rushing_plays_rate}}{double.}
+  \item{\code{def_rushing_plays_ppa}}{double.}
+  \item{\code{def_rushing_plays_total_ppa}}{double.}
+  \item{\code{def_rushing_plays_success_rate}}{double.}
+  \item{\code{def_rushing_plays_explosiveness}}{double.}
+  \item{\code{def_passing_plays_rate}}{double.}
+  \item{\code{def_passing_plays_ppa}}{double.}
+  \item{\code{def_passing_plays_success_rate}}{double.}
+  \item{\code{def_passing_plays_explosiveness}}{double.}
+}
 }
 \description{
 Get Season Advanced Statistics by Team

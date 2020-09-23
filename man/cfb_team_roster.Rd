@@ -3,7 +3,10 @@
 \name{cfb_team_roster}
 \alias{cfb_team_roster}
 \title{Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2019 as of 6/23/20)}
+Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)}
+\source{
+\url{https://api.collegefootballdata.com/roster}
+}
 \usage{
 cfb_team_roster(team, year = NULL)
 }
@@ -12,9 +15,26 @@ cfb_team_roster(team, year = NULL)
 
 \item{year}{(\emph{Integer} optional): Year,  4 digit format (\emph{YYYY})}
 }
+\value{
+A data frame with 12 variables:
+\describe{
+  \item{\code{athlete_id}}{character.}
+  \item{\code{first_name}}{character.}
+  \item{\code{last_name}}{character.}
+  \item{\code{weight}}{integer.}
+  \item{\code{height}}{integer.}
+  \item{\code{jersey}}{integer.}
+  \item{\code{year}}{integer.}
+  \item{\code{position}}{character.}
+  \item{\code{home_city}}{character.}
+  \item{\code{home_state}}{character.}
+  \item{\code{home_country}}{character.}
+  \item{\code{team}}{character.}
+}
+}
 \description{
 Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2019 as of 6/23/20)
+Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)
 }
 \examples{
 

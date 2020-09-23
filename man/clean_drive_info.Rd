@@ -13,7 +13,7 @@ clean_drive_info(drive_df)
 \value{
 The original `drive_df` with the following columns appended to it:
 \describe{
-\item{drive_id}{Returned as `drive_id` from original variable `id`}
+\item{drive_id}{Returned as `drive_id` from original variable `drive_id`}
 \item{pts_drive}{End result of the drive}
 \item{scoring}{Logical flag for if drive was a scoring drive updated}
 }
@@ -25,7 +25,7 @@ Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column
 \details{
 Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
 \itemize{
-\item{id}{Returned as `drive_id`}
+\item{drive_id}{Returned as `drive_id`}
 \item{drive_result}{End result of the drive}
 \item{scoring}{Logical flag for if drive was a scoring drive}
 \item{game_id}{Unique game identifier}

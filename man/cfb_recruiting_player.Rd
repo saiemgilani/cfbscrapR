@@ -5,6 +5,9 @@
 \title{CFB Recruiting
 Gets CFB recruiting information for a single year with filters available for team,
 recruit type, state and position.}
+\source{
+\url{https://api.collegefootballdata.com/recruiting/players}
+}
 \usage{
 cfb_recruiting_player(
   year = NULL,
@@ -28,6 +31,25 @@ or 'PrepSchool'  - For position group information}
 * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
 * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
 * Special Teams: 'K', 'P'\cr}
+}
+\value{
+A data frame with 14 variables:
+\describe{
+  \item{\code{recruit_type}}{character.}
+  \item{\code{year}}{integer.}
+  \item{\code{ranking}}{integer.}
+  \item{\code{name}}{character.}
+  \item{\code{school}}{character.}
+  \item{\code{committed_to}}{character.}
+  \item{\code{position}}{character.}
+  \item{\code{height}}{double.}
+  \item{\code{weight}}{integer.}
+  \item{\code{stars}}{integer.}
+  \item{\code{rating}}{double.}
+  \item{\code{city}}{character.}
+  \item{\code{state_province}}{character.}
+  \item{\code{country}}{character.}
+}
 }
 \description{
 At least one of \strong{year} or \strong{team} must be specified for the function to run

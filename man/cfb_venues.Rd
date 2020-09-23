@@ -3,8 +3,29 @@
 \name{cfb_venues}
 \alias{cfb_venues}
 \title{CFB Venue Information}
+\source{
+\url{https://api.collegefootballdata.com/venues}
+}
 \usage{
 cfb_venues()
+}
+\value{
+A data frame with 335 rows and 13 variables:
+\describe{
+  \item{\code{venue_id}}{integer.}
+  \item{\code{name}}{character.}
+  \item{\code{capacity}}{integer.}
+  \item{\code{grass}}{logical.}
+  \item{\code{city}}{character.}
+  \item{\code{state}}{character.}
+  \item{\code{zip}}{character.}
+  \item{\code{country_code}}{character.}
+  \item{\code{location}}{list.}
+  \item{\code{elevation}}{character.}
+  \item{\code{year_constructed}}{integer.}
+  \item{\code{dome}}{logical.}
+  \item{\code{timezone}}{character.}
+}
 }
 \description{
 Pulls all college football venues and data on capacity, grass, city/state, location,

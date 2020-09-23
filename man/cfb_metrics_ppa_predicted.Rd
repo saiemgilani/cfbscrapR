@@ -3,6 +3,9 @@
 \name{cfb_metrics_ppa_predicted}
 \alias{cfb_metrics_ppa_predicted}
 \title{Calculate Predicted Points using Down and Distance}
+\source{
+\url{https://api.collegefootballdata.com/ppa/predicted}
+}
 \usage{
 cfb_metrics_ppa_predicted(down, distance)
 }
@@ -11,11 +14,17 @@ cfb_metrics_ppa_predicted(down, distance)
 
 \item{distance}{(\emph{Integer} required): Distance filter}
 }
+\value{
+A data frame with 2 variables:
+\describe{
+  \item{\code{yard_line}}{integer.}
+  \item{\code{predicted_points}}{character.}
+}
+}
 \description{
 Calculate Predicted Points using Down and Distance
 }
 \examples{
-
 
 cfb_metrics_ppa_predicted(down = 1, distance = 10)
 

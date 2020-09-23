@@ -3,6 +3,9 @@
 \name{cfb_metrics_ppa_players_season}
 \alias{cfb_metrics_ppa_players_season}
 \title{Get player season averages for Predicted Points Added (PPA)}
+\source{
+\url{https://api.collegefootballdata.com/ppa/players/season}
+}
 \usage{
 cfb_metrics_ppa_players_season(
   year = NULL,
@@ -36,12 +39,38 @@ Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_pla
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)}
 }
+\value{
+A data frame with 23 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{id}}{character.}
+  \item{\code{name}}{character.}
+  \item{\code{position}}{character.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{countable_plays}}{integer.}
+  \item{\code{avg_PPA_all}}{double.}
+  \item{\code{avg_PPA_pass}}{double.}
+  \item{\code{avg_PPA_rush}}{double.}
+  \item{\code{avg_PPA_first_down}}{double.}
+  \item{\code{avg_PPA_second_down}}{double.}
+  \item{\code{avg_PPA_third_down}}{double.}
+  \item{\code{avg_PPA_standard_downs}}{double.}
+  \item{\code{avg_PPA_passing_downs}}{double.}
+  \item{\code{total_PPA_all}}{double.}
+  \item{\code{total_PPA_pass}}{double.}
+  \item{\code{total_PPA_rush}}{double.}
+  \item{\code{total_PPA_first_down}}{double.}
+  \item{\code{total_PPA_second_down}}{double.}
+  \item{\code{total_PPA_third_down}}{double.}
+  \item{\code{total_PPA_standard_downs}}{double.}
+  \item{\code{total_PPA_passing_downs}}{double.}
+}
+}
 \description{
 Get player season averages for Predicted Points Added (PPA)
 }
 \examples{
-
-
 
 cfb_metrics_ppa_players_season(year = 2019, team = 'TCU')
 

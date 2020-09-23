@@ -18,8 +18,6 @@ Plot a teams away travel
 
 plot_away_travel(2019,"Texas")
 
-
-
 }
 \keyword{Plot}
 \keyword{Travel}

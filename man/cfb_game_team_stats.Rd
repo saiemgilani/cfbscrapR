@@ -3,6 +3,9 @@
 \name{cfb_game_team_stats}
 \alias{cfb_game_team_stats}
 \title{Get Team Statistics by Game}
+\source{
+\url{https://api.collegefootballdata.com/games/teams}
+}
 \usage{
 cfb_game_team_stats(
   year,
@@ -31,6 +34,89 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
 
 \item{rows_per_team}{(\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2}
+}
+\value{
+A data frame with 78 variables:
+\describe{
+  \item{\code{game_id}}{integer.}
+  \item{\code{school}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{home_away}}{character.}
+  \item{\code{points}}{integer.}
+  \item{\code{total_yards}}{character.}
+  \item{\code{net_passing_yards}}{character.}
+  \item{\code{completion_attempts}}{character.}
+  \item{\code{passing_tds}}{character.}
+  \item{\code{yards_per_pass}}{character.}
+  \item{\code{passes_intercepted}}{character.}
+  \item{\code{interception_yards}}{character.}
+  \item{\code{interception_tds}}{character.}
+  \item{\code{rushing_attempts}}{character.}
+  \item{\code{rushing_yards}}{character.}
+  \item{\code{rush_tds}}{character.}
+  \item{\code{yards_per_rush_attempt}}{character.}
+  \item{\code{first_downs}}{character.}
+  \item{\code{third_down_eff}}{character.}
+  \item{\code{fourth_down_eff}}{character.}
+  \item{\code{punt_returns}}{character.}
+  \item{\code{punt_return_yards}}{character.}
+  \item{\code{punt_return_tds}}{character.}
+  \item{\code{kick_return_yards}}{character.}
+  \item{\code{kick_return_tds}}{character.}
+  \item{\code{kick_returns}}{character.}
+  \item{\code{kicking_points}}{character.}
+  \item{\code{fumbles_recovered}}{character.}
+  \item{\code{fumbles_lost}}{character.}
+  \item{\code{total_fumbles}}{character.}
+  \item{\code{tackles}}{character.}
+  \item{\code{tackles_for_loss}}{character.}
+  \item{\code{sacks}}{character.}
+  \item{\code{qb_hurries}}{character.}
+  \item{\code{interceptions}}{character.}
+  \item{\code{passes_deflected}}{character.}
+  \item{\code{turnovers}}{character.}
+  \item{\code{defensive_tds}}{character.}
+  \item{\code{total_penalties_yards}}{character.}
+  \item{\code{possession_time}}{character.}
+  \item{\code{conference_allowed}}{character.}
+  \item{\code{home_away_allowed}}{character.}
+  \item{\code{points_allowed}}{integer.}
+  \item{\code{total_yards_allowed}}{character.}
+  \item{\code{net_passing_yards_allowed}}{character.}
+  \item{\code{completion_attempts_allowed}}{character.}
+  \item{\code{passing_tds_allowed}}{character.}
+  \item{\code{yards_per_pass_allowed}}{character.}
+  \item{\code{passes_intercepted_allowed}}{character.}
+  \item{\code{interception_yards_allowed}}{character.}
+  \item{\code{interception_tds_allowed}}{character.}
+  \item{\code{rushing_attempts_allowed}}{character.}
+  \item{\code{rushing_yards_allowed}}{character.}
+  \item{\code{rush_tds_allowed}}{character.}
+  \item{\code{yards_per_rush_attempt_allowed}}{character.}
+  \item{\code{first_downs_allowed}}{character.}
+  \item{\code{third_down_eff_allowed}}{character.}
+  \item{\code{fourth_down_eff_allowed}}{character.}
+  \item{\code{punt_returns_allowed}}{character.}
+  \item{\code{punt_return_yards_allowed}}{character.}
+  \item{\code{punt_return_tds_allowed}}{character.}
+  \item{\code{kick_return_yards_allowed}}{character.}
+  \item{\code{kick_return_tds_allowed}}{character.}
+  \item{\code{kick_returns_allowed}}{character.}
+  \item{\code{kicking_points_allowed}}{character.}
+  \item{\code{fumbles_recovered_allowed}}{character.}
+  \item{\code{fumbles_lost_allowed}}{character.}
+  \item{\code{total_fumbles_allowed}}{character.}
+  \item{\code{tackles_allowed}}{character.}
+  \item{\code{tackles_for_loss_allowed}}{character.}
+  \item{\code{sacks_allowed}}{character.}
+  \item{\code{qb_hurries_allowed}}{character.}
+  \item{\code{interceptions_allowed}}{character.}
+  \item{\code{passes_deflected_allowed}}{character.}
+  \item{\code{turnovers_allowed}}{character.}
+  \item{\code{defensive_tds_allowed}}{character.}
+  \item{\code{total_penalties_yards_allowed}}{character.}
+  \item{\code{possession_time_allowed}}{character.}
+}
 }
 \description{
 Get Team Statistics by Game

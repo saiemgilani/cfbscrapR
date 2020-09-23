@@ -3,6 +3,9 @@
 \name{cfb_player_returning}
 \alias{cfb_player_returning}
 \title{Player Information Search}
+\source{
+\url{https://api.collegefootballdata.com/player/returning}
+}
 \usage{
 cfb_player_returning(year = 2019, team = NULL, conference = NULL)
 }
@@ -13,7 +16,27 @@ cfb_player_returning(year = 2019, team = NULL, conference = NULL)
 
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
-Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
+}
+\value{
+A data frame with 15 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{total_ppa}}{double.}
+  \item{\code{total_passing_ppa}}{double.}
+  \item{\code{total_receiving_ppa}}{double.}
+  \item{\code{total_rushing_ppa}}{double.}
+  \item{\code{percent_ppa}}{double.}
+  \item{\code{percent_passing_ppa}}{double.}
+  \item{\code{percent_receiving_ppa}}{double.}
+  \item{\code{percent_rushing_ppa}}{double.}
+  \item{\code{usage}}{double.}
+  \item{\code{passing_usage}}{double.}
+  \item{\code{receiving_usage}}{double.}
+  \item{\code{rushing_usage}}{double.}
+}
 }
 \description{
 A player usage function with \strong{Year} as a required input.
@@ -21,7 +44,6 @@ A player usage function with \strong{Year} as a required input.
 \examples{
 
 cfb_player_returning(year = 2019, team = 'Florida State')
-
 
 }
 \keyword{Production}

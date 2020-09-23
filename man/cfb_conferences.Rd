@@ -3,25 +3,24 @@
 \name{cfb_conferences}
 \alias{cfb_conferences}
 \title{CFB Conference Information}
-\format{
-A data frame with 11 rows and 4 variables:
-\describe{
-  \item{id}{Referencing conference id}
-  \item{name}{Conference name}
-  \item{long_name}{Long name for Conference}
-  \item{abbreviation}{Conference abbreviation}
-  ...
-}
-}
 \source{
 \url{https://api.collegefootballdata.com/conferences}
 }
 \usage{
 cfb_conferences()
 }
+\value{
+A data frame with 11 rows and 4 variables:
+\describe{
+  \item{conference_id}{Referencing conference id}
+  \item{name}{Conference name}
+  \item{long_name}{Long name for Conference}
+  \item{abbreviation}{Conference abbreviation}
+  ...
+}
+}
 \description{
-Pulls all college football conferences and returns as
-data.frame the following fields:
+Pulls all college football conferences and returns as data frame the following fields:
 }
 \examples{
 

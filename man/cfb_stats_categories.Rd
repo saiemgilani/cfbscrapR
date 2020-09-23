@@ -3,15 +3,18 @@
 \name{cfb_stats_categories}
 \alias{cfb_stats_categories}
 \title{College Football Mapping for Stats Categories}
-\format{
-A data.frame with 38 values:
+\source{
+\url{https://api.collegefootballdata.com/stats/categories}
+}
+\usage{
+cfb_stats_categories()
+}
+\value{
+A data frame with 38 values:
 \describe{
   \item{name}{Statistics Categories}
   ...
 }
-}
-\usage{
-cfb_stats_categories()
 }
 \description{
 This function identifies all Stats Categories identified in the regular stats endpoint.
