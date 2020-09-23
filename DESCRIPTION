@@ -9,7 +9,7 @@ Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = 
              person('Jared','Lee', email = '13jaredlee@gmail.com', role = c('ctb'))
              )
 Description: An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by cfbscrapR team. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
-Depends: R (>= 2.10), mgcv (>= 1.8-33)
+Depends: R (>= 2.10)
 License: MIT + file LICENSE
 LazyData: true
 Imports: 
@@ -24,6 +24,7 @@ Imports:
     httr,
     jsonlite,
     nnet,
+    mgcv (>= 1.8-33),
     purrr,
     stats,
     utils,
