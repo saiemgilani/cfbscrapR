@@ -2,7 +2,7 @@ context("CFB Team Info")
 
 x <- cfb_team_info(year = 2019)
 
-cols <- c("id","school","mascot","abbreviation","alt_name1","alt_name2",
+cols <- c("team_id","school","mascot","abbreviation","alt_name1","alt_name2",
           "alt_name3","conference","division",
           "color","alt_color","logos")
 

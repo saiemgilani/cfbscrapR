@@ -4,7 +4,7 @@ x <- cfb_game_info(2019, week = 1, conference = 'ACC')
 
 y <- cfb_game_info(2018, week = 4, conference = 'Ind')
 
-cols <- c("id", "season", "week", "season_type", "start_date", 
+cols <- c("game_id", "season", "week", "season_type", "start_date", 
           "start_time_tbd", "neutral_site", "conference_game", 
           "attendance", "venue_id", "venue", 
           "home_id", "home_team", "home_conference", 
