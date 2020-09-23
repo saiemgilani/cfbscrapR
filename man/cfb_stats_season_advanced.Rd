@@ -27,7 +27,7 @@ cfb_stats_season_advanced(
 \item{end_week}{(\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier}
 }
 \value{
-A data frame with 76 variables:
+A data frame with 79 variables:
 \describe{
   \item{\code{season}}{integer.}
   \item{\code{team}}{character.}
@@ -49,6 +49,9 @@ A data frame with 76 variables:
   \item{\code{off_pts_per_opp}}{double.}
   \item{\code{off_field_pos_avg_start}}{double.}
   \item{\code{off_field_pos_avg_predicted_points}}{double.}
+  \item{\code{off_havoc_total}}{double.}
+  \item{\code{off_havoc_front_seven}}{double.}
+  \item{\code{off_havoc_db}}{double.}
   \item{\code{off_standard_downs_rate}}{double.}
   \item{\code{off_standard_downs_ppa}}{double.}
   \item{\code{off_standard_downs_success_rate}}{double.}
