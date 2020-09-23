@@ -23,7 +23,7 @@ Imports:
     assertthat,
     httr,
     jsonlite,
-    mgcv,
+    mgcv (>= 1.8.32),
     nnet,
     purrr,
     stats,
