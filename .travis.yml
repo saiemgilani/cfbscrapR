@@ -1,4 +1,4 @@
 language: r
 
 cache:
-  packages: true
+  packages: false
