@@ -194,6 +194,11 @@ The worst offenses for rushing and passing were West Virginia, who averaged only
 
 We can easily do the defensive side of the ball as well, grouping plays instead by defense_play. Let's make a dataset and then use ```left_join()``` to put offenses and defenses together, but let's do EPA instead of yards, because EPA is more fun. (What's EPA? Glad you asked: [An EPA Primer](https://www.frogsowar.com/2019/8/13/20802128/expected-points-big-12-college-football-analytics). 
 
+If you would like to read more on the expected points model fundamentals, read the ```cfbscrapR``` tutorial on the subject:
+ * [Part I: Expected points model definition](https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html "A model explainer")
+ * [Part II: Motivating the regression](https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html "We do bad regression to show that a multinomial logistic regression model is necessary")
+ * [Part III: A brief history of expected points models](https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html "Learn about Virgil Carter's 1970 paper and the originators of the nflscrapR expected points model (which the cfbscrapR package fittingly uses)")
+
 For the tutorial, I've included the ```head()``` function as a quick way to look at the top values of our data. In your console, though, with the ```view()``` command, you can pull up the data in a traditional spreadsheet kind of format, which can help you parse through and see what you're working with, or see results you've created.
 
 ```{r mean_pass_rush,message=FALSE,warning=FALSE}
@@ -378,7 +383,7 @@ cfbscrapR: the R package that helps you get the college football data. Documenta
 
 ### Functions in cfbscrapR
 
-* cfb_pbp_data() gets you the play by play for a given week or team. Can loop over this to pull the whole season. If you include 'drives=TRUE', you can get the drive data.  
+* cfb_pbp_data() gets you the play by play for a given week or team. Can loop over this to pull the whole season. 
 * cfb_game_info() gets you the home team, away team, game score, and more info about games.  
 * plot_pbp_sequencing() and plot_wpa() are both built-in graphics you can play with. See documentation.   
 tidyverse: the R data science package that helps you wrangle and analyze data.  

@@ -19,6 +19,10 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Making Animated Win Probability Charts with cfbscrapR">
 <meta property="og:description" content="cfbscrapR">
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@cfbscrapR">
+<meta name="twitter:site" content="@cfbscrapR">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -129,7 +133,7 @@
                         <h4 class="author">Jared Lee | <span class="citation">@JaredDLee</span>
 </h4>
             
-            <h4 class="date">2020-09-23</h4>
+            <h4 class="date">2020-09-24</h4>
       
       
       <div class="hidden name"><code>Animated_WP_Plotting.Rmd</code></div>
@@ -219,9 +223,10 @@
                                 <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )\\d{0,2} Yd TD pass"</span>),
                                 <span class="kw">receiver_player</span>),
       receiver_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Sack"</span> <span class="op">|</span>
-                               <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Pass Interception Return"</span> <span class="op">|</span>
+                               <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return"</span> <span class="op">|</span>
                                <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return Touchdown"</span> <span class="op">|</span>
-                               (<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Fumble Recovery (Opponent)"</span> <span class="op">&amp;</span>
+                               (<span class="kw">play_type</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Fumble Recovery (Opponent)"</span>,
+                                                 <span class="st">"Fumble Recovery (Opponent) Touchdown"</span>) <span class="op">&amp;</span>
                                 <span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="st">"sacked"</span>)), <span class="fl">NA</span>, <span class="kw">receiver_player</span>),
       receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"to "</span>),
       receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"\\,.+"</span>),
@@ -270,9 +275,17 @@
       interception_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">pass</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> (<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return"</span><span class="op">|</span> 
                                                 <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return Touchdown"</span>),
                                    <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"intercepted (.+)"</span>), <span class="fl">NA</span>),
+      interception_player = <span class="fu">if_else</span>(<span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"Yd pass"</span>, ignore_case = <span class="fl">TRUE</span>)),
+                                <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )\\d{0,2} Yd pass"</span>),
+                                <span class="kw">interception_player</span>),
+      interception_player = <span class="fu">if_else</span>(<span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"Yd Interception Return"</span>, ignore_case = <span class="fl">TRUE</span>)),
+                                <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )\\d{0,2} Yd Interception Return"</span>),
+                                <span class="kw">interception_player</span>),
       interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">"return (.+)"</span>),
       interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">"(.+) intercepted "</span>),
-      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">"intercepted"</span>))
+      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">"intercepted"</span>),
+      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">" Yd Interception Return"</span>),
+      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">" (\\d{1,2})"</span>))
   
   <span class="co">## Punter Name</span>
   <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
@@ -289,6 +302,13 @@
       punt_returner_player = <span class="fu">str_remove</span>(<span class="kw">punt_returner_player</span>, <span class="st">", "</span>),
       punt_returner_player = <span class="fu">str_remove</span>(<span class="kw">punt_returner_player</span>, <span class="st">" returns"</span>)) 
   
+  <span class="co">## Kickoff Specialist Name</span>
+  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
+    <span class="fu">mutate</span>(
+      kickoff_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu">str_detect</span>(<span class="kw">play_type</span>, <span class="st">"Kickoff"</span>),
+                             <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">".{0,25} kickoff"</span>), <span class="fl">NA</span>),
+      kickoff_player = <span class="fu">str_remove</span>(<span class="kw">kickoff_player</span>,<span class="st">" kickoff"</span>))
+  
   <span class="co">## Kickoff Returner</span>
   <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span> 
     <span class="fu">mutate</span>(
@@ -296,6 +316,15 @@
                                        <span class="fu">str_extract</span>(<span class="kw">play_text</span>,<span class="st">", .{0,25} return"</span>), <span class="fl">NA</span>),
       kickoff_returner_player = <span class="fu">str_remove</span>(<span class="kw">kickoff_returner_player</span>,<span class="st">", "</span>),
       kickoff_returner_player = <span class="fu">str_remove</span>(<span class="kw">kickoff_returner_player</span>,<span class="st">" return"</span>)) 
+  <span class="co">## Field Goal Kicker</span>
+  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span> 
+    <span class="fu">mutate</span>(
+      fg_kicker_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu">str_detect</span>(<span class="kw">play_type</span>, <span class="st">"Field Goal"</span>),
+                             <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"(.{0,25} )\\d{0,2} yd field goal| | (.{0,25} )\\d{0,2} yd fg"</span>, ignore_case = <span class="fl">TRUE</span>)), <span class="fl">NA</span>),
+      fg_kicker_player = <span class="fu">str_remove</span>(<span class="kw">fg_kicker_player</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">" Yd Field Goal|Yd FG"</span>, ignore_case = <span class="fl">TRUE</span>)),
+      fg_kicker_player = <span class="fu">str_remove</span>(<span class="kw">fg_kicker_player</span>,<span class="st">" (\\d{1,2})"</span>)
+      )
+      
   
   <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
     <span class="fu">rename</span>(
@@ -306,11 +335,14 @@
       sack_player_name2 = <span class="kw">sack_player2</span>,
       interception_player_name = <span class="kw">interception_player</span>,
       punter_player_name = <span class="kw">punter_player</span>,
+      fg_kicker_player_name = <span class="kw">fg_kicker_player</span>,
+      kickoff_player_name = <span class="kw">kickoff_player</span>,
       kickoff_returner_player_name = <span class="kw">kickoff_returner_player</span>,
       punt_returner_player_name = <span class="kw">punt_returner_player</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw">pbp</span>)
 }
 </pre></div>
-<p>Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe’s animation code. First, we will rename several columns that are similar between <code>cfbscrapR</code> and <code>nflfastR</code> to match <code>nflfastR</code>’s column names. Then we need to create a few new columns that <code>cfbscrapR</code> doesn’t have. <code>game_seconds_remaining</code> is really just renaming <code>TimeSecsRem</code> but correcting for the half. <code>result</code> grabs from the game information and is the difference in the home and away score. We create the <code>time</code> column to use as the clock on the right side of the animation. Finally, we use our custom <code>cfb_add_player_col()</code> function to add the player names to our data.</p>
+<p>Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe’s animation code. First, we will rename several columns that are similar between <code>cfbscrapR</code> and <code>nflfastR</code> to match <code>nflfastR</code>’s column names. Then we need to create a few new columns that <code>cfbscrapR</code> doesn’t have. <code>game_seconds_remaining</code> is really just renaming <code>TimeSecsRem</code> but correcting for the half. <code>result</code> grabs from the game information and is the difference in the home and away score. We create the <code>time</code> column to use as the clock on the right side of the animation. Finally, we use our custom <code>add_player_cols()</code> function to add the player names to our data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="kw">game_pbp</span> <span class="op">&lt;-</span> <span class="kw">game_pbp</span> <span class="op">%&gt;%</span>
   <span class="fu">rename</span>(qtr = <span class="kw">period</span>, wp = <span class="kw">wp_before</span>, posteam = <span class="kw">offense_play</span>, defteam = <span class="kw">defense_play</span>,
@@ -370,9 +402,12 @@
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Field Goal Missed"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{posteam} FG MISS"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Passing Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{receiver_player_name} TD"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Rushing Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{rusher_player_name} TD"</span>),
-       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Field Goal Good"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{posteam} FG GOOD"</span>),
+       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Field Goal Good"</span> <span class="op">&amp;</span>
+         <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">fg_kicker_player_name</span>) <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{fg_kicker_player_name} FG GOOD"</span>),
+       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Field Goal Good"</span> <span class="op">&amp;</span>
+         <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">fg_kicker_player_name</span>) <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{posteam} FG GOOD"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Timeout"</span> <span class="op">~</span> <span class="st">""</span>,
-       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Pass Interception Return"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{interception_player_name} INT"</span>),
+       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{interception_player_name} INT"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Fumble Recovery (Own)"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{rusher_player_name} Rush"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Blocked Field Goal"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{posteam} FG BLK"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Kickoff Return (Offense)"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{kickoff_returner_player_name} KR"</span>),
@@ -381,8 +416,11 @@
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Kickoff Return Touchdown"</span> <span class="op">&amp;</span> 
          <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">kickoff_returner_player_name</span>) <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{kickoff_returner_player_name} KR TD"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Punt Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{punt_returner_player_name} PR TD"</span>),
+       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Fumble Recovery (Opponent) Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{defteam} FUMBLE TD"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Fumble Return Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{defteam} FUMBLE TD"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Safety"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"SAFETY"</span>),
+       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Punt Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{posteam} PR FUMBLE TD"</span>),
+       <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Kickoff Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{posteam} KR FUMBLE TD"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Punt Return Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{punt_returner_player_name} PR TD"</span>),
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Uncategorized"</span> <span class="op">~</span> <span class="st">""</span>,
        <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="kw">wpa</span>) <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Blocked Punt Touchdown"</span> <span class="op">~</span> <span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{defteam} PUNT BLK TD"</span>),
@@ -606,9 +644,10 @@
 </pre></div>
 <p>Let’s test our function to make sure the plot looks like how we want it by running our function with 6 minutes left in the game.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="co">#draw_frame(360)</span>
+<span class="fu">draw_frame</span>(<span class="fl">360</span>)
 </pre></div>
-<p><a href="https://kazink36.github.io/images/animated_wp_frame_ex.png">Looks great</a>, so next we create the <code>draw_game()</code> function which will draw every frame for our GIF.</p>
+<p><img src="Animated_WP_Plotting_files/figure-html/draw_test-1.png" width="700"></p>
+<p>Looks great, so next we create the <code>draw_game()</code> function which will draw every frame for our GIF.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="kw">draw_game</span> <span class="op">&lt;-</span> <span class="fu">function</span>()
 {
@@ -629,10 +668,7 @@
 <div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")</span>
 </pre></div>
-<div class="figure">
-<img src="https://kazink36.github.io/images/animated_wp_ex.gif" alt=""><p class="caption">Result</p>
-</div>
-<p>This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the <code>ani.width</code>, <code>ani.height</code> and <code>ani.res</code> parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.</p>
+<p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/animated_wp.gif?raw=true" alt="Result"> This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the <code>ani.width</code>, <code>ani.height</code> and <code>ani.res</code> parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp_wide.gif",</span>
 <span class="co">#         ani.width = 1000, ani.height = 650, ani.res = 110)</span>

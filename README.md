@@ -129,7 +129,7 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
     vignette](https://saiemgilani.github.io/cfbscrapR/articles/Animated_WP_Plotting.html)
     to the package documentation page
 
-![Result](https://kazink36.github.io/images/animated_wp_ex.gif)
+![Result](https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/animated_wp.gif)
 
   - Contains important `add_player_cols()` function useful to parse
     existing play-by-play datasets and pull passer/rusher/receiver/etc.
