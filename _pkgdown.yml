@@ -1,7 +1,12 @@
 template:
   params:
     bootswatch: cosmo
-    
+  opengraph:
+    image:
+      src: https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png
+    twitter:
+      site: "@cfbscrapR"
+      card: summary_large_image
 title: cfbscrapR
 url: http://saiemgilani.github.io/cfbscrapR
 
