@@ -12,7 +12,7 @@ Follow](https://img.shields.io/twitter/follow/cfbscrapR?style=social)](https://t
 
 # cfbscrapR
 
-![cfbscrapr-tile-1-300.png](https://i.imgur.com/VnHlLhT.png)
+![cfbscrapr-tile-1-300.png](https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapr-tile-1-300.png)
 
 A scraping and aggregating package using the CollegeFootballData API
 
