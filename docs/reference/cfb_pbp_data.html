@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Extract CFB (D-I) Play by Play Data - For plays — cfb_pbp_data" />
-<meta property="og:description" content="Extracts raw game by game data. Data comes from https://api.collegefootballdata.com" />
+<meta property="og:description" content="Extracts raw game by game data. " />
 
 
 
@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -167,16 +173,16 @@
     </div>
 
     <div class="ref-description">
-    <p>Extracts raw game by game data. Data comes from https://api.collegefootballdata.com</p>
+    <p>Extracts raw game by game data. <br /></p>
     </div>
 
     <pre class="usage"><span class='fu'>cfb_pbp_data</span>(
-  <span class='no'>year</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>,
-  <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>play_type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>epa_wpa</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>year</span>,
+  season_type = <span class='st'>"regular"</span>,
+  week = <span class='fl'>1</span>,
+  team = <span class='kw'>NULL</span>,
+  play_type = <span class='kw'>NULL</span>,
+  epa_wpa = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -208,6 +214,164 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/plays'>https://api.collegefootballdata.com/plays</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 149 variables:</p><dl>
+  <dt><code>year</code></dt><dd><p>integer.</p></dd>
+  <dt><code>week</code></dt><dd><p>integer.</p></dd>
+  <dt><code>id_play</code></dt><dd><p>character.</p></dd>
+  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>offense_play</code></dt><dd><p>character.</p></dd>
+  <dt><code>defense_play</code></dt><dd><p>character.</p></dd>
+  <dt><code>half</code></dt><dd><p>integer.</p></dd>
+  <dt><code>period</code></dt><dd><p>integer.</p></dd>
+  <dt><code>clock.minutes</code></dt><dd><p>double.</p></dd>
+  <dt><code>clock.seconds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>play_type</code></dt><dd><p>character.</p></dd>
+  <dt><code>play_text</code></dt><dd><p>character.</p></dd>
+  <dt><code>down</code></dt><dd><p>double.</p></dd>
+  <dt><code>distance</code></dt><dd><p>double.</p></dd>
+  <dt><code>yards_to_goal</code></dt><dd><p>double.</p></dd>
+  <dt><code>yards_to_goal_end</code></dt><dd><p>double.</p></dd>
+  <dt><code>yards_gained</code></dt><dd><p>integer.</p></dd>
+  <dt><code>TimeSecsRem</code></dt><dd><p>double.</p></dd>
+  <dt><code>offense_score</code></dt><dd><p>integer.</p></dd>
+  <dt><code>defense_score</code></dt><dd><p>integer.</p></dd>
+  <dt><code>score_diff</code></dt><dd><p>integer.</p></dd>
+  <dt><code>score_diff_start</code></dt><dd><p>double.</p></dd>
+  <dt><code>EPA</code></dt><dd><p>double.</p></dd>
+  <dt><code>ep_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>ep_after</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_EPA</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa</code></dt><dd><p>double.</p></dd>
+  <dt><code>wp_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>wp_after</code></dt><dd><p>double.</p></dd>
+  <dt><code>score_pts</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa</code></dt><dd><p>character.</p></dd>
+  <dt><code>game_play_number</code></dt><dd><p>double.</p></dd>
+  <dt><code>drive_number</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_play_number</code></dt><dd><p>double.</p></dd>
+  <dt><code>firstD_by_poss</code></dt><dd><p>double.</p></dd>
+  <dt><code>firstD_by_penalty</code></dt><dd><p>double.</p></dd>
+  <dt><code>firstD_by_yards</code></dt><dd><p>double.</p></dd>
+  <dt><code>down_end</code></dt><dd><p>integer.</p></dd>
+  <dt><code>distance_end</code></dt><dd><p>double.</p></dd>
+  <dt><code>Goal_To_Go</code></dt><dd><p>logical.</p></dd>
+  <dt><code>Under_two</code></dt><dd><p>logical.</p></dd>
+  <dt><code>offense_timeouts</code></dt><dd><p>integer.</p></dd>
+  <dt><code>defense_timeouts</code></dt><dd><p>integer.</p></dd>
+  <dt><code>change_of_poss</code></dt><dd><p>double.</p></dd>
+  <dt><code>home</code></dt><dd><p>character.</p></dd>
+  <dt><code>away</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_wp_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>away_wp_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>home_wp_after</code></dt><dd><p>double.</p></dd>
+  <dt><code>away_wp_after</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_base</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_base_nxt</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_change</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_change_nxt</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_base_ind</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_base_nxt_ind</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_change_ind</code></dt><dd><p>double.</p></dd>
+  <dt><code>wpa_change_nxt_ind</code></dt><dd><p>double.</p></dd>
+  <dt><code>ExpScoreDiff</code></dt><dd><p>double.</p></dd>
+  <dt><code>ExpScoreDiff_Time_Ratio</code></dt><dd><p>double.</p></dd>
+  <dt><code>drive_start_yards_to_goal</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_end_yards_to_goal</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_yards</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_scoring</code></dt><dd><p>logical.</p></dd>
+  <dt><code>drive_result</code></dt><dd><p>character.</p></dd>
+  <dt><code>drive_pts</code></dt><dd><p>double.</p></dd>
+  <dt><code>new_id</code></dt><dd><p>double.</p></dd>
+  <dt><code>drive_id</code></dt><dd><p>double.</p></dd>
+  <dt><code>TimeSecsRem_end</code></dt><dd><p>double.</p></dd>
+  <dt><code>offense_conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>defense_conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
+  <dt><code>scoring</code></dt><dd><p>logical.</p></dd>
+  <dt><code>drive_time_minutes_start</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_time_seconds_start</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_time_minutes_end</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_time_seconds_end</code></dt><dd><p>integer.</p></dd>
+  <dt><code>drive_time_minutes_elapsed</code></dt><dd><p>double.</p></dd>
+  <dt><code>drive_time_seconds_elapsed</code></dt><dd><p>double.</p></dd>
+  <dt><code>scoring_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>pts_scored</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_td_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_td_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>touchdown</code></dt><dd><p>double.</p></dd>
+  <dt><code>safety</code></dt><dd><p>double.</p></dd>
+  <dt><code>kickoff_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>kickoff_tb</code></dt><dd><p>double.</p></dd>
+  <dt><code>kickoff_onside</code></dt><dd><p>double.</p></dd>
+  <dt><code>kickoff_oob</code></dt><dd><p>double.</p></dd>
+  <dt><code>kickoff_fair_catch</code></dt><dd><p>double.</p></dd>
+  <dt><code>kickoff_downed</code></dt><dd><p>double.</p></dd>
+  <dt><code>kick_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>kickoff_safety</code></dt><dd><p>double.</p></dd>
+  <dt><code>punt</code></dt><dd><p>double.</p></dd>
+  <dt><code>punt_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>punt_tb</code></dt><dd><p>double.</p></dd>
+  <dt><code>punt_oob</code></dt><dd><p>double.</p></dd>
+  <dt><code>punt_fair_catch</code></dt><dd><p>double.</p></dd>
+  <dt><code>punt_downed</code></dt><dd><p>double.</p></dd>
+  <dt><code>fumble_vec</code></dt><dd><p>double.</p></dd>
+  <dt><code>rush</code></dt><dd><p>double.</p></dd>
+  <dt><code>pass</code></dt><dd><p>double.</p></dd>
+  <dt><code>sack_vec</code></dt><dd><p>double.</p></dd>
+  <dt><code>turnover_vec</code></dt><dd><p>double.</p></dd>
+  <dt><code>sack</code></dt><dd><p>double.</p></dd>
+  <dt><code>int</code></dt><dd><p>double.</p></dd>
+  <dt><code>int_td</code></dt><dd><p>double.</p></dd>
+  <dt><code>completion</code></dt><dd><p>double.</p></dd>
+  <dt><code>pass_attempt</code></dt><dd><p>double.</p></dd>
+  <dt><code>target</code></dt><dd><p>double.</p></dd>
+  <dt><code>pass_td</code></dt><dd><p>double.</p></dd>
+  <dt><code>rush_td</code></dt><dd><p>double.</p></dd>
+  <dt><code>penalty_flag</code></dt><dd><p>logical.</p></dd>
+  <dt><code>penalty_declined</code></dt><dd><p>logical.</p></dd>
+  <dt><code>penalty_no_play</code></dt><dd><p>logical.</p></dd>
+  <dt><code>penalty_offset</code></dt><dd><p>logical.</p></dd>
+  <dt><code>penalty_1st_conv</code></dt><dd><p>logical.</p></dd>
+  <dt><code>penalty_text</code></dt><dd><p>logical.</p></dd>
+  <dt><code>end_of_half</code></dt><dd><p>double.</p></dd>
+  <dt><code>turnover</code></dt><dd><p>double.</p></dd>
+  <dt><code>downs_turnover</code></dt><dd><p>double.</p></dd>
+  <dt><code>half_play_number</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_timeouts_rem_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_timeouts_rem_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>missing_yard_flag</code></dt><dd><p>logical.</p></dd>
+  <dt><code>first_by_penalty</code></dt><dd><p>double.</p></dd>
+  <dt><code>first_by_yards</code></dt><dd><p>double.</p></dd>
+  <dt><code>adj_TimeSecsRem</code></dt><dd><p>double.</p></dd>
+  <dt><code>turnover_vec_lag</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_td_play_lag</code></dt><dd><p>double.</p></dd>
+  <dt><code>play_after_turnover</code></dt><dd><p>double.</p></dd>
+  <dt><code>receives_2H_kickoff</code></dt><dd><p>double.</p></dd>
+  <dt><code>lag_score_diff</code></dt><dd><p>double.</p></dd>
+  <dt><code>offense_play_lag</code></dt><dd><p>character.</p></dd>
+  <dt><code>offense_play_lead</code></dt><dd><p>character.</p></dd>
+  <dt><code>offense_play_lead2</code></dt><dd><p>character.</p></dd>
+  <dt><code>lead_kickoff_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>offense_receives_2H_kickoff</code></dt><dd><p>double.</p></dd>
+  <dt><code>home_EPA</code></dt><dd><p>double.</p></dd>
+  <dt><code>away_EPA</code></dt><dd><p>double.</p></dd>
+  <dt><code>rz_play</code></dt><dd><p>double.</p></dd>
+  <dt><code>scoring_opp</code></dt><dd><p>double.</p></dd>
+  <dt><code>stuffed_run</code></dt><dd><p>double.</p></dd>
+  <dt><code>success</code></dt><dd><p>double.</p></dd>
+  <dt><code>epa_success</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_wp_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>lead_wp_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>lead2_wp_before</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_wp_after</code></dt><dd><p>double.</p></dd>
+
+</dl>
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -224,7 +388,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

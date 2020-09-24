@@ -4,9 +4,10 @@
 <!-- badges: start -->
 
 ![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
-
 ![Travis-CI:
 build-status](https://travis-ci.com/saiemgilani/cfbscrapR.svg?token=BxsozfUD3VCvCzzJpdFf&branch=master)
+[![Twitter
+Follow](https://img.shields.io/twitter/follow/cfbscrapR?style=social)](https://twitter.com/cfbscrapR)
 <!-- badges: end -->
 
 # cfbscrapR
@@ -60,10 +61,84 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
 
 ![wp\_cv\_loso\_calibration\_results.png](https://i.imgur.com/4YgfphC.png)
 
-## cfbscrapR v1.0.21
+# cfbscrapR 1.0.22
 
-  - Fix conference parameters to match API (moved to abbreviation
-    format)
+  - ~~Fix conference parameters to match API (moved to abbreviation
+    format).~~ Removed assertions for now, so users should be able to
+    access conference data without issue, assuming the input argument is
+    correct. May fortune favor your selection.
+
+  - Add mgcv (\>= v1.8.32) dependency and update WP model accordingly.
+    Note on WPA: Kickoffs are problematic and our calculation algorithm
+    does not appear to accomplishing what it needs to. We are working on
+    this, aiming for a quick next version update centered around this.
+
+  - Following play type renamings and merging:
+    
+      - Pass Interception Return –\> Interception Return
+      - Pass Interception –\> Interception Return
+      - Pass Interception Return Touchdown –\> Interception Return
+        Touchdown
+      - Sack Touchdown –\> Fumble Recovery (Opponent) Touchdown
+      - Punt Touchdown \~ Punt Return Touchdown.
+
+  - Update `rush_vec` and `pass_vec` regex definitions to be more
+    precise on pulling rushing plays.
+
+  - Update definition of play\_type definition for cleaning “Fumble
+    Recovery (Opponent)” play types to actually distinguish between
+    touchdowns and non-scoring opponent fumble recoveries (prior
+    definition was combining the touchdowns into the non-scoring play
+    type)
+
+  - Reduce the reach of the non-explicit rushing/passing touchdowns to
+    be more careful about merging labels.
+
+  - Similarly, separated punt touchdowns into a specific type of
+    offensive score where the punting team recovers a fumble and scores,
+    all other `punt touchdowns` prior to this were punt return
+    touchdowns. There is a specific Jalen Reagor (TCU) play where he
+    pulls a Greg Reid and fumbles on the punt return only to recover the
+    fumble and run it in for a 73 yard TD that is explicitly fixed.
+
+  - Add the following columns:
+    
+      - kickoff\_onside
+      - kickoff\_fair\_catch
+      - kickoff\_downed
+      - punt\_fair\_catch
+      - punt\_downed
+      - sack
+      - int
+      - int\_td
+      - completion
+      - pass\_attempt
+      - target
+      - pass\_td
+      - rush\_td
+      - safety
+
+  - add some return skeleton docs
+
+  - add column `drive_start_yardline` to the remove cols
+
+  - add parsing for kickoff safetys accounting for sign change
+
+  - Added [Jared Lee](https://twitter.com/JaredDLee)’s [animated win
+    probability plot
+    vignette](https://saiemgilani.github.io/cfbscrapR/articles/Animated_WP_Plotting.html)
+    to the package documentation page
+
+![Result](https://kazink36.github.io/images/animated_wp_ex.gif)
+
+  - Contains important `add_player_cols()` function useful to parse
+    existing play-by-play datasets and pull passer/rusher/receiver/etc.
+    player names.
+
+  - Added [Michael Egle](https://twitter.com/deceptivespeed_)’s [4th
+    down tendency plot
+    vignette](https://saiemgilani.github.io/cfbscrapR/articles/fourth_down_plot_tutorial.html)
+    to the package documentation page
 
 ## cfbscrapR v1.0.2
 

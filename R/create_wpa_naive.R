@@ -1,11 +1,32 @@
 #' Add Win Probability Added (WPA) calculations to Play-by-Play DataFrame
 #' This is only for D1 football
 #'
-#'
 #' Extracts raw game by game data.
 #' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
 #' @param wp_model (\emph{model} default cfbscrapR:wp_model): Win Probability (WP) Model
-#'
+#' @details Requires the following columns to be present in the input data frame.
+#' @return The original `df` with the following columns appended to it:
+#' \describe{
+#' \item{wp_before}{}
+#' \item{def_wp_before}{}
+#' \item{home_wp_before}{}
+#' \item{away_wp_before}{}
+#' \item{lead_wp_before}{}
+#' \item{lead2_wp_before}{}
+#' \item{wpa_base}{}
+#' \item{wpa_base_nxt}{}
+#' \item{wpa_base_ind}{}
+#' \item{wpa_base_nxt_ind}{}
+#' \item{wpa_change}{}
+#' \item{wpa_change_nxt}{}
+#' \item{wpa_change_ind}{}
+#' \item{wpa_change_nxt_ind}{}
+#' \item{wpa}{}
+#' \item{wp_after}{}
+#' \item{def_wp_after}{}
+#' \item{home_wp_after}{}
+#' \item{away_wp_after}{}
+#' }
 #' @keywords internal
 #' @import dplyr
 #' @import tidyr
@@ -23,31 +44,43 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
     "def_timeouts_rem_before"
   )
   if (!all(col_nec %in% colnames(df))) {
-    df = df %>% dplyr::mutate(
-      adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
-      turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
-      def_td_play_lag = dplyr::lag(.data$def_td_play, 1),
-      play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$def_td_play_lag != 1, 1, 0),
-      score_diff = .data$offense_score - .data$defense_score,
-      lag_score_diff = lag(.data$score_diff, 1),
-      lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
-      offense_play_lag = dplyr::lag(.data$offense_play, 1),
-      offense_play_lag = ifelse(.data$game_play_number == 1, .data$offense_play, .data$offense_play_lag),
-      offense_play_lead = dplyr::lead(.data$offense_play, 1),
-      offense_play_lead2 = dplyr::lead(.data$offense_play, 2),
-      score_pts = ifelse(.data$offense_play_lag == .data$offense_play,
-                         (.data$score_diff - .data$lag_score_diff),
-                         (.data$score_diff + .data$lag_score_diff)),
-      score_diff_start = ifelse(.data$offense_play_lag == .data$offense_play,
-                                   .data$lag_score_diff,
-                                   -1*.data$lag_score_diff),
-      EPA = .data$ep_after - .data$ep_before,
-      def_EPA = -1*.data$EPA,
-      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -1*.data$EPA),
-      away_EPA = -1*.data$home_EPA,
-      ExpScoreDiff = .data$score_diff_start + .data$ep_before,
-      half = as.factor(.data$half),
-      ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)
+    df = df %>% 
+      dplyr::mutate(
+        adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
+        turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
+        def_td_play_lag = dplyr::lag(.data$def_td_play, 1),
+        play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$def_td_play_lag != 1, 1, 0),
+        receives_2H_kickoff = ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 & 
+                                       .data$offense_play == .data$home, 1, 
+                                     ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 &
+                                              .data$offense_play == .data$away,0,NA)),
+        score_diff = .data$offense_score - .data$defense_score,
+        lag_score_diff = lag(.data$score_diff, 1),
+        lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
+        offense_play_lag = dplyr::lag(.data$offense_play, 1),
+        offense_play_lag = ifelse(.data$game_play_number == 1, .data$offense_play, .data$offense_play_lag),
+        offense_play_lead = dplyr::lead(.data$offense_play, 1),
+        offense_play_lead2 = dplyr::lead(.data$offense_play, 2),
+        lead_kickoff_play = dplyr::lead(.data$kickoff_play,1),
+        score_pts = ifelse(.data$offense_play_lag == .data$offense_play,
+                           (.data$score_diff - .data$lag_score_diff),
+                           (.data$score_diff + .data$lag_score_diff)),
+        score_diff_start = ifelse(.data$offense_play_lag == .data$offense_play,
+                                  .data$lag_score_diff,
+                                  -1*.data$lag_score_diff)) %>% 
+      tidyr::fill(.data$receives_2H_kickoff) %>% 
+      dplyr::mutate(
+        offense_receives_2H_kickoff = case_when(
+          .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
+          .data$offense_play == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
+          TRUE ~ 0),
+        EPA = .data$ep_after - .data$ep_before,
+        def_EPA = -1*.data$EPA,
+        home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -1*.data$EPA),
+        away_EPA = -1*.data$home_EPA,
+        ExpScoreDiff = .data$score_diff_start + .data$ep_before,
+        half = as.factor(.data$half),
+        ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)
     )
   }
 

@@ -85,7 +85,7 @@ Current support only for D-I" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -112,6 +112,12 @@ Current support only for D-I" />
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -180,7 +186,7 @@ Lists all teams in conference or all D-I teams if conference is left NULL
 Current support only for D-I</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_info</span>(<span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_fbs</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_info</span>(conference = <span class='kw'>NULL</span>, only_fbs = <span class='fl'>TRUE</span>, year = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,39 +208,61 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/teams'>https://api.collegefootballdata.com/teams</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 12 variables:</p><dl>
+  <dt><code>team_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>school</code></dt><dd><p>character.</p></dd>
+  <dt><code>mascot</code></dt><dd><p>character.</p></dd>
+  <dt><code>abbreviation</code></dt><dd><p>character.</p></dd>
+  <dt><code>alt_name1</code></dt><dd><p>character.</p></dd>
+  <dt><code>alt_name2</code></dt><dd><p>character.</p></dd>
+  <dt><code>alt_name3</code></dt><dd><p>character.</p></dd>
+  <dt><code>conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>division</code></dt><dd><p>character.</p></dd>
+  <dt><code>color</code></dt><dd><p>character.</p></dd>
+  <dt><code>alt_color</code></dt><dd><p>character.</p></dd>
+  <dt><code>logos</code></dt><dd><p>list.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_info</span>(<span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>"SEC"</span>)</div><div class='output co'>#&gt;      id            school       mascot abbreviation       alt_name1 alt_name2
-#&gt; 1   333           Alabama Crimson Tide          ALA            &lt;NA&gt;       ALA
-#&gt; 2     8          Arkansas   Razorbacks          ARK            &lt;NA&gt;       ARK
-#&gt; 3     2            Auburn       Tigers          AUB            &lt;NA&gt;       AUB
-#&gt; 4    57           Florida       Gators          FLA            &lt;NA&gt;       FLA
-#&gt; 5    61           Georgia     Bulldogs          UGA            &lt;NA&gt;       UGA
-#&gt; 6    96          Kentucky     Wildcats           UK            &lt;NA&gt;        UK
-#&gt; 7    99               LSU       Tigers          LSU Louisiana State       LSU
-#&gt; 8   344 Mississippi State     Bulldogs         MSST            &lt;NA&gt;      MSST
-#&gt; 9   142          Missouri       Tigers          MIZ            &lt;NA&gt;       MIZ
-#&gt; 10  145          Ole Miss       Rebels         MISS            &lt;NA&gt;      MISS
-#&gt; 11 2579    South Carolina    Gamecocks           SC            &lt;NA&gt;        SC
-#&gt; 12 2633         Tennessee   Volunteers         TENN            &lt;NA&gt;      TENN
-#&gt; 13  245         Texas A&amp;M       Aggies         TA&amp;M            &lt;NA&gt;      TA&amp;M
-#&gt; 14  238        Vanderbilt   Commodores          VAN            &lt;NA&gt;       VAN
-#&gt;         alt_name3 conference division   color alt_color
-#&gt; 1         Alabama        SEC     West #690014   #f1f2f3
-#&gt; 2        Arkansas        SEC     West #9c1831   #000000
-#&gt; 3          Auburn        SEC     West #03244d   #f1f2f3
-#&gt; 4         Florida        SEC     East #0021A5   #0021a5
-#&gt; 5         Georgia        SEC     East #CC0000   #000000
-#&gt; 6        Kentucky        SEC     East #005DAA   #ffffff
-#&gt; 7             LSU        SEC     West #22005c   #fdd023
-#&gt; 8         Miss St        SEC     West #762123   #c8c8c8
-#&gt; 9        Missouri        SEC     East #000000   #000000
-#&gt; 10       Ole Miss        SEC     West #001148   #00205b
-#&gt; 11 South Carolina        SEC     East #670010   #000000
-#&gt; 12      Tennessee        SEC     East #EE9627   #ffffff
-#&gt; 13      Texas A&amp;M        SEC     West #5C0025   #ffffff
-#&gt; 14     Vanderbilt        SEC     East #000000   #231f20
+<span class='fu'>cfb_team_info</span>(conference = <span class='st'>"SEC"</span>)
+</div><div class='output co'>#&gt;    team_id            school       mascot abbreviation       alt_name1
+#&gt; 1      333           Alabama Crimson Tide          ALA            &lt;NA&gt;
+#&gt; 2        8          Arkansas   Razorbacks          ARK            &lt;NA&gt;
+#&gt; 3        2            Auburn       Tigers          AUB            &lt;NA&gt;
+#&gt; 4       57           Florida       Gators          FLA            &lt;NA&gt;
+#&gt; 5       61           Georgia     Bulldogs          UGA            &lt;NA&gt;
+#&gt; 6       96          Kentucky     Wildcats           UK            &lt;NA&gt;
+#&gt; 7       99               LSU       Tigers          LSU Louisiana State
+#&gt; 8      344 Mississippi State     Bulldogs         MSST            &lt;NA&gt;
+#&gt; 9      142          Missouri       Tigers          MIZ            &lt;NA&gt;
+#&gt; 10     145          Ole Miss       Rebels         MISS            &lt;NA&gt;
+#&gt; 11    2579    South Carolina    Gamecocks           SC            &lt;NA&gt;
+#&gt; 12    2633         Tennessee   Volunteers         TENN            &lt;NA&gt;
+#&gt; 13     245         Texas A&amp;M       Aggies         TA&amp;M            &lt;NA&gt;
+#&gt; 14     238        Vanderbilt   Commodores          VAN            &lt;NA&gt;
+#&gt;    alt_name2      alt_name3 conference division   color alt_color
+#&gt; 1        ALA        Alabama        SEC     West #690014   #f1f2f3
+#&gt; 2        ARK       Arkansas        SEC     West #9c1831   #000000
+#&gt; 3        AUB         Auburn        SEC     West #03244d   #f1f2f3
+#&gt; 4        FLA        Florida        SEC     East #0021A5   #0021a5
+#&gt; 5        UGA        Georgia        SEC     East #CC0000   #000000
+#&gt; 6         UK       Kentucky        SEC     East #005DAA   #ffffff
+#&gt; 7        LSU            LSU        SEC     West #22005c   #fdd023
+#&gt; 8       MSST        Miss St        SEC     West #762123   #c8c8c8
+#&gt; 9        MIZ       Missouri        SEC     East #000000   #000000
+#&gt; 10      MISS       Ole Miss        SEC     West #001148   #00205b
+#&gt; 11        SC South Carolina        SEC     East #670010   #000000
+#&gt; 12      TENN      Tennessee        SEC     East #EE9627   #ffffff
+#&gt; 13      TA&amp;M      Texas A&amp;M        SEC     West #5C0025   #ffffff
+#&gt; 14       VAN     Vanderbilt        SEC     East #000000   #231f20
 #&gt;                                                                                                          logos
 #&gt; 1    http://a.espncdn.com/i/teamlogos/ncaa/500/333.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/333.png
 #&gt; 2        http://a.espncdn.com/i/teamlogos/ncaa/500/8.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/8.png
@@ -250,13 +278,14 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 #&gt; 12 http://a.espncdn.com/i/teamlogos/ncaa/500/2633.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/2633.png
 #&gt; 13   http://a.espncdn.com/i/teamlogos/ncaa/500/245.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/245.png
 #&gt; 14   http://a.espncdn.com/i/teamlogos/ncaa/500/238.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/238.png</div><div class='input'>
-<span class='fu'>cfb_team_info</span>(<span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>"Ind"</span>)</div><div class='output co'>#&gt;     id           school         mascot abbreviation     alt_name1 alt_name2
-#&gt; 1  349             Army  Black Knights         ARMY          &lt;NA&gt;      ARMY
-#&gt; 2  252              BYU        Cougars          BYU Brigham Young       BYU
-#&gt; 3 2335          Liberty         Flames          LIB          &lt;NA&gt;       LIB
-#&gt; 4  166 New Mexico State         Aggies         NMSU          &lt;NA&gt;      NMSU
-#&gt; 5   87       Notre Dame Fighting Irish           ND          &lt;NA&gt;        ND
-#&gt; 6  113            UMass      Minutemen        UMASS          &lt;NA&gt;     UMASS
+<span class='fu'>cfb_team_info</span>(conference = <span class='st'>"Ind"</span>)
+</div><div class='output co'>#&gt;   team_id           school         mascot abbreviation     alt_name1 alt_name2
+#&gt; 1     349             Army  Black Knights         ARMY          &lt;NA&gt;      ARMY
+#&gt; 2     252              BYU        Cougars          BYU Brigham Young       BYU
+#&gt; 3    2335          Liberty         Flames          LIB          &lt;NA&gt;       LIB
+#&gt; 4     166 New Mexico State         Aggies         NMSU          &lt;NA&gt;      NMSU
+#&gt; 5      87       Notre Dame Fighting Irish           ND          &lt;NA&gt;        ND
+#&gt; 6     113            UMass      Minutemen        UMASS          &lt;NA&gt;     UMASS
 #&gt;       alt_name3       conference division   color alt_color
 #&gt; 1          Army FBS Independents       NA #ce9c00   #231f20
 #&gt; 2           BYU FBS Independents       NA #001E4C   #ffffff
@@ -271,137 +300,138 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 #&gt; 4   http://a.espncdn.com/i/teamlogos/ncaa/500/166.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/166.png
 #&gt; 5     http://a.espncdn.com/i/teamlogos/ncaa/500/87.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/87.png
 #&gt; 6   http://a.espncdn.com/i/teamlogos/ncaa/500/113.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/113.png</div><div class='input'>
-<span class='fu'>cfb_team_info</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>)</div><div class='output co'>#&gt;       id                school           mascot abbreviation
-#&gt; 1   2005             Air Force          Falcons          AFA
-#&gt; 2   2006                 Akron             Zips          AKR
-#&gt; 3    333               Alabama     Crimson Tide          ALA
-#&gt; 4   2026     Appalachian State     Mountaineers          APP
-#&gt; 5     12               Arizona         Wildcats         ARIZ
-#&gt; 6      9         Arizona State       Sun Devils          ASU
-#&gt; 7      8              Arkansas       Razorbacks          ARK
-#&gt; 8   2032        Arkansas State       Red Wolves         ARST
-#&gt; 9    349                  Army    Black Knights         ARMY
-#&gt; 10     2                Auburn           Tigers          AUB
-#&gt; 11  2050            Ball State        Cardinals         BALL
-#&gt; 12   239                Baylor            Bears          BAY
-#&gt; 13    68           Boise State          Broncos          BSU
-#&gt; 14   103        Boston College           Eagles           BC
-#&gt; 15   189         Bowling Green          Falcons         BGSU
-#&gt; 16  2084               Buffalo            Bulls         BUFF
-#&gt; 17   252                   BYU          Cougars          BYU
-#&gt; 18    25            California     Golden Bears          CAL
-#&gt; 19  2117      Central Michigan        Chippewas          CMU
-#&gt; 20  2429             Charlotte            49ers         CHAR
-#&gt; 21  2132            Cincinnati         Bearcats          CIN
-#&gt; 22   228               Clemson           Tigers         CLEM
-#&gt; 23   324      Coastal Carolina     Chanticleers          CCU
-#&gt; 24    38              Colorado        Buffaloes         COLO
-#&gt; 25    36        Colorado State             Rams          CSU
-#&gt; 26    41           Connecticut          Huskies         CONN
-#&gt; 27   150                  Duke      Blue Devils         DUKE
-#&gt; 28   151         East Carolina          Pirates          ECU
-#&gt; 29  2199      Eastern Michigan           Eagles          EMU
-#&gt; 30    57               Florida           Gators          FLA
-#&gt; 31  2226      Florida Atlantic             Owls          FAU
-#&gt; 32  2229 Florida International  Golden Panthers          FIU
-#&gt; 33    52         Florida State        Seminoles          FSU
-#&gt; 34   278          Fresno State         Bulldogs         FRES
-#&gt; 35    61               Georgia         Bulldogs          UGA
-#&gt; 36   290      Georgia Southern           Eagles         GASO
-#&gt; 37  2247         Georgia State         Panthers         GAST
-#&gt; 38    59          Georgia Tech   Yellow Jackets           GT
-#&gt; 39    62               Hawai'i Rainbow Warriors          HAW
-#&gt; 40   248               Houston          Cougars          HOU
-#&gt; 41   356              Illinois  Fighting Illini          ILL
-#&gt; 42    84               Indiana         Hoosiers          IND
-#&gt; 43  2294                  Iowa         Hawkeyes         IOWA
-#&gt; 44    66            Iowa State         Cyclones          ISU
-#&gt; 45  2305                Kansas         Jayhawks           KU
-#&gt; 46  2306          Kansas State         Wildcats          KSU
-#&gt; 47  2309            Kent State   Golden Flashes         KENT
-#&gt; 48    96              Kentucky         Wildcats           UK
-#&gt; 49  2335               Liberty           Flames          LIB
-#&gt; 50   309             Louisiana    Ragin' Cajuns          ULL
-#&gt; 51  2433      Louisiana Monroe         Warhawks          ULM
-#&gt; 52  2348        Louisiana Tech         Bulldogs           LT
-#&gt; 53    97            Louisville        Cardinals          LOU
-#&gt; 54    99                   LSU           Tigers          LSU
-#&gt; 55   276              Marshall  Thundering Herd         MRSH
-#&gt; 56   120              Maryland        Terrapins           MD
-#&gt; 57   235               Memphis           Tigers          MEM
-#&gt; 58  2390                 Miami       Hurricanes        MIAMI
-#&gt; 59   193            Miami (OH)         RedHawks         M-OH
-#&gt; 60   130              Michigan       Wolverines         MICH
-#&gt; 61   127        Michigan State         Spartans          MSU
-#&gt; 62  2393      Middle Tennessee     Blue Raiders         MTSU
-#&gt; 63   135             Minnesota   Golden Gophers         MINN
-#&gt; 64   344     Mississippi State         Bulldogs         MSST
-#&gt; 65   142              Missouri           Tigers          MIZ
-#&gt; 66  2426                  Navy       Midshipmen         NAVY
-#&gt; 67   152              NC State         Wolfpack         NCST
-#&gt; 68   158              Nebraska      Cornhuskers          NEB
-#&gt; 69  2440                Nevada        Wolf Pack          NEV
-#&gt; 70   167            New Mexico            Lobos          UNM
-#&gt; 71   166      New Mexico State           Aggies         NMSU
-#&gt; 72   153        North Carolina        Tar Heels          UNC
-#&gt; 73  2459     Northern Illinois          Huskies          NIU
-#&gt; 74   249           North Texas       Mean Green          UNT
-#&gt; 75    77          Northwestern         Wildcats           NW
-#&gt; 76    87            Notre Dame   Fighting Irish           ND
-#&gt; 77   195                  Ohio          Bobcats         OHIO
-#&gt; 78   194            Ohio State         Buckeyes          OSU
-#&gt; 79   201              Oklahoma          Sooners         OKLA
-#&gt; 80   197        Oklahoma State          Cowboys         OKST
-#&gt; 81   295          Old Dominion         Monarchs          ODU
-#&gt; 82   145              Ole Miss           Rebels         MISS
-#&gt; 83  2483                Oregon            Ducks          ORE
-#&gt; 84   204          Oregon State          Beavers         ORST
-#&gt; 85   213            Penn State    Nittany Lions          PSU
-#&gt; 86   221            Pittsburgh         Panthers         PITT
-#&gt; 87  2509                Purdue     Boilermakers          PUR
-#&gt; 88   242                  Rice             Owls         RICE
-#&gt; 89   164               Rutgers  Scarlet Knights         RUTG
-#&gt; 90    21       San Diego State           Aztecs         SDSU
-#&gt; 91    23        San José State         Spartans         SJSU
-#&gt; 92  2567                   SMU         Mustangs          SMU
-#&gt; 93     6         South Alabama          Jaguars          USA
-#&gt; 94  2579        South Carolina        Gamecocks           SC
-#&gt; 95  2572  Southern Mississippi    Golden Eagles          USM
-#&gt; 96    58         South Florida            Bulls          USF
-#&gt; 97    24              Stanford         Cardinal         STAN
-#&gt; 98   183              Syracuse           Orange          SYR
-#&gt; 99  2628                   TCU     Horned Frogs          TCU
-#&gt; 100  218                Temple             Owls          TEM
-#&gt; 101 2633             Tennessee       Volunteers         TENN
-#&gt; 102  251                 Texas        Longhorns          TEX
-#&gt; 103  245             Texas A&amp;M           Aggies         TA&amp;M
-#&gt; 104  326           Texas State          Bobcats         TXST
-#&gt; 105 2641            Texas Tech      Red Raiders          TTU
-#&gt; 106 2649                Toledo          Rockets          TOL
-#&gt; 107 2653                  Troy          Trojans         TROY
-#&gt; 108 2655                Tulane       Green Wave         TULN
-#&gt; 109  202                 Tulsa Golden Hurricane         TLSA
-#&gt; 110    5                   UAB          Blazers          UAB
-#&gt; 111 2116                   UCF          Knights          UCF
-#&gt; 112   26                  UCLA           Bruins         UCLA
-#&gt; 113  113                 UMass        Minutemen        UMASS
-#&gt; 114 2439                  UNLV           Rebels         UNLV
-#&gt; 115   30                   USC          Trojans          USC
-#&gt; 116  254                  Utah             Utes         UTAH
-#&gt; 117  328            Utah State           Aggies          USU
-#&gt; 118 2638                  UTEP           Miners         UTEP
-#&gt; 119 2636        UT San Antonio      Roadrunners         UTSA
-#&gt; 120  238            Vanderbilt       Commodores          VAN
-#&gt; 121  258              Virginia        Cavaliers          UVA
-#&gt; 122  259         Virginia Tech           Hokies           VT
-#&gt; 123  154           Wake Forest    Demon Deacons         WAKE
-#&gt; 124  264            Washington          Huskies         WASH
-#&gt; 125  265      Washington State          Cougars          WSU
-#&gt; 126   98      Western Kentucky      Hilltoppers          WKU
-#&gt; 127 2711      Western Michigan          Broncos          WMU
-#&gt; 128  277         West Virginia     Mountaineers          WVU
-#&gt; 129  275             Wisconsin          Badgers          WIS
-#&gt; 130 2751               Wyoming          Cowboys          WYO
+<span class='fu'>cfb_team_info</span>(year = <span class='fl'>2019</span>)
+</div><div class='output co'>#&gt;     team_id                school           mascot abbreviation
+#&gt; 1      2005             Air Force          Falcons          AFA
+#&gt; 2      2006                 Akron             Zips          AKR
+#&gt; 3       333               Alabama     Crimson Tide          ALA
+#&gt; 4      2026     Appalachian State     Mountaineers          APP
+#&gt; 5        12               Arizona         Wildcats         ARIZ
+#&gt; 6         9         Arizona State       Sun Devils          ASU
+#&gt; 7         8              Arkansas       Razorbacks          ARK
+#&gt; 8      2032        Arkansas State       Red Wolves         ARST
+#&gt; 9       349                  Army    Black Knights         ARMY
+#&gt; 10        2                Auburn           Tigers          AUB
+#&gt; 11     2050            Ball State        Cardinals         BALL
+#&gt; 12      239                Baylor            Bears          BAY
+#&gt; 13       68           Boise State          Broncos          BSU
+#&gt; 14      103        Boston College           Eagles           BC
+#&gt; 15      189         Bowling Green          Falcons         BGSU
+#&gt; 16     2084               Buffalo            Bulls         BUFF
+#&gt; 17      252                   BYU          Cougars          BYU
+#&gt; 18       25            California     Golden Bears          CAL
+#&gt; 19     2117      Central Michigan        Chippewas          CMU
+#&gt; 20     2429             Charlotte            49ers         CHAR
+#&gt; 21     2132            Cincinnati         Bearcats          CIN
+#&gt; 22      228               Clemson           Tigers         CLEM
+#&gt; 23      324      Coastal Carolina     Chanticleers          CCU
+#&gt; 24       38              Colorado        Buffaloes         COLO
+#&gt; 25       36        Colorado State             Rams          CSU
+#&gt; 26       41           Connecticut          Huskies         CONN
+#&gt; 27      150                  Duke      Blue Devils         DUKE
+#&gt; 28      151         East Carolina          Pirates          ECU
+#&gt; 29     2199      Eastern Michigan           Eagles          EMU
+#&gt; 30       57               Florida           Gators          FLA
+#&gt; 31     2226      Florida Atlantic             Owls          FAU
+#&gt; 32     2229 Florida International  Golden Panthers          FIU
+#&gt; 33       52         Florida State        Seminoles          FSU
+#&gt; 34      278          Fresno State         Bulldogs         FRES
+#&gt; 35       61               Georgia         Bulldogs          UGA
+#&gt; 36      290      Georgia Southern           Eagles         GASO
+#&gt; 37     2247         Georgia State         Panthers         GAST
+#&gt; 38       59          Georgia Tech   Yellow Jackets           GT
+#&gt; 39       62               Hawai'i Rainbow Warriors          HAW
+#&gt; 40      248               Houston          Cougars          HOU
+#&gt; 41      356              Illinois  Fighting Illini          ILL
+#&gt; 42       84               Indiana         Hoosiers          IND
+#&gt; 43     2294                  Iowa         Hawkeyes         IOWA
+#&gt; 44       66            Iowa State         Cyclones          ISU
+#&gt; 45     2305                Kansas         Jayhawks           KU
+#&gt; 46     2306          Kansas State         Wildcats          KSU
+#&gt; 47     2309            Kent State   Golden Flashes         KENT
+#&gt; 48       96              Kentucky         Wildcats           UK
+#&gt; 49     2335               Liberty           Flames          LIB
+#&gt; 50      309             Louisiana    Ragin' Cajuns          ULL
+#&gt; 51     2433      Louisiana Monroe         Warhawks          ULM
+#&gt; 52     2348        Louisiana Tech         Bulldogs           LT
+#&gt; 53       97            Louisville        Cardinals          LOU
+#&gt; 54       99                   LSU           Tigers          LSU
+#&gt; 55      276              Marshall  Thundering Herd         MRSH
+#&gt; 56      120              Maryland        Terrapins           MD
+#&gt; 57      235               Memphis           Tigers          MEM
+#&gt; 58     2390                 Miami       Hurricanes        MIAMI
+#&gt; 59      193            Miami (OH)         RedHawks         M-OH
+#&gt; 60      130              Michigan       Wolverines         MICH
+#&gt; 61      127        Michigan State         Spartans          MSU
+#&gt; 62     2393      Middle Tennessee     Blue Raiders         MTSU
+#&gt; 63      135             Minnesota   Golden Gophers         MINN
+#&gt; 64      344     Mississippi State         Bulldogs         MSST
+#&gt; 65      142              Missouri           Tigers          MIZ
+#&gt; 66     2426                  Navy       Midshipmen         NAVY
+#&gt; 67      152              NC State         Wolfpack         NCST
+#&gt; 68      158              Nebraska      Cornhuskers          NEB
+#&gt; 69     2440                Nevada        Wolf Pack          NEV
+#&gt; 70      167            New Mexico            Lobos          UNM
+#&gt; 71      166      New Mexico State           Aggies         NMSU
+#&gt; 72      153        North Carolina        Tar Heels          UNC
+#&gt; 73     2459     Northern Illinois          Huskies          NIU
+#&gt; 74      249           North Texas       Mean Green          UNT
+#&gt; 75       77          Northwestern         Wildcats           NW
+#&gt; 76       87            Notre Dame   Fighting Irish           ND
+#&gt; 77      195                  Ohio          Bobcats         OHIO
+#&gt; 78      194            Ohio State         Buckeyes          OSU
+#&gt; 79      201              Oklahoma          Sooners         OKLA
+#&gt; 80      197        Oklahoma State          Cowboys         OKST
+#&gt; 81      295          Old Dominion         Monarchs          ODU
+#&gt; 82      145              Ole Miss           Rebels         MISS
+#&gt; 83     2483                Oregon            Ducks          ORE
+#&gt; 84      204          Oregon State          Beavers         ORST
+#&gt; 85      213            Penn State    Nittany Lions          PSU
+#&gt; 86      221            Pittsburgh         Panthers         PITT
+#&gt; 87     2509                Purdue     Boilermakers          PUR
+#&gt; 88      242                  Rice             Owls         RICE
+#&gt; 89      164               Rutgers  Scarlet Knights         RUTG
+#&gt; 90       21       San Diego State           Aztecs         SDSU
+#&gt; 91       23        San José State         Spartans         SJSU
+#&gt; 92     2567                   SMU         Mustangs          SMU
+#&gt; 93        6         South Alabama          Jaguars          USA
+#&gt; 94     2579        South Carolina        Gamecocks           SC
+#&gt; 95     2572  Southern Mississippi    Golden Eagles          USM
+#&gt; 96       58         South Florida            Bulls          USF
+#&gt; 97       24              Stanford         Cardinal         STAN
+#&gt; 98      183              Syracuse           Orange          SYR
+#&gt; 99     2628                   TCU     Horned Frogs          TCU
+#&gt; 100     218                Temple             Owls          TEM
+#&gt; 101    2633             Tennessee       Volunteers         TENN
+#&gt; 102     251                 Texas        Longhorns          TEX
+#&gt; 103     245             Texas A&amp;M           Aggies         TA&amp;M
+#&gt; 104     326           Texas State          Bobcats         TXST
+#&gt; 105    2641            Texas Tech      Red Raiders          TTU
+#&gt; 106    2649                Toledo          Rockets          TOL
+#&gt; 107    2653                  Troy          Trojans         TROY
+#&gt; 108    2655                Tulane       Green Wave         TULN
+#&gt; 109     202                 Tulsa Golden Hurricane         TLSA
+#&gt; 110       5                   UAB          Blazers          UAB
+#&gt; 111    2116                   UCF          Knights          UCF
+#&gt; 112      26                  UCLA           Bruins         UCLA
+#&gt; 113     113                 UMass        Minutemen        UMASS
+#&gt; 114    2439                  UNLV           Rebels         UNLV
+#&gt; 115      30                   USC          Trojans          USC
+#&gt; 116     254                  Utah             Utes         UTAH
+#&gt; 117     328            Utah State           Aggies          USU
+#&gt; 118    2638                  UTEP           Miners         UTEP
+#&gt; 119    2636        UT San Antonio      Roadrunners         UTSA
+#&gt; 120     238            Vanderbilt       Commodores          VAN
+#&gt; 121     258              Virginia        Cavaliers          UVA
+#&gt; 122     259         Virginia Tech           Hokies           VT
+#&gt; 123     154           Wake Forest    Demon Deacons         WAKE
+#&gt; 124     264            Washington          Huskies         WASH
+#&gt; 125     265      Washington State          Cougars          WSU
+#&gt; 126      98      Western Kentucky      Hilltoppers          WKU
+#&gt; 127    2711      Western Michigan          Broncos          WMU
+#&gt; 128     277         West Virginia     Mountaineers          WVU
+#&gt; 129     275             Wisconsin          Badgers          WIS
+#&gt; 130    2751               Wyoming          Cowboys          WYO
 #&gt;                  alt_name1 alt_name2       alt_name3        conference division
 #&gt; 1                     &lt;NA&gt;       AFA       Air Force     Mountain West Mountain
 #&gt; 2                     &lt;NA&gt;       AKR           Akron      Mid-American     East
@@ -811,7 +841,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

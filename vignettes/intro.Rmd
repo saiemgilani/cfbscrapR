@@ -100,7 +100,7 @@ Let's pull the game data, using the ```cfb_game_info()``` function, and merge th
 games_19 <- cfb_game_info(2019)
 
 #Join Games and Play-by-Play
-plays19 <- left_join(pbp_2019, games_19, by = c("game_id" = "id"))
+plays19 <- left_join(pbp_2019, games_19, by = c("game_id" = "game_id"))
 ```
 
 Above, we pulled 2019 game data from the API into an object called "games_19", and then we used ```left_join``` to merge each play to the information of the game it happened in, an object called "plays19". We matched the plays to the games by telling R that the column "game_id" in pbp_2019 was the same as the column "id" in the games_19 object. 

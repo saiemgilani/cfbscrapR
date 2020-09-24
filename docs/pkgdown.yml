@@ -1,12 +1,14 @@
 pandoc: 2.9.2.1
-pkgdown: 1.5.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
+  Animated_WP_Plotting: Animated_WP_Plotting.html
   College-Football-Expected-Points-Model-Fundamentals-Part-I: College-Football-Expected-Points-Model-Fundamentals-Part-I.html
   College-Football-Expected-Points-Model-Fundamentals-Part-II: College-Football-Expected-Points-Model-Fundamentals-Part-II.html
   College-Football-Expected-Points-Model-Fundamentals-Part-III: College-Football-Expected-Points-Model-Fundamentals-Part-III.html
+  fourth_down_plot_tutorial: fourth_down_plot_tutorial.html
   intro: intro.html
-last_built: 2020-09-19T20:43Z
+last_built: 2020-09-23T16:03Z
 urls:
   reference: http://saiemgilani.github.io/cfbscrapR/reference
   article: http://saiemgilani.github.io/cfbscrapR/articles

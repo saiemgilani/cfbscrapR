@@ -3,6 +3,9 @@
 \name{cfb_ratings_sp}
 \alias{cfb_ratings_sp}
 \title{Get S&P+ historical rating data}
+\source{
+\url{https://api.collegefootballdata.com/ratings/sp}
+}
 \usage{
 cfb_ratings_sp(year = NULL, team = NULL)
 }
@@ -10,6 +13,37 @@ cfb_ratings_sp(year = NULL, team = NULL)
 \item{year}{(\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})}
 
 \item{team}{(\emph{String} optional): D-I Team}
+}
+\value{
+A data frame with 26 variables:
+\describe{
+  \item{\code{year}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{rating}}{double.}
+  \item{\code{second_order_wins}}{logical.}
+  \item{\code{sos}}{logical.}
+  \item{\code{offense_rating}}{double.}
+  \item{\code{offense_success}}{logical.}
+  \item{\code{offense_explosiveness}}{logical.}
+  \item{\code{offense_rushing}}{logical.}
+  \item{\code{offense_passing}}{logical.}
+  \item{\code{offense_standard_downs}}{logical.}
+  \item{\code{offense_passing_downs}}{logical.}
+  \item{\code{offense_run_rate}}{logical.}
+  \item{\code{offense_pace}}{logical.}
+  \item{\code{defense_rating}}{double.}
+  \item{\code{defense_success}}{logical.}
+  \item{\code{defense_explosiveness}}{logical.}
+  \item{\code{defense_rushing}}{logical.}
+  \item{\code{defense_passing}}{logical.}
+  \item{\code{defense_standard_downs}}{logical.}
+  \item{\code{defense_passing_downs}}{logical.}
+  \item{\code{defense_havoc_total}}{logical.}
+  \item{\code{defense_havoc_front_seven}}{logical.}
+  \item{\code{defense_havoc_db}}{logical.}
+  \item{\code{special_teams_rating}}{double.}
+}
 }
 \description{
 At least one of \strong{year} or \strong{team} must be specified for the function to run

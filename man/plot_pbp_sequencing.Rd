@@ -14,9 +14,7 @@ Plot the Drive/PBP Sequencing
 }
 \examples{
 
-
-
-df = cfb_pbp_data(year=2019,week=9,team='Texas A&M',epa_wpa=TRUE)
+df <- cfb_pbp_data(year = 2019, week = 9,team = 'Texas A&M', epa_wpa = TRUE)
 
 plot_pbp_sequencing(df)
 

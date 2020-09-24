@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,12 +177,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>cfb_coaches</span>(
-  <span class='kw'>first</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>last</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>min_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>max_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  first = <span class='kw'>NULL</span>,
+  last = <span class='kw'>NULL</span>,
+  team = <span class='kw'>NULL</span>,
+  year = <span class='kw'>NULL</span>,
+  min_year = <span class='kw'>NULL</span>,
+  max_year = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -208,10 +214,34 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/coaches'>https://api.collegefootballdata.com/coaches</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with coach information with the following columns:</p><dl>
+  <dt><code>first_name</code></dt><dd><p>character. First name of coach.</p></dd>
+  <dt><code>last_name</code></dt><dd><p>character. Last name of coach.</p></dd>
+  <dt><code>school</code></dt><dd><p>character. School of coach.</p></dd>
+  <dt><code>year</code></dt><dd><p>integer. Season of record.</p></dd>
+  <dt><code>games</code></dt><dd><p>integer. Games as coach.</p></dd>
+  <dt><code>wins</code></dt><dd><p>integer. Wins for the season.</p></dd>
+  <dt><code>losses</code></dt><dd><p>integer. Losses for the season.</p></dd>
+  <dt><code>ties</code></dt><dd><p>integer. Ties for the season.</p></dd>
+  <dt><code>preseason_rank</code></dt><dd><p>integer. Preseason rank for the school of coach.</p></dd>
+  <dt><code>postseason_rank</code></dt><dd><p>integer. Postseason rank for the school of coach.</p></dd>
+  <dt><code>srs</code></dt><dd><p>character. Simple Rating System adjustment for team.</p></dd>
+  <dt><code>sp_overall</code></dt><dd><p>character. Bill Connelly's SP+ overall for team.</p></dd>
+  <dt><code>sp_offense</code></dt><dd><p>character. Bill Connelly's SP+ offense for team.</p></dd>
+  <dt><code>sp_defense</code></dt><dd><p>character. Bill Connelly's SP+ defense for team.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_coaches</span>(<span class='kw'>first</span> <span class='kw'>=</span> <span class='st'>"Nick"</span>, <span class='kw'>last</span> <span class='kw'>=</span> <span class='st'>"Saban"</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'alabama'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:03: Scraping coaches data...</span></div><div class='output co'>#&gt;    first_name  last_name  school year games wins losses ties preseason_rank
+<span class='fu'>cfb_coaches</span>(first = <span class='st'>"Nick"</span>, last = <span class='st'>"Saban"</span>, team = <span class='st'>'alabama'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:01: Scraping coaches data...</span></div><div class='output co'>#&gt;    first_name  last_name  school year games wins losses ties preseason_rank
 #&gt; 1     Wallace       Wade Alabama 1923    10    7      2    1             NA
 #&gt; 2     Wallace       Wade Alabama 1924     9    8      1    0             NA
 #&gt; 3     Wallace       Wade Alabama 1925    10   10      0    0             NA
@@ -393,7 +423,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

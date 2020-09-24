@@ -8,7 +8,54 @@
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#'
+#' 
+#' @return A data frame with 43 variables:
+#' \describe{
+#'   \item{\code{games}}{integer.}
+#'   \item{\code{time_of_poss_total}}{integer.}
+#'   \item{\code{time_of_poss_pg}}{double.}
+#'   \item{\code{pass_comps}}{integer.}
+#'   \item{\code{pass_atts}}{integer.}
+#'   \item{\code{completion_pct}}{double.}
+#'   \item{\code{net_pass_yds}}{integer.}
+#'   \item{\code{pass_ypa}}{double.}
+#'   \item{\code{pass_ypr}}{double.}
+#'   \item{\code{pass_TDs}}{integer.}
+#'   \item{\code{interceptions}}{integer.}
+#'   \item{\code{int_pct}}{double.}
+#'   \item{\code{rush_atts}}{integer.}
+#'   \item{\code{rush_yds}}{integer.}
+#'   \item{\code{rush_TDs}}{integer.}
+#'   \item{\code{rush_ypc}}{double.}
+#'   \item{\code{total_yds}}{integer.}
+#'   \item{\code{fumbles_lost}}{integer.}
+#'   \item{\code{turnovers}}{integer.}
+#'   \item{\code{turnovers_pg}}{double.}
+#'   \item{\code{first_downs}}{integer.}
+#'   \item{\code{third_downs}}{integer.}
+#'   \item{\code{third_down_convs}}{integer.}
+#'   \item{\code{third_conv_rate}}{double.}
+#'   \item{\code{fourth_down_convs}}{integer.}
+#'   \item{\code{fourth_downs}}{integer.}
+#'   \item{\code{fourth_conv_rate}}{double.}
+#'   \item{\code{penalties}}{integer.}
+#'   \item{\code{penalty_yds}}{integer.}
+#'   \item{\code{penalties_pg}}{double.}
+#'   \item{\code{penalty_yds_pg}}{double.}
+#'   \item{\code{yards_per_penalty}}{double.}
+#'   \item{\code{kick_returns}}{integer.}
+#'   \item{\code{kick_return_yds}}{integer.}
+#'   \item{\code{kick_return_TDs}}{integer.}
+#'   \item{\code{kick_return_avg}}{double.}
+#'   \item{\code{punt_returns}}{integer.}
+#'   \item{\code{punt_return_yds}}{integer.}
+#'   \item{\code{punt_return_TDs}}{integer.}
+#'   \item{\code{punt_return_avg}}{double.}
+#'   \item{\code{passes_intercepted}}{integer.}
+#'   \item{\code{passes_intercepted_yds}}{integer.}
+#'   \item{\code{passes_intercepted_TDs}}{integer.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/stats/season}
 #' @keywords Team Season Stats
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -47,9 +94,9 @@ cfb_stats_season_team <- function(year,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

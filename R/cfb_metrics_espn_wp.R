@@ -6,6 +6,14 @@
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
 #' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #' 
+#' @return A data frame with 5 variables:
+#' \describe{
+#'   \item{\code{espn_game_id}}{character.}
+#'   \item{\code{play_id}}{character.}
+#'   \item{\code{seconds_left}}{integer.}
+#'   \item{\code{home_win_percentage}}{double.}
+#'   \item{\code{away_win_percentage}}{double.}
+#' }
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom attempt "stop_if_all"
@@ -15,13 +23,10 @@
 #' @importFrom janitor "clean_names"
 #' @importFrom stringr "str_sub" "str_length"
 #' @import dplyr
-#' 
 #' @export
-#'
 #' @examples
-#'
+#' 
 #' cfb_metrics_espn_wp(game_id = 401114164)
-#'
 #'
 
 cfb_metrics_espn_wp <- function(game_id) {

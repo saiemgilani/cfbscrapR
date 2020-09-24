@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -170,7 +176,7 @@
     <p>Extracts team talent composite as sourced from 247 rankings</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_talent</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_talent</span>(year = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,10 +187,23 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/talent'>https://api.collegefootballdata.com/talent</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 3 variables:</p><dl>
+  <dt><code>year</code></dt><dd><p>integer.</p></dd>
+  <dt><code>school</code></dt><dd><p>character.</p></dd>
+  <dt><code>talent</code></dt><dd><p>character.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_talent</span>()</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:58: Scraping team talent...</span></div><div class='output co'>#&gt;      year                   school talent
+<span class='fu'>cfb_team_talent</span>()
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:05:00: Scraping team talent...</span></div><div class='output co'>#&gt;      year                   school talent
 #&gt; 1    2020                  Georgia 990.47
 #&gt; 2    2020                  Alabama 985.86
 #&gt; 3    2020               Ohio State 976.48
@@ -1498,7 +1517,8 @@
 #&gt; 1311 2015                   Marist   2.63
 #&gt; 1312 2015                   Howard   2.22
 #&gt; 1313 2015          St Francis (PA)   1.74</div><div class='input'>
-<span class='fu'>cfb_team_talent</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2018</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:58: Scraping team talent...</span></div><div class='output co'>#&gt;     year                   school talent
+<span class='fu'>cfb_team_talent</span>(year = <span class='fl'>2018</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:05:01: Scraping team talent...</span></div><div class='output co'>#&gt;     year                   school talent
 #&gt; 1   2018               Ohio State 984.30
 #&gt; 2   2018                  Alabama 978.54
 #&gt; 3   2018                  Georgia 964.00
@@ -1752,7 +1772,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

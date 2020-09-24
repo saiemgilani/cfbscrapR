@@ -12,6 +12,14 @@
 #' @param year (\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
 #' @param team (\emph{String} optional): Team - Select a valid team, D1 football
 #'
+#' @return A data frame with 4 variables:
+#' \describe{
+#'   \item{\code{year}}{integer.}
+#'   \item{\code{rank}}{integer.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{points}}{character.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/recruiting/teams}
 #' @keywords Recruiting
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"

@@ -2,11 +2,12 @@
 #'
 #' This function identifies all Stats Categories identified in the regular stats endpoint.
 #'
-#' @format A data.frame with 38 values:
+#' @return A data frame with 38 values:
 #' \describe{
 #'   \item{name}{Statistics Categories}
 #'   ...
 #' }
+#' @source \url{https://api.collegefootballdata.com/stats/categories}
 #' @keywords Stats Categories
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"

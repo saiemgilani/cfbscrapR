@@ -10,9 +10,7 @@
 #' @export
 #' @examples
 #'
-#'
-#'
-#' df = cfb_pbp_data(year=2019,week=9,team='Texas A&M',epa_wpa=TRUE)
+#' df <- cfb_pbp_data(year = 2019, week = 9,team = 'Texas A&M', epa_wpa = TRUE)
 #'
 #' plot_pbp_sequencing(df)
 #'
@@ -23,8 +21,10 @@ plot_pbp_sequencing <- function(df) {
   game_id <- unique(clean_game_df$game_id)
   clean_game_df$new_drive_id = as.numeric(gsub(game_id, "", clean_game_df$drive_id))
   
-  clean_drive_info = clean_game_df %>% dplyr::group_by(.data$drive_id) %>%
-    dplyr::filter(row_number() == (n())) %>%dplyr::ungroup() %>%
+  clean_drive_info = clean_game_df %>% 
+    dplyr::group_by(.data$drive_id) %>%
+    dplyr::filter(row_number() == (n())) %>%
+    dplyr::ungroup() %>%
    dplyr::mutate(
       y_max = max(.data$play_num) + 5,
       score_text = ifelse(.data$drive_scoring == TRUE, .data$score_text, NA)
@@ -87,7 +87,7 @@ plot_pbp_sequencing <- function(df) {
       ),
       caption = "@CFB_Data | @cfbscrapR"
     ) +
-    theme_classic(base_size = 16)
+    theme_classic(base_size = 14)
 }
 
 #' prep_df_pbp_overview
@@ -99,8 +99,9 @@ plot_pbp_sequencing <- function(df) {
 #' @import stringi
 #'
 prep_df_pbp_overview <- function(df) {
-  clean_df = df %>% dplyr::arrange(.data$id_play) %>%
-   dplyr::mutate(
+  clean_df = df %>% 
+    dplyr::arrange(.data$id_play) %>%
+    dplyr::mutate(
       event = case_when(
         str_detect(.data$play_text, "fumble") ~ "Fumble",
         str_detect(.data$play_text, "interception") ~ "INT",
@@ -118,8 +119,10 @@ prep_df_pbp_overview <- function(df) {
         TRUE ~ "Other"
       ),
       drive_id = cumsum(.data$offense_play != lead(.data$offense_play)),
-      score_text = paste0(.data$offense_score, "-", .data$defense_score)
-    ) %>% dplyr::group_by(.data$drive_id) %>%  dplyr::arrange(.data$id_play) %>%
-   dplyr::mutate(play_num = row_number())  %>%dplyr::ungroup()
+      score_text = paste0(.data$offense_score, "-", .data$defense_score)) %>% 
+    dplyr::group_by(.data$drive_id) %>%  
+    dplyr::arrange(.data$id_play) %>%
+    dplyr::mutate(play_num = row_number()) %>%
+    dplyr::ungroup()
   return(clean_df)
 }

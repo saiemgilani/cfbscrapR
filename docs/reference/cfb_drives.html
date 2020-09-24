@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,15 +177,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>cfb_drives</span>(
-  <span class='no'>year</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>,
-  <span class='kw'>week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>offense_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>defense_team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>offense_conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>defense_conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>year</span>,
+  season_type = <span class='st'>"regular"</span>,
+  week = <span class='kw'>NULL</span>,
+  team = <span class='kw'>NULL</span>,
+  offense_team = <span class='kw'>NULL</span>,
+  defense_team = <span class='kw'>NULL</span>,
+  conference = <span class='kw'>NULL</span>,
+  offense_conference = <span class='kw'>NULL</span>,
+  defense_conference = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -229,10 +235,43 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/drives'>https://api.collegefootballdata.com/drives</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 23 variables as follows:</p><dl>
+  <dt><code>offense</code></dt><dd><p>character. Drive offense.</p></dd>
+  <dt><code>offense_conference</code></dt><dd><p>character. Drive offense's conference.</p></dd>
+  <dt><code>defense</code></dt><dd><p>character. Drive defense.</p></dd>
+  <dt><code>defense_conference</code></dt><dd><p>character. Drive defense's conference.</p></dd>
+  <dt><code>game_id</code></dt><dd><p>integer. Unique game identifier - `game_id`.</p></dd>
+  <dt><code>drive_id</code></dt><dd><p>character. Unique drive identifier - `drive_id`.</p></dd>
+  <dt><code>drive_number</code></dt><dd><p>integer. Drive number in game.</p></dd>
+  <dt><code>scoring</code></dt><dd><p>logical. Drive ends in a score.</p></dd>
+  <dt><code>start_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive starts.</p></dd>
+  <dt><code>start_yardline</code></dt><dd><p>integer.  Yard line at the drive start.</p></dd>
+  <dt><code>start_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at the drive start.</p></dd>
+  <dt><code>end_period</code></dt><dd><p>integer. Period (or Quarter) in which the drive ends.</p></dd>
+  <dt><code>end_yardline</code></dt><dd><p>integer. Yard line at drive end.</p></dd>
+  <dt><code>end_yards_to_goal</code></dt><dd><p>integer. Yards-to-Goal at drive end.</p></dd>
+  <dt><code>plays</code></dt><dd><p>integer. Number of drive plays.</p></dd>
+  <dt><code>yards</code></dt><dd><p>integer. Total drive yards.</p></dd>
+  <dt><code>drive_result</code></dt><dd><p>character. Result of the drive description.</p></dd>
+  <dt><code>time_minutes_start</code></dt><dd><p>integer. Minutes at drive start.</p></dd>
+  <dt><code>time_seconds_start</code></dt><dd><p>integer. Seconds at drive start.</p></dd>
+  <dt><code>time_minutes_end</code></dt><dd><p>integer. Minutes at drive end.</p></dd>
+  <dt><code>time_seconds_end</code></dt><dd><p>integer. Seconds at drive end.</p></dd>
+  <dt><code>time_minutes_elapsed</code></dt><dd><p>double. Minutes elapsed during drive.</p></dd>
+  <dt><code>time_seconds_elapsed</code></dt><dd><p>integer. Seconds elapsed during drive.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_drives</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"TCU"</span>)</div><div class='output co'>#&gt;     offense offense_conference  defense defense_conference   game_id
+<span class='fu'>cfb_drives</span>(<span class='fl'>2018</span>, week = <span class='fl'>1</span>, team = <span class='st'>"TCU"</span>)
+</div><div class='output co'>#&gt;     offense offense_conference  defense defense_conference   game_id
 #&gt; 1       TCU             Big 12 Southern               &lt;NA&gt; 401013072
 #&gt; 2  Southern               &lt;NA&gt;      TCU             Big 12 401013072
 #&gt; 3       TCU             Big 12 Southern               &lt;NA&gt; 401013072
@@ -258,7 +297,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 23 Southern               &lt;NA&gt;      TCU             Big 12 401013072
 #&gt; 24      TCU             Big 12 Southern               &lt;NA&gt; 401013072
 #&gt; 25      TCU             Big 12 Southern               &lt;NA&gt; 401013072
-#&gt;             id drive_number scoring start_period start_yardline
+#&gt;       drive_id drive_number scoring start_period start_yardline
 #&gt; 1   4010130721            1    TRUE            1             48
 #&gt; 2   4010130722            2   FALSE            1             75
 #&gt; 3   4010130723            3    TRUE            1             40
@@ -362,7 +401,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 23               13                    2                    3
 #&gt; 24                0                    4                   13
 #&gt; 25                0                    1                   46</div><div class='input'>
-<span class='fu'>cfb_drives</span>(<span class='fl'>2018</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Texas A&amp;M"</span>, <span class='kw'>defense_conference</span> <span class='kw'>=</span> <span class='st'>'SEC'</span>)</div><div class='output co'>#&gt;                offense offense_conference           defense defense_conference
+<span class='fu'>cfb_drives</span>(<span class='fl'>2018</span>, team = <span class='st'>"Texas A&amp;M"</span>, defense_conference = <span class='st'>'SEC'</span>)
+</div><div class='output co'>#&gt;                offense offense_conference           defense defense_conference
 #&gt; 1   Northwestern State               &lt;NA&gt;         Texas A&amp;M                SEC
 #&gt; 2   Northwestern State               &lt;NA&gt;         Texas A&amp;M                SEC
 #&gt; 3   Northwestern State               &lt;NA&gt;         Texas A&amp;M                SEC
@@ -622,7 +662,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 257                LSU                SEC         Texas A&amp;M                SEC
 #&gt; 258                LSU                SEC         Texas A&amp;M                SEC
 #&gt; 259          Texas A&amp;M                SEC               LSU                SEC
-#&gt;       game_id          id drive_number scoring start_period start_yardline
+#&gt;       game_id    drive_id drive_number scoring start_period start_yardline
 #&gt; 1   401012258  4010122581            1   FALSE            1             70
 #&gt; 2   401012258  4010122583            3   FALSE            1             69
 #&gt; 3   401012258  4010122585            5   FALSE            1             81
@@ -1678,7 +1718,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

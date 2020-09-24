@@ -82,7 +82,7 @@ Adapted from sabinanalytic's fork of the cfbscrapR repo" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -109,6 +109,12 @@ Adapted from sabinanalytic's fork of the cfbscrapR repo" />
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -175,7 +181,7 @@ Adapted from sabinanalytic's fork of the cfbscrapR repo</h1>
 Adapted from sabinanalytic's fork of the cfbscrapR repo</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_ratings_fpi</span>(<span class='kw'>year</span> <span class='kw'>=</span> <span class='fl'>2019</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_ratings_fpi</span>(year = <span class='fl'>2019</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,10 +195,37 @@ Adapted from sabinanalytic's fork of the cfbscrapR repo</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p><a href='https://github.com/sabinanalytics/cfbscrapR/blob/master/R/cfb_ratings_fpi.R'>https://github.com/sabinanalytics/cfbscrapR/blob/master/R/cfb_ratings_fpi.R</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 20 variables:</p><dl>
+  <dt><code>year</code></dt><dd><p>double.</p></dd>
+  <dt><code>id</code></dt><dd><p>character.</p></dd>
+  <dt><code>name</code></dt><dd><p>character.</p></dd>
+  <dt><code>abbr</code></dt><dd><p>character.</p></dd>
+  <dt><code>row_n</code></dt><dd><p>integer.</p></dd>
+  <dt><code>fpi</code></dt><dd><p>character.</p></dd>
+  <dt><code>fpi_rk</code></dt><dd><p>character.</p></dd>
+  <dt><code>trend</code></dt><dd><p>character.</p></dd>
+  <dt><code>proj_w</code></dt><dd><p>character.</p></dd>
+  <dt><code>proj_l</code></dt><dd><p>character.</p></dd>
+  <dt><code>win_out</code></dt><dd><p>double.</p></dd>
+  <dt><code>win_6</code></dt><dd><p>double.</p></dd>
+  <dt><code>win_div</code></dt><dd><p>double.</p></dd>
+  <dt><code>playoff</code></dt><dd><p>double.</p></dd>
+  <dt><code>nc_game</code></dt><dd><p>double.</p></dd>
+  <dt><code>nc_win</code></dt><dd><p>double.</p></dd>
+  <dt><code>win_conf</code></dt><dd><p>double.</p></dd>
+  <dt><code>w</code></dt><dd><p>character.</p></dd>
+  <dt><code>l</code></dt><dd><p>character.</p></dd>
+  <dt><code>t</code></dt><dd><p>character.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_ratings_fpi</span>(<span class='kw'>year</span><span class='kw'>=</span><span class='fl'>2018</span>)</div><div class='output co'>#&gt; <span class='message'>Scraping FPI totals for 2018!</span></div><div class='output co'>#&gt;     year   id            name  abbr row_n   fpi fpi_rk trend proj_w proj_l
+<span class='fu'>cfb_ratings_fpi</span>(year=<span class='fl'>2018</span>)
+</div><div class='output co'>#&gt; <span class='message'>Scraping FPI totals for 2018!</span></div><div class='output co'>#&gt;     year   id            name  abbr row_n   fpi fpi_rk trend proj_w proj_l
 #&gt; 1   2018  228         Clemson  CLEM     1  32.7      1   1.0   15.0    0.0
 #&gt; 2   2018  333         Alabama   ALA     2  30.1      2  -1.0   14.0    1.0
 #&gt; 3   2018   61         Georgia   UGA     3  24.9      3   0.0   11.0    3.0
@@ -453,7 +486,8 @@ Adapted from sabinanalytic's fork of the cfbscrapR repo</p>
 #&gt; 127       0     0       0       0       0      0        0  3  9 -
 #&gt; 128       0     0       0       0       0      0        0  2 11 -
 #&gt; 129       0     0       0       0       0      0        0  1 11 -
-#&gt; 130       0     0       0       0       0      0        0  1 11 -</div></pre>
+#&gt; 130       0     0       0       0       0      0        0  1 11 -</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -469,7 +503,7 @@ Adapted from sabinanalytic's fork of the cfbscrapR repo</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

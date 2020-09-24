@@ -20,6 +20,20 @@ cfb_metrics_wp_pregame(
 
 \item{season_type}{(\emph{String} default regular): Select Season Type: regular or postseason}
 }
+\value{
+A data frame with 9 variables:
+\describe{
+  \item{\code{season}}{integer.}
+  \item{\code{season_type}}{character.}
+  \item{\code{week}}{integer.}
+  \item{\code{game_id}}{integer.}
+  \item{\code{home_team}}{character.}
+  \item{\code{away_team}}{character.}
+  \item{\code{spread}}{integer.}
+  \item{\code{home_win_prob}}{double.}
+  \item{\code{away_win_prob}}{double.}
+}
+}
 \description{
 Get Pre-game Win Probability Data from API
 }

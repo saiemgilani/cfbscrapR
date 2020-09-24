@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -170,7 +176,7 @@
     <p>Get matchup history between two teams.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_matchup_records</span>(<span class='no'>team1</span>, <span class='no'>team2</span>, <span class='kw'>min_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>max_year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_matchup_records</span>(<span class='kw'>team1</span>, <span class='kw'>team2</span>, min_year = <span class='kw'>NULL</span>, max_year = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,12 +199,30 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/teams/matchup'>https://api.collegefootballdata.com/teams/matchup</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 7 variables:</p><dl>
+  <dt><code>start_year</code></dt><dd><p>character.</p></dd>
+  <dt><code>end_year</code></dt><dd><p>character.</p></dd>
+  <dt><code>team1</code></dt><dd><p>character.</p></dd>
+  <dt><code>team1_wins</code></dt><dd><p>character.</p></dd>
+  <dt><code>team2</code></dt><dd><p>character.</p></dd>
+  <dt><code>team2_wins</code></dt><dd><p>character.</p></dd>
+  <dt><code>ties</code></dt><dd><p>character.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas'</span>,<span class='st'>'Oklahoma'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:56: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year team1 team1_wins    team2 team2_wins ties
+<span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas'</span>,<span class='st'>'Oklahoma'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:58: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year team1 team1_wins    team2 team2_wins ties
 #&gt; 1                     Texas         59 Oklahoma         48    5</div><div class='input'>
-<span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>, <span class='kw'>min_year</span> <span class='kw'>=</span> <span class='fl'>1975</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:57: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year     team1 team1_wins team2 team2_wins ties
+<span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>, min_year = <span class='fl'>1975</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:59: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year     team1 team1_wins team2 team2_wins ties
 #&gt; 1       1975          Texas A&amp;M         22   TCU          0    0</div><div class='input'>
 
 </div></pre>
@@ -217,7 +241,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

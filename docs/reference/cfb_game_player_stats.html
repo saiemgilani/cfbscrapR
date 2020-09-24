@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,13 +177,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>cfb_game_player_stats</span>(
-  <span class='no'>year</span>,
-  <span class='kw'>week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>category</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>game_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>year</span>,
+  week = <span class='kw'>NULL</span>,
+  season_type = <span class='st'>"regular"</span>,
+  team = <span class='kw'>NULL</span>,
+  conference = <span class='kw'>NULL</span>,
+  category = <span class='kw'>NULL</span>,
+  game_id = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -219,10 +225,52 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/games/players'>https://api.collegefootballdata.com/games/players</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 32 variables:</p><dl>
+  <dt><code>game_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>team</code></dt><dd><p>character.</p></dd>
+  <dt><code>conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_away</code></dt><dd><p>character.</p></dd>
+  <dt><code>points</code></dt><dd><p>integer.</p></dd>
+  <dt><code>category</code></dt><dd><p>character.</p></dd>
+  <dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
+  <dt><code>name</code></dt><dd><p>character.</p></dd>
+  <dt><code>c_att</code></dt><dd><p>character.</p></dd>
+  <dt><code>yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>avg</code></dt><dd><p>double.</p></dd>
+  <dt><code>td</code></dt><dd><p>double.</p></dd>
+  <dt><code>int</code></dt><dd><p>double.</p></dd>
+  <dt><code>qbr</code></dt><dd><p>double.</p></dd>
+  <dt><code>car</code></dt><dd><p>double.</p></dd>
+  <dt><code>long</code></dt><dd><p>double.</p></dd>
+  <dt><code>rec</code></dt><dd><p>double.</p></dd>
+  <dt><code>no</code></dt><dd><p>double.</p></dd>
+  <dt><code>fg</code></dt><dd><p>character.</p></dd>
+  <dt><code>pct</code></dt><dd><p>double.</p></dd>
+  <dt><code>xp</code></dt><dd><p>character.</p></dd>
+  <dt><code>pts</code></dt><dd><p>double.</p></dd>
+  <dt><code>tb</code></dt><dd><p>double.</p></dd>
+  <dt><code>in_20</code></dt><dd><p>double.</p></dd>
+  <dt><code>fum</code></dt><dd><p>double.</p></dd>
+  <dt><code>lost</code></dt><dd><p>double.</p></dd>
+  <dt><code>tot</code></dt><dd><p>double.</p></dd>
+  <dt><code>solo</code></dt><dd><p>double.</p></dd>
+  <dt><code>sacks</code></dt><dd><p>double.</p></dd>
+  <dt><code>tfl</code></dt><dd><p>double.</p></dd>
+  <dt><code>pd</code></dt><dd><p>double.</p></dd>
+  <dt><code>qb_hur</code></dt><dd><p>double.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2018</span>, <span class='kw'>week</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'Ind'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:08: Scraping game player stats data...</span></div><div class='output co'>#&gt;      game_id team        conference home_away points      category athlete_id
+<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2018</span>, week = <span class='fl'>15</span>, conference = <span class='st'>'Ind'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:06: Scraping game player stats data...</span></div><div class='output co'>#&gt;      game_id team        conference home_away points      category athlete_id
 #&gt; 1  401013376 Navy American Athletic      away     10       passing    3916282
 #&gt; 2  401013376 Navy American Athletic      away     10       passing    3916251
 #&gt; 3  401013376 Navy American Athletic      away     10       passing    4039425
@@ -459,7 +507,8 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 #&gt; 76 &lt;NA&gt;  NA NA    NA  NA   NA   1    1   0.0 0.0  0      0
 #&gt; 77 &lt;NA&gt;  NA NA    NA  NA   NA   1    0   0.0 0.0  3      0
 #&gt; 78 &lt;NA&gt;  NA NA    NA  NA   NA   1    0   0.0 0.0  0      0</div><div class='input'>
-<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2013</span>, <span class='kw'>week</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Florida State"</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>'passing'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:09: Scraping game player stats data...</span></div><div class='output co'>#&gt;     game_id          team conference home_away points category athlete_id
+<span class='fu'>cfb_game_player_stats</span>(<span class='fl'>2013</span>, week=<span class='fl'>1</span>, team = <span class='st'>"Florida State"</span>, category = <span class='st'>'passing'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:06: Scraping game player stats data...</span></div><div class='output co'>#&gt;     game_id          team conference home_away points category athlete_id
 #&gt; 1 332450221    Pittsburgh        ACC      home     13  passing     514116
 #&gt; 2 332450221 Florida State        ACC      away     41  passing     530308
 #&gt; 3 332450221 Florida State        ACC      away     41  passing     514124
@@ -487,7 +536,7 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

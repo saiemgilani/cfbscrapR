@@ -3,6 +3,9 @@
 \name{cfb_game_records}
 \alias{cfb_game_records}
 \title{Get Team records by year}
+\source{
+\url{https://api.collegefootballdata.com/records}
+}
 \usage{
 cfb_game_records(year, team = NULL, conference = NULL)
 }
@@ -15,13 +18,37 @@ cfb_game_records(year, team = NULL, conference = NULL)
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 }
+\value{
+A data frame with 20 variables:
+\describe{
+  \item{\code{year}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{division}}{character.}
+  \item{\code{total_games}}{integer.}
+  \item{\code{total_wins}}{integer.}
+  \item{\code{total_losses}}{integer.}
+  \item{\code{total_ties}}{integer.}
+  \item{\code{conference_games}}{integer.}
+  \item{\code{conference_wins}}{integer.}
+  \item{\code{conference_losses}}{integer.}
+  \item{\code{conference_ties}}{integer.}
+  \item{\code{home_games}}{integer.}
+  \item{\code{home_wins}}{integer.}
+  \item{\code{home_losses}}{integer.}
+  \item{\code{home_ties}}{integer.}
+  \item{\code{away_games}}{integer.}
+  \item{\code{away_wins}}{integer.}
+  \item{\code{away_losses}}{integer.}
+  \item{\code{away_ties}}{integer.}
+}
+}
 \description{
 Get Team records by year
 }
 \examples{
 
 cfb_game_records(2018, team = 'Notre Dame')
-
 
 cfb_game_records(2013, team = "Florida State")
 

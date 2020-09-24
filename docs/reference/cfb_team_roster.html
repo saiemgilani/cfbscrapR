@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2019 as of 6/23/20) — cfb_team_roster • cfbscrapR</title>
+Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20) — cfb_team_roster • cfbscrapR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,9 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 
 
 <meta property="og:title" content="Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2019 as of 6/23/20) — cfb_team_roster" />
+Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20) — cfb_team_roster" />
 <meta property="og:description" content="Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2019 as of 6/23/20)" />
+Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)" />
 
 
 
@@ -82,7 +82,7 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -109,6 +109,12 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -165,17 +171,17 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2019 as of 6/23/20)</h1>
+Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)</h1>
     
     <div class="hidden name"><code>cfb_team_roster.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2019 as of 6/23/20)</p>
+Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_roster</span>(<span class='no'>team</span>, <span class='kw'>year</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_roster</span>(<span class='kw'>team</span>, year = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,10 +196,32 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/roster'>https://api.collegefootballdata.com/roster</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 12 variables:</p><dl>
+  <dt><code>athlete_id</code></dt><dd><p>character.</p></dd>
+  <dt><code>first_name</code></dt><dd><p>character.</p></dd>
+  <dt><code>last_name</code></dt><dd><p>character.</p></dd>
+  <dt><code>weight</code></dt><dd><p>integer.</p></dd>
+  <dt><code>height</code></dt><dd><p>integer.</p></dd>
+  <dt><code>jersey</code></dt><dd><p>integer.</p></dd>
+  <dt><code>year</code></dt><dd><p>integer.</p></dd>
+  <dt><code>position</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_city</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_state</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_country</code></dt><dd><p>character.</p></dd>
+  <dt><code>team</code></dt><dd><p>character.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_roster</span>(<span class='st'>"Florida State"</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:57: Scraping team roster...</span></div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
+<span class='fu'>cfb_team_roster</span>(<span class='st'>"Florida State"</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:59: Scraping team roster...</span></div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
 #&gt; 1      4241674       Josh       Newman    200     72     21    3        S
 #&gt; 2      3921574      Kevin      Robledo    184     72     89    4       PK
 #&gt; 3      4035603      Malik        Henry    195     74     16    3       QB
@@ -457,7 +485,7 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

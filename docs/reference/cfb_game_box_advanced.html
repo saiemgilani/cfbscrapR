@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -170,7 +176,7 @@
     <p>Get game advanced box score information</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_game_box_advanced</span>(<span class='no'>game_id</span>, <span class='kw'>long</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_game_box_advanced</span>(<span class='kw'>game_id</span>, long = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,24 +192,86 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/game/box/advanced'>https://api.collegefootballdata.com/game/box/advanced</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 2 rows and 52 variables:</p><dl>
+  <dt><code>team</code></dt><dd><p>character.</p></dd>
+  <dt><code>ppa_overall_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_overall_quarter1</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_overall_quarter2</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_overall_quarter3</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_overall_quarter4</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_passing_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_passing_quarter1</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_passing_quarter2</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_passing_quarter3</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_passing_quarter4</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_rushing_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_rushing_quarter1</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_rushing_quarter2</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_rushing_quarter3</code></dt><dd><p>double.</p></dd>
+  <dt><code>ppa_rushing_quarter4</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_overall_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_overall_quarter1</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_overall_quarter2</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_overall_quarter3</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_overall_quarter4</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_standard_downs_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_standard_downs_quarter1</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_standard_downs_quarter2</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_standard_downs_quarter3</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_standard_downs_quarter4</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_passing_downs_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_passing_downs_quarter1</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_passing_downs_quarter2</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_passing_downs_quarter3</code></dt><dd><p>double.</p></dd>
+  <dt><code>success_rates_passing_downs_quarter4</code></dt><dd><p>double.</p></dd>
+  <dt><code>explosiveness_overall_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>explosiveness_overall_quarter1</code></dt><dd><p>double.</p></dd>
+  <dt><code>explosiveness_overall_quarter2</code></dt><dd><p>double.</p></dd>
+  <dt><code>explosiveness_overall_quarter3</code></dt><dd><p>double.</p></dd>
+  <dt><code>explosiveness_overall_quarter4</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_power_success</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_stuff_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_line_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_line_yd_avg</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_second_lvl_yd_avg</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_open_field_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>rushing_open_field_yd_avg</code></dt><dd><p>double.</p></dd>
+  <dt><code>havoc_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>havoc_front_seven</code></dt><dd><p>double.</p></dd>
+  <dt><code>havoc_db</code></dt><dd><p>double.</p></dd>
+  <dt><code>scoring_opps_opportunities</code></dt><dd><p>double.</p></dd>
+  <dt><code>scoring_opps_points</code></dt><dd><p>double.</p></dd>
+  <dt><code>scoring_opps_pts_per_opp</code></dt><dd><p>double.</p></dd>
+  <dt><code>field_pos_avg_start</code></dt><dd><p>double.</p></dd>
+  <dt><code>field_pos_avg_starting_predicted_pts</code></dt><dd><p>double.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_game_box_advanced</span>(<span class='fl'>401114233</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:06: Scraping game advanced box score data for game_id '401114233'...</span></div><div class='output co'>#&gt;                 team ppa_overall_total ppa_overall_quarter1
-#&gt; 1 Eastern Washington           -0.2013              -0.5693
-#&gt; 2         Washington            0.6661               0.7545
+<span class='fu'>cfb_game_box_advanced</span>(<span class='fl'>401114233</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:03: Scraping game advanced box score data for game_id '401114233'...</span></div><div class='output co'>#&gt;                 team ppa_overall_total ppa_overall_quarter1
+#&gt; 1 Eastern Washington           -0.2013               -0.569
+#&gt; 2         Washington            0.6661                0.755
 #&gt;   ppa_overall_quarter2 ppa_overall_quarter3 ppa_overall_quarter4
-#&gt; 1               0.1221              -0.6584                2.696
-#&gt; 2               0.3371               0.8374                0.000
+#&gt; 1                0.122               -0.658                2.696
+#&gt; 2                0.337                0.837                0.000
 #&gt;   ppa_passing_total ppa_passing_quarter1 ppa_passing_quarter2
-#&gt; 1           -0.3204              -0.7935               0.3817
-#&gt; 2            0.9240               0.8477               0.2330
+#&gt; 1            -0.320               -0.794                0.382
+#&gt; 2             0.924                0.848                0.233
 #&gt;   ppa_passing_quarter3 ppa_passing_quarter4 ppa_rushing_total
-#&gt; 1              -0.8888                    0            0.0144
-#&gt; 2               1.5519                    0            0.3544
+#&gt; 1               -0.889                    0             0.014
+#&gt; 2                1.552                    0             0.354
 #&gt;   ppa_rushing_quarter1 ppa_rushing_quarter2 ppa_rushing_quarter3
-#&gt; 1               0.0137              -0.2672              -0.1977
-#&gt; 2               0.6707               0.4931              -0.1450
+#&gt; 1                0.014               -0.267               -0.198
+#&gt; 2                0.671                0.493               -0.145
 #&gt;   ppa_rushing_quarter4 success_rates_overall_total
 #&gt; 1                2.696                       0.289
 #&gt; 2                0.000                       0.528
@@ -252,7 +320,6 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 #&gt;   field_pos_avg_starting_predicted_pts
 #&gt; 1                                 0.75
 #&gt; 2                                 1.85</div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -269,7 +336,7 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

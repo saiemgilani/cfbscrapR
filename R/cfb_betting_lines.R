@@ -12,10 +12,28 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
-#'
+#' 
+#' @return Betting information for games with the following columns:
+#' \describe{
+#'   \item{\code{game_id}}{integer. Unique game identifier - `game_id`.}
+#'   \item{\code{season}}{integer. Season parameter.}
+#'   \item{\code{season_type}}{character. Season Type (regular, postseason, both).}
+#'   \item{\code{week}}{integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+#'   \item{\code{home_team}}{character. Home D-I Team.}
+#'   \item{\code{home_conference}}{character. Home D-I Conference.}
+#'   \item{\code{home_score}}{integer. Home Score.}
+#'   \item{\code{away_team}}{character. Away D-I Team.}
+#'   \item{\code{away_conference}}{character. Away D-I Conference.}
+#'   \item{\code{away_score}}{integer. Away Score.}
+#'   \item{\code{provider}}{character. Line provider.}
+#'   \item{\code{spread}}{character. Spread for the game.}
+#'   \item{\code{formatted_spread}}{character. Formatted spread for the game.}
+#'   \item{\code{over_under}}{character. Over/Under for the game.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/lines}
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
+#' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
 #' @importFrom janitor "clean_names"
@@ -23,7 +41,6 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
-#'
 #' @examples
 #'
 #' cfb_betting_lines(year = 2018, week = 12, team = 'Florida State')
@@ -75,9 +92,9 @@ cfb_betting_lines <- function(game_id = NULL,
     away_team = utils::URLencode(away_team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

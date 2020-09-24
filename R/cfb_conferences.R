@@ -1,17 +1,15 @@
 #' CFB Conference Information
 #'
-#' Pulls all college football conferences and returns as
-#' data.frame the following fields:
-#' @format A data frame with 11 rows and 4 variables:
+#' Pulls all college football conferences and returns as data frame the following fields:
+#' @return A data frame with 11 rows and 4 variables:
 #' \describe{
-#'   \item{id}{Referencing conference id}
+#'   \item{conference_id}{Referencing conference id}
 #'   \item{name}{Conference name}
 #'   \item{long_name}{Long name for Conference}
 #'   \item{abbreviation}{Conference abbreviation}
 #'   ...
 #' }
 #' @source \url{https://api.collegefootballdata.com/conferences}
-#'
 #' @keywords Conferences
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -43,7 +41,7 @@ cfb_conferences <- function(){
   # Rename id as conference_id, short_name as long_name
   df <- df %>%
     dplyr::rename(conference_id = .data$id,
-           long_name = .data$short_name)
+                  long_name = .data$short_name)
 
   return(df)
 }

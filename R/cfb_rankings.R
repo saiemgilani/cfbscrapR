@@ -5,7 +5,20 @@
 #' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
 #' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
 #' @param season_type (\emph{String} default regular): Season type - regular or postseason
-#'
+#' 
+#' @return A data frame with 9 variables:
+#' \describe{
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{season_type}}{character.}
+#'   \item{\code{week}}{integer.}
+#'   \item{\code{poll}}{character.}
+#'   \item{\code{rank}}{integer.}
+#'   \item{\code{school}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{first_place_votes}}{integer.}
+#'   \item{\code{points}}{integer.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/rankings}
 #' @keywords CFB Rankings
 #' @importFrom jsonlite "fromJSON"
 #' @import dplyr
@@ -13,8 +26,8 @@
 #' @import purrr
 #' @export
 #' @examples
-#'
-#' cfb_rankings(year = 2019, week=12)
+#' 
+#' cfb_rankings(year = 2019, week = 12)
 #'
 #' cfb_rankings(year = 2018, week = 14)
 #'

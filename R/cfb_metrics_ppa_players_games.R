@@ -13,6 +13,19 @@
 #' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
+#' @return A data frame with 9 variables:
+#' \describe{
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{week}}{integer.}
+#'   \item{\code{name}}{character.}
+#'   \item{\code{position}}{character.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{opponent}}{character.}
+#'   \item{\code{avg_PPA_all}}{double.}
+#'   \item{\code{avg_PPA_pass}}{double.}
+#'   \item{\code{avg_PPA_rush}}{double.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/ppa/players/games}
 #' @keywords Players Predicted Points 
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"

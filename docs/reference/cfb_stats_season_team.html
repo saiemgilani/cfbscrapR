@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,12 +177,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>cfb_stats_season_team</span>(
-  <span class='no'>year</span>,
-  <span class='kw'>season_type</span> <span class='kw'>=</span> <span class='st'>"regular"</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>conference</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>start_week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>end_week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>year</span>,
+  season_type = <span class='st'>"regular"</span>,
+  team = <span class='kw'>NULL</span>,
+  conference = <span class='kw'>NULL</span>,
+  start_week = <span class='kw'>NULL</span>,
+  end_week = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -210,10 +216,63 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/stats/season'>https://api.collegefootballdata.com/stats/season</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 43 variables:</p><dl>
+  <dt><code>games</code></dt><dd><p>integer.</p></dd>
+  <dt><code>time_of_poss_total</code></dt><dd><p>integer.</p></dd>
+  <dt><code>time_of_poss_pg</code></dt><dd><p>double.</p></dd>
+  <dt><code>pass_comps</code></dt><dd><p>integer.</p></dd>
+  <dt><code>pass_atts</code></dt><dd><p>integer.</p></dd>
+  <dt><code>completion_pct</code></dt><dd><p>double.</p></dd>
+  <dt><code>net_pass_yds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>pass_ypa</code></dt><dd><p>double.</p></dd>
+  <dt><code>pass_ypr</code></dt><dd><p>double.</p></dd>
+  <dt><code>pass_TDs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>interceptions</code></dt><dd><p>integer.</p></dd>
+  <dt><code>int_pct</code></dt><dd><p>double.</p></dd>
+  <dt><code>rush_atts</code></dt><dd><p>integer.</p></dd>
+  <dt><code>rush_yds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>rush_TDs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>rush_ypc</code></dt><dd><p>double.</p></dd>
+  <dt><code>total_yds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>fumbles_lost</code></dt><dd><p>integer.</p></dd>
+  <dt><code>turnovers</code></dt><dd><p>integer.</p></dd>
+  <dt><code>turnovers_pg</code></dt><dd><p>double.</p></dd>
+  <dt><code>first_downs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>third_downs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>third_down_convs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>third_conv_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>fourth_down_convs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>fourth_downs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>fourth_conv_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>penalties</code></dt><dd><p>integer.</p></dd>
+  <dt><code>penalty_yds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>penalties_pg</code></dt><dd><p>double.</p></dd>
+  <dt><code>penalty_yds_pg</code></dt><dd><p>double.</p></dd>
+  <dt><code>yards_per_penalty</code></dt><dd><p>double.</p></dd>
+  <dt><code>kick_returns</code></dt><dd><p>integer.</p></dd>
+  <dt><code>kick_return_yds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>kick_return_TDs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>kick_return_avg</code></dt><dd><p>double.</p></dd>
+  <dt><code>punt_returns</code></dt><dd><p>integer.</p></dd>
+  <dt><code>punt_return_yds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>punt_return_TDs</code></dt><dd><p>integer.</p></dd>
+  <dt><code>punt_return_avg</code></dt><dd><p>double.</p></dd>
+  <dt><code>passes_intercepted</code></dt><dd><p>integer.</p></dd>
+  <dt><code>passes_intercepted_yds</code></dt><dd><p>integer.</p></dd>
+  <dt><code>passes_intercepted_TDs</code></dt><dd><p>integer.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_stats_season_team</span>(<span class='kw'>year</span><span class='kw'>=</span><span class='fl'>2018</span>, <span class='kw'>conference</span> <span class='kw'>=</span> <span class='st'>'B12'</span>, <span class='kw'>start_week</span> <span class='kw'>=</span> <span class='fl'>1</span>,<span class='kw'>end_week</span> <span class='kw'>=</span> <span class='fl'>8</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:51: Scraping season team stats...</span></div><div class='output co'>#&gt;    games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
+<span class='fu'>cfb_stats_season_team</span>(year=<span class='fl'>2018</span>, conference = <span class='st'>'B12'</span>, start_week = <span class='fl'>1</span>,end_week = <span class='fl'>8</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:53: Scraping season team stats...</span></div><div class='output co'>#&gt;    games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
 #&gt; 1      7             838440        33.27143        179       288      0.6215278
 #&gt; 2      7             685080        27.18571        136       232      0.5862069
 #&gt; 3      7             815580        32.36429        160       246      0.6504065
@@ -312,7 +371,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 8                       0
 #&gt; 9                       0
 #&gt; 10                      1</div><div class='input'>
-<span class='fu'>cfb_stats_season_team</span>(<span class='fl'>2019</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'LSU'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:51: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
+<span class='fu'>cfb_stats_season_team</span>(<span class='fl'>2019</span>, team = <span class='st'>'LSU'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:54: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
 #&gt; 1    15            1632000        30.22222        426       567      0.7513228
 #&gt;   net_pass_yds pass_ypa pass_ypr pass_TDs interceptions    int_pct rush_atts
 #&gt; 1         6024 10.62434 14.14085       61             7 0.01234568       513
@@ -328,7 +388,8 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 1        12.65217           22             252               2        11.45455
 #&gt;   passes_intercepted passes_intercepted_yds passes_intercepted_TDs
 #&gt; 1                 17                     87                      0</div><div class='input'>
-<span class='fu'>cfb_stats_season_team</span>(<span class='fl'>2013</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>"Florida State"</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:52: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
+<span class='fu'>cfb_stats_season_team</span>(<span class='fl'>2013</span>, team = <span class='st'>"Florida State"</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:54: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
 #&gt; 1    14            1476720            29.3        288       442      0.6515837
 #&gt;   net_pass_yds pass_ypa pass_ypr pass_TDs interceptions    int_pct rush_atts
 #&gt; 1         4423 10.00679 15.35764       42            13 0.02941176       505
@@ -360,7 +421,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

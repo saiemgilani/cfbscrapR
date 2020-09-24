@@ -13,6 +13,7 @@ cols <- c(
   "off_line_yds_total", "off_second_lvl_yds", "off_second_lvl_yds_total",
   "off_open_field_yds", "off_open_field_yds_total", "off_pts_per_opp",
   "off_field_pos_avg_start", "off_field_pos_avg_predicted_points", 
+  "off_havoc_total", "off_havoc_front_seven", "off_havoc_db",
   "off_standard_downs_rate", "off_standard_downs_ppa", 
   "off_standard_downs_success_rate", "off_standard_downs_explosiveness", 
   "off_passing_downs_rate", "off_passing_downs_ppa", 

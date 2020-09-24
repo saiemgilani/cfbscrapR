@@ -3,12 +3,13 @@
 #' This function identifies all play stats types identified in the play by play data.
 #' This can be used to filter out play stats types when calling functions before hand.
 #'
-#' @format A data frame with 22 rows and 2 variables:
+#' @return A data frame with 22 rows and 2 variables:
 #' \describe{
 #'   \item{play_stat_type_id}{Referencing play stat type ID}
 #'   \item{name}{Type of play stats}
 #'   ...
 #' }
+#' @source \url{https://api.collegefootballdata.com/play/stat/types}
 #' @keywords Plays
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"

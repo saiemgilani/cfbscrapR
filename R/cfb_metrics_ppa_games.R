@@ -7,7 +7,28 @@
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
-#' 
+#'
+#' @return A data frame with 18 variables:
+#' \describe{
+#'   \item{\code{game_id}}{integer.}
+#'   \item{\code{season}}{integer.}
+#'   \item{\code{week}}{integer.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{opponent}}{character.}
+#'   \item{\code{off_overall}}{character.}
+#'   \item{\code{off_passing}}{character.}
+#'   \item{\code{off_rushing}}{character.}
+#'   \item{\code{off_first_down}}{character.}
+#'   \item{\code{off_second_down}}{character.}
+#'   \item{\code{off_third_down}}{character.}
+#'   \item{\code{def_overall}}{character.}
+#'   \item{\code{def_passing}}{character.}
+#'   \item{\code{def_rushing}}{character.}
+#'   \item{\code{def_first_down}}{character.}
+#'   \item{\code{def_second_down}}{character.}
+#'   \item{\code{def_third_down}}{character.}
+#' }
 #' @keywords Teams Predicted Points 
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
@@ -49,9 +70,9 @@ cfb_metrics_ppa_games <- function(year,
     team = utils::URLencode(team, reserved = TRUE)
   }
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                            msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }

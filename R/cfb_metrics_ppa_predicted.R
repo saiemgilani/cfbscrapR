@@ -2,7 +2,13 @@
 #'
 #' @param down (\emph{Integer} required): Down filter
 #' @param distance (\emph{Integer} required): Distance filter
-#'
+#' 
+#' @return A data frame with 2 variables:
+#' \describe{
+#'   \item{\code{yard_line}}{integer.}
+#'   \item{\code{predicted_points}}{character.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/ppa/predicted}
 #' @keywords Predicted Points 
 #' @importFrom attempt "stop_if_any"
 #' @importFrom jsonlite "fromJSON"
@@ -13,7 +19,6 @@
 #' @import tidyr
 #' @export
 #' @examples
-#'
 #'
 #' cfb_metrics_ppa_predicted(down = 1, distance = 10)
 #' 

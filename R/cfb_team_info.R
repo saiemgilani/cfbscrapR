@@ -9,11 +9,28 @@
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
 #' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
 #'
+#' @return A data frame with 12 variables:
+#' \describe{
+#'   \item{\code{team_id}}{integer.}
+#'   \item{\code{school}}{character.}
+#'   \item{\code{mascot}}{character.}
+#'   \item{\code{abbreviation}}{character.}
+#'   \item{\code{alt_name1}}{character.}
+#'   \item{\code{alt_name2}}{character.}
+#'   \item{\code{alt_name3}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{division}}{character.}
+#'   \item{\code{color}}{character.}
+#'   \item{\code{alt_color}}{character.}
+#'   \item{\code{logos}}{list.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/teams}
 #' @keywords Teams
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
+#' @import dplyr 
 #' @export
 #' @examples
 #'
@@ -27,9 +44,9 @@
 cfb_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
 
   if(!is.null(conference)){
-    # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Check conference parameter in conference abbreviations, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #             msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
 
@@ -47,7 +64,9 @@ cfb_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
     check_status(res)
 
     # Get the content and return it as data.frame
-    df = jsonlite::fromJSON(full_url)
+    df = jsonlite::fromJSON(full_url) %>% 
+      dplyr::rename(team_id = .data$id) %>% 
+      as.data.frame()
 
     return(df)
   }else{
@@ -74,7 +93,9 @@ cfb_team_info <- function(conference = NULL, only_fbs = TRUE, year = NULL) {
     check_status(res)
 
     # Get the content and return it as data.frame
-    df = jsonlite::fromJSON(full_url)
+    df = jsonlite::fromJSON(full_url) %>% 
+      dplyr::rename(team_id = .data$id) %>% 
+      as.data.frame()
 
     return(df)
   }

@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -170,7 +176,7 @@
     <p>Get win probability chart data from API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_metrics_wp</span>(<span class='no'>game_id</span>, <span class='kw'>adjust_for_spread</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_metrics_wp</span>(<span class='kw'>game_id</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,16 +186,38 @@
       <td><p>(<em>Integer</em> required): Game ID filter for querying a single game<br />
 Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_info()</a></code> function</p></td>
     </tr>
-    <tr>
-      <th>adjust_for_spread</th>
-      <td><p>(<em>Logical</em> default TRUE): Toggles pre-game spread adjustments</p></td>
-    </tr>
     </table>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/metrics/wp'>https://api.collegefootballdata.com/metrics/wp</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 16 variables:</p><dl>
+  <dt><code>play_id</code></dt><dd><p>character.</p></dd>
+  <dt><code>play_text</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>home</code></dt><dd><p>character.</p></dd>
+  <dt><code>away_id</code></dt><dd><p>integer.</p></dd>
+  <dt><code>away</code></dt><dd><p>character.</p></dd>
+  <dt><code>spread</code></dt><dd><p>character.</p></dd>
+  <dt><code>home_ball</code></dt><dd><p>logical.</p></dd>
+  <dt><code>home_score</code></dt><dd><p>integer.</p></dd>
+  <dt><code>away_score</code></dt><dd><p>integer.</p></dd>
+  <dt><code>down</code></dt><dd><p>integer.</p></dd>
+  <dt><code>distance</code></dt><dd><p>integer.</p></dd>
+  <dt><code>home_win_prob</code></dt><dd><p>character.</p></dd>
+  <dt><code>away_win_prob</code></dt><dd><p>double.</p></dd>
+  <dt><code>play_number</code></dt><dd><p>integer.</p></dd>
+  <dt><code>yard_line</code></dt><dd><p>integer.</p></dd>
+
+</dl>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_metrics_wp</span>(<span class='kw'>game_id</span> <span class='kw'>=</span> <span class='fl'>401012356</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:18: Invalid arguments or no CFBData metrics win probability data available!</span></div><div class='output co'>#&gt;                play_id
+<span class='fu'>cfb_metrics_wp</span>(game_id = <span class='fl'>401012356</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:16: Invalid arguments or no CFBData metrics win probability data available!</span></div><div class='output co'>#&gt;                play_id
 #&gt; 1   401012356101855402
 #&gt; 2   401012356101855901
 #&gt; 3   401012356101856401
@@ -1089,7 +1117,6 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 #&gt; 222        1  0.6739666462    0.32603335         221        NA
 #&gt; 223        1  0.6739666462    0.32603335         222        NA
 #&gt; 224        0             1    0.00000000         223        65</div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -1106,7 +1133,7 @@ Can be found using the <code><a href='cfb_game_info.html'>cfbscrapR::cfb_game_in
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -3,6 +3,9 @@
 \name{cfb_team_matchup_records}
 \alias{cfb_team_matchup_records}
 \title{Get matchup history between two teams.}
+\source{
+\url{https://api.collegefootballdata.com/teams/matchup}
+}
 \usage{
 cfb_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 }
@@ -14,6 +17,18 @@ cfb_team_matchup_records(team1, team2, min_year = NULL, max_year = NULL)
 \item{min_year}{(\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})}
 
 \item{max_year}{(\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})}
+}
+\value{
+A data frame with 7 variables:
+\describe{
+  \item{\code{start_year}}{character.}
+  \item{\code{end_year}}{character.}
+  \item{\code{team1}}{character.}
+  \item{\code{team1_wins}}{character.}
+  \item{\code{team2}}{character.}
+  \item{\code{team2_wins}}{character.}
+  \item{\code{ties}}{character.}
+}
 }
 \description{
 Get matchup history between two teams.

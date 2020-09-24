@@ -3,6 +3,9 @@
 \name{cfb_coaches}
 \alias{cfb_coaches}
 \title{Coach Information Search}
+\source{
+\url{https://api.collegefootballdata.com/coaches}
+}
 \usage{
 cfb_coaches(
   first = NULL,
@@ -25,6 +28,25 @@ cfb_coaches(
 \item{min_year}{(\emph{Integer} optional): Minimum Year filter (inclusive), 4 digit format (\emph{YYYY}).}
 
 \item{max_year}{(\emph{Integer} optional): Maximum Year filter (inclusive), 4 digit format (\emph{YYYY}).}
+}
+\value{
+A data frame with coach information with the following columns:
+\describe{
+  \item{\code{first_name}}{character. First name of coach.}
+  \item{\code{last_name}}{character. Last name of coach.}
+  \item{\code{school}}{character. School of coach.}
+  \item{\code{year}}{integer. Season of record.}
+  \item{\code{games}}{integer. Games as coach.}
+  \item{\code{wins}}{integer. Wins for the season.}
+  \item{\code{losses}}{integer. Losses for the season.}
+  \item{\code{ties}}{integer. Ties for the season.}
+  \item{\code{preseason_rank}}{integer. Preseason rank for the school of coach.}
+  \item{\code{postseason_rank}}{integer. Postseason rank for the school of coach.}
+  \item{\code{srs}}{character. Simple Rating System adjustment for team.}
+  \item{\code{sp_overall}}{character. Bill Connelly's SP+ overall for team.}
+  \item{\code{sp_offense}}{character. Bill Connelly's SP+ offense for team.}
+  \item{\code{sp_defense}}{character. Bill Connelly's SP+ defense for team.}
+}
 }
 \description{
 A coach search function which provides coaching records and school history for a given coach

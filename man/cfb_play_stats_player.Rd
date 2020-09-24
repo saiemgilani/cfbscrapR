@@ -3,6 +3,9 @@
 \name{cfb_play_stats_player}
 \alias{cfb_play_stats_player}
 \title{Gets player info associated by play}
+\source{
+\url{https://api.collegefootballdata.com/play/stats}
+}
 \usage{
 cfb_play_stats_player(
   year = NULL,
@@ -31,6 +34,65 @@ Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_pla
 Can be found using the \code{\link[cfbscrapR:cfb_play_stats_types]{cfbscrapR::cfb_play_stats_types()}} function}
 
 \item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, or both}
+}
+\value{
+A data frame with 54 variables:
+\describe{
+  \item{\code{play_id}}{character.}
+  \item{\code{game_id}}{integer.}
+  \item{\code{season}}{integer.}
+  \item{\code{week}}{integer.}
+  \item{\code{opponent}}{character.}
+  \item{\code{team_score}}{integer.}
+  \item{\code{opponent_score}}{integer.}
+  \item{\code{drive_id}}{character.}
+  \item{\code{period}}{integer.}
+  \item{\code{yards_to_goal}}{integer.}
+  \item{\code{down}}{integer.}
+  \item{\code{distance}}{integer.}
+  \item{\code{reception_player_id}}{character.}
+  \item{\code{reception_player}}{character.}
+  \item{\code{reception_yds}}{integer.}
+  \item{\code{completion_player_id}}{character.}
+  \item{\code{completion_player}}{character.}
+  \item{\code{completion_yds}}{integer.}
+  \item{\code{rush_player_id}}{character.}
+  \item{\code{rush_player}}{character.}
+  \item{\code{rush_yds}}{integer.}
+  \item{\code{interception_player_id}}{character.}
+  \item{\code{interception_player}}{character.}
+  \item{\code{interception_stat}}{integer.}
+  \item{\code{interception_thrown_player_id}}{character.}
+  \item{\code{interception_thrown_player}}{character.}
+  \item{\code{interception_thrown_stat}}{integer.}
+  \item{\code{touchdown_player_id}}{character.}
+  \item{\code{touchdown_player}}{character.}
+  \item{\code{touchdown_stat}}{integer.}
+  \item{\code{incompletion_player_id}}{character.}
+  \item{\code{incompletion_player}}{character.}
+  \item{\code{incompletion_stat}}{integer.}
+  \item{\code{target_player_id}}{character.}
+  \item{\code{target_player}}{character.}
+  \item{\code{target_stat}}{integer.}
+  \item{\code{fumble_recovered_player_id}}{logical.}
+  \item{\code{fumble_recovered_player}}{logical.}
+  \item{\code{fumble_recovered_stat}}{logical.}
+  \item{\code{fumble_forced_player_id}}{logical.}
+  \item{\code{fumble_forced_player}}{logical.}
+  \item{\code{fumble_forced_stat}}{logical.}
+  \item{\code{fumble_player_id}}{logical.}
+  \item{\code{fumble_player}}{logical.}
+  \item{\code{fumble_stat}}{logical.}
+  \item{\code{sack_player_id}}{character.}
+  \item{\code{sack_player}}{character.}
+  \item{\code{sack_stat}}{integer.}
+  \item{\code{sack_taken_player_id}}{character.}
+  \item{\code{sack_taken_player}}{character.}
+  \item{\code{sack_taken_stat}}{integer.}
+  \item{\code{pass_breakup_player_id}}{logical.}
+  \item{\code{pass_breakup_player}}{logical.}
+  \item{\code{pass_breakup_stat}}{logical.}
+}
 }
 \description{
 Information describes the players involved in the play

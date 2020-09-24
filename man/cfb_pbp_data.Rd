@@ -3,6 +3,9 @@
 \name{cfb_pbp_data}
 \alias{cfb_pbp_data}
 \title{Extract CFB (D-I) Play by Play Data - For plays}
+\source{
+\url{https://api.collegefootballdata.com/plays}
+}
 \usage{
 cfb_pbp_data(
   year,
@@ -26,7 +29,161 @@ cfb_pbp_data(
 
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 }
+\value{
+A data frame with 149 variables:
+\describe{
+  \item{\code{year}}{integer.}
+  \item{\code{week}}{integer.}
+  \item{\code{id_play}}{character.}
+  \item{\code{game_id}}{integer.}
+  \item{\code{offense_play}}{character.}
+  \item{\code{defense_play}}{character.}
+  \item{\code{half}}{integer.}
+  \item{\code{period}}{integer.}
+  \item{\code{clock.minutes}}{double.}
+  \item{\code{clock.seconds}}{integer.}
+  \item{\code{play_type}}{character.}
+  \item{\code{play_text}}{character.}
+  \item{\code{down}}{double.}
+  \item{\code{distance}}{double.}
+  \item{\code{yards_to_goal}}{double.}
+  \item{\code{yards_to_goal_end}}{double.}
+  \item{\code{yards_gained}}{integer.}
+  \item{\code{TimeSecsRem}}{double.}
+  \item{\code{offense_score}}{integer.}
+  \item{\code{defense_score}}{integer.}
+  \item{\code{score_diff}}{integer.}
+  \item{\code{score_diff_start}}{double.}
+  \item{\code{EPA}}{double.}
+  \item{\code{ep_before}}{double.}
+  \item{\code{ep_after}}{double.}
+  \item{\code{def_EPA}}{double.}
+  \item{\code{wpa}}{double.}
+  \item{\code{wp_before}}{double.}
+  \item{\code{wp_after}}{double.}
+  \item{\code{score_pts}}{double.}
+  \item{\code{ppa}}{character.}
+  \item{\code{game_play_number}}{double.}
+  \item{\code{drive_number}}{integer.}
+  \item{\code{drive_play_number}}{double.}
+  \item{\code{firstD_by_poss}}{double.}
+  \item{\code{firstD_by_penalty}}{double.}
+  \item{\code{firstD_by_yards}}{double.}
+  \item{\code{down_end}}{integer.}
+  \item{\code{distance_end}}{double.}
+  \item{\code{Goal_To_Go}}{logical.}
+  \item{\code{Under_two}}{logical.}
+  \item{\code{offense_timeouts}}{integer.}
+  \item{\code{defense_timeouts}}{integer.}
+  \item{\code{change_of_poss}}{double.}
+  \item{\code{home}}{character.}
+  \item{\code{away}}{character.}
+  \item{\code{home_wp_before}}{double.}
+  \item{\code{away_wp_before}}{double.}
+  \item{\code{home_wp_after}}{double.}
+  \item{\code{away_wp_after}}{double.}
+  \item{\code{wpa_base}}{double.}
+  \item{\code{wpa_base_nxt}}{double.}
+  \item{\code{wpa_change}}{double.}
+  \item{\code{wpa_change_nxt}}{double.}
+  \item{\code{wpa_base_ind}}{double.}
+  \item{\code{wpa_base_nxt_ind}}{double.}
+  \item{\code{wpa_change_ind}}{double.}
+  \item{\code{wpa_change_nxt_ind}}{double.}
+  \item{\code{ExpScoreDiff}}{double.}
+  \item{\code{ExpScoreDiff_Time_Ratio}}{double.}
+  \item{\code{drive_start_yards_to_goal}}{integer.}
+  \item{\code{drive_end_yards_to_goal}}{integer.}
+  \item{\code{drive_yards}}{integer.}
+  \item{\code{drive_scoring}}{logical.}
+  \item{\code{drive_result}}{character.}
+  \item{\code{drive_pts}}{double.}
+  \item{\code{new_id}}{double.}
+  \item{\code{drive_id}}{double.}
+  \item{\code{TimeSecsRem_end}}{double.}
+  \item{\code{offense_conference}}{character.}
+  \item{\code{defense_conference}}{character.}
+  \item{\code{yard_line}}{integer.}
+  \item{\code{scoring}}{logical.}
+  \item{\code{drive_time_minutes_start}}{integer.}
+  \item{\code{drive_time_seconds_start}}{integer.}
+  \item{\code{drive_time_minutes_end}}{integer.}
+  \item{\code{drive_time_seconds_end}}{integer.}
+  \item{\code{drive_time_minutes_elapsed}}{double.}
+  \item{\code{drive_time_seconds_elapsed}}{double.}
+  \item{\code{scoring_play}}{double.}
+  \item{\code{pts_scored}}{double.}
+  \item{\code{off_td_play}}{double.}
+  \item{\code{def_td_play}}{double.}
+  \item{\code{touchdown}}{double.}
+  \item{\code{safety}}{double.}
+  \item{\code{kickoff_play}}{double.}
+  \item{\code{kickoff_tb}}{double.}
+  \item{\code{kickoff_onside}}{double.}
+  \item{\code{kickoff_oob}}{double.}
+  \item{\code{kickoff_fair_catch}}{double.}
+  \item{\code{kickoff_downed}}{double.}
+  \item{\code{kick_play}}{double.}
+  \item{\code{kickoff_safety}}{double.}
+  \item{\code{punt}}{double.}
+  \item{\code{punt_play}}{double.}
+  \item{\code{punt_tb}}{double.}
+  \item{\code{punt_oob}}{double.}
+  \item{\code{punt_fair_catch}}{double.}
+  \item{\code{punt_downed}}{double.}
+  \item{\code{fumble_vec}}{double.}
+  \item{\code{rush}}{double.}
+  \item{\code{pass}}{double.}
+  \item{\code{sack_vec}}{double.}
+  \item{\code{turnover_vec}}{double.}
+  \item{\code{sack}}{double.}
+  \item{\code{int}}{double.}
+  \item{\code{int_td}}{double.}
+  \item{\code{completion}}{double.}
+  \item{\code{pass_attempt}}{double.}
+  \item{\code{target}}{double.}
+  \item{\code{pass_td}}{double.}
+  \item{\code{rush_td}}{double.}
+  \item{\code{penalty_flag}}{logical.}
+  \item{\code{penalty_declined}}{logical.}
+  \item{\code{penalty_no_play}}{logical.}
+  \item{\code{penalty_offset}}{logical.}
+  \item{\code{penalty_1st_conv}}{logical.}
+  \item{\code{penalty_text}}{logical.}
+  \item{\code{end_of_half}}{double.}
+  \item{\code{turnover}}{double.}
+  \item{\code{downs_turnover}}{double.}
+  \item{\code{half_play_number}}{double.}
+  \item{\code{off_timeouts_rem_before}}{double.}
+  \item{\code{def_timeouts_rem_before}}{double.}
+  \item{\code{missing_yard_flag}}{logical.}
+  \item{\code{first_by_penalty}}{double.}
+  \item{\code{first_by_yards}}{double.}
+  \item{\code{adj_TimeSecsRem}}{double.}
+  \item{\code{turnover_vec_lag}}{double.}
+  \item{\code{def_td_play_lag}}{double.}
+  \item{\code{play_after_turnover}}{double.}
+  \item{\code{receives_2H_kickoff}}{double.}
+  \item{\code{lag_score_diff}}{double.}
+  \item{\code{offense_play_lag}}{character.}
+  \item{\code{offense_play_lead}}{character.}
+  \item{\code{offense_play_lead2}}{character.}
+  \item{\code{lead_kickoff_play}}{double.}
+  \item{\code{offense_receives_2H_kickoff}}{double.}
+  \item{\code{home_EPA}}{double.}
+  \item{\code{away_EPA}}{double.}
+  \item{\code{rz_play}}{double.}
+  \item{\code{scoring_opp}}{double.}
+  \item{\code{stuffed_run}}{double.}
+  \item{\code{success}}{double.}
+  \item{\code{epa_success}}{double.}
+  \item{\code{def_wp_before}}{double.}
+  \item{\code{lead_wp_before}}{double.}
+  \item{\code{lead2_wp_before}}{double.}
+  \item{\code{def_wp_after}}{double.}
+}
+}
 \description{
-Extracts raw game by game data. Data comes from https://api.collegefootballdata.com
+Extracts raw game by game data. \cr
 }
 \keyword{Play-by-Play}

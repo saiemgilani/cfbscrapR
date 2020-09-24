@@ -81,7 +81,7 @@ This is only for D1 football — create_wpa_naive" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -108,6 +108,12 @@ This is only for D1 football — create_wpa_naive" />
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -173,7 +179,7 @@ This is only for D1 football</h1>
     <p>Extracts raw game by game data.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_wpa_naive</span>(<span class='no'>df</span>, <span class='kw'>wp_model</span> <span class='kw'>=</span> <span class='kw pkg'>cfbscrapR</span><span class='kw ns'>:::</span><span class='no'>wp_model</span>)</pre>
+    <pre class="usage"><span class='fu'>create_wpa_naive</span>(<span class='kw'>df</span>, wp_model = <span class='kw'>cfbscrapR</span>:::<span class='kw'>wp_model</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,6 +194,34 @@ This is only for D1 football</h1>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The original `df` with the following columns appended to it:</p><dl>
+<dt>wp_before</dt><dd><p></p></dd>
+<dt>def_wp_before</dt><dd><p></p></dd>
+<dt>home_wp_before</dt><dd><p></p></dd>
+<dt>away_wp_before</dt><dd><p></p></dd>
+<dt>lead_wp_before</dt><dd><p></p></dd>
+<dt>lead2_wp_before</dt><dd><p></p></dd>
+<dt>wpa_base</dt><dd><p></p></dd>
+<dt>wpa_base_nxt</dt><dd><p></p></dd>
+<dt>wpa_base_ind</dt><dd><p></p></dd>
+<dt>wpa_base_nxt_ind</dt><dd><p></p></dd>
+<dt>wpa_change</dt><dd><p></p></dd>
+<dt>wpa_change_nxt</dt><dd><p></p></dd>
+<dt>wpa_change_ind</dt><dd><p></p></dd>
+<dt>wpa_change_nxt_ind</dt><dd><p></p></dd>
+<dt>wpa</dt><dd><p></p></dd>
+<dt>wp_after</dt><dd><p></p></dd>
+<dt>def_wp_after</dt><dd><p></p></dd>
+<dt>home_wp_after</dt><dd><p></p></dd>
+<dt>away_wp_after</dt><dd><p></p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Requires the following columns to be present in the input data frame.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -204,7 +238,7 @@ This is only for D1 football</h1>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

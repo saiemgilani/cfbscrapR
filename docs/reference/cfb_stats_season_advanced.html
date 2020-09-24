@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
       </span>
     </div>
 
@@ -106,6 +106,12 @@
     <li class="dropdown-header">Introductory</li>
     <li>
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+    </li>
+    <li>
+      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+    </li>
+    <li>
+      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -171,11 +177,11 @@
     </div>
 
     <pre class="usage"><span class='fu'>cfb_stats_season_advanced</span>(
-  <span class='no'>year</span>,
-  <span class='kw'>team</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>excl_garbage_time</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>start_week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>end_week</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>year</span>,
+  team = <span class='kw'>NULL</span>,
+  excl_garbage_time = <span class='fl'>FALSE</span>,
+  start_week = <span class='kw'>NULL</span>,
+  end_week = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -203,10 +209,99 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://api.collegefootballdata.com/stats/season/advanced'>https://api.collegefootballdata.com/stats/season/advanced</a></p>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame with 79 variables:</p><dl>
+  <dt><code>season</code></dt><dd><p>integer.</p></dd>
+  <dt><code>team</code></dt><dd><p>character.</p></dd>
+  <dt><code>conference</code></dt><dd><p>character.</p></dd>
+  <dt><code>off_plays</code></dt><dd><p>integer.</p></dd>
+  <dt><code>off_drives</code></dt><dd><p>integer.</p></dd>
+  <dt><code>off_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_total_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_power_success</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_stuff_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_line_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_line_yds_total</code></dt><dd><p>integer.</p></dd>
+  <dt><code>off_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
+  <dt><code>off_open_field_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
+  <dt><code>off_pts_per_opp</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_field_pos_avg_start</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_field_pos_avg_predicted_points</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_havoc_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_havoc_front_seven</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_havoc_db</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_standard_downs_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_downs_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_rushing_plays_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_plays_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>off_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_plays</code></dt><dd><p>integer.</p></dd>
+  <dt><code>def_drives</code></dt><dd><p>integer.</p></dd>
+  <dt><code>def_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_total_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_power_success</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_stuff_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_line_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_line_yds_total</code></dt><dd><p>integer.</p></dd>
+  <dt><code>def_second_lvl_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_second_lvl_yds_total</code></dt><dd><p>integer.</p></dd>
+  <dt><code>def_open_field_yds</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_open_field_yds_total</code></dt><dd><p>integer.</p></dd>
+  <dt><code>def_pts_per_opp</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_field_pos_avg_start</code></dt><dd><p>integer.</p></dd>
+  <dt><code>def_field_pos_avg_predicted_points</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_havoc_total</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_havoc_front_seven</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_havoc_db</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_standard_downs_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_standard_downs_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_standard_downs_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_standard_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_downs_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_downs_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_downs_total_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_downs_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_downs_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_rushing_plays_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_rushing_plays_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_rushing_plays_total_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_rushing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_rushing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_plays_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_plays_ppa</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_plays_success_rate</code></dt><dd><p>double.</p></dd>
+  <dt><code>def_passing_plays_explosiveness</code></dt><dd><p>double.</p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_stats_season_advanced</span>(<span class='fl'>2019</span>, <span class='kw'>team</span> <span class='kw'>=</span> <span class='st'>'LSU'</span>)</div><div class='output co'>#&gt; <span class='message'>2020-09-19 16:44:46: Scraping season advanced stats...</span></div><div class='output co'>#&gt;   season team conference off_plays off_drives   off_ppa off_total_ppa
+<span class='fu'>cfb_stats_season_advanced</span>(<span class='fl'>2019</span>, team = <span class='st'>'LSU'</span>)
+</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:48: Scraping season advanced stats...</span></div><div class='output co'>#&gt;   season team conference off_plays off_drives   off_ppa off_total_ppa
 #&gt; 1   2019  LSU        SEC      1071        197 0.4123826      441.6617
 #&gt;   off_success_rate off_explosiveness off_power_success off_stuff_rate
 #&gt; 1        0.5490196          1.260844         0.7222222      0.1900648
@@ -214,48 +309,50 @@
 #&gt; 1     3.238661               1500           1.321814                      612
 #&gt;   off_open_field_yds off_open_field_yds_total off_pts_per_opp
 #&gt; 1           1.596112                      739        4.740157
-#&gt;   off_field_pos_avg_start off_field_pos_avg_predicted_points
-#&gt; 1                    70.5                              1.412
-#&gt;   off_standard_downs_rate off_standard_downs_ppa
-#&gt; 1                0.745098              0.3712894
-#&gt;   off_standard_downs_success_rate off_standard_downs_explosiveness
-#&gt; 1                       0.5827068                         1.135887
-#&gt;   off_passing_downs_rate off_passing_downs_ppa off_passing_downs_success_rate
-#&gt; 1               0.254902             0.5325012                      0.4505495
-#&gt;   off_passing_downs_explosiveness off_rushing_plays_rate off_rushing_plays_ppa
-#&gt; 1                        1.733244              0.4323063             0.2027653
-#&gt;   off_rushing_plays_total_ppa off_rushing_plays_success_rate
-#&gt; 1                    93.88031                      0.5075594
-#&gt;   off_rushing_plays_explosiveness off_passing_plays_rate off_passing_plays_ppa
-#&gt; 1                       0.9403763              0.5471522             0.6054826
-#&gt;   off_passing_plays_total_ppa off_passing_plays_success_rate
-#&gt; 1                    354.8128                      0.5648464
-#&gt;   off_passing_plays_explosiveness def_plays def_drives    def_ppa def_total_ppa
-#&gt; 1                        1.593411       994        197 0.08090532      80.41989
-#&gt;   def_success_rate def_explosiveness def_power_success def_stuff_rate
-#&gt; 1        0.3571429          1.335854         0.5102041       0.216092
-#&gt;   def_line_yds def_line_yds_total def_second_lvl_yds def_second_lvl_yds_total
-#&gt; 1     2.695632               1173          0.9310345                      405
-#&gt;   def_open_field_yds def_open_field_yds_total def_pts_per_opp
-#&gt; 1           1.406897                      612         3.08642
-#&gt;   def_field_pos_avg_start def_field_pos_avg_predicted_points def_havoc_total
-#&gt; 1                      74                             -1.064       0.2374245
-#&gt;   def_havoc_front_seven def_havoc_db def_standard_downs_rate
-#&gt; 1             0.1277666    0.1096579               0.6307847
-#&gt;   def_standard_downs_ppa def_standard_downs_success_rate
-#&gt; 1             0.06626387                       0.4226475
-#&gt;   def_standard_downs_explosiveness def_passing_downs_rate def_passing_downs_ppa
-#&gt; 1                         1.161413              0.3692153             0.1059195
-#&gt;   def_passing_downs_total_ppa def_passing_downs_success_rate
-#&gt; 1                    73.15746                      0.2452316
-#&gt;   def_passing_downs_explosiveness def_rushing_plays_rate def_rushing_plays_ppa
-#&gt; 1                        1.849484              0.4376258            0.02734954
-#&gt;   def_rushing_plays_total_ppa def_rushing_plays_success_rate
-#&gt; 1                    11.89705                      0.3701149
-#&gt;   def_rushing_plays_explosiveness def_passing_plays_rate def_passing_plays_ppa
-#&gt; 1                       0.9643827              0.5503018             0.1337431
-#&gt;   def_passing_plays_success_rate def_passing_plays_explosiveness
-#&gt; 1                      0.3327239                        1.778006</div><div class='input'>
+#&gt;   off_field_pos_avg_start off_field_pos_avg_predicted_points off_havoc_total
+#&gt; 1                    70.5                              1.412       0.1652661
+#&gt;   off_havoc_front_seven off_havoc_db off_standard_downs_rate
+#&gt; 1            0.09803922   0.06722689                0.745098
+#&gt;   off_standard_downs_ppa off_standard_downs_success_rate
+#&gt; 1              0.3712894                       0.5827068
+#&gt;   off_standard_downs_explosiveness off_passing_downs_rate off_passing_downs_ppa
+#&gt; 1                         1.135887               0.254902             0.5325012
+#&gt;   off_passing_downs_success_rate off_passing_downs_explosiveness
+#&gt; 1                      0.4505495                        1.733244
+#&gt;   off_rushing_plays_rate off_rushing_plays_ppa off_rushing_plays_total_ppa
+#&gt; 1              0.4323063             0.2027653                    93.88031
+#&gt;   off_rushing_plays_success_rate off_rushing_plays_explosiveness
+#&gt; 1                      0.5075594                       0.9403763
+#&gt;   off_passing_plays_rate off_passing_plays_ppa off_passing_plays_total_ppa
+#&gt; 1              0.5471522             0.6054826                    354.8128
+#&gt;   off_passing_plays_success_rate off_passing_plays_explosiveness def_plays
+#&gt; 1                      0.5648464                        1.593411       994
+#&gt;   def_drives    def_ppa def_total_ppa def_success_rate def_explosiveness
+#&gt; 1        197 0.08090532      80.41989        0.3571429          1.335854
+#&gt;   def_power_success def_stuff_rate def_line_yds def_line_yds_total
+#&gt; 1         0.5102041       0.216092     2.695632               1173
+#&gt;   def_second_lvl_yds def_second_lvl_yds_total def_open_field_yds
+#&gt; 1          0.9310345                      405           1.406897
+#&gt;   def_open_field_yds_total def_pts_per_opp def_field_pos_avg_start
+#&gt; 1                      612         3.08642                      74
+#&gt;   def_field_pos_avg_predicted_points def_havoc_total def_havoc_front_seven
+#&gt; 1                             -1.064       0.2374245             0.1277666
+#&gt;   def_havoc_db def_standard_downs_rate def_standard_downs_ppa
+#&gt; 1    0.1096579               0.6307847             0.06626387
+#&gt;   def_standard_downs_success_rate def_standard_downs_explosiveness
+#&gt; 1                       0.4226475                         1.161413
+#&gt;   def_passing_downs_rate def_passing_downs_ppa def_passing_downs_total_ppa
+#&gt; 1              0.3692153             0.1059195                    73.15746
+#&gt;   def_passing_downs_success_rate def_passing_downs_explosiveness
+#&gt; 1                      0.2452316                        1.849484
+#&gt;   def_rushing_plays_rate def_rushing_plays_ppa def_rushing_plays_total_ppa
+#&gt; 1              0.4376258            0.02734954                    11.89705
+#&gt;   def_rushing_plays_success_rate def_rushing_plays_explosiveness
+#&gt; 1                      0.3701149                       0.9643827
+#&gt;   def_passing_plays_rate def_passing_plays_ppa def_passing_plays_success_rate
+#&gt; 1              0.5503018             0.1337431                      0.3327239
+#&gt;   def_passing_plays_explosiveness
+#&gt; 1                        1.778006</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -272,7 +369,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

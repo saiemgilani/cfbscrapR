@@ -5,7 +5,30 @@
 #' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' 
+#' @return A data frame with 20 variables:
+#' \describe{
+#'   \item{\code{year}}{integer.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
+#'   \item{\code{division}}{character.}
+#'   \item{\code{total_games}}{integer.}
+#'   \item{\code{total_wins}}{integer.}
+#'   \item{\code{total_losses}}{integer.}
+#'   \item{\code{total_ties}}{integer.}
+#'   \item{\code{conference_games}}{integer.}
+#'   \item{\code{conference_wins}}{integer.}
+#'   \item{\code{conference_losses}}{integer.}
+#'   \item{\code{conference_ties}}{integer.}
+#'   \item{\code{home_games}}{integer.}
+#'   \item{\code{home_wins}}{integer.}
+#'   \item{\code{home_losses}}{integer.}
+#'   \item{\code{home_ties}}{integer.}
+#'   \item{\code{away_games}}{integer.}
+#'   \item{\code{away_wins}}{integer.}
+#'   \item{\code{away_losses}}{integer.}
+#'   \item{\code{away_ties}}{integer.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/records}
 #' @keywords Team Info
 #' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
@@ -18,9 +41,8 @@
 #'
 #' cfb_game_records(2018, team = 'Notre Dame')
 #'
-#'
 #' cfb_game_records(2013, team = "Florida State")
-#'
+#' 
 
 cfb_game_records <- function(year, team = NULL, conference = NULL) {
 
@@ -34,9 +56,9 @@ cfb_game_records <- function(year, team = NULL, conference = NULL) {
   }
   if(!is.null(conference)){
     # Check conference parameter in conference abbreviations, if not NULL
-    assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
-                            msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
-    # Encode conference parameter for URL, if not NULL
+    # assertthat::assert_that(conference %in% cfbscrapR::cfb_conf_types_df$abbreviation,
+    #                         msg = "Incorrect conference abbreviation, potential misspelling.\nConference abbreviations P5: ACC, B12, B1G, SEC, PAC\nConference abbreviations G5 and Independents: CUSA, MAC, MWC, Ind, SBC, AAC")
+    # # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }
 

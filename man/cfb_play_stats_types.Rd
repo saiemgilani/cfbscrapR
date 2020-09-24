@@ -3,16 +3,19 @@
 \name{cfb_play_stats_types}
 \alias{cfb_play_stats_types}
 \title{College Football Mapping for Play Stats Types}
-\format{
+\source{
+\url{https://api.collegefootballdata.com/play/stat/types}
+}
+\usage{
+cfb_play_stats_types()
+}
+\value{
 A data frame with 22 rows and 2 variables:
 \describe{
   \item{play_stat_type_id}{Referencing play stat type ID}
   \item{name}{Type of play stats}
   ...
 }
-}
-\usage{
-cfb_play_stats_types()
 }
 \description{
 This function identifies all play stats types identified in the play by play data.

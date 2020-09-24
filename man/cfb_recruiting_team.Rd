@@ -3,6 +3,9 @@
 \name{cfb_recruiting_team}
 \alias{cfb_recruiting_team}
 \title{CFB Recruiting Information - Team Rankings}
+\source{
+\url{https://api.collegefootballdata.com/recruiting/teams}
+}
 \usage{
 cfb_recruiting_team(year = NULL, team = NULL)
 }
@@ -10,6 +13,15 @@ cfb_recruiting_team(year = NULL, team = NULL)
 \item{year}{(\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
+}
+\value{
+A data frame with 4 variables:
+\describe{
+  \item{\code{year}}{integer.}
+  \item{\code{rank}}{integer.}
+  \item{\code{team}}{character.}
+  \item{\code{points}}{character.}
+}
 }
 \description{
 Gets CFB team recruiting ranks with filters available for year and team.

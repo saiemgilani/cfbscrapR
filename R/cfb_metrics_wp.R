@@ -2,7 +2,27 @@
 #'
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
 #' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
-#' @param adjust_for_spread (\emph{Logical} default TRUE): Toggles pre-game spread adjustments
+#' 
+#' @return A data frame with 16 variables:
+#' \describe{
+#'   \item{\code{play_id}}{character.}
+#'   \item{\code{play_text}}{character.}
+#'   \item{\code{home_id}}{integer.}
+#'   \item{\code{home}}{character.}
+#'   \item{\code{away_id}}{integer.}
+#'   \item{\code{away}}{character.}
+#'   \item{\code{spread}}{character.}
+#'   \item{\code{home_ball}}{logical.}
+#'   \item{\code{home_score}}{integer.}
+#'   \item{\code{away_score}}{integer.}
+#'   \item{\code{down}}{integer.}
+#'   \item{\code{distance}}{integer.}
+#'   \item{\code{home_win_prob}}{character.}
+#'   \item{\code{away_win_prob}}{double.}
+#'   \item{\code{play_number}}{integer.}
+#'   \item{\code{yard_line}}{integer.}
+#' }
+#' @source \url{https://api.collegefootballdata.com/metrics/wp}
 #' @keywords Win Probability Chart Data
 #' @importFrom attempt "stop_if_all"
 #' @importFrom jsonlite "fromJSON"
@@ -14,15 +34,12 @@
 #' @import dplyr
 #' @import tidyr
 #' @export
-#'
 #' @examples
 #'
 #' cfb_metrics_wp(game_id = 401012356)
 #'
-#'
 
-cfb_metrics_wp <- function(game_id,
-                           adjust_for_spread = TRUE) {
+cfb_metrics_wp <- function(game_id) {
 
   args <- list(game_id = game_id)
   
@@ -35,16 +52,11 @@ cfb_metrics_wp <- function(game_id,
     assertthat::assert_that(is.numeric(game_id),
                 msg = 'Enter valid game_id value (Integer)\nCan be found using the `cfb_game_info()` function')
   }
-  if(adjust_for_spread!=TRUE){
-    # Check if adjust_for_spread is FALSE, if not TRUE
-    assertthat::assert_that(adjust_for_spread==FALSE,
-                msg = 'Enter valid adjust_for_spread value (Logical) - TRUE or FALSE')
-  }
+  
   base_url <- "https://api.collegefootballdata.com/metrics/wp?"
 
   full_url <- paste0(base_url,
-                     "gameId=", game_id,
-                     "&adjustForSpread=", adjust_for_spread)
+                     "gameId=", game_id)
 
   # Check for internet
   check_internet()
@@ -65,9 +77,7 @@ cfb_metrics_wp <- function(game_id,
       # Get the content and return it as data.frame
       df = jsonlite::fromJSON(full_url) %>% 
         janitor::clean_names() %>% 
-        dplyr::mutate(
-          away_win_prob = 1 - as.numeric(.data$home_win_prob)
-        ) %>% 
+        dplyr::mutate(away_win_prob = 1 - as.numeric(.data$home_win_prob)) %>% 
         dplyr::select(cols)
         as.data.frame()
       

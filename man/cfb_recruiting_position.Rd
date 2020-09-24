@@ -3,6 +3,9 @@
 \name{cfb_recruiting_position}
 \alias{cfb_recruiting_position}
 \title{CFB Recruiting Information - Position Groups}
+\source{
+\url{https://api.collegefootballdata.com/recruiting/groups}
+}
 \usage{
 cfb_recruiting_position(
   start_year = NULL,
@@ -21,6 +24,18 @@ cfb_recruiting_position(
 \item{conference}{(\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
 Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
+}
+\value{
+A data frame with 7 variables:
+\describe{
+  \item{\code{team}}{character.}
+  \item{\code{conference}}{character.}
+  \item{\code{position_group}}{character.}
+  \item{\code{avg_rating}}{double.}
+  \item{\code{total_rating}}{double.}
+  \item{\code{commits}}{integer.}
+  \item{\code{avg_stars}}{double.}
+}
 }
 \description{
 If only start_year is provided, function will get CFB recruiting information based

@@ -12,7 +12,34 @@ create_wpa_naive(df, wp_model = cfbscrapR:::wp_model)
 
 \item{wp_model}{(\emph{model} default cfbscrapR:wp_model): Win Probability (WP) Model}
 }
+\value{
+The original `df` with the following columns appended to it:
+\describe{
+\item{wp_before}{}
+\item{def_wp_before}{}
+\item{home_wp_before}{}
+\item{away_wp_before}{}
+\item{lead_wp_before}{}
+\item{lead2_wp_before}{}
+\item{wpa_base}{}
+\item{wpa_base_nxt}{}
+\item{wpa_base_ind}{}
+\item{wpa_base_nxt_ind}{}
+\item{wpa_change}{}
+\item{wpa_change_nxt}{}
+\item{wpa_change_ind}{}
+\item{wpa_change_nxt_ind}{}
+\item{wpa}{}
+\item{wp_after}{}
+\item{def_wp_after}{}
+\item{home_wp_after}{}
+\item{away_wp_after}{}
+}
+}
 \description{
 Extracts raw game by game data.
+}
+\details{
+Requires the following columns to be present in the input data frame.
 }
 \keyword{internal}
