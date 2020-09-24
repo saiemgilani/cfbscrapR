@@ -37,7 +37,7 @@
   
 - add some return skeleton docs
 - add column `drive_start_yardline` to the remove cols
-- add parsing for kickoff safetys accounting for sign change
+- add parsing for kickoff safeties accounting for sign change
 
 * Added [Jared Lee](https://twitter.com/JaredDLee)'s [animated win probability plot vignette](https://saiemgilani.github.io/cfbscrapR/articles/Animated_WP_Plotting.html) to the package documentation page
   ![Result](https://kazink36.github.io/images/animated_wp_ex.gif)
