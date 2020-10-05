@@ -157,10 +157,10 @@ cfb_betting_lines <- function(game_id = NULL,
           dplyr::rename(game_id = .data$id) %>% 
           as.data.frame()
       }
-      message(glue::glue("{Sys.time()}: Scraping betting lines data..."))
+      # message(glue::glue("{Sys.time()}: Scraping betting lines data..."))
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))
+      # message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))
     },
     warning = function(w) {
     },
