@@ -32,7 +32,7 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/lines}
 #' @keywords Betting Lines
-#' @importFrom jsonlite fromJSON
+#' @importFrom jsonlite "fromJSON"
 #' @importFrom httr "GET"
 #' @importFrom utils "URLencode"
 #' @importFrom assertthat "assert_that"
