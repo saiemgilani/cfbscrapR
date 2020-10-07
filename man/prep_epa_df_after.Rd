@@ -9,11 +9,40 @@ prep_epa_df_after(dat)
 \arguments{
 \item{dat}{(\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from `cfb_pbp_dat()`}
 }
+\value{
+`dat` with the following columns appended/modified:
+\itemize{
+ \item{turnover_indicator}{.}
+ \item{down}{.}
+ \item{new_id}{.}
+ \item{new_down}{.}
+ \item{distance}{.}
+ \item{yards_to_goal}{.}
+ \item{yards_gained}{.}
+ \item{turnover}{.}
+ \item{drive_start_yards_to_goal}{.}
+ \item{end_of_half}{.}
+ \item{new_yardline}{.}
+ \item{new_distance}{.}
+ \item{new_log_ydstogo}{.}
+ \item{new_Goal_To_Go}{.}
+ \item{new_TimeSecsRem}{.}
+ \item{new_Under_two}{.}
+ \item{first_by_penalty}{.}
+ \item{first_by_yards}{.}
+ \item{firstD_by_poss}{.}
+ \item{firstD_by_yards}{.}
+ \item{firstD_by_penalty}{.}
+ \item{yds_punted}{.}
+ \item{yds_punt_gained}{.}
+ \item{missing_yard_flag}{.}
+}
+}
 \description{
 Creates the post-play inputs for the Expected Points model to predict on for each game
 }
 \details{
-Prep for EPA calculations at the start of the play. Requires the following columns be present:
+Prep for EPA calculations at the end of the play. Requires the following columns be present:
 \itemize{
 \item{game_id}
 \item{id_play}

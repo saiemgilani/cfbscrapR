@@ -26,7 +26,7 @@ Adds Expected Points calculations to Play-by-Play data.frame
 Code Description
 \describe{
   \item{1. \code{pred_df}}{Use select before play model variables -> Make predictions.}
-  \item{2. \code{epa_fg_probs}}{Update expected points predictions from before variables with FG make/miss probability weighted adjustments.}
+  \item{2. \code{epa_fg_probs}}{Update expected points predictions from before variables with FG make/miss probability weighted adjustment.}
   \item{3. \code{pred_df_after}}{Use select after play model variables -> Make predictions .}
   \item{4. \code{join_ep}}{Join `ep_before` calcs `pred_df` with ep_after calcs `pred_df_after` on c("game_id","drive_id","new_id").}
   \item{5. \code{kickoffs}}{Calculate ep_before for kickoffs as if the pre-play assumption is a touchback.}

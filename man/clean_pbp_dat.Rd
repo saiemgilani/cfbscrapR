@@ -54,9 +54,13 @@ The original `play_df` with the following columns appended/redefined:
 \item{fg_inds}{.}
 \item{yds_fg}{.}
 \item{yards_to_goal}{.}
-\item{posteam}{.}
-\item{off_timeouts_rem}{.}
-\item{def_timeouts_rem}{.}
+\item{pos_team}{.}
+\item{def_pos_team}{.}
+\item{lead_pos_team}{.}
+\item{lead_pos_team2}{.}
+\item{pos_team_timeouts_rem}{.}
+\item{def_pos_team_timeouts_rem}{.}
+\item{change_of_pos_team}{.}
 }
 }
 \description{
