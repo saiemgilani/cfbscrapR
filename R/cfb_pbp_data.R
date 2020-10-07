@@ -1553,6 +1553,7 @@ prep_epa_df_after <- function(dat) {
     dplyr::group_by(.data$game_id, .data$half) %>%
     dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     dplyr::mutate(
+      lead_yards_to_goal = dplyr::lead(.data$yards_to_goal, 1),
       turnover_indicator = 
         ifelse(
           (.data$play_type %in% defense_score_vec) | (.data$play_type %in% turnover_vec )|
@@ -1655,7 +1656,7 @@ prep_epa_df_after <- function(dat) {
         .data$play_type %in% normalplay ~ .data$yards_to_goal - .data$yards_gained,
         .data$play_type %in% score ~ 0,
         .data$play_type %in% defense_score_vec ~ 0,
-        .data$play_type %in% kickoff ~ .data$drive_start_yards_to_goal,
+        .data$play_type %in% kickoff ~ .data$lead_yards_to_goal,
         .data$play_type %in% turnover_vec ~ 100 - .data$yards_to_goal + .data$yards_gained
       )),
       new_TimeSecsRem = ifelse(!is.na(dplyr::lead(.data$TimeSecsRem, order_by=.data$id_play)),
