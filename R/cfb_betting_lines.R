@@ -38,8 +38,9 @@
 #' @importFrom assertthat "assert_that"
 #' @importFrom janitor "clean_names"
 #' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom purrr "map_if"
+#' @importFrom dplyr "filter" "as_tibble" "rename"
+#' @importFrom tidyr "unnest"
 #' @export
 #' @examples
 #'
