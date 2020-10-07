@@ -151,7 +151,6 @@ A data frame with 149 variables:
   \item{\code{penalty_1st_conv}}{logical.}
   \item{\code{penalty_text}}{logical.}
   \item{\code{end_of_half}}{double.}
-  \item{\code{turnover}}{double.}
   \item{\code{downs_turnover}}{double.}
   \item{\code{half_play_number}}{double.}
   \item{\code{off_timeouts_rem_before}}{double.}
@@ -165,9 +164,9 @@ A data frame with 149 variables:
   \item{\code{play_after_turnover}}{double.}
   \item{\code{receives_2H_kickoff}}{double.}
   \item{\code{lag_score_diff}}{double.}
-  \item{\code{offense_play_lag}}{character.}
-  \item{\code{offense_play_lead}}{character.}
-  \item{\code{offense_play_lead2}}{character.}
+  \item{\code{lag_offense_play}}{character.}
+  \item{\code{lead_offense_play}}{character.}
+  \item{\code{lead_offense_play2}}{character.}
   \item{\code{lead_kickoff_play}}{double.}
   \item{\code{offense_receives_2H_kickoff}}{double.}
   \item{\code{home_EPA}}{double.}

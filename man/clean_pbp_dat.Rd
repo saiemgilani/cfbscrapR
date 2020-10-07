@@ -5,10 +5,59 @@
 \title{Clean Play-by-Play data
 Cleans Play-by-Play data pulled from the API's raw game data}
 \usage{
-clean_pbp_dat(raw_df)
+clean_pbp_dat(play_df)
 }
 \arguments{
-\item{raw_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_dat()`}
+\item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_dat()`}
+}
+\value{
+The original `play_df` with the following columns appended/redefined:
+\describe{
+\item{scoring_play}{.}
+\item{td_play}{.}
+\item{touchdown}{.}
+\item{safety}{.}
+\item{fumble_vec}{.}
+\item{kickoff_play}{.}
+\item{kickoff_tb}{.}
+\item{kickoff_onside}{.}
+\item{kickoff_oob}{.}
+\item{kickoff_fair_catch}{.}
+\item{kickoff_downed}{.}
+\item{kick_play}{.}
+\item{kickoff_safety}{.}
+\item{punt}{.}
+\item{punt_play}{.}
+\item{punt_tb}{.}
+\item{punt_oob}{.}
+\item{punt_fair_catch}{.}
+\item{punt_downed}{.}
+\item{rush_vec}{.}
+\item{pass_vec}{.}
+\item{sack_vec}{.}
+\item{play_type}{.}
+\item{td_check}{.}
+\item{id_play}{.}
+\item{sack}{.}
+\item{int}{.}
+\item{int_td}{.}
+\item{completion}{.}
+\item{pass_attempt}{.}
+\item{target}{.}
+\item{pass_td}{.}
+\item{rush_td}{.}
+\item{turnover_vec}{.}
+\item{off_td_play}{.}
+\item{def_td_play}{.}
+\item{downs_turnover}{.}
+\item{scoring_play}{.}
+\item{fg_inds}{.}
+\item{yds_fg}{.}
+\item{yards_to_goal}{.}
+\item{posteam}{.}
+\item{off_timeouts_rem}{.}
+\item{def_timeouts_rem}{.}
+}
 }
 \description{
 Clean Play-by-Play data
