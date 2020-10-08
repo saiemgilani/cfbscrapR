@@ -52,6 +52,10 @@ recruit type, state and position. — cfb_recruiting_player • cfbscrapR</title
 Gets CFB recruiting information for a single year with filters available for team,
 recruit type, state and position. — cfb_recruiting_player" />
 <meta property="og:description" content="At least one of year or team must be specified for the function to run" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@cfbscrapR" />
+<meta name="twitter:site" content="@cfbscrapR" />
 
 
 
@@ -251,7 +255,7 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2018</span>, team = <span class='st'>"Texas"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:35: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking                name               school
+</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:54: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking                name               school
 #&gt; 1    HighSchool 2018      19        Caden Sterns               Steele
 #&gt; 2    HighSchool 2018      24         B.J. Foster             Angleton
 #&gt; 3    HighSchool 2018      47         Jalen Green              Heights
@@ -339,7 +343,7 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
 #&gt; 27             TX      &lt;NA&gt;
 #&gt; 28             TX      &lt;NA&gt;</div><div class='input'>
 <span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2016</span>, recruit_type = <span class='st'>'JUCO'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:36: Scraping player recruiting data...</span></div><div class='output co'>#&gt;     recruit_type year ranking                   name
+</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:54: Scraping player recruiting data...</span></div><div class='output co'>#&gt;     recruit_type year ranking                   name
 #&gt; 1           JUCO 2016       1        Jonathan Kongbo
 #&gt; 2           JUCO 2016       2        Charles Baldwin
 #&gt; 3           JUCO 2016       3          Garett Bolles
@@ -1771,7 +1775,7 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
 #&gt; 475   71.0    182     2 0.7000               Marietta             GA      NA
 #&gt; 476   75.0    250     2 0.7000             Brownsboro             TX      NA</div><div class='input'>
 <span class='fu'>cfb_recruiting_player</span>(<span class='fl'>2020</span>, recruit_type = <span class='st'>'HighSchool'</span>, position = <span class='st'>'OT'</span>, state = <span class='st'>'FL'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-23 12:04:36: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking              name                 school
+</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:55: Scraping player recruiting data...</span></div><div class='output co'>#&gt;    recruit_type year ranking              name                 school
 #&gt; 1    HighSchool 2020     108   Marcus Dumervil     St. Thomas Aquinas
 #&gt; 2    HighSchool 2020     127      Jalen Rivers                Oakleaf
 #&gt; 3    HighSchool 2020     156 Issiah Walker Jr.                Norland

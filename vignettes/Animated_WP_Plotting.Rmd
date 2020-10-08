@@ -97,9 +97,10 @@ add_player_cols <- function(pbp) {
                                 str_extract(play_text, "(.{0,25} )\\d{0,2} Yd TD pass"),
                                 receiver_player),
       receiver_player = ifelse(play_type == "Sack" |
-                               play_type == "Pass Interception Return" |
+                               play_type == "Interception Return" |
                                play_type == "Interception Return Touchdown" |
-                               (play_type == "Fumble Recovery (Opponent)" &
+                               (play_type %in% c("Fumble Recovery (Opponent)",
+                                                 "Fumble Recovery (Opponent) Touchdown") &
                                 str_detect(play_text, "sacked")), NA, receiver_player),
       receiver_player = str_remove(receiver_player, "to "),
       receiver_player = str_remove(receiver_player, "\\,.+"),
@@ -148,9 +149,17 @@ add_player_cols <- function(pbp) {
       interception_player = ifelse(pass == 1 & (play_type == "Interception Return"| 
                                                 play_type == "Interception Return Touchdown"),
                                    str_extract(play_text, "intercepted (.+)"), NA),
+      interception_player = if_else(str_detect(play_text, regex("Yd pass", ignore_case = TRUE)),
+                                str_extract(play_text, "(.{0,25} )\\d{0,2} Yd pass"),
+                                interception_player),
+      interception_player = if_else(str_detect(play_text, regex("Yd Interception Return", ignore_case = TRUE)),
+                                str_extract(play_text, "(.{0,25} )\\d{0,2} Yd Interception Return"),
+                                interception_player),
       interception_player = str_remove(interception_player, "return (.+)"),
       interception_player = str_remove(interception_player, "(.+) intercepted "),
-      interception_player = str_remove(interception_player, "intercepted"))
+      interception_player = str_remove(interception_player, "intercepted"),
+      interception_player = str_remove(interception_player, " Yd Interception Return"),
+      interception_player = str_remove(interception_player, " (\\d{1,2})"))
   
   ## Punter Name
   pbp <- pbp %>%
@@ -167,6 +176,13 @@ add_player_cols <- function(pbp) {
       punt_returner_player = str_remove(punt_returner_player, ", "),
       punt_returner_player = str_remove(punt_returner_player, " returns")) 
   
+  ## Kickoff Specialist Name
+  pbp <- pbp %>%
+    mutate(
+      kickoff_player = ifelse(str_detect(play_type, "Kickoff"),
+                             str_extract(play_text, ".{0,25} kickoff"), NA),
+      kickoff_player = str_remove(kickoff_player," kickoff"))
+  
   ## Kickoff Returner
   pbp <- pbp %>% 
     mutate(
@@ -174,6 +190,15 @@ add_player_cols <- function(pbp) {
                                        str_extract(play_text,", .{0,25} return"), NA),
       kickoff_returner_player = str_remove(kickoff_returner_player,", "),
       kickoff_returner_player = str_remove(kickoff_returner_player," return")) 
+  ## Field Goal Kicker
+  pbp <- pbp %>% 
+    mutate(
+      fg_kicker_player = ifelse(str_detect(play_type, "Field Goal"),
+                             str_extract(play_text, regex("(.{0,25} )\\d{0,2} yd field goal| | (.{0,25} )\\d{0,2} yd fg", ignore_case = TRUE)), NA),
+      fg_kicker_player = str_remove(fg_kicker_player, regex(" Yd Field Goal|Yd FG", ignore_case = TRUE)),
+      fg_kicker_player = str_remove(fg_kicker_player," (\\d{1,2})")
+      )
+      
   
   pbp <- pbp %>%
     rename(
@@ -184,12 +209,15 @@ add_player_cols <- function(pbp) {
       sack_player_name2 = sack_player2,
       interception_player_name = interception_player,
       punter_player_name = punter_player,
+      fg_kicker_player_name = fg_kicker_player,
+      kickoff_player_name = kickoff_player,
       kickoff_returner_player_name = kickoff_returner_player,
       punt_returner_player_name = punt_returner_player)
+  return(pbp)
 }
 ```
 
-Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbscrapR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbscrapR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation. Finally, we use our custom ```cfb_add_player_col()``` function to add the player names to our data.
+Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbscrapR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbscrapR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation. Finally, we use our custom ```add_player_cols()``` function to add the player names to our data.
 
 ```{r rename, message=FALSE, warning=FALSE}
 game_pbp <- game_pbp %>%
@@ -256,9 +284,12 @@ wp_data <- base_wp_data %>%
        abs(wpa) > 0.1 & play_type == "Field Goal Missed" ~ glue("{posteam} FG MISS"),
        abs(wpa) > 0.1 & play_type == "Passing Touchdown" ~ glue("{receiver_player_name} TD"),
        abs(wpa) > 0.1 & play_type == "Rushing Touchdown" ~ glue("{rusher_player_name} TD"),
-       abs(wpa) > 0.1 & play_type == "Field Goal Good" ~ glue("{posteam} FG GOOD"),
+       abs(wpa) > 0.1 & play_type == "Field Goal Good" &
+         !is.na(fg_kicker_player_name) ~ glue("{fg_kicker_player_name} FG GOOD"),
+       abs(wpa) > 0.1 & play_type == "Field Goal Good" &
+         is.na(fg_kicker_player_name) ~ glue("{posteam} FG GOOD"),
        abs(wpa) > 0.1 & play_type == "Timeout" ~ "",
-       abs(wpa) > 0.1 & play_type == "Pass Interception Return" ~ glue("{interception_player_name} INT"),
+       abs(wpa) > 0.1 & play_type == "Interception Return" ~ glue("{interception_player_name} INT"),
        abs(wpa) > 0.1 & play_type == "Fumble Recovery (Own)" ~ glue("{rusher_player_name} Rush"),
        abs(wpa) > 0.1 & play_type == "Blocked Field Goal" ~ glue("{posteam} FG BLK"),
        abs(wpa) > 0.1 & play_type == "Kickoff Return (Offense)" ~ glue("{kickoff_returner_player_name} KR"),
@@ -267,8 +298,11 @@ wp_data <- base_wp_data %>%
        abs(wpa) > 0.1 & play_type == "Kickoff Return Touchdown" & 
          !is.na(kickoff_returner_player_name) ~ glue("{kickoff_returner_player_name} KR TD"),
        abs(wpa) > 0.1 & play_type == "Punt Touchdown" ~ glue("{punt_returner_player_name} PR TD"),
+       abs(wpa) > 0.1 & play_type == "Fumble Recovery (Opponent) Touchdown" ~ glue("{defteam} FUMBLE TD"),
        abs(wpa) > 0.1 & play_type == "Fumble Return Touchdown" ~ glue("{defteam} FUMBLE TD"),
        abs(wpa) > 0.1 & play_type == "Safety" ~ glue("SAFETY"),
+       abs(wpa) > 0.1 & play_type == "Punt Touchdown" ~ glue("{posteam} PR FUMBLE TD"),
+       abs(wpa) > 0.1 & play_type == "Kickoff Touchdown" ~ glue("{posteam} KR FUMBLE TD"),
        abs(wpa) > 0.1 & play_type == "Punt Return Touchdown" ~ glue("{punt_returner_player_name} PR TD"),
        abs(wpa) > 0.1 & play_type == "Uncategorized" ~ "",
        abs(wpa) > 0.1 & play_type == "Blocked Punt Touchdown" ~ glue("{defteam} PUNT BLK TD"),
@@ -498,10 +532,10 @@ draw_frame <- function(n_sec)
 Let's test our function to make sure the plot looks like how we want it by running our function with 6 minutes left in the game. 
 
 ```{r draw_test, message=FALSE, warning=FALSE}
-#draw_frame(360)
+draw_frame(360)
 ```
 
-[Looks great](https://kazink36.github.io/images/animated_wp_frame_ex.png), so next we create the ```draw_game()``` function which will draw every frame for our GIF.
+Looks great, so next we create the ```draw_game()``` function which will draw every frame for our GIF.
 
 ```{r draw_game, message=FALSE, warning=FALSE}
 draw_game <- function()
@@ -525,8 +559,7 @@ Finally, we run our ```draw_game()``` function inside of ```saveGIF()```.
 # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
 ```
 
-![Result](https://kazink36.github.io/images/animated_wp_ex.gif)
-
+![Result](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/animated_wp.gif?raw=true)
 This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the `ani.width`, `ani.height` and `ani.res` parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.
 
 ```{r saveGIF_wide, message=FALSE, warning=FALSE}

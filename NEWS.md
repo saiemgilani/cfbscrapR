@@ -37,10 +37,10 @@
   
 - add some return skeleton docs
 - add column `drive_start_yardline` to the remove cols
-- add parsing for kickoff safetys accounting for sign change
+- add parsing for kickoff safeties accounting for sign change
 
 * Added [Jared Lee](https://twitter.com/JaredDLee)'s [animated win probability plot vignette](https://saiemgilani.github.io/cfbscrapR/articles/Animated_WP_Plotting.html) to the package documentation page
-  ![Result](https://kazink36.github.io/images/animated_wp_ex.gif)
+  ![Result](https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/animated_wp.gif)
   - Contains important `add_player_cols()` function useful to parse existing play-by-play datasets and pull passer/rusher/receiver/etc. player names. 
 * Added [Michael Egle](https://twitter.com/deceptivespeed_)'s [4th down tendency plot vignette](https://saiemgilani.github.io/cfbscrapR/articles/fourth_down_plot_tutorial.html) to the package documentation page
 
