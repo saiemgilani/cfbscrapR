@@ -7,7 +7,9 @@ penalty_detection_select <- function(pbp) {
     dplyr::select(
       "game_id",
       "half",
-      "TimeSecsRem",
+      "period",
+      "clock.minutes",
+      "clock.seconds",
       "down",
       "distance",
       "yards_to_goal",
@@ -19,7 +21,8 @@ penalty_detection_select <- function(pbp) {
       "penalty_no_play",
       "penalty_offset",
       "penalty_1st_conv",
-      "penalty_text"
+      "penalty_text",
+      everything()
     )
   return(pbp)
   
@@ -76,7 +79,8 @@ add_play_counts_select <- function(pbp) {
       "lead_play_type",
       "lead_play_type2",
       "lead_play_type3",
-      "change_of_poss"
+      "change_of_poss",
+      everything()
     )
   return(pbp)
 }
@@ -149,7 +153,8 @@ clean_pbp_dat_select <- function(pbp) {
       "punt_tb",
       "punt_oob",
       "punt_fair_catch",
-      "punt_downed"
+      "punt_downed",
+      everything()
     )
   return(pbp)
 }
@@ -242,7 +247,8 @@ clean_drive_dat_select <- function(pbp) {
       "punt_oob",
       "punt_fair_catch",
       "punt_downed",
-      "new_id"
+      "new_id",
+      everything()
       
     )
   return(pbp)
@@ -369,7 +375,8 @@ prep_epa_df_after_select <- function(pbp) {
       "punt_oob",
       "punt_fair_catch",
       "punt_downed",
-      "new_id"
+      "new_id",
+      everything()
     )
   return(pbp)
 }
