@@ -40,7 +40,7 @@ create_epa <- function(clean_pbp_dat,
     dplyr::mutate(down = as.numeric(.data$down)) %>% 
     filter(.data$down>0)
   
-  ## 1) pred_df and pred_df_after selection and prediction
+  ## 1) pred_df and pred_df_after selection and prediction ----
   weights = c(0, 3, -3, -2, -7, 2, 7)
   # get before play expected points model variables
   pred_df = clean_pbp %>% 
@@ -82,7 +82,7 @@ create_epa <- function(clean_pbp_dat,
   # ep_start - rename next score type probability columns to ep_model$lev
   colnames(ep_start) <- ep_model$lev
   
-  ## 2) epa_fg_probs FG model and missed FG weighted adjustment
+  ## 2) epa_fg_probs FG model and missed FG weighted adjustment ----
   # ep_start_update - return FG model predictions and missed FG weighted adjustment
   ep_start_update = epa_fg_probs(dat = clean_pbp,
                                  current_probs = ep_start,
@@ -94,7 +94,7 @@ create_epa <- function(clean_pbp_dat,
   pred_df$ep_before = apply(ep_start_update, 1, function(row) {
     sum(row * weights)
   })
-  ## 3) pred_df_after prediction
+  ## 3) pred_df_after prediction ----
   # ep_after - calculate post-play expected points
   ep_end = predict(ep_model, pred_df_after, type = 'prob')
   # ep_end - rename next score type probability columns to ep_model$lev
@@ -106,7 +106,7 @@ create_epa <- function(clean_pbp_dat,
   pred_df_after$ep_after = apply(ep_end, 1, function(row) {
     sum(row * weights)
   })
-  ## 4) Join ep_before calcs df, pred_df, with ep_after calcs df, pred_df_after.
+  ## 4) Join ep_before calcs df, pred_df, with ep_after calcs df, pred_df_after. ----
   # join together multiple dataframes back together
   # to get ep_before and ep_after for plays
   colnames(pred_df_after)[4:10] = paste0(colnames(pred_df_after)[4:10], "_end")
@@ -174,6 +174,7 @@ create_epa <- function(clean_pbp_dat,
     "Blocked Punt Touchdown",
     "Punt Return Touchdown",
     "Kickoff Touchdown",
+    "Kickoff Team Fumble Recovery Touchdown",
     "Interception Return Touchdown",
     "Pass Interception Return Touchdown"
   )
@@ -205,7 +206,7 @@ create_epa <- function(clean_pbp_dat,
     "Blocked Field Goal Touchdown",
     "Missed Field Goal Return Touchdown"
   )
-  ## 5) Kickoff plays
+  ## 5) Kickoff plays -----
   ## Calculate EP before at kickoff as what happens if it was a touchback
   ## 25 yard line in 2012 and onwards
   ## Question for the class: where is the EPA on touchbacks being set to 0?
@@ -370,7 +371,7 @@ epa_fg_probs <- function(dat, current_probs, fg_mod) {
   inds = fg_ind | ep_ind
   fg_dat = dat[inds, ]
   
-  # we are setting everythign after 0 seconds to have 0 probs.
+  # we are setting everything after 0 seconds to have 0 probs.
   end_game_ind = which(dat$TimeSecsRem <= 0)
   current_probs[end_game_ind, ] <- 0
   
