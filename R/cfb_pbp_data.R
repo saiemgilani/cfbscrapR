@@ -1225,6 +1225,7 @@ clean_pbp_dat <- function(play_df) {
 #' \item{number_of_drives}{.}
 #' \item{pts_scored}{.}
 #' \item{new_drive_result}{.}
+#' \item{drive_result2}{.}
 #' \item{new_drive_pts}{.}
 #' \item{drive_scoring}{.}
 #' \item{new_drive_result2}{.}
@@ -1329,6 +1330,43 @@ clean_drive_dat <- function(play_df) {
           period %in% c(2, 4)  ~ "End Half",
         TRUE ~ NA_character_),
       new_drive_result_flag = .data$new_drive_result,
+      drive_result2 = case_when(
+        .data$downs_turnover == 1 ~ "DOWNS",
+        .data$play_type == "Punt" ~ "PUNT",
+        .data$play_type == "Blocked Punt (Safety)" & .data$safety == 1 ~ "SAFETY",
+        .data$play_type == "Blocked Punt" & .data$safety == 1 ~ "SAFETY",
+        .data$play_type == "Blocked Punt" ~ "BLOCKED PUNT",
+        .data$play_type == "Blocked Punt Touchdown" ~ "BLOCKED PUNT TD",
+        .data$play_type == "Punt Touchdown" ~ "PUNT TEAM TD",
+        .data$play_type == "Punt Return Touchdown" ~ "PUNT RETURN TD",
+        .data$play_type == "Fumble Recovery (Opponent) Touchdown" ~ "FUMBLE RETURN TD",
+        .data$play_type == "Fumble Return Touchdown" ~ "FUMBLE RETURN TD",
+        .data$play_type == "Fumble Recovery (Opponent)" ~ "FUMBLE",
+        .data$play_type == "Fumble Recovery (Own) Touchdown" ~  "FUMBLE OWN TD",
+        .data$play_type == "Interception Return Touchdown" ~ "INT TD",
+        .data$play_type == "Interception Return" ~ "INT",
+        .data$play_type == "Sack Touchdown" ~ "SACK TD",
+        .data$play_type == "Safety" & .data$kickoff_play == 0 ~ "SAFETY",
+        .data$play_type == "Kickoff (Safety)" & .data$kickoff_safety == 1 ~ "KICKOFF SAFETY",
+        .data$play_type == "Kickoff" & .data$kickoff_safety == 1 ~ "KICKOFF SAFETY",
+        .data$play_type == "Kickoff Return Touchdown" ~ "KICKOFF RETURN TD",
+        .data$play_type == "Kickoff Touchdown" ~ "KICKOFF TEAM FUMBLE RECOVERY TD",
+        .data$play_type == "Passing Touchdown" ~ "TD",
+        .data$play_type == "Pass Reception Touchdown" ~ "TD",
+        .data$play_type == "Rushing Touchdown" ~ "TD",
+        .data$play_type == "Field Goal Good" ~ "FG",
+        .data$play_type == "Field Goal Missed" ~ "MISSED FG",
+        .data$play_type == "Missed Field Goal Return" ~ "MISSED FG",
+        .data$play_type == "Blocked Field Goal Touchdown" ~ "BLOCKED FG TD",
+        .data$play_type == "Missed Field Goal Return Touchdown" ~ "MISSED FG RETURN TD",
+        .data$play_type == "Blocked Field Goal" ~ "BLOCKED FG",
+        .data$play_type == "Uncategorized Touchdown" ~ "UNCATEGORIZED TD",
+        .data$play_type == "End of Half" ~ "END OF HALF",
+        .data$play_type == "End of Game" ~ "END OF GAME",
+        .data$scoring_play == 0 & (.data$lead_TimeSecsRem == 0 | is.na(.data$lead_TimeSecsRem)) & 
+          period %in% c(2, 4)  ~ "END OF HALF",
+        TRUE ~ NA_character_
+      ),
       new_drive_pts = dplyr::case_when(
         .data$downs_turnover == 1 ~ 0,
         .data$play_type == "Punt" ~ 0,
@@ -1372,6 +1410,7 @@ clean_drive_dat <- function(play_df) {
     dplyr::mutate(drive_num = cumsum(.data$drive_numbers)) %>% 
     dplyr::group_by(.data$game_id, .data$half, .data$drive_num) %>% 
     tidyr::fill(.data$new_drive_result, .direction = c("updown")) %>% 
+    tidyr::fill(.data$drive_result2, .direction = c("updown")) %>% 
     tidyr::fill(.data$drive_scoring, .direction = c("updown")) %>% 
     tidyr::fill(.data$new_drive_pts, .direction = c("updown")) %>% 
     dplyr::mutate(
@@ -1388,7 +1427,7 @@ clean_drive_dat <- function(play_df) {
                                                    "Penalty", "Penalty (Kickoff)", "Timeout")), 1, 0),
       drive_play_number = cumsum(.data$drive_play)) %>% 
     dplyr::ungroup() %>% 
-    dplyr::select(-.data$td_check,-.data$td_play) %>% 
+    dplyr::select(-.data$td_check) %>% 
     dplyr::mutate(
       new_id = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
       new_id = as.numeric(.data$new_id),
