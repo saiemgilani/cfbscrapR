@@ -67,4 +67,26 @@ The original `play_df` with the following columns appended/redefined:
 Clean Play-by-Play data
 Cleans Play-by-Play data pulled from the API's raw game data
 }
+\details{
+Requires the following columns to be present
+\describe{
+\item{game_id}{.}
+\item{id_play}{.}
+\item{offense_play}{.}
+\item{defense_play}{.}
+\item{home}{.}
+\item{away}{.}
+\item{play_type}{.}
+\item{play_text}{.}
+\item{kickoff_play}{.}
+\item{down}{.}
+\item{distance}{.}
+\item{yards_gained}{.}
+\item{yards_to_goal}{.}
+\item{change_of_poss}{.}
+\item{penalty_1st_conv}{.}
+\item{off_timeouts_rem_before}{.}
+\item{def_timeouts_rem_before}{.}
+}
+}
 \keyword{internal}

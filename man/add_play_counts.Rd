@@ -47,4 +47,25 @@ The original `play_df` with the following columns appended/redefined:
 Adds play counts to Play-by-Play data
 Adds play counts to Play-by-Play data pulled from the API's raw game data
 }
+\details{
+Requires the following columns to be present
+\describe{
+\item{game_id}{.}
+\item{id_play}{.}
+\item{clock.minutes}{.}
+\item{clock.seconds}{.}
+\item{half}{.}
+\item{period}{.}
+\item{offense_play}{.}
+\item{defense_play}{.}
+\item{home}{.}
+\item{away}{.}
+\item{offense_score}{.}
+\item{defense_score}{.}
+\item{offense_timeouts}{.}
+\item{offense_timeouts}{.}
+\item{play_text}{.}
+\item{play_type}{.}
+}
+}
 \keyword{internal}
