@@ -661,7 +661,8 @@ clean_pbp_dat <- function(raw_df) {
         .data$play_type == "Pass Reception" |
           .data$play_type == "Pass Completion" |
           .data$play_type == "Passing Touchdown" |
-          .data$play_type == "Sack" | .data$play_type == "Pass" |
+          .data$play_type == "Sack" | 
+          .data$play_type == "Pass" |
           .data$play_type == "Interception" |
           .data$play_type == "Pass Interception Return" |
           .data$play_type == "Interception Return Touchdown" |
@@ -761,7 +762,18 @@ clean_pbp_dat <- function(raw_df) {
                            str_detect(.data$play_text, regex("TD",ignore_case = TRUE)) &
                            !is.na(.data$play_text), 
                          "Fumble Recovery (Opponent) Touchdown", .data$play_type),
-      play_type = ifelse(.data$play_type == "Pass", "Pass Incompletion", .data$play_type),
+      #-- Fix generic pass plays
+      ##-- first one looks for complete pass
+      play_type = ifelse(.data$play_type == "Pass" & str_detect(.data$play_text,"pass complete"),"Pass Completion",.data$play_type),
+      ##-- second one looks for incomplete pass
+      play_type = ifelse(.data$play_type == "Pass" & str_detect(.data$play_text,"pass incomplete"),"Pass Incompletion",.data$play_type),
+      ##-- third one looks for interceptions 
+      play_type = ifelse(.data$play_type == "Pass" & str_detect(.data$play_text,"pass intercepted"),"Pass Interception",.data$play_type),
+      ##-- fourt one looks for sacked
+      play_type = ifelse(.data$play_type == "Pass" & str_detect(.data$play_text,"sacked"),"Sack",.data$play_type),
+      ##-- fifth one play type is Passing Touchdown, but its intercepted 
+      play_type = ifelse(.data$play_type == "Passing Touchdown" & str_detect(.data$play_text,"pass intercepted"),"Pass Interception Return Touchdown",.data$play_type),
+      #play_type = ifelse(.data$play_type == "Pass", "Pass Incompletion", .data$play_type),
       play_type = ifelse(.data$play_type == "Interception", "Interception Return", .data$play_type),
       play_type = ifelse(.data$play_type == "Pass Interception", "Interception Return", .data$play_type),
       play_type = ifelse(.data$play_type == "Pass Interception Return", "Interception Return", .data$play_type),
