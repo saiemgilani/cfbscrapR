@@ -163,7 +163,7 @@
 <div id="setting-up-r-and-r-studio" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setting-up-r-and-r-studio" class="anchor"></a>Setting up R and R Studio</h2>
-<p>First things first, you need to install R and download R Studio. I’ll direct you to this link LINK HERE. Go do that now, then come back.</p>
+<p>First things first, you need to install R and download R Studio. I’ll direct you to <a href="https://rstudio.com/products/rstudio/download/">this link</a>. Go do that now, then come back.</p>
 <p>Now that we have R and R Studio all put together, it’s time to get organized. That’s often the first step of any project working with data, and the more organized you can be, the easier of a time you’ll have trying to wrangle and analyze the data.</p>
 <p>Notice there are four quadrants to your R Studio setup: the top right is the Evironment tab, which shows you the data, values, and functions you currently have loaded. The bottom right is where you’ll see your charts and graphs in the viewer or plots tab. The bottom left is the console, where output goes. When you execute code, the terminal responds and shows you some stuff down there. The top left is the place you’ll live; it’s where you can edit scripts. We’ll load a new project and then get started.</p>
 <p>In the top right of your R Studio window, there will be a small dropdown menu that says “None”. Click it, and select “New Project.” Title your new folder something like “CFB Analysis”.</p>
@@ -499,21 +499,21 @@
 <span class="kw">offense</span> <span class="op">&lt;-</span> <span class="kw">plays</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span>(<span class="kw">offense_play</span>) <span class="op">%&gt;%</span> 
   <span class="fu">summarise</span>(epa.pass.off = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">pass</span><span class="op">==</span><span class="fl">1</span>]), epa.rush.off = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">rush</span><span class="op">==</span><span class="fl">1</span>]))
 <span class="kw">defense</span> <span class="op">&lt;-</span> <span class="kw">plays</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span>(<span class="kw">defense_play</span>) <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span>(epa.pass.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">pass</span><span class="op">==</span><span class="fl">1</span>]), epa.pass.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">rush</span><span class="op">==</span><span class="fl">1</span>]))
+  <span class="fu">summarise</span>(epa.pass.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">pass</span><span class="op">==</span><span class="fl">1</span>]), epa.rush.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">rush</span><span class="op">==</span><span class="fl">1</span>]))
 </pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="kw">team.epa</span> <span class="op">&lt;-</span> <span class="fu">left_join</span>(<span class="kw">offense</span>, <span class="kw">defense</span>, by = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"offense_play"</span> = <span class="st">"defense_play"</span>)) 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">team.epa</span>)
 </pre></div>
 <pre><code>## # A tibble: 6 x 4
-##   offense_play      epa.pass.off epa.rush.off epa.pass.def
-##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Air Force               0.567        0.0589      -0.0630
-## 2 Akron                  NA           -0.328       -0.0304
-## 3 Alabama                 0.469        0.0929      -0.0994
-## 4 Appalachian State       0.194        0.0612      -0.121 
-## 5 Arizona                -0.0218       0.0531       0.0506
-## 6 Arizona State           0.0987      -0.0611      -0.138</code></pre>
+##   offense_play      epa.pass.off epa.rush.off epa.pass.def epa.rush.def
+##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Air Force               0.567        0.0589      -0.0373      -0.0630
+## 2 Akron                  NA           -0.328      0.203       -0.0304
+## 3 Alabama                 0.469        0.0929      -0.207      -0.0994
+## 4 Appalachian State       0.194        0.0612      -0.144      -0.121 
+## 5 Arizona                -0.0218       0.053      0.169       0.0506
+## 6 Arizona State           0.0987      -0.0611      0.141      -0.138</code></pre>
 <p>In analytics, we often want to break down situations. Let’s use <code>filter</code> to select only first down plays and see which offenses performed the best on first downs only:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="kw">offense</span> <span class="op">&lt;-</span> <span class="kw">plays</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">down</span> <span class="op">==</span> <span class="fl">1</span>) <span class="op">%&gt;%</span> <span class="fu">group_by</span>(<span class="kw">offense_play</span>) <span class="op">%&gt;%</span> 
@@ -521,7 +521,7 @@
 </pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit">
 <span class="kw">defense</span> <span class="op">&lt;-</span> <span class="kw">plays</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">down</span> <span class="op">==</span> <span class="fl">1</span>) <span class="op">%&gt;%</span> <span class="fu">group_by</span>(<span class="kw">defense_play</span>) <span class="op">%&gt;%</span> 
-  <span class="fu">summarise</span>(epa.pass.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">pass</span><span class="op">==</span><span class="fl">1</span>]), epa.pass.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">rush</span><span class="op">==</span><span class="fl">1</span>]))
+  <span class="fu">summarise</span>(epa.pass.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">pass</span><span class="op">==</span><span class="fl">1</span>]), epa.rush.def = <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">EPA</span>[<span class="kw">rush</span><span class="op">==</span><span class="fl">1</span>]))
 </pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="kw">firstdown.epa</span> <span class="op">&lt;-</span> <span class="fu">left_join</span>(<span class="kw">offense</span>, <span class="kw">defense</span>, by = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"offense_play"</span> = <span class="st">"defense_play"</span>)) 
@@ -529,14 +529,14 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">firstdown.epa</span>)
 </pre></div>
 <pre><code>## # A tibble: 6 x 4
-##   offense_play      epa.pass.off epa.rush.off epa.pass.def
-##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 Air Force               0.677       -0.0664      -0.241 
-## 2 Akron                  -0.329       -0.403       -0.0450
-## 3 Alabama                 0.298        0.127       -0.0634
-## 4 Appalachian State       0.0124      -0.0638      -0.213 
-## 5 Arizona                -0.0734      -0.0932       0.139 
-## 6 Arizona State          -0.0217      -0.147       -0.224</code></pre>
+##   offense_play      epa.pass.off epa.rush.off epa.pass.def epa.rush.def
+##   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Air Force               0.677       -0.0664      0.00878      -0.241 
+## 2 Akron                  -0.329       -0.403       0.143        -0.0450
+## 3 Alabama                 0.298        0.127      -0.0675       -0.0634
+## 4 Appalachian State       0.0124      -0.0638     -0.0213       -0.213 
+## 5 Arizona                -0.0734      -0.0932      0.0185        0.139 
+## 6 Arizona State          -0.0217      -0.147       0.151        -0.224</code></pre>
 <p>Easy! You can make any kind of filter you can think of, and analyse EPA or yards gained in any situation.</p>
 <p>Lastly, let’s do an example of creating some rates and using some advanced filters: We’ll create success rate on early downs and early downs rush rate, filtering out garabge time. We’ll use the same filter, summarise, and mean functions as above!</p>
 <div class="sourceCode" id="cb21"><pre class="downlit">
