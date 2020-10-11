@@ -374,64 +374,71 @@ epa_fg_probs <- function(dat, current_probs, ep_model = cfbscrapR:::ep_model, fg
   fg_ind = stringr::str_detect((dat$play_type), "Field Goal")
   ep_ind = stringr::str_detect((dat$play_type), "Extra Point")
   inds = fg_ind | ep_ind
+  current_probs$fg_make_prob = NA
   fg_dat = dat[inds, ]
+  if(nrow(fg_dat)> 0){
+    # we are setting everything after 0 seconds to have 0 probs.
+    end_game_ind = which(dat$TimeSecsRem <= 0)
+    current_probs[end_game_ind, ] <- 0
+    
+    make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat,
+                                      type = "response")
+    
+    missed_fg_dat<- fg_dat %>%
+      # Subtract 5.065401 from TimeSecs since average time for FG att:
+      dplyr::mutate(
+        TimeSecsRem = .data$TimeSecsRem - 5.065401,
+        # Correct the yrdline100:
+        yards_to_goal = 100 - (.data$yards_to_goal + 8),
+        # Not GoalToGo:
+        Goal_To_Go = rep(FALSE, n()),
+        # Now first down:
+        down = rep("1", n()),
+        # 10 yards to go
+        log_ydstogo = rep(log(10), n()),
+        # Create Under_TwoMinute_Warning indicator
+        Under_two = ifelse(.data$TimeSecsRem < 120,
+                           TRUE, FALSE)
+      ) %>% as.data.frame()
+
+    missed_fg_ep_preds <- ep_model %>% 
+      predict(newdata = missed_fg_dat, type = "probs") %>% 
+      as.data.frame()
   
-  # we are setting everything after 0 seconds to have 0 probs.
-  end_game_ind = which(dat$TimeSecsRem <= 0)
-  current_probs[end_game_ind, ] <- 0
+    if(dim(missed_fg_ep_preds)[2] == 1){
+      missed_fg_ep_preds <- t(missed_fg_ep_preds)
+    }
+    
   
-  make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat,
-                                    type = "response")
-  
-  missed_fg_dat<- fg_dat %>%
-    # Subtract 5.065401 from TimeSecs since average time for FG att:
-    dplyr::mutate(
-      TimeSecsRem = .data$TimeSecsRem - 5.065401,
-      # Correct the yrdline100:
-      yards_to_goal = 100 - (.data$yards_to_goal + 8),
-      # Not GoalToGo:
-      Goal_To_Go = rep(FALSE, n()),
-      # Now first down:
-      down = rep("1", n()),
-      # 10 yards to go
-      log_ydstogo = rep(log(10), n()),
-      # Create Under_TwoMinute_Warning indicator
-      Under_two = ifelse(.data$TimeSecsRem < 120,
-                         TRUE, FALSE)
-    )
-  
-  missed_fg_ep_preds <- data.frame(predict(ep_model,
-                                           newdata = missed_fg_dat,
-                                           type = "probs"))
-  colnames(missed_fg_ep_preds) <- ep_model$lev
-  # Find the rows where TimeSecsRem became 0 or negative and
-  # make all the probs equal to 0:
-  end_game_i <-
-    which(missed_fg_dat$TimeSecsRem <= 0)
-  missed_fg_ep_preds[end_game_i, ] <- rep(0,
-                                          ncol(missed_fg_ep_preds))
-  
-  # Get the probability of making the field goal:
-  make_fg_prob <- as.numeric(mgcv::predict.bam(fg_model,
-                                               newdata = fg_dat,
-                                               type = "response"))
-  fg_dat$fg_make_prob = 
-  # Multiply each value of the missed_fg_ep_preds by the 1 - make_fg_prob
-  missed_fg_ep_preds <-
-    missed_fg_ep_preds * (1 - make_fg_prob)
-  
-  # Now update the probabilities for the FG attempts
-  # (also includes Opp_Field_Goal probability from missed_fg_ep_preds)
-  current_probs[inds, "FG"] <- make_fg_prob + 
-    missed_fg_ep_preds[,"Opp_FG"]
-  # Update the other columns based on the opposite possession:
-  current_probs[inds, "TD"] <- missed_fg_ep_preds[, "Opp_TD"]
-  current_probs[inds, "Opp_FG"] <- missed_fg_ep_preds[, "FG"]
-  current_probs[inds, "Opp_TD"] <- missed_fg_ep_preds[, "TD"]
-  current_probs[inds, "Safety"] <- missed_fg_ep_preds[, "Opp_Safety"]
-  current_probs[inds, "Opp_Safety"] <- missed_fg_ep_preds[, "Safety"]
-  current_probs[inds, "No_Score"] <- missed_fg_ep_preds[, "No_Score"]
-  current_probs[inds, "fg_make_prob"] <- make_fg_prob
-  
+    colnames(missed_fg_ep_preds) <- ep_model$lev
+    # Find the rows where TimeSecsRem became 0 or negative and
+    # make all the probs equal to 0:
+    end_game_i <-
+      which(missed_fg_dat$TimeSecsRem <= 0)
+    missed_fg_ep_preds[end_game_i, ] <- rep(0,
+                                            ncol(missed_fg_ep_preds))
+    
+    # Get the probability of making the field goal:
+    make_fg_prob <- as.numeric(mgcv::predict.bam(fg_model,
+                                                 newdata = fg_dat,
+                                                 type = "response"))
+    # Multiply each value of the missed_fg_ep_preds by the 1 - make_fg_prob
+    missed_fg_ep_preds <-
+      missed_fg_ep_preds * (1 - make_fg_prob)
+    
+    # Now update the probabilities for the FG attempts
+    # (also includes Opp_Field_Goal probability from missed_fg_ep_preds)
+    current_probs[inds, "FG"] <- make_fg_prob + 
+      missed_fg_ep_preds[,"Opp_FG"]
+    # Update the other columns based on the opposite possession:
+    current_probs[inds, "TD"] <- missed_fg_ep_preds[, "Opp_TD"]
+    current_probs[inds, "Opp_FG"] <- missed_fg_ep_preds[, "FG"]
+    current_probs[inds, "Opp_TD"] <- missed_fg_ep_preds[, "TD"]
+    current_probs[inds, "Safety"] <- missed_fg_ep_preds[, "Opp_Safety"]
+    current_probs[inds, "Opp_Safety"] <- missed_fg_ep_preds[, "Safety"]
+    current_probs[inds, "No_Score"] <- missed_fg_ep_preds[, "No_Score"]
+    current_probs[inds, "fg_make_prob"] <- make_fg_prob
+    
+  }
   return(current_probs)
 }
