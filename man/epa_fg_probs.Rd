@@ -4,10 +4,17 @@
 \alias{epa_fg_probs}
 \title{Performs Field Goal adjustments for Expected Points model calculations}
 \usage{
-epa_fg_probs(dat, current_probs, fg_mod)
+epa_fg_probs(
+  dat,
+  current_probs,
+  ep_model = cfbscrapR:::ep_model,
+  fg_mod = cfbscrapR:::fg_model
+)
 }
 \arguments{
 \item{current_probs}{(\emph{data.frame} required): Expected Points (EP) model raw probability outputs from initial prediction}
+
+\item{ep_model}{(\emph{model}, default `cfbscrapR:::ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
 
 \item{fg_mod}{(\emph{model}, default `cfbscrapR:::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame}
 

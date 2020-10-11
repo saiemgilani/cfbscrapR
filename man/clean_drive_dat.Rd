@@ -25,6 +25,7 @@ The original `play_df` with the following columns appended/redefined:
 \item{number_of_drives}{.}
 \item{pts_scored}{.}
 \item{new_drive_result}{.}
+\item{drive_result2}{.}
 \item{new_drive_pts}{.}
 \item{drive_scoring}{.}
 \item{new_drive_result2}{.}

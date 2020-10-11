@@ -41,6 +41,15 @@ The original `play_df` with the following columns appended/redefined:
 \item{lead_play_type2}{.}
 \item{lead_play_type3}{.}
 \item{change_of_poss}{.}
+\item{pos_team}{.}
+\item{def_pos_team}{.}
+\item{pos_team_score}{.}
+\item{def_pos_team_score}{.}
+\item{lead_pos_team}{.}
+\item{lead_pos_team2}{.}
+\item{pos_team_timeouts_rem}{.}
+\item{def_pos_team_timeouts_rem}{.}
+\item{change_of_pos_team}{.}
 }
 }
 \description{
