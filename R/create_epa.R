@@ -86,12 +86,13 @@ create_epa <- function(clean_pbp_dat,
   # ep_start_update - return FG model predictions and missed FG weighted adjustment
   ep_start_update = epa_fg_probs(dat = clean_pbp,
                                  current_probs = ep_start,
+                                 ep_model = ep_model,
                                  fg_mod = fg_model)
   # append `_before` to next score type probability columns
-  colnames(ep_start_update) <- paste0(colnames(ep_start_update),"_before")
+  colnames(ep_start_update)[1:7] <- paste0(colnames(ep_start_update)[1:7],"_before")
   pred_df <- cbind(pred_df, ep_start_update)
   # ep_before - calculate pre-play expected points
-  pred_df$ep_before = apply(ep_start_update, 1, function(row) {
+  pred_df$ep_before = apply(ep_start_update[1:7], 1, function(row) {
     sum(row * weights)
   })
   ## 3) pred_df_after prediction ----
@@ -119,7 +120,7 @@ create_epa <- function(clean_pbp_dat,
                       .data$No_Score_before, .data$FG_before,
                       .data$Opp_FG_before, .data$Opp_Safety_before,
                       .data$Opp_TD_before, .data$Safety_before, 
-                      .data$TD_before, .data$ep_before),
+                      .data$TD_before, .data$ep_before, .data$fg_make_prob),
       by = c("game_id", "drive_id", "new_id")
     )
   # constant vectors to be used again
@@ -256,7 +257,10 @@ create_epa <- function(clean_pbp_dat,
       ep_after = ifelse(.data$kickoff_safety == 1, -2, .data$ep_after),
       ep_after = ifelse(.data$turnover_vec == 1 & is.na(.data$ep_after),
                         -1*dplyr::lead(.data$ep_before, 1),
-                        .data$ep_after)) %>% 
+                        .data$ep_after),
+      lag_ep_after = dplyr::lag(.data$ep_after,1),
+      
+      ep_before = ifelse(.data$play_type == "Timeout", .data$lag_ep_after, .data$ep_before)) %>% 
     dplyr::ungroup()
   # 6) Prep WPA variables, drop transformed columns-----
   pred_df = pred_df %>%
@@ -267,7 +271,7 @@ create_epa <- function(clean_pbp_dat,
       play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$def_td_play_lag != 1, 1, 0),
       EPA = .data$ep_after - .data$ep_before,
       def_EPA = -1*.data$EPA,
-      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -1*.data$EPA),
+      home_EPA = ifelse(.data$pos_team == .data$home, .data$EPA, -1*.data$EPA),
       away_EPA = -1*.data$home_EPA,
       total_home_EPA = cumsum(.data$home_EPA),
       total_away_EPA = cumsum(.data$away_EPA),
@@ -354,6 +358,7 @@ create_epa <- function(clean_pbp_dat,
 #'
 #' @param df (\emph{data.frame} required): Clean Play-By-Play data.frame as can be pulled from `cfb_pbp_dat()`
 #' @param current_probs (\emph{data.frame} required): Expected Points (EP) model raw probability outputs from initial prediction
+#' @param ep_model (\emph{model}, default `cfbscrapR:::ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #' @param fg_mod (\emph{model}, default `cfbscrapR:::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #'
 #' @keywords internal
@@ -365,7 +370,7 @@ create_epa <- function(clean_pbp_dat,
 #'
 #'
 
-epa_fg_probs <- function(dat, current_probs, fg_mod) {
+epa_fg_probs <- function(dat, current_probs, ep_model = cfbscrapR:::ep_model, fg_mod = cfbscrapR:::fg_model) {
   fg_ind = stringr::str_detect((dat$play_type), "Field Goal")
   ep_ind = stringr::str_detect((dat$play_type), "Extra Point")
   inds = fg_ind | ep_ind
@@ -378,7 +383,7 @@ epa_fg_probs <- function(dat, current_probs, fg_mod) {
   make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat,
                                     type = "response")
   
-  fg_dat<- fg_dat %>%
+  missed_fg_dat<- fg_dat %>%
     # Subtract 5.065401 from TimeSecs since average time for FG att:
     dplyr::mutate(
       TimeSecsRem = .data$TimeSecsRem - 5.065401,
@@ -391,27 +396,42 @@ epa_fg_probs <- function(dat, current_probs, fg_mod) {
       # 10 yards to go
       log_ydstogo = rep(log(10), n()),
       # Create Under_TwoMinute_Warning indicator
-      Under_two = ifelse(.data$TimeSecsRem < 180,
+      Under_two = ifelse(.data$TimeSecsRem < 120,
                          TRUE, FALSE)
     )
-  # add in the fg make prob into this
-  current_probs2 <- current_probs
-  #current_probs2[fg_ind,] <- current_probs[fg_ind,] * (1 - make_fg_prob)
-  val = (1 - make_fg_prob)
-  ind <- dim(current_probs2[inds, ])[1]
-  for (i in seq(1, ind)) {
-    temp = current_probs2[inds, ]
-    temp[i, ] = temp[i, ] * val[i]
-  }
-  current_probs2[inds, ] =  temp
   
-  # now to flip all the probs,
-  current_probs2[inds, "FG"] <- make_fg_prob + current_probs[inds, "Opp_FG"]
-  current_probs2[inds, "Opp_FG"] <- current_probs[inds, "FG"]
-  current_probs2[inds, "TD"] <- current_probs[inds, "Opp_TD"]
-  current_probs2[inds, "Opp_TD"] <- current_probs[inds, "TD"]
-  current_probs2[inds, "Safety"] <- current_probs[inds, "Opp_Safety"]
-  current_probs2[inds, "Opp_Safety"] <- current_probs[inds, "Safety"]
+  missed_fg_ep_preds <- data.frame(predict(ep_model,
+                                           newdata = missed_fg_dat,
+                                           type = "probs"))
+  colnames(missed_fg_ep_preds) <- ep_model$lev
+  # Find the rows where TimeSecsRem became 0 or negative and
+  # make all the probs equal to 0:
+  end_game_i <-
+    which(missed_fg_dat$TimeSecsRem <= 0)
+  missed_fg_ep_preds[end_game_i, ] <- rep(0,
+                                          ncol(missed_fg_ep_preds))
   
-  return(current_probs2)
+  # Get the probability of making the field goal:
+  make_fg_prob <- as.numeric(mgcv::predict.bam(fg_model,
+                                               newdata = fg_dat,
+                                               type = "response"))
+  fg_dat$fg_make_prob = 
+  # Multiply each value of the missed_fg_ep_preds by the 1 - make_fg_prob
+  missed_fg_ep_preds <-
+    missed_fg_ep_preds * (1 - make_fg_prob)
+  
+  # Now update the probabilities for the FG attempts
+  # (also includes Opp_Field_Goal probability from missed_fg_ep_preds)
+  current_probs[inds, "FG"] <- make_fg_prob + 
+    missed_fg_ep_preds[,"Opp_FG"]
+  # Update the other columns based on the opposite possession:
+  current_probs[inds, "TD"] <- missed_fg_ep_preds[, "Opp_TD"]
+  current_probs[inds, "Opp_FG"] <- missed_fg_ep_preds[, "FG"]
+  current_probs[inds, "Opp_TD"] <- missed_fg_ep_preds[, "TD"]
+  current_probs[inds, "Safety"] <- missed_fg_ep_preds[, "Opp_Safety"]
+  current_probs[inds, "Opp_Safety"] <- missed_fg_ep_preds[, "Safety"]
+  current_probs[inds, "No_Score"] <- missed_fg_ep_preds[, "No_Score"]
+  current_probs[inds, "fg_make_prob"] <- make_fg_prob
+  
+  return(current_probs)
 }
