@@ -18,6 +18,11 @@ create_epa(
 
 \item{fg_model}{(\emph{model} default cfbscrapR:::fg_model): Field Goal (FG) Model}
 }
+\value{
+\describe{
+  \item{}{}
+}
+}
 \description{
 Create EPA
 Adds Expected Points calculations to Play-by-Play data.frame
