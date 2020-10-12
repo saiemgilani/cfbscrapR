@@ -103,7 +103,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
     new_kick["distance"] = 10
     new_kick["yards_to_goal"] = 75
     new_kick["log_ydstogo"] = log(10)
-    new_kick["ExpScoreDiff"] = new_kick["score_diff_start"] + new_kick["ep_before"]
+    new_kick["ExpScoreDiff"] = new_kick["pos_score_diff_start"] + new_kick["ep_before"]
     new_kick["ExpScoreDiff_Time_Ratio"] = new_kick["ExpScoreDiff"]/new_kick["adj_TimeSecsRem"]
     df[kickoff_ind,"wp_before"]  = as.vector(predict(wp_model, new_kick, type = 'response'))
     
@@ -149,8 +149,7 @@ wpa_calcs_naive <- function(df) {
      # account for turnover
      wpa_change = (1 - .data$lead_wp_before) - .data$wp_before,
      wpa_change_nxt = (1 - .data$lead_wp_before2) - .data$wp_before,
-     wpa_change_ind = ifelse((.data$pos_team != .data$lead_pos_team & .data$kickoff_play == 0)|
-                               .data$off_td_play==1, 1, 0),
+     wpa_change_ind = ifelse((.data$pos_team != .data$lead_pos_team), 1, 0),
      wpa_change_nxt_ind = ifelse(.data$pos_team != .data$lead_pos_team2, 1, 0),
      wpa_half_end = ifelse(.data$end_of_half == 1 & .data$wpa_base_nxt_ind == 1 & 
                     .data$play_type != "Timeout", .data$wpa_base_nxt, 
