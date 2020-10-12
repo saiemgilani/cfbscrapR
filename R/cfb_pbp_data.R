@@ -304,6 +304,8 @@ cfb_pbp_data <- function(year,
                     .data$game_id,
                     .data$offense_play,
                     .data$defense_play,
+                    .data$pos_score_diff_start,
+                    .data$pos_score_diff,
                     .data$score_diff_start,
                     .data$score_diff,
                     .data$offense_score,
@@ -316,6 +318,8 @@ cfb_pbp_data <- function(year,
                     .data$play_text,
                     .data$down,
                     .data$distance,
+                    .data$down_end,
+                    .data$distance_end,
                     .data$yards_to_goal,
                     .data$yards_to_goal_end,
                     .data$yards_gained,
@@ -326,18 +330,40 @@ cfb_pbp_data <- function(year,
                     .data$ep_before,
                     .data$ep_after,
                     .data$def_EPA,
+                    .data$off_td_play,
+                    .data$def_td_play,
                     .data$wpa,
                     .data$wp_before,
                     .data$wp_after,
+
                     .data$score_pts,
                     .data$lead_play_type,
                     .data$change_of_poss,
                     .data$change_of_pos_team,
+                    .data$downs_turnover,
+                    .data$turnover,
                     .data$pos_team,
                     .data$def_pos_team,
+                    .data$game_play_number,
+                    .data$drive_number,
+                    .data$drive_play_number,
+                    .data$firstD_by_poss,
+                    .data$firstD_by_penalty,
+                    .data$firstD_by_yards,
                     .data$pos_team_score,
                     .data$def_pos_team_score,
+                    .data$end_of_half,
+                    .data$pos_team_receives_2H_kickoff,
+                    .data$offense_receives_2H_kickoff,
+                    .data$home_wp_before,
+                    .data$away_wp_before,
+                    .data$home_wp_after,
+                    .data$away_wp_after,
+                    .data$home,
+                    .data$away,
+                    .data$lag_pos_team,
                     .data$lead_pos_team,
+                    .data$lead_pos_team2,
                     .data$wpa_base,
                     .data$wpa_base_nxt,
                     .data$wpa_change,
@@ -346,13 +372,6 @@ cfb_pbp_data <- function(year,
                     .data$wpa_base_nxt_ind,
                     .data$wpa_change_ind,
                     .data$wpa_change_nxt_ind,
-                    .data$end_of_half,
-                    .data$pos_team_receives_2H_kickoff,
-                    .data$offense_receives_2H_kickoff,
-                    .data$home_wp_before,
-                    .data$away_wp_before,
-                    .data$home_wp_after,
-                    .data$away_wp_after,
                     .data$ExpScoreDiff,
                     .data$ExpScoreDiff_Time_Ratio,
                     .data$offense_timeouts,
@@ -364,16 +383,6 @@ cfb_pbp_data <- function(year,
                     .data$off_timeout_called,
                     .data$def_timeout_called,
                     .data$ppa,
-                    .data$game_play_number,
-                    .data$drive_number,
-                    .data$drive_play_number,
-                    .data$firstD_by_poss,
-                    .data$firstD_by_penalty,
-                    .data$firstD_by_yards,
-                    .data$down_end,
-                    .data$distance_end,
-                    .data$home,
-                    .data$away,
                     .data$drive_start_yards_to_goal,
                     .data$drive_end_yards_to_goal,
                     .data$drive_yards,
@@ -508,7 +517,16 @@ penalty_detection <- function(raw_df) {
 #' \item{Under_two}{.}
 #' \item{half}{.}
 #' \item{kickoff_play}{.}
+#' \item{pos_team}{.}
+#' \item{def_pos_team}{.}
 #' \item{receives_2H_kickoff}{.}
+#' \item{pos_score_diff}{.}
+#' \item{lag_pos_score_diff}{.}
+#' \item{lag_pos_team}{.}
+#' \item{lead_pos_team}{.}
+#' \item{lead_pos_team2}{.}
+#' \item{pos_score_pts}{.}
+#' \item{pos_score_diff_start}{.}
 #' \item{score_diff}{.}
 #' \item{lag_score_diff}{.}
 #' \item{lag_offense_play}{.}
@@ -525,17 +543,12 @@ penalty_detection <- function(raw_df) {
 #' \item{off_timeout_called}{.}
 #' \item{def_timeout_called}{.}
 #' \item{lead_TimeSecsRem}{.}
+#' \item{lead_yards_to_goal}{.}
 #' \item{end_of_half}{.}
 #' \item{lead_play_type}{.}
 #' \item{lead_play_type2}{.}
 #' \item{lead_play_type3}{.}
 #' \item{change_of_poss}{.}
-#' \item{pos_team}{.}
-#' \item{def_pos_team}{.}
-#' \item{pos_team_score}{.}
-#' \item{def_pos_team_score}{.}
-#' \item{lead_pos_team}{.}
-#' \item{lead_pos_team2}{.}
 #' \item{pos_team_timeouts_rem}{.}
 #' \item{def_pos_team_timeouts_rem}{.}
 #' \item{change_of_pos_team}{.}
@@ -676,10 +689,28 @@ add_play_counts <- function(play_df) {
       Under_three = .data$TimeSecsRem <= 180,
       half = ifelse(.data$period <= 2, 1, 2),
       kickoff_play = ifelse(.data$play_type %in% kickoff_vec, 1, 0),
+      pos_team = ifelse(.data$offense_play == .data$home & .data$kickoff_play == 1, .data$away,
+                        ifelse(.data$offense_play == .data$away & .data$kickoff_play == 1, .data$home, .data$offense_play)),
+      def_pos_team = ifelse(.data$pos_team == .data$home, .data$away, .data$home),
+      pos_team_score = ifelse(.data$kickoff_play == 1, .data$defense_score, .data$offense_score),
+      def_pos_team_score = ifelse(.data$kickoff_play == 1, .data$offense_score, .data$defense_score),
+      lag_pos_team = dplyr::lag(.data$pos_team, 1),
+      lag_pos_team = ifelse(.data$game_play_number == 1, .data$pos_team, .data$lag_pos_team),
+      lead_pos_team = dplyr::lead(.data$pos_team, 1),
+      lead_pos_team2 = dplyr::lead(.data$pos_team, 2),
       receives_2H_kickoff = ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 & 
-                                     .data$offense_play == .data$home, 1, 
+                                     .data$def_pos_team == .data$home, 1, 
                                    ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 &
-                                            .data$offense_play == .data$away,0,NA)),
+                                            .data$def_pos_team == .data$away, 0, NA_real_)),
+      pos_score_diff = .data$pos_team_score - .data$def_pos_team_score,
+      lag_pos_score_diff = dplyr::lag(.data$pos_score_diff, 1),
+      lag_pos_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_pos_score_diff),
+      pos_score_pts = ifelse(.data$lag_pos_team == .data$pos_team, 
+                             (.data$pos_score_diff - .data$lag_pos_score_diff),
+                             (.data$pos_score_diff + .data$lag_pos_score_diff)),
+      pos_score_diff_start = ifelse(.data$lag_pos_team == .data$pos_team, 
+                                    .data$lag_pos_score_diff, 
+                                    -1*.data$lag_pos_score_diff),
       score_diff = .data$offense_score - .data$defense_score,
       lag_score_diff = dplyr::lag(.data$score_diff, 1),
       lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
@@ -693,16 +724,9 @@ add_play_counts <- function(play_df) {
       score_diff_start = ifelse(.data$lag_offense_play == .data$offense_play & 
                                   !(.data$play_type %in% kickoff_vec),
                                 .data$lag_score_diff,
-                                -1*.data$lag_score_diff),
+                                -1*.data$lag_score_diff)
       #TO-DO: define a fix for end of period plays on possession changing plays
-      pos_team = ifelse(.data$offense_play == .data$home & .data$kickoff_play == 1, .data$away,
-                        ifelse(.data$offense_play == .data$away & .data$kickoff_play == 1, .data$home, .data$offense_play)),
-      def_pos_team = ifelse(.data$pos_team == .data$home, .data$away, .data$home),
-      pos_team_score = ifelse(.data$kickoff_play == 1, .data$defense_score, .data$offense_score),
-      def_pos_team_score = ifelse(.data$kickoff_play == 1, .data$offense_score, .data$defense_score),
-      
-      lead_pos_team = dplyr::lead(.data$pos_team, 1),
-      lead_pos_team2 = dplyr::lead(.data$pos_team, 2)) %>% 
+      ) %>% 
     tidyr::fill(.data$receives_2H_kickoff) %>% 
     dplyr::mutate(
       offense_receives_2H_kickoff = case_when(
@@ -731,10 +755,10 @@ add_play_counts <- function(play_df) {
       def_timeouts_rem_before = ifelse(.data$lag_offense_play == .data$offense_play, 
                                        .data$lag_def_timeouts, .data$lag_off_timeouts),
       def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3, .data$def_timeouts_rem_before),
-      
       off_timeout_called = ifelse(.data$offense_timeouts != .data$off_timeouts_rem_before, 1, 0),
       def_timeout_called = ifelse(.data$defense_timeouts != .data$def_timeouts_rem_before, 1, 0),
       lead_TimeSecsRem = dplyr::lead(.data$TimeSecsRem, 1),
+      lead_yards_to_goal = dplyr::lead(.data$yards_to_goal, 1), 
       end_of_half = ifelse(is.na(.data$lead_TimeSecsRem), 1, 0),
       lead_play_type = dplyr::lead(.data$play_type, 1),
       lead_play_type2 = dplyr::lead(.data$play_type, 2),
