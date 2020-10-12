@@ -13,6 +13,10 @@
 #'   \item{5. \code{kickoffs}}{Calculate ep_before for kickoffs as if the pre-play assumption is a touchback.}
 #'   \item{6. \code{wpa_prep}}{Prep variables for WPA.}
 #' }
+#' @return 
+#' \describe{
+#'   \item{}{}
+#' }
 #' @keywords internal
 #' @importFrom stats "na.omit"
 #' @importFrom stats "predict"
@@ -273,8 +277,18 @@ create_epa <- function(clean_pbp_dat,
       def_EPA = -1*.data$EPA,
       home_EPA = ifelse(.data$pos_team == .data$home, .data$EPA, -1*.data$EPA),
       away_EPA = -1*.data$home_EPA,
+      home_EPA_rush = ifelse(.data$pos_team == .data$home & .data$rush_vec == 1, .data$EPA, 
+                             ifelse(.data$pos_team == .data$away & .data$rush_vec == 1, -1*.data$EPA, NA)),
+      away_EPA_rush = -1*.data$home_EPA_rush,
+      home_EPA_pass = ifelse(.data$pos_team == .data$home & .data$pass_vec == 1, .data$EPA,
+                             ifelse(.data$pos_team == .data$away & .data$pass_vec == 1, -1*.data$EPA, NA)),
+      away_EPA_pass = -1*.data$home_EPA_pass,
       total_home_EPA = cumsum(.data$home_EPA),
+      net_home_EPA_rush = cumsum(.data$home_EPA_rush),
+      net_home_EPA_pass = cumsum(.data$home_EPA_pass),
       total_away_EPA = cumsum(.data$away_EPA),
+      net_away_EPA_rush = cumsum(.data$away_EPA_rush),
+      net_away_EPA_pass = cumsum(.data$away_EPA_pass),
       ExpScoreDiff = .data$score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
       ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>% 
@@ -337,6 +351,7 @@ create_epa <- function(clean_pbp_dat,
     dplyr::rename(pass = .data$pass_vec,
                   rush = .data$rush_vec) %>%
     dplyr::mutate(
+      middle_8 = ifelse(.data$adj_TimeSecsRem >= 1560 & .data$adj_TimeSecsRem <= 2040, TRUE, FALSE),
       rz_play = ifelse((.data$yards_to_goal <= 20), 1, 0),
       scoring_opp = ifelse((.data$yards_to_goal <= 40), 1, 0),
       stuffed_run = ifelse((.data$rush == 1 & .data$yards_gained <= 0), 1, 0),
