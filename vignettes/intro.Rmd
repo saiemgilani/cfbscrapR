@@ -33,13 +33,13 @@ I hope you enjoy! Know that there is a learning curve to all this! It's difficul
 
 ## Setting up R and R Studio
 
-First things first, you need to install R and download R Studio. I'll direct you to this link LINK HERE. Go do that now, then come back.
+First things first, you need to install R and download R Studio. I'll direct you to [this link](https://rstudio.com/products/rstudio/download/). Go do that now, then come back.
 
 Now that we have R and R Studio all put together, it's time to get organized. That's often the first step of any project working with data, and the more organized you can be, the easier of a time you'll have trying to wrangle and analyze the data.
 
-Notice there are four quadrants to your R Studio setup: the top right is the Evironment tab, which shows you the data, values, and functions you currently have loaded. The bottom right is where you'll see your charts and graphs in the viewer or plots tab. The bottom left is the console, where output goes. When you execute code, the terminal responds and shows you some stuff down there. The top left is the place you'll live; it's where you can edit scripts. We'll load a new project and then get started.
+Notice there are four quadrants to your R Studio setup: the top right is the Environment tab, which shows you the data, values, and functions you currently have loaded. The bottom right is where you'll see your charts and graphs in the viewer or plots tab. The bottom left is the console, where output goes. When you execute code, the terminal responds and shows you some stuff down there. The top left is the place you'll live; it's where you can edit scripts. We'll load a new project and then get started.
 
-In the top right of your R Studio window, there will be a small dropdown menu that says "None". Click it, and select "New Project." Title your new folder something like "CFB Analysis".
+In the top right of your R Studio window, there will be a small drop-down menu that says "None". Click it, and select "New Project." Title your new folder something like "CFB Analysis".
 
 This takes care of setting your working directory, so everything you create and output will be saved in that folder.
 
@@ -199,8 +199,11 @@ The worst offenses for rushing and passing were West Virginia, who averaged only
 We can easily do the defensive side of the ball as well, grouping plays instead by defense_play. Let's make a dataset and then use ```left_join()``` to put offenses and defenses together, but let's do EPA instead of yards, because EPA is more fun. (What's EPA? Glad you asked: [An EPA Primer](https://www.frogsowar.com/2019/8/13/20802128/expected-points-big-12-college-football-analytics). 
 
 If you would like to read more on the expected points model fundamentals, read the ```cfbscrapR``` tutorial on the subject:
+
  * [Part I: Expected points model definition](https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html "A model explainer")
+ 
  * [Part II: Motivating the regression](https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html "We do bad regression to show that a multinomial logistic regression model is necessary")
+ 
  * [Part III: A brief history of expected points models](https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html "Learn about Virgil Carter's 1970 paper and the originators of the nflscrapR expected points model (which the cfbscrapR package fittingly uses)")
 
 For the tutorial, I've included the ```head()``` function as a quick way to look at the top values of our data. In your console, though, with the ```view()``` command, you can pull up the data in a traditional spreadsheet kind of format, which can help you parse through and see what you're working with, or see results you've created.
@@ -209,7 +212,7 @@ For the tutorial, I've included the ```head()``` function as a quick way to look
 offense <- plays %>% group_by(offense_play) %>% 
   summarise(epa.pass.off = mean(EPA[pass==1]), epa.rush.off = mean(EPA[rush==1]))
 defense <- plays %>% group_by(defense_play) %>% 
-  summarise(epa.pass.def = mean(EPA[pass==1]), epa.pass.def = mean(EPA[rush==1]))
+  summarise(epa.pass.def = mean(EPA[pass==1]), epa.rush.def = mean(EPA[rush==1]))
 ```
 
 ```{r mean_team_epa,message=FALSE,warning=FALSE}
@@ -228,7 +231,7 @@ offense <- plays %>% filter(down == 1) %>% group_by(offense_play) %>%
 
 ```{r epa_pass_def, message=FALSE,warning=FALSE}
 defense <- plays %>% filter(down == 1) %>% group_by(defense_play) %>% 
-  summarise(epa.pass.def = mean(EPA[pass==1]), epa.pass.def = mean(EPA[rush==1]))
+  summarise(epa.pass.def = mean(EPA[pass==1]), epa.rush.def = mean(EPA[rush==1]))
 ```
 
 ```{r firstd_epa, message=FALSE,warning=FALSE}
@@ -273,8 +276,8 @@ success %>% ggplot(aes(x=rush.rte, y=success.rte)) + geom_point() +
   theme_minimal() +
 	theme(axis.title = element_text(size = 12),
 	axis.text = element_text(size = 10),
-	plot.title = element_text(size = 20),
-	plot.subtitle = element_text(size = 14),
+	plot.title = element_text(size = 12),
+	plot.subtitle = element_text(size = 12),
         plot.caption = element_text(size = 12),
 	panel.grid.minor = element_blank())
 ```
@@ -303,8 +306,8 @@ chartdata %>% ggplot(aes(x=rush.rte, y=success.rte)) + geom_image(image = chartd
   theme_minimal() +
 	theme(axis.title = element_text(size = 12),
 	axis.text = element_text(size = 10),
-	plot.title = element_text(size = 20),
-	plot.subtitle = element_text(size = 14),
+	plot.title = element_text(size = 12),
+	plot.subtitle = element_text(size = 12),
         plot.caption = element_text(size = 12),
 	panel.grid.minor = element_blank())
 ```
@@ -332,8 +335,8 @@ tcu %>%
   theme_minimal() +
 	theme(axis.title = element_text(size = 12),
 	axis.text = element_text(size = 10),
-	plot.title = element_text(size = 20),
-	plot.subtitle = element_text(size = 14),
+	plot.title = element_text(size = 12),
+	plot.subtitle = element_text(size = 12),
   plot.caption = element_text(size = 12),
 	panel.grid.minor = element_blank())
 ```
@@ -370,6 +373,8 @@ Let me know of any work you do, resources you can think of, or code you want to 
 *** 
 
 Other Great Resources:  
+
+* [cfb-graphs.com](https://www.cfb-graphs.com/)
 * [Tom's Cookbook for Better Viz](https://jthomasmock.github.io/nfl_plotting_cookbook/)  
 * [R For Data Science](https://r4ds.had.co.nz/)  
 * [Introduction to Econometrics with R](https://www.econometrics-with-r.org/)  
@@ -401,4 +406,4 @@ tidyverse: the R data science package that helps you wrangle and analyze data.
 * head() tail() glimpse() and levels(): all help you inspect the data  
 * ggplot() and geom_point(): graphing functions that set up a graph and plots scatter plots  
 (gt: a nice package for getting publication-quality tables  
-see Tom's Cookbook to help tweak gt() with all sorts of features.  
+see Tom's Cookbook to help tweak gt() with all sorts of features.)  
