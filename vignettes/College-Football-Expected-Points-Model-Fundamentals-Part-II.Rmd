@@ -1,17 +1,12 @@
 ---
 title: "College Football Expected Points Model Fundamentals - Part II"
 author: "Saiem Gilani"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{College-Football-Expected-Points-Model-Fundamentals-Part-II}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\Vignette{check_title=FALSE}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-options(rmarkdown.html_vignette.check_title = FALSE)
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 Previously in Part 1, we left off discussing field position and expected points, including a breakdown by down. Generally, what was presented could be considered the most top-level results discussion and model definition information without much depth into how we arrived at the model, or detail on how the predictions the model provides generate the expected points. 

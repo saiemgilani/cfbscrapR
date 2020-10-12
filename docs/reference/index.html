@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Function reference" />
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbscrapR" />
 <meta name="twitter:site" content="@cfbscrapR" />
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -111,10 +111,10 @@
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
-      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
+      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -140,6 +140,13 @@
     <span class="fa fa-newspaper-o"></span>
      
     News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/saiemgilani/cfbscrapR-data">
+    <span class="fa fa-database"></span>
+     
+    Data
   </a>
 </li>
       </ul>
@@ -652,31 +659,16 @@ recruit type, state and position.</p></td>
       <tr>
         
         <td>
-          <p><code><a href="add_betting_cols.html">add_betting_cols()</a></code> </p>
-        </td>
-        <td><p>Add Betting columns
-This is only for DI-FBS football</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clean_drive_info.html">clean_drive_info()</a></code> </p>
-        </td>
-        <td><p>Clean Drive Information
-Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="clean_pbp_dat.html">clean_pbp_dat()</a></code> </p>
-        </td>
-        <td><p>Clean Play-by-Play data
-Cleans Play-by-Play data pulled from the API's raw game data</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="create_epa.html">create_epa()</a></code> </p>
         </td>
         <td><p>Create EPA
 Adds Expected Points calculations to Play-by-Play data.frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="epa_fg_probs.html">epa_fg_probs()</a></code> </p>
+        </td>
+        <td><p>Performs Field Goal adjustments for Expected Points model calculations</p></td>
       </tr><tr>
         
         <td>
@@ -694,22 +686,99 @@ This is only for D1 football</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="epa_fg_probs.html">epa_fg_probs()</a></code> </p>
+          <p><code><a href="add_betting_cols.html">add_betting_cols()</a></code> </p>
         </td>
-        <td><p>Performs Field Goal adjustments for Expected Points model calculations</p></td>
+        <td><p>Add Betting columns
+This is only for DI-FBS football</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="prep_epa_df_before.html">prep_epa_df_before()</a></code> </p>
+          <p><code><a href="clean_drive_info.html">clean_drive_info()</a></code> </p>
         </td>
-        <td><p>Prep for EPA calculations at the start of the play
-This is only for D1 football</p></td>
+        <td><p>Clean Drive Information
+Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="penalty_detection.html">penalty_detection()</a></code> </p>
+        </td>
+        <td><p>Penalty Detection
+Adds penalty columns to Play-by-Play data pulled from the API</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_play_counts.html">add_play_counts()</a></code> </p>
+        </td>
+        <td><p>Adds play counts to Play-by-Play data
+Adds play counts to Play-by-Play data pulled from the API's raw game data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="clean_pbp_dat.html">clean_pbp_dat()</a></code> </p>
+        </td>
+        <td><p>Clean Play-by-Play data
+Cleans Play-by-Play data pulled from the API's raw game data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="clean_drive_dat.html">clean_drive_dat()</a></code> </p>
+        </td>
+        <td><p>Create new Drive results and id data
+Cleans Play-by-Play data pulled from the API's raw game data</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="prep_epa_df_after.html">prep_epa_df_after()</a></code> </p>
         </td>
         <td><p>Creates the post-play inputs for the Expected Points model to predict on for each game</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ep_model_select.html">ep_model_select()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for EP predictions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wp_model_select.html">wp_model_select()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for WP predictions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wp_model_select_check.html">wp_model_select_check()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for WP predictions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="penalty_detection_select.html">penalty_detection_select()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for <code>penalty_detection()</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_play_counts_select.html">add_play_counts_select()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for <code>add_play_counts()</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="clean_pbp_dat_select.html">clean_pbp_dat_select()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for <code>clean_pbp_dat()</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="clean_drive_dat_select.html">clean_drive_dat_select()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for <code>clean_drive_dat()</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="prep_epa_df_after_select.html">prep_epa_df_after_select()</a></code> </p>
+        </td>
+        <td><p>Select the columns needed for <code>prep_epa_df_after()</code></p></td>
       </tr><tr>
         
         <td>

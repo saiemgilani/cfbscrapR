@@ -1,17 +1,12 @@
 ---
 title: "College Football Expected Points Model Fundamentals - Part I"
 author: "Saiem Gilani"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{College-Football-Expected-Points-Model-Fundamentals-Part-I}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\Vignette{check_title=FALSE}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-options(rmarkdown.html_vignette.check_title = FALSE)
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 In this tutorial, we are going to get more familiar with the Expected Points portion of College Football Expected Points Added model. 

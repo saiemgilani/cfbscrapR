@@ -49,7 +49,7 @@
 <meta property="og:title" content="CFB Recruiting Information - Team Rankings — cfb_recruiting_team" />
 <meta property="og:description" content="Gets CFB team recruiting ranks with filters available for year and team.
 At least one of year or team must be specified for the function to run" />
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbscrapR" />
 <meta name="twitter:site" content="@cfbscrapR" />
@@ -84,7 +84,7 @@ At least one of year or team must be specified for the function to run" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -113,10 +113,10 @@ At least one of year or team must be specified for the function to run" />
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
-      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
+      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -142,6 +142,13 @@ At least one of year or team must be specified for the function to run" />
     <span class="fa fa-newspaper-o"></span>
      
     News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/saiemgilani/cfbscrapR-data">
+    <span class="fa fa-database"></span>
+     
+    Data
   </a>
 </li>
       </ul>
@@ -220,16 +227,16 @@ time period for all FBS teams, please see the <code><a href='cfb_recruiting_posi
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_recruiting_team</span>(<span class='fl'>2018</span>, team = <span class='st'>"Texas"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:57: Scraping team recruiting data...</span></div><div class='output co'>#&gt;   year rank  team points
+</div><div class='output co'>#&gt; <span class='message'>2020-10-12 17:19:03: Scraping team recruiting data...</span></div><div class='output co'>#&gt;   year rank  team points
 #&gt; 1 2018    3 Texas 300.06</div><div class='input'>
 <span class='fu'>cfb_recruiting_team</span>(<span class='fl'>2016</span>, team = <span class='st'>"Virginia"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:57: Scraping team recruiting data...</span></div><div class='output co'>#&gt;   year rank     team points
+</div><div class='output co'>#&gt; <span class='message'>2020-10-12 17:19:03: Scraping team recruiting data...</span></div><div class='output co'>#&gt;   year rank     team points
 #&gt; 1 2016   63 Virginia 164.95</div><div class='input'>
 <span class='fu'>cfb_recruiting_team</span>(<span class='fl'>2016</span>, team = <span class='st'>"Texas A&amp;M"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:57: Scraping team recruiting data...</span></div><div class='output co'>#&gt;   year rank      team points
+</div><div class='output co'>#&gt; <span class='message'>2020-10-12 17:19:04: Scraping team recruiting data...</span></div><div class='output co'>#&gt;   year rank      team points
 #&gt; 1 2016   18 Texas A&amp;M 238.94</div><div class='input'>
 <span class='fu'>cfb_recruiting_team</span>(<span class='fl'>2011</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:58: Scraping team recruiting data...</span></div><div class='output co'>#&gt;     year rank                  team points
+</div><div class='output co'>#&gt; <span class='message'>2020-10-12 17:19:04: Scraping team recruiting data...</span></div><div class='output co'>#&gt;     year rank                  team points
 #&gt; 1   2011    1               Alabama 298.50
 #&gt; 2   2011    2         Florida State 297.03
 #&gt; 3   2011    3                   USC 286.99

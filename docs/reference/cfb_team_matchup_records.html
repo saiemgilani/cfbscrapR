@@ -48,7 +48,7 @@
 
 <meta property="og:title" content="Get matchup history between two teams. — cfb_team_matchup_records" />
 <meta property="og:description" content="Get matchup history between two teams." />
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbscrapR" />
 <meta name="twitter:site" content="@cfbscrapR" />
@@ -83,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -112,10 +112,10 @@
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
-      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
+      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -141,6 +141,13 @@
     <span class="fa fa-newspaper-o"></span>
      
     News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/saiemgilani/cfbscrapR-data">
+    <span class="fa fa-database"></span>
+     
+    Data
   </a>
 </li>
       </ul>
@@ -223,10 +230,10 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas'</span>,<span class='st'>'Oklahoma'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:08:15: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year team1 team1_wins    team2 team2_wins ties
-#&gt; 1                     Texas         59 Oklahoma         48    5</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>2020-10-12 17:19:21: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year team1 team1_wins    team2 team2_wins ties
+#&gt; 1                     Texas         59 Oklahoma         49    5</div><div class='input'>
 <span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>, min_year = <span class='fl'>1975</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:08:15: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year     team1 team1_wins team2 team2_wins ties
+</div><div class='output co'>#&gt; <span class='message'>2020-10-12 17:19:21: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year     team1 team1_wins team2 team2_wins ties
 #&gt; 1       1975          Texas A&amp;M         22   TCU          0    0</div><div class='input'>
 
 </div></pre>

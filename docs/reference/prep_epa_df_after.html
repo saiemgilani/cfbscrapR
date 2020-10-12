@@ -48,7 +48,7 @@
 
 <meta property="og:title" content="Creates the post-play inputs for the Expected Points model to predict on for each game — prep_epa_df_after" />
 <meta property="og:description" content="Creates the post-play inputs for the Expected Points model to predict on for each game" />
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbscrapR" />
 <meta name="twitter:site" content="@cfbscrapR" />
@@ -83,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -112,10 +112,10 @@
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
-      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
+      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -141,6 +141,13 @@
     <span class="fa fa-newspaper-o"></span>
      
     News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/saiemgilani/cfbscrapR-data">
+    <span class="fa fa-database"></span>
+     
+    Data
   </a>
 </li>
       </ul>
@@ -190,6 +197,48 @@
       <td><p>(<em>Data.Frame</em> required) Clean Play-by-Play DataFrame pulled from `cfb_pbp_dat()`</p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>`dat` with the following columns appended/modified:</p><ul>
+<li><p>turnover_indicator.</p></li>
+<li><p>down.</p></li>
+<li><p>new_id.</p></li>
+<li><p>new_down.</p></li>
+<li><p>distance.</p></li>
+<li><p>yards_to_goal.</p></li>
+<li><p>yards_gained.</p></li>
+<li><p>turnover.</p></li>
+<li><p>drive_start_yards_to_goal.</p></li>
+<li><p>end_of_half.</p></li>
+<li><p>new_yardline.</p></li>
+<li><p>new_distance.</p></li>
+<li><p>new_log_ydstogo.</p></li>
+<li><p>new_Goal_To_Go.</p></li>
+<li><p>new_TimeSecsRem.</p></li>
+<li><p>new_Under_two.</p></li>
+<li><p>first_by_penalty.</p></li>
+<li><p>first_by_yards.</p></li>
+<li><p>firstD_by_poss.</p></li>
+<li><p>firstD_by_yards.</p></li>
+<li><p>firstD_by_penalty.</p></li>
+<li><p>yds_punted.</p></li>
+<li><p>yds_punt_gained.</p></li>
+<li><p>missing_yard_flag.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Prep for EPA calculations at the end of the play. Requires the following columns be present:</p><ul>
+<li><p>game_id</p></li>
+<li><p>id_play</p></li>
+<li><p>drive_id</p></li>
+<li><p>down</p></li>
+<li><p>distance</p></li>
+<li><p>period</p></li>
+<li><p>yards_to_goal</p></li>
+<li><p>play_type</p></li>
+</ul>
 
 
   </div>

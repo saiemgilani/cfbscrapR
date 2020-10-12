@@ -1,11 +1,7 @@
 ---
 title: "Introduction to College Football Analytics with cfbscrapR"
 author: "Parker Fleming | @statsowar"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{intro}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
 Hello, friends.
 

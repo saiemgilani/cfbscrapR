@@ -40,9 +40,9 @@ navbar:
       - text: CFB Analytics with cfbscrapR
         href: articles/intro.html
       - text: Animated Win Probability Plots
-        href: articles/Animated_WP_Plotting.html
+        href: articles/Animated-WP-Plotting.html
       - text: Fourth Down Tendency Plots
-        href: articles/fourth_down_plot_tutorial.html        
+        href: articles/fourth-down-plot-tutorial.html        
       - text: Expected Points Model Fundamentals
       - text: "Part 1 - Model Definition"
         href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html
@@ -56,6 +56,9 @@ navbar:
     - icon: fa-newspaper-o
       text: "News"
       href: news/index.html
+    - icon: fa-database
+      text: "Data"
+      href: https://github.com/saiemgilani/cfbscrapR-data
   right:
    - icon: fab fa-twitter fa-lg
      href: https://twitter.com/cfbscrapR
@@ -152,15 +155,25 @@ reference:
   - subtitle: Internals
     desc: Internal functions and helpers
     contents:
-      - '`add_betting_cols`'
-      - '`clean_drive_info`'
-      - '`clean_pbp_dat`'
       - '`create_epa`'
+      - '`epa_fg_probs`'
       - '`create_wpa_naive`'
       - '`create_wpa_betting`'
-      - '`epa_fg_probs`'
-      - '`prep_epa_df_before`'
+      - '`add_betting_cols`'
+      - '`clean_drive_info`'
+      - '`penalty_detection`'
+      - '`add_play_counts`'
+      - '`clean_pbp_dat`'
+      - '`clean_drive_dat`'
       - '`prep_epa_df_after`'
+      - '`ep_model_select`'
+      - '`wp_model_select`'
+      - '`wp_model_select_check`'
+      - '`penalty_detection_select`'
+      - '`add_play_counts_select`'
+      - '`clean_pbp_dat_select`'
+      - '`clean_drive_dat_select`'
+      - '`prep_epa_df_after_select`'
       - '`prep_df_pbp_overview`'
       - '`check_internet`'
 

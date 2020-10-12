@@ -1,13 +1,11 @@
 ---
 title: "Making Animated Win Probability Charts with cfbscrapR"
 author: "Jared Lee | @JaredDLee"
-output: rmarkdown::html_vignette
-date: "`r Sys.Date()`"
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
+```{r setup, include=FALSE}
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
+```
 
 Have you ever wanted to make an [animated win probability chart](https://kazink36.github.io/images/animated_wp_ex_wide.gif) for college football like [Lee Sharpe](https://twitter.com/LeeSharpeNFL) makes for [the NFL](https://twitter.com/LeeSharpeNFL/status/1300526539344289792)?
 This document will walk you step-by-step through the process of adapting [Sharpe's code](https://github.com/leesharpe/nfldata/blob/master/code/wpchart.R) to college football using data from [CollegeFootballData.com](collegefootballdata.com) collected using the ```cfbscrapR``` package for R.
