@@ -33,7 +33,8 @@ We'll start by picking a team, a week, and a year and using ```cfbscrapR```'s fu
 team <- "Utah"
 week <- 1
 year <- 2019
-game_pbp <- cfbscrapR::cfb_pbp_data(year, team = team, week = week, epa_wpa = TRUE)
+game_pbp <- cfbscrapR::cfb_pbp_data(year, team = team, week = week, epa_wpa = TRUE) %>% 
+  filter(down > 0)
 game <- cfbscrapR::cfb_game_info(year, team = team, week = week)
 ```
 
@@ -221,9 +222,9 @@ Now we are ready to transform our play-by-play data frame to match what we need 
 
 ```{r rename, message=FALSE, warning=FALSE}
 game_pbp <- game_pbp %>%
-  rename(qtr = period, wp = wp_before, posteam = offense_play, defteam = defense_play,
+  rename(qtr = period, wp = wp_before, posteam = pos_team, defteam = def_pos_team,
          away_team = away, home_team = home, play_id = game_play_number,
-         posteam_score = offense_score, defteam_score = defense_score) %>%
+         posteam_score = pos_team_score, defteam_score = def_pos_team_score) %>%
   mutate(game_seconds_remaining = ifelse(half == 1, TimeSecsRem + 1800, TimeSecsRem),
          result = game$result,
          minlabel = ifelse(clock.minutes >= 15,
@@ -267,49 +268,50 @@ if (is.na(base_wp_data$wpa[nrow(base_wp_data)])) {
 Now we create the labels. This generates labels for any play that had a change in the winning percentage of more than 10 percentage points. We'll also simplify our data frame by only selecting the relevant columns for our plots.
 
 ```{r wp_data, message=FALSE, warning=FALSE}
+abs_wpa <- 0.08
 wp_data <- base_wp_data %>% 
   mutate(
     helped=ifelse(wpa > 0, posteam, defteam),
     text = 
       case_when(
-       abs(wpa) > 0.1 & play_type == "Kickoff" & 
+       abs(wpa) > abs_wpa & play_type == "Kickoff" & 
          !is.na(kickoff_returner_player_name) ~ glue("{kickoff_returner_player_name} KR"),
-       abs(wpa) > 0.1 & play_type == "Rush" ~ glue("{rusher_player_name} Rush"),
-       abs(wpa) > 0.1 & play_type == "Pass Reception" ~ glue("{receiver_player_name} Catch"),
-       abs(wpa) > 0.1 & play_type == "Sack" ~ glue("{sack_player_name} SACK"),
-       abs(wpa) > 0.1 & play_type == "Punt" ~ "",#glue("{punt_returner_player_name} PR"),
-       abs(wpa) > 0.1 & play_type == "Pass Incompletion" ~ glue("{passer_player_name} Incomplete"),
-       abs(wpa) > 0.1 & play_type == "Fumble Recovery (Opponent)" ~ glue("{posteam} FUMBLE"),
-       abs(wpa) > 0.1 & play_type == "Penalty" ~ glue("PENALTY"),
-       abs(wpa) > 0.1 & play_type == "Field Goal Missed" ~ glue("{posteam} FG MISS"),
-       abs(wpa) > 0.1 & play_type == "Passing Touchdown" ~ glue("{receiver_player_name} TD"),
-       abs(wpa) > 0.1 & play_type == "Rushing Touchdown" ~ glue("{rusher_player_name} TD"),
-       abs(wpa) > 0.1 & play_type == "Field Goal Good" &
+       abs(wpa) > abs_wpa & play_type == "Rush" ~ glue("{rusher_player_name} Rush"),
+       abs(wpa) > abs_wpa & play_type == "Pass Reception" ~ glue("{receiver_player_name} Catch"),
+       abs(wpa) > abs_wpa & play_type == "Sack" ~ glue("{sack_player_name} SACK"),
+       abs(wpa) > abs_wpa & play_type == "Punt" ~ "",#glue("{punt_returner_player_name} PR"),
+       abs(wpa) > abs_wpa & play_type == "Pass Incompletion" ~ glue("{passer_player_name} Incomplete"),
+       abs(wpa) > abs_wpa & play_type == "Fumble Recovery (Opponent)" ~ glue("{posteam} FUMBLE"),
+       abs(wpa) > abs_wpa & play_type == "Penalty" ~ glue("PENALTY"),
+       abs(wpa) > abs_wpa & play_type == "Field Goal Missed" ~ glue("{posteam} FG MISS"),
+       abs(wpa) > abs_wpa & play_type == "Passing Touchdown" ~ glue("{receiver_player_name} TD"),
+       abs(wpa) > abs_wpa & play_type == "Rushing Touchdown" ~ glue("{rusher_player_name} TD"),
+       abs(wpa) > abs_wpa & play_type == "Field Goal Good" &
          !is.na(fg_kicker_player_name) ~ glue("{fg_kicker_player_name} FG GOOD"),
-       abs(wpa) > 0.1 & play_type == "Field Goal Good" &
+       abs(wpa) > abs_wpa & play_type == "Field Goal Good" &
          is.na(fg_kicker_player_name) ~ glue("{posteam} FG GOOD"),
-       abs(wpa) > 0.1 & play_type == "Timeout" ~ "",
-       abs(wpa) > 0.1 & play_type == "Interception Return" ~ glue("{interception_player_name} INT"),
-       abs(wpa) > 0.1 & play_type == "Fumble Recovery (Own)" ~ glue("{rusher_player_name} Rush"),
-       abs(wpa) > 0.1 & play_type == "Blocked Field Goal" ~ glue("{posteam} FG BLK"),
-       abs(wpa) > 0.1 & play_type == "Kickoff Return (Offense)" ~ glue("{kickoff_returner_player_name} KR"),
-       abs(wpa) > 0.1 & play_type == "Blocked Punt" ~ glue("{defteam} PUNT BLK"),
-       abs(wpa) > 0.1 & play_type == "Interception Return Touchdown" ~ glue("{interception_player_name} DEF TD"),
-       abs(wpa) > 0.1 & play_type == "Kickoff Return Touchdown" & 
+       abs(wpa) > abs_wpa & play_type == "Timeout" ~ "",
+       abs(wpa) > abs_wpa & play_type == "Interception Return" ~ glue("{interception_player_name} INT"),
+       abs(wpa) > abs_wpa & play_type == "Fumble Recovery (Own)" ~ glue("{rusher_player_name} Rush"),
+       abs(wpa) > abs_wpa & play_type == "Blocked Field Goal" ~ glue("{posteam} FG BLK"),
+       abs(wpa) > abs_wpa & play_type == "Kickoff Return (Offense)" ~ glue("{kickoff_returner_player_name} KR"),
+       abs(wpa) > abs_wpa & play_type == "Blocked Punt" ~ glue("{defteam} PUNT BLK"),
+       abs(wpa) > abs_wpa & play_type == "Interception Return Touchdown" ~ glue("{interception_player_name} DEF TD"),
+       abs(wpa) > abs_wpa & play_type == "Kickoff Return Touchdown" & 
          !is.na(kickoff_returner_player_name) ~ glue("{kickoff_returner_player_name} KR TD"),
-       abs(wpa) > 0.1 & play_type == "Punt Touchdown" ~ glue("{punt_returner_player_name} PR TD"),
-       abs(wpa) > 0.1 & play_type == "Fumble Recovery (Opponent) Touchdown" ~ glue("{defteam} FUMBLE TD"),
-       abs(wpa) > 0.1 & play_type == "Fumble Return Touchdown" ~ glue("{defteam} FUMBLE TD"),
-       abs(wpa) > 0.1 & play_type == "Safety" ~ glue("SAFETY"),
-       abs(wpa) > 0.1 & play_type == "Punt Touchdown" ~ glue("{posteam} PR FUMBLE TD"),
-       abs(wpa) > 0.1 & play_type == "Kickoff Touchdown" ~ glue("{posteam} KR FUMBLE TD"),
-       abs(wpa) > 0.1 & play_type == "Punt Return Touchdown" ~ glue("{punt_returner_player_name} PR TD"),
-       abs(wpa) > 0.1 & play_type == "Uncategorized" ~ "",
-       abs(wpa) > 0.1 & play_type == "Blocked Punt Touchdown" ~ glue("{defteam} PUNT BLK TD"),
-       abs(wpa) > 0.1 & play_type == "placeholder" ~ "",
-       abs(wpa) > 0.1 & play_type == "Missed Field Goal Return" ~ glue("{posteam} FG MISS"),
-       abs(wpa) > 0.1 & play_type == "Missed Field Goal Return Touchdown" ~ glue("{defteam} FGR TD"),
-       abs(wpa) > 0.1 & play_type == "Defensive 2pt Conversion" ~ glue("{defteam} DEF 2PT"),
+       abs(wpa) > abs_wpa & play_type == "Punt Touchdown" ~ glue("{punt_returner_player_name} PR TD"),
+       abs(wpa) > abs_wpa & play_type == "Fumble Recovery (Opponent) Touchdown" ~ glue("{defteam} FUMBLE TD"),
+       abs(wpa) > abs_wpa & play_type == "Fumble Return Touchdown" ~ glue("{defteam} FUMBLE TD"),
+       abs(wpa) > abs_wpa & play_type == "Safety" ~ glue("SAFETY"),
+       abs(wpa) > abs_wpa & play_type == "Punt Touchdown" ~ glue("{posteam} PR FUMBLE TD"),
+       abs(wpa) > abs_wpa & play_type == "Kickoff Touchdown" ~ glue("{posteam} KR FUMBLE TD"),
+       abs(wpa) > abs_wpa & play_type == "Punt Return Touchdown" ~ glue("{punt_returner_player_name} PR TD"),
+       abs(wpa) > abs_wpa & play_type == "Uncategorized" ~ "",
+       abs(wpa) > abs_wpa & play_type == "Blocked Punt Touchdown" ~ glue("{defteam} PUNT BLK TD"),
+       abs(wpa) > abs_wpa & play_type == "placeholder" ~ "",
+       abs(wpa) > abs_wpa & play_type == "Missed Field Goal Return" ~ glue("{posteam} FG MISS"),
+       abs(wpa) > abs_wpa & play_type == "Missed Field Goal Return Touchdown" ~ glue("{defteam} FGR TD"),
+       abs(wpa) > abs_wpa & play_type == "Defensive 2pt Conversion" ~ glue("{defteam} DEF 2PT"),
        TRUE ~ ""),
     text = ifelse(text == "","", glue("{text}\n{helped} +{abs(round(100*wpa))}%")),
     away_score = ifelse(posteam == away_team, posteam_score, defteam_score),
@@ -556,7 +558,7 @@ draw_game <- function()
 Finally, we run our ```draw_game()``` function inside of ```saveGIF()```. 
 
 ```{r saveGIF, message=FALSE, warning=FALSE}
-# saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
+ # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
 ```
 
 ![Result](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/animated_wp.gif?raw=true)
