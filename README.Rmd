@@ -45,11 +45,11 @@ For more information on the package and function reference, please see the `cfbs
 ## Expected Points and Win Probability models
 If you would like to learn more about the Expected Points and Win Probability models, please refer to the `cfbscrapR` [tutorials](https://saiemgilani.github.io/cfbscrapR/articles/index.html) or for the code repository where the models are built, [click here](https://github.com/meysubb/cfbscrapR-MISC)
 
-#### Expected Points model calibration plots
-![ep_fg_cv_loso_calibration_results.png](https://i.imgur.com/bOE4VOU.png)
+#### Expected Points model calibration plots (1.15% Calibration Error)
+![ep_fg_cv_loso_calibration_results.png](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/ep_fg_cv_loso_calibration_results.png?raw=true)
  
-#### Win Probability model calibration plots
-![wp_cv_loso_calibration_results.png](https://i.imgur.com/4YgfphC.png)
+#### Win Probability model calibration plots (0.787% Calibration Error)
+![wp_cv_loso_calibration_results.png](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/wp_cv_loso_calibration_results.png?raw=true)
 
 # cfbscrapR 1.0.22
 - ~~Fix conference parameters to match API (moved to abbreviation format).~~ 

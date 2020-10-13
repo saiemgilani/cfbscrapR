@@ -53,13 +53,13 @@ Probability models, please refer to the `cfbscrapR`
 or for the code repository where the models are built, [click
 here](https://github.com/meysubb/cfbscrapR-MISC)
 
-#### Expected Points model calibration plots
+#### Expected Points model calibration plots (1.15% Calibration Error)
 
-![ep\_fg\_cv\_loso\_calibration\_results.png](https://i.imgur.com/bOE4VOU.png)
+![ep\_fg\_cv\_loso\_calibration\_results.png](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/ep_fg_cv_loso_calibration_results.png?raw=true)
 
-#### Win Probability model calibration plots
+#### Win Probability model calibration plots (0.787% Calibration Error)
 
-![wp\_cv\_loso\_calibration\_results.png](https://i.imgur.com/4YgfphC.png)
+![wp\_cv\_loso\_calibration\_results.png](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/wp_cv_loso_calibration_results.png?raw=true)
 
 # cfbscrapR 1.0.22
 
