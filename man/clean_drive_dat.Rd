@@ -24,11 +24,14 @@ The original `play_df` with the following columns appended/redefined:
 \item{drive_numbers}{.}
 \item{number_of_drives}{.}
 \item{pts_scored}{.}
-\item{new_drive_result}{.}
+\item{drive_result_detailed}{.}
+\item{drive_result_detailed_flag}{.}
 \item{drive_result2}{.}
+\item{lag_new_drive_pts}{.}
+\item{lag_drive_result_detailed}
+\item{lead_drive_result_detailed}
 \item{new_drive_pts}{.}
 \item{drive_scoring}{.}
-\item{new_drive_result2}{.}
 \item{drive_play}{.}
 \item{drive_play_number}{.}
 \item{new_id}{.}

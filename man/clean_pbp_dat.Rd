@@ -47,8 +47,8 @@ The original `play_df` with the following columns appended/redefined:
 \item{pass_td}{.}
 \item{rush_td}{.}
 \item{turnover_vec}{.}
-\item{off_td_play}{.}
-\item{def_td_play}{.}
+\item{offense_score_play}{.}
+\item{defense_score_play}{.}
 \item{downs_turnover}{.}
 \item{scoring_play}{.}
 \item{fg_inds}{.}

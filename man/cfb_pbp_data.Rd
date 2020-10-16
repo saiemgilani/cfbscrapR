@@ -113,8 +113,8 @@ A data frame with 149 variables:
   \item{\code{drive_time_seconds_elapsed}}{double.}
   \item{\code{scoring_play}}{double.}
   \item{\code{pts_scored}}{double.}
-  \item{\code{off_td_play}}{double.}
-  \item{\code{def_td_play}}{double.}
+  \item{\code{offense_score_play}}{double.}
+  \item{\code{defense_score_play}}{double.}
   \item{\code{touchdown}}{double.}
   \item{\code{safety}}{double.}
   \item{\code{kickoff_play}}{double.}
@@ -160,7 +160,7 @@ A data frame with 149 variables:
   \item{\code{first_by_yards}}{double.}
   \item{\code{adj_TimeSecsRem}}{double.}
   \item{\code{turnover_vec_lag}}{double.}
-  \item{\code{def_td_play_lag}}{double.}
+  \item{\code{lag_defense_score_play}}{double.}
   \item{\code{play_after_turnover}}{double.}
   \item{\code{receives_2H_kickoff}}{double.}
   \item{\code{lag_score_diff}}{double.}
