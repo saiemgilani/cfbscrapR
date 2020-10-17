@@ -1,6 +1,8 @@
 #' Select the columns needed for \code{penalty_detection()}
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr "select"
+#' @importFrom tidyr "everything"
+
 penalty_detection_select <- function(pbp) {
   
   pbp <- pbp %>%
@@ -22,7 +24,7 @@ penalty_detection_select <- function(pbp) {
       "penalty_offset",
       "penalty_1st_conv",
       "penalty_text",
-      everything()
+      tidyr::everything()
     )
   return(pbp)
   
@@ -33,6 +35,8 @@ penalty_detection_select <- function(pbp) {
 #' Select the columns needed for \code{add_play_counts()}
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr "select"
+#' @importFrom tidyr "everything"
+
 add_play_counts_select <- function(pbp) {
   
   pbp <- pbp %>%
@@ -63,9 +67,18 @@ add_play_counts_select <- function(pbp) {
       "offense_receives_2H_kickoff",
       "home",
       "away",
+      "pos_team",
+      "def_pos_team",
+      "lag_pos_team",
+      "lead_pos_team",
+      "lead_pos_team2",
+      "pos_score_pts",
+      "pos_score_diff_start",
+      "pos_score_diff",
+      "lag_pos_score_diff",
       "lag_offense_play",
       "lead_offense_play",
-      "lead_offense_play",
+      "lead_offense_play2",
       "score_diff",
       "lag_score_diff",
       "score_pts",
@@ -80,7 +93,7 @@ add_play_counts_select <- function(pbp) {
       "lead_play_type2",
       "lead_play_type3",
       "change_of_poss",
-      everything()
+      tidyr::everything()
     )
   return(pbp)
 }
@@ -89,6 +102,8 @@ add_play_counts_select <- function(pbp) {
 #' Select the columns needed for \code{clean_pbp_dat()}
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr "select"
+#' @importFrom tidyr "everything"
+
 clean_pbp_dat_select <- function(pbp) {
   
   pbp <- pbp %>%
@@ -110,6 +125,7 @@ clean_pbp_dat_select <- function(pbp) {
       "pos_team",
       "lead_pos_team",
       "lead_pos_team2",
+      "lag_pos_team",
       "change_of_pos_team",
       "change_of_poss",
       "def_pos_team",
@@ -119,13 +135,13 @@ clean_pbp_dat_select <- function(pbp) {
       "scoring_play",
       "td_play",
       "touchdown",
-      "off_td_play",
-      "def_td_play",
+      "offense_score_play",
+      "defense_score_play",
       "td_check",
       "off_timeouts_rem_before",
       "def_timeouts_rem_before",
-      "pos_team_timeouts_rem",
-      "def_pos_team_timeouts_rem",
+      "pos_team_timeouts_rem_before",
+      "def_pos_team_timeouts_rem_before",
       "rush_vec",
       "rush_td",
       "pass_vec",
@@ -154,7 +170,7 @@ clean_pbp_dat_select <- function(pbp) {
       "punt_oob",
       "punt_fair_catch",
       "punt_downed",
-      everything()
+      tidyr::everything()
     )
   return(pbp)
 }
@@ -163,6 +179,8 @@ clean_pbp_dat_select <- function(pbp) {
 #' Select the columns needed for \code{clean_drive_dat()}
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr "select"
+#' @importFrom tidyr "everything"
+
 clean_drive_dat_select <- function(pbp) {
   
   pbp <- pbp %>%
@@ -192,10 +210,10 @@ clean_drive_dat_select <- function(pbp) {
       "drive_numbers",
       "number_of_drives",
       "pts_scored",
-      "new_drive_result",
+      "drive_result_detailed",
       "new_drive_pts",
       "drive_scoring",
-      "new_drive_result2",
+      "drive_result2",
       "drive_play",
       "drive_play_number",
       "lag_change_of_poss",
@@ -209,12 +227,12 @@ clean_drive_dat_select <- function(pbp) {
       "scoring_play",
       "td_play",
       "touchdown",
-      "off_td_play",
-      "def_td_play",
+      "offense_score_play",
+      "defense_score_play",
       "off_timeouts_rem_before",
       "def_timeouts_rem_before",
-      "pos_team_timeouts_rem",
-      "def_pos_team_timeouts_rem",
+      "pos_team_timeouts_rem_before",
+      "def_pos_team_timeouts_rem_before",
       "lead_play_type",
       "lead_play_type2",
       "lead_play_type3",
@@ -247,7 +265,7 @@ clean_drive_dat_select <- function(pbp) {
       "punt_fair_catch",
       "punt_downed",
       "new_id",
-      everything()
+      tidyr::everything()
       
     )
   return(pbp)
@@ -257,14 +275,14 @@ clean_drive_dat_select <- function(pbp) {
 #' Select the columns needed for \code{prep_epa_df_after()}
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr "select"
+#' @importFrom tidyr "everything"
+
 prep_epa_df_after_select <- function(pbp) {
   
   pbp <- pbp %>%
     dplyr::select(
       "game_id",
       "id_play",
-      "home",
-      "away",
       "game_play_number",
       "half_play_number",      
       "drive_play_number",
@@ -273,57 +291,56 @@ prep_epa_df_after_select <- function(pbp) {
       "half",
       "period",
       "clock.minutes",
-      "clock.seconds",
+      "clock.seconds",     
+      "end_of_half",
+      "TimeSecsRem",
+      "new_TimeSecsRem",
       "orig_play_type",
       "play_type",
       "play_text",
       "yards_to_goal",
       "new_yardline",
       "down",
+      "new_down",
       "distance",
       "new_distance",
       "yards_gained",
-      "penalty_1st_conv",      
+      "penalty_1st_conv",
+      "first_by_penalty",
+      "first_by_yards",
+      "firstD_by_poss",
+      "firstD_by_yards",
+      "firstD_by_penalty",      
       "pos_team",
       "lead_pos_team",
       "lead_pos_team2",
       "change_of_pos_team",
       "change_of_poss",
-      "def_pos_team",      
-      "end_of_half",
-      "TimeSecsRem",
-      "new_TimeSecsRem",
+      "def_pos_team", 
+      "lead_play_type",
       "Under_two",
-      "Under_three",
-      "new_Under_two",
-      "new_log_ydstogo",      
+      "new_Under_two",     
       "log_ydstogo",
+      "new_log_ydstogo", 
       "Goal_To_Go",
       "new_Goal_To_Go",
       "turnover_indicator",
-      "down",
+      "Under_three",
       "new_id",
-      "new_down",
-      "distance",
-      "yards_to_goal",
-      "yards_gained",
       "turnover",
       "drive_start_yards_to_goal",
-      "first_by_penalty",
-      "first_by_yards",
-      "firstD_by_poss",
-      "firstD_by_yards",
-      "firstD_by_penalty",
+      "home",
+      "away",
       "yds_punted",
       "yds_punt_gained",
       "missing_yard_flag",
       "drive_numbers",
       "number_of_drives",
       "pts_scored",
-      "new_drive_result",
+      "drive_result_detailed",
       "new_drive_pts",
       "drive_scoring",
-      "new_drive_result2",
+      "drive_result2",
       "lag_change_of_poss",
       "lag_punt",
       "lag_scoring_play",
@@ -334,13 +351,12 @@ prep_epa_df_after_select <- function(pbp) {
       "turnover_vec",
       "scoring_play",
       "touchdown",
-      "off_td_play",
-      "def_td_play",
+      "offense_score_play",
+      "defense_score_play",
+      "pos_team_timeouts_rem_before",
+      "def_pos_team_timeouts_rem_before",
       "off_timeouts_rem_before",
       "def_timeouts_rem_before",
-      "pos_team_timeouts_rem",
-      "def_pos_team_timeouts_rem",
-      "lead_play_type",
       "lead_play_type2",
       "lead_play_type3",
       "rush_vec",
@@ -372,7 +388,9 @@ prep_epa_df_after_select <- function(pbp) {
       "punt_fair_catch",
       "punt_downed",
       "new_id",
-      everything()
+      tidyr::everything()
     )
   return(pbp)
 }
+
+
