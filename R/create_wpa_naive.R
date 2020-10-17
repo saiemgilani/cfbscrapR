@@ -41,35 +41,54 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
     "TimeSecsRem",
     "half",
     "Under_two",
-    "off_timeouts_rem_before",
-    "def_timeouts_rem_before",
-    "score_diff_start"
+    "pos_team_timeouts_rem_before",
+    "def_pos_team_timeouts_rem_before",
+    "pos_score_diff_start"
   )
   if (!all(col_nec %in% colnames(df))) {
     df = df %>% 
       dplyr::mutate(
         adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
         turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
-        def_td_play_lag = dplyr::lag(.data$def_td_play, 1),
-        play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$def_td_play_lag != 1, 1, 0),
+        lag_defense_score_play = dplyr::lag(.data$defense_score_play, 1),
+        play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$lag_defense_score_play != 1, 1, 0),
         receives_2H_kickoff = ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 & 
-                                       .data$offense_play == .data$home, 1, 
+                                       .data$def_pos_team == .data$home, 1, 
                                      ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 &
-                                              .data$offense_play == .data$away,0,NA)),
-        score_diff = .data$offense_score - .data$defense_score,
-        lag_score_diff = lag(.data$score_diff, 1),
-        lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
+                                              .data$def_pos_team == .data$away, 0, NA_real_)),
+        pos_team = ifelse(.data$offense_play == .data$home & .data$kickoff_play == 1, .data$away,
+                          ifelse(.data$offense_play == .data$away & .data$kickoff_play == 1, .data$home, .data$offense_play)),
+        def_pos_team = ifelse(.data$pos_team == .data$home, .data$away, .data$home),
+        pos_team_score = ifelse(.data$kickoff_play == 1, .data$defense_score, .data$offense_score),
+        def_pos_team_score = ifelse(.data$kickoff_play == 1, .data$offense_score, .data$defense_score),
+        lag_pos_team = dplyr::lag(.data$pos_team, 1),
+        lag_pos_team = ifelse(.data$game_play_number == 1, .data$pos_team, .data$lag_pos_team),
+        lead_pos_team = dplyr::lead(.data$pos_team, 1),
+        lead_pos_team2 = dplyr::lead(.data$pos_team, 2),
+        
+        pos_score_diff = .data$pos_team_score - .data$def_pos_team_score,
+        lag_pos_score_diff = dplyr::lag(.data$pos_score_diff, 1),
+        lag_pos_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_pos_score_diff),
+        pos_score_pts = ifelse(.data$lag_pos_team == .data$pos_team, 
+                               (.data$pos_score_diff - .data$lag_pos_score_diff),
+                               (.data$pos_score_diff + .data$lag_pos_score_diff)),
+        pos_score_diff_start = ifelse(.data$lag_pos_team == .data$pos_team, 
+                                      .data$lag_pos_score_diff, 
+                                      -1*.data$lag_pos_score_diff),
         lag_offense_play = dplyr::lag(.data$offense_play, 1),
         lag_offense_play = ifelse(.data$game_play_number == 1, .data$offense_play, .data$offense_play_lag),
         lead_offense_play = dplyr::lead(.data$offense_play, 1),
         lead_offense_play2 = dplyr::lead(.data$offense_play, 2),
         lead_kickoff_play = dplyr::lead(.data$kickoff_play,1),
-        score_pts = ifelse(.data$offense_play_lag == .data$offense_play,
-                           (.data$score_diff - .data$lag_score_diff),
-                           (.data$score_diff + .data$lag_score_diff)),
-        score_diff_start = ifelse(.data$offense_play_lag == .data$offense_play,
-                                  .data$lag_score_diff,
-                                  -1*.data$lag_score_diff)) %>% 
+        pos_score_diff = .data$pos_team_score - .data$def_pos_team_score,
+        lag_pos_score_diff = dplyr::lag(.data$pos_score_diff, 1),
+        lag_pos_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_pos_score_diff),
+        pos_score_pts = ifelse(.data$lag_pos_team == .data$pos_team, 
+                               (.data$pos_score_diff - .data$lag_pos_score_diff),
+                               (.data$pos_score_diff + .data$lag_pos_score_diff)),
+        pos_score_diff_start = ifelse(.data$lag_pos_team == .data$pos_team, 
+                                      .data$lag_pos_score_diff, 
+                                      -1*.data$lag_pos_score_diff)) %>% 
       tidyr::fill(.data$receives_2H_kickoff) %>% 
       dplyr::mutate(
         offense_receives_2H_kickoff = case_when(
@@ -80,7 +99,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
         def_EPA = -1*.data$EPA,
         home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -1*.data$EPA),
         away_EPA = -1*.data$home_EPA,
-        ExpScoreDiff = .data$score_diff_start + .data$ep_before,
+        ExpScoreDiff = .data$pos_score_diff_start + .data$ep_before,
         half = as.factor(.data$half),
         ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)
     )
@@ -104,7 +123,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
     new_kick["yards_to_goal"] = 75
     new_kick["log_ydstogo"] = log(10)
     new_kick["ExpScoreDiff"] = new_kick["pos_score_diff_start"] + new_kick["ep_before"]
-    new_kick["ExpScoreDiff_Time_Ratio"] = new_kick["ExpScoreDiff"]/new_kick["adj_TimeSecsRem"]
+    new_kick["ExpScoreDiff_Time_Ratio"] = new_kick["ExpScoreDiff"]/(new_kick["adj_TimeSecsRem"] + 1)
     df[kickoff_ind,"wp_before"]  = as.vector(predict(wp_model, new_kick, type = 'response'))
     
   }
