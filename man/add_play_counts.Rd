@@ -61,8 +61,8 @@ The original `play_df` with the following columns appended/redefined:
 \item{change_of_pos_team}{.}
 \item{pos_team_timeouts}{.}
 \item{def_pos_team_timeouts}{.}
-\item{pos_team_timeouts_rem}{.}
-\item{def_pos_team_timeouts_rem}{.}
+\item{pos_team_timeouts_rem_before}{.}
+\item{def_pos_team_timeouts_rem_before}{.}
 }
 }
 \description{

@@ -6,22 +6,17 @@
 Adds Expected Points calculations to Play-by-Play data.frame}
 \usage{
 create_epa(
-  clean_pbp_dat,
+  play_df,
   ep_model = cfbscrapR:::ep_model,
   fg_model = cfbscrapR:::fg_model
 )
 }
 \arguments{
-\item{clean_pbp_dat}{(\emph{data.frame} required): Clean PBP as input from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})}
-
 \item{ep_model}{(\emph{model} default cfbscrapR:::ep_model): Expected Points (EP) Model}
 
 \item{fg_model}{(\emph{model} default cfbscrapR:::fg_model): Field Goal (FG) Model}
-}
-\value{
-\describe{
-  \item{}{}
-}
+
+\item{clean_pbp_dat}{(\emph{data.frame} required): Clean PBP as input from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})}
 }
 \description{
 Create EPA

@@ -28,8 +28,8 @@ The original `play_df` with the following columns appended/redefined:
 \item{drive_result_detailed_flag}{.}
 \item{drive_result2}{.}
 \item{lag_new_drive_pts}{.}
-\item{lag_drive_result_detailed}
-\item{lead_drive_result_detailed}
+\item{lag_drive_result_detailed}{.}
+\item{lead_drive_result_detailed}{.}
 \item{new_drive_pts}{.}
 \item{drive_scoring}{.}
 \item{drive_play}{.}
