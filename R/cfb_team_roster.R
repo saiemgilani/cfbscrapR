@@ -40,9 +40,14 @@ cfb_team_roster <- function(team, year = NULL){
                 msg='Enter valid year as a number (YYYY)')
   }
 
-  # Encode team parameter for URL
-  team = utils::URLencode(team, reserved = TRUE)
-
+  if(!is.null(team)){
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team1 parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
+  }
   base_url <- "https://api.collegefootballdata.com/roster?"
 
   full_url <- paste0(base_url,

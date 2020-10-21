@@ -55,8 +55,12 @@ cfb_recruiting_team <- function(year = NULL,
                 msg = 'Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
 
   base_url = "https://api.collegefootballdata.com/recruiting/teams?"
