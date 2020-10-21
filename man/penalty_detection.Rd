@@ -8,7 +8,7 @@ Adds penalty columns to Play-by-Play data pulled from the API}
 penalty_detection(raw_df)
 }
 \arguments{
-\item{raw_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_dat()`}
+\item{raw_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_data()`}
 }
 \value{
 The original `raw_df` with the following columns appended/redefined:

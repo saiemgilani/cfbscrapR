@@ -25,7 +25,7 @@ cfb_pbp_data(
 
 \item{team}{Select team name (example: Texas, Texas A&M, Clemson)}
 
-\item{play_type}{Select play type (example: see the \code{\link[cfbscrapR:cfb_play_type_df]{cfbscrapR::cfb_play_type_df}})}
+\item{play_type}{Select play type (example: see the \code{\link[cfbscrapR:cfb_play_type_df]{cfb_play_type_df}})}
 
 \item{epa_wpa}{Logical parameter (TRUE/FALSE) to return the Expected Points Added/Win Probability Added variables}
 }

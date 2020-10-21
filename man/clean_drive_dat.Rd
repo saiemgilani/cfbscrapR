@@ -8,7 +8,7 @@ Cleans Play-by-Play data pulled from the API's raw game data}
 clean_drive_dat(play_df)
 }
 \arguments{
-\item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_dat()`}
+\item{play_df}{(\emph{data.frame} required): Performs data cleansing on Play-by-Play DataFrame, as pulled from `cfb_pbp_data()`}
 }
 \value{
 The original `play_df` with the following columns appended/redefined:
