@@ -279,7 +279,7 @@ create_epa <- function(play_df,
         dplyr::select(-.data$play_type, -.data$turnover),
         by = c("game_id", "drive_id", "id_play")) %>%
     dplyr::left_join(
-      pred_df %>% 
+      pred_df %>% select(-.data$play_type) %>% 
         dplyr::select(.data$id_play, .data$drive_id, .data$game_id, 
                       .data$No_Score_before, .data$FG_before,
                       .data$Opp_FG_before, .data$Opp_Safety_before,
@@ -306,9 +306,6 @@ create_epa <- function(play_df,
                            is.na(.data$ep_before), .data$lag_ep_after, .data$ep_before),
       ep_before = ifelse(.data$play_type == "Timeout" & is.na(.data$ep_before), .data$lag_ep_after2, .data$ep_before)) 
   
-
-
-  
   # 6) Prep WPA variables, drop transformed columns-----
   pred_df = pred_df %>%
     dplyr::mutate(
@@ -320,18 +317,20 @@ create_epa <- function(play_df,
       def_EPA = -1*.data$EPA,
       home_EPA = ifelse(.data$pos_team == .data$home, .data$EPA, -1*.data$EPA),
       away_EPA = -1*.data$home_EPA,
-      home_EPA_rush = ifelse(.data$pos_team == .data$home & .data$rush_vec == 1, .data$EPA, 
-                             ifelse(.data$pos_team == .data$away & .data$rush_vec == 1, -1*.data$EPA, NA)),
-      away_EPA_rush = -1*.data$home_EPA_rush,
-      home_EPA_pass = ifelse(.data$pos_team == .data$home & .data$pass_vec == 1, .data$EPA,
-                             ifelse(.data$pos_team == .data$away & .data$pass_vec == 1, -1*.data$EPA, NA)),
-      away_EPA_pass = -1*.data$home_EPA_pass,
+      home_EPA_rush = ifelse(.data$pos_team == .data$home & .data$rush == 1, .data$EPA, NA_real_),
+      away_EPA_rush = ifelse(.data$pos_team == .data$away & .data$rush == 1, .data$EPA, NA_real_),
+      home_EPA_pass = ifelse(.data$pos_team == .data$home & .data$pass == 1, .data$EPA, NA_real_),
+      away_EPA_pass = ifelse(.data$pos_team == .data$away & .data$pass == 1, .data$EPA, NA_real_),
       total_home_EPA = cumsum(.data$home_EPA),
       total_away_EPA = cumsum(.data$away_EPA),
-      net_home_EPA_rush = cumsum(.data$home_EPA_rush),
-      net_home_EPA_pass = cumsum(.data$home_EPA_pass),
-      net_away_EPA_rush = cumsum(.data$away_EPA_rush),
-      net_away_EPA_pass = cumsum(.data$away_EPA_pass),
+      total_home_EPA_rush = cumsum(.data$home_EPA_rush),
+      total_away_EPA_rush = cumsum(.data$away_EPA_rush),
+      total_home_EPA_pass = cumsum(.data$home_EPA_pass),
+      total_away_EPA_pass = cumsum(.data$away_EPA_pass),
+      net_home_EPA_rush = cumsum(.data$home_EPA_rush) - cumsum(.data$away_EPA_rush),
+      net_home_EPA_pass = cumsum(.data$home_EPA_pass) - cumsum(.data$away_EPA_pass),
+      net_away_EPA_rush = cumsum(.data$away_EPA_rush) - cumsum(.data$home_EPA_rush),
+      net_away_EPA_pass = cumsum(.data$away_EPA_pass) - cumsum(.data$home_EPA_pass),
       ExpScoreDiff = .data$pos_score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
       ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>% 
@@ -399,8 +398,6 @@ create_epa <- function(play_df,
                   .data$offense_score,
                   .data$defense_score,
                   dplyr::everything()) %>%
-    dplyr::rename(pass = .data$pass_vec,
-                  rush = .data$rush_vec) %>%
     dplyr::mutate(
       middle_8 = ifelse(.data$adj_TimeSecsRem >= 1560 & .data$adj_TimeSecsRem <= 2040, TRUE, FALSE),
       rz_play = ifelse((.data$yards_to_goal <= 20), 1, 0),
