@@ -2,6 +2,7 @@
 
 export(add_betting_cols)
 export(add_play_counts)
+export(add_player_cols)
 export(add_yardage)
 export(cfb_betting_lines)
 export(cfb_coaches)
