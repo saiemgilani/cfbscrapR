@@ -38,7 +38,8 @@ create_epa <- function(play_df,
 
   clean_pbp <- play_df %>%
     dplyr::mutate(down = as.numeric(.data$down)) %>% 
-    filter(.data$down>0)
+    dplyr::filter(.data$down>0) %>% 
+    dplyr::filter(.data$period<=4)
   
   ## 1) pred_df and pred_df_after selection and prediction ----
   weights = c(0, 3, -3, -2, -7, 2, 7)
@@ -55,7 +56,8 @@ create_epa <- function(play_df,
                   .data$log_ydstogo,
                   .data$Under_two, 
                   .data$Goal_To_Go,
-                  .data$pos_score_diff_start) %>%
+                  .data$pos_score_diff_start) %>% 
+    dplyr::filter(.data$down>0) %>%
     dplyr::mutate(down = as.factor(.data$down))
   
   # get after play expected points model variables
@@ -96,6 +98,7 @@ create_epa <- function(play_df,
   # append `_before` to next score type probability columns
   colnames(ep_start_update)[1:7] <- paste0(colnames(ep_start_update)[1:7],"_before")
   pred_df <- cbind(pred_df, ep_start_update)
+  pred_df$ep_before = NA_real_
   # ep_before - calculate pre-play expected points
   pred_df$ep_before = apply(ep_start_update[1:7], 1, function(row) {
     sum(row * weights)
@@ -108,6 +111,7 @@ create_epa <- function(play_df,
   # append `_after` to next score type probability columns
   colnames(ep_end) <- paste0(colnames(ep_end),"_after")
   pred_df_after <- cbind(pred_df_after, ep_end)
+  pred_df_after$ep_after = NA_real_
   # ep_after - calculate post-play expected points
   pred_df_after$ep_after = apply(ep_end, 1, function(row) {
     sum(row * weights)
@@ -175,6 +179,7 @@ create_epa <- function(play_df,
     "Blocked Punt",
     "Blocked Punt Touchdown",
     "Blocked Punt (Safety)",
+    "Punt (Safety)",
     "Punt",
     "Punt Touchdown",
     "Punt Team Fumble Recovery",
@@ -199,6 +204,7 @@ create_epa <- function(play_df,
     "Blocked Field Goal Touchdown",
     "Missed Field Goal Return Touchdown"
   )
+  
   ## 5) Kickoff plays -----
   ## Calculate EP before at kickoff as what happens if it was a touchback
   ## 25 yard line in 2012 and onwards
@@ -313,6 +319,10 @@ create_epa <- function(play_df,
       turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
       lag_defense_score_play = dplyr::lag(.data$defense_score_play, 1),
       play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$lag_defense_score_play != 1, 1, 0),
+      EPA = NA_real_,
+      def_EPA = NA_real_,
+      home_EPA = NA_real_,
+      away_EPA = NA_real_,
       EPA = .data$ep_after - .data$ep_before,
       def_EPA = -1*.data$EPA,
       home_EPA = ifelse(.data$pos_team == .data$home, .data$EPA, -1*.data$EPA),
@@ -444,8 +454,7 @@ epa_fg_probs <- function(dat, current_probs, ep_model = cfbscrapR:::ep_model, fg
     end_game_ind = which(dat$TimeSecsRem <= 0)
     current_probs[end_game_ind, ] <- 0
     
-    make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat,
-                                      type = "response")
+    make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat, type = "response")
     
     missed_fg_dat<- fg_dat %>%
       # Subtract 5.065401 from TimeSecs since average time for FG att:
