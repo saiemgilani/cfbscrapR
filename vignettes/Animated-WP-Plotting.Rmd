@@ -21,6 +21,7 @@ library(tidyverse)
 library(animation)
 library(glue)
 library(ggimage)
+library(zoo)
 ```
 
 ## cfbscrapR
@@ -31,8 +32,24 @@ We'll start by picking a team, a week, and a year and using ```cfbscrapR```'s fu
 team <- "Utah"
 week <- 1
 year <- 2019
+
+interp_TimeSecsRem <- function(pbp) {
+  temp <- pbp %>% 
+    mutate(TimeSecsRem = ifelse(TimeSecsRem == lag(TimeSecsRem), NA, TimeSecsRem)) %>%
+    select(TimeSecsRem)
+  ind <- which(temp$TimeSecsRem == 1800)
+  temp$TimeSecsRem[1] <- 1800
+  temp$TimeSecsRem[nrow(temp)] <- 0
+  temp$TimeSecsRem[ind-1] <- 0
+  pbp<- pbp %>% 
+    mutate(TimeSecsRem = round(zoo::na.approx(temp$TimeSecsRem))) %>% 
+    mutate(clock.minutes = floor(TimeSecsRem/60),clock.seconds = TimeSecsRem %% 60)
+  return(pbp)
+}
 game_pbp <- cfbscrapR::cfb_pbp_data(year, team = team, week = week, epa_wpa = TRUE) %>% 
-  filter(down > 0)
+  filter(down > 0) %>%
+  interp_TimeSecsRem() 
+  
 game <- cfbscrapR::cfb_game_info(year, team = team, week = week)
 ```
 
@@ -53,170 +70,10 @@ game <- game %>%
   rename(home_score = home_points, away_score = away_points)
 ```
 
-To build the labels, we're going to use a custom function to pull the player names out of the play text. [Saiem Gilani](https://twitter.com/SaiemGilani) wrote the bulk of the regular expressions here to get the names. They may not catch all player names, especially for sacks, kick returns, and punt returns.
+To build the labels, we're going to use a custom function to pull the player names out of the play text. [Saiem Gilani](https://twitter.com/SaiemGilani) wrote the bulk of the regular expressions here to get the names. EDIT: The improved version of this is now included in the ```cfb_pbp_data()``` function by default as of version 1.0.3.
 
-```{r add_player_cols, message=FALSE, warning=FALSE}
-add_player_cols <- function(pbp) {
-  ## Extract player names
-  # RB names 
-  pbp <- pbp %>%
-    mutate(
-      rush_player = ifelse(rush == 1, 
-                           str_extract(play_text, "(.{0,25} )run |(.{0,25} )\\d{0,2} Yd Run"), NA),
-      rush_player = str_remove(rush_player, " run | \\d+ Yd Run"))
-  # QB names 
-  pbp <- pbp %>%
-    mutate(
-      pass_player = 
-        ifelse(pass == 1 & play_type != "Passing Touchdown", 
-          str_extract(play_text, 
-            "pass from (.*?) \\(|(.{0,30} )pass |(.+) sacked by|(.+) sacked for|(.{0,30} )incomplete "), NA),
-      pass_player = str_remove(pass_player, "pass | sacked by| sacked for| incomplete"),
-      pass_player = if_else(play_type == "Passing Touchdown", 
-                            str_extract(play_text, "pass from(.+)"), pass_player),
-      pass_player = str_remove(pass_player, "pass from "), 
-      pass_player = str_remove(pass_player, "\\(.+\\)"),
-      pass_player = str_remove(pass_player, " \\,"),
-      pass_player = ifelse(play_type == "Passing Touchdown" & is.na(pass_player),
-                           str_extract(play_text, "(.+)pass complete to"), pass_player),
-      pass_player = str_remove(pass_player, " pass complete to(.+)"),
-      pass_player = str_remove(pass_player, " pass complete to"),
-      pass_player = ifelse(play_type == "Passing Touchdown" & is.na(pass_player),
-                           str_extract(play_text, "(.+)pass,to"), pass_player),
-      pass_player = str_remove(pass_player, " pass,to(.+)"),
-      pass_player = str_remove(pass_player, " pass,to"))
-  ## Receiver names
-  pbp <- pbp %>%
-    mutate(
-      receiver_player = ifelse(pass == 1, str_extract(play_text, "to (.+)"), NA),
-      receiver_player = if_else(str_detect(play_text, regex("Yd pass", ignore_case = TRUE)),
-                                str_extract(play_text, "(.{0,25} )\\d{0,2} Yd pass"),
-                                receiver_player),
-      receiver_player = if_else(str_detect(play_text, regex("Yd TD pass", ignore_case = TRUE)),
-                                str_extract(play_text, "(.{0,25} )\\d{0,2} Yd TD pass"),
-                                receiver_player),
-      receiver_player = ifelse(play_type == "Sack" |
-                               play_type == "Interception Return" |
-                               play_type == "Interception Return Touchdown" |
-                               (play_type %in% c("Fumble Recovery (Opponent)",
-                                                 "Fumble Recovery (Opponent) Touchdown") &
-                                str_detect(play_text, "sacked")), NA, receiver_player),
-      receiver_player = str_remove(receiver_player, "to "),
-      receiver_player = str_remove(receiver_player, "\\,.+"),
-      receiver_player = str_remove(receiver_player, "for (.+)"),
-      receiver_player = str_remove(receiver_player, " (\\d{1,2})"),
-      receiver_player = str_remove(receiver_player, " Yd pass"),
-      receiver_player = str_remove(receiver_player, " Yd TD pass"),
-      receiver_player = str_remove(receiver_player, "pass complete to"),
-      receiver_player = str_remove(receiver_player, regex("penalty", ignore_case = TRUE)),
-      receiver_player = ifelse(!str_detect(receiver_player, "III"),
-                               str_remove(receiver_player, "[A-Z]{3,}+"), receiver_player),
-      receiver_player = ifelse(!str_detect(receiver_player, "III"),
-                               str_remove(receiver_player, "[A-Z]{3,}+"), receiver_player),
-      receiver_player = ifelse(!str_detect(receiver_player, "III"),
-                               str_remove(receiver_player, "[A-Z]{3,}+"), receiver_player),
-      receiver_player = str_remove(receiver_player, " &"),
-      receiver_player = str_remove(receiver_player, "A&M"),
-      receiver_player = str_remove(receiver_player, " ST"),
-      receiver_player = str_remove(receiver_player, " GA"),
-      receiver_player = str_remove(receiver_player, " UL"),
-      receiver_player = str_remove(receiver_player, " FL"),
-      receiver_player = str_remove(receiver_player, " OH"),
-      receiver_player = str_remove(receiver_player, " NC"),
-      receiver_player = str_remove(receiver_player, " É"),
-      receiver_player = str_remove(receiver_player, " fumbled,"),
-      receiver_player = str_remove(receiver_player, "the (.+)"),
-      receiver_player = str_remove(receiver_player, "pass incomplete to"),
-      receiver_player = str_remove(receiver_player, "(.+)pass incomplete to"),
-      receiver_player = str_remove(receiver_player, "(.+)pass incomplete"),
-      receiver_player = str_remove(receiver_player, "pass incomplete"))
-  
-  ## Extract player names
-  ## Sack player names
-  pbp <- pbp %>%
-    mutate(
-      sack_players = ifelse(pass == 1 & play_type == "Sack", 
-                            str_extract(play_text, "sacked by(.+)"), NA),
-      sack_players = str_remove(sack_players, "for (.+)"),
-      sack_players = str_remove(sack_players, "(.+)by"),
-      sack_player1 = str_remove(sack_players, "and (.+)"),
-      sack_player2 = if_else(str_detect(sack_players, "and (.+)"), 
-                             str_remove(sack_players, " (.+) and"), NULL)) 
-  ## Interception player names
-  pbp <- pbp %>%
-    mutate(
-      interception_player = ifelse(pass == 1 & (play_type == "Interception Return"| 
-                                                play_type == "Interception Return Touchdown"),
-                                   str_extract(play_text, "intercepted (.+)"), NA),
-      interception_player = if_else(str_detect(play_text, regex("Yd pass", ignore_case = TRUE)),
-                                str_extract(play_text, "(.{0,25} )\\d{0,2} Yd pass"),
-                                interception_player),
-      interception_player = if_else(str_detect(play_text, regex("Yd Interception Return", ignore_case = TRUE)),
-                                str_extract(play_text, "(.{0,25} )\\d{0,2} Yd Interception Return"),
-                                interception_player),
-      interception_player = str_remove(interception_player, "return (.+)"),
-      interception_player = str_remove(interception_player, "(.+) intercepted "),
-      interception_player = str_remove(interception_player, "intercepted"),
-      interception_player = str_remove(interception_player, " Yd Interception Return"),
-      interception_player = str_remove(interception_player, " (\\d{1,2})"))
-  
-  ## Punter Name
-  pbp <- pbp %>%
-    mutate(
-      punter_player = ifelse(str_detect(play_type, "Punt"),
-                             str_extract(play_text, ".{0,25} punt"), NA),
-      punter_player = str_remove(punter_player," punt"))
-  
-  ## Punt Returner
-  pbp <- pbp %>%
-    mutate(
-      punt_returner_player = ifelse(str_detect(play_type, "Punt"), 
-                                    str_extract(play_text, ", .{0,25} returns"), NA),
-      punt_returner_player = str_remove(punt_returner_player, ", "),
-      punt_returner_player = str_remove(punt_returner_player, " returns")) 
-  
-  ## Kickoff Specialist Name
-  pbp <- pbp %>%
-    mutate(
-      kickoff_player = ifelse(str_detect(play_type, "Kickoff"),
-                             str_extract(play_text, ".{0,25} kickoff"), NA),
-      kickoff_player = str_remove(kickoff_player," kickoff"))
-  
-  ## Kickoff Returner
-  pbp <- pbp %>% 
-    mutate(
-      kickoff_returner_player = ifelse(str_detect(play_type,"ickoff"),
-                                       str_extract(play_text,", .{0,25} return"), NA),
-      kickoff_returner_player = str_remove(kickoff_returner_player,", "),
-      kickoff_returner_player = str_remove(kickoff_returner_player," return")) 
-  ## Field Goal Kicker
-  pbp <- pbp %>% 
-    mutate(
-      fg_kicker_player = ifelse(str_detect(play_type, "Field Goal"),
-                             str_extract(play_text, regex("(.{0,25} )\\d{0,2} yd field goal| | (.{0,25} )\\d{0,2} yd fg", ignore_case = TRUE)), NA),
-      fg_kicker_player = str_remove(fg_kicker_player, regex(" Yd Field Goal|Yd FG", ignore_case = TRUE)),
-      fg_kicker_player = str_remove(fg_kicker_player," (\\d{1,2})")
-      )
-      
-  
-  pbp <- pbp %>%
-    rename(
-      rusher_player_name = rush_player,
-      receiver_player_name = receiver_player,
-      passer_player_name = pass_player,
-      sack_player_name = sack_player1,
-      sack_player_name2 = sack_player2,
-      interception_player_name = interception_player,
-      punter_player_name = punter_player,
-      fg_kicker_player_name = fg_kicker_player,
-      kickoff_player_name = kickoff_player,
-      kickoff_returner_player_name = kickoff_returner_player,
-      punt_returner_player_name = punt_returner_player)
-  return(pbp)
-}
-```
 
-Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbscrapR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbscrapR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation. Finally, we use our custom ```add_player_cols()``` function to add the player names to our data.
+Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe's animation code. First, we will rename several columns that are similar between ```cfbscrapR``` and ```nflfastR``` to match ```nflfastR```'s column names. Then we need to create a few new columns that ```cfbscrapR``` doesn't have. `game_seconds_remaining` is really just renaming `TimeSecsRem` but correcting for the half. `result` grabs from the game information and is the difference in the home and away score. We create the `time` column to use as the clock on the right side of the animation. 
 
 ```{r rename, message=FALSE, warning=FALSE}
 game_pbp <- game_pbp %>%
@@ -230,8 +87,7 @@ game_pbp <- game_pbp %>%
                            clock.minutes),
          minlabel = ifelse(minlabel < 10, paste0("0", minlabel), minlabel),
          seclabel = ifelse(clock.seconds < 10, paste0("0", clock.seconds), clock.seconds),
-         time = paste0(minlabel, ":", seclabel)) %>%
-  add_player_cols()
+         time = paste0(minlabel, ":", seclabel)) 
 ```
 
 Now that our data matches ```nflfastR```, we can start to copy Lee Sharpe's code and the bulk of the remaining code is his with a few minor adjustments to the plot, the overtime logic, and the labels. First we filter out plays that don't have a win percentage and fix the win probability so that it is always the probability of the away team winning.
@@ -241,11 +97,13 @@ base_wp_data <- game_pbp %>%
   filter(!is.na(wp)) %>% 
   mutate(s = game_seconds_remaining,
          wp = ifelse(posteam == away_team, wp, 1 - wp))
+
 ```
 
 Then we fix the plays without a wpa.
 
 ```{r wpa_fix, message=FALSE, warning=FALSE}
+
 # fix if play other than last is NA
 for (r in (nrow(base_wp_data)-1):1) {
   if (!is.na(base_wp_data$wp[r]) && is.na(base_wp_data$wpa[r]))
@@ -266,7 +124,8 @@ if (is.na(base_wp_data$wpa[nrow(base_wp_data)])) {
 Now we create the labels. This generates labels for any play that had a change in the winning percentage of more than 10 percentage points. We'll also simplify our data frame by only selecting the relevant columns for our plots.
 
 ```{r wp_data, message=FALSE, warning=FALSE}
-abs_wpa <- 0.08
+abs_wpa <- 0.07
+
 wp_data <- base_wp_data %>% 
   mutate(
     helped=ifelse(wpa > 0, posteam, defteam),
@@ -320,6 +179,7 @@ wp_data <- base_wp_data %>%
 This is where the real magic happens. Sharpe's code will iterate over the labels and try to determine valid locations for each one. 
 
 ```{r labels, message=FALSE, warning=FALSE}
+
 # points for plotting
 x_max <- 0
 x_lab_min <- 3600 - 250
@@ -556,15 +416,15 @@ draw_game <- function()
 Finally, we run our ```draw_game()``` function inside of ```saveGIF()```. 
 
 ```{r saveGIF, message=FALSE, warning=FALSE}
- # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
+  # saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")
 ```
 
 ![Result](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/animated_wp.gif?raw=true)
 This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the `ani.width`, `ani.height` and `ani.res` parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.
 
 ```{r saveGIF_wide, message=FALSE, warning=FALSE}
-# saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp_wide.gif",
-#         ani.width = 1000, ani.height = 650, ani.res = 110)
+# saveGIF(draw_game(), interval = 0.1, movie.name = 'animated_wp_wide.gif',
+#         ani.width = 800, ani.height = 500, ani.res = 110)
 ```
 
 ![Result](https://kazink36.github.io/images/animated_wp_ex_wide.gif)
