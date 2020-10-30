@@ -538,7 +538,6 @@ cfb_pbp_data <- function(year,
       "play_type", "play_text",
       "down", "distance", "yards_to_goal", "yards_gained" 
     )
-
     model_columns = c(
       "EPA", "ep_before", "ep_after", 
       "wpa", "wp_before", "wp_after",

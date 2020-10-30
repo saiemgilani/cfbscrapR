@@ -168,7 +168,7 @@ add_player_cols <- function(pbp) {
   ## Interception player name
   pbp <- pbp %>%
     dplyr::mutate(
-      interception_player = stringr::ifelse(.data$pass == 1 & (.data$play_type == "Interception Return"| 
+      interception_player = ifelse(.data$pass == 1 & (.data$play_type == "Interception Return"| 
                                                         .data$play_type == "Interception Return Touchdown"),
                                             stringr::str_extract(.data$play_text, "intercepted (.+)"), NA_character_),
       interception_player = dplyr::if_else(stringr::str_detect(.data$play_text, regex("Yd Interception Return", ignore_case = TRUE)),
