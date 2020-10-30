@@ -29,7 +29,14 @@ prep_epa_df_after(dat)
  \item{new_TimeSecsRem}{.}
  \item{new_Under_two}{.}
  \item{first_by_penalty}{.}
+ \item{lag_first_by_penalty}{.}
+ \item{lag_first_by_penalty2}{.}
  \item{first_by_yards}{.}
+ \item{lag_first_by_yards}{.}
+ \item{lag_first_by_yards2}{.}
+ \item{row}{.}
+ \item{new_series}{.}
+ \item{firstD_by_kickoff}{.}
  \item{firstD_by_poss}{.}
  \item{firstD_by_yards}{.}
  \item{firstD_by_penalty}{.}

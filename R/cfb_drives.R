@@ -44,11 +44,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/drives}
 #' @keywords Drives
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export

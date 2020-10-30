@@ -30,13 +30,13 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/search}
 #' @keywords Recruiting
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom glue "glue"
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export

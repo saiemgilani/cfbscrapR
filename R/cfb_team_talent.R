@@ -12,11 +12,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/talent}
 #' @keywords Team talent
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @export
 #' @examples
 #'

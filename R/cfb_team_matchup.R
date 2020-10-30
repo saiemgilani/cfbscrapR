@@ -21,13 +21,13 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams/matchup}
 #' @keywords Team Matchup
-#' @importFrom attempt "stop_if_any"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom glue "glue"
+#' @importFrom attempt stop_if_any
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
 #' @export
 #' @examples
 #'

@@ -26,15 +26,15 @@
 #'   \item{\code{t}}{character.}
 #' }
 #' @keywords Ratings FPI
-#' @import stringr
-#' @import dplyr
-#' @import tidyr
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom utils "data"
-#' @importFrom utils "URLencode"
-#' @importFrom utils "globalVariables"
-#' @importFrom purrr "pluck"
-#' @importFrom glue "glue"
+#' @importFrom stringr str_remove
+#' @importFrom tidyr unnest_wider everything
+#' @importFrom dplyr as_tibble between select mutate mutate_at row_number
+#' @importFrom jsonlite fromJSON
+#' @importFrom utils data
+#' @importFrom utils URLencode
+#' @importFrom utils globalVariables
+#' @importFrom purrr pluck set_names quietly map
+#' @importFrom glue glue
 #' @export
 #' @examples
 #'
@@ -75,7 +75,7 @@ cfb_ratings_fpi <- function(year = 2019) {
     dplyr::as_tibble() %>%
     dplyr::select(.data$id, .data$nickname, .data$abbreviation, .data$logos, .data$links) %>%
     dplyr::mutate(row_n = dplyr::row_number()) %>%
-    dplyr::mutate(data = map(.data$row_n, get_fpi_data)) %>%
+    dplyr::mutate(data = purrr::map(.data$row_n, get_fpi_data)) %>%
     # lots of name_repair here that I am silencing
     quiet_unnest_wider(data) %>%
     purrr::pluck("result") %>%
@@ -87,8 +87,8 @@ cfb_ratings_fpi <- function(year = 2019) {
     )) %>%
     dplyr::select(-c("logos","links")) %>% 
     dplyr::mutate(year = year, t = ifelse(is.na(t), 0, t)) %>%
-    dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(str_remove(., "%"))/100 ) %>%
-    dplyr::select(.data$year, dplyr::everything()) %>% 
+    dplyr::mutate_at(vars(.data$win_out:.data$win_conf), ~ as.double(stringr::str_remove(., "%"))/100 ) %>%
+    dplyr::select(.data$year, tidyr::everything()) %>% 
     as.data.frame()
 
   return(df)

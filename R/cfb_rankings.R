@@ -20,10 +20,12 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/rankings}
 #' @keywords CFB Rankings
-#' @importFrom jsonlite "fromJSON"
-#' @import dplyr
-#' @import tidyr
-#' @import purrr
+#' @importFrom assertthat assert_that
+#' @importFrom jsonlite fromJSON
+#' @importFrom dplyr arrange as_tibble group_by ungroup rename
+#' @importFrom tidyr unnest
+#' @importFrom purrr map_if
+#' @importFrom glue glue
 #' @export
 #' @examples
 #' 
@@ -69,7 +71,7 @@ cfb_rankings <- function(year, week = NULL, season_type = 'regular'){
         tidyr::unnest(.data$ranks) %>%
         dplyr::group_by(.data$week, .data$poll) %>%
         dplyr::arrange(.data$rank, .by_group=TRUE) %>%
-       dplyr::ungroup() %>% 
+        dplyr::ungroup() %>% 
         dplyr::rename(
           season_type = .data$seasonType,
           first_place_votes = .data$firstPlaceVotes) %>% 

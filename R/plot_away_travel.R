@@ -4,10 +4,10 @@
 #' @param team_name Team Name
 #'
 #' @keywords Plot Travel
-#' @import dplyr
 #' @import ggplot2
-#' @importFrom glue "glue"
-#' @importFrom geosphere "distHaversine"
+#' @importFrom glue glue
+#' @importFrom dplyr select mutate left_join filter if_else
+#' @importFrom geosphere distHaversine
 #' @export
 #' @examples
 #' 
@@ -25,7 +25,7 @@ plot_away_travel <- function(year,team_name) {
   
   team_sched_deets = team_sched %>% 
     dplyr::left_join(venue, by = c("venue_id")) %>%
-    dplyr::mutate(win = if_else(
+    dplyr::mutate(win = dplyr::if_else(
       .data$home_team == team_name,
       .data$home_points > .data$away_points,
       .data$home_points < .data$away_points

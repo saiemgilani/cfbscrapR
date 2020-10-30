@@ -57,13 +57,13 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/stats/season}
 #' @keywords Team Season Stats
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" "URLdecode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode URLdecode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
+#' @importFrom dplyr select mutate rename
+#' @importFrom tidyr pivot_wider
 #' @export
 #' @examples
 #'
@@ -148,7 +148,7 @@ cfb_stats_season_team <- function(year,
       df = jsonlite::fromJSON(full_url) 
       
       # Pivot category columns to get stats for each team game on one row
-      df <- pivot_wider(df,
+      df <- tidyr::pivot_wider(df,
                         names_from = .data$statName,
                         values_from = .data$statValue) %>%
         dplyr::mutate(

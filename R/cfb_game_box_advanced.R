@@ -60,12 +60,12 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/game/box/advanced}
 #' @keywords Game Advanced Box Score 
-#' @importFrom tibble "enframe"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" "URLdecode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom tibble enframe
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode URLdecode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @import purrr

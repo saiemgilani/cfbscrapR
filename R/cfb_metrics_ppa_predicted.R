@@ -10,11 +10,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/predicted}
 #' @keywords Predicted Points 
-#' @importFrom attempt "stop_if_any"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom attempt stop_if_any
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export

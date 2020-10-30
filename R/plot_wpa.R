@@ -10,8 +10,8 @@
 #' @param bet TRUE or FALSE to use initial Win Probability converted from betting lines.
 #'
 #' @keywords Plot WPA
-#' @importFrom assertthat "assert_that"
-#' @import dplyr
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr filter mutate select
 #' @import ggplot2
 #' @import stringr
 #' @import ggrepel

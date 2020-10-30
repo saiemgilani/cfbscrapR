@@ -35,14 +35,14 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/usage}
 #' @keywords Player Usage
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
+#' @importFrom purrr map_if
+#' @importFrom dplyr as_tibble rename
 #' @export
 #' @examples
 #'

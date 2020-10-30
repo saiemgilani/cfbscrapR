@@ -50,9 +50,14 @@ The original `play_df` with the following columns appended/redefined:
 \item{lead_yards_to_goal2}{.}
 \item{lead_down}{.}
 \item{lead_down2}{.}
+\item{lag_distance3}{.}
+\item{lag_distance2}{.}
+\item{lag_distance}{.}
 \item{lead_distance}{.}
 \item{lead_distance2}{.}
 \item{end_of_half}{.}
+\item{lag_play_type3}{.}
+\item{lag_play_type2}{.}
 \item{lag_play_type}{.}
 \item{lead_play_type}{.}
 \item{lead_play_type2}{.}

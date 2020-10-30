@@ -2,10 +2,9 @@
 #'
 #' @param df Play-by-Play data frame (can be retrieved from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})
 #' @keywords Plot PbP
-#' @import dplyr
+#' @importFrom dplyr group_by filter ungroup mutate 
 #' @import ggplot2
-#' @import stringr
-#' @import stringi
+#' @importFrom stringr str_detect
 #' @import ggrepel
 #' @export
 #' @examples
@@ -25,7 +24,7 @@ plot_pbp_sequencing <- function(df) {
     dplyr::group_by(.data$drive_id) %>%
     dplyr::filter(row_number() == (n())) %>%
     dplyr::ungroup() %>%
-   dplyr::mutate(
+    dplyr::mutate(
       y_max = max(.data$play_num) + 5,
       score_text = ifelse(.data$drive_scoring == TRUE, .data$score_text, NA)
     )
@@ -93,32 +92,30 @@ plot_pbp_sequencing <- function(df) {
 #' prep_df_pbp_overview
 #' @param df Play-by-Play data frame (can be retrieved from cfb_pbp_data)
 #' @keywords Plot PBP
-#' @import dplyr
-#' @import ggplot2
-#' @import stringr
-#' @import stringi
+#' @importFrom dplyr case_when arrange mutate lead group_by ungroup n
+#' @importFrom stringr str_detect
 #'
 prep_df_pbp_overview <- function(df) {
   clean_df = df %>% 
     dplyr::arrange(.data$id_play) %>%
     dplyr::mutate(
-      event = case_when(
-        str_detect(.data$play_text, "fumble") ~ "Fumble",
-        str_detect(.data$play_text, "interception") ~ "INT",
-        str_detect(.data$play_text, "sack") ~ "Sack",
+      event = dplyr::case_when(
+        stringr::str_detect(.data$play_text, "fumble") ~ "Fumble",
+        stringr::str_detect(.data$play_text, "interception") ~ "INT",
+        stringr::str_detect(.data$play_text, "sack") ~ "Sack",
         TRUE ~ "nothing"
       ),
       event = ifelse(.data$event == "nothing", NA, .data$event),
-      clean_play_type = case_when(
-        str_detect(.data$play_type, "Pass") ~ "Pass",
-        str_detect(.data$play_type, "Rush") ~ "Rush",
-        str_detect(.data$play_type, "Field Goal") ~ "Kick",
-        str_detect(.data$play_type, "Kickoff") ~ "Kick",
-        str_detect(.data$play_type, "Punt") ~ "Punt",
-        str_detect(.data$play_type, "Penalty") ~ "Penalty",
+      clean_play_type = dplyr::case_when(
+        stringr::str_detect(.data$play_type, "Pass") ~ "Pass",
+        stringr::str_detect(.data$play_type, "Rush") ~ "Rush",
+        stringr::str_detect(.data$play_type, "Field Goal") ~ "Kick",
+        stringr::str_detect(.data$play_type, "Kickoff") ~ "Kick",
+        stringr::str_detect(.data$play_type, "Punt") ~ "Punt",
+        stringr::str_detect(.data$play_type, "Penalty") ~ "Penalty",
         TRUE ~ "Other"
       ),
-      drive_id = cumsum(.data$offense_play != lead(.data$offense_play)),
+      drive_id = cumsum(.data$offense_play != dplyr::lead(.data$offense_play)),
       score_text = paste0(.data$offense_score, "-", .data$defense_score)) %>% 
     dplyr::group_by(.data$drive_id) %>%  
     dplyr::arrange(.data$id_play) %>%

@@ -1,14 +1,14 @@
 #' Utilities and Helpers for package
 #' @keywords Internal
-#' @importFrom attempt "stop_if_not"
-#' @importFrom curl "has_internet"
+#' @importFrom attempt stop_if_not
+#' @importFrom curl has_internet
 #'
 check_internet <- function(){
   stop_if_not(.x = has_internet(), msg = "Please check your internet connexion")
 }
 
 #'
-#' @importFrom httr "status_code"
+#' @importFrom httr status_code
 #'
 
 check_status <- function(res){

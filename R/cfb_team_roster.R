@@ -21,11 +21,12 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/roster}
 #' @keywords Team Roster
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom dplyr rename mutate
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @export
 #' @examples
 #' 

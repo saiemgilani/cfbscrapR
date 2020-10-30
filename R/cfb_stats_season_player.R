@@ -77,14 +77,14 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/stats/player/season}
 #' @keywords Player Season Stats
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" "URLdecode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode URLdecode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
+#' @importFrom dplyr mutate mutate_at rename select
+#' @importFrom tidyr pivot_wider everything
 #' @export
 #' @examples
 #'
@@ -219,7 +219,7 @@ cfb_stats_season_player <- function(year,
       df = jsonlite::fromJSON(full_url) %>%
         dplyr::mutate(
           statType = paste0(.data$category,'_',.data$statType)) %>%
-        pivot_wider(names_from = .data$statType,
+        tidyr::pivot_wider(names_from = .data$statType,
                            values_from = .data$stat) %>% 
         dplyr::rename(athlete_id = .data$playerId) %>% 
         janitor::clean_names()
@@ -227,7 +227,7 @@ cfb_stats_season_player <- function(year,
       df[cols[!(cols %in% colnames(df))]] = NA
       
       df <- df %>% 
-        dplyr::select(cols, dplyr::everything()) %>% 
+        dplyr::select(cols, tidyr::everything()) %>% 
         dplyr::mutate_at(numeric_cols, as.numeric) %>% 
         as.data.frame()
       

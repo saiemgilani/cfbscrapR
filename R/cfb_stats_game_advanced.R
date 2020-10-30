@@ -72,12 +72,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/stats/game/advanced}
 #' @keywords Game Advanced Stats
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" "URLdecode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode URLdecode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @export
 #' @examples
 #'

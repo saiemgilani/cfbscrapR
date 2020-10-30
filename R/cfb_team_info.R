@@ -26,11 +26,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams}
 #' @keywords Teams
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @import dplyr 
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom dplyr rename 
 #' @export
 #' @examples
 #'

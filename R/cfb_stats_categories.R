@@ -9,10 +9,10 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/stats/categories}
 #' @keywords Stats Categories
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom glue "glue"
-#' @import dplyr
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom glue glue
+#' @importFrom dplyr rename
 #' @export
 #' @examples
 #'

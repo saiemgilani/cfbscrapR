@@ -18,13 +18,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/srs}
 #' @keywords SRS
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom assertthat "assert_that"
-#' @importFrom utils "URLencode"
-#' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom assertthat assert_that
+#' @importFrom utils URLencode
+#' @importFrom glue glue
 #' @export
 #' @examples
 #'

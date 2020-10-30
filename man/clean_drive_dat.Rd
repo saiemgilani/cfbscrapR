@@ -34,6 +34,8 @@ The original `play_df` with the following columns appended/redefined:
 \item{drive_scoring}{.}
 \item{drive_play}{.}
 \item{drive_play_number}{.}
+\item{drive_event}{.}
+\item{drive_event_number}{.}
 \item{new_id}{.}
 \item{log_ydstogo}{.}
 \item{down}{.}

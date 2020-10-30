@@ -27,12 +27,12 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/games/media}
 #' @keywords Game Info
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom glue "glue"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export

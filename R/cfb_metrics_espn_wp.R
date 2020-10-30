@@ -15,13 +15,13 @@
 #'   \item{\code{away_win_percentage}}{double.}
 #' }
 #' @keywords Win Probability Chart Data
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom attempt "stop_if_all"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" "URLdecode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom stringr "str_sub" "str_length"
+#' @importFrom jsonlite fromJSON
+#' @importFrom attempt stop_if_all
+#' @importFrom httr GET
+#' @importFrom utils URLencode URLdecode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom stringr str_sub str_length
 #' @import dplyr
 #' @export
 #' @examples
