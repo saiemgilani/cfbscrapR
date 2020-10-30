@@ -28,10 +28,10 @@
 #' \item{away_wp_after}{}
 #' }
 #' @keywords internal
-#' @importFrom dplyr "mutate" "lag" "lead" "filter" "case_when" "arrange"
-#' @importFrom tidyr "fill"
-#' @importFrom mgcv "bam"
-#' @importFrom purrr "map_dfr"
+#' @importFrom dplyr mutate lag lead filter case_when arrange
+#' @importFrom tidyr fill
+#' @importFrom mgcv bam
+#' @importFrom purrr map_dfr
 #' @export
 #'
 
@@ -142,8 +142,7 @@ create_wpa_naive <- function(df, wp_model = cfbscrapR:::wp_model) {
 #' Extracts raw game by game data.
 #' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
 #' @keywords internal
-#' @importFrom dplyr "mutate" "lead" 
-#' @import tidyr
+#' @importFrom dplyr mutate lead if_else
 #' @export
 #' 
 wpa_calcs_naive <- function(df) {
@@ -151,12 +150,12 @@ wpa_calcs_naive <- function(df) {
   df2 = df %>% 
    dplyr::mutate(
       def_wp_before = 1 - .data$wp_before,
-      home_wp_before = if_else(.data$pos_team == .data$home,
-                        .data$wp_before, 
-                        .data$def_wp_before),
-      away_wp_before = if_else(.data$pos_team != .data$home,
-                        .data$wp_before, 
-                        .data$def_wp_before)) %>%
+      home_wp_before = dplyr::if_else(.data$pos_team == .data$home,
+                                      .data$wp_before, 
+                                      .data$def_wp_before),
+      away_wp_before = dplyr::if_else(.data$pos_team != .data$home,
+                                      .data$wp_before, 
+                                      .data$def_wp_before)) %>%
    dplyr::mutate(
      lead_wp_before = dplyr::lead(.data$wp_before, 1),
      lead_wp_before2 = dplyr::lead(.data$wp_before, 2),
