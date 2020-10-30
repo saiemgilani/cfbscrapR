@@ -14,12 +14,12 @@
 #'   \item{6. \code{wpa_prep}}{Prep variables for WPA.}
 #' }
 #' @keywords internal
-#' @importFrom stats "na.omit"
-#' @importFrom stats "predict"
-#' @importFrom nnet "multinom"
-#' @importFrom rlang ".data"
-#' @importFrom dplyr "mutate" "left_join" "select" "rename" "filter" "group_by" "arrange" "ungroup" "lead" "lag"
-#' @importFrom stringr "str_detect"
+#' @importFrom stats na.omit
+#' @importFrom stats predict
+#' @importFrom nnet multinom
+#' @importFrom rlang .data
+#' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup lead lag
+#' @importFrom stringr str_detect
 #' @import tidyr
 #' @export
 #'
@@ -261,7 +261,7 @@ create_epa <- function(play_df,
       lag_ep_before = dplyr::lag(.data$ep_before, 1),
       lead_ep_before = dplyr::lead(.data$ep_before, 1),
       lead_ep_before2 = dplyr::lead(.data$ep_before, 2)) %>% 
-    ungroup()
+    dplyr::ungroup()
   
   # insert after lags here
   pred_df_after = pred_df_after %>% 
@@ -273,7 +273,7 @@ create_epa <- function(play_df,
       lag_ep_after3 = dplyr::lag(.data$ep_after, 3),
       lead_ep_after = dplyr::lead(.data$ep_after, 1),
       lead_ep_after2 = dplyr::lead(.data$ep_after, 2)) %>% 
-    ungroup()
+    dplyr::ungroup()
   
   
   ## 4) Join ep_before calcs df, pred_df, with ep_after calcs df, pred_df_after. ----
@@ -323,7 +323,7 @@ create_epa <- function(play_df,
       def_EPA = NA_real_,
       home_EPA = NA_real_,
       away_EPA = NA_real_,
-      EPA = .data$ep_after - .data$ep_before,
+      EPA = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1, -1*.data$ep_before, .data$ep_after - .data$ep_before),
       def_EPA = -1*.data$EPA,
       home_EPA = ifelse(.data$pos_team == .data$home, .data$EPA, -1*.data$EPA),
       away_EPA = -1*.data$home_EPA,
@@ -331,16 +331,24 @@ create_epa <- function(play_df,
       away_EPA_rush = ifelse(.data$pos_team == .data$away & .data$rush == 1, .data$EPA, NA_real_),
       home_EPA_pass = ifelse(.data$pos_team == .data$home & .data$pass == 1, .data$EPA, NA_real_),
       away_EPA_pass = ifelse(.data$pos_team == .data$away & .data$pass == 1, .data$EPA, NA_real_),
-      total_home_EPA = cumsum(.data$home_EPA),
-      total_away_EPA = cumsum(.data$away_EPA),
-      total_home_EPA_rush = cumsum(.data$home_EPA_rush),
-      total_away_EPA_rush = cumsum(.data$away_EPA_rush),
-      total_home_EPA_pass = cumsum(.data$home_EPA_pass),
-      total_away_EPA_pass = cumsum(.data$away_EPA_pass),
-      net_home_EPA_rush = cumsum(.data$home_EPA_rush) - cumsum(.data$away_EPA_rush),
-      net_home_EPA_pass = cumsum(.data$home_EPA_pass) - cumsum(.data$away_EPA_pass),
-      net_away_EPA_rush = cumsum(.data$away_EPA_rush) - cumsum(.data$home_EPA_rush),
-      net_away_EPA_pass = cumsum(.data$away_EPA_pass) - cumsum(.data$home_EPA_pass),
+      total_home_EPA = cumsum(ifelse(is.na(.data$home_EPA), 0, .data$home_EPA)),
+      total_away_EPA = cumsum(ifelse(is.na(.data$away_EPA), 0, .data$away_EPA)),
+      total_home_EPA_rush = cumsum(ifelse(is.na(.data$home_EPA_rush), 0, .data$home_EPA_rush)),
+      total_away_EPA_rush = cumsum(ifelse(is.na(.data$away_EPA_rush), 0, .data$away_EPA_rush)),
+      total_home_EPA_pass = cumsum(ifelse(is.na(.data$home_EPA_pass), 0, .data$home_EPA_pass)),
+      total_away_EPA_pass = cumsum(ifelse(is.na(.data$away_EPA_pass), 0, .data$away_EPA_pass)),
+      net_home_EPA = cumsum(ifelse(is.na(.data$home_EPA), 0, .data$home_EPA)) - 
+        cumsum(ifelse(is.na(.data$away_EPA),0,.data$away_EPA)),
+      net_away_EPA = cumsum(ifelse(is.na(.data$away_EPA), 0, .data$away_EPA)) - 
+        cumsum(ifelse(is.na(.data$home_EPA), 0, .data$home_EPA)),
+      net_home_EPA_rush = cumsum(ifelse(is.na(.data$home_EPA_rush), 0, .data$home_EPA_rush)) - 
+                          cumsum(ifelse(is.na(.data$away_EPA_rush), 0, .data$away_EPA_rush)),
+      net_home_EPA_pass = cumsum(ifelse(is.na(.data$home_EPA_pass), 0, .data$home_EPA_pass)) - 
+        cumsum(ifelse(is.na(.data$away_EPA_pass), 0, .data$away_EPA_pass)),
+      net_away_EPA_rush = cumsum(ifelse(is.na(.data$away_EPA_rush),0,.data$away_EPA_rush)) - 
+        cumsum(ifelse(is.na(.data$home_EPA_rush), 0, .data$home_EPA_rush)),
+      net_away_EPA_pass = cumsum(ifelse(is.na(.data$away_EPA_pass),0,.data$away_EPA_pass)) - 
+        cumsum(ifelse(is.na(.data$home_EPA_pass), 0, .data$home_EPA_pass)),
       ExpScoreDiff = .data$pos_score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
       ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>% 
@@ -435,10 +443,9 @@ create_epa <- function(play_df,
 #' @param fg_mod (\emph{model}, default `cfbscrapR:::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #'
 #' @keywords internal
-#' @importFrom mgcv "predict.bam"
-#' @importFrom stringr "str_detect"
-#' @importFrom dplyr "mutate"
-#' @import tidyr
+#' @importFrom mgcv predict.bam
+#' @importFrom stringr str_detect
+#' @importFrom dplyr mutate
 #' @export
 #'
 #'
