@@ -1,7 +1,7 @@
 #' Select the columns needed for EP predictions
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
-#' @importFrom dplyr "select" 
-#' @importFrom tidyr "everything"
+#' @importFrom dplyr select 
+#' @importFrom tidyr everything
 ep_model_select <- function(pbp) {
   
   pbp <- pbp %>%
@@ -23,8 +23,8 @@ ep_model_select <- function(pbp) {
 
 #' Select the columns needed for EP predictions
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
-#' @importFrom dplyr "select" 
-#' @importFrom tidyr "everything"
+#' @importFrom dplyr select 
+#' @importFrom tidyr everything
 ep_model_select_check <- function(pbp) {
   
   pbp <- pbp %>%
@@ -67,8 +67,8 @@ ep_model_select_check <- function(pbp) {
 
 #' Select the columns needed for WP predictions
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
-#' @importFrom dplyr "select" 
-#' @importFrom tidyr "everything"
+#' @importFrom dplyr select 
+#' @importFrom tidyr everything
 
 wp_model_select <- function(pbp) {
   
@@ -108,8 +108,8 @@ wp_model_select <- function(pbp) {
 
 #' Select the columns needed for WP predictions
 #' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
-#' @importFrom dplyr "select"
-#' @importFrom tidyr "everything"
+#' @importFrom dplyr select
+#' @importFrom tidyr everything
 wp_model_select_check <- function(pbp) {
   
   pbp <- pbp %>%
