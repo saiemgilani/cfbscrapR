@@ -7,9 +7,10 @@
 #' @param wp_model (\emph{model} default cfbscrapR:wp_model): Win Probability (WP) Model
 #'
 #' @keywords internal
-#' @import dplyr
-#' @import tidyr
-#' @importFrom mgcv "bam"
+#' @importFrom dplyr mutate lag lead filter case_when arrange
+#' @importFrom tidyr fill
+#' @importFrom mgcv bam
+#' @importFrom purrr map_dfr
 #' @export
 #'
 
