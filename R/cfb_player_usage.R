@@ -35,14 +35,14 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/usage}
 #' @keywords Player Usage
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
+#' @importFrom purrr map_if
+#' @importFrom dplyr as_tibble rename
 #' @export
 #' @examples
 #'
@@ -72,8 +72,12 @@ cfb_player_usage <- function(year = 2019,
                 msg = 'Enter valid year as integer in 4 digit format (YYYY)\n Min: 2000, Max: 2020')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(conference)){
     # # Check conference parameter in conference abbreviations, if not NULL

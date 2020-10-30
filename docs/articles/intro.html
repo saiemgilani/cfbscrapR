@@ -222,7 +222,7 @@
 <a href="#clean-the-data" class="anchor"></a>Clean the Data</h2>
 <p>Before we break down what we did to create the pbp object, we need to discuss two things:</p>
 <ol style="list-style-type: decimal">
-<li><p>Filtering on conditions: We will use the double equality (==) to identify conditions we need to meet for our filter function. We can also use !=, “not equals”, to select values on that condition (i.e. offense_play != “TCU” would remove TCU from the data), and we can use the standard greater than &gt; and less than &lt;. You might have to stop and think a bit before you write your filter function, so just make sure you know what it is you are actually selecting.</p></li>
+<li><p>Filtering on conditions: We will use the double equality (==) to identify conditions we need to meet for our filter function. We can also use !=, “not equals”, to select values on that condition (i.e. offense_play != “TCU” would remove TCU from the data), and we can use the standard greater than &gt; and less than &lt;. You might have to stop and think a bit before you write your filter function, so just make sure you know what it is you are actually selecting.</p></li>
 <li><p>the <em>pipe</em>: %&gt;% is the magrittr pipe. The pipe is extremely handy. Instead of us having to type a function and select the data we want to apply that function to over and over again, the pipe tells R what to do in the structure of : “get this thing and then do this to it.”</p></li>
 </ol>
 <p>I’m naming our dataset of play by play data filtered “pbp”. I don’t like to overwrite my data once I’ve imported it, so I’m going to give it a new name. That way, if I mess something up along the way, I can go back to the start and clean up without too much hassle.</p>

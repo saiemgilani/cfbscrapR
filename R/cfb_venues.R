@@ -21,9 +21,9 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/venues}
 #' @keywords Venues
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @import dplyr
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom dplyr rename
 #' @export
 #' @examples
 #'

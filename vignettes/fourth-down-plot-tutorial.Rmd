@@ -21,15 +21,14 @@ library(cfbscrapR)
 Originally, I wrote this code for years from 2014-2019 but for the sake of runtime, we'll just do last season (feel free to alter the code to include past years). This code might look a little familiar if you did Parker's tutorial, it'll take a while to run.
 ```{r, warning = FALSE}
 pbp19 <- data.frame()
-for (wk in 1:15)
-{
-  data <- cfb_pbp_data(year = 2019, season_type = "both", week = wk, 
-                       epa_wpa = TRUE) %>%
-  mutate(week = wk,
-         year = 2019)
-  df <- data.frame(data)
-  pbp19 <- bind_rows(pbp19, df)
-}
+seasons <- 2019
+pbp19 <- purrr::map_df(seasons, function(x) {
+  readRDS(
+    url(
+      glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbscrapR-data/master/pbp_players_pos_{x}.RDS")
+    )
+  )
+})
 
 ```
 

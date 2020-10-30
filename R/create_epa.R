@@ -2,92 +2,123 @@
 #' Adds Expected Points calculations to Play-by-Play data.frame
 #'
 #' @param clean_pbp_dat (\emph{data.frame} required): Clean PBP as input from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})
-#' @param ep_model (\emph{model} default cfbscrapR:ep_model): Expected Points (EP) Model
-#' @param fg_model (\emph{model} default cfbscrapR:fg_model): Field Goal (FG) Model
+#' @param ep_model (\emph{model} default cfbscrapR:::ep_model): Expected Points (EP) Model
+#' @param fg_model (\emph{model} default cfbscrapR:::fg_model): Field Goal (FG) Model
+#' @details Code Description
+#' \describe{
+#'   \item{1. \code{pred_df}}{Use select before play model variables -> Make predictions.}
+#'   \item{2. \code{epa_fg_probs}}{Update expected points predictions from before variables with FG make/miss probability weighted adjustment.}
+#'   \item{3. \code{pred_df_after}}{Use select after play model variables -> Make predictions .}
+#'   \item{4. \code{join_ep}}{Join `ep_before` calcs `pred_df` with ep_after calcs `pred_df_after` on c("game_id","drive_id","new_id").}
+#'   \item{5. \code{kickoffs}}{Calculate ep_before for kickoffs as if the pre-play assumption is a touchback.}
+#'   \item{6. \code{wpa_prep}}{Prep variables for WPA.}
+#' }
 #' @keywords internal
-#' @importFrom stats "na.omit"
-#' @importFrom stats "predict"
-#' @importFrom nnet "multinom"
-#' @importFrom rlang ".data"
-#' @import stringr
-#' @import dplyr
+#' @importFrom stats na.omit
+#' @importFrom stats predict
+#' @importFrom nnet multinom
+#' @importFrom rlang .data
+#' @importFrom dplyr mutate left_join select rename filter group_by arrange ungroup lead lag
+#' @importFrom stringr str_detect
 #' @import tidyr
 #' @export
 #'
 
-create_epa <- function(clean_pbp_dat,
+create_epa <- function(play_df,
                        ep_model=cfbscrapR:::ep_model,
                        fg_model=cfbscrapR:::fg_model) {
   #----------------- Code Description--------
-  ## 1) prep_epa_df_before: Use map_dfr to prep before play model variables -> Make predictions 
-  ## 2) prep_epa_df_after: Use map_dfr to prep after play model variables -> Make predictions
-  ## 3) 
+  ## 1) pred_df: Use select before play model variables -> Make predictions 
+  ## 2) epa_fg_probs: Update expected points predictions from before variables with FG make/miss probability weighted adjustment
+  ## 3) pred_df_after: Use select after play model variables -> Make predictions 
+  ## 4) Join ep_before calcs df with ep_after calcs df on c("game_id","drive_id","new_id")
+  ## 5) Calculate ep_before for kickoffs as if the pre-play assumption is a touchback
+  ## 6) Prep variables for WPA
   ##
-  ##
-  ##
-  ##
-  ##
-  # if you are trying to deal with multiple games at once
-  # then you have to get the after individually.
-  g_ids = sort(unique(clean_pbp_dat$game_id))
-  clean_pbp_dat = purrr::map_dfr(g_ids,
-                                 function(x) {
-                                   clean_pbp_dat %>%
-                                     dplyr::filter(.data$game_id == x) %>%
-                                     prep_epa_df_before()
-                                 })
+
+  clean_pbp <- play_df %>%
+    dplyr::mutate(down = as.numeric(.data$down)) %>% 
+    dplyr::filter(.data$down>0) %>% 
+    dplyr::filter(.data$period<=4)
   
-  pred_df = clean_pbp_dat %>% 
-    dplyr::select(.data$new_id, .data$drive_id, .data$game_id,
+  ## 1) pred_df and pred_df_after selection and prediction ----
+  weights = c(0, 3, -3, -2, -7, 2, 7)
+  # get before play expected points model variables
+  pred_df = clean_pbp %>% 
+    dplyr::select(.data$id_play, 
+                  .data$drive_id, 
+                  .data$game_id,
+                  .data$play_type,
                   .data$TimeSecsRem,
                   .data$down, 
                   .data$distance,
                   .data$yards_to_goal, 
                   .data$log_ydstogo,
                   .data$Under_two, 
-                  .data$Goal_To_Go) %>%
+                  .data$Goal_To_Go,
+                  .data$pos_score_diff_start) %>% 
+    dplyr::filter(.data$down>0) %>%
     dplyr::mutate(down = as.factor(.data$down))
   
-  # ep_start - make predictions on pred_df_before (the output from `prep_epa_df_before()`)
+  # get after play expected points model variables
+  pred_df_after = clean_pbp %>% 
+    dplyr::select(.data$id_play, 
+                  .data$drive_id, 
+                  .data$game_id,
+                  .data$play_type,
+                  .data$turnover,
+                  .data$new_TimeSecsRem,
+                  .data$new_down, 
+                  .data$new_distance,
+                  .data$new_yardline, 
+                  .data$new_log_ydstogo,
+                  .data$new_Under_two, 
+                  .data$new_Goal_To_Go,
+                  .data$new_pos_score_diff_start) %>%
+    dplyr::mutate(new_down = as.numeric(.data$new_down)) %>% 
+    dplyr::filter(.data$new_down > 0) %>% 
+    dplyr::mutate(new_down = as.factor(.data$new_down))
+  # rename column names for post play variables to expected points model variables
+  colnames(pred_df_after)[6:13] = gsub("new_", "", colnames(pred_df_after)[6:13])
+  # rename yardline to yards_to_goal
+  pred_df_after = pred_df_after %>% 
+    dplyr::rename("yards_to_goal"="yardline")
+  
+  # ep_start - make predictions on pred_df
   ep_start = as.data.frame(predict(ep_model, pred_df, type = 'prob'))
+  # ep_start - rename next score type probability columns to ep_model$lev
   colnames(ep_start) <- ep_model$lev
-  ep_start_update = epa_fg_probs(dat = clean_pbp_dat,
+  
+  ## 2) epa_fg_probs FG model and missed FG weighted adjustment ----
+  # ep_start_update - return FG model predictions and missed FG weighted adjustment
+  ep_start_update = epa_fg_probs(dat = clean_pbp,
                                  current_probs = ep_start,
+                                 ep_model = ep_model,
                                  fg_mod = fg_model)
-  weights = c(0, 3, -3, -2, -7, 2, 7)
-  pred_df$ep_before = apply(ep_start_update, 1, function(row) {
+  # append `_before` to next score type probability columns
+  colnames(ep_start_update)[1:7] <- paste0(colnames(ep_start_update)[1:7],"_before")
+  pred_df <- cbind(pred_df, ep_start_update)
+  pred_df$ep_before = NA_real_
+  # ep_before - calculate pre-play expected points
+  pred_df$ep_before = apply(ep_start_update[1:7], 1, function(row) {
     sum(row * weights)
   })
-  
-  # if you are trying to deal with multiple games at once
-  # then you have to get the after individually.
-  # get post play stuff per game
-  g_ids = sort(unique(clean_pbp_dat$game_id))
-  prep_df_after = purrr::map_dfr(g_ids,
-                                 function(x) {
-                                   clean_pbp_dat %>%
-                                     dplyr::filter(.data$game_id == x) %>%
-                                     prep_epa_df_after()
-                                 })
-  
-  # predict ep_after
-  ep_end = predict(ep_model, prep_df_after, type = 'prob')
+  ## 3) pred_df_after prediction ----
+  # ep_after - calculate post-play expected points
+  ep_end = predict(ep_model, pred_df_after, type = 'prob')
+  # ep_end - rename next score type probability columns to ep_model$lev
   colnames(ep_end) <- ep_model$lev
-  prep_df_after$ep_after = apply(ep_end, 1, function(row) {
+  # append `_after` to next score type probability columns
+  colnames(ep_end) <- paste0(colnames(ep_end),"_after")
+  pred_df_after <- cbind(pred_df_after, ep_end)
+  pred_df_after$ep_after = NA_real_
+  # ep_after - calculate post-play expected points
+  pred_df_after$ep_after = apply(ep_end, 1, function(row) {
     sum(row * weights)
   })
   
-  # join together multiple dataframes back together
-  # to get ep_before and ep_after for plays
-  colnames(prep_df_after)[4:11] = paste0(colnames(prep_df_after)[4:11], "_end")
-  pred_df = clean_pbp_dat %>%
-    dplyr::left_join(prep_df_after,
-                     by = c("game_id", "drive_id", "new_id")) %>%
-    dplyr::left_join(
-      pred_df %>% 
-        dplyr::select(.data$new_id, .data$drive_id, .data$game_id, .data$ep_before),
-      by = c("game_id", "drive_id", "new_id")
-    )
+  colnames(pred_df_after)[6:13] = paste0(colnames(pred_df_after)[6:13], "_end")
+  
   # constant vectors to be used again
   turnover_play_type = c(
     "Blocked Field Goal",
@@ -124,12 +155,13 @@ create_epa <- function(clean_pbp_dat,
     "Field Goal Good",
     "Pass Reception Touchdown",
     "Fumble Recovery (Own) Touchdown",
-    "Punt Touchdown"
+    "Kickoff Return Touchdown",
+    "Punt Touchdown",
+    "Punt Team Fumble Recovery Touchdown"
   )
   def_TD = c(
     "Defensive 2pt Conversion",
     "Safety",
-    "Uncategorized Touchdown",
     "Blocked Field Goal Touchdown",
     "Missed Field Goal Return Touchdown",
     "Fumble Return Touchdown",
@@ -137,22 +169,32 @@ create_epa <- function(clean_pbp_dat,
     "Sack Touchdown",
     "Blocked Punt Touchdown",
     "Punt Return Touchdown",
-    "Kickoff Return Touchdown",
+    "Kickoff Touchdown",
+    "Kickoff Team Fumble Recovery Touchdown",
     "Interception Return Touchdown",
-    "Pass Interception Return Touchdown"
+    "Pass Interception Return Touchdown",
+    "Uncategorized Touchdown"
   )
   punt = c(
     "Blocked Punt",
     "Blocked Punt Touchdown",
+    "Blocked Punt (Safety)",
+    "Punt (Safety)",
     "Punt",
     "Punt Touchdown",
+    "Punt Team Fumble Recovery",
+    "Punt Team Fumble Recovery Touchdown",
     "Punt Return Touchdown"
   )
   kickoff = c(
     "Kickoff",
     "Kickoff Return (Offense)",
     "Kickoff Return Touchdown",
-    "Kickoff Touchdown"
+    "Kickoff Touchdown",
+    "Kickoff Team Fumble Recovery",
+    "Kickoff Team Fumble Recovery Touchdown",
+    "Kickoff (Safety)",
+    "Penalty (Kickoff)"
   )
   field_goal = c(
     "Field Goal Good",
@@ -162,7 +204,8 @@ create_epa <- function(clean_pbp_dat,
     "Blocked Field Goal Touchdown",
     "Missed Field Goal Return Touchdown"
   )
-  ## Kickoff plays
+  
+  ## 5) Kickoff plays -----
   ## Calculate EP before at kickoff as what happens if it was a touchback
   ## 25 yard line in 2012 and onwards
   ## Question for the class: where is the EPA on touchbacks being set to 0?
@@ -184,126 +227,197 @@ create_epa <- function(clean_pbp_dat,
     }
   }
   
+  kickoff_ind2 = (pred_df_after$play_type %in% kickoff)
   # **Due to ESPN data quality issues, some drives end on 3rd down that are listed as turnovers
   # For turnover and punt plays make sure the ep_after is negative
-  turnover_plays = which(pred_df$turnover == 1 & !kickoff_ind & (pred_df$play_type %in% turnover_play_type))
-  pred_df[turnover_plays, "ep_after"] = -1*pred_df[turnover_plays, "ep_after"]
+  turnover_plays = which(pred_df_after$turnover == 1 & !kickoff_ind2 & (pred_df_after$play_type %in% turnover_play_type))
+  pred_df_after[turnover_plays, "ep_after"] = -1*pred_df_after[turnover_plays, "ep_after"]
+  kickoff_turnovers = which(pred_df_after$play_type %in% c("Kickoff Team Fumble Recovery", "Kickoff Team Fumble Recovery Touchdown"))
+  pred_df_after[kickoff_turnovers, "ep_after"] = -1*pred_df_after[kickoff_turnovers, "ep_after"]
   
   # Game end EP is 0
-  pred_df[pred_df$end_half_game_end == 1, "ep_after"] = 0
+  pred_df[pred_df$end_of_half == 1, "ep_after"] = 0
   
   ## Scoring plays from here on out
-  pred_df[(pred_df$play_type %in% off_TD), "ep_after"] = 7
-  pred_df[(pred_df$play_type %in% def_TD), "ep_after"] = -7
-  pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_before"] = 0
-  pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_after"] = -2
-  pred_df[pred_df$play_type == "Safety", "ep_after"] = -2
-  pred_df[pred_df$play_type == "Field Goal Good", "ep_after"] = 3
+  pred_df_after[(pred_df_after$play_type %in% off_TD), "ep_after"] = 7
+  pred_df_after[(pred_df_after$play_type %in% def_TD), "ep_after"] = -7
+  pred_df_after[pred_df_after$play_type == "Defensive 2pt Conversion", "ep_after"] = -2
+  pred_df_after[pred_df_after$play_type == "Safety", "ep_after"] = -2
+  pred_df_after[pred_df_after$play_type == "Blocked Punt (Safety)", "ep_after"] = -2
+  pred_df_after[pred_df_after$play_type == "Punt (Safety)", "ep_after"] = -2
+  pred_df_after[pred_df_after$play_type == "Penalty (Safety)", "ep_after"] = -2
+  pred_df_after[pred_df_after$play_type == "Kickoff (Safety)", "ep_after"] = -2
+  pred_df_after[pred_df_after$play_type == "Field Goal Good", "ep_after"] = 3
   
+  pred_df[pred_df$play_type == "Defensive 2pt Conversion", "ep_before"] = 0
+  
+  # insert begore lags here
   pred_df = pred_df %>% 
     dplyr::group_by(.data$game_id) %>%
-    dplyr::arrange(.data$new_id, .by_group = TRUE) %>%
+    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
     dplyr::mutate(
-      ep_after = ifelse(.data$downs_turnover==1, -1*lead(.data$ep_before, 1), .data$ep_after),
-      ep_after = ifelse(str_detect(.data$play_text,regex('safety', ignore_case = TRUE)) &
-                          .data$play_type == 'Blocked Punt', -2, .data$ep_after),
-      ep_after = ifelse(.data$kickoff_safety == 1, 2, .data$ep_after),
-      ep_after = ifelse(.data$turnover == 1 & is.na(.data$ep_after),
-                        -1*lead(.data$ep_before,1),
-                        .data$ep_after)) %>% 
+      lag_ep_before3 = dplyr::lag(.data$ep_before, 3),
+      lag_ep_before2 = dplyr::lag(.data$ep_before, 2),
+      lag_ep_before = dplyr::lag(.data$ep_before, 1),
+      lead_ep_before = dplyr::lead(.data$ep_before, 1),
+      lead_ep_before2 = dplyr::lead(.data$ep_before, 2)) %>% 
     dplyr::ungroup()
-  # Prep WPA variables, drop transformed columns-----
+  
+  # insert after lags here
+  pred_df_after = pred_df_after %>% 
+    dplyr::group_by(.data$game_id) %>%
+    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
+    dplyr::mutate(     
+      lag_ep_after = dplyr::lag(.data$ep_after, 1),
+      lag_ep_after2 = dplyr::lag(.data$ep_after, 2),
+      lag_ep_after3 = dplyr::lag(.data$ep_after, 3),
+      lead_ep_after = dplyr::lead(.data$ep_after, 1),
+      lead_ep_after2 = dplyr::lead(.data$ep_after, 2)) %>% 
+    dplyr::ungroup()
+  
+  
+  ## 4) Join ep_before calcs df, pred_df, with ep_after calcs df, pred_df_after. ----
+  # join together multiple dataframes back together
+  # to get ep_before and ep_after for plays
+  pred_df = play_df %>%
+    dplyr::left_join(
+      pred_df_after %>% 
+        dplyr::select(-.data$play_type, -.data$turnover),
+        by = c("game_id", "drive_id", "id_play")) %>%
+    dplyr::left_join(
+      pred_df %>% select(-.data$play_type) %>% 
+        dplyr::select(.data$id_play, .data$drive_id, .data$game_id, 
+                      .data$No_Score_before, .data$FG_before,
+                      .data$Opp_FG_before, .data$Opp_Safety_before,
+                      .data$Opp_TD_before, .data$Safety_before, 
+                      .data$TD_before, .data$ep_before, .data$fg_make_prob,
+                      .data$lag_ep_before3, .data$lag_ep_before2,
+                      .data$lag_ep_before, .data$lead_ep_before,
+                      .data$lead_ep_before2),
+      by = c("game_id", "drive_id", "id_play")
+    )
+  
+  pred_df = pred_df %>%
+    dplyr::arrange(.data$game_id, .data$id_play) %>% 
+    dplyr::mutate(
+      ep_after = ifelse(.data$downs_turnover==1, -1*.data$lead_ep_before, .data$ep_after),
+      ep_after = ifelse(stringr::str_detect(.data$play_text, regex('safety', ignore_case = TRUE)) &
+                        .data$play_type %in% c('Blocked Punt (Safety)','Punt (Safety)','Penalty (Safety)'), 
+                        -2, .data$ep_after),
+      ep_after = ifelse(.data$kickoff_safety == 1, -2, .data$ep_after),
+      ep_after = ifelse(.data$turnover_vec == 1 & is.na(.data$ep_after),
+                        -1*.data$lead_ep_before,
+                        .data$ep_after),
+      ep_before = ifelse(.data$play_type == "Timeout" & !is.na(.data$lag_ep_after) &
+                           is.na(.data$ep_before), .data$lag_ep_after, .data$ep_before),
+      ep_before = ifelse(.data$play_type == "Timeout" & is.na(.data$ep_before), .data$lag_ep_after2, .data$ep_before)) 
+  
+  # 6) Prep WPA variables, drop transformed columns-----
   pred_df = pred_df %>%
     dplyr::mutate(
       adj_TimeSecsRem = ifelse(.data$half == 1, 1800 + .data$TimeSecsRem, .data$TimeSecsRem),
       turnover_vec_lag = dplyr::lag(.data$turnover_vec, 1),
-      def_td_play_lag = dplyr::lag(.data$def_td_play, 1),
-      play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$def_td_play_lag != 1, 1, 0),
-      receives_2H_kickoff = ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 & 
-                                     .data$offense_play == .data$home, 1, 
-                                   ifelse(.data$game_play_number == 1 & .data$kickoff_play == 1 &
-                                            .data$offense_play == .data$away,0,NA)),
-      score_diff = .data$offense_score - .data$defense_score,
-      lag_score_diff = lag(.data$score_diff, 1),
-      lag_score_diff = ifelse(.data$game_play_number == 1, 0, .data$lag_score_diff),
-      offense_play_lag = dplyr::lag(.data$offense_play, 1),
-      offense_play_lag = ifelse(.data$game_play_number == 1, .data$offense_play, .data$offense_play_lag),
-      offense_play_lead = dplyr::lead(.data$offense_play, 1),
-      offense_play_lead2 = dplyr::lead(.data$offense_play, 2),
-      lead_kickoff_play = dplyr::lead(.data$kickoff_play,1),
-      score_pts = ifelse(.data$offense_play_lag == .data$offense_play,
-                         (.data$score_diff - .data$lag_score_diff),
-                         (.data$score_diff + .data$lag_score_diff)),
-      score_diff_start = ifelse(.data$offense_play_lag == .data$offense_play,
-                                .data$lag_score_diff,
-                                -1*.data$lag_score_diff)) %>% 
-    tidyr::fill(.data$receives_2H_kickoff) %>% 
-    dplyr::mutate(
-      offense_receives_2H_kickoff = case_when(
-        .data$offense_play == .data$home & .data$receives_2H_kickoff == 1 ~ 1,
-        .data$offense_play == .data$away & .data$receives_2H_kickoff == 0 ~ 1,
-        TRUE ~ 0),
-      EPA = .data$ep_after - .data$ep_before,
+      lag_defense_score_play = dplyr::lag(.data$defense_score_play, 1),
+      play_after_turnover = ifelse(.data$turnover_vec_lag == 1 & .data$lag_defense_score_play != 1, 1, 0),
+      EPA = NA_real_,
+      def_EPA = NA_real_,
+      home_EPA = NA_real_,
+      away_EPA = NA_real_,
+      EPA = ifelse(.data$scoring_play == 0 & .data$end_of_half == 1, -1*.data$ep_before, .data$ep_after - .data$ep_before),
       def_EPA = -1*.data$EPA,
-      home_EPA = ifelse(.data$offense_play == .data$home, .data$EPA, -1*.data$EPA),
+      home_EPA = ifelse(.data$pos_team == .data$home, .data$EPA, -1*.data$EPA),
       away_EPA = -1*.data$home_EPA,
-      ExpScoreDiff = .data$score_diff_start + .data$ep_before,
+      home_EPA_rush = ifelse(.data$pos_team == .data$home & .data$rush == 1, .data$EPA, NA_real_),
+      away_EPA_rush = ifelse(.data$pos_team == .data$away & .data$rush == 1, .data$EPA, NA_real_),
+      home_EPA_pass = ifelse(.data$pos_team == .data$home & .data$pass == 1, .data$EPA, NA_real_),
+      away_EPA_pass = ifelse(.data$pos_team == .data$away & .data$pass == 1, .data$EPA, NA_real_),
+      total_home_EPA = cumsum(ifelse(is.na(.data$home_EPA), 0, .data$home_EPA)),
+      total_away_EPA = cumsum(ifelse(is.na(.data$away_EPA), 0, .data$away_EPA)),
+      total_home_EPA_rush = cumsum(ifelse(is.na(.data$home_EPA_rush), 0, .data$home_EPA_rush)),
+      total_away_EPA_rush = cumsum(ifelse(is.na(.data$away_EPA_rush), 0, .data$away_EPA_rush)),
+      total_home_EPA_pass = cumsum(ifelse(is.na(.data$home_EPA_pass), 0, .data$home_EPA_pass)),
+      total_away_EPA_pass = cumsum(ifelse(is.na(.data$away_EPA_pass), 0, .data$away_EPA_pass)),
+      net_home_EPA = cumsum(ifelse(is.na(.data$home_EPA), 0, .data$home_EPA)) - 
+        cumsum(ifelse(is.na(.data$away_EPA),0,.data$away_EPA)),
+      net_away_EPA = cumsum(ifelse(is.na(.data$away_EPA), 0, .data$away_EPA)) - 
+        cumsum(ifelse(is.na(.data$home_EPA), 0, .data$home_EPA)),
+      net_home_EPA_rush = cumsum(ifelse(is.na(.data$home_EPA_rush), 0, .data$home_EPA_rush)) - 
+                          cumsum(ifelse(is.na(.data$away_EPA_rush), 0, .data$away_EPA_rush)),
+      net_home_EPA_pass = cumsum(ifelse(is.na(.data$home_EPA_pass), 0, .data$home_EPA_pass)) - 
+        cumsum(ifelse(is.na(.data$away_EPA_pass), 0, .data$away_EPA_pass)),
+      net_away_EPA_rush = cumsum(ifelse(is.na(.data$away_EPA_rush),0,.data$away_EPA_rush)) - 
+        cumsum(ifelse(is.na(.data$home_EPA_rush), 0, .data$home_EPA_rush)),
+      net_away_EPA_pass = cumsum(ifelse(is.na(.data$away_EPA_pass),0,.data$away_EPA_pass)) - 
+        cumsum(ifelse(is.na(.data$home_EPA_pass), 0, .data$home_EPA_pass)),
+      ExpScoreDiff = .data$pos_score_diff_start + .data$ep_before,
       half = as.factor(.data$half),
       ExpScoreDiff_Time_Ratio = .data$ExpScoreDiff/(.data$adj_TimeSecsRem + 1)) %>% 
-    dplyr::rename(end_of_half = .data$end_half_game_end) %>%
-    dplyr::select(-.data$log_ydstogo,
-                  -.data$log_ydstogo_end,
-                  -.data$Goal_To_Go_end,
-                  -.data$Under_two_end) %>%
+    dplyr::select(-.data$new_TimeSecsRem,
+                  -.data$new_down, 
+                  -.data$new_distance,
+                  -.data$new_yardline, 
+                  -.data$new_log_ydstogo,
+                  -.data$new_Under_two, 
+                  -.data$new_Goal_To_Go,
+                  -.data$new_pos_score_diff_start) %>%
     dplyr::select(.data$game_id,
-                  .data$new_id,
                   .data$id_play,
                   .data$drive_id,
+                  .data$home,
+                  .data$away,
                   .data$drive_number,
                   .data$drive_play_number,
                   .data$game_play_number,
-                  .data$offense_play,
-                  .data$defense_play,
-                  .data$half,
-                  .data$period,
+                  .data$pos_team,
+                  .data$def_pos_team,
                   .data$clock.minutes,
                   .data$clock.seconds,
+                  .data$half,
+                  .data$period,
+                  .data$TimeSecsRem,
                   .data$play_type,
                   .data$play_text,
                   .data$down,
                   .data$distance,
                   .data$yards_to_goal,
                   .data$yards_gained,
-                  .data$offense_score,
-                  .data$defense_score,
-                  .data$score_diff,
-                  .data$score_diff_start,
-                  .data$EPA,
+                  .data$Goal_To_Go,
+                  .data$Under_two,
+                  .data$pos_score_diff,
+                  .data$pos_score_diff_start,
+                  .data$pos_team_score,
+                  .data$def_pos_team_score,
                   .data$ep_before,
                   .data$ep_after,
+                  .data$EPA,
                   .data$def_EPA,
-                  .data$ppa,
-                  .data$Goal_To_Go,
+                  .data$pos_team_timeouts_rem_before,
+                  .data$def_pos_team_timeouts_rem_before,
                   .data$offense_timeouts,
                   .data$defense_timeouts,
-                  .data$drive_start_yards_to_goal,
-                  .data$drive_end_yards_to_goal,
-                  .data$drive_yards,
-                  .data$drive_scoring,
-                  .data$drive_result,
-                  .data$drive_pts,
-                  .data$home,
-                  .data$away,
-                  .data$Under_two,
-                  .data$TimeSecsRem,
                   .data$down_end,
                   .data$distance_end,
                   .data$yards_to_goal_end,
                   .data$TimeSecsRem_end,
+                  .data$log_ydstogo_end,
+                  .data$Goal_To_Go_end,
+                  .data$Under_two_end,
+                  .data$score_diff,
+                  .data$score_diff_start,
+                  .data$ppa,
+                  .data$drive_start_yards_to_goal,
+                  .data$drive_end_yards_to_goal,
+                  .data$drive_yards,
+                  .data$drive_scoring,
+                  .data$drive_result_detailed,
+                  .data$new_drive_pts,
+                  .data$offense_play,
+                  .data$defense_play,
+                  .data$offense_score,
+                  .data$defense_score,
                   dplyr::everything()) %>%
-    dplyr::rename(pass = .data$pass_vec,
-                  rush = .data$rush_vec) %>%
     dplyr::mutate(
+      middle_8 = ifelse(.data$adj_TimeSecsRem >= 1560 & .data$adj_TimeSecsRem <= 2040, TRUE, FALSE),
       rz_play = ifelse((.data$yards_to_goal <= 20), 1, 0),
       scoring_opp = ifelse((.data$yards_to_goal <= 40), 1, 0),
       stuffed_run = ifelse((.data$rush == 1 & .data$yards_gained <= 0), 1, 0),
@@ -319,503 +433,92 @@ create_epa <- function(clean_pbp_dat,
   return(pred_df)
 }
 
-
-
-#' Creates the post-play inputs for the Expected Points model to predict on for each game
-#'
-#' @param dat (\emph{Data.Frame} required) Clean Play-by-Play DataFrame pulled from `cfb_pbp_dat()`
-#'
-#' @keywords internal
-#' @import stringr
-#' @import dplyr
-#' @import tidyr
-#' @export
-#'
-
-prep_epa_df_after <- function(dat) {
-  ##--Play type vectors------
-  turnover_play_type = c(
-    "Blocked Field Goal",
-    "Blocked Field Goal Touchdown",
-    "Blocked Punt",
-    "Blocked Punt Touchdown",
-    "Punt",
-    "Punt Touchdown",
-    "Punt Return Touchdown",
-    "Sack Touchdown",
-    "Field Goal Missed",
-    "Missed Field Goal Return",
-    "Missed Field Goal Return Touchdown",
-    "Fumble Recovery (Opponent)",
-    "Fumble Recovery (Opponent) Touchdown",
-    "Interception",
-    "Interception Return",
-    "Interception Return Touchdown",
-    "Pass Interception Return",
-    "Pass Interception Return Touchdown",
-    "Uncategorized Touchdown"
-  )
-  defense_score_vec = c(
-    "Blocked Punt Touchdown",
-    "Blocked Field Goal Touchdown",
-    "Missed Field Goal Return Touchdown",
-    "Punt Return Touchdown",
-    "Fumble Recovery (Opponent) Touchdown",
-    "Fumble Return Touchdown",
-    "Defensive 2pt Conversion",
-    "Safety",
-    "Sack Touchdown",
-    "Interception Return Touchdown",
-    "Pass Interception Return Touchdown",
-    "Uncategorized Touchdown"
-  )
-  turnover_vec = c(
-    "Blocked Field Goal",
-    "Blocked Field Goal Touchdown",
-    "Blocked Punt",
-    "Blocked Punt Touchdown",
-    "Field Goal Missed",
-    "Missed Field Goal Return",
-    "Missed Field Goal Return Touchdown",
-    "Fumble Recovery (Opponent)",
-    "Fumble Recovery (Opponent) Touchdown",
-    "Fumble Return Touchdown",
-    "Defensive 2pt Conversion",
-    "Interception",
-    "Interception Return",
-    "Interception Return Touchdown",
-    "Pass Interception Return",
-    "Pass Interception Return Touchdown",
-    "Punt",
-    "Punt Touchdown",
-    "Punt Return Touchdown",
-    "Sack Touchdown",
-    "Uncategorized Touchdown"
-  )
-  normalplay = c(
-    "Rush",
-    "Pass",
-    "Pass Reception",
-    "Pass Incompletion",
-    "Pass Completion",
-    "Sack",
-    "Fumble Recovery (Own)"
-  )
-  penalty = c('Penalty')
-  score = c(
-    "Passing Touchdown",
-    "Rushing Touchdown",
-    "Field Goal Good",
-    "Pass Reception Touchdown",
-    "Fumble Recovery (Own) Touchdown",
-    "Punt Touchdown"
-  )
-  kickoff = c(
-    "Kickoff",
-    "Kickoff Return (Offense)",
-    "Kickoff Return Touchdown",
-    "Kickoff Touchdown"
-  )
-  dat = dat %>%
-    dplyr::mutate_at(vars(.data$clock.minutes, .data$clock.seconds), ~ replace_na(., 0)) %>%
-    dplyr::mutate(
-      yards_to_goal = as.numeric(.data$yards_to_goal),
-      distance = .data$distance,
-      yards_gained = as.numeric(.data$yards_gained),
-      clock.minutes = ifelse(.data$period %in% c(1, 3), 15 + .data$clock.minutes, .data$clock.minutes),
-      raw_secs = .data$clock.minutes * 60 + .data$clock.seconds,
-      half = ifelse(.data$period <= 2, 1, 2),
-      new_yardline = 0,
-      new_down = 0,
-      new_distance = 0
-      # log_ydstogo = 0
-    ) %>% 
-    dplyr::group_by(.data$game_id, .data$half) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE)
-  
-  turnover_ind = dat$play_type %in% turnover_play_type
-  dat$turnover = 0
-  #define turnover on downs
-  downs_turnover = (dat$play_type %in% normalplay & dat$yards_gained < dat$distance & dat$down == 4)
-  # data is ordered
-  new_offense = !(dat$offense_play == lead(dat$offense_play, order_by = dat$id_play))
-  scoring_plays = dat$play_type %in% score
-  # end of half check as well
-  end_of_half_plays = !(dat$half == lead(dat$half, order_by = dat$id_play))
-  # is specifically defined as a turnover
-  turnover_play_check = dat$play_type %in% turnover_vec
-  # turnovers only occur on actual change of offense
-  # but not scoring plays
-  # and not at the end of half.
-  # Turnovers now capture downs, when there is a change of offense after a fourth down normal play.
-  t_ind = (turnover_ind | (new_offense)) & 
-    !scoring_plays & !end_of_half_plays & 
-    (turnover_play_check | downs_turnover)
-  
-  dat$turnover[t_ind] <- 1
-  
-  dat = dat %>% 
-    dplyr::ungroup() %>% 
-    dplyr::group_by(.data$game_id) %>% 
-    dplyr::arrange(.data$id_play, .by_group=TRUE) %>% 
-    dplyr::mutate(
-      play = ifelse(!(.data$play_type %in% c("End Period", "End of Half", "Timeout")), 1, 0),
-      game_play_number = cumsum(.data$play)) %>%
-    dplyr::group_by(.data$game_id, .data$half) %>%
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
-    dplyr::mutate(
-      turnover_indicator = 
-        ifelse(
-          (.data$play_type %in% defense_score_vec) | (.data$play_type %in% turnover_vec )|
-            (.data$play_type %in% normalplay & .data$yards_gained < .data$distance & 
-               .data$down == 4), 1, 0),
-      downs_turnover = ifelse((.data$play_type %in% normalplay) & (.data$yards_gained < .data$distance) & (.data$down == 4),1,0),
-      down = as.numeric(.data$down),
-      #--New Down-----
-      new_down = as.numeric(case_when(
-        #--- turnovers ---
-        .data$turnover == 1 ~ 1,
-        ##--Penalty Cases (new_down)-----
-        # 8 cases with three T/F penalty flags
-        # 4 cases in 1
-        .data$play_type %in% penalty & .data$penalty_1st_conv ~ 1,
-        # offsetting penalties, no penalties declined, no 1st down by penalty (1 case)
-        .data$play_type %in% penalty & !.data$penalty_declined &
-          .data$penalty_offset & !.data$penalty_1st_conv ~ .data$down,
-        # offsetting penalties, penalty declined true, no 1st down by penalty
-        # seems like it would be a regular play at that point (1 case, split in three)
-        .data$play_type %in% penalty & .data$penalty_declined &
-          .data$penalty_offset & !.data$penalty_1st_conv &
-          .data$yards_gained < .data$distance & .data$down <= 3 ~ .data$down+1,
-        .data$play_type %in% penalty & .data$penalty_declined &
-          .data$penalty_offset & !.data$penalty_1st_conv &
-          .data$yards_gained < .data$distance & .data$down == 4 ~ 1,
-        .data$play_type %in% penalty & .data$penalty_declined &
-          .data$penalty_offset & !.data$penalty_1st_conv &
-          .data$yards_gained >= .data$distance ~ 1,
-        # only penalty declined true, same logic as prior (1 case, split in three)
-        .data$play_type %in% penalty & .data$penalty_declined &
-          !.data$penalty_offset & !.data$penalty_1st_conv &
-          .data$yards_gained < .data$distance & .data$down <= 3 ~ .data$down+1,
-        .data$play_type %in% penalty & .data$penalty_declined &
-          !.data$penalty_offset & !.data$penalty_1st_conv &
-          .data$yards_gained < .data$distance & .data$down == 4 ~ 1,
-        .data$play_type %in% penalty & .data$penalty_declined &
-          !.data$penalty_offset & !.data$penalty_1st_conv &
-          .data$yards_gained >= .data$distance ~ 1,
-        # no other penalty flags true, lead on down (1 case)
-        .data$play_type %in% penalty & !.data$penalty_declined &
-          !.data$penalty_offset & !.data$penalty_1st_conv ~ lead(.data$down, order_by=id_play),
-        ##--Scores, kickoffs,  defensive scores----
-        .data$play_type %in% score ~ 1,
-        .data$play_type %in% kickoff ~ 1,
-        .data$play_type %in% defense_score_vec ~ 1,
-        ##--Regular Plays----
-        # regular play 1st down
-        .data$play_type %in% normalplay & .data$yards_gained >= .data$distance ~ 1,
-        # iterate to next down due to not meeting the yards to gain
-        .data$play_type %in% normalplay & .data$yards_gained < .data$distance & .data$down <= 3 ~ as.integer(.data$down) + 1,
-        # turnover on downs
-        .data$play_type %in% normalplay & .data$yards_gained < .data$distance & .data$down == 4 ~ 1
-      )),
-      yards_gained = as.numeric(.data$yards_gained),
-      drive_start_yards_to_goal = as.numeric(.data$drive_start_yards_to_goal),
-      #--New Distance-----
-      new_distance = as.numeric(case_when(
-        ##--turnovers, defensive scores, scores, kickoffs
-        .data$turnover == 1 ~ 10,
-        ##--Penalty cases (new_distance)
-        #--offsetting penalties, keep same distance
-        .data$play_type %in% penalty &
-          .data$penalty_offset ~ as.numeric(.data$distance),
-        #--penalty first down conversions, 10 or to goal
-        .data$play_type %in% penalty &
-          .data$penalty_1st_conv ~ as.numeric(ifelse(.data$yards_to_goal  - .data$yards_gained <= 10,
-                                                     as.numeric(.data$yards_to_goal),10)),
-        #--penalty without first down conversion
-        .data$play_type %in% penalty & !.data$penalty_declined &
-          !.data$penalty_1st_conv &
-          !.data$penalty_offset ~ as.numeric(ifelse((.data$yards_gained >= .data$distance) &
-                                                      (.data$yards_to_goal - .data$yards_gained <= 10),
-                                                    as.numeric(.data$yards_to_goal),10)),
-        ##--normal plays
-        .data$play_type %in% normalplay &
-          .data$yards_gained >= .data$distance &
-          (.data$yards_to_goal - .data$yards_gained >= 10) ~ 10,
-        .data$play_type %in% normalplay &
-          .data$yards_gained >= .data$distance &
-          (.data$yards_to_goal  - .data$yards_gained <= 10) ~ as.numeric(.data$yards_to_goal),
-        .data$play_type %in% normalplay &
-          .data$yards_gained < .data$distance & down <= 3 ~ as.numeric(.data$distance - .data$yards_gained),
-        .data$play_type %in% normalplay &
-          .data$yards_gained < .data$distance &
-          .data$down == 4 & (100 - (.data$yards_to_goal  - .data$yards_gained) >= 10) ~ 10,
-        .data$play_type %in% normalplay &
-          .data$yards_gained < .data$distance &
-          .data$down == 4 &
-          (100 - (.data$yards_to_goal  - .data$yards_gained) <= 10) ~ as.numeric(100 - .data$yards_to_goal),
-        .data$play_type %in% defense_score_vec ~ 0,
-        .data$play_type %in% score ~ 0,
-        .data$play_type %in% kickoff ~ 10
-      )),
-      #--New Yardline----
-      new_yardline = as.numeric(case_when(
-        .data$downs_turnover == 1 ~ 100 - .data$yards_to_goal + .data$yards_gained,
-        .data$play_type %in% penalty & .data$penalty_offset ~ .data$yards_to_goal,
-        .data$play_type %in% penalty & !.data$penalty_offset ~ .data$yards_to_goal - .data$yards_gained,
-        .data$play_type %in% normalplay ~ .data$yards_to_goal - .data$yards_gained,
-        .data$play_type %in% score ~ 0,
-        .data$play_type %in% defense_score_vec ~ 0,
-        .data$play_type %in% kickoff ~ .data$drive_start_yards_to_goal,
-        .data$play_type %in% turnover_vec ~ 100 - .data$yards_to_goal + .data$yards_gained
-      )),
-      new_TimeSecsRem = ifelse(!is.na(lead(.data$TimeSecsRem, order_by=.data$id_play)),
-                               lead(.data$TimeSecsRem,order_by=.data$id_play),0),
-      new_log_ydstogo = if_else(.data$new_distance == 0, log(1), log(.data$new_distance)),
-      new_Goal_To_Go = ifelse(.data$new_yardline <= .data$new_distance, TRUE, FALSE),
-      # new under two minute warnings
-      new_Under_two = .data$new_TimeSecsRem <= 120,
-      end_half_game = 0,
-      half_play = ifelse(!(.data$play_type %in% c("End Period", "End of Half", "Timeout")), 1, 0),
-      half_play_number = cumsum(.data$half_play),
-      off_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3, lag(.data$offense_timeouts,1)),
-      def_timeouts_rem_before = ifelse(.data$half_play_number == 1, 3, lag(.data$defense_timeouts,1))
-    ) %>%
-    dplyr::mutate_at(vars(.data$new_TimeSecsRem), ~ replace_na(., 0)) %>% 
-    dplyr::group_by(.data$game_id,.data$half,.data$drive_id) %>% 
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
-    dplyr::mutate(
-      drive_play = ifelse(!(.data$play_type %in% c("End Period", "End of Half", "Timeout")), 1, 0),
-      drive_play_number = cumsum(.data$drive_play),
-      first_by_penalty = ifelse(.data$play_type %in% penalty & .data$penalty_1st_conv, 1,
-                                ifelse(.data$play_type %in% penalty & .data$penalty_declined &
-                                         .data$penalty_offset & !.data$penalty_1st_conv &
-                                         .data$yards_gained > .data$distance, 1,
-                                       ifelse(.data$play_type %in% penalty & .data$penalty_declined &
-                                                !.data$penalty_offset & !.data$penalty_1st_conv &
-                                                .data$yards_gained >= .data$distance, 1, 0))),
-      first_by_yards = ifelse(.data$play_type %in% normalplay & 
-                                .data$yards_gained >= .data$distance, 1, 0)) %>% 
-    dplyr::mutate(
-      firstD_by_poss = ifelse((.data$drive_play_number == 1 & .data$kickoff_play != 1)|
-                                (.data$drive_play_number == 2 & lag(.data$kickoff_play, 1) == 1), 1, 0),
-      firstD_by_penalty = ifelse(lag(.data$first_by_penalty, 1)==1 & .data$kickoff_play != 1, 1, 0),
-      firstD_by_yards = ifelse(lag(.data$first_by_yards, 1)==1 & .data$kickoff_play != 1, 1, 0),
-      new_yardline = ifelse((.data$play_type == 'Blocked Punt'), 
-                            lead(.data$yards_to_goal, 1), .data$new_yardline)) %>%  
-    dplyr::ungroup() %>% 
-    dplyr::arrange(.data$id_play, .by_group = TRUE) %>%
-    dplyr::select(-.data$play, -.data$half_play, -.data$drive_play)
-  
-  #--Punt Plays--------------------------
-  punt_plays = dat$play_type == "Punt"
-  touchback_punt = ifelse(!is.na(str_detect(dat$play_text,"touchback") & (punt_plays)),
-                          str_detect(dat$play_text,"touchback") & (punt_plays),FALSE)
-  
-  dat[punt_plays,"new_down"] = 1
-  dat[punt_plays,"new_distance"] = 10
-  dat[punt_plays,"new_log_ydstogo"] = log(10)
-  dat[punt_plays,"new_Goal_To_Go"] = FALSE
-  dat[touchback_punt,"new_yardline"] = 80
-  punt_play = dat[punt_plays,] %>% pull(.data$play_text)
-  yds_punted = as.numeric(stringr::str_extract(
-    stringi::stri_extract_first_regex(punt_play, '(?<= punt for)[^,]+'),
-    "\\d+"
-  ))
-  # ball always changes hands
-  punt_yd_line = dat[punt_plays,] %>% pull(.data$yards_to_goal)
-  punt_yds_gained = dat[punt_plays,] %>% pull(.data$yards_gained)
-  dat[punt_plays,"new_yardline"] = (100 - punt_yd_line) + yds_punted - punt_yds_gained
-  
-  #--End of Half Plays--------------------------
-  end_of_half_plays = (dat$new_TimeSecsRem == 0)
-  if (any(end_of_half_plays)) {
-    dat$new_yardline[end_of_half_plays] <- 100
-    dat$new_down[end_of_half_plays] <- 4
-    dat$new_distance[end_of_half_plays] <- 100
-    dat$end_half_game[end_of_half_plays] <- 1
-    dat$new_log_ydstogo[end_of_half_plays] <- log(100)
-    dat$new_Under_two[end_of_half_plays] <- dat$new_TimeSecsRem[end_of_half_plays] <= 120
-  }
-  
-  # missed field goal needs to be here
-  # needs to go before the na check to set to 99
-  dat = dat %>% 
-    dplyr::mutate(new_yardline = if_else(
-      is.na(.data$new_yardline) &
-        .data$play_type %in% c("Field Goal Missed", "Blocked Field Goal"),
-      100 - (.data$yards_to_goal - 9),
-      .data$new_yardline
-    ))
-  
-  #--General weird plays that don't have an easy fix----
-  na_yd_line = which(is.na(dat$new_yardline) | dat$new_yardline >= 100)
-  dat$new_yardline[na_yd_line] = dat$yard_line[na_yd_line+1]
-  neg_distance = which(dat$new_distance < 0)
-  dat$new_distance[neg_distance] = dat$distance[neg_distance+1]
-  dat$new_log_ydstogo[neg_distance] = log(dat$new_distance[neg_distance])
-  
-  #--Missing yd_line Plays--------------------------
-  missing_yd_line = dat$new_yardline == 0
-  dat$new_yardline[missing_yd_line] = 100
-  dat$new_log_ydstogo[missing_yd_line] = log(100)
-  dat$missing_yard_flag <- FALSE
-  dat$missing_yard_flag[missing_yd_line] <- TRUE
-  
-  dat = dat %>%
-    dplyr::mutate(new_down = as.factor(.data$new_down)) %>%
-    dplyr::select(
-      .data$game_id,
-      .data$drive_id,
-      .data$id_play,
-      .data$new_TimeSecsRem,
-      .data$new_down,
-      .data$new_distance,
-      .data$new_yardline,
-      .data$new_log_ydstogo,
-      .data$new_Goal_To_Go,
-      .data$new_Under_two,
-      .data$end_half_game,
-      .data$turnover,
-      .data$downs_turnover,
-      .data$game_play_number,
-      .data$half_play_number,
-      .data$drive_play_number,
-      .data$off_timeouts_rem_before,
-      .data$def_timeouts_rem_before,
-      .data$missing_yard_flag,
-      .data$first_by_penalty,
-      .data$first_by_yards,
-      .data$firstD_by_penalty,
-      .data$firstD_by_yards,
-      .data$firstD_by_poss) %>% 
-    dplyr::arrange(.data$id_play) %>%
-    dplyr::mutate(id_play = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
-                  id_play = as.numeric(.data$id_play))
-  
-  colnames(dat) = gsub("new_", "", colnames(dat))
-  colnames(dat)[3] <- "new_id"
-  
-  dat = dat %>% 
-    dplyr::rename("yards_to_goal"="yardline")
-  
-  return(dat)
-}
-
-#' Prep for EPA calculations at the start of the play
-#' This is only for D1 football
-#'
-#'
-#' Extracts raw game by game data.
-#' @param df (\emph{data.frame} required) Clean Play-by-Play DataFrame pulled from `cfb_pbp_dat()`
-#' @keywords internal
-#' @import stringr
-#' @import dplyr
-#' @import tidyr
-#' @export
-#'
-#'
-
-prep_epa_df_before <- function(df) {
-  ## define minutes, raw_secs, Under_two, half, new_id, log_ydstogo, redefine down
-  ## filter not NA down and raw_secs
-  df = df %>%
-    dplyr::mutate(
-      clock.minutes = ifelse(.data$period %in% c(1, 3), 15 + 
-                               .data$clock.minutes, .data$clock.minutes),
-      raw_secs = .data$clock.minutes * 60 + .data$clock.seconds,
-      Under_two = .data$raw_secs <= 120,
-      half = ifelse(.data$period <= 2, 1, 2),
-      new_id = gsub(pattern = unique(.data$game_id), "", x = .data$id_play),
-      new_id = as.numeric(.data$new_id),
-      log_ydstogo = ifelse(.data$distance == 0|is.nan(log(.data$distance)),log(1),log(.data$distance)),
-      down = ifelse(str_detect(.data$play_type, "Kickoff"), 1, .data$down),
-      distance = ifelse(str_detect(.data$play_type, "Kickoff"), 10, .data$distance)) %>% 
-    dplyr::filter(.data$period <= 4, .data$down > 0) %>%
-    dplyr::filter(!is.na(.data$down),!is.na(.data$raw_secs)) %>% 
-    dplyr::rename(TimeSecsRem = .data$raw_secs)
-  
-  fg_inds = str_detect(df$play_type, "Field Goal")
-  df[fg_inds, "yards_to_goal"] = df[fg_inds, "yards_to_goal"] + 17
-  df[fg_inds, "log_ydstogo"] = log(df[fg_inds, "distance"])
-  
-  df = df %>% 
-    dplyr::mutate(
-      Goal_To_Go = ifelse(str_detect(.data$play_type, "Field Goal"),
-                          .data$distance >= (.data$yards_to_goal - 17),
-                          .data$distance >= .data$yards_to_goal )) %>%
-    dplyr::filter(.data$log_ydstogo != -Inf) %>%
-    dplyr::group_by(.data$drive_id) %>%
-    dplyr::arrange(.data$new_id, .by_group = TRUE) %>%
-    dplyr::ungroup()
-  return(df)
-}
-
-
 #' Performs Field Goal adjustments for Expected Points model calculations
 #'
 #' Extracts raw game by game data.
 #'
 #' @param df (\emph{data.frame} required): Clean Play-By-Play data.frame as can be pulled from `cfb_pbp_dat()`
 #' @param current_probs (\emph{data.frame} required): Expected Points (EP) model raw probability outputs from initial prediction
+#' @param ep_model (\emph{model}, default `cfbscrapR:::ep_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #' @param fg_mod (\emph{model}, default `cfbscrapR:::fg_model`): FG Model to be used for prediction on field goal (FG) attempts in Play-by-Play data.frame
 #'
 #' @keywords internal
-#' @importFrom mgcv "bam"
-#' @import stringr
-#' @import dplyr
-#' @import tidyr
+#' @importFrom mgcv predict.bam
+#' @importFrom stringr str_detect
+#' @importFrom dplyr mutate
 #' @export
 #'
 #'
 
-epa_fg_probs <- function(dat, current_probs, fg_mod) {
-  fg_ind = str_detect((dat$play_type), "Field Goal")
-  ep_ind = str_detect((dat$play_type), "Extra Point")
+epa_fg_probs <- function(dat, current_probs, ep_model = cfbscrapR:::ep_model, fg_mod = cfbscrapR:::fg_model) {
+  fg_ind = stringr::str_detect((dat$play_type), "Field Goal")
+  ep_ind = stringr::str_detect((dat$play_type), "Extra Point")
   inds = fg_ind | ep_ind
+  current_probs$fg_make_prob = NA
   fg_dat = dat[inds, ]
+  if(nrow(fg_dat)> 0){
+    # we are setting everything after 0 seconds to have 0 probs.
+    end_game_ind = which(dat$TimeSecsRem <= 0)
+    current_probs[end_game_ind, ] <- 0
+    
+    make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat, type = "response")
+    
+    missed_fg_dat<- fg_dat %>%
+      # Subtract 5.065401 from TimeSecs since average time for FG att:
+      dplyr::mutate(
+        TimeSecsRem = .data$TimeSecsRem - 5.065401,
+        # Correct the yrdline100:
+        yards_to_goal = 100 - (.data$yards_to_goal + 8),
+        # Not GoalToGo:
+        Goal_To_Go = rep(FALSE, n()),
+        # Now first down:
+        down = rep("1", n()),
+        # 10 yards to go
+        log_ydstogo = rep(log(10), n()),
+        # Create Under_TwoMinute_Warning indicator
+        Under_two = ifelse(.data$TimeSecsRem < 120,
+                           TRUE, FALSE),
+        pos_score_diff_start = -1*.data$pos_score_diff_start
+      ) %>% as.data.frame()
+
+    missed_fg_ep_preds <- ep_model %>% 
+      predict(newdata = missed_fg_dat, type = "probs") %>% 
+      as.data.frame()
   
-  # we are setting everythign after 0 seconds to have 0 probs.
-  end_game_ind = which(dat$TimeSecsRem <= 0)
-  current_probs[end_game_ind, ] <- 0
+    if(dim(missed_fg_ep_preds)[2] == 1){
+      missed_fg_ep_preds <- t(missed_fg_ep_preds)
+    }
+    
   
-  make_fg_prob <- mgcv::predict.bam(fg_mod, newdata = fg_dat,
-                                    type = "response")
-  
-  fg_dat<- fg_dat %>%
-    # Subtract 5.065401 from TimeSecs since average time for FG att:
-    dplyr::mutate(
-      TimeSecsRem = .data$TimeSecsRem - 5.065401,
-      # Correct the yrdline100:
-      yards_to_goal = 100 - (.data$yards_to_goal - 9),
-      # Not GoalToGo:
-      Goal_To_Go = rep(FALSE, n()),
-      # Now first down:
-      down = rep("1", n()),
-      # 10 yards to go
-      log_ydstogo = rep(log(10), n()),
-      # Create Under_TwoMinute_Warning indicator
-      Under_two = ifelse(.data$TimeSecsRem < 120,
-                         TRUE, FALSE)
-    )
-  # add in the fg make prob into this
-  current_probs2 <- current_probs
-  #current_probs2[fg_ind,] <- current_probs[fg_ind,] * (1 - make_fg_prob)
-  val = (1 - make_fg_prob)
-  ind <- dim(current_probs2[inds, ])[1]
-  for (i in seq(1, ind)) {
-    temp = current_probs2[inds, ]
-    temp[i, ] = temp[i, ] * val[i]
+    colnames(missed_fg_ep_preds) <- ep_model$lev
+    # Find the rows where TimeSecsRem became 0 or negative and
+    # make all the probs equal to 0:
+    end_game_i <-
+      which(missed_fg_dat$TimeSecsRem <= 0)
+    missed_fg_ep_preds[end_game_i, ] <- rep(0,
+                                            ncol(missed_fg_ep_preds))
+    
+    # Get the probability of making the field goal:
+    make_fg_prob <- as.numeric(mgcv::predict.bam(fg_model,
+                                                 newdata = fg_dat,
+                                                 type = "response"))
+    # Multiply each value of the missed_fg_ep_preds by the 1 - make_fg_prob
+    missed_fg_ep_preds <-
+      missed_fg_ep_preds * (1 - make_fg_prob)
+    
+    # Now update the probabilities for the FG attempts
+    # (also includes Opp_Field_Goal probability from missed_fg_ep_preds)
+    current_probs[inds, "FG"] <- make_fg_prob + 
+      missed_fg_ep_preds[,"Opp_FG"]
+    # Update the other columns based on the opposite possession:
+    current_probs[inds, "TD"] <- missed_fg_ep_preds[, "Opp_TD"]
+    current_probs[inds, "Opp_FG"] <- missed_fg_ep_preds[, "FG"]
+    current_probs[inds, "Opp_TD"] <- missed_fg_ep_preds[, "TD"]
+    current_probs[inds, "Safety"] <- missed_fg_ep_preds[, "Opp_Safety"]
+    current_probs[inds, "Opp_Safety"] <- missed_fg_ep_preds[, "Safety"]
+    current_probs[inds, "No_Score"] <- missed_fg_ep_preds[, "No_Score"]
+    current_probs[inds, "fg_make_prob"] <- make_fg_prob
+    
   }
-  current_probs2[inds, ] =  temp
-  
-  # now to flip all the probs,
-  current_probs2[inds, "FG"] <- make_fg_prob + current_probs[inds, "Opp_FG"]
-  current_probs2[inds, "Opp_FG"] <- current_probs[inds, "FG"]
-  current_probs2[inds, "TD"] <- current_probs[inds, "Opp_TD"]
-  current_probs2[inds, "Opp_TD"] <- current_probs[inds, "TD"]
-  current_probs2[inds, "Safety"] <- current_probs[inds, "Opp_Safety"]
-  current_probs2[inds, "Opp_Safety"] <- current_probs[inds, "Safety"]
-  
-  return(current_probs2)
+  return(current_probs)
 }

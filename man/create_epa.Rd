@@ -6,20 +6,31 @@
 Adds Expected Points calculations to Play-by-Play data.frame}
 \usage{
 create_epa(
-  clean_pbp_dat,
+  play_df,
   ep_model = cfbscrapR:::ep_model,
   fg_model = cfbscrapR:::fg_model
 )
 }
 \arguments{
+\item{ep_model}{(\emph{model} default cfbscrapR:::ep_model): Expected Points (EP) Model}
+
+\item{fg_model}{(\emph{model} default cfbscrapR:::fg_model): Field Goal (FG) Model}
+
 \item{clean_pbp_dat}{(\emph{data.frame} required): Clean PBP as input from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})}
-
-\item{ep_model}{(\emph{model} default cfbscrapR:ep_model): Expected Points (EP) Model}
-
-\item{fg_model}{(\emph{model} default cfbscrapR:fg_model): Field Goal (FG) Model}
 }
 \description{
 Create EPA
 Adds Expected Points calculations to Play-by-Play data.frame
+}
+\details{
+Code Description
+\describe{
+  \item{1. \code{pred_df}}{Use select before play model variables -> Make predictions.}
+  \item{2. \code{epa_fg_probs}}{Update expected points predictions from before variables with FG make/miss probability weighted adjustment.}
+  \item{3. \code{pred_df_after}}{Use select after play model variables -> Make predictions .}
+  \item{4. \code{join_ep}}{Join `ep_before` calcs `pred_df` with ep_after calcs `pred_df_after` on c("game_id","drive_id","new_id").}
+  \item{5. \code{kickoffs}}{Calculate ep_before for kickoffs as if the pre-play assumption is a touchback.}
+  \item{6. \code{wpa_prep}}{Prep variables for WPA.}
+}
 }
 \keyword{internal}

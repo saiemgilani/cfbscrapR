@@ -44,11 +44,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/drives}
 #' @keywords Drives
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export
@@ -84,16 +84,28 @@ cfb_drives <- function(year,
                 msg = 'Enter valid week 1-15 \n(14 for seasons pre-playoff, i.e. 2014 or earlier)')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL, if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(offense_team)){
-    # Encode offense_team parameter for URL, if not NULL
-    offense_team = utils::URLencode(offense_team, reserved = TRUE)
+    if(offense_team == "San Jose State"){
+      offense_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      offense_team = utils::URLencode(offense_team, reserved = TRUE)
+    }
   }
   if(!is.null(defense_team)){
-    # Encode defense_team parameter for URL, if not NULL
-    defense_team = utils::URLencode(defense_team, reserved = TRUE)
+    if(defense_team == "San Jose State"){
+      defense_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      defense_team = utils::URLencode(defense_team, reserved = TRUE)
+    }
   }
   if(!is.null(conference)){
     # # Check conference parameter in conference abbreviations, if not NULL

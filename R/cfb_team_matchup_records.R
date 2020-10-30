@@ -17,14 +17,15 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/teams/matchup}
 #' @keywords Team Matchup Records
-#' @importFrom attempt "stop_if_any"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom attempt stop_if_any
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
+#' @importFrom tibble enframe
+#' @importFrom dplyr rename mutate select
+#' @importFrom tidyr pivot_wider
 #' @export
 #' @examples
 #'
@@ -53,12 +54,23 @@ cfb_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = N
                 msg='Enter valid max_year as a number (YYYY)')
   }
 
-  # Encode team1 parameter for URL
-  team1 = utils::URLencode(team1, reserved = TRUE)
-
-  # Encode team2 parameter for URL
-  team2 = utils::URLencode(team2, reserved = TRUE)
-
+  if(!is.null(team1)){
+    if(team1 == "San Jose State"){
+      team1 = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team1 parameter for URL if not NULL
+      team1 = utils::URLencode(team1, reserved = TRUE)
+    }
+  }
+  if(!is.null(team1)){
+    if(team2 == "San Jose State"){
+      team2 = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team2 parameter for URL if not NULL
+      team2 = utils::URLencode(team2, reserved = TRUE)
+    }
+  }
+  
   base_url <- "https://api.collegefootballdata.com/teams/matchup?"
 
   full_url <-paste0(base_url,
@@ -81,8 +93,8 @@ cfb_team_matchup_records <- function(team1, team2, min_year = NULL, max_year = N
     expr ={
       # Get the content and return it as data.frame
       df = jsonlite::fromJSON(full_url)
-      df1<- enframe(unlist(df,use.names = TRUE))[1:7,]
-      df <- pivot_wider(df1,
+      df1<- tibble::enframe(unlist(df,use.names = TRUE))[1:7,]
+      df <- tidyr::pivot_wider(df1,
                         names_from = .data$name,
                         values_from = .data$value) %>% 
         dplyr::rename(start_year = .data$startYear,

@@ -20,7 +20,7 @@ The original `df` with the following columns appended to it:
 \item{home_wp_before}{}
 \item{away_wp_before}{}
 \item{lead_wp_before}{}
-\item{lead2_wp_before}{}
+\item{lead_wp_before2}{}
 \item{wpa_base}{}
 \item{wpa_base_nxt}{}
 \item{wpa_base_ind}{}

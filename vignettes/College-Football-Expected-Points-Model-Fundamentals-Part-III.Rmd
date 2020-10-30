@@ -1,17 +1,14 @@
 ---
 title: "College Football Expected Points Model Fundamentals - Part III"
 author: "Saiem Gilani"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{College-Football-Expected-Points-Model-Fundamentals-Part-III}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\Vignette{check_title=FALSE}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
+
 knitr::opts_chunk$set(echo = TRUE)
-options(rmarkdown.html_vignette.check_title = FALSE)
+knitr::opts_chunk$set(fig.height = 5, fig.width = 8)
 ```
 
 Previously in part 1, we left off discussing field position and expected points, including a breakdown by down. Generally, what was presented could be considered the most top-level results discussion and model definition information. In part 2, we went into some detail about regression model building methods and how the model generates the next score probabilities, with some depth into how we arrived at the model from a technical perspective.  Today, I feel it necessary for us to cover some history of the expected points model in football. This article will show you how we arrive at the model factors that we currently have from a historical perspective. 

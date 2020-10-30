@@ -33,13 +33,14 @@
 #' @source \url{https://api.collegefootballdata.com/lines}
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom glue "glue"
-#' @import dplyr
-#' @import tidyr
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
+#' @importFrom purrr map_if
+#' @importFrom dplyr filter as_tibble rename
+#' @importFrom tidyr unnest
 #' @export
 #' @examples
 #'
@@ -80,8 +81,12 @@ cfb_betting_lines <- function(game_id = NULL,
                 msg = 'Enter valid season_type: regular or postseason')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL, if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(home_team)){
     # Encode home_team parameter for URL, if not NULL
@@ -157,10 +162,9 @@ cfb_betting_lines <- function(game_id = NULL,
           dplyr::rename(game_id = .data$id) %>% 
           as.data.frame()
       }
-      message(glue::glue("{Sys.time()}: Scraping betting lines data..."))
+
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments or no betting lines data available!"))
     },
     warning = function(w) {
     },

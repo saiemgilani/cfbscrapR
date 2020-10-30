@@ -36,13 +36,13 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/sp}
 #' @keywords SP+
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
+#' @importFrom dplyr rename
 #' @export
 #' @examples
 #'
@@ -68,8 +68,12 @@ cfb_ratings_sp <- function(year = NULL, team = NULL){
                 msg = 'Enter valid year as a number in 4 digit format (YYYY)')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL, if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
 
   base_url = "https://api.collegefootballdata.com/ratings/sp"

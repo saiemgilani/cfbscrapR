@@ -28,13 +28,13 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/recruiting/groups}
 #' @keywords Recruiting
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
+#' @importFrom dplyr rename
 #' @export
 #' @examples
 #'
@@ -59,8 +59,12 @@ cfb_recruiting_position <- function(start_year = NULL, end_year = NULL,
                 msg = 'Enter valid end_year as a number (YYYY) - Min: 2000, Max: 2020')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(conference)){
     # # Check conference parameter in conference abbreviations, if not NULL

@@ -18,12 +18,12 @@
 #'   \item{\code{away_win_prob}}{double.}
 #' }
 #' @keywords Pre-game Win Probability Data
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" "URLdecode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom glue "glue"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode URLdecode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export

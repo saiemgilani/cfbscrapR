@@ -11,9 +11,9 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/play/stat/types}
 #' @keywords Plays
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom glue "glue"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom glue glue
 #' @export
 #' @examples
 #'

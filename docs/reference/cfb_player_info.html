@@ -50,7 +50,7 @@
 <meta property="og:description" content="A player search function with `search_term` as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
 Would not recommend using the position group filter,it feels arbitrary and pernicious,
 but it is there. May fortune favor you should you choose to use it." />
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbscrapR" />
 <meta name="twitter:site" content="@cfbscrapR" />
@@ -85,7 +85,7 @@ but it is there. May fortune favor you should you choose to use it." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -114,10 +114,10 @@ but it is there. May fortune favor you should you choose to use it." />
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
-      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
+      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -143,6 +143,13 @@ but it is there. May fortune favor you should you choose to use it." />
     <span class="fa fa-newspaper-o"></span>
      
     News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/saiemgilani/cfbscrapR-data">
+    <span class="fa fa-database"></span>
+     
+    Data
   </a>
 </li>
       </ul>
@@ -237,22 +244,22 @@ If left NULL, API default will only provide results for most recent year of fina
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'James'</span>, position = <span class='st'>'DB'</span>, team = <span class='st'>'Florida State'</span>, year = <span class='fl'>2017</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:38: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
+</div><div class='output co'>#&gt; <span class='message'>2020-10-13 00:06:14: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
 #&gt; 1    3691739 Florida State Derwin James     Derwin     James    211     75
 #&gt;   jersey position   home_town team_color team_color_secondary
 #&gt; 1      3       DB Leander, TX    #782F40              #ceb888</div><div class='input'>
 <span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'Lawrence'</span>, team = <span class='st'>"Clemson"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:38: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
+</div><div class='output co'>#&gt; <span class='message'>2020-10-13 00:06:14: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
 #&gt; 1    4360310 Clemson Trevor Lawrence     Trevor  Lawrence    220     78     16
 #&gt;   position        home_town team_color team_color_secondary
 #&gt; 1       QB Cartersville, GA    #F66733              #522d80</div><div class='input'>
 <span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'Tua'</span>, position = <span class='st'>'QB'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:38: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team           name first_name  last_name weight height jersey
+</div><div class='output co'>#&gt; <span class='message'>2020-10-13 00:06:15: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team           name first_name  last_name weight height jersey
 #&gt; 1    4241479 Alabama Tua Tagovailoa        Tua Tagovailoa    218     73     13
 #&gt;   position     home_town team_color team_color_secondary
 #&gt; 1       QB Ewa Beach, HI    #690014              #f1f2f3</div><div class='input'>
 <span class='fu'>cfb_player_info</span>(search_term = <span class='st'>'Duggan'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:39: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team          name first_name last_name weight height jersey
+</div><div class='output co'>#&gt; <span class='message'>2020-10-13 00:06:15: Invalid arguments or no player info data available!</span></div><div class='output co'>#&gt;   athlete_id    team          name first_name last_name weight height jersey
 #&gt; 1    4259319 Rutgers Jaohne Duggan     Jaohne    Duggan    295     73     57
 #&gt; 2    4427105     TCU    Max Duggan        Max    Duggan    190     74     15
 #&gt;   position          home_town team_color team_color_secondary

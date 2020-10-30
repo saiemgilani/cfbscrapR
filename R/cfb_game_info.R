@@ -41,11 +41,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/games}
 #' @keywords Game Info
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export
@@ -82,16 +82,28 @@ cfb_game_info <- function(year,
                 msg = 'Enter valid season_type: regular, postseason, or both')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL, if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(home_team)){
-    # Encode home_team parameter for URL, if not NULL
-    home_team = utils::URLencode(home_team, reserved = TRUE)
+    if(home_team == "San Jose State"){
+      home_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode home_team parameter for URL if not NULL
+      home_team = utils::URLencode(home_team, reserved = TRUE)
+    }
   }
   if(!is.null(away_team)){
-    # Encode away_team parameter for URL, if not NULL
-    away_team = utils::URLencode(away_team, reserved = TRUE)
+    if(away_team == "San Jose State"){
+      away_team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      away_team = utils::URLencode(away_team, reserved = TRUE)
+    }
   }
   if(!is.null(conference)){
     # # Check conference parameter in conference abbreviations, if not NULL

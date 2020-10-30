@@ -33,11 +33,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/ppa/teams}
 #' @keywords Teams Predicted Points 
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" 
-#' @importFrom assertthat "assert_that"
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode 
+#' @importFrom assertthat assert_that
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
@@ -65,8 +65,12 @@ cfb_metrics_ppa_teams <- function(year = 2019,
                 msg = 'Enter valid year as integer in 4 digit format (YYYY)')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(conference)){
     # # Check conference parameter in conference names, if not NULL

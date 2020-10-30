@@ -48,7 +48,7 @@
 
 <meta property="og:title" content="Get Game Advanced Stats — cfb_stats_game_advanced" />
 <meta property="og:description" content="Get Game Advanced Stats" />
-<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/card.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbscrapR" />
 <meta name="twitter:site" content="@cfbscrapR" />
@@ -83,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.22</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -112,10 +112,10 @@
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated_WP_Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
-      <a href="../articles/fourth_down_plot_tutorial.html">Fourth Down Tendency Plots</a>
+      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -141,6 +141,13 @@
     <span class="fa fa-newspaper-o"></span>
      
     News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/saiemgilani/cfbscrapR-data">
+    <span class="fa fa-database"></span>
+     
+    Data
   </a>
 </li>
       </ul>
@@ -291,7 +298,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_stats_game_advanced</span>(year = <span class='fl'>2018</span>, week = <span class='fl'>12</span>, team = <span class='st'>'Texas A&amp;M'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:59: Scraping game advanced stats...</span></div><div class='output co'>#&gt;     game_id week      team opponent off_plays off_drives   off_ppa
+</div><div class='output co'>#&gt; <span class='message'>2020-10-13 00:06:34: Scraping game advanced stats...</span></div><div class='output co'>#&gt;     game_id week      team opponent off_plays off_drives   off_ppa
 #&gt; 1 401012347   12 Texas A&amp;M      UAB        55         10 0.4231882
 #&gt;   off_total_ppa off_success_rate off_explosiveness off_power_success
 #&gt; 1      23.27535        0.5454545          1.145034         0.6666667
@@ -336,7 +343,7 @@
 #&gt;   def_passing_plays_explosiveness
 #&gt; 1                        1.724784</div><div class='input'>
 <span class='fu'>cfb_stats_game_advanced</span>(<span class='fl'>2019</span>, team = <span class='st'>'LSU'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:07:59: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week team           opponent off_plays off_drives   off_ppa
+</div><div class='output co'>#&gt; <span class='message'>2020-10-13 00:06:35: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week team           opponent off_plays off_drives   off_ppa
 #&gt; 1  401110725    1  LSU   Georgia Southern        72         13 0.3746814
 #&gt; 2  401110778    2  LSU              Texas        69         12 0.4878312
 #&gt; 3  401110790    3  LSU Northwestern State        68         12 0.6080743
@@ -689,7 +696,7 @@
 #&gt; 14                        1.819137
 #&gt; 15                        1.631810</div><div class='input'>
 <span class='fu'>cfb_stats_game_advanced</span>(<span class='fl'>2013</span>, team = <span class='st'>"Florida State"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-09-24 08:08:00: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week          team        opponent off_plays off_drives
+</div><div class='output co'>#&gt; <span class='message'>2020-10-13 00:06:36: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week          team        opponent off_plays off_drives
 #&gt; 1  332450221    1 Florida State      Pittsburgh        58         10
 #&gt; 2  332570052    3 Florida State          Nevada        56         12
 #&gt; 3  332640052    4 Florida State Bethune-Cookman        55         11

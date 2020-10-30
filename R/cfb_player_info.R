@@ -30,13 +30,13 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/player/search}
 #' @keywords Recruiting
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom janitor "clean_names"
-#' @importFrom glue "glue"
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom janitor clean_names
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @export
@@ -76,8 +76,12 @@ cfb_player_info <- function(search_term,
                 msg = 'Enter valid position group\nOffense: QB, RB, FB, TE, WR,  OL, G, OT, C\nDefense: DB, CB, S, LB, DL, DE, DT, NT\nSpecial Teams: K, P, LS, PK')
   }
   if(!is.null(team)){
-    # Encode team parameter for URL if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(year)){
     ## check if year is numeric

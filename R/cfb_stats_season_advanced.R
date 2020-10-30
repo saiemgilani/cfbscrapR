@@ -90,12 +90,11 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/stats/season/advanced}
 #' @keywords Team Season Advanced Stats
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode" "URLdecode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
-#' @import dplyr
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode URLdecode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @export
 #' @examples
 #'
@@ -112,8 +111,12 @@ cfb_stats_season_advanced <- function(year,
   assertthat::assert_that(is.numeric(year) & nchar(year) == 4,
               msg = 'Enter valid year (Integer): 4-digit (YYYY)')
   if(!is.null(team)){
-    # Encode team parameter for URL, if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(excl_garbage_time!=FALSE){
     # Check if excl_garbage_time is TRUE, if not FALSE

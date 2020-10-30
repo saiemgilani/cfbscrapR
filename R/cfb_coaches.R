@@ -27,12 +27,12 @@
 #' }
 #' @source \url{https://api.collegefootballdata.com/coaches}
 #' @keywords Recruiting
-#' @importFrom attempt "stop_if_all"
-#' @importFrom jsonlite "fromJSON"
-#' @importFrom httr "GET"
-#' @importFrom utils "URLencode"
-#' @importFrom assertthat "assert_that"
-#' @importFrom glue "glue"
+#' @importFrom attempt stop_if_all
+#' @importFrom jsonlite fromJSON
+#' @importFrom httr GET
+#' @importFrom utils URLencode
+#' @importFrom assertthat assert_that
+#' @importFrom glue glue
 #' @import dplyr
 #' @import tidyr
 #' @import purrr
@@ -60,8 +60,12 @@ cfb_coaches <- function(first = NULL,
     last = utils::URLencode(last, reserved = TRUE)
   }
   if(!is.null(team)){
-    # Encode team parameter for URL if not NULL
-    team = utils::URLencode(team, reserved = TRUE)
+    if(team == "San Jose State"){
+      team = utils::URLencode(paste0("San Jos","\u00e9", " State"), reserved = TRUE)
+    } else{
+      # Encode team parameter for URL if not NULL
+      team = utils::URLencode(team, reserved = TRUE)
+    }
   }
   if(!is.null(year)){
     ## check if year is numeric
