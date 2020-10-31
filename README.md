@@ -72,3 +72,13 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
   - Added series and first down variables
   - Added argumentation to allow for San Jose State to be entered
     without accent into `cfb_pbp_data()` function `team` argument.
+
+## Our Contributors (they’re awesome)
+
+  - Nate Manzo
+  - Michael Egle
+  - Jared Lee
+
+## Special Thanks
+
+  - Nick Tice

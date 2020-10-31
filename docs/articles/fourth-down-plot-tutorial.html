@@ -67,13 +67,16 @@
     </li>
     <li class="dropdown-header">Introductory</li>
     <li>
-      <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
+      <a href="../articles/Intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
       <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
-      <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
+      <a href="../articles/Fourth-Down-Plot-Tutorial.html">Fourth Down Tendency Plots</a>
+    </li>
+    <li>
+      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -143,7 +146,7 @@
             <h4 class="date">9/5/2020</h4>
       
       
-      <div class="hidden name"><code>fourth-down-plot-tutorial.Rmd</code></div>
+      <div class="hidden name"><code>Fourth-Down-Plot-Tutorial.Rmd</code></div>
 
     </div>
 
@@ -181,7 +184,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfb_coaches.html">cfb_coaches</a></span>(year = <span class="fl">2019</span>)
 </pre></div>
-<pre><code>## 2020-10-30 20:40:28: Scraping coaches data...</code></pre>
+<pre><code>## 2020-10-31 06:36:31: Scraping coaches data...</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="kw">coaches</span> <span class="op">&lt;-</span> <span class="kw">coaches</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span>(coach = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">first_name</span>, <span class="kw">last_name</span>, sep = <span class="st">" "</span>)) <span class="op">%&gt;%</span>
