@@ -559,8 +559,8 @@ cfb_pbp_data <- function(year,
       "net_home_EPA_pass", "net_away_EPA_pass",  
       "success", "epa_success", 
       "rz_play", "scoring_opp", 
-      "middle_8", "stuffed_run", 
-      "spread", "formatted_spread","over_under" 
+      "middle_8", "stuffed_run"
+      
     )
     team_columns = c(
       "change_of_pos_team", "downs_turnover", "turnover",
