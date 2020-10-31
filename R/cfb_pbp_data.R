@@ -461,7 +461,7 @@ cfb_pbp_data <- function(year,
         dplyr::left_join(game_spread, by=c('game_id'))
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()} - game_id {g_id}: Invalid arguments or no betting lines data available!"))
+      message(glue::glue("{Sys.time()} - game_id : Invalid arguments or no betting lines data available!"))
     },
     warning = function(w) {
     },
