@@ -7,10 +7,22 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_player_cols.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_player_cols_select.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_play_counts.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_play_counts_select.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_yardage.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/add_yardage_select.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/cfb_betting_lines.html</loc>
@@ -182,6 +194,9 @@
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/ep_model_select.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/ep_model_select_check.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/penalty_detection.html</loc>

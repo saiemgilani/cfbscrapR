@@ -164,91 +164,29 @@
 <h2 class="hasAnchor">
 <a href="#expected-points-and-win-probability-models" class="anchor"></a>Expected Points and Win Probability models</h2>
 <p>If you would like to learn more about the Expected Points and Win Probability models, please refer to the <code>cfbscrapR</code> <a href="https://saiemgilani.github.io/cfbscrapR/articles/index.html">tutorials</a> or for the code repository where the models are built, <a href="https://github.com/meysubb/cfbscrapR-MISC">click here</a></p>
-<div id="expected-points-model-calibration-plots-115-calibration-error" class="section level4">
+<div id="expected-points-model-calibration-plots-131-115-094-calibration-error" class="section level4">
 <h4 class="hasAnchor">
-<a href="#expected-points-model-calibration-plots-115-calibration-error" class="anchor"></a>Expected Points model calibration plots (1.15% Calibration Error)</h4>
+<a href="#expected-points-model-calibration-plots-131-115-094-calibration-error" class="anchor"></a>Expected Points model calibration plots (<del>1.31%</del> <del>1.15%</del> 0.94% Calibration Error)</h4>
 <p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/ep_fg_cv_loso_calibration_results.png?raw=true" alt="ep_fg_cv_loso_calibration_results.png"></p>
 </div>
-<div id="win-probability-model-calibration-plots-0787-calibration-error" class="section level4">
+<div id="win-probability-model-calibration-plots-089-0787-0669-calibration-error" class="section level4">
 <h4 class="hasAnchor">
-<a href="#win-probability-model-calibration-plots-0787-calibration-error" class="anchor"></a>Win Probability model calibration plots (0.787% Calibration Error)</h4>
+<a href="#win-probability-model-calibration-plots-089-0787-0669-calibration-error" class="anchor"></a>Win Probability model calibration plots (<del>0.89%</del> <del>0.787%</del> 0.669% Calibration Error)</h4>
 <p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/wp_cv_loso_calibration_results.png?raw=true" alt="wp_cv_loso_calibration_results.png"></p>
 </div>
 </div>
 </div>
-<div id="cfbscrapr-1022" class="section level1">
+<div id="cfbscrapr-103" class="section level1">
 <h1 class="hasAnchor">
-<a href="#cfbscrapr-1022" class="anchor"></a>cfbscrapR 1.0.22</h1>
+<a href="#cfbscrapr-103" class="anchor"></a>cfbscrapR 1.0.3</h1>
 <ul>
-<li><p><del>Fix conference parameters to match API (moved to abbreviation format).</del> Removed assertions for now, so users should be able to access conference data without issue, assuming the input argument is correct. May fortune favor your selection.</p></li>
-<li><p>Add mgcv (&gt;= v1.8.32) dependency and update WP model accordingly. Note on WPA: Kickoffs are problematic and our calculation algorithm does not appear to accomplishing what it needs to. We are working on this, aiming for a quick next version update centered around this.</p></li>
-<li>
-<p>Following play type renamings and merging:</p>
-<ul>
-<li>Pass Interception Return –&gt; Interception Return</li>
-<li>Pass Interception –&gt; Interception Return</li>
-<li>Pass Interception Return Touchdown –&gt; Interception Return Touchdown</li>
-<li>Sack Touchdown –&gt; Fumble Recovery (Opponent) Touchdown</li>
-<li>Punt Touchdown ~ Punt Return Touchdown.</li>
+<li>Updated expected points models and win probability models</li>
+<li>Add player and yardage columns to <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> pull thanks to a great deal of help from @NickTice</li>
+<li>Add spread values to the <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> pull</li>
+<li>Add drive detailed result with attempts at creating more accurate drive result labels</li>
+<li>Added series and first down variables</li>
+<li>Added argumentation to allow for San Jose State to be entered without accent into <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> function <code>team</code> argument.</li>
 </ul>
-</li>
-<li><p>Update <code>rush_vec</code> and <code>pass_vec</code> regex definitions to be more precise on pulling rushing plays.</p></li>
-<li><p>Update definition of play_type definition for cleaning “Fumble Recovery (Opponent)” play types to actually distinguish between touchdowns and non-scoring opponent fumble recoveries (prior definition was combining the touchdowns into the non-scoring play type)</p></li>
-<li><p>Reduce the reach of the non-explicit rushing/passing touchdowns to be more careful about merging labels.</p></li>
-<li><p>Similarly, separated punt touchdowns into a specific type of offensive score where the punting team recovers a fumble and scores, all other <code>punt touchdowns</code> prior to this were punt return touchdowns. There is a specific Jalen Reagor (TCU) play where he pulls a Greg Reid and fumbles on the punt return only to recover the fumble and run it in for a 73 yard TD that is explicitly fixed.</p></li>
-<li>
-<p>Add the following columns:</p>
-<ul>
-<li>kickoff_onside</li>
-<li>kickoff_fair_catch</li>
-<li>kickoff_downed</li>
-<li>punt_fair_catch</li>
-<li>punt_downed</li>
-<li>sack</li>
-<li>int</li>
-<li>int_td</li>
-<li>completion</li>
-<li>pass_attempt</li>
-<li>target</li>
-<li>pass_td</li>
-<li>rush_td</li>
-<li>safety</li>
-</ul>
-</li>
-<li><p>add some return skeleton docs</p></li>
-<li><p>add column <code>drive_start_yardline</code> to the remove cols</p></li>
-<li><p>add parsing for kickoff safetys accounting for sign change</p></li>
-<li><p>Added <a href="https://twitter.com/JaredDLee">Jared Lee</a>’s <a href="https://saiemgilani.github.io/cfbscrapR/articles/Animated_WP_Plotting.html">animated win probability plot vignette</a> to the package documentation page</p></li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/animated_wp.gif" alt="Result"></p>
-<ul>
-<li><p>Contains important <code>add_player_cols()</code> function useful to parse existing play-by-play datasets and pull passer/rusher/receiver/etc. player names.</p></li>
-<li><p>Added <a href="https://twitter.com/deceptivespeed_">Michael Egle</a>’s <a href="https://saiemgilani.github.io/cfbscrapR/articles/fourth_down_plot_tutorial.html">4th down tendency plot vignette</a> to the package documentation page</p></li>
-</ul>
-<div id="cfbscrapr-v102" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbscrapr-v102" class="anchor"></a>cfbscrapR v1.0.2</h2>
-<ul>
-<li>Remove the <a href="https://saiemgilani.github.io/cfbscrapR/reference/add_betting_cols.html"><code>add_betting_columns()</code></a> function and the current betting win probability model from the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> function.</li>
-<li>Added <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_ratings_fpi.html"><code>cfb_ratings_fpi()</code></a> function from @sabinanalytics’s fork of the repository</li>
-<li>Added the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_metrics_espn_wp.html"><code>cfb_metrics_espn_wp()</code></a> function, courtesy of @mrcaseb</li>
-<li>Add <a href="https://github.com/saiemgilani/cfbscrapR/tree/master/tests/testthat">tests</a> for a majority of the functions. This is the biggest behind the scenes change that will translate to more reliable functions.</li>
-<li>Rename several function outputs from <strong>camelCase to under_score</strong> for consistency. Please adjust your scripts accordingly, apologies for the inconvenience.</li>
-<li>Remove <code>drives</code> parameter from <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> function. For accessing drives information, please switch to the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html"><code>cfb_drives()</code></a> function.</li>
-</ul>
-<div id="fix-downs-turnovers-and-several-other-discrepancies-in-epa-computations" class="section level4">
-<h4 class="hasAnchor">
-<a href="#fix-downs-turnovers-and-several-other-discrepancies-in-epa-computations" class="anchor"></a>Fix downs turnovers and several other discrepancies in EPA computations.</h4>
-<p><img src="https://i.imgur.com/Bw6VO90.png" alt="EPA_YardsGained_cfbscrapR.png"></p>
-<p><img src="https://i.imgur.com/VYX12pZ.png" alt="EPA_YardsGained_cfbscrapR2.png"></p>
-</div>
-<div id="fix-majority-of-issues-with-win-probability-added" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fix-majority-of-issues-with-win-probability-added" class="anchor"></a>Fix majority of issues with win probability added.</h3>
-<p><img src="https://i.imgur.com/OFHTh9Y.jpg" alt="WPA_YardsGained_cfbscrapR.png"></p>
-<p><img src="https://i.imgur.com/84zh9VY.jpg" alt="WPA_YardsGained_cfbscrapR2.png"> - For more complete summary of changes, see <a href="https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691">Pull Request</a></p>
-</div>
-</div>
 </div>
 
   </div>

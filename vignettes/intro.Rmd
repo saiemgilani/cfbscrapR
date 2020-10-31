@@ -82,7 +82,7 @@ seasons <- 2019
 pbp_2019 <- purrr::map_df(seasons, function(x) {
   readRDS(
     url(
-      glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbscrapR-data/master/pbp_players_pos_{x}.RDS")
+      glue::glue("https://raw.githubusercontent.com/saiemgilani/cfbscrapR-data/master/data/rds/pbp_players_pos_{x}.rds")
     )
   )
 })

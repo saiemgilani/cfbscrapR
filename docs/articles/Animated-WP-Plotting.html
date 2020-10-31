@@ -133,7 +133,7 @@
 
       
 
-      </header><script src="Animated-WP-Plotting_files/header-attrs-2.3/header-attrs.js"></script><script src="Animated-WP-Plotting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Animated-WP-Plotting_files/header-attrs-2.4/header-attrs.js"></script><script src="Animated-WP-Plotting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Making Animated Win Probability Charts with cfbscrapR</h1>
@@ -159,6 +159,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://yihui.name/animation">animation</a></span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/tidyverse/glue">glue</a></span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/GuangchuangYu/ggimage">ggimage</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://zoo.R-Forge.R-project.org">zoo</a></span>)
 </pre></div>
 </div>
 <div id="cfbscrapr" class="section level2">
@@ -169,8 +170,24 @@
 <span class="kw">team</span> <span class="op">&lt;-</span> <span class="st">"Utah"</span>
 <span class="kw">week</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="kw">year</span> <span class="op">&lt;-</span> <span class="fl">2019</span>
+
+<span class="kw">interp_TimeSecsRem</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">pbp</span>) {
+  <span class="kw">temp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span> 
+    <span class="fu">mutate</span>(TimeSecsRem = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">TimeSecsRem</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/stats/lag.html">lag</a></span>(<span class="kw">TimeSecsRem</span>), <span class="fl">NA</span>, <span class="kw">TimeSecsRem</span>)) <span class="op">%&gt;%</span>
+    <span class="fu">select</span>(<span class="kw">TimeSecsRem</span>)
+  <span class="kw">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">TimeSecsRem</span> <span class="op">==</span> <span class="fl">1800</span>)
+  <span class="kw">temp</span><span class="op">$</span><span class="kw">TimeSecsRem</span>[<span class="fl">1</span>] <span class="op">&lt;-</span> <span class="fl">1800</span>
+  <span class="kw">temp</span><span class="op">$</span><span class="kw">TimeSecsRem</span>[<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">temp</span>)] <span class="op">&lt;-</span> <span class="fl">0</span>
+  <span class="kw">temp</span><span class="op">$</span><span class="kw">TimeSecsRem</span>[<span class="kw">ind</span><span class="op">-</span><span class="fl">1</span>] <span class="op">&lt;-</span> <span class="fl">0</span>
+  <span class="kw">pbp</span><span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span> 
+    <span class="fu">mutate</span>(TimeSecsRem = <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw">zoo</span>::<span class="fu"><a href="https://rdrr.io/pkg/zoo/man/na.approx.html">na.approx</a></span>(<span class="kw">temp</span><span class="op">$</span><span class="kw">TimeSecsRem</span>))) <span class="op">%&gt;%</span> 
+    <span class="fu">mutate</span>(clock.minutes = <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span>(<span class="kw">TimeSecsRem</span><span class="op">/</span><span class="fl">60</span>),clock.seconds = <span class="kw">TimeSecsRem</span> <span class="op">%%</span> <span class="fl">60</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw">pbp</span>)
+}
 <span class="kw">game_pbp</span> <span class="op">&lt;-</span> <span class="kw">cfbscrapR</span>::<span class="fu"><a href="../reference/cfb_pbp_data.html">cfb_pbp_data</a></span>(<span class="kw">year</span>, team = <span class="kw">team</span>, week = <span class="kw">week</span>, epa_wpa = <span class="fl">TRUE</span>) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">down</span> <span class="op">&gt;</span> <span class="fl">0</span>)
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">down</span> <span class="op">&gt;</span> <span class="fl">0</span>) <span class="op">%&gt;%</span>
+  <span class="fu">interp_TimeSecsRem</span>() 
+  
 <span class="kw">game</span> <span class="op">&lt;-</span> <span class="kw">cfbscrapR</span>::<span class="fu"><a href="../reference/cfb_game_info.html">cfb_game_info</a></span>(<span class="kw">year</span>, team = <span class="kw">team</span>, week = <span class="kw">week</span>)
 </pre></div>
 <p>We’ll also use the <code><a href="../reference/cfb_team_info.html">cfb_team_info()</a></code> function to pull the color and logo information and add it to the game info. We’ll also add in a <code>result</code> column that is the score difference between the home and the away teams that we’ll use later.</p>
@@ -188,169 +205,9 @@
   <span class="fu">mutate</span>(result = <span class="kw">home_points</span> <span class="op">-</span> <span class="kw">away_points</span>) <span class="op">%&gt;%</span>
   <span class="fu">rename</span>(home_score = <span class="kw">home_points</span>, away_score = <span class="kw">away_points</span>)
 </pre></div>
-<p>To build the labels, we’re going to use a custom function to pull the player names out of the play text. <a href="https://twitter.com/SaiemGilani">Saiem Gilani</a> wrote the bulk of the regular expressions here to get the names. They may not catch all player names, especially for sacks, kick returns, and punt returns.</p>
+<p>To build the labels, we’re going to use a custom function to pull the player names out of the play text. <a href="https://twitter.com/SaiemGilani">Saiem Gilani</a> wrote the bulk of the regular expressions here to get the names. EDIT: The improved version of this is now included in the <code><a href="../reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> function by default as of version 1.0.3.</p>
+<p>Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe’s animation code. First, we will rename several columns that are similar between <code>cfbscrapR</code> and <code>nflfastR</code> to match <code>nflfastR</code>’s column names. Then we need to create a few new columns that <code>cfbscrapR</code> doesn’t have. <code>game_seconds_remaining</code> is really just renaming <code>TimeSecsRem</code> but correcting for the half. <code>result</code> grabs from the game information and is the difference in the home and away score. We create the <code>time</code> column to use as the clock on the right side of the animation.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">add_player_cols</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">pbp</span>) {
-  <span class="co">## Extract player names</span>
-  <span class="co"># RB names </span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      rush_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">rush</span> <span class="op">==</span> <span class="fl">1</span>, 
-                           <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )run |(.{0,25} )\\d{0,2} Yd Run"</span>), <span class="fl">NA</span>),
-      rush_player = <span class="fu">str_remove</span>(<span class="kw">rush_player</span>, <span class="st">" run | \\d+ Yd Run"</span>))
-  <span class="co"># QB names </span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      pass_player = 
-        <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">pass</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> != <span class="st">"Passing Touchdown"</span>, 
-          <span class="fu">str_extract</span>(<span class="kw">play_text</span>, 
-            <span class="st">"pass from (.*?) \\(|(.{0,30} )pass |(.+) sacked by|(.+) sacked for|(.{0,30} )incomplete "</span>), <span class="fl">NA</span>),
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">"pass | sacked by| sacked for| incomplete"</span>),
-      pass_player = <span class="fu">if_else</span>(<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Passing Touchdown"</span>, 
-                            <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"pass from(.+)"</span>), <span class="kw">pass_player</span>),
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">"pass from "</span>), 
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">"\\(.+\\)"</span>),
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">" \\,"</span>),
-      pass_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Passing Touchdown"</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">pass_player</span>),
-                           <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.+)pass complete to"</span>), <span class="kw">pass_player</span>),
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">" pass complete to(.+)"</span>),
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">" pass complete to"</span>),
-      pass_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Passing Touchdown"</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">pass_player</span>),
-                           <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.+)pass,to"</span>), <span class="kw">pass_player</span>),
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">" pass,to(.+)"</span>),
-      pass_player = <span class="fu">str_remove</span>(<span class="kw">pass_player</span>, <span class="st">" pass,to"</span>))
-  <span class="co">## Receiver names</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      receiver_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">pass</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"to (.+)"</span>), <span class="fl">NA</span>),
-      receiver_player = <span class="fu">if_else</span>(<span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"Yd pass"</span>, ignore_case = <span class="fl">TRUE</span>)),
-                                <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )\\d{0,2} Yd pass"</span>),
-                                <span class="kw">receiver_player</span>),
-      receiver_player = <span class="fu">if_else</span>(<span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"Yd TD pass"</span>, ignore_case = <span class="fl">TRUE</span>)),
-                                <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )\\d{0,2} Yd TD pass"</span>),
-                                <span class="kw">receiver_player</span>),
-      receiver_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Sack"</span> <span class="op">|</span>
-                               <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return"</span> <span class="op">|</span>
-                               <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return Touchdown"</span> <span class="op">|</span>
-                               (<span class="kw">play_type</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Fumble Recovery (Opponent)"</span>,
-                                                 <span class="st">"Fumble Recovery (Opponent) Touchdown"</span>) <span class="op">&amp;</span>
-                                <span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="st">"sacked"</span>)), <span class="fl">NA</span>, <span class="kw">receiver_player</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"to "</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"\\,.+"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"for (.+)"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" (\\d{1,2})"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" Yd pass"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" Yd TD pass"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"pass complete to"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"penalty"</span>, ignore_case = <span class="fl">TRUE</span>)),
-      receiver_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="op">!</span><span class="fu">str_detect</span>(<span class="kw">receiver_player</span>, <span class="st">"III"</span>),
-                               <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"[A-Z]{3,}+"</span>), <span class="kw">receiver_player</span>),
-      receiver_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="op">!</span><span class="fu">str_detect</span>(<span class="kw">receiver_player</span>, <span class="st">"III"</span>),
-                               <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"[A-Z]{3,}+"</span>), <span class="kw">receiver_player</span>),
-      receiver_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="op">!</span><span class="fu">str_detect</span>(<span class="kw">receiver_player</span>, <span class="st">"III"</span>),
-                               <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"[A-Z]{3,}+"</span>), <span class="kw">receiver_player</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" &amp;"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"A&amp;M"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" ST"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" GA"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" UL"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" FL"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" OH"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" NC"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" É"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">" fumbled,"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"the (.+)"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"pass incomplete to"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"(.+)pass incomplete to"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"(.+)pass incomplete"</span>),
-      receiver_player = <span class="fu">str_remove</span>(<span class="kw">receiver_player</span>, <span class="st">"pass incomplete"</span>))
-  
-  <span class="co">## Extract player names</span>
-  <span class="co">## Sack player names</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      sack_players = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">pass</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Sack"</span>, 
-                            <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"sacked by(.+)"</span>), <span class="fl">NA</span>),
-      sack_players = <span class="fu">str_remove</span>(<span class="kw">sack_players</span>, <span class="st">"for (.+)"</span>),
-      sack_players = <span class="fu">str_remove</span>(<span class="kw">sack_players</span>, <span class="st">"(.+)by"</span>),
-      sack_player1 = <span class="fu">str_remove</span>(<span class="kw">sack_players</span>, <span class="st">"and (.+)"</span>),
-      sack_player2 = <span class="fu">if_else</span>(<span class="fu">str_detect</span>(<span class="kw">sack_players</span>, <span class="st">"and (.+)"</span>), 
-                             <span class="fu">str_remove</span>(<span class="kw">sack_players</span>, <span class="st">" (.+) and"</span>), <span class="kw">NULL</span>)) 
-  <span class="co">## Interception player names</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      interception_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">pass</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> (<span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return"</span><span class="op">|</span> 
-                                                <span class="kw">play_type</span> <span class="op">==</span> <span class="st">"Interception Return Touchdown"</span>),
-                                   <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"intercepted (.+)"</span>), <span class="fl">NA</span>),
-      interception_player = <span class="fu">if_else</span>(<span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"Yd pass"</span>, ignore_case = <span class="fl">TRUE</span>)),
-                                <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )\\d{0,2} Yd pass"</span>),
-                                <span class="kw">interception_player</span>),
-      interception_player = <span class="fu">if_else</span>(<span class="fu">str_detect</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"Yd Interception Return"</span>, ignore_case = <span class="fl">TRUE</span>)),
-                                <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">"(.{0,25} )\\d{0,2} Yd Interception Return"</span>),
-                                <span class="kw">interception_player</span>),
-      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">"return (.+)"</span>),
-      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">"(.+) intercepted "</span>),
-      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">"intercepted"</span>),
-      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">" Yd Interception Return"</span>),
-      interception_player = <span class="fu">str_remove</span>(<span class="kw">interception_player</span>, <span class="st">" (\\d{1,2})"</span>))
-  
-  <span class="co">## Punter Name</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      punter_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu">str_detect</span>(<span class="kw">play_type</span>, <span class="st">"Punt"</span>),
-                             <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">".{0,25} punt"</span>), <span class="fl">NA</span>),
-      punter_player = <span class="fu">str_remove</span>(<span class="kw">punter_player</span>,<span class="st">" punt"</span>))
-  
-  <span class="co">## Punt Returner</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      punt_returner_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu">str_detect</span>(<span class="kw">play_type</span>, <span class="st">"Punt"</span>), 
-                                    <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">", .{0,25} returns"</span>), <span class="fl">NA</span>),
-      punt_returner_player = <span class="fu">str_remove</span>(<span class="kw">punt_returner_player</span>, <span class="st">", "</span>),
-      punt_returner_player = <span class="fu">str_remove</span>(<span class="kw">punt_returner_player</span>, <span class="st">" returns"</span>)) 
-  
-  <span class="co">## Kickoff Specialist Name</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">mutate</span>(
-      kickoff_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu">str_detect</span>(<span class="kw">play_type</span>, <span class="st">"Kickoff"</span>),
-                             <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="st">".{0,25} kickoff"</span>), <span class="fl">NA</span>),
-      kickoff_player = <span class="fu">str_remove</span>(<span class="kw">kickoff_player</span>,<span class="st">" kickoff"</span>))
-  
-  <span class="co">## Kickoff Returner</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span> 
-    <span class="fu">mutate</span>(
-      kickoff_returner_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu">str_detect</span>(<span class="kw">play_type</span>,<span class="st">"ickoff"</span>),
-                                       <span class="fu">str_extract</span>(<span class="kw">play_text</span>,<span class="st">", .{0,25} return"</span>), <span class="fl">NA</span>),
-      kickoff_returner_player = <span class="fu">str_remove</span>(<span class="kw">kickoff_returner_player</span>,<span class="st">", "</span>),
-      kickoff_returner_player = <span class="fu">str_remove</span>(<span class="kw">kickoff_returner_player</span>,<span class="st">" return"</span>)) 
-  <span class="co">## Field Goal Kicker</span>
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span> 
-    <span class="fu">mutate</span>(
-      fg_kicker_player = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu">str_detect</span>(<span class="kw">play_type</span>, <span class="st">"Field Goal"</span>),
-                             <span class="fu">str_extract</span>(<span class="kw">play_text</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">"(.{0,25} )\\d{0,2} yd field goal| | (.{0,25} )\\d{0,2} yd fg"</span>, ignore_case = <span class="fl">TRUE</span>)), <span class="fl">NA</span>),
-      fg_kicker_player = <span class="fu">str_remove</span>(<span class="kw">fg_kicker_player</span>, <span class="fu"><a href="https://rdrr.io/r/base/regex.html">regex</a></span>(<span class="st">" Yd Field Goal|Yd FG"</span>, ignore_case = <span class="fl">TRUE</span>)),
-      fg_kicker_player = <span class="fu">str_remove</span>(<span class="kw">fg_kicker_player</span>,<span class="st">" (\\d{1,2})"</span>)
-      )
-      
-  
-  <span class="kw">pbp</span> <span class="op">&lt;-</span> <span class="kw">pbp</span> <span class="op">%&gt;%</span>
-    <span class="fu">rename</span>(
-      rusher_player_name = <span class="kw">rush_player</span>,
-      receiver_player_name = <span class="kw">receiver_player</span>,
-      passer_player_name = <span class="kw">pass_player</span>,
-      sack_player_name = <span class="kw">sack_player1</span>,
-      sack_player_name2 = <span class="kw">sack_player2</span>,
-      interception_player_name = <span class="kw">interception_player</span>,
-      punter_player_name = <span class="kw">punter_player</span>,
-      fg_kicker_player_name = <span class="kw">fg_kicker_player</span>,
-      kickoff_player_name = <span class="kw">kickoff_player</span>,
-      kickoff_returner_player_name = <span class="kw">kickoff_returner_player</span>,
-      punt_returner_player_name = <span class="kw">punt_returner_player</span>)
-  <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="kw">pbp</span>)
-}
-</pre></div>
-<p>Now we are ready to transform our play-by-play data frame to match what we need to work with Lee Sharpe’s animation code. First, we will rename several columns that are similar between <code>cfbscrapR</code> and <code>nflfastR</code> to match <code>nflfastR</code>’s column names. Then we need to create a few new columns that <code>cfbscrapR</code> doesn’t have. <code>game_seconds_remaining</code> is really just renaming <code>TimeSecsRem</code> but correcting for the half. <code>result</code> grabs from the game information and is the difference in the home and away score. We create the <code>time</code> column to use as the clock on the right side of the animation. Finally, we use our custom <code>add_player_cols()</code> function to add the player names to our data.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="kw">game_pbp</span> <span class="op">&lt;-</span> <span class="kw">game_pbp</span> <span class="op">%&gt;%</span>
   <span class="fu">rename</span>(qtr = <span class="kw">period</span>, wp = <span class="kw">wp_before</span>, posteam = <span class="kw">pos_team</span>, defteam = <span class="kw">def_pos_team</span>,
          away_team = <span class="kw">away</span>, home_team = <span class="kw">home</span>, play_id = <span class="kw">game_play_number</span>,
@@ -362,18 +219,17 @@
                            <span class="kw">clock.minutes</span>),
          minlabel = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">minlabel</span> <span class="op">&lt;</span> <span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"0"</span>, <span class="kw">minlabel</span>), <span class="kw">minlabel</span>),
          seclabel = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">clock.seconds</span> <span class="op">&lt;</span> <span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"0"</span>, <span class="kw">clock.seconds</span>), <span class="kw">clock.seconds</span>),
-         time = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">minlabel</span>, <span class="st">":"</span>, <span class="kw">seclabel</span>)) <span class="op">%&gt;%</span>
-  <span class="fu">add_player_cols</span>()
+         time = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">minlabel</span>, <span class="st">":"</span>, <span class="kw">seclabel</span>)) 
 </pre></div>
 <p>Now that our data matches <code>nflfastR</code>, we can start to copy Lee Sharpe’s code and the bulk of the remaining code is his with a few minor adjustments to the plot, the overtime logic, and the labels. First we filter out plays that don’t have a win percentage and fix the win probability so that it is always the probability of the away team winning.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="kw">base_wp_data</span> <span class="op">&lt;-</span> <span class="kw">game_pbp</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">wp</span>)) <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span>(s = <span class="kw">game_seconds_remaining</span>,
          wp = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">posteam</span> <span class="op">==</span> <span class="kw">away_team</span>, <span class="kw">wp</span>, <span class="fl">1</span> <span class="op">-</span> <span class="kw">wp</span>))
 </pre></div>
 <p>Then we fix the plays without a wpa.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="co"># fix if play other than last is NA</span>
 <span class="co">for</span> (<span class="kw">r</span> <span class="co">in</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">base_wp_data</span>)<span class="op">-</span><span class="fl">1</span>)<span class="op">:</span><span class="fl">1</span>) {
   <span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">base_wp_data</span><span class="op">$</span><span class="kw">wp</span>[<span class="kw">r</span>]) <span class="op">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">base_wp_data</span><span class="op">$</span><span class="kw">wpa</span>[<span class="kw">r</span>]))
@@ -391,8 +247,9 @@
 }
 </pre></div>
 <p>Now we create the labels. This generates labels for any play that had a change in the winning percentage of more than 10 percentage points. We’ll also simplify our data frame by only selecting the relevant columns for our plots.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">abs_wpa</span> <span class="op">&lt;-</span> <span class="fl">0.08</span>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">abs_wpa</span> <span class="op">&lt;-</span> <span class="fl">0.07</span>
+
 <span class="kw">wp_data</span> <span class="op">&lt;-</span> <span class="kw">base_wp_data</span> <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span>(
     helped=<span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">wpa</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="kw">posteam</span>, <span class="kw">defteam</span>),
@@ -443,7 +300,7 @@
   <span class="fu">select</span>(<span class="kw">play_id</span>, <span class="kw">qtr</span>, <span class="kw">time</span>, <span class="kw">s</span>, <span class="kw">wp</span>, <span class="kw">wpa</span>, <span class="kw">posteam</span>, <span class="kw">away_score</span>, <span class="kw">home_score</span>, <span class="kw">text</span>)
 </pre></div>
 <p>This is where the real magic happens. Sharpe’s code will iterate over the labels and try to determine valid locations for each one.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="co"># points for plotting</span>
 <span class="kw">x_max</span> <span class="op">&lt;-</span> <span class="fl">0</span>
 <span class="kw">x_lab_min</span> <span class="op">&lt;-</span> <span class="fl">3600</span> <span class="op">-</span> <span class="fl">250</span>
@@ -544,7 +401,7 @@
 }
 </pre></div>
 <p>Finally, we create two new rows to our data frame for the start and end of the game, filter out any other weirdness, and arrange our data frame by the order of the plays.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
+<div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="co"># add on WP boundaries</span>
 <span class="kw">first_row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(play_id = <span class="fl">0</span>, qtr = <span class="fl">1</span>, time = <span class="st">"15:00"</span>, s = <span class="fl">3600</span>,
                         wp = <span class="fl">0.5</span>, wpa = <span class="fl">NA</span>, text = <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="st">""</span>),
@@ -568,7 +425,7 @@
 <h2 class="hasAnchor">
 <a href="#plotting" class="anchor"></a>Plotting</h2>
 <p>Now we’re ready for plotting. The <code>draw_frame()</code> function will draw our win probability plot for any given number of seconds remaining in the game. This is where you can make any changes to the plot that you would like.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="kw">draw_frame</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">n_sec</span>)
 {
   
@@ -651,12 +508,12 @@
 }
 </pre></div>
 <p>Let’s test our function to make sure the plot looks like how we want it by running our function with 6 minutes left in the game.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
+<div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu">draw_frame</span>(<span class="fl">360</span>)
 </pre></div>
 <p><img src="Animated-WP-Plotting_files/figure-html/draw_test-1.png" width="700"></p>
 <p>Looks great, so next we create the <code>draw_game()</code> function which will draw every frame for our GIF.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="kw">draw_game</span> <span class="op">&lt;-</span> <span class="fu">function</span>()
 {
   <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="kw">wp_data</span><span class="op">$</span><span class="kw">s</span>, <span class="fu">function</span>(<span class="kw">n_sec</span>)
@@ -673,13 +530,13 @@
 <h2 class="hasAnchor">
 <a href="#animating" class="anchor"></a>Animating</h2>
 <p>Finally, we run our <code>draw_game()</code> function inside of <code><a href="https://rdrr.io/pkg/animation/man/saveGIF.html">saveGIF()</a></code>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
- <span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")</span>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+  <span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp.gif")</span>
 </pre></div>
 <p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/animated_wp.gif?raw=true" alt="Result"> This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the <code>ani.width</code>, <code>ani.height</code> and <code>ani.res</code> parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = "animated_wp_wide.gif",</span>
-<span class="co">#         ani.width = 1000, ani.height = 650, ani.res = 110)</span>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="co"># saveGIF(draw_game(), interval = 0.1, movie.name = 'animated_wp_wide.gif',</span>
+<span class="co">#         ani.width = 800, ani.height = 500, ani.res = 110)</span>
 </pre></div>
 <div class="figure">
 <img src="https://kazink36.github.io/images/animated_wp_ex_wide.gif" alt=""><p class="caption">Result</p>

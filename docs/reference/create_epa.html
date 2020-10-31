@@ -193,7 +193,7 @@ Adds Expected Points calculations to Play-by-Play data.frame</p>
     </div>
 
     <pre class="usage"><span class='fu'>create_epa</span>(
-  <span class='kw'>clean_pbp_dat</span>,
+  <span class='kw'>play_df</span>,
   ep_model = <span class='kw'>cfbscrapR</span>:::<span class='kw'>ep_model</span>,
   fg_model = <span class='kw'>cfbscrapR</span>:::<span class='kw'>fg_model</span>
 )</pre>
@@ -202,10 +202,6 @@ Adds Expected Points calculations to Play-by-Play data.frame</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>clean_pbp_dat</th>
-      <td><p>(<em>data.frame</em> required): Clean PBP as input from <code><a href='cfb_pbp_data.html'>cfbscrapR::cfb_pbp_data()</a></code>)</p></td>
-    </tr>
-    <tr>
       <th>ep_model</th>
       <td><p>(<em>model</em> default cfbscrapR:::ep_model): Expected Points (EP) Model</p></td>
     </tr>
@@ -213,15 +209,11 @@ Adds Expected Points calculations to Play-by-Play data.frame</p>
       <th>fg_model</th>
       <td><p>(<em>model</em> default cfbscrapR:::fg_model): Field Goal (FG) Model</p></td>
     </tr>
+    <tr>
+      <th>clean_pbp_dat</th>
+      <td><p>(<em>data.frame</em> required): Clean PBP as input from <code><a href='cfb_pbp_data.html'>cfbscrapR::cfb_pbp_data()</a></code>)</p></td>
+    </tr>
     </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    
-<dl>
-  <dt></dt><dd><p></p></dd>
-
-</dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
