@@ -38,11 +38,11 @@ navbar:
         href: articles/index.html
       - text: Introductory
       - text: CFB Analytics with cfbscrapR
-        href: articles/Intro.html
+        href: articles/intro.html
       - text: Animated Win Probability Plots
         href: articles/Animated-WP-Plotting.html
       - text: Fourth Down Tendency Plots
-        href: articles/Fourth-Down-Plot-Tutorial.html
+        href: articles/fourth-down-plot-tutorial.html
       - text: Rolling EPA s
         href: articles/Rolling-EPA-Graph.html
       - text: Expected Points Model Fundamentals

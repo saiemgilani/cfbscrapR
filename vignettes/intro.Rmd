@@ -3,6 +3,9 @@ title: "Introduction to College Football Analytics with cfbscrapR"
 author: "Parker Fleming | @statsowar"
 output: html_document
 ---
+```{r setup, include=FALSE}
+old <- options(rmarkdown.html_vignette.check_title = FALSE)
+```
 Hello, friends.
 
 You, like me, might be a big college football fan who is interested in statistics and analytics, wanting to get into the game for yourself. This simple tutorial is just the way to do that!
