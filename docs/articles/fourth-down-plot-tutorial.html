@@ -136,7 +136,8 @@
 
       
 
-      </header><script src="fourth-down-plot-tutorial_files/header-attrs-2.4/header-attrs.js"></script><script src="fourth-down-plot-tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="fourth-down-plot-tutorial_files/header-attrs-2.5.3/header-attrs.js"></script><script src="fourth-down-plot-tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="fourth-down-plot-tutorial_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
+<script src="fourth-down-plot-tutorial_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Creating Fourth Down Tendency Plots Using cfbscrapR</h1>
@@ -184,7 +185,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfb_coaches.html">cfb_coaches</a></span>(year = <span class="fl">2019</span>)
 </pre></div>
-<pre><code>## 2020-10-31 06:36:31: Scraping coaches data...</code></pre>
+<pre><code>## 2020-11-03 01:23:13: Scraping coaches data...</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="kw">coaches</span> <span class="op">&lt;-</span> <span class="kw">coaches</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span>(coach = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">first_name</span>, <span class="kw">last_name</span>, sep = <span class="st">" "</span>)) <span class="op">%&gt;%</span>
