@@ -26,7 +26,7 @@ authors:
   
 home:
 navbar:
-  icon: https://imgur.com/JdMII7N
+  icon: https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico
   title: "cfbscrapR"
   left:
     - icon: fa-home

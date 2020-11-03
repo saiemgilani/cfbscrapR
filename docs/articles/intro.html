@@ -136,8 +136,8 @@
 
       
 
-      </header><script src="intro_files/header-attrs-2.5.3/header-attrs.js"></script><script src="intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="intro_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
-<script src="intro_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
+      </header><script src="Intro_files/header-attrs-2.5.3/header-attrs.js"></script><script src="Intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Intro_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
+<script src="Intro_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to College Football Analytics with cfbscrapR</h1>
@@ -770,7 +770,7 @@
 <div class="sourceCode" id="cb24"><pre class="downlit">
 <span class="kw">success</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(x=<span class="kw">rush.rte</span>, y=<span class="kw">success.rte</span>)) <span class="op">+</span> <span class="fu">geom_point</span>()
 </pre></div>
-<p><img src="intro_files/figure-html/successplot-1.png" width="700"></p>
+<p><img src="Intro_files/figure-html/successplot-1.png" width="700"></p>
 <p>Ok, that’s pretty cool! Let’s dress it up a little bit by adding a title and labelling the axes, using the labs() option. We will also throw a couple reference lines - a vertical and horizontal line indicating the mean values of each statistic to help us compare. Plus, here are some tweaks I like that make the graph look a little better (all the theme() stuff).</p>
 <div class="sourceCode" id="cb25"><pre class="downlit">
 <span class="kw">success</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(x=<span class="kw">rush.rte</span>, y=<span class="kw">success.rte</span>)) <span class="op">+</span> <span class="fu">geom_point</span>() <span class="op">+</span> 
@@ -786,7 +786,7 @@
         plot.caption = <span class="fu">element_text</span>(size = <span class="fl">12</span>),
     panel.grid.minor = <span class="fu">element_blank</span>())
 </pre></div>
-<p><img src="intro_files/figure-html/successearlyrush-1.png" width="700"></p>
+<p><img src="Intro_files/figure-html/successearlyrush-1.png" width="700"></p>
 <div id="adding-logos" class="section level3">
 <h3 class="hasAnchor">
 <a href="#adding-logos" class="anchor"></a>Adding Logos</h3>
@@ -812,7 +812,7 @@
         plot.caption = <span class="fu">element_text</span>(size = <span class="fl">12</span>),
     panel.grid.minor = <span class="fu">element_blank</span>())
 </pre></div>
-<p><img src="intro_files/figure-html/ED_rushrt_successrt-1.png" width="700"></p>
+<p><img src="Intro_files/figure-html/ED_rushrt_successrt-1.png" width="700"></p>
 <p>You can save the graphs with ggsave(). That gives you a nice, high-res png file that we can post to Twitter or put in a blog post: <code>ggsave('file.png', height = 7, width = 13, dpi = 300)</code></p>
 </div>
 <div id="more-visualizations" class="section level3">
@@ -839,7 +839,7 @@
   plot.caption = <span class="fu">element_text</span>(size = <span class="fl">12</span>),
     panel.grid.minor = <span class="fu">element_blank</span>())
 </pre></div>
-<p><img src="intro_files/figure-html/tcu2019off-1.png" width="700"></p>
+<p><img src="Intro_files/figure-html/tcu2019off-1.png" width="700"></p>
 <p>I added a couple fun features here: a <em>geom_hline()</em> reference line at zero, to help us better understand the graph, and a subtitle to clarify what was on the graph. Notice that TCU’s EPA was spread almost evenly across the field, but you can see some serious negative ouliers that weighed them down. We could call those outliers into our console to explore them more:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit">
 <span class="kw">plays</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">offense_play</span> <span class="op">==</span> <span class="st">"TCU"</span> <span class="op">&amp;</span> <span class="kw">EPA</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">4</span>) <span class="op">%&gt;%</span> <span class="fu">select</span>(<span class="kw">offense_play</span>, <span class="kw">defense_play</span>, <span class="kw">play_text</span>, <span class="kw">down</span>, <span class="kw">distance</span>, <span class="kw">yards_to_goal</span>)
@@ -878,7 +878,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ahtxqtbqxf .gt_table {
+#lyexmiqcdx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -903,7 +903,7 @@
   border-left-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_heading {
+#lyexmiqcdx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -915,7 +915,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_title {
+#lyexmiqcdx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -925,7 +925,7 @@
   border-bottom-width: 0;
 }
 
-#ahtxqtbqxf .gt_subtitle {
+#lyexmiqcdx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -935,13 +935,13 @@
   border-top-width: 0;
 }
 
-#ahtxqtbqxf .gt_bottom_border {
+#lyexmiqcdx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_col_headings {
+#lyexmiqcdx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -956,7 +956,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_col_heading {
+#lyexmiqcdx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -976,7 +976,7 @@
   overflow-x: hidden;
 }
 
-#ahtxqtbqxf .gt_column_spanner_outer {
+#lyexmiqcdx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -988,15 +988,15 @@
   padding-right: 4px;
 }
 
-#ahtxqtbqxf .gt_column_spanner_outer:first-child {
+#lyexmiqcdx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ahtxqtbqxf .gt_column_spanner_outer:last-child {
+#lyexmiqcdx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ahtxqtbqxf .gt_column_spanner {
+#lyexmiqcdx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1008,7 +1008,7 @@
   width: 100%;
 }
 
-#ahtxqtbqxf .gt_group_heading {
+#lyexmiqcdx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1030,7 +1030,7 @@
   vertical-align: middle;
 }
 
-#ahtxqtbqxf .gt_empty_group_heading {
+#lyexmiqcdx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1045,15 +1045,15 @@
   vertical-align: middle;
 }
 
-#ahtxqtbqxf .gt_from_md > :first-child {
+#lyexmiqcdx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ahtxqtbqxf .gt_from_md > :last-child {
+#lyexmiqcdx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ahtxqtbqxf .gt_row {
+#lyexmiqcdx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1072,7 +1072,7 @@
   overflow-x: hidden;
 }
 
-#ahtxqtbqxf .gt_stub {
+#lyexmiqcdx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1084,7 +1084,7 @@
   padding-left: 12px;
 }
 
-#ahtxqtbqxf .gt_summary_row {
+#lyexmiqcdx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1094,7 +1094,7 @@
   padding-right: 5px;
 }
 
-#ahtxqtbqxf .gt_first_summary_row {
+#lyexmiqcdx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1104,7 +1104,7 @@
   border-top-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_grand_summary_row {
+#lyexmiqcdx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1114,7 +1114,7 @@
   padding-right: 5px;
 }
 
-#ahtxqtbqxf .gt_first_grand_summary_row {
+#lyexmiqcdx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1124,11 +1124,11 @@
   border-top-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_striped {
+#lyexmiqcdx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ahtxqtbqxf .gt_table_body {
+#lyexmiqcdx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1137,7 +1137,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_footnotes {
+#lyexmiqcdx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1151,13 +1151,13 @@
   border-right-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_footnote {
+#lyexmiqcdx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ahtxqtbqxf .gt_sourcenotes {
+#lyexmiqcdx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1171,46 +1171,46 @@
   border-right-color: #D3D3D3;
 }
 
-#ahtxqtbqxf .gt_sourcenote {
+#lyexmiqcdx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ahtxqtbqxf .gt_left {
+#lyexmiqcdx .gt_left {
   text-align: left;
 }
 
-#ahtxqtbqxf .gt_center {
+#lyexmiqcdx .gt_center {
   text-align: center;
 }
 
-#ahtxqtbqxf .gt_right {
+#lyexmiqcdx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ahtxqtbqxf .gt_font_normal {
+#lyexmiqcdx .gt_font_normal {
   font-weight: normal;
 }
 
-#ahtxqtbqxf .gt_font_bold {
+#lyexmiqcdx .gt_font_bold {
   font-weight: bold;
 }
 
-#ahtxqtbqxf .gt_font_italic {
+#lyexmiqcdx .gt_font_italic {
   font-style: italic;
 }
 
-#ahtxqtbqxf .gt_super {
+#lyexmiqcdx .gt_super {
   font-size: 65%;
 }
 
-#ahtxqtbqxf .gt_footnote_marks {
+#lyexmiqcdx .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="ahtxqtbqxf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="lyexmiqcdx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_col_headings"><tr>
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">offense_play</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">epa.pass.off</th>
@@ -1306,7 +1306,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dwepfgjmby .gt_table {
+#vsykgtmztc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1331,7 +1331,7 @@
   border-left-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_heading {
+#vsykgtmztc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1343,7 +1343,7 @@
   border-right-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_title {
+#vsykgtmztc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1353,7 +1353,7 @@
   border-bottom-width: 0;
 }
 
-#dwepfgjmby .gt_subtitle {
+#vsykgtmztc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1363,13 +1363,13 @@
   border-top-width: 0;
 }
 
-#dwepfgjmby .gt_bottom_border {
+#vsykgtmztc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_col_headings {
+#vsykgtmztc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1384,7 +1384,7 @@
   border-right-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_col_heading {
+#vsykgtmztc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1404,7 +1404,7 @@
   overflow-x: hidden;
 }
 
-#dwepfgjmby .gt_column_spanner_outer {
+#vsykgtmztc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1416,15 +1416,15 @@
   padding-right: 4px;
 }
 
-#dwepfgjmby .gt_column_spanner_outer:first-child {
+#vsykgtmztc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dwepfgjmby .gt_column_spanner_outer:last-child {
+#vsykgtmztc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dwepfgjmby .gt_column_spanner {
+#vsykgtmztc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1436,7 +1436,7 @@
   width: 100%;
 }
 
-#dwepfgjmby .gt_group_heading {
+#vsykgtmztc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1458,7 +1458,7 @@
   vertical-align: middle;
 }
 
-#dwepfgjmby .gt_empty_group_heading {
+#vsykgtmztc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1473,15 +1473,15 @@
   vertical-align: middle;
 }
 
-#dwepfgjmby .gt_from_md > :first-child {
+#vsykgtmztc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dwepfgjmby .gt_from_md > :last-child {
+#vsykgtmztc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dwepfgjmby .gt_row {
+#vsykgtmztc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1500,7 +1500,7 @@
   overflow-x: hidden;
 }
 
-#dwepfgjmby .gt_stub {
+#vsykgtmztc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1512,7 +1512,7 @@
   padding-left: 12px;
 }
 
-#dwepfgjmby .gt_summary_row {
+#vsykgtmztc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1522,7 +1522,7 @@
   padding-right: 5px;
 }
 
-#dwepfgjmby .gt_first_summary_row {
+#vsykgtmztc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1532,7 +1532,7 @@
   border-top-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_grand_summary_row {
+#vsykgtmztc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1542,7 +1542,7 @@
   padding-right: 5px;
 }
 
-#dwepfgjmby .gt_first_grand_summary_row {
+#vsykgtmztc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1552,11 +1552,11 @@
   border-top-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_striped {
+#vsykgtmztc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dwepfgjmby .gt_table_body {
+#vsykgtmztc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1565,7 +1565,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_footnotes {
+#vsykgtmztc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1579,13 +1579,13 @@
   border-right-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_footnote {
+#vsykgtmztc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dwepfgjmby .gt_sourcenotes {
+#vsykgtmztc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1599,46 +1599,46 @@
   border-right-color: #D3D3D3;
 }
 
-#dwepfgjmby .gt_sourcenote {
+#vsykgtmztc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dwepfgjmby .gt_left {
+#vsykgtmztc .gt_left {
   text-align: left;
 }
 
-#dwepfgjmby .gt_center {
+#vsykgtmztc .gt_center {
   text-align: center;
 }
 
-#dwepfgjmby .gt_right {
+#vsykgtmztc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dwepfgjmby .gt_font_normal {
+#vsykgtmztc .gt_font_normal {
   font-weight: normal;
 }
 
-#dwepfgjmby .gt_font_bold {
+#vsykgtmztc .gt_font_bold {
   font-weight: bold;
 }
 
-#dwepfgjmby .gt_font_italic {
+#vsykgtmztc .gt_font_italic {
   font-style: italic;
 }
 
-#dwepfgjmby .gt_super {
+#vsykgtmztc .gt_super {
   font-size: 65%;
 }
 
-#dwepfgjmby .gt_footnote_marks {
+#vsykgtmztc .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="dwepfgjmby" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="vsykgtmztc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_header">
 <tr>
 <th colspan="3" class="gt_heading gt_title gt_font_normal" style>Best Passing Teams</th>

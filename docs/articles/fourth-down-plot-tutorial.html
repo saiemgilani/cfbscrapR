@@ -136,8 +136,8 @@
 
       
 
-      </header><script src="fourth-down-plot-tutorial_files/header-attrs-2.5.3/header-attrs.js"></script><script src="fourth-down-plot-tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="fourth-down-plot-tutorial_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
-<script src="fourth-down-plot-tutorial_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
+      </header><script src="Fourth-Down-Plot-Tutorial_files/header-attrs-2.5.3/header-attrs.js"></script><script src="Fourth-Down-Plot-Tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Fourth-Down-Plot-Tutorial_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
+<script src="Fourth-Down-Plot-Tutorial_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Creating Fourth Down Tendency Plots Using cfbscrapR</h1>
@@ -185,7 +185,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfb_coaches.html">cfb_coaches</a></span>(year = <span class="fl">2019</span>)
 </pre></div>
-<pre><code>## 2020-11-03 01:35:45: Scraping coaches data...</code></pre>
+<pre><code>## 2020-11-03 01:43:58: Scraping coaches data...</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="kw">coaches</span> <span class="op">&lt;-</span> <span class="kw">coaches</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span>(coach = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">first_name</span>, <span class="kw">last_name</span>, sep = <span class="st">" "</span>)) <span class="op">%&gt;%</span>
@@ -231,7 +231,7 @@
                      breaks = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">20</span>, <span class="fl">40</span>, <span class="fl">60</span>, <span class="fl">80</span>, <span class="fl">100</span>)) <span class="op">+</span>
   <span class="fu">theme</span>(axis.title.y = <span class="fu">element_blank</span>())
 </pre></div>
-<p><img src="fourth-down-plot-tutorial_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="Fourth-Down-Plot-Tutorial_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>Looks good! Small sample size but can easily be built upon. Hopefully you found this tutorial helpful and can make some more cool CFB related visualizations with <code>ggplot2</code></p>
   </div>
 
