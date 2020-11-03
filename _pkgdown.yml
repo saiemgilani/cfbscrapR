@@ -38,7 +38,7 @@ navbar:
         href: articles/index.html
       - text: Introductory
       - text: CFB Analytics with cfbscrapR
-        href: articles/intro.html
+        href: articles/Intro.html
       - text: Animated Win Probability Plots
         href: articles/Animated-WP-Plotting.html
       - text: Fourth Down Tendency Plots
