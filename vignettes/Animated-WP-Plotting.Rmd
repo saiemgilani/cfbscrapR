@@ -420,6 +420,7 @@ Finally, we run our ```draw_game()``` function inside of ```saveGIF()```.
 ```
 
 ![Result](https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/animated_wp.gif?raw=true)
+
 This process takes awhile, about 3 minutes on my computer. We can also re-size our GIF using the `ani.width`, `ani.height` and `ani.res` parameters. I like to make my plots wider and at higher resolution, but be careful, this will drastically increase the rendering time and the file size.
 
 ```{r saveGIF_wide, message=FALSE, warning=FALSE}
