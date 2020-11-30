@@ -485,6 +485,20 @@ clean_pbp_dat <- function(play_df) {
       yards_to_goal = ifelse(.data$fg_inds == 1 & !is.na(.data$yds_fg), .data$yds_fg-17, .data$yards_to_goal),
       yards_to_goal = ifelse(.data$id_play == "401112476101977728", 16, .data$yards_to_goal),
       yards_to_goal = ifelse(.data$id_play == "401112476104999424", 36, .data$yards_to_goal),
+      pos_unit = dplyr::case_when(
+        .data$punt == 1 ~ "Punt Offense",
+        .data$kickoff_play == 1 ~ "Kickoff Return",
+        .data$fg_inds == 1 ~ "Field Goal Offense",
+        .data$play_type == "Defensive 2pt Conversion" ~ "Offense",
+        TRUE ~ "Offense"
+      ),
+      def_pos_unit = dplyr::case_when(
+        .data$punt == 1 ~ "Punt Return",
+        .data$kickoff_play == 1 ~ "Kickoff Defense",
+        .data$fg_inds == 1 ~ "Field Goal Defense",
+        .data$play_type == "Defensive 2pt Conversion" ~ "Defense",
+        TRUE ~ "Defense"
+      ),
       #--- Lags/Leads play type ----
       lag_play_type3 = dplyr::lag(.data$play_type, 3),
       lag_play_type2 = dplyr::lag(.data$play_type, 2),
