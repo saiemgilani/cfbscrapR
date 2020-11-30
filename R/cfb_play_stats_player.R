@@ -211,7 +211,7 @@ cfb_play_stats_player <- function(year = NULL,
       colnames(df) <- sub(' ',"_",tolower(colnames(df)))
       
       clean_df <- df %>% 
-        pivot_wider(names_from = .data$stat_type,
+        tidyr::pivot_wider(names_from = .data$stat_type,
                     values_from = .data$athlete_name) 
       
       colnames(clean_df) <- sub(' ',"_",tolower(colnames(clean_df)))
