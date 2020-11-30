@@ -387,22 +387,23 @@ Other Great Resources:
 
 ## Glossary of terms and functions
 
-cfbscrapR: the R package that helps you get the college football data. Documentation can be found here:
+```[cfbscrapR](https://saiemgilani.github.io/cfbscrapR/index.html)```: the R package that helps you get the college football data. Documentation can be found here:
 
 ### Functions in cfbscrapR
 
-* cfb_pbp_data() gets you the play by play for a given week or team. Can loop over this to pull the whole season. 
-* cfb_game_info() gets you the home team, away team, game score, and more info about games.  
-* plot_pbp_sequencing() and plot_wpa() are both built-in graphics you can play with. See documentation.   
+* ```[cfb_pbp_data()](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html)``` gets you the play by play for a given week or team. Can loop over this to pull the whole season. 
+* ```[cfb_game_info()](https://saiemgilani.github.io/cfbscrapR/reference/cfb_game_info.html)``` gets you the home team, away team, game score, and more info about games.  
+* ```[plot_pbp_sequencing()](https://saiemgilani.github.io/cfbscrapR/reference/plot_pbp_sequencing.html)``` and ```[plot_wpa()](https://saiemgilani.github.io/cfbscrapR/reference/plot_wpa.html)``` are both built-in graphics you can play with. See documentation.   
 tidyverse: the R data science package that helps you wrangle and analyze data.  
 
 ### Functions we used in the tidyverse
 
-* mutate(): creates new variables  
-* group_by() and summarise(): groups observation and calculates summary statistics  
-* filter(): keeps observations based on certain conditions (remember to use ==)  
-* left_join(): takes one dataframe and merges it with another  
-* head() tail() glimpse() and levels(): all help you inspect the data  
-* ggplot() and geom_point(): graphing functions that set up a graph and plots scatter plots  
-(gt: a nice package for getting publication-quality tables  
+* ```[dplyr::mutate()](https://dplyr.tidyverse.org/reference/mutate.html)```: creates new variables  
+* ```[dplyr::group_by()](https://dplyr.tidyverse.org/reference/group_by.html)``` and ```[dplyr::summarise()](https://dplyr.tidyverse.org/reference/summarise.html)```: groups observation and calculates summary statistics  
+* ```[dplyr::filter()](https://dplyr.tidyverse.org/reference/filter.html)```: keeps observations based on certain conditions (remember to use ==)  
+* ```[dplyr::left_join()](https://dplyr.tidyverse.org/reference/filter.html)```: takes one dataframe and merges it with another  
+* ```[ggplot2::ggplot()](https://ggplot2.tidyverse.org/reference/ggplot.html)``` and ```[ggplot2::geom_point()](https://ggplot2.tidyverse.org/reference/geom_point.html)```: graphing functions that set up a graph and plots scatter plots  
+* ```[head()](http://search.r-project.org/R/library/utils/html/head.html)```, ```[tail()](http://search.r-project.org/R/library/utils/html/head.html)```, ```[dplyr::glimpse()](https://tibble.tidyverse.org/reference/glimpse.html)``` and ```[levels()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/levels.html)```: all help you inspect the data  
+
+(```[gt](https://gt.rstudio.com/index.html)```: a nice package for getting publication-quality tables  
 see Tom's Cookbook to help tweak gt() with all sorts of features.)  
