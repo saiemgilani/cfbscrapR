@@ -447,27 +447,32 @@ cfb_pbp_data <- function(year,
             for this one week or team.")
     return(NULL)
   }
-  tryCatch(
-    expr = {
-      game_spread <- cfb_betting_lines(year=year, week = week, season_type = season_type, team = team) 
-      
-      game_spread <- game_spread %>%
-        dplyr::filter(.data$provider == 'consensus') %>% 
-        dplyr::mutate(spread = as.numeric(.data$spread),
-                      over_under = as.numeric(.data$over_under)) %>% 
-        dplyr::select(.data$game_id, .data$spread, .data$formatted_spread, .data$over_under)
-      
-      raw_play_df <- raw_play_df %>%
-        dplyr::left_join(game_spread, by=c('game_id'))
-    },
-    error = function(e) {
-      message(glue::glue("{Sys.time()} - game_id : Invalid arguments or no betting lines data available!"))
-    },
-    warning = function(w) {
-    },
-    finally = {
-    }
-  )
+  raw_play_df$spread <- NA_real_
+  raw_play_df$formatted_spread <- NA_character_
+  raw_play_df$over_under <- NA_real_
+  if(year>= 2013){
+    tryCatch(
+      expr = {
+        game_spread <- cfb_betting_lines(year=year, week = week, season_type = season_type, team = team) 
+        
+        game_spread <- game_spread %>%
+          dplyr::filter(.data$provider == 'consensus') %>% 
+          dplyr::mutate(spread = as.numeric(.data$spread),
+                        over_under = as.numeric(.data$over_under)) %>% 
+          dplyr::select(.data$game_id, .data$spread, .data$formatted_spread, .data$over_under)
+        
+        raw_play_df <- raw_play_df %>%
+          dplyr::left_join(game_spread, by=c('game_id'))
+      },
+      error = function(e) {
+        message(glue::glue("{Sys.time()} - game_id : Invalid arguments or no betting lines data available!"))
+      },
+      warning = function(w) {
+      },
+      finally = {
+      }
+    )
+  }
   ## call/drive information
   drive_info = cfb_drives(year = year, season_type = season_type, team = team, week = week)
   
@@ -545,6 +550,7 @@ cfb_pbp_data <- function(year,
       "penalty_detail", "yds_penalty","penalty_1st_conv"
     )
     series_columns = c(
+      # "srs_new", "srs_1stD_by_kickoff", "srs_1stD_by_poss", "srs_1stD_by_penalty", "srs_1stD_by_yards"
       "new_series", "firstD_by_kickoff", "firstD_by_poss", "firstD_by_penalty", "firstD_by_yards"
     )
     epa_flag_columns = c( 
@@ -560,7 +566,6 @@ cfb_pbp_data <- function(year,
       "success", "epa_success", 
       "rz_play", "scoring_opp", 
       "middle_8", "stuffed_run"
-      
     )
     team_columns = c(
       "change_of_pos_team", "downs_turnover", "turnover",
@@ -572,7 +577,6 @@ cfb_pbp_data <- function(year,
       "lead_pos_team",  "lead_play_type","lag_pos_team", "lag_play_type",
       "orig_play_type",  "Under_three"
     )
-    
     model_end_columns = c(
       "down_end", "distance_end", "log_ydstogo_end", "yards_to_goal_end", 
       "TimeSecsRem_end", "Goal_To_Go_end", "Under_two_end",    
@@ -1376,7 +1380,7 @@ clean_drive_dat <- function(play_df) {
                                      .data$lead_drive_result_detailed, .data$drive_result_detailed),
       
       drive_scoring = ifelse(is.na(.data$drive_scoring), 0, .data$drive_scoring),
-      new_drive_pts = ifelse(is.na(.data$new_drive_pts), 0,.data$new_drive_pts),
+      new_drive_pts = ifelse(is.na(.data$new_drive_pts), 0, .data$new_drive_pts),
       lag_new_drive_pts = dplyr::lag(.data$new_drive_pts, 1),
       new_drive_pts = ifelse(is.na(.data$new_drive_pts), .data$lag_new_drive_pts, .data$new_drive_pts),
       id_drive = paste0(.data$game_id, .data$drive_num)) %>% 
@@ -1819,7 +1823,7 @@ prep_epa_df_after <- function(dat) {
       new_id = .data$id_play) %>%  
     dplyr::ungroup() %>% 
     dplyr::arrange(.data$new_id, .by_group = TRUE) %>%
-    dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) %>% 
+    # dplyr::select(-.data$play, -.data$half_play, -.data$drive_play) %>% 
     dplyr::mutate(
       new_yardline = ifelse(.data$kickoff_play == 1 & .data$kickoff_tb == 1, 75, .data$new_yardline),
       new_yardline = ifelse(.data$end_of_half == 1, 100, .data$new_yardline),
