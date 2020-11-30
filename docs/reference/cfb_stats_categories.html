@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="College Football Mapping for Stats Categories — cfb_stats_categories" />
 <meta property="og:description" content="This function identifies all Stats Categories identified in the regular stats endpoint." />
@@ -118,7 +120,7 @@
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
+      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -190,7 +192,7 @@
     <p>This function identifies all Stats Categories identified in the regular stats endpoint.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_stats_categories</span>()</pre>
+    <pre class="usage"><span class='fu'>cfb_stats_categories</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -207,8 +209,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_stats_categories</span>()
-</div><div class='output co'>#&gt; <span class='message'>2020-11-03 01:52:46: Scraping stats categories data...</span></div><div class='output co'>#&gt;               category
+<span class='fu'>cfb_stats_categories</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-11-30 13:55:11: Scraping stats categories data...</span></div><div class='output co'>#&gt;               category
 #&gt; 1   completionAttempts
 #&gt; 2         defensiveTDs
 #&gt; 3          extraPoints

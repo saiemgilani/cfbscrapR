@@ -157,3 +157,35 @@ wp_model_select_check <- function(pbp) {
   return(pbp)
   
 }
+
+#' Select the columns needed for EP predictions
+#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @importFrom dplyr select 
+ep_fg_model_select <- function(pbp) {
+  
+  pbp <- pbp %>%
+    dplyr::select(
+      "fg_inds",
+      "half",
+      "TimeSecsRem",
+      "down",
+      "distance",
+      "yards_to_goal",
+      "log_ydstogo",
+      "Goal_To_Go",
+      "Under_two",
+      "pos_score_diff_start"
+    )
+  return(pbp)
+}
+
+#' Select the columns needed for EP predictions
+#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @param ep_model (\emph{model} default cfbscrapR:::ep_model): Expected Points (EP) Model
+#' @importFrom dplyr select 
+#' @importFrom stats predict
+get_preds_ep <- function(pbp, ep_model = cfbscrapR:::ep_model){
+  
+  preds <- stats::predict(ep_model,pbp)
+  
+}

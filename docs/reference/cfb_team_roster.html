@@ -46,6 +46,8 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Team Roster
 Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20) — cfb_team_roster" />
@@ -121,7 +123,7 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
+      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -195,7 +197,7 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_roster</span>(<span class='kw'>team</span>, year = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_roster</span><span class='op'>(</span><span class='va'>team</span>, year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -234,8 +236,8 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_roster</span>(<span class='st'>"Florida State"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-11-03 01:52:59: Scraping team roster...</span></div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
+<span class='fu'>cfb_team_roster</span><span class='op'>(</span><span class='st'>"Florida State"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-11-30 13:55:26: Scraping team roster...</span></div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
 #&gt; 1      4241674       Josh       Newman    200     72     21    3        S
 #&gt; 2      3921574      Kevin      Robledo    184     72     89    4       PK
 #&gt; 3      4035603      Malik        Henry    195     74     16    3       QB

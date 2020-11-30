@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Get Game Advanced Stats — cfb_stats_game_advanced" />
 <meta property="og:description" content="Get Game Advanced Stats" />
@@ -118,7 +120,7 @@
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
+      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -190,14 +192,14 @@
     <p>Get Game Advanced Stats</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_stats_game_advanced</span>(
-  <span class='kw'>year</span>,
-  week = <span class='kw'>NULL</span>,
-  team = <span class='kw'>NULL</span>,
-  opponent = <span class='kw'>NULL</span>,
-  excl_garbage_time = <span class='fl'>FALSE</span>,
-  season_type = <span class='st'>"both"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cfb_stats_game_advanced</span><span class='op'>(</span>
+  <span class='va'>year</span>,
+  week <span class='op'>=</span> <span class='cn'>NULL</span>,
+  team <span class='op'>=</span> <span class='cn'>NULL</span>,
+  opponent <span class='op'>=</span> <span class='cn'>NULL</span>,
+  excl_garbage_time <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  season_type <span class='op'>=</span> <span class='st'>"both"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -300,8 +302,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_stats_game_advanced</span>(year = <span class='fl'>2018</span>, week = <span class='fl'>12</span>, team = <span class='st'>'Texas A&amp;M'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-11-03 01:52:47: Scraping game advanced stats...</span></div><div class='output co'>#&gt;     game_id week      team opponent off_plays off_drives   off_ppa
+<span class='fu'>cfb_stats_game_advanced</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2018</span>, week <span class='op'>=</span> <span class='fl'>12</span>, team <span class='op'>=</span> <span class='st'>'Texas A&amp;M'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-11-30 13:55:11: Scraping game advanced stats...</span></div><div class='output co'>#&gt;     game_id week      team opponent off_plays off_drives   off_ppa
 #&gt; 1 401012347   12 Texas A&amp;M      UAB        55         10 0.4231882
 #&gt;   off_total_ppa off_success_rate off_explosiveness off_power_success
 #&gt; 1      23.27535        0.5454545          1.145034         0.6666667
@@ -345,8 +347,8 @@
 #&gt; 1                    19.72978                          0.525
 #&gt;   def_passing_plays_explosiveness
 #&gt; 1                        1.724784</div><div class='input'>
-<span class='fu'>cfb_stats_game_advanced</span>(<span class='fl'>2019</span>, team = <span class='st'>'LSU'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-11-03 01:52:47: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week team           opponent off_plays off_drives   off_ppa
+<span class='fu'>cfb_stats_game_advanced</span><span class='op'>(</span><span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>'LSU'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-11-30 13:55:12: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week team           opponent off_plays off_drives   off_ppa
 #&gt; 1  401110725    1  LSU   Georgia Southern        72         13 0.3746814
 #&gt; 2  401110778    2  LSU              Texas        69         12 0.4878312
 #&gt; 3  401110790    3  LSU Northwestern State        68         12 0.6080743
@@ -698,8 +700,8 @@
 #&gt; 13                        1.455064
 #&gt; 14                        1.819137
 #&gt; 15                        1.631810</div><div class='input'>
-<span class='fu'>cfb_stats_game_advanced</span>(<span class='fl'>2013</span>, team = <span class='st'>"Florida State"</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-11-03 01:52:48: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week          team        opponent off_plays off_drives
+<span class='fu'>cfb_stats_game_advanced</span><span class='op'>(</span><span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-11-30 13:55:12: Scraping game advanced stats...</span></div><div class='output co'>#&gt;      game_id week          team        opponent off_plays off_drives
 #&gt; 1  332450221    1 Florida State      Pittsburgh        58         10
 #&gt; 2  332570052    3 Florida State          Nevada        56         12
 #&gt; 3  332640052    4 Florida State Bethune-Cookman        55         11

@@ -47,6 +47,8 @@ Current support only for D-I — cfb_team_info • cfbscrapR</title>
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Team Info Lookup
 Lists all teams in conference or all D-I teams if conference is left NULL
@@ -124,7 +126,7 @@ Current support only for D-I" />
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
+      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -200,7 +202,7 @@ Lists all teams in conference or all D-I teams if conference is left NULL
 Current support only for D-I</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_info</span>(conference = <span class='kw'>NULL</span>, only_fbs = <span class='fl'>TRUE</span>, year = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_info</span><span class='op'>(</span>conference <span class='op'>=</span> <span class='cn'>NULL</span>, only_fbs <span class='op'>=</span> <span class='cn'>TRUE</span>, year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -246,7 +248,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_info</span>(conference = <span class='st'>"SEC"</span>)
+<span class='fu'>cfb_team_info</span><span class='op'>(</span>conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    team_id            school       mascot abbreviation       alt_name1
 #&gt; 1      333           Alabama Crimson Tide          ALA            &lt;NA&gt;
 #&gt; 2        8          Arkansas   Razorbacks          ARK            &lt;NA&gt;
@@ -292,7 +294,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 #&gt; 12 http://a.espncdn.com/i/teamlogos/ncaa/500/2633.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/2633.png
 #&gt; 13   http://a.espncdn.com/i/teamlogos/ncaa/500/245.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/245.png
 #&gt; 14   http://a.espncdn.com/i/teamlogos/ncaa/500/238.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/238.png</div><div class='input'>
-<span class='fu'>cfb_team_info</span>(conference = <span class='st'>"Ind"</span>)
+<span class='fu'>cfb_team_info</span><span class='op'>(</span>conference <span class='op'>=</span> <span class='st'>"Ind"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   team_id           school         mascot abbreviation     alt_name1 alt_name2
 #&gt; 1     349             Army  Black Knights         ARMY          &lt;NA&gt;      ARMY
 #&gt; 2     252              BYU        Cougars          BYU Brigham Young       BYU
@@ -314,7 +316,7 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 #&gt; 4   http://a.espncdn.com/i/teamlogos/ncaa/500/166.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/166.png
 #&gt; 5     http://a.espncdn.com/i/teamlogos/ncaa/500/87.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/87.png
 #&gt; 6   http://a.espncdn.com/i/teamlogos/ncaa/500/113.png, http://a.espncdn.com/i/teamlogos/ncaa/500-dark/113.png</div><div class='input'>
-<span class='fu'>cfb_team_info</span>(year = <span class='fl'>2019</span>)
+<span class='fu'>cfb_team_info</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2019</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     team_id                school           mascot abbreviation
 #&gt; 1      2005             Air Force          Falcons          AFA
 #&gt; 2      2006                 Akron             Zips          AKR

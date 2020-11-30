@@ -51,8 +51,6 @@ cfb_player_info(search_term = 'James', position = 'DB', team = 'Florida State', 
 
 cfb_player_info(search_term = 'Lawrence', team = "Clemson")
 
-cfb_player_info(search_term = 'Tua', position = 'QB')
-
 cfb_player_info(search_term = 'Duggan')
 
 }

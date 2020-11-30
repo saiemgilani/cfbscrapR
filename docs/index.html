@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Scraping and Aggregating interface to the collegefootballdata.com API  • cfbscrapR</title>
+<title>A Scraping and Aggregating Interface to the CollegeFootballData API  • cfbscrapR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,8 +17,9 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="A Scraping and Aggregating interface to the collegefootballdata.com API ">
-<meta property="og:description" content="An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by cfbscrapR team. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="A Scraping and Aggregating Interface to the CollegeFootballData API ">
+<meta property="og:description" content="An R package for working with College Football Data. It is an R API wrapper around &lt;https://collegefootballdata.com/&gt; made available by the cfbscrapR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).">
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@cfbscrapR">
@@ -76,7 +77,7 @@
       <a href="articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
+      <a href="articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -140,51 +141,77 @@
   <div class="contents col-md-9">
 
 
-<div id="cfbscrapr" class="section level1">
+<style type="text/css">
+.figure {
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+</style>
+<div id="cfbscrapr-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#cfbscrapr" class="anchor"></a>cfbscrapR</h1></div>
-<p><img src="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapr-tile-1-300.png" alt="cfbscrapr-tile-1-300.png"></p>
+<a href="#cfbscrapr-" class="anchor"></a>cfbscrapR <a href="http://saiemgilani.github.io/cfbscrapR"><img src="reference/figures/logo.png" align="right" height="139"></a>
+</h1></div>
 <p>A scraping and aggregating package using the CollegeFootballData API</p>
 <p><code>cfbscrapR</code> is an R package for working with CFB data. It is an R API wrapper around <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>. It provides users the capability to retrieve data from a plethora of endpoints and supplement that data with additional information (Expected Points Added/Win Probability added).</p>
 <p><strong>Note:</strong> The API ingests data from ESPN as well as other sources. For details on those source, please go the website linked above. Sometimes there are inconsistencies in the underlying data itself. Please report issues here or to <a href="https://collegefootballdata.com/" class="uri">https://collegefootballdata.com/</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<a href="#installation" class="anchor"></a><strong>Installation</strong>
+</h2>
 <p>You can install <code>cfbscrapR</code> from <a href="https://github.com/saiemgilani/cfbscrapR">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># Then can install using the devtools package from either of the following:</span>
-<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(repo = <span class="st">"saiemgilani/cfbscrapR"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Then can install using the devtools package from either of the following:</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"saiemgilani/cfbscrapR"</span><span class="op">)</span>
 <span class="co"># or the following (these are the exact same packages):</span>
-<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(repo = <span class="st">"meysubb/cfbscrapR"</span>)
-</pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"meysubb/cfbscrapR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>For more information on the package and function reference, please see the <code>cfbscrapR</code> <a href="https://saiemgilani.github.io/cfbscrapR/">documentation</a>.</p>
-</div>
-<div id="expected-points-and-win-probability-models" class="section level2">
-<h2 class="hasAnchor">
-<a href="#expected-points-and-win-probability-models" class="anchor"></a>Expected Points and Win Probability models</h2>
+<a href="#documentation" class="anchor"></a><strong>Documentation</strong>
+</h2>
+<p>For more information on the package and <a href="https://saiemgilani.github.io/cfbscrapR/reference/index.html">function reference</a>, please see the <code>cfbscrapR</code> <a href="https://saiemgilani.github.io/cfbscrapR/">documentation website</a>.</p>
+<div id="expected-points-and-win-probability-models" class="section level3">
+<h3 class="hasAnchor">
+<a href="#expected-points-and-win-probability-models" class="anchor"></a><strong>Expected Points and Win Probability models</strong>
+</h3>
 <p>If you would like to learn more about the Expected Points and Win Probability models, please refer to the <code>cfbscrapR</code> <a href="https://saiemgilani.github.io/cfbscrapR/articles/index.html">tutorials</a> or for the code repository where the models are built, <a href="https://github.com/meysubb/cfbscrapR-MISC">click here</a></p>
-<div id="expected-points-model-calibration-plots-131-115-094-calibration-error" class="section level4">
+<center>
+<div id="expected-points-model-calibration-plots" class="section level4">
 <h4 class="hasAnchor">
-<a href="#expected-points-model-calibration-plots-131-115-094-calibration-error" class="anchor"></a>Expected Points model calibration plots (<del>1.31%</del> <del>1.15%</del> 0.94% Calibration Error)</h4>
-<p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/ep_fg_cv_loso_calibration_results.png?raw=true" alt="ep_fg_cv_loso_calibration_results.png"></p>
+<a href="#expected-points-model-calibration-plots" class="anchor"></a><strong>Expected Points model calibration plots</strong>
+</h4>
 </div>
-<div id="win-probability-model-calibration-plots-089-0787-0669-calibration-error" class="section level4">
+<div id="131-115-094-calibration-error" class="section level4">
 <h4 class="hasAnchor">
-<a href="#win-probability-model-calibration-plots-089-0787-0669-calibration-error" class="anchor"></a>Win Probability model calibration plots (<del>0.89%</del> <del>0.787%</del> 0.669% Calibration Error)</h4>
-<p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/wp_cv_loso_calibration_results.png?raw=true" alt="wp_cv_loso_calibration_results.png"></p>
+<a href="#131-115-094-calibration-error" class="anchor"></a>(<del>1.31%</del> <del>1.15%</del> 0.94% Calibration Error)</h4>
+<p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/ep_fg_cv_loso_calibration_results.png?raw=true" alt="ep_fg_cv_loso_calibration_results.png"></p>
+
+<center>
+<p><img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/wp_cv_loso_calibration_results.png?raw=true" alt="wp_cv_loso_calibration_results.png" width="1800"></p>
+</center>
+</div>
+<div id="win-probability-model-calibration-plots" class="section level4">
+<h4 class="hasAnchor">
+<a href="#win-probability-model-calibration-plots" class="anchor"></a><strong>Win Probability model calibration plots</strong>
+</h4>
+</div>
+<div id="089-0787-0669-calibration-error" class="section level4">
+<h4 class="hasAnchor">
+<a href="#089-0787-0669-calibration-error" class="anchor"></a>(<del>0.89%</del> <del>0.787%</del> 0.669% Calibration Error)</h4>
+
+</div>
+</center>
 </div>
 </div>
 </div>
 <div id="cfbscrapr-103" class="section level1">
 <h1 class="hasAnchor">
-<a href="#cfbscrapr-103" class="anchor"></a>cfbscrapR 1.0.3</h1>
+<a href="#cfbscrapr-103" class="anchor"></a><strong>cfbscrapR 1.0.3</strong>
+</h1>
 <ul>
 <li>Updated expected points models and win probability models</li>
-<li>Add player and yardage columns to <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> pull thanks to a great deal of help from @NickTice</li>
+<li>Add player and yardage columns to <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> pull thanks to a great deal of help from <a href="https://github.com/NickTice">@NickTice</a>
+</li>
 <li>Add spread values to the <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> pull</li>
 <li>Add drive detailed result with attempts at creating more accurate drive result labels</li>
 <li>Added series and first down variables</li>
@@ -192,18 +219,20 @@
 </ul>
 <div id="our-contributors-theyre-awesome" class="section level2">
 <h2 class="hasAnchor">
-<a href="#our-contributors-theyre-awesome" class="anchor"></a>Our Contributors (they’re awesome)</h2>
+<a href="#our-contributors-theyre-awesome" class="anchor"></a><strong>Our Contributors (they’re awesome)</strong>
+</h2>
 <ul>
-<li>Nate Manzo</li>
-<li>Michael Egle</li>
-<li>Jared Lee</li>
+<li><a href="https://twitter.com/cfbnate">Nate Manzo</a></li>
+<li><a href="https://twitter.com/deceptivespeed_">Michael Egle</a></li>
+<li><a href="https://twitter.com/JaredDLee">Jared Lee</a></li>
 </ul>
 </div>
 <div id="special-thanks" class="section level2">
 <h2 class="hasAnchor">
-<a href="#special-thanks" class="anchor"></a>Special Thanks</h2>
+<a href="#special-thanks" class="anchor"></a><strong>Special Thanks</strong>
+</h2>
 <ul>
-<li>Nick Tice</li>
+<li><a href="https://github.com/NickTice">Nick Tice</a></li>
 </ul>
 </div>
 </div>

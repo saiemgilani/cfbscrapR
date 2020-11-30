@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Extract CFB (D-I) Play by Play Data - For plays — cfb_pbp_data" />
 <meta property="og:description" content="Extracts raw game by game data. " />
@@ -118,7 +120,7 @@
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
+      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -190,14 +192,14 @@
     <p>Extracts raw game by game data. <br /></p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_pbp_data</span>(
-  <span class='kw'>year</span>,
-  season_type = <span class='st'>"regular"</span>,
-  week = <span class='fl'>1</span>,
-  team = <span class='kw'>NULL</span>,
-  play_type = <span class='kw'>NULL</span>,
-  epa_wpa = <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cfb_pbp_data</span><span class='op'>(</span>
+  <span class='va'>year</span>,
+  season_type <span class='op'>=</span> <span class='st'>"regular"</span>,
+  week <span class='op'>=</span> <span class='fl'>1</span>,
+  team <span class='op'>=</span> <span class='cn'>NULL</span>,
+  play_type <span class='op'>=</span> <span class='cn'>NULL</span>,
+  epa_wpa <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

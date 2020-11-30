@@ -157,6 +157,8 @@ reference:
   - subtitle: Internals
     desc: Internal functions and helpers
     contents:
+      - '`ep_fg_model_select`'
+      - '`get_preds_ep`'
       - '`create_epa`'
       - '`epa_fg_probs`'
       - '`create_wpa_naive`'

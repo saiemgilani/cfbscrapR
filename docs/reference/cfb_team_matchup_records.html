@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Get matchup history between two teams. — cfb_team_matchup_records" />
 <meta property="og:description" content="Get matchup history between two teams." />
@@ -118,7 +120,7 @@
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA s</a>
+      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -190,7 +192,7 @@
     <p>Get matchup history between two teams.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_matchup_records</span>(<span class='kw'>team1</span>, <span class='kw'>team2</span>, min_year = <span class='kw'>NULL</span>, max_year = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cfb_team_matchup_records</span><span class='op'>(</span><span class='va'>team1</span>, <span class='va'>team2</span>, min_year <span class='op'>=</span> <span class='cn'>NULL</span>, max_year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -232,11 +234,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas'</span>,<span class='st'>'Oklahoma'</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-11-03 01:52:58: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year team1 team1_wins    team2 team2_wins ties
+<span class='fu'>cfb_team_matchup_records</span><span class='op'>(</span><span class='st'>'Texas'</span>,<span class='st'>'Oklahoma'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-11-30 13:55:25: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year team1 team1_wins    team2 team2_wins ties
 #&gt; 1                     Texas         59 Oklahoma         49    5</div><div class='input'>
-<span class='fu'>cfb_team_matchup_records</span>(<span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>, min_year = <span class='fl'>1975</span>)
-</div><div class='output co'>#&gt; <span class='message'>2020-11-03 01:52:58: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year     team1 team1_wins team2 team2_wins ties
+<span class='fu'>cfb_team_matchup_records</span><span class='op'>(</span><span class='st'>'Texas A&amp;M'</span>,<span class='st'>'TCU'</span>, min_year <span class='op'>=</span> <span class='fl'>1975</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-11-30 13:55:26: Scraping team matchup records...</span></div><div class='output co'>#&gt;   start_year end_year     team1 team1_wins team2 team2_wins ties
 #&gt; 1       1975          Texas A&amp;M         22   TCU          0    0</div><div class='input'>
 
 </div></pre>

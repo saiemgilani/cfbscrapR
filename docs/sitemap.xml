@@ -193,10 +193,16 @@
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/epa_fg_probs.html</loc>
   </url>
   <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/ep_fg_model_select.html</loc>
+  </url>
+  <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/ep_model_select.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/ep_model_select_check.html</loc>
+  </url>
+  <url>
+    <loc>http://saiemgilani.github.io/cfbscrapR/reference/get_preds_ep.html</loc>
   </url>
   <url>
     <loc>http://saiemgilani.github.io/cfbscrapR/reference/penalty_detection.html</loc>

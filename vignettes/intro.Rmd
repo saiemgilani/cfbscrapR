@@ -156,7 +156,7 @@ glimpse(pbp)
 ```
 
 
-Ok, wow! We have more than 100,000 observations in our dataset, and 109 variables. These variables include play details, like down, distance, and yard line (yards_to_goal), as well as results - was it a rush or a pass? How many yards were gained? Was it a scoring play? For our initial analysis today, we'll focus on *yards gained*, *success rate*, and *expected points added*, so let's use the ```select()``` function to grab some play and team details, plus those variables. 
+Ok, wow! We have more than 100,000 observations in our dataset, and `r ncol(pbp)` variables. These variables include play details, like down, distance, and yard line (yards_to_goal), as well as results - was it a rush or a pass? How many yards were gained? Was it a scoring play? For our initial analysis today, we'll focus on *yards gained*, *success rate*, and *expected points added*, so let's use the ```select()``` function to grab some play and team details, plus those variables. 
 
 
 ```{r playselect}
