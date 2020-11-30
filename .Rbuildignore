@@ -14,3 +14,16 @@
 ^LICENSE.md
 ^_pkgdown.yml
 ^data-raw
+^cran-comments\.md$
+^LICENSE\.md$
+^.travis.yml
+^.github$
+^_pkgdown.yml$ 
+^_pkgdown\.yml$ 
+^vignettes
+^\.github$ 
+^data-raw$ 
+^data-raw
+^CODE_OF_CONDUCT\.md
+^logo.png
+^\.github$

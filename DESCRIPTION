@@ -1,5 +1,5 @@
 Package: cfbscrapR
-Title: A Scraping and Aggregating interface to the collegefootballdata.com API 
+Title: A Scraping and Aggregating Interface to the CollegeFootballData API 
 Version: 1.0.3
 Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('aut','cre')),
              person('Meyappan', 'Subbaiah', email = 'meysubb@gmail.com', role = c('aut')),
@@ -8,7 +8,7 @@ Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = 
              person('Michael','Egle', email = 'mjegle@iastate.edu', role = c('ctb')),
              person('Jared','Lee', email = '13jaredlee@gmail.com', role = c('ctb'))
              )
-Description: An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by cfbscrapR team. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
+Description: An R package for working with College Football Data. It is an R API wrapper around <https://collegefootballdata.com/> made available by the cfbscrapR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).
 Depends: R (>= 2.10)
 Imports: 
     dplyr,

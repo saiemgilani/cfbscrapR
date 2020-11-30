@@ -22,9 +22,9 @@ my_desc$del("Maintainer")
 my_desc$set_version("0.0.0.9000")
 
 # The title of your package
-my_desc$set(Title = "A Scraping and Aggregating interface to the collegefootballdata.com API by CFB Points")
+my_desc$set(Title = "A Scraping and Aggregating Interface to the CollegeFootballData API")
 # The description of your package
-my_desc$set(Description = "An R package for working with College Football Data. It is an R API wrapper around https://collegefootballdata.com/ made available by CFB Points. It provides users the capability to get a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).")
+my_desc$set(Description = "An R package for working with College Football Data. It is an R API wrapper around <https://collegefootballdata.com/> made available by the cfbscrapR team. It provides users the capability to access a plethora of endpoints, and supplement that data with additional information (Expected Points Added/Win Probability added).")
 # The urls
 my_desc$set("URL", "http://www.github.com/saiemgilani/cfbscrapR")
 my_desc$set("BugReports", "http://www.github.com/saiemgilani/cfbscrapR/issues")
