@@ -46,8 +46,6 @@
 #'
 #' cfb_player_info(search_term = 'Lawrence', team = "Clemson")
 #'
-#' cfb_player_info(search_term = 'Tua', position = 'QB')
-#'
 #' cfb_player_info(search_term = 'Duggan')
 #'
 
@@ -55,7 +53,7 @@ cfb_player_info <- function(search_term,
                             position = NULL,
                             team = NULL,
                             year = NULL){
-
+  
   args <- list(search_term = search_term)
 
   # Check that at search_term input argument is not null
@@ -115,7 +113,7 @@ cfb_player_info <- function(search_term,
         dplyr::rename(
           athlete_id = .data$id,
           home_town = .data$hometown
-        )
+        ) %>% 
         as.data.frame()
       
       message(glue::glue("{Sys.time()}: Scraping player info data..."))
