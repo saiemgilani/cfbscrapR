@@ -3,19 +3,13 @@ output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 ![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
 ![R-CMD-check](https://github.com/saiemgilani/cfbscrapR/workflows/R-CMD-check/badge.svg)
 ![Travis-CI: build-status](https://travis-ci.com/saiemgilani/cfbscrapR.svg?token=BxsozfUD3VCvCzzJpdFf&branch=master) [![Twitter Follow](https://img.shields.io/twitter/follow/cfbscrapR?style=social)](https://twitter.com/cfbscrapR) <!-- badges: end -->
 
-<style type="text/css">
-.figure {
-   margin-top: 10px;
-   margin-bottom: 10px;
-}
-</style>
+
 
 ```{r, include = FALSE, echo=FALSE}
 require(knitr)
