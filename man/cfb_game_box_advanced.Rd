@@ -16,9 +16,10 @@ Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_
 \item{long}{(\emph{Logical} default `FALSE`): Return the data in a long format.}
 }
 \value{
-A data frame with 2 rows and 52 variables:
+A data frame with 2 rows and 69 variables:
 \describe{
   \item{\code{team}}{character.}
+  \item{\code{plays}}{double.}
   \item{\code{ppa_overall_total}}{double.}
   \item{\code{ppa_overall_quarter1}}{double.}
   \item{\code{ppa_overall_quarter2}}{double.}
@@ -34,6 +35,22 @@ A data frame with 2 rows and 52 variables:
   \item{\code{ppa_rushing_quarter2}}{double.}
   \item{\code{ppa_rushing_quarter3}}{double.}
   \item{\code{ppa_rushing_quarter4}}{double.}
+  \item{\code{cumulative_ppa_plays}}{double.}
+  \item{\code{cumulative_ppa_overall_total}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter1}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter2}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter3}}{double.}
+  \item{\code{cumulative_ppa_overall_quarter4}}{double.}
+  \item{\code{cumulative_ppa_passing_total}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter1}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter2}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter3}}{double.}
+  \item{\code{cumulative_ppa_passing_quarter4}}{double.}
+  \item{\code{cumulative_ppa_rushing_total}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter1}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter2}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter3}}{double.}
+  \item{\code{cumulative_ppa_rushing_quarter4}}{double.}
   \item{\code{success_rates_overall_total}}{double.}
   \item{\code{success_rates_overall_quarter1}}{double.}
   \item{\code{success_rates_overall_quarter2}}{double.}

@@ -65,15 +65,20 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
 
 <center>
 
-<img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/wp_cv_loso_calibration_results.png?raw=true" alt="wp_cv_loso_calibration_results.png" width="1800"/>
-
 #### **Win Probability model calibration plots**
 
 #### (~~0.89%~~ ~~0.787%~~ 0.669% Calibration Error)
 
+<img src="https://github.com/saiemgilani/cfbscrapR/blob/master/man/figures/wp_cv_loso_calibration_results.png?raw=true" alt="wp_cv_loso_calibration_results.png" width="1800"/>
+
 </center>
 
-# **cfbscrapR 1.0.3**
+## **cfbscrapR 1.0.4**
+
+  - Updated `cfb_game_box_advanced()` to incorporate new columns from
+    API.
+
+## **cfbscrapR 1.0.3**
 
   - Updated expected points models and win probability models
   - Add player and yardage columns to `cfb_pbp_data()` pull thanks to a

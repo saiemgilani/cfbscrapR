@@ -1,6 +1,6 @@
 Package: cfbscrapR
 Title: A Scraping and Aggregating Interface to the CollegeFootballData API 
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: c(person('Saiem', 'Gilani', email = 'saiem.gilani@gmail.com', role = c('aut','cre')),
              person('Meyappan', 'Subbaiah', email = 'meysubb@gmail.com', role = c('aut')),
              person('Parker', 'Fleming', email = 'parkerf@smu.edu', role = c('aut')),
