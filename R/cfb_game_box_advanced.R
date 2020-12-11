@@ -3,9 +3,10 @@
 #' @param game_id (\emph{Integer} required): Game ID filter for querying a single game
 #' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
 #' @param long (\emph{Logical} default `FALSE`): Return the data in a long format.
-#' @return A data frame with 2 rows and 52 variables:
+#' @return A data frame with 2 rows and 69 variables:
 #' \describe{
 #'   \item{\code{team}}{character.}
+#'   \item{\code{plays}}{double.}
 #'   \item{\code{ppa_overall_total}}{double.}
 #'   \item{\code{ppa_overall_quarter1}}{double.}
 #'   \item{\code{ppa_overall_quarter2}}{double.}
@@ -21,6 +22,22 @@
 #'   \item{\code{ppa_rushing_quarter2}}{double.}
 #'   \item{\code{ppa_rushing_quarter3}}{double.}
 #'   \item{\code{ppa_rushing_quarter4}}{double.}
+#'   \item{\code{cumulative_ppa_plays}}{double.}
+#'   \item{\code{cumulative_ppa_overall_total}}{double.}
+#'   \item{\code{cumulative_ppa_overall_quarter1}}{double.}
+#'   \item{\code{cumulative_ppa_overall_quarter2}}{double.}
+#'   \item{\code{cumulative_ppa_overall_quarter3}}{double.}
+#'   \item{\code{cumulative_ppa_overall_quarter4}}{double.}
+#'   \item{\code{cumulative_ppa_passing_total}}{double.}
+#'   \item{\code{cumulative_ppa_passing_quarter1}}{double.}
+#'   \item{\code{cumulative_ppa_passing_quarter2}}{double.}
+#'   \item{\code{cumulative_ppa_passing_quarter3}}{double.}
+#'   \item{\code{cumulative_ppa_passing_quarter4}}{double.}
+#'   \item{\code{cumulative_ppa_rushing_total}}{double.}
+#'   \item{\code{cumulative_ppa_rushing_quarter1}}{double.}
+#'   \item{\code{cumulative_ppa_rushing_quarter2}}{double.}
+#'   \item{\code{cumulative_ppa_rushing_quarter3}}{double.}
+#'   \item{\code{cumulative_ppa_rushing_quarter4}}{double.}
 #'   \item{\code{success_rates_overall_total}}{double.}
 #'   \item{\code{success_rates_overall_quarter1}}{double.}
 #'   \item{\code{success_rates_overall_quarter2}}{double.}
@@ -76,7 +93,7 @@
 #'
 
 cfb_game_box_advanced<- function(game_id, long = FALSE) {
-
+  
   if(!is.null(game_id)){
     # Check if game_id is numeric, if not NULL
     assertthat::assert_that(is.numeric(game_id),
@@ -139,6 +156,8 @@ cfb_game_box_advanced<- function(game_id, long = FALSE) {
       df$stat = sub("averageStartingPredictedPoints", "avg_starting_predicted_pts", df$stat)
       df$stat = sub("averageStart", "avg_start", df$stat)
       df$stat = sub(".team", "_team", df$stat)
+      df$stat = sub(".plays", "_plays", df$stat)
+      df$stat = sub("cumulativePpa", "cumulative_ppa", df$stat)
       
       if(!long){
         team <- df %>%
