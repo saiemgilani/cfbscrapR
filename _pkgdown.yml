@@ -40,18 +40,18 @@ navbar:
       - text: CFB Analytics with cfbscrapR
         href: articles/intro.html
       - text: Animated Win Probability Plots
-        href: articles/Animated-WP-Plotting.html
+        href: articles/animated-wp-plotting.html
       - text: Fourth Down Tendency Plots
         href: articles/fourth-down-plot-tutorial.html
       - text: Rolling EPA Graphs
-        href: articles/Rolling-EPA-Graph.html
+        href: articles/rolling-epa-graph.html
       - text: Expected Points Model Fundamentals
       - text: "Part 1 - Model Definition"
-        href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html
+        href: articles/college-football-expected-points-model-fundamentals-part-i.html
       - text: "Part 2 - Regression Models"
-        href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html
+        href: articles/college-football-expected-points-model-fundamentals-part-ii.html
       - text: "Part 3 - History of Expected Points Models"
-        href: articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html
+        href: articles/college-football-expected-points-model-fundamentals-part-iii.html
     - icon: fa-file-code-o
       text: "Functions"
       href: reference/index.html

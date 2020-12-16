@@ -2,14 +2,14 @@ pandoc: 2.9.2.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  Animated-WP-Plotting: Animated-WP-Plotting.html
-  College-Football-Expected-Points-Model-Fundamentals-Part-I: College-Football-Expected-Points-Model-Fundamentals-Part-I.html
-  College-Football-Expected-Points-Model-Fundamentals-Part-II: College-Football-Expected-Points-Model-Fundamentals-Part-II.html
-  College-Football-Expected-Points-Model-Fundamentals-Part-III: College-Football-Expected-Points-Model-Fundamentals-Part-III.html
+  animated-wp-plotting: animated-wp-plotting.html
+  college-football-expected-points-model-fundamentals-part-i: college-football-expected-points-model-fundamentals-part-i.html
+  college-football-expected-points-model-fundamentals-part-ii: college-football-expected-points-model-fundamentals-part-ii.html
+  college-football-expected-points-model-fundamentals-part-iii: college-football-expected-points-model-fundamentals-part-iii.html
   fourth-down-plot-tutorial: fourth-down-plot-tutorial.html
-  Intro: Intro.html
-  Rolling-EPA-Graph: Rolling-EPA-Graph.html
-last_built: 2020-12-11T05:30Z
+  intro: intro.html
+  rolling-epa-graph: rolling-epa-graph.html
+last_built: 2020-12-16T06:58Z
 urls:
   reference: http://saiemgilani.github.io/cfbscrapR/reference
   article: http://saiemgilani.github.io/cfbscrapR/articles

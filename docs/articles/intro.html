@@ -71,23 +71,23 @@
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/animated-wp-plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
+      <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1 - Model Definition</a>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
     </li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html">Part 2 - Regression Models</a>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">Part 2 - Regression Models</a>
     </li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html">Part 3 - History of Expected Points Models</a>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
     </li>
   </ul>
 </li>
@@ -137,8 +137,8 @@
 
       
 
-      </header><script src="Intro_files/header-attrs-2.5/header-attrs.js"></script><script src="Intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Intro_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="Intro_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="intro_files/header-attrs-2.5/header-attrs.js"></script><script src="intro_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="intro_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="intro_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to College Football Analytics with cfbscrapR</h1>
@@ -147,7 +147,7 @@
             
       
       
-      <div class="hidden name"><code>Intro.Rmd</code></div>
+      <div class="hidden name"><code>intro.Rmd</code></div>
 
     </div>
 
@@ -190,8 +190,8 @@
 <div id="install-the-necessary-packages-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-the-necessary-packages-" class="anchor"></a>Install the necessary packages.</h2>
-<p>To use the packages, we need to do two things. First, one time only on your machine, you need to install the pacakges. Then, every time you open up R Studio, you will need to load the packages.</p>
-<p>To install the packages, simply run each line of code below once (without the ‘#’ at the beginning):</p>
+<p>To use the packages, we need to do two things. First, one time only on your machine, you need to install the packages. Then, every time you open up R Studio, you will need to load the packages.</p>
+<p>To install the packages, simply run each line of code below once (without the <code>#</code> at the beginning):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#install.packages('tidyverse')</span>
 <span class="co">#installpackages('easypackages')</span>
@@ -199,13 +199,13 @@
 <span class="co">#devtools::install_github("meysubb/cfbscrapR")</span>
 <span class="co">#install.packages('ggimage')</span>
 <span class="co">#install.packages('gt')</span></code></pre></div>
-<p>Don’t worry about what all that means for now. Now, after running those lines of code, you have all the pacakges you need to get started with college football analytics. Let’s load the pacakges and download the play-by-play data for 2019. First we load the three necessary packages, then we’re going to run a loop over the number of weeks in the season and use the <code><a href="../reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> function, which pulls the play-by-play.</p>
+<p>Don’t worry about what all that means for now. Now, after running those lines of code, you have all the packages you need to get started with college football analytics. Let’s load the packages and download the play-by-play data for 2019. First we load the three necessary packages, then we’re going to run a loop over the number of weeks in the season and use the <code><a href="../reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> function, which pulls the play-by-play.</p>
 <p>We’re going to pull the data, clean it, then select some relevant variables, and then we’ll go forward with moving the data.</p>
 </div>
 <div id="pull-the-data-from-the-api" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pull-the-data-from-the-api" class="anchor"></a>Pull the data from the API</h2>
-<p>Note in the code how we defined what pbp_2019 is: we used the little arrow. If you’re on mac, you can press option and the dash key to pull one of those little guys up. That’s just R’s fun way of saying “name that thing this”.</p>
+<p>Note in the code how we defined what <code>pbp_2019</code> is: we used the little arrow (<code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code>). If you’re on mac, you can press option and the dash key to pull one of those little guys up. That’s just R’s fun way of saying “name that thing this”.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">easypackages</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/easypackages/man/libraries.html">libraries</a></span><span class="op">(</span><span class="st">'tidyverse'</span>, <span class="st">'cfbscrapR'</span>, <span class="st">'ggimage'</span>, <span class="st">'gt'</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -218,43 +218,43 @@
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span></code></pre></div>
-<p>This code will take a few minutes (~3:10) to run - it’s pulling a lot of data from the API at once. Give your R console a break until it finishes! You’ll know it’s done running when you can see “pbp_2019” in the “Environment” window in the top right of your R console (and when the little carot &gt; pops up in your terminal, at the bottom left).</p>
-<p>Now, we have the entire season’s worth of play-by-play data stored in an object called “pbp_2019”. All of that text in the <code><a href="../reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> is customizable: you could select only a specific week, you could pull data from bowl games by changing season_type to “both”. Finally, the epa_wpa = TRUE adds <code>cfbscrapR</code>’s EPA model and a bunch of useful stats and codes on the data!</p>
-<p>Let’s pull the game data, using the <code><a href="../reference/cfb_game_info.html">cfb_game_info()</a></code> function, and merge the two. Then, we’ll make use of the <code>filter</code> and <code>mutate</code> functions from the <code>tidyverse</code>.</p>
+<p>This code will take a few minutes (~3:10) to run - it’s pulling a lot of data from the API at once. Give your R console a break until it finishes! You’ll know it’s done running when you can see <code>pbp_2019</code> in the “Environment” window in the top right of your R console (and when the little caret &gt; pops up in your terminal, at the bottom left).</p>
+<p>Now, we have the entire season’s worth of play-by-play data stored in an object called <code>pbp_2019</code>. All of that text in the <code><a href="../reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> is customizable: you could select only a specific week, you could pull data from bowl games by changing season_type to “both”. Finally, the <code>epa_wpa = TRUE</code> adds <code>cfbscrapR</code>’s EPA model and a bunch of useful stats and codes on the data!</p>
+<p>Let’s pull the game data, using the <code><a href="../reference/cfb_game_info.html">cfb_game_info()</a></code> function, and merge the two. Then, we’ll make use of the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate</a></code> functions from the <code>tidyverse</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Game level data</span>
 <span class="va">games_19</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfb_game_info.html">cfb_game_info</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span>
 
 <span class="co">#Join Games and Play-by-Play</span>
 <span class="va">plays19</span> <span class="op">&lt;-</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">pbp_2019</span>, <span class="va">games_19</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"game_id"</span> <span class="op">=</span> <span class="st">"game_id"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Above, we pulled 2019 game data from the API into an object called “games_19”, and then we used <code>left_join</code> to merge each play to the information of the game it happened in, an object called “plays19”. We matched the plays to the games by telling R that the column “game_id” in pbp_2019 was the same as the column “id” in the games_19 object.</p>
+<p>Above, we pulled 2019 game data from the API into an object called <code>games_19</code>, and then we used <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">dplyr::left_join</a></code> to merge each play to the information of the game it happened in, an object called <code>plays19</code>. We matched the plays to the games by telling R that the column <code>game_id</code> in <code>pbp_2019</code> was the same as the column <code>id</code> in the <code>games_19</code> object.</p>
 </div>
 <div id="clean-the-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#clean-the-data" class="anchor"></a>Clean the Data</h2>
 <p>Before we break down what we did to create the pbp object, we need to discuss two things:</p>
 <ol style="list-style-type: decimal">
-<li><p>Filtering on conditions: We will use the double equality (==) to identify conditions we need to meet for our filter function. We can also use !=, “not equals”, to select values on that condition (i.e. offense_play != “TCU” would remove TCU from the data), and we can use the standard greater than &gt; and less than &lt;. You might have to stop and think a bit before you write your filter function, so just make sure you know what it is you are actually selecting.</p></li>
-<li><p>the <em>pipe</em>: %&gt;% is the magrittr pipe. The pipe is extremely handy. Instead of us having to type a function and select the data we want to apply that function to over and over again, the pipe tells R what to do in the structure of : “get this thing and then do this to it.”</p></li>
+<li><p>Filtering on conditions: We will use the double equality (<code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>) to identify conditions we need to meet for our filter function. We can also use !=, “not equals”, to select values on that condition (i.e. <code>offense_play != "TCU"</code> would remove TCU from the data), and we can use the standard greater than &gt; and less than &lt;. You might have to stop and think a bit before you write your filter function, so just make sure you know what it is you are actually selecting.</p></li>
+<li><p>the <em>pipe</em>: <code>%&gt;%</code> is the magrittr pipe. The pipe is extremely handy. Instead of us having to type a function and select the data we want to apply that function to over and over again, the pipe tells R what to do in the structure of : “get this thing and then do this to it.”</p></li>
 </ol>
-<p>I’m naming our dataset of play by play data filtered “pbp”. I don’t like to overwrite my data once I’ve imported it, so I’m going to give it a new name. That way, if I mess something up along the way, I can go back to the start and clean up without too much hassle.</p>
-<p>We’ll use the indicator variables “rush” and “pass” to select every play categorized as rushes or passes. (Yes, this leaves out special teams and yes this leaves out penalties. We’re starting small, and can always go back later.)</p>
-<p>Also note we use the | symbol to denote “or” in our filter function. We’ll filter the data for any observations that are runs (rush == 1) or passes (pass == 1), and store it in a new object called plays.</p>
+<p>I’m naming our dataset of play by play data filtered <code>pbp</code>. I don’t like to overwrite my data once I’ve imported it, so I’m going to give it a new name. That way, if I mess something up along the way, I can go back to the start and clean up without too much hassle.</p>
+<p>We’ll use the indicator variables <code>rush</code> and <code>pass</code> to select every play categorized as rushes or passes. (Yes, this leaves out special teams and yes this leaves out penalties. We’re starting small, and can always go back later.)</p>
+<p>Also note we use the <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> symbol to denote “or” in our filter function. We’ll filter the data for any observations that are runs (<code>rush == 1</code>) or passes (<code>pass == 1</code>), and store it in a new object called plays.</p>
 <p>But we won’t stop there! The beauty of the pipe is that we can do multiple operations, all strung together. So, in the code below, we’ll create a new object called “pbp”. To create this object, we’ll do three things:</p>
 <ol style="list-style-type: decimal">
-<li>Take plays19, remove all plays that aren’t rushes or passes: <code><a href="https://rdrr.io/r/stats/filter.html">filter(rush == 1 | pass == 1)</a></code> AND THEN<br>
+<li>Take <code>plays19</code>, remove all plays that aren’t rushes or passes: <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter(rush == 1 | pass == 1)</a></code> AND THEN<br>
 </li>
-<li>Remove all FCS teams. This is a personal preference of mine, and if you’d like to leave those in the data, you can certainly remove this line! It’s a good way to illustrate how you’d do this, though. By using filter(), I tell R to select all observations that are <em>not</em> (!) missing the variable home_conference or away_conference. As all FBS teams have a conference in the data, this will remove all FCS teams. <strong>Note</strong>: is.na(x) means “is missing variable x”, so !is.na(x) means “is not missing variable x.”<br>
+<li>Remove all FCS teams. This is a personal preference of mine, and if you’d like to leave those in the data, you can certainly remove this line! It’s a good way to illustrate how you’d do this, though. By using <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code>, I tell R to select all observations that are <em>not</em> (!) missing the variable home_conference or away_conference. As all FBS teams have a conference in the data, this will remove all FCS teams. <strong>Note</strong>: <code><a href="https://rdrr.io/r/base/NA.html">is.na(x)</a></code> means “is missing variable x”, so <code>!is.na(x)</code> means “is not missing variable x.”<br>
 </li>
-<li>Create new variables! <code>mutate()</code> is R’s weird way of saying “make a new variable!” So, we’ll create three new variables:<br>
+<li>Create new variables! <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code> is R’s weird way of saying “make a new variable!” So, we’ll create three new variables:<br>
 </li>
 </ol>
 <ol style="list-style-type: lower-roman">
 <li>
-<code>abs_diff</code> is the absolute value of the score difference, created using the abs() function. This variable helps us define the garbage time filter.<br>
+<code>abs_diff</code> is the absolute value of the score difference, created using the <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code> function. This variable helps us define the garbage time filter.<br>
 </li>
 <li>
-<code>garbage</code> is an indicator variable for whether a play is in garbage time, as defined by our friend Bill Connelly. Garbage time is when the score difference is greater than 43 in the first quarter, 37 in the second quarter, 27 in the third quarter, and 22 in the fourth quarter. To create this variable, we use the <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>, which takes three arguments: a condition, yes, and no. ifelse basically says “if this condition is met, then make this variable this value, or do something else.” We’ve strung multiple ifelse() conditions together to cover all of our bases.<br>
+<code>garbage</code> is an indicator variable for whether a play is in garbage time, as defined by our friend Bill Connelly. Garbage time is when the score difference is greater than 43 in the first quarter, 37 in the second quarter, 27 in the third quarter, and 22 in the fourth quarter. To create this variable, we use the <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>, which takes three arguments: a condition, yes, and no. ifelse basically says “if this condition is met, then make this variable this value, or do something else.” We’ve strung multiple <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> conditions together to cover all of our bases.<br>
 </li>
 <li>
 <code>success</code>: We use the same <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> logic to create a binary variable that indicates whether a play was successful or not, again, as defined by Bill C.</li>
@@ -272,7 +272,7 @@
          success <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">down</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">yards_gained</span> <span class="op">&gt;</span> <span class="fl">.5</span><span class="op">*</span><span class="va">distance</span>, <span class="fl">1</span>,
                    <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">down</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">yards_gained</span> <span class="op">&gt;</span> <span class="fl">.7</span><span class="op">*</span><span class="va">distance</span>, <span class="fl">1</span>,
                    <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="op">(</span><span class="va">down</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">|</span> <span class="va">down</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">yards_gained</span> <span class="op">&gt;=</span><span class="va">distance</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Now we have a clean dataset of every rush and pass that happened in 2019. (Quick note: unfortunately, due to the way the pbp data is generated on ESPN, QB scrambles from dropbacks are coded as rushes. It’s not ideal, but it’s not a dealbreaker; just something to remember as you do your analysis).</p>
+<p>Now we have a clean dataset of every rush and pass that happened in 2019. (Quick note: unfortunately, due to the way the pbp data is generated on ESPN, QB scrambles from dropbacks are coded as rushes. It’s not ideal, but it’s not a deal-breaker; just something to remember as you do your analysis).</p>
 <p>Let’s look at it!</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">pbp</span><span class="op">)</span></code></pre></div>
@@ -632,7 +632,7 @@
 ## $ excitement_index                 &lt;chr&gt; "0.4601882762", "0.4601882762", "0...
 ## $ abs_diff                         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
 ## $ garbage                          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...</code></pre>
-<p>Ok, wow! We have more than 100,000 observations in our dataset, and 354 variables. These variables include play details, like down, distance, and yard line (yards_to_goal), as well as results - was it a rush or a pass? How many yards were gained? Was it a scoring play? For our initial analysis today, we’ll focus on <em>yards gained</em>, <em>success rate</em>, and <em>expected points added</em>, so let’s use the <code>select()</code> function to grab some play and team details, plus those variables.</p>
+<p>Ok, wow! We have more than 100,000 observations in our dataset, and 354 variables. These variables include play details, like down, distance, and yard line (<code>yards_to_goal</code>), as well as results - was it a rush or a pass? How many yards were gained? Was it a scoring play? For our initial analysis today, we’ll focus on <em>yards gained</em>, <em>success rate</em>, and <em>expected points added</em>, so let’s use the <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> function to grab some play and team details, plus those variables.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plays</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">offense_play</span>, <span class="va">defense_play</span>, <span class="va">down</span>, <span class="va">distance</span>, <span class="va">yards_to_goal</span>, <span class="va">rush</span>, <span class="va">pass</span>, <span class="va">yards_gained</span>, <span class="va">play_text</span>, <span class="va">success</span>, <span class="va">EPA</span>, <span class="va">garbage</span><span class="op">)</span></code></pre></div>
 <p>Now we have our relevant data, so let’s make do some stats!</p>
@@ -640,14 +640,14 @@
 <div id="creating-some-stats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-some-stats" class="anchor"></a>Creating Some Stats</h2>
-<p>Ok, now let’s play with the tidyverse a little more. We’ve used filter(), which is an extremely useful function. The next most useful functions actually do things to the data: <code>group_by()</code>, and <code>summarise()</code>.</p>
-<p>Summarise is the way of creating season-long or game-by-game stats. Let’s start with some season long raw offense numbers, yards per attempt (passing) and yards per rush. We’re going to use the pipe (%&gt;%) to tell R to grab our plays dataset, group it by offense team, and summarize their yards per attempt and yards per rush in a new object called offense.</p>
-<p>To create a conditional mean, like “the mean of yards_gained when pass == 1”, all you’ll do is add the condition you want in brackets inside your mean() function.</p>
+<p>Ok, now let’s play with the tidyverse a little more. We’ve used <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code>, which is an extremely useful function. The next most useful functions actually do things to the data: <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr::group_by()</a></code>, and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">dplyr::summarise()</a></code>.</p>
+<p>Summarise is the way of creating season-long or game-by-game stats. Let’s start with some season long raw offense numbers, yards per attempt (passing) and yards per rush. We’re going to use the pipe (<code>%&gt;%</code>) to tell R to grab our plays dataset, group it by offense team, and summarize their yards per attempt and yards per rush in a new object called offense.</p>
+<p>To create a conditional mean, like “the mean of yards_gained when <code>pass == 1</code>”, all you’ll do is add the condition you want in brackets inside your <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> function.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">offense</span> <span class="op">&lt;-</span> <span class="va">plays</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">offense_play</span><span class="op">)</span> <span class="op">%&gt;%</span> 
 <span class="fu">summarise</span><span class="op">(</span>ypa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">yards_gained</span><span class="op">[</span><span class="va">pass</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>,
           ypr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">yards_gained</span><span class="op">[</span><span class="va">rush</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Now we can ask and answer some fun questions. Who had the best rushing offense, on a per play basis? Who had the best passing offense, on a per-play basis? We will do this using the arrange(desc()) function, which tells R to order the data from greatest to least (descending).</p>
+<p>Now we can ask and answer some fun questions. Who had the best rushing offense, on a per play basis? Who had the best passing offense, on a per-play basis? We will do this using the <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">dplyr::arrange(desc())</a></code> function, which tells R to order the data from greatest to least (descending).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">offense</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">ypr</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 130 x 3
@@ -680,16 +680,16 @@
 ##  9 Georgia Tech      4.28  5.13
 ## 10 Vanderbilt        4.40  4.89
 ## # ... with 120 more rows</code></pre>
-<p>I took out the desc() part of the function to display the worst offenses, for fun. We see that Oklahoma had the highest yards per rush, followed by Oklahoma, Kentucky, and Louisiana. The top passing teams were Air Force, Alabama, LSU, and Oklahoma. Bonus points if you can tell me why Air Force is ranked that highly!</p>
+<p>I took out the <code>desc()</code> part of the function to display the worst offenses, for fun. We see that Oklahoma had the highest yards per rush, followed by Oklahoma, Kentucky, and Louisiana. The top passing teams were Air Force, Alabama, LSU, and Oklahoma. Bonus points if you can tell me why Air Force is ranked that highly!</p>
 <p>The worst offenses for rushing and passing were West Virginia, who averaged only 3.15 yards per rush, and Northwestern, who averaged an inconceivable 3.96 yards per passing attempt.</p>
-<p>We can easily do the defensive side of the ball as well, grouping plays instead by defense_play. Let’s make a dataset and then use <code>left_join()</code> to put offenses and defenses together, but let’s do EPA instead of yards, because EPA is more fun. (What’s EPA? Glad you asked: <a href="https://www.frogsowar.com/2019/8/13/20802128/expected-points-big-12-college-football-analytics">An EPA Primer</a>.</p>
+<p>We can easily do the defensive side of the ball as well, grouping plays instead by defense_play. Let’s make a dataset and then use <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">dplyr::left_join()</a></code> to put offenses and defenses together, but let’s do EPA instead of yards, because EPA is more fun. (What’s EPA? Glad you asked: <a href="https://www.frogsowar.com/2019/8/13/20802128/expected-points-big-12-college-football-analytics">An EPA Primer</a>.</p>
 <p>If you would like to read more on the expected points model fundamentals, read the <code>cfbscrapR</code> tutorial on the subject:</p>
 <ul>
 <li><p><a href="https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html" title="A model explainer">Part I: Expected points model definition</a></p></li>
 <li><p><a href="https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html" title="We do bad regression to show that a multinomial logistic regression model is necessary">Part II: Motivating the regression</a></p></li>
 <li><p><a href="https://saiemgilani.github.io/cfbscrapR/articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html" title="Learn about Virgil Carter's 1970 paper and the originators of the nflscrapR expected points model (which the cfbscrapR package fittingly uses)">Part III: A brief history of expected points models</a></p></li>
 </ul>
-<p>For the tutorial, I’ve included the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function as a quick way to look at the top values of our data. In your console, though, with the <code>view()</code> command, you can pull up the data in a traditional spreadsheet kind of format, which can help you parse through and see what you’re working with, or see results you’ve created.</p>
+<p>For the tutorial, I’ve included the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function as a quick way to look at the top values of our data. In your console, though, with the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> command, you can pull up the data in a traditional spreadsheet kind of format, which can help you parse through and see what you’re working with, or see results you’ve created.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">offense</span> <span class="op">&lt;-</span> <span class="va">plays</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">offense_play</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">summarise</span><span class="op">(</span>epa.pass.off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">EPA</span><span class="op">[</span><span class="va">pass</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>, epa.rush.off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">EPA</span><span class="op">[</span><span class="va">rush</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
@@ -707,7 +707,7 @@
 ## 4 Appalachian State       0.142        0.0730       -0.133      -0.0910
 ## 5 Arizona                -0.0108       0.0851        0.141       0.0405
 ## 6 Arizona State           0.0952      -0.0562        0.109      -0.117</code></pre>
-<p>In analytics, we often want to break down situations. Let’s use <code>filter</code> to select only first down plays and see which offenses performed the best on first downs only:</p>
+<p>In analytics, we often want to break down situations. Let’s use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter</a></code> to select only first down plays and see which offenses performed the best on first downs only:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">offense</span> <span class="op">&lt;-</span> <span class="va">plays</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">down</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">offense_play</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">summarise</span><span class="op">(</span>epa.pass.off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">EPA</span><span class="op">[</span><span class="va">pass</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>, epa.rush.off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">EPA</span><span class="op">[</span><span class="va">rush</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -728,7 +728,7 @@
 ## 5 Arizona               -0.00498      -0.100       0.0574        0.0997
 ## 6 Arizona State          0.00235      -0.178       0.160        -0.225</code></pre>
 <p>Easy! You can make any kind of filter you can think of, and analyse EPA or yards gained in any situation.</p>
-<p>Lastly, let’s do an example of creating some rates and using some advanced filters: We’ll create success rate on early downs and early downs rush rate, filtering out garabge time. We’ll use the same filter, summarise, and mean functions as above!</p>
+<p>Lastly, let’s do an example of creating some rates and using some advanced filters: We’ll create success rate on early downs and early downs rush rate, filtering out garbage time. We’ll use the same filter, summarise, and mean functions as above!</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">success</span> <span class="op">&lt;-</span> <span class="va">plays</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">garbage</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">down</span> <span class="op">&lt;</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">group_by</span><span class="op">(</span><span class="va">offense_play</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -749,12 +749,12 @@
 <div id="visualization" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualization" class="anchor"></a>Visualization</h2>
-<p>We have some pretty data, now let’s learn how to make a basic <code>ggplot()</code> to visualize our data! We didn’t have to load ggplot(), it’s included in the tidyverse. We’ll take the success data from above, and start with a basic plot, then add some fancy formatting.</p>
-<p>The syntax here is pretty simple: we will grab our dataset and use the pipe to say “open a plot”. Then we’ll tell the plot what the x and y coordinates are, then indicate the markers, in this case a scatterplot with geom_point(). Notice that we use + instead of %&gt;% once we’ve called ggplot(). The syntax here tells R to take the `success’ object and open a plot with the x.axis rush.rte and the y.axis success.rte, PLUS all these features. That can be a little confusing to keep straightforward, but R will tell you what’s going on with an error if you mix that up!</p>
+<p>We have some pretty data, now let’s learn how to make a basic <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code> to visualize our data! We didn’t have to load <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code>, it’s included in the tidyverse. We’ll take the success data from above, and start with a basic plot, then add some fancy formatting.</p>
+<p>The syntax here is pretty simple: we will grab our dataset and use the pipe to say “open a plot”. Then we’ll tell the plot what the x and y coordinates are, then indicate the markers, in this case a scatterplot with <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">ggplot2::geom_point()</a></code>. Notice that we use <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> instead of <code>%&gt;%</code> once we’ve called <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code>. The syntax here tells R to take the <code>success</code> object and open a plot with the x.axis <code>rush.rte</code> and the y.axis <code>success.rte</code>, PLUS all these features. That can be a little confusing to keep straightforward, but R will tell you what’s going on with an error if you mix that up!</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">success</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">rush.rte</span>, y<span class="op">=</span><span class="va">success.rte</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="Intro_files/figure-html/successplot-1.png" width="700"></p>
-<p>Ok, that’s pretty cool! Let’s dress it up a little bit by adding a title and labelling the axes, using the labs() option. We will also throw a couple reference lines - a vertical and horizontal line indicating the mean values of each statistic to help us compare. Plus, here are some tweaks I like that make the graph look a little better (all the theme() stuff).</p>
+<p><img src="intro_files/figure-html/successplot-1.png" width="700"></p>
+<p>Ok, that’s pretty cool! Let’s dress it up a little bit by adding a title and labeling the axes, using the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggplot2::labs()</a></code> option. We will also throw a couple reference lines - a vertical and horizontal line indicating the mean values of each statistic to help us compare. Plus, here are some tweaks I like that make the graph look a little better (all the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">ggplot2::theme()</a></code> stuff).</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">success</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">rush.rte</span>, y<span class="op">=</span><span class="va">success.rte</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">success</span><span class="op">$</span><span class="va">rush.rte</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, color <span class="op">=</span> <span class="st">"red"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
@@ -768,16 +768,16 @@
     plot.subtitle <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
         plot.caption <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
     panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="Intro_files/figure-html/successearlyrush-1.png" width="700"></p>
+<p><img src="intro_files/figure-html/successearlyrush-1.png" width="700"></p>
 <div id="adding-logos" class="section level3">
 <h3 class="hasAnchor">
 <a href="#adding-logos" class="anchor"></a>Adding Logos</h3>
-<p>If you want to get really fancy, and I know you do, you can include team logos on these graphs. You’ll need to install and load the <code>ggimage()</code> package.</p>
-<p>There are probably better/faster ways to do this, but they’re all more complicated. For now, what I’ve done is posted the CSV from collegefootballdata.com’s team page to my github, and we’re just going to rip the logos from there. Not ideal, but it works. You don’t need to change this line at all to get the logos data! We select school and logo because those are the only two things we need for the graphs.</p>
+<p>If you want to get really fancy, and I know you do, you can include team logos on these graphs. You’ll need to install and load the <code>ggimage</code> package.</p>
+<p>There are probably better/faster ways to do this, but they’re all more complicated. For now, what I’ve done is posted the CSV from <a href="collegefootballdata.com">CollegeFootballData.com</a>’s team page to my github, and we’re just going to rip the logos from there. Not ideal, but it works. You don’t need to change this line at all to get the logos data! We select school and logo because those are the only two things we need for the graphs.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cfblogos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/spfleming/CFB/master/logos.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">school</span>, <span class="va">logo</span><span class="op">)</span>
 <span class="va">chartdata</span> <span class="op">&lt;-</span> <span class="va">success</span> <span class="op">%&gt;%</span> <span class="fu">left_join</span><span class="op">(</span><span class="va">cfblogos</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"offense_play"</span> <span class="op">=</span> <span class="st">"school"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Now, we have our created success object and the team logos in the chartdata object. We’ll make use of our graph from above, telling the plot that we want to use the logo column of chartdata to identify teams insteald of a regular ol’ marker. This plot takes a minute to run - this is a consequence of pulling the logos from the web each time. It’s not ideal, but again this is the easiest way to make these graphs, so I opted for simplicity.</p>
+<p>Now, we have our created success object and the team logos in the chartdata object. We’ll make use of our graph from above, telling the plot that we want to use the logo column of chartdata to identify teams instead of a regular ol’ marker. This plot takes a minute to run - this is a consequence of pulling the logos from the web each time. It’s not ideal, but again this is the easiest way to make these graphs, so I opted for simplicity.</p>
 <p>It might take up to two minutes to load! Don’t freak out! Don’t close R! Just let it load! You’ll see a white screen in your Plots window, but I promise the graph is coming.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">chartdata</span> <span class="op">%&gt;%</span> <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">rush.rte</span>, y<span class="op">=</span><span class="va">success.rte</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ggimage/man/geom_image.html">geom_image</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">chartdata</span><span class="op">$</span><span class="va">logo</span>, asp <span class="op">=</span> <span class="fl">16</span><span class="op">/</span><span class="fl">9</span><span class="op">)</span> <span class="op">+</span> 
@@ -792,8 +792,8 @@
     plot.subtitle <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
         plot.caption <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
     panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="Intro_files/figure-html/ED_rushrt_successrt-1.png" width="700"></p>
-<p>You can save the graphs with ggsave(). That gives you a nice, high-res png file that we can post to Twitter or put in a blog post: <code>ggsave('file.png', height = 7, width = 13, dpi = 300)</code></p>
+<p><img src="intro_files/figure-html/ED_rushrt_successrt-1.png" width="700"></p>
+<p>You can save the graphs with <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggplot2::ggsave()</a></code>. That gives you a nice, high-res png file that we can post to Twitter or put in a blog post: <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggplot2::ggsave('file.png', height = 7, width = 13, dpi = 300)</a></code></p>
 </div>
 <div id="more-visualizations" class="section level3">
 <h3 class="hasAnchor">
@@ -818,8 +818,8 @@
     plot.subtitle <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
   plot.caption <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
     panel.grid.minor <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="Intro_files/figure-html/tcu2019off-1.png" width="700"></p>
-<p>I added a couple fun features here: a <em>geom_hline()</em> reference line at zero, to help us better understand the graph, and a subtitle to clarify what was on the graph. Notice that TCU’s EPA was spread almost evenly across the field, but you can see some serious negative ouliers that weighed them down. We could call those outliers into our console to explore them more:</p>
+<p><img src="intro_files/figure-html/tcu2019off-1.png" width="700"></p>
+<p>I added a couple fun features here: a <em><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">ggplot2::geom_hline()</a></code></em> reference line at zero, to help us better understand the graph, and a subtitle to clarify what was on the graph. Notice that TCU’s EPA was spread almost evenly across the field, but you can see some serious negative outliers that weighed them down. We could call those outliers into our console to explore them more:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plays</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">offense_play</span> <span class="op">==</span> <span class="st">"TCU"</span> <span class="op">&amp;</span> <span class="va">EPA</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">offense_play</span>, <span class="va">defense_play</span>, <span class="va">play_text</span>, <span class="va">down</span>, <span class="va">distance</span>, <span class="va">yards_to_goal</span><span class="op">)</span></code></pre></div>
 <pre><code>##   offense_play   defense_play
@@ -846,7 +846,7 @@
 ## 5    1       10            81
 ## 6    3        4            57
 ## 7    3        7            59</code></pre>
-<p>Lastly, let’s explore the <code>gt()</code> pacakge to list the top ten rushing and passing offenses and defenses in the country. We will take our dataset, sort it by the value we want, add a rank variable using mutate(), then apply gt(), simply enough.</p>
+<p>Lastly, let’s explore the <code>gt</code> package to list the top ten rushing and passing offenses and defenses in the country. We will take our dataset, sort it by the value we want, add a rank variable using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code>, then apply <code><a href="https://rdrr.io/pkg/gt/man/gt.html">gt::gt()</a></code>, simply enough.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#Passing</span>
 <span class="va">team.epa</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">epa.pass.off</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>rank <span class="op">=</span> <span class="fu">dense_rank</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">epa.pass.off</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -855,7 +855,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#hduvchkkju .gt_table {
+#qzolllilev .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -880,7 +880,7 @@
   border-left-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_heading {
+#qzolllilev .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -892,7 +892,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_title {
+#qzolllilev .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -902,7 +902,7 @@
   border-bottom-width: 0;
 }
 
-#hduvchkkju .gt_subtitle {
+#qzolllilev .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -912,13 +912,13 @@
   border-top-width: 0;
 }
 
-#hduvchkkju .gt_bottom_border {
+#qzolllilev .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_col_headings {
+#qzolllilev .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -933,7 +933,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_col_heading {
+#qzolllilev .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -953,7 +953,7 @@
   overflow-x: hidden;
 }
 
-#hduvchkkju .gt_column_spanner_outer {
+#qzolllilev .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -965,15 +965,15 @@
   padding-right: 4px;
 }
 
-#hduvchkkju .gt_column_spanner_outer:first-child {
+#qzolllilev .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hduvchkkju .gt_column_spanner_outer:last-child {
+#qzolllilev .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hduvchkkju .gt_column_spanner {
+#qzolllilev .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -985,7 +985,7 @@
   width: 100%;
 }
 
-#hduvchkkju .gt_group_heading {
+#qzolllilev .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1007,7 +1007,7 @@
   vertical-align: middle;
 }
 
-#hduvchkkju .gt_empty_group_heading {
+#qzolllilev .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1022,15 +1022,15 @@
   vertical-align: middle;
 }
 
-#hduvchkkju .gt_from_md > :first-child {
+#qzolllilev .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hduvchkkju .gt_from_md > :last-child {
+#qzolllilev .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hduvchkkju .gt_row {
+#qzolllilev .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1049,7 +1049,7 @@
   overflow-x: hidden;
 }
 
-#hduvchkkju .gt_stub {
+#qzolllilev .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1061,7 +1061,7 @@
   padding-left: 12px;
 }
 
-#hduvchkkju .gt_summary_row {
+#qzolllilev .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1071,7 +1071,7 @@
   padding-right: 5px;
 }
 
-#hduvchkkju .gt_first_summary_row {
+#qzolllilev .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1081,7 +1081,7 @@
   border-top-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_grand_summary_row {
+#qzolllilev .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1091,7 +1091,7 @@
   padding-right: 5px;
 }
 
-#hduvchkkju .gt_first_grand_summary_row {
+#qzolllilev .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1101,11 +1101,11 @@
   border-top-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_striped {
+#qzolllilev .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hduvchkkju .gt_table_body {
+#qzolllilev .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1114,7 +1114,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_footnotes {
+#qzolllilev .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1128,13 +1128,13 @@
   border-right-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_footnote {
+#qzolllilev .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#hduvchkkju .gt_sourcenotes {
+#qzolllilev .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1148,46 +1148,46 @@
   border-right-color: #D3D3D3;
 }
 
-#hduvchkkju .gt_sourcenote {
+#qzolllilev .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#hduvchkkju .gt_left {
+#qzolllilev .gt_left {
   text-align: left;
 }
 
-#hduvchkkju .gt_center {
+#qzolllilev .gt_center {
   text-align: center;
 }
 
-#hduvchkkju .gt_right {
+#qzolllilev .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hduvchkkju .gt_font_normal {
+#qzolllilev .gt_font_normal {
   font-weight: normal;
 }
 
-#hduvchkkju .gt_font_bold {
+#qzolllilev .gt_font_bold {
   font-weight: bold;
 }
 
-#hduvchkkju .gt_font_italic {
+#qzolllilev .gt_font_italic {
   font-style: italic;
 }
 
-#hduvchkkju .gt_super {
+#qzolllilev .gt_super {
   font-size: 65%;
 }
 
-#hduvchkkju .gt_footnote_marks {
+#qzolllilev .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="hduvchkkju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="qzolllilev" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_col_headings"><tr>
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">offense_play</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">epa.pass.off</th>
@@ -1282,7 +1282,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gzicazyobv .gt_table {
+#vdvbuvqgtd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1307,7 +1307,7 @@
   border-left-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_heading {
+#vdvbuvqgtd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1319,7 +1319,7 @@
   border-right-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_title {
+#vdvbuvqgtd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1329,7 +1329,7 @@
   border-bottom-width: 0;
 }
 
-#gzicazyobv .gt_subtitle {
+#vdvbuvqgtd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1339,13 +1339,13 @@
   border-top-width: 0;
 }
 
-#gzicazyobv .gt_bottom_border {
+#vdvbuvqgtd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_col_headings {
+#vdvbuvqgtd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1360,7 +1360,7 @@
   border-right-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_col_heading {
+#vdvbuvqgtd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1380,7 +1380,7 @@
   overflow-x: hidden;
 }
 
-#gzicazyobv .gt_column_spanner_outer {
+#vdvbuvqgtd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1392,15 +1392,15 @@
   padding-right: 4px;
 }
 
-#gzicazyobv .gt_column_spanner_outer:first-child {
+#vdvbuvqgtd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gzicazyobv .gt_column_spanner_outer:last-child {
+#vdvbuvqgtd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gzicazyobv .gt_column_spanner {
+#vdvbuvqgtd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1412,7 +1412,7 @@
   width: 100%;
 }
 
-#gzicazyobv .gt_group_heading {
+#vdvbuvqgtd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1434,7 +1434,7 @@
   vertical-align: middle;
 }
 
-#gzicazyobv .gt_empty_group_heading {
+#vdvbuvqgtd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1449,15 +1449,15 @@
   vertical-align: middle;
 }
 
-#gzicazyobv .gt_from_md > :first-child {
+#vdvbuvqgtd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gzicazyobv .gt_from_md > :last-child {
+#vdvbuvqgtd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gzicazyobv .gt_row {
+#vdvbuvqgtd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1476,7 +1476,7 @@
   overflow-x: hidden;
 }
 
-#gzicazyobv .gt_stub {
+#vdvbuvqgtd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1488,7 +1488,7 @@
   padding-left: 12px;
 }
 
-#gzicazyobv .gt_summary_row {
+#vdvbuvqgtd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1498,7 +1498,7 @@
   padding-right: 5px;
 }
 
-#gzicazyobv .gt_first_summary_row {
+#vdvbuvqgtd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1508,7 +1508,7 @@
   border-top-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_grand_summary_row {
+#vdvbuvqgtd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1518,7 +1518,7 @@
   padding-right: 5px;
 }
 
-#gzicazyobv .gt_first_grand_summary_row {
+#vdvbuvqgtd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1528,11 +1528,11 @@
   border-top-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_striped {
+#vdvbuvqgtd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gzicazyobv .gt_table_body {
+#vdvbuvqgtd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1541,7 +1541,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_footnotes {
+#vdvbuvqgtd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1555,13 +1555,13 @@
   border-right-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_footnote {
+#vdvbuvqgtd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gzicazyobv .gt_sourcenotes {
+#vdvbuvqgtd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1575,46 +1575,46 @@
   border-right-color: #D3D3D3;
 }
 
-#gzicazyobv .gt_sourcenote {
+#vdvbuvqgtd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gzicazyobv .gt_left {
+#vdvbuvqgtd .gt_left {
   text-align: left;
 }
 
-#gzicazyobv .gt_center {
+#vdvbuvqgtd .gt_center {
   text-align: center;
 }
 
-#gzicazyobv .gt_right {
+#vdvbuvqgtd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gzicazyobv .gt_font_normal {
+#vdvbuvqgtd .gt_font_normal {
   font-weight: normal;
 }
 
-#gzicazyobv .gt_font_bold {
+#vdvbuvqgtd .gt_font_bold {
   font-weight: bold;
 }
 
-#gzicazyobv .gt_font_italic {
+#vdvbuvqgtd .gt_font_italic {
   font-style: italic;
 }
 
-#gzicazyobv .gt_super {
+#vdvbuvqgtd .gt_super {
   font-size: 65%;
 }
 
-#gzicazyobv .gt_footnote_marks {
+#vdvbuvqgtd .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="gzicazyobv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
+<div id="vdvbuvqgtd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="table gt_table">
 <thead class="gt_header">
 <tr>
 <th colspan="3" class="gt_heading gt_title gt_font_normal" style>Best Passing Teams</th>
@@ -1681,7 +1681,7 @@
     </tr>
 </tbody>
 </table></div>
-<p>This is just a little taste of what you can do in college football data, thanks to collegefootballdata.com and #cfbscrapR.</p>
+<p>This is just a little taste of what you can do in college football data, thanks to <a href="collegefootballdata.com">CollegeFootballData.com</a> and <a href="https://twitter.com/cfbscrapR">cfbscrapR</a>. Please tag our twitter account whenever you publish a graphic or analysis using <code>cfbscrapR</code> so that we can see it and retweet it!</p>
 <p>Let me know of any work you do, resources you can think of, or code you want to share, then I’ll link to it below!</p>
 <hr>
 <p>Other Great Resources:</p>
@@ -1696,10 +1696,10 @@
 <li>
 <a href="https://www.econometrics-with-r.org/">Introduction to Econometrics with R</a><br>
 </li>
-<li>GOOGLE: there are a million other outside resources that are so valuable. Don’t pay for anything!<br>
-</li>
-<li>Books I’d Recommend:<br>
-</li>
+<li>GOOGLE: there are a million other outside resources that are so valuable. Don’t pay for anything!</li>
+</ul>
+<p>Books I’d Recommend:</p>
+<ul>
 <li>MATHLETICS by Wayne L. Winson<br>
 </li>
 <li>Introductory Econometrics: A Modern Approach by Jeffry Wooldridge<br>
@@ -1713,45 +1713,45 @@
 <div id="glossary-of-terms-and-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#glossary-of-terms-and-functions" class="anchor"></a>Glossary of terms and functions</h2>
-<p><code>[cfbscrapR](https://saiemgilani.github.io/cfbscrapR/index.html)</code>: the R package that helps you get the college football data. Documentation can be found here:</p>
+<p><a href="https://saiemgilani.github.io/cfbscrapR/index.html"><code>cfbscrapR</code></a>: the R package that helps you get the college football data. Documentation can be found here:</p>
 <div id="functions-in-cfbscrapr" class="section level3">
 <h3 class="hasAnchor">
 <a href="#functions-in-cfbscrapr" class="anchor"></a>Functions in cfbscrapR</h3>
 <ul>
 <li>
-<code>[cfb_pbp_data()](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html)</code> gets you the play by play for a given week or team. Can loop over this to pull the whole season.</li>
+<a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> gets you the play by play for a given week or team. Can loop over this to pull the whole season.</li>
 <li>
-<code>[cfb_game_info()](https://saiemgilani.github.io/cfbscrapR/reference/cfb_game_info.html)</code> gets you the home team, away team, game score, and more info about games.<br>
+<a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_game_info.html"><code>cfb_game_info()</code></a> gets you the home team, away team, game score, and more info about games.<br>
 </li>
 <li>
-<code>[plot_pbp_sequencing()](https://saiemgilani.github.io/cfbscrapR/reference/plot_pbp_sequencing.html)</code> and <code>[plot_wpa()](https://saiemgilani.github.io/cfbscrapR/reference/plot_wpa.html)</code> are both built-in graphics you can play with. See documentation.<br>
-tidyverse: the R data science package that helps you wrangle and analyze data.</li>
+<a href="https://saiemgilani.github.io/cfbscrapR/reference/plot_pbp_sequencing.html"><code>plot_pbp_sequencing()</code></a> and <a href="https://saiemgilani.github.io/cfbscrapR/reference/plot_wpa.html"><code>plot_wpa()</code></a> are both built-in graphics you can play with. See documentation.</li>
 </ul>
+<p><a href="https://www.tidyverse.org/"><code>tidyverse</code></a>: the set of R data science packages that help you wrangle and analyze data.</p>
 </div>
-<div id="functions-we-used-in-the-tidyverse" class="section level3">
+<div id="functions-we-used-in-the-tidyverse-and-other-useful-base-r-functions" class="section level3">
 <h3 class="hasAnchor">
-<a href="#functions-we-used-in-the-tidyverse" class="anchor"></a>Functions we used in the tidyverse</h3>
+<a href="#functions-we-used-in-the-tidyverse-and-other-useful-base-r-functions" class="anchor"></a>Functions we used in the tidyverse (and other useful base R functions)</h3>
 <ul>
 <li>
-<code>[dplyr::mutate()](https://dplyr.tidyverse.org/reference/mutate.html)</code>: creates new variables<br>
+<a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>dplyr::mutate()</code></a>: creates new variables<br>
 </li>
 <li>
-<code>[dplyr::group_by()](https://dplyr.tidyverse.org/reference/group_by.html)</code> and <code>[dplyr::summarise()](https://dplyr.tidyverse.org/reference/summarise.html)</code>: groups observation and calculates summary statistics<br>
+<a href="https://dplyr.tidyverse.org/reference/group_by.html"><code>dplyr::group_by()</code></a> and <a href="https://dplyr.tidyverse.org/reference/summarise.html"><code>dplyr::summarise()</code></a>: groups observation and calculates summary statistics<br>
 </li>
 <li>
-<code>[dplyr::filter()](https://dplyr.tidyverse.org/reference/filter.html)</code>: keeps observations based on certain conditions (remember to use ==)<br>
+<a href="https://dplyr.tidyverse.org/reference/filter.html"><code>dplyr::filter()</code></a>: keeps observations based on certain conditions (remember to use <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>)<br>
 </li>
 <li>
-<code>[dplyr::left_join()](https://dplyr.tidyverse.org/reference/filter.html)</code>: takes one dataframe and merges it with another<br>
+<a href="https://dplyr.tidyverse.org/reference/filter.html"><code>dplyr::left_join()</code></a>: takes one dataframe and merges it with another<br>
 </li>
 <li>
-<code>[ggplot2::ggplot()](https://ggplot2.tidyverse.org/reference/ggplot.html)</code> and <code>[ggplot2::geom_point()](https://ggplot2.tidyverse.org/reference/geom_point.html)</code>: graphing functions that set up a graph and plots scatter plots<br>
+<a href="https://ggplot2.tidyverse.org/reference/ggplot.html"><code>ggplot2::ggplot()</code></a> and <a href="https://ggplot2.tidyverse.org/reference/geom_point.html"><code>ggplot2::geom_point()</code></a>: graphing functions that set up a graph and plots scatter plots<br>
 </li>
 <li>
-<code>[head()](http://search.r-project.org/R/library/utils/html/head.html)</code>, <code>[tail()](http://search.r-project.org/R/library/utils/html/head.html)</code>, <code>[dplyr::glimpse()](https://tibble.tidyverse.org/reference/glimpse.html)</code> and <code>[levels()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/levels.html)</code>: all help you inspect the data</li>
+<a href="http://search.r-project.org/R/library/utils/html/head.html"><code>head()</code></a>, <a href="http://search.r-project.org/R/library/utils/html/head.html"><code>tail()</code></a>, <a href="https://tibble.tidyverse.org/reference/glimpse.html"><code>dplyr::glimpse()</code></a> and <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/levels.html"><code>levels()</code></a>: all help you inspect the data</li>
 </ul>
-<p>(<code>[gt](https://gt.rstudio.com/index.html)</code>: a nice package for getting publication-quality tables<br>
-see Tom’s Cookbook to help tweak gt() with all sorts of features.)</p>
+<p><a href="https://gt.rstudio.com/index.html"><code>gt</code></a>: a nice package for getting publication-quality tables<br>
+See <a href="https://jthomasmock.github.io/nfl_plotting_cookbook/">Tom’s Cookbook</a> to help tweak <a href="https://gt.rstudio.com/index.html"><code>gt</code></a> with all sorts of features.</p>
 </div>
 </div>
 </div>

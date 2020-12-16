@@ -71,23 +71,23 @@
       <a href="../articles/intro.html">CFB Analytics with cfbscrapR</a>
     </li>
     <li>
-      <a href="../articles/Animated-WP-Plotting.html">Animated Win Probability Plots</a>
+      <a href="../articles/animated-wp-plotting.html">Animated Win Probability Plots</a>
     </li>
     <li>
       <a href="../articles/fourth-down-plot-tutorial.html">Fourth Down Tendency Plots</a>
     </li>
     <li>
-      <a href="../articles/Rolling-EPA-Graph.html">Rolling EPA Graphs</a>
+      <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-I.html">Part 1 - Model Definition</a>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
     </li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-II.html">Part 2 - Regression Models</a>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-ii.html">Part 2 - Regression Models</a>
     </li>
     <li>
-      <a href="../articles/College-Football-Expected-Points-Model-Fundamentals-Part-III.html">Part 3 - History of Expected Points Models</a>
+      <a href="../articles/college-football-expected-points-model-fundamentals-part-iii.html">Part 3 - History of Expected Points Models</a>
     </li>
   </ul>
 </li>
@@ -137,8 +137,8 @@
 
       
 
-      </header><script src="Rolling-EPA-Graph_files/header-attrs-2.5/header-attrs.js"></script><script src="Rolling-EPA-Graph_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Rolling-EPA-Graph_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="Rolling-EPA-Graph_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="rolling-epa-graph_files/header-attrs-2.5/header-attrs.js"></script><script src="rolling-epa-graph_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="rolling-epa-graph_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="rolling-epa-graph_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Rolling EPA Graph</h1>
@@ -146,7 +146,7 @@
             
       
       
-      <div class="hidden name"><code>Rolling-EPA-Graph.rmd</code></div>
+      <div class="hidden name"><code>rolling-epa-graph.rmd</code></div>
 
     </div>
 
@@ -215,14 +215,14 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">off_epa</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
-##   Team             offense_conference off_epa  Rank TeamRank           
-##   &lt;chr&gt;            &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;              
-## 1 Buffalo          Mid-American         0.343     1 Buffalo #1         
-## 2 Kent State       Mid-American         0.325     2 Kent State #2      
-## 3 Alabama          SEC                  0.294     3 Alabama #3         
-## 4 Western Michigan Mid-American         0.270     4 Western Michigan #4
-## 5 Ohio State       Big Ten              0.236     5 Ohio State #5      
-## 6 BYU              FBS Independents     0.233     6 BYU #6</code></pre>
+##   Team           offense_conference off_epa  Rank TeamRank         
+##   &lt;chr&gt;          &lt;chr&gt;                &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;            
+## 1 Buffalo        Mid-American         0.327     1 Buffalo #1       
+## 2 Kent State     Mid-American         0.325     2 Kent State #2    
+## 3 Alabama        SEC                  0.276     3 Alabama #3       
+## 4 North Carolina ACC                  0.253     4 North Carolina #4
+## 5 Ohio State     Big Ten              0.236     5 Ohio State #5    
+## 6 BYU            FBS Independents     0.232     6 BYU #6</code></pre>
 <p>Ok, now let’s start to visualize the data beyond the top few schools. Let’s graph all the teams that have a positive EPA on the year.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">off_epa</span> <span class="op">%&gt;%</span>
@@ -235,7 +235,7 @@
   <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Offensive EPA Per Play | Positive EPA Teams"</span>,
        caption <span class="op">=</span> <span class="st">"Chart by @cfbNate
        Data from @CFB_Data via @cfbscrapr"</span><span class="op">)</span> </code></pre></div>
-<p><img src="Rolling-EPA-Graph_files/figure-html/graph_top_offenses-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="rolling-epa-graph_files/figure-html/graph_top_offenses-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="prepare-the-data-for-the-moving-average-chart" class="section level2">
 <h2 class="hasAnchor">
@@ -325,7 +325,7 @@
                   clip <span class="op">=</span> <span class="st">'off'</span><span class="op">)</span>               <span class="co"># This keeps the labels from disappearing</span>
 
 <span class="va">graph_team_off</span></code></pre></div>
-<p><img src="Rolling-EPA-Graph_files/figure-html/graph_the_graph-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="rolling-epa-graph_files/figure-html/graph_the_graph-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>Lastly, you can save your graph to your working directory by running the line below. PC users will notice the saved graphic will have a higher resolution and less pixelization than the graphic generated above.</p>
 <p>Reminder: You can always use <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code> to find out what your current working directory is if you’re not sure.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
