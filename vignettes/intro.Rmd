@@ -340,7 +340,7 @@ tcu %>%
 	panel.grid.minor = element_blank())
 ```
 
-I added a couple fun features here: a *```ggplot2::geom_hline()```* reference line at zero, to help us better understand the graph, and a subtitle to clarify what was on the graph. Notice that TCU's EPA was spread almost evenly across the field, but you can see some serious negative outliers that weighed them down. We could call those outliers into our console to explore them more:
+I added a couple fun features here: a **```ggplot2::geom_hline()```** reference line at zero, to help us better understand the graph, and a subtitle to clarify what was on the graph. Notice that TCU's EPA was spread almost evenly across the field, but you can see some serious negative outliers that weighed them down. We could call those outliers into our console to explore them more:
 
 ```{r tcubigneg, message=FALSE,warning=FALSE}
 plays %>% filter(offense_play == "TCU" & EPA < -4) %>% select(offense_play, defense_play, play_text, down, distance, yards_to_goal)
