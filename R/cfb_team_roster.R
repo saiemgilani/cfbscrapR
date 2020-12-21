@@ -2,8 +2,9 @@
 #' Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)
 #' If team is not selected, API returns rosters for every team from the selected year.
 #'
-#' @param team (\emph{String} required): Team, select a valid team in D-I football
 #' @param year (\emph{Integer} optional): Year,  4 digit format (\emph{YYYY})
+#' @param team (\emph{String} optional): Team, select a valid team in D-I football
+#'
 #'
 #' @return A data frame with 12 variables:
 #' \describe{
