@@ -73,28 +73,50 @@ here](https://github.com/meysubb/cfbscrapR-MISC)
 
 </center>
 
-## **cfbscrapR 1.0.4**
+# **cfbscrapR 1.0.5**
 
-  - Updated `cfb_game_box_advanced()` to incorporate new columns from
-    API.
+  - Added [Eric Hess](https://twitter.com/arbitanalytics)’s [Visualizing
+    Team Talent Using Player Recruiting
+    Rankings](https://saiemgilani.github.io/cfbscrapR/articles/nth-rated-recruit.html)
+    vignette
+  - Added
+    [`cfb_calendar()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_calendar.html)
+    function from API
+  - Updated
+    [`cfb_team_roster()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_team_roster.html)
+    to reflect new parameters.
 
-## **cfbscrapR 1.0.3**
+# **cfbscrapR 1.0.4**
+
+  - Updated
+    [`cfb_game_box_advanced()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_game_box_advanced.html)
+    to incorporate new columns from API.
+
+# **cfbscrapR 1.0.3**
+
+This was a **big** update\!
 
   - Updated expected points models and win probability models
-  - Add player and yardage columns to `cfb_pbp_data()` pull thanks to a
-    great deal of help from [@NickTice](https://github.com/NickTice)
-  - Add spread values to the `cfb_pbp_data()` pull
+  - Add player and yardage columns to
+    [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html)
+    pull thanks to a great deal of help from
+    [@NickTice](https://github.com/NickTice)
+  - Add spread values to the
+    [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html)
+    pull
   - Add drive detailed result with attempts at creating more accurate
     drive result labels
   - Added series and first down variables
   - Added argumentation to allow for San Jose State to be entered
-    without accent into `cfb_pbp_data()` function `team` argument.
+    without accent into
+    [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html)
+    function `team` argument.
 
 ## **Our Contributors (they’re awesome)**
 
   - [Nate Manzo](https://twitter.com/cfbnate)
   - [Michael Egle](https://twitter.com/deceptivespeed_)
-  - [Jared Lee](https://twitter.com/JaredDLee)
+  - ~~[Jared Lee](https://twitter.com/JaredDLee)~~ (Now an author)
 
 ## **Special Thanks**
 

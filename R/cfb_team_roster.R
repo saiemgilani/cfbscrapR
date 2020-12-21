@@ -1,8 +1,7 @@
 #' Team Roster
-#' Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)
-#' If team is not selected, API returns rosters for every team from the selected year.
+#' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #'
-#' @param year (\emph{Integer} optional): Year,  4 digit format (\emph{YYYY})
+#' @param year (\emph{Integer} required): Year,  4 digit format (\emph{YYYY})
 #' @param team (\emph{String} optional): Team, select a valid team in D-I football
 #'
 #'
@@ -32,16 +31,16 @@
 #' @export
 #' @examples
 #'
-#' cfb_team_roster(team = "Florida State")
+#' cfb_team_roster(year = 2013, team = "Florida State")
 #'
 
-cfb_team_roster <- function(year = NULL,team = NULL){
+cfb_team_roster <- function(year, team = NULL){
   team2 <- team
-  if(!is.null(year)){
-    # check if year is numeric
-    assert_that(is.numeric(year) & nchar(year) == 4,
-                msg='Enter valid year as a number (YYYY)')
-  }
+  
+  # check if year is numeric
+  assert_that(is.numeric(year) & nchar(year) == 4,
+              msg='Enter valid year as a number (YYYY)')
+  
 
   if(!is.null(team)){
     if(team == "San Jose State"){

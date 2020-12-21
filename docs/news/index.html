@@ -84,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
       </span>
     </div>
 
@@ -120,6 +120,9 @@
     </li>
     <li>
       <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
+    </li>
+    <li>
+      <a href="../articles/nth-rated-recruits.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -186,9 +189,43 @@
       
     </div>
 
+    <div id="cfbscrapr-105" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.5">
+<a href="#cfbscrapr-105" class="anchor"></a><strong>cfbscrapR 1.0.5</strong>
+</h1>
+<ul>
+<li>Added <a href="https://twitter.com/arbitanalytics">Eric Hess</a>’s <a href="https://saiemgilani.github.io/cfbscrapR/articles/nth-rated-recruit.html">Visualizing Team Talent Using Player Recruiting Rankings</a> vignette</li>
+<li>Added <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_calendar.html"><code>cfb_calendar()</code></a> function from API</li>
+<li>Updated <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_team_roster.html"><code>cfb_team_roster()</code></a> to reflect new parameters.</li>
+</ul>
+</div>
+    <div id="cfbscrapr-104" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.4">
+<a href="#cfbscrapr-104" class="anchor"></a><strong>cfbscrapR 1.0.4</strong>
+</h1>
+<ul>
+<li>Updated <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_game_box_advanced.html"><code>cfb_game_box_advanced()</code></a> to incorporate new columns from API.</li>
+</ul>
+</div>
+    <div id="cfbscrapr-103" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.3">
+<a href="#cfbscrapr-103" class="anchor"></a><strong>cfbscrapR 1.0.3</strong>
+</h1>
+<p>This was a <strong>big</strong> update!</p>
+<ul>
+<li>Updated expected points models and win probability models</li>
+<li>Add player and yardage columns to <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> pull thanks to a great deal of help from <a href="https://github.com/NickTice">@NickTice</a>
+</li>
+<li>Add spread values to the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> pull</li>
+<li>Add drive detailed result with attempts at creating more accurate drive result labels</li>
+<li>Added series and first down variables</li>
+<li>Added argumentation to allow for San Jose State to be entered without accent into <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> function <code>team</code> argument.</li>
+</ul>
+</div>
     <div id="cfbscrapr-1022" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.22">
-<a href="#cfbscrapr-1022" class="anchor"></a>cfbscrapR 1.0.22</h1>
+<a href="#cfbscrapr-1022" class="anchor"></a><strong>cfbscrapR 1.0.22</strong>
+</h1>
 <ul>
 <li><p><del>Fix conference parameters to match API (moved to abbreviation format).</del> Removed assertions for now, so users should be able to access conference data without issue, assuming the input argument is correct. May fortune favor your selection.</p></li>
 <li><p>Add mgcv (&gt;= v1.8.32) dependency and update WP model accordingly. Note on WPA: Kickoffs are problematic and our calculation algorithm does not appear to accomplishing what it needs to. We are working on this, aiming for a quick next version update centered around this.</p></li>
@@ -239,14 +276,16 @@
 </div>
     <div id="cfbscrapr-1021" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.21">
-<a href="#cfbscrapr-1021" class="anchor"></a>cfbscrapR 1.0.21</h1>
+<a href="#cfbscrapr-1021" class="anchor"></a><strong>cfbscrapR 1.0.21</strong>
+</h1>
 <ul>
 <li>Fix conference parameters to match API (moved to abbreviation format).</li>
 </ul>
 </div>
     <div id="cfbscrapr-102" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.2">
-<a href="#cfbscrapr-102" class="anchor"></a>cfbscrapR 1.0.2</h1>
+<a href="#cfbscrapr-102" class="anchor"></a><strong>cfbscrapR 1.0.2</strong>
+</h1>
 <ul>
 <li>Fix downs turnovers and several other discrepancies in EPA computations.</li>
 </ul>
@@ -270,28 +309,38 @@
 </div>
     <div id="cfbscrapr-101" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.1">
-<a href="#cfbscrapr-101" class="anchor"></a>cfbscrapR 1.0.1</h1>
+<a href="#cfbscrapr-101" class="anchor"></a><strong>cfbscrapR 1.0.1</strong>
+</h1>
+<ul>
+<li>bug fixes</li>
+</ul>
+</div>
+    <div id="cfbscrapr-100" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#cfbscrapr-100" class="anchor"></a><strong>cfbscrapR 1.0.0</strong>
+</h1>
 <ul>
 <li>
-<p>bug fixes</p>
-<h1 id="cfbscrapr-100" class="page-header" data-toc-text="1.0.1">cfbscrapR 1.0.0</h1>
+<del>Prep for CRAN</del> (uh huh, sure you did, buddy)</li>
+<li>Full coverage of end-points from CFB Data<br>
 </li>
-<li><p>Prep for CRAN<br></p></li>
-<li><p>Full coverage of end-points from CFB Data<br></p></li>
-<li><p>More parameter options for end points<br></p></li>
-<li><p>Bug fixes on some functions</p></li>
+<li>More parameter options for end points<br>
+</li>
+<li>Bug fixes on some functions</li>
 </ul>
 </div>
     <div id="cfbscrapr-016" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.6">
-<a href="#cfbscrapr-016" class="anchor"></a>cfbscrapR 0.1.6</h1>
+<a href="#cfbscrapr-016" class="anchor"></a><strong>cfbscrapR 0.1.6</strong>
+</h1>
 <ul>
 <li>Bug fix on pbp function</li>
 </ul>
 </div>
     <div id="cfbscrapr-015" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.5">
-<a href="#cfbscrapr-015" class="anchor"></a>cfbscrapR 0.1.5</h1>
+<a href="#cfbscrapr-015" class="anchor"></a><strong>cfbscrapR 0.1.5</strong>
+</h1>
 <ul>
 <li>Separate Recruiting Functions (Separate function for position groups)<br>
 </li>
@@ -302,7 +351,8 @@
 </div>
     <div id="cfbscrapr-014" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.4">
-<a href="#cfbscrapr-014" class="anchor"></a>cfbscrapR 0.1.4</h1>
+<a href="#cfbscrapr-014" class="anchor"></a><strong>cfbscrapR 0.1.4</strong>
+</h1>
 <p>Fixes include:</p>
 <ul>
 <li>Ability to scrape 2015 (fix down issues on Kickoffs)</li>
@@ -313,26 +363,29 @@
 </div>
     <div id="cfbscrapr-013" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.3">
-<a href="#cfbscrapr-013" class="anchor"></a>cfbscrapR 0.1.3</h1>
-<p>This was a big update!</p>
+<a href="#cfbscrapr-013" class="anchor"></a><strong>cfbscrapR 0.1.3</strong>
+</h1>
+<p>This was a <strong>big</strong> update!</p>
 <ul>
 <li>New and Improved EP/WP models.</li>
 <li>CV-LOSO for EP/WP models</li>
-<li>Fix the log_yards_to_goal to be the correct variable</li>
-<li>More consistent data fro API</li>
+<li>Fix the <code>log_yards_to_goal</code> to be the correct variable</li>
+<li>More consistent data from API</li>
 <li>Timeout data available</li>
 <li>Better post play identification structure</li>
 </ul>
 </div>
     <div id="cfbscrapr-011---012" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.1">
-<a href="#cfbscrapr-011---012" class="anchor"></a>cfbscrapR 0.1.1 - 0.1.2</h1>
+<a href="#cfbscrapr-011---012" class="anchor"></a><strong>cfbscrapR 0.1.1 - 0.1.2</strong>
+</h1>
 <p>Some small fixes here and there</p>
 </div>
     <div id="cfbscrapr-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
-<a href="#cfbscrapr-010" class="anchor"></a>cfbscrapR 0.1.0</h1>
-<p>Initial release of cfbscrapR with EPA/WPA models</p>
+<a href="#cfbscrapr-010" class="anchor"></a><strong>cfbscrapR 0.1.0</strong>
+</h1>
+<p>Initial release of <code>cfbscrapR</code> with EPA/WPA models</p>
 </div>
   </div>
 
@@ -347,7 +400,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">
