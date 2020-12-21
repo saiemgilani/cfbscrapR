@@ -79,6 +79,7 @@ Note in the code how we defined what ```pbp_2019``` is: we used the little arrow
 easypackages::libraries('tidyverse', 'cfbscrapR', 'ggimage', 'gt')
 ```
 
+# Using the [Data Repository](https://github.com/saiemgilani/cfbscrapR-data)
 ```{r pbp_pull,message=FALSE,warning=FALSE}
 pbp_2019 <- data.frame()
 seasons <- 2019
@@ -91,8 +92,41 @@ pbp_2019 <- purrr::map_df(seasons, function(x) {
 })
 ```
 
+# Using the ```cfb_pbp_data()``` function
+```{r cfb_pbp_data, message=FALSE,warning=FALSE,eval=FALSE}
+week_vector = 1:15
+year_vector = 2019
 
-This code will take a few minutes (~3:10) to run - it's pulling a lot of data from the API at once. Give your R console a break until it finishes! You'll know it's done running when you can see ```pbp_2019``` in the "Environment" window in the top right of your R console (and when the little caret > pops up in your terminal, at the bottom left). 
+weekly_year_df = expand.grid(year = year_vector, week = week_vector)
+### scrape yearly
+year_split = split(weekly_year_df, weekly_year_df$year)
+### starting time
+yr_epa_start_time <- proc.time()
+for (i in 1:length(year_split)) {
+  print(paste0("Working on ", year_split[[i]][1,1]))
+  year_split[[i]] = year_split[[i]] %>% 
+    mutate(
+      pbp = purrr::map2(
+        .x = year,
+        .y = week,
+        cfb_pbp_data,
+        season_type = 'both',
+        epa_wpa=TRUE
+        
+  ))
+  Sys.sleep(1)
+}
+### calculate time elapsed
+yr_epa_season_run <- proc.time() - yr_epa_start_time
+print(yr_epa_season_run['elapsed']/60)
+year_split19 = lapply(year_split, function(x) {
+  x %>% tidyr::unnest(pbp)
+})
+
+pbp_2019 = bind_rows(year_split19)
+
+```
+This code will take a few minutes (~8:10) to run - it's pulling a lot of data from the API at once. Give your R console a break until it finishes! You'll know it's done running when you can see ```pbp_2019``` in the "Environment" window in the top right of your R console (and when the little caret `>` pops up in your terminal, at the bottom left). 
 
 Now, we have the entire season's worth of play-by-play data stored in an object called ```pbp_2019```. All of that text in the ```cfb_pbp_data()``` is customizable: you could select only a specific week, you could pull data from bowl games by changing season_type to "both". Finally, the ```epa_wpa = TRUE``` adds ```cfbscrapR```'s EPA model and a bunch of useful stats and codes on the data! 
 

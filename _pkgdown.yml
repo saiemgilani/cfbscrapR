@@ -46,7 +46,7 @@ navbar:
       - text: Rolling EPA Graphs
         href: articles/rolling-epa-graph.html
       - text: Visualizing Team Talent with Player Recruit Rankings
-        href: articles/nth-rated-recruits.html
+        href: articles/nth-rated-recruit.html
       - text: Expected Points Model Fundamentals
       - text: "Part 1 - Model Definition"
         href: articles/college-football-expected-points-model-fundamentals-part-i.html

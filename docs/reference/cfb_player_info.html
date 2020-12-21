@@ -125,7 +125,7 @@ but it is there. May fortune favor you should you choose to use it." />
       <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
     </li>
     <li>
-      <a href="../articles/nth-rated-recruits.html">Visualizing Team Talent with Player Recruit Rankings</a>
+      <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -252,17 +252,17 @@ If left NULL, API default will only provide results for most recent year of fina
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>'James'</span>, position <span class='op'>=</span> <span class='st'>'DB'</span>, team <span class='op'>=</span> <span class='st'>'Florida State'</span>, year <span class='op'>=</span> <span class='fl'>2017</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-21 07:44:58: Scraping player info data...</span></div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
+</div><div class='output co'>#&gt; <span class='message'>2020-12-21 11:45:43: Scraping player info data...</span></div><div class='output co'>#&gt;   athlete_id          team         name first_name last_name weight height
 #&gt; 1    3691739 Florida State Derwin James     Derwin     James    211     75
 #&gt;   jersey position   home_town team_color team_color_secondary
 #&gt; 1      3       DB Leander, TX    #782F40              #ceb888</div><div class='input'>
 <span class='fu'>cfb_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>'Lawrence'</span>, team <span class='op'>=</span> <span class='st'>"Clemson"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-21 07:44:58: Scraping player info data...</span></div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
+</div><div class='output co'>#&gt; <span class='message'>2020-12-21 11:45:43: Scraping player info data...</span></div><div class='output co'>#&gt;   athlete_id    team            name first_name last_name weight height jersey
 #&gt; 1    4360310 Clemson Trevor Lawrence     Trevor  Lawrence    220     78     16
 #&gt;   position        home_town team_color team_color_secondary
 #&gt; 1       QB Cartersville, GA    #F66733              #522d80</div><div class='input'>
 <span class='fu'>cfb_player_info</span><span class='op'>(</span>search_term <span class='op'>=</span> <span class='st'>'Duggan'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-21 07:44:59: Scraping player info data...</span></div><div class='output co'>#&gt;   athlete_id    team          name first_name last_name weight height jersey
+</div><div class='output co'>#&gt; <span class='message'>2020-12-21 11:45:44: Scraping player info data...</span></div><div class='output co'>#&gt;   athlete_id    team          name first_name last_name weight height jersey
 #&gt; 1    4259319 Rutgers Jaohne Duggan     Jaohne    Duggan    295     73     57
 #&gt; 2    4427105     TCU    Max Duggan        Max    Duggan    201     74     15
 #&gt;   position          home_town team_color team_color_secondary
