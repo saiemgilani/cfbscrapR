@@ -1,9 +1,10 @@
 #' Team Roster
-#' Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)
+#' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #'
-#' @param team (\emph{String} required): Team, select a valid team in D-I football
-#' @param year (\emph{Integer} optional): Year,  4 digit format (\emph{YYYY})
-#' 
+#' @param year (\emph{Integer} required): Year,  4 digit format (\emph{YYYY})
+#' @param team (\emph{String} optional): Team, select a valid team in D-I football
+#'
+#'
 #' @return A data frame with 12 variables:
 #' \describe{
 #'   \item{\code{athlete_id}}{character.}
@@ -29,17 +30,17 @@
 #' @importFrom glue glue
 #' @export
 #' @examples
-#' 
-#' cfb_team_roster("Florida State")
+#'
+#' cfb_team_roster(year = 2013, team = "Florida State")
 #'
 
-cfb_team_roster <- function(team, year = NULL){
+cfb_team_roster <- function(year, team = NULL){
   team2 <- team
-  if(!is.null(year)){
-    # check if year is numeric
-    assert_that(is.numeric(year) & nchar(year) == 4,
-                msg='Enter valid year as a number (YYYY)')
-  }
+  
+  # check if year is numeric
+  assert_that(is.numeric(year) & nchar(year) == 4,
+              msg='Enter valid year as a number (YYYY)')
+  
 
   if(!is.null(team)){
     if(team == "San Jose State"){
@@ -51,9 +52,13 @@ cfb_team_roster <- function(team, year = NULL){
   }
   base_url <- "https://api.collegefootballdata.com/roster?"
 
-  full_url <- paste0(base_url,
-                     "team=", team,
-                     "&year=", year)
+  if(is.null(team)) {
+    full_url <- paste0(base_url,
+                       "year=", year)
+  } else {
+    full_url <- paste0(base_url,"team=", team,
+                       "&year=", year)
+  }
 
   # Check for internet
   check_internet()
@@ -63,16 +68,18 @@ cfb_team_roster <- function(team, year = NULL){
 
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr ={
       # Get the content and return it as data.frame
-      df = jsonlite::fromJSON(full_url) %>% 
-        dplyr::rename(athlete_id = .data$id) %>% 
-        dplyr::mutate(team = team2) %>% 
+      df = jsonlite::fromJSON(full_url) %>%
+        dplyr::rename(athlete_id = .data$id) %>%
+        # Is this okay to just comment out?
+        # Changing to team = NULL deleted the column
+        #dplyr::mutate(team = team2) %>%
         as.data.frame()
-      
+
       message(glue::glue("{Sys.time()}: Scraping team roster..."))
     },
     error = function(e) {

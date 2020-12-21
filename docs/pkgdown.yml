@@ -8,8 +8,9 @@ articles:
   college-football-expected-points-model-fundamentals-part-iii: college-football-expected-points-model-fundamentals-part-iii.html
   fourth-down-plot-tutorial: fourth-down-plot-tutorial.html
   intro: intro.html
+  nth-rated-recruit: nth-rated-recruit.html
   rolling-epa-graph: rolling-epa-graph.html
-last_built: 2020-12-16T07:54Z
+last_built: 2020-12-21T12:44Z
 urls:
   reference: http://saiemgilani.github.io/cfbscrapR/reference
   article: http://saiemgilani.github.io/cfbscrapR/articles

@@ -1,4 +1,24 @@
-# cfbscrapR 1.0.22
+# **cfbscrapR 1.0.5**
+-  Added [Eric Hess](https://twitter.com/arbitanalytics)'s [Visualizing Team Talent Using Player Recruiting Rankings](https://saiemgilani.github.io/cfbscrapR/articles/nth-rated-recruit.html) vignette
+-  Added [`cfb_calendar()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_calendar.html) function from API
+-  Updated [`cfb_team_roster()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_team_roster.html) to reflect new parameters.
+
+# **cfbscrapR 1.0.4**
+
+-  Updated [`cfb_game_box_advanced()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_game_box_advanced.html) to incorporate new columns from API.
+
+# **cfbscrapR 1.0.3**
+
+This was a **big** update!
+
+-   Updated expected points models and win probability models
+-   Add player and yardage columns to [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html) pull thanks to a great deal of help from [\@NickTice](https://github.com/NickTice)
+-   Add spread values to the [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html) pull
+-   Add drive detailed result with attempts at creating more accurate drive result labels
+-   Added series and first down variables
+-   Added argumentation to allow for San Jose State to be entered without accent into [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html) function ```team``` argument.
+
+# **cfbscrapR 1.0.22**
 
 - ~~Fix conference parameters to match API (moved to abbreviation format).~~ Removed assertions for now, so users should be able to access conference data without issue, assuming the input argument is correct. May fortune favor your selection. 
 
@@ -44,10 +64,10 @@
   - Contains important `add_player_cols()` function useful to parse existing play-by-play datasets and pull passer/rusher/receiver/etc. player names. 
 * Added [Michael Egle](https://twitter.com/deceptivespeed_)'s [4th down tendency plot vignette](https://saiemgilani.github.io/cfbscrapR/articles/fourth_down_plot_tutorial.html) to the package documentation page
 
-# cfbscrapR 1.0.21
+# **cfbscrapR 1.0.21**
 - Fix conference parameters to match API (moved to abbreviation format).
 
-# cfbscrapR 1.0.2
+# **cfbscrapR 1.0.2**
 - Fix downs turnovers and several other discrepancies in EPA computations.
 
 ![EPA_YardsGained_cfbscrapR.png](https://i.imgur.com/Bw6VO90.png)
@@ -68,26 +88,28 @@
 - Remove `drives` parameter from [`cfb_pbp_data()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html) function. For accessing drives information, please switch to the [`cfb_drives()`](https://saiemgilani.github.io/cfbscrapR/reference/cfb_drives.html) function. 
 - For more complete summary of changes, see [Pull Request](https://github.com/saiemgilani/cfbscrapR/pull/5#issue-478275691)
 
-# cfbscrapR 1.0.1
-- bug fixes
-# cfbscrapR 1.0.0
+# **cfbscrapR 1.0.1**
 
-- Prep for CRAN  
+- bug fixes
+
+# **cfbscrapR 1.0.0**
+
+- ~~Prep for CRAN~~ (uh huh, sure you did, buddy)
 - Full coverage of end-points from CFB Data  
 - More parameter options for end points  
 - Bug fixes on some functions  
 
-# cfbscrapR 0.1.6
+# **cfbscrapR 0.1.6**
 
 - Bug fix on pbp function  
 
-# cfbscrapR 0.1.5
+# **cfbscrapR 0.1.5**
 
 - Separate Recruiting Functions (Separate function for position groups)  
 - Clean up Ranking function to properly return a value  
 - Create Venue Function  
 
-# cfbscrapR 0.1.4
+# **cfbscrapR 0.1.4**
 
 Fixes include: 
 
@@ -96,21 +118,21 @@ Fixes include:
 - Proper turnover play indication
 - Clarity on penalties. 
 
-# cfbscrapR 0.1.3
+# **cfbscrapR 0.1.3**
 
-This was a big update!
+This was a **big** update!
 
 - New and Improved EP/WP models. 
 - CV-LOSO for EP/WP models
-- Fix the log_yards_to_goal to be the correct variable
-- More consistent data fro API
+- Fix the ```log_yards_to_goal``` to be the correct variable
+- More consistent data from API
 - Timeout data available
 - Better post play identification structure
 
-# cfbscrapR 0.1.1 - 0.1.2
+# **cfbscrapR 0.1.1 - 0.1.2**
 
 Some small fixes here and there
 
-# cfbscrapR 0.1.0
+# **cfbscrapR 0.1.0**
 
-Initial release of cfbscrapR with EPA/WPA models
+Initial release of ```cfbscrapR``` with EPA/WPA models

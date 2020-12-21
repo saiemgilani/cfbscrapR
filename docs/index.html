@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
       </span>
     </div>
 
@@ -78,6 +78,9 @@
     </li>
     <li>
       <a href="articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
+    </li>
+    <li>
+      <a href="articles/nth-rated-recruits.html">Visualizing Team Talent with Player Recruit Rankings</a>
     </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
@@ -197,28 +200,39 @@
 </center>
 </div>
 </div>
-<div id="cfbscrapr-104" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cfbscrapr-104" class="anchor"></a><strong>cfbscrapR 1.0.4</strong>
-</h2>
+</div>
+<div id="cfbscrapr-105" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbscrapr-105" class="anchor"></a><strong>cfbscrapR 1.0.5</strong>
+</h1>
 <ul>
-<li>Updated <code><a href="reference/cfb_game_box_advanced.html">cfb_game_box_advanced()</a></code> to incorporate new columns from API.</li>
+<li>Added <a href="https://twitter.com/arbitanalytics">Eric Hess</a>’s <a href="https://saiemgilani.github.io/cfbscrapR/articles/nth-rated-recruit.html">Visualizing Team Talent Using Player Recruiting Rankings</a> vignette</li>
+<li>Added <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_calendar.html"><code>cfb_calendar()</code></a> function from API</li>
+<li>Updated <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_team_roster.html"><code>cfb_team_roster()</code></a> to reflect new parameters.</li>
 </ul>
 </div>
-<div id="cfbscrapr-103" class="section level2">
-<h2 class="hasAnchor">
+<div id="cfbscrapr-104" class="section level1">
+<h1 class="hasAnchor">
+<a href="#cfbscrapr-104" class="anchor"></a><strong>cfbscrapR 1.0.4</strong>
+</h1>
+<ul>
+<li>Updated <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_game_box_advanced.html"><code>cfb_game_box_advanced()</code></a> to incorporate new columns from API.</li>
+</ul>
+</div>
+<div id="cfbscrapr-103" class="section level1">
+<h1 class="hasAnchor">
 <a href="#cfbscrapr-103" class="anchor"></a><strong>cfbscrapR 1.0.3</strong>
-</h2>
+</h1>
+<p>This was a <strong>big</strong> update!</p>
 <ul>
 <li>Updated expected points models and win probability models</li>
-<li>Add player and yardage columns to <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> pull thanks to a great deal of help from <a href="https://github.com/NickTice">@NickTice</a>
+<li>Add player and yardage columns to <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> pull thanks to a great deal of help from <a href="https://github.com/NickTice">@NickTice</a>
 </li>
-<li>Add spread values to the <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> pull</li>
+<li>Add spread values to the <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> pull</li>
 <li>Add drive detailed result with attempts at creating more accurate drive result labels</li>
 <li>Added series and first down variables</li>
-<li>Added argumentation to allow for San Jose State to be entered without accent into <code><a href="reference/cfb_pbp_data.html">cfb_pbp_data()</a></code> function <code>team</code> argument.</li>
+<li>Added argumentation to allow for San Jose State to be entered without accent into <a href="https://saiemgilani.github.io/cfbscrapR/reference/cfb_pbp_data.html"><code>cfb_pbp_data()</code></a> function <code>team</code> argument.</li>
 </ul>
-</div>
 <div id="our-contributors-theyre-awesome" class="section level2">
 <h2 class="hasAnchor">
 <a href="#our-contributors-theyre-awesome" class="anchor"></a><strong>Our Contributors (they’re awesome)</strong>
@@ -226,7 +240,8 @@
 <ul>
 <li><a href="https://twitter.com/cfbnate">Nate Manzo</a></li>
 <li><a href="https://twitter.com/deceptivespeed_">Michael Egle</a></li>
-<li><a href="https://twitter.com/JaredDLee">Jared Lee</a></li>
+<li>
+<del><a href="https://twitter.com/JaredDLee">Jared Lee</a></del> (Now an author)</li>
 </ul>
 </div>
 <div id="special-thanks" class="section level2">
@@ -270,6 +285,8 @@
 <li>
 <a href="https://twitter.com/msubbaiah1">Meyappan Subbaiah</a> <br><small class="roles"> Author </small>  </li>
 <li>
+<a href="https://twitter.com/JaredDLee">Jared Lee</a> <br><small class="roles"> Author </small>  </li>
+<li>
 <a href="https://twitter.com/statsowar">Parker Fleming</a> <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
@@ -286,7 +303,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://twitter.com/saiemgilani">Saiem Gilani</a>, <a href="https://twitter.com/msubbaiah1">Meyappan Subbaiah</a>, <a href="https://twitter.com/statsowar">Parker Fleming</a>.</p>
+  <p>Developed by <a href="https://twitter.com/saiemgilani">Saiem Gilani</a>, <a href="https://twitter.com/msubbaiah1">Meyappan Subbaiah</a>, <a href="https://twitter.com/JaredDLee">Jared Lee</a>, <a href="https://twitter.com/statsowar">Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">
