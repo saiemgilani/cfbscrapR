@@ -162,7 +162,7 @@ cfb_stats_season_team <- function(year,
                         values_from = .data$statValue) 
       
       #Find missing columns, if any, and add them to found data
-      missing <- setdiff(expected.colnames, colnames(df))
+      missing <- setdiff(expected_colnames, colnames(df))
       df[missing] <- NA_real_
       
       df <- df %>%
