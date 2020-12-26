@@ -50,13 +50,13 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-question-circle-o"></span>
+    <span class="fas fa-question-circle-o"></span>
      
     Tutorials
      
@@ -96,21 +96,21 @@
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Functions
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     News
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR-data">
-    <span class="fa fa-database"></span>
+    <span class="fas fa-database"></span>
      
     Data
   </a>
@@ -119,13 +119,13 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://twitter.com/cfbscrapR">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR/">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
     GitHub
   </a>
@@ -140,8 +140,7 @@
 
       
 
-      </header><script src="fourth-down-plot-tutorial_files/header-attrs-2.5/header-attrs.js"></script><script src="fourth-down-plot-tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="fourth-down-plot-tutorial_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="fourth-down-plot-tutorial_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="fourth-down-plot-tutorial_files/header-attrs-2.6/header-attrs.js"></script><script src="fourth-down-plot-tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Creating Fourth Down Tendency Plots Using cfbscrapR</h1>
@@ -185,7 +184,7 @@
 <p>Next, we’ll need to get the coaching information, so we’ll use the <code>cfb_coaches</code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cfb_coaches.html">cfb_coaches</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></code></pre></div>
-<pre><code>## 2020-12-21 11:47:19: Scraping coaches data...</code></pre>
+<pre><code>## 2020-12-26 15:15:47: Scraping coaches data...</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">coaches</span> <span class="op">&lt;-</span> <span class="va">coaches</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>coach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">first_name</span>, <span class="va">last_name</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>

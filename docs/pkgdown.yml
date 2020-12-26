@@ -10,7 +10,7 @@ articles:
   intro: intro.html
   nth-rated-recruit: nth-rated-recruit.html
   rolling-epa-graph: rolling-epa-graph.html
-last_built: 2020-12-21T16:45Z
+last_built: 2020-12-26T20:13Z
 urls:
   reference: http://saiemgilani.github.io/cfbscrapR/reference
   article: http://saiemgilani.github.io/cfbscrapR/articles
