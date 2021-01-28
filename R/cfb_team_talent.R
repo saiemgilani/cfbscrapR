@@ -3,12 +3,12 @@
 #' Extracts team talent composite as sourced from 247 rankings
 #'
 #' @param year (\emph{Integer} optional): Year 4 digit format (\emph{YYYY})
-#' 
+#'
 #' @return A data frame with 3 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{school}}{character.}
-#'   \item{\code{talent}}{character.}
+#'   \item{\code{talent}}{numeric.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/talent}
 #' @keywords Team talent
@@ -51,9 +51,10 @@ cfb_team_talent <- function(year = NULL) {
   tryCatch(
     expr ={
       # Get the content and return it as data.frame
-      df = jsonlite::fromJSON(full_url) %>% 
-        as.data.frame()
-      
+      df = jsonlite::fromJSON(full_url) %>%
+        as.data.frame() %>%
+        mutate(talent = as.numeric(talent))
+
       message(glue::glue("{Sys.time()}: Scraping team talent..."))
     },
     error = function(e) {
@@ -63,6 +64,6 @@ cfb_team_talent <- function(year = NULL) {
     },
     finally = {
     }
-  )    
+  )
   return(df)
 }
