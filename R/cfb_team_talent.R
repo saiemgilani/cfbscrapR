@@ -8,7 +8,7 @@
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{school}}{character.}
-#'   \item{\code{talent}}{numeric.}
+#'   \item{\code{talent}}{double.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/talent}
 #' @keywords Team talent
@@ -53,7 +53,7 @@ cfb_team_talent <- function(year = NULL) {
       # Get the content and return it as data.frame
       df = jsonlite::fromJSON(full_url) %>%
         as.data.frame() %>%
-        mutate(talent = as.numeric(talent))
+        mutate(talent = as.numeric(.data$talent))
 
       message(glue::glue("{Sys.time()}: Scraping team talent..."))
     },

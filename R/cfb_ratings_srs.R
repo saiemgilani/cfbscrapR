@@ -14,7 +14,7 @@
 #'   \item{\code{team}}{character.}
 #'   \item{\code{conference}}{character.}
 #'   \item{\code{division}}{logical.}
-#'   \item{\code{rating}}{numeric.}
+#'   \item{\code{rating}}{double.}
 #'   \item{\code{ranking}}{integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/srs}
