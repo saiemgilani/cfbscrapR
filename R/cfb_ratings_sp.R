@@ -11,8 +11,10 @@
 #'   \item{\code{team}}{character.}
 #'   \item{\code{conference}}{character.}
 #'   \item{\code{rating}}{double.}
+#'   \item{\code{ranking}}{integer.}
 #'   \item{\code{second_order_wins}}{logical.}
 #'   \item{\code{sos}}{logical.}
+#'   \item{\code{offense_ranking}}{integer.}
 #'   \item{\code{offense_rating}}{double.}
 #'   \item{\code{offense_success}}{logical.}
 #'   \item{\code{offense_explosiveness}}{logical.}
@@ -22,6 +24,7 @@
 #'   \item{\code{offense_passing_downs}}{logical.}
 #'   \item{\code{offense_run_rate}}{logical.}
 #'   \item{\code{offense_pace}}{logical.}
+#'   \item{\code{defense_ranking}}{integer.}
 #'   \item{\code{defense_rating}}{double.}
 #'   \item{\code{defense_success}}{logical.}
 #'   \item{\code{defense_explosiveness}}{logical.}
@@ -89,7 +92,7 @@ cfb_ratings_sp <- function(year = NULL, team = NULL){
 
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr ={
@@ -97,6 +100,7 @@ cfb_ratings_sp <- function(year = NULL, team = NULL){
       df = jsonlite::fromJSON(full_url, flatten = TRUE) %>%
         dplyr::rename(
           second_order_wins = .data$secondOrderWins,
+          offense_ranking = .data$offense.ranking,
           offense_rating = .data$offense.rating,
           offense_success = .data$offense.success,
           offense_explosiveness = .data$offense.explosiveness,
@@ -106,6 +110,7 @@ cfb_ratings_sp <- function(year = NULL, team = NULL){
           offense_passing_downs = .data$offense.passingDowns,
           offense_run_rate = .data$offense.runRate,
           offense_pace = .data$offense.pace,
+          defense_ranking = .data$defense.ranking,
           defense_rating = .data$defense.rating,
           defense_success = .data$defense.success,
           defense_explosiveness = .data$defense.explosiveness,
@@ -116,9 +121,9 @@ cfb_ratings_sp <- function(year = NULL, team = NULL){
           defense_havoc_total = .data$defense.havoc.total,
           defense_havoc_front_seven = .data$defense.havoc.frontSeven,
           defense_havoc_db = .data$defense.havoc.db,
-          special_teams_rating = .data$specialTeams.rating) %>% 
+          special_teams_rating = .data$specialTeams.rating) %>%
         as.data.frame()
-      
+
       message(glue::glue("{Sys.time()}: Scraping S&P+ ratings data..."))
     },
     error = function(e) {
