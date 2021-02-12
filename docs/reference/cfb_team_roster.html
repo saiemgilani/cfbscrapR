@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20) — cfb_team_roster • cfbscrapR</title>
+Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year. — cfb_team_roster • cfbscrapR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -50,9 +50,9 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
   
 
 <meta property="og:title" content="Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20) — cfb_team_roster" />
+Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year. — cfb_team_roster" />
 <meta property="og:description" content="Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)" />
+Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year." />
 <meta property="og:image" content="https://raw.githubusercontent.com/saiemgilani/cfbscrapR/master/man/figures/cfbscrapR.ico" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@cfbscrapR" />
@@ -88,7 +88,7 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
       </span>
     </div>
 
@@ -96,13 +96,13 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-question-circle-o"></span>
+    <span class="fas fa-question-circle-o"></span>
      
     Tutorials
      
@@ -125,6 +125,9 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
     <li>
       <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
     </li>
+    <li>
+      <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
+    </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -139,21 +142,21 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Functions
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     News
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR-data">
-    <span class="fa fa-database"></span>
+    <span class="fas fa-database"></span>
      
     Data
   </a>
@@ -162,13 +165,13 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://twitter.com/cfbscrapR">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR/">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
     GitHub
   </a>
@@ -187,28 +190,28 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)</h1>
+Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.</h1>
     
     <div class="hidden name"><code>cfb_team_roster.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)</p>
+Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cfb_team_roster</span><span class='op'>(</span><span class='va'>team</span>, year <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>cfb_team_roster</span><span class='op'>(</span><span class='va'>year</span>, team <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>team</th>
-      <td><p>(<em>String</em> required): Team, select a valid team in D-I football</p></td>
+      <th>year</th>
+      <td><p>(<em>Integer</em> required): Year,  4 digit format (<em>YYYY</em>)</p></td>
     </tr>
     <tr>
-      <th>year</th>
-      <td><p>(<em>Integer</em> optional): Year,  4 digit format (<em>YYYY</em>)</p></td>
+      <th>team</th>
+      <td><p>(<em>String</em> optional): Team, select a valid team in D-I football</p></td>
     </tr>
     </table>
 
@@ -236,255 +239,277 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cfb_team_roster</span><span class='op'>(</span><span class='st'>"Florida State"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-16 02:55:23: Scraping team roster...</span></div><div class='output co'>#&gt;     athlete_id first_name    last_name weight height jersey year position
-#&gt; 1      4241674       Josh       Newman    200     72     21    3        S
-#&gt; 2      3921574      Kevin      Robledo    184     72     89    4       PK
-#&gt; 3      4035603      Malik        Henry    195     74     16    3       QB
-#&gt; 4      4052022       Trey       Carter    300     73     63    4       OL
-#&gt; 5      4426817     Jarvis     Brownlee    172     71     19    1       DB
-#&gt; 6      4240023       Tre'      McKitty    245     77     NA    4       TE
-#&gt; 7      4363030     Warren     Thompson    201     75     11    2       WR
-#&gt; 8      4363049    Malcolm        Lamar    277     77     93    2       DL
-#&gt; 9      4240022     Khalan       Laborn    205     71      4    2       RB
-#&gt; 10     3886609       Alex   Hornibrook    220     76     12    4       QB
-#&gt; 11     4428783   Treshaun         Ward    191     70     38    1       RB
-#&gt; 12     4363041     Xavier       Peters    235     76      5    1       DE
-#&gt; 13     4240033    Ontaria       Wilson    174     72     80    3       WR
-#&gt; 14     4035619       Josh        Brown    229     75     51    4       LB
-#&gt; 15     3921955       Ryan      Roberts    300     78     56    4       OL
-#&gt; 16     4035618     Cedric         Wood    318     75     49    3       DT
-#&gt; 17     4035621     Emmett         Rice    222     74     56    4       LB
-#&gt; 18     4035602 Dontavious      Jackson    229     75      5    4       LB
-#&gt; 19     4363037       A.J.       Lytton    179     71     12    2       DB
-#&gt; 20     4035606      Logan        Tyler    191     72     21    4        P
-#&gt; 21     4363045     Camren     McDonald    238     76     87    3       TE
-#&gt; 22     4240030     Hamsah  Nasirildeen    220     76      5    4       DB
-#&gt; 23     4428664        Tru     Thompson    301     72     90    2       DT
-#&gt; 24     4240028  Tamorrion        Terry    210     76      5    3       WR
-#&gt; 25     4426427    Raymond   Woodie III    194     72     31    2       DB
-#&gt; 26     4427291      Kalen      DeLoach    213     73     20    2       LB
-#&gt; 27     4426397     Jaleel        McRae    225     74     14    2       LB
-#&gt; 28     4577580       Gino      English    198     73     15    1       QB
-#&gt; 29     4426456     Dontae        Lucas    315     75     55    2       OL
-#&gt; 30     4035620     Baveon      Johnson    307     75     51    4       OL
-#&gt; 31     4427325    Renardo        Green    185     72     36    2       DB
-#&gt; 32     4240042       Cory       Durden    315     77     16    3       DT
-#&gt; 33     4240021        Cam        Akers    212     71      3    3       RB
-#&gt; 34     4360468     Jaiden Lars-Woodbey    225     73      6    2       DB
-#&gt; 35     4363047     Robert       Cooper    332     74     91    3       DT
-#&gt; 36     4363044     Jordan        Young    208     74     83    2       WR
-#&gt; 37     4430153    Derrick  McLendon II    251     76     55    1       DE
-#&gt; 38     3692942     George     Campbell    183     76     15    4       WR
-#&gt; 39     4363034     Asante   Samuel Jr.    184     70     26    3       DB
-#&gt; 40     4240026     Joshua      Kaindoh    265     79     13    3       DE
-#&gt; 41     4035605     Carlos   Becker III    195     74     15    4       DB
-#&gt; 42     4035613       Kyle       Meyers    174     72     14    4       DB
-#&gt; 43     4363040     Dennis   Briggs Jr.    282     76     58    2       DT
-#&gt; 44     4240031    DeCalon       Brooks    210     70     28    3       LB
-#&gt; 45     4035604   Janarius     Robinson    260     77     11    4       DE
-#&gt; 46     4035601    Levonta       Taylor    190     70      1    4       DB
-#&gt; 47     4035628      Keith        Gavin    212     75     89    4       WR
-#&gt; 48     4360469      Amari       Gainer    227     75     33    2       LB
-#&gt; 49     4568255      Akeem         Dent    191     73     27    2       DB
-#&gt; 50     4240029     Marvin       Wilson    305     77     21    4       DT
-#&gt; 51     4240024   Stanford  Samuels III    185     74      8    3       DB
-#&gt; 52     4240034       D.J.     Matthews    154     70      7    4       WR
-#&gt; 53     4240020      James     Blackman    190     77      1    3       QB
-#&gt; 54     4035608      Ricky       Aguayo    215     74     23    4       PK
-#&gt; 55     4240027      Cyrus        Fagan    195     73      4    4       DB
-#&gt; 56     4363046  Tre'Shaun     Harrison    191     74     88    2       WR
-#&gt; 57     3917228     Tyrell       Moorer    199     71     85    4       WR
-#&gt; 58     4568260  Alexander     Strozier    302     74     62    4       OL
-#&gt; 59     4363029       Alex    Eleyssami    190     73     16    1       QB
-#&gt; 60     3921570      Abdul        Bello    315     78     75    4       OL
-#&gt; 61     4066033     Joseph       Garcia    218     74     47    3       LB
-#&gt; 62     4066034     Tanner      Adkison    192     70     63    3       LS
-#&gt; 63     4363035   D'Marcus        Adams    180     72     19    2       WR
-#&gt; 64     4568256   DeAundre       Emeric    196     69     39    2       DB
-#&gt; 65     4380437     Jeremy     Czerenda    285     75     68    1       OL
-#&gt; 66     4363039  Christian      Meadows    336     76     52    1       OL
-#&gt; 67     4035625      Jauan     Williams    310     79     73    3       OL
-#&gt; 68     4047688    Michael     Barulich    195     71     86    3       WR
-#&gt; 69     4360472  Christian    Armstrong    320     76     77    1       OL
-#&gt; 70     4360474      Peter       Osimen    297     74     93    4       DT
-#&gt; 71     3693281     Calvin      Brewton    184     72      4    4       DB
-#&gt; 72     4035623       Mike       Arnold    340     77     72    3       OL
-#&gt; 73     4240035     Deonte    Sheffield    209     70     14    3       RB
-#&gt; 74     4262804     Parker     Grothaus    220     74     37    3       PK
-#&gt; 75     4035611       Gabe       Nabers    243     75     32    4       TE
-#&gt; 76     3925359     Adonis       Thomas    239     76     22    4       LB
-#&gt; 77     3921569       Cole      Minshew    330     77     70    4       OL
-#&gt; 78     3921562     Marcus        Lewis    197     73      8    4       DB
-#&gt; 79     4363033    Anthony        Grant    197     71     10    2       RB
-#&gt; 80     4360799     Jordan       Travis    200     73     13    2       QB
-#&gt; 81     4240025     Bailey      Hockman    208     74     16    3       QB
-#&gt; 82     4363027      Caleb         Ward    172     73     89    2       WR
-#&gt; 83     4426445    Quashon       Fuller    275     75     30    1       DE
-#&gt; 84     4240036    Leonard   Warner III    245     76     35    4       LB
-#&gt; 85     4426396    Brendan         Gant    195     74     44    2       DB
-#&gt; 86     4273843      Grant      Glennon    233     75     44    3       LS
-#&gt; 87     4363032   Keyshawn       Helton    171     69      6    3       WR
-#&gt; 88     4363036     Isaiah       Bolden    196     74     29    2       DB
-#&gt; 89     4360470    Garrett       Murray    218     72     42    2       LS
-#&gt; 90     4363028      Nolan     McDonald    189     74     41    2       DB
-#&gt; 91     4363042      Jalen         Goss    271     79     61    2       OL
-#&gt; 92     4430678    Ricardo       Watson    245     72     54    1       LB
-#&gt; 93     4577584     Robert     Elder IV    266     74     69    2       OL
-#&gt; 94     4568261        Jay     Williams    315     78     74    4       OL
-#&gt; 95     4568258    Maurice        Smith    286     75     53    1       OL
-#&gt; 96     4568257      Tyler       Gilroy    243     71     53    3       LB
-#&gt; 97     4035622     Andrew      Boselli    321     77     60    4       OL
-#&gt; 98     4577583      Ethan      Umstead    232     73     40    1       LB
-#&gt; 99     4363048   Jamarcus      Chatman    273     74     95    2       DE
-#&gt; 100    4427288      Kevon        Glenn    229     74     10    1       LB
-#&gt; 101    4577585      Caleb        Faris    165     68     81    1       WR
-#&gt; 102    4568259       Axel         Rizo    218     74     57    2       LB
-#&gt; 103    4577582    Raekwon         Webb    203     68     46    4       RB
-#&gt; 104    4363043       Chaz         Neal    317     79     71    2       OL
-#&gt; 105    4426452     Curtis     Fann Jr.    265     75     98    1       DE
-#&gt; 106    4568263       Ryan   Fitzgerald    199     73     88    1       PK
-#&gt; 107    4240039      Brady        Scott    317     78     59    3       OL
-#&gt; 108    4429791        Ira    Henry III    313     76     78    1       OL
-#&gt; 109    4577581        Tre        Young    194     72     29    1       WR
-#&gt; 110    4568262     Darius   Washington    301     76     76    1       OL
-#&gt; 111    4428307    Malcolm          Ray    287     74     99    1       DT
-#&gt; 112    4577586     Austin        White    242     77     82    1       TE
-#&gt; 113    4259260      Tommy       Martin    188     71     30    3        P
-#&gt; 114    4360473    Adarius         Dent    175     73     84    3       WR
-#&gt; 115    4363038     Armani         Kerr    230     71     52    4       LB
-#&gt; 116    4362233      Wyatt       Rector    236     74     19    2       TE
-#&gt; 117    4426429     Travis          Jay    191     74     18    1       DB
-#&gt; 118    4372519    Jashaun       Corbin    220     72      0    2       RB
-#&gt; 119    3917820      Meiko       Dotson    195     71      9    4       DB
-#&gt; 120    4360801    Jarrett      Jackson    295     78     48    2       DT
-#&gt; 121    4426448    Jarrian        Jones    190     72      7    2       DB
-#&gt; 122    4046366   Devontay       Taylor    315     76     58    4       OL
-#&gt; 123    4362905     Fabien       Lovett    315     76      0    2       DT
-#&gt;            home_city home_state home_country          team
-#&gt; 1         Cedar Hill         TX          USA Florida State
-#&gt; 2      Thousand Oaks         CA          USA Florida State
-#&gt; 3         Long Beach         CA          USA Florida State
-#&gt; 4        Monroeville         AL          USA Florida State
-#&gt; 5      Miami Gardens         FL          USA Florida State
-#&gt; 6      Wesley Chapel         FL          USA Florida State
-#&gt; 7            Seffner         FL          USA Florida State
-#&gt; 8            Seffner         FL          USA Florida State
-#&gt; 9     Virginia Beach         VA          USA Florida State
-#&gt; 10      West Chester         PA          USA Florida State
-#&gt; 11        Plant City         FL          USA Florida State
-#&gt; 12      West Chester         OH          USA Florida State
-#&gt; 13           Ashburn         GA          USA Florida State
-#&gt; 14         Charlotte         NC          USA Florida State
-#&gt; 15        Northville         MI          USA Florida State
-#&gt; 16       Tallahassee         FL          USA Florida State
-#&gt; 17     Miami Gardens         FL          USA Florida State
-#&gt; 18             Alief         TX          USA Florida State
-#&gt; 19    Upper Marlboro         MD          USA Florida State
-#&gt; 20              Nixa         MO          USA Florida State
-#&gt; 21        Long Beach         CA          USA Florida State
-#&gt; 22           Concord         NC          USA Florida State
-#&gt; 23        Loganville         GA          USA Florida State
-#&gt; 24           Ashburn         GA          USA Florida State
-#&gt; 25          Palmetto         FL          USA Florida State
-#&gt; 26          Savannah         GA          USA Florida State
-#&gt; 27  New Smyrna Beach         FL          USA Florida State
-#&gt; 28       Winter Park         FL          USA Florida State
-#&gt; 29          Overtown         FL          USA Florida State
-#&gt; 30          Lakeland         FL          USA Florida State
-#&gt; 31           Orlando         FL          USA Florida State
-#&gt; 32          Newberry         FL          USA Florida State
-#&gt; 33           Clinton         MS          USA Florida State
-#&gt; 34           Fontana         CA          USA Florida State
-#&gt; 35           Lilburn         GA          USA Florida State
-#&gt; 36           Conyers         GA          USA Florida State
-#&gt; 37           Decatur         GA          USA Florida State
-#&gt; 38        Clearwater         FL          USA Florida State
-#&gt; 39           Sunrise         FL          USA Florida State
-#&gt; 40         Baltimore         MD          USA Florida State
-#&gt; 41         Kissimmee         FL          USA Florida State
-#&gt; 42       New Orleans         LA          USA Florida State
-#&gt; 43         Kissimmee         FL          USA Florida State
-#&gt; 44             Tampa         FL          USA Florida State
-#&gt; 45       Panama City         FL          USA Florida State
-#&gt; 46    Virginia Beach         VA          USA Florida State
-#&gt; 47     Crawfordville         FL          USA Florida State
-#&gt; 48       Tallahassee         FL          USA Florida State
-#&gt; 49           Pahokee         FL          USA Florida State
-#&gt; 50           Houston         TX          USA Florida State
-#&gt; 51    Pembroke Pines         FL          USA Florida State
-#&gt; 52      Jacksonville         FL          USA Florida State
-#&gt; 53         South Bay         FL          USA Florida State
-#&gt; 54          Mascotte         FL          USA Florida State
-#&gt; 55     Daytona Beach         FL          USA Florida State
-#&gt; 56           Seattle         WA          USA Florida State
-#&gt; 57      Jacksonville         FL          USA Florida State
-#&gt; 58            Bartow         FL          USA Florida State
-#&gt; 59           Orlando         FL          USA Florida State
-#&gt; 60             Warri       &lt;NA&gt;      Nigeria Florida State
-#&gt; 61             Miami         FL          USA Florida State
-#&gt; 62       Tallahassee         FL          USA Florida State
-#&gt; 63      Ormond Beach         FL          USA Florida State
-#&gt; 64           Orlando         FL          USA Florida State
-#&gt; 65   Fort Lauderdale         FL          USA Florida State
-#&gt; 66         Montezuma         GA          USA Florida State
-#&gt; 67        Washington         DC          USA Florida State
-#&gt; 68           Orlando         FL          USA Florida State
-#&gt; 69     Warner Robins         GA          USA Florida State
-#&gt; 70             Tampa         FL          USA Florida State
-#&gt; 71             Miami         FL          USA Florida State
-#&gt; 72      Winter Haven         FL          USA Florida State
-#&gt; 73            Destin         FL          USA Florida State
-#&gt; 74             Logan         OH          USA Florida State
-#&gt; 75            Hahira         GA          USA Florida State
-#&gt; 76           Atlanta         GA          USA Florida State
-#&gt; 77           Pridgen         GA          USA Florida State
-#&gt; 78  District Heights         MD          USA Florida State
-#&gt; 79            Buford         GA          USA Florida State
-#&gt; 80   West Palm Beach         FL          USA Florida State
-#&gt; 81    Powder Springs         GA          USA Florida State
-#&gt; 82         Pensacola         FL          USA Florida State
-#&gt; 83        Fort Myers         FL          USA Florida State
-#&gt; 84        Snellville         GA          USA Florida State
-#&gt; 85          Lakeland         FL          USA Florida State
-#&gt; 86       Tallahassee         FL          USA Florida State
-#&gt; 87         Pensacola         FL          USA Florida State
-#&gt; 88             Tampa         FL          USA Florida State
-#&gt; 89             Tampa         FL          USA Florida State
-#&gt; 90        Long Beach         CA          USA Florida State
-#&gt; 91          Valdosta         GA          USA Florida State
-#&gt; 92             Tampa         FL          USA Florida State
-#&gt; 93            Stuart         FL          USA Florida State
-#&gt; 94     Moreno Valley         CA          USA Florida State
-#&gt; 95             Miami         FL          USA Florida State
-#&gt; 96   Saint Augustine         FL          USA Florida State
-#&gt; 97      Jacksonville         FL          USA Florida State
-#&gt; 98         Lake City         FL          USA Florida State
-#&gt; 99              Rome         GA          USA Florida State
-#&gt; 100        Riverdale         GA          USA Florida State
-#&gt; 101            Tampa         FL          USA Florida State
-#&gt; 102            Miami         FL          USA Florida State
-#&gt; 103      Panama City         FL          USA Florida State
-#&gt; 104      Zephyrhills         FL          USA Florida State
-#&gt; 105        Stillmore         GA          USA Florida State
-#&gt; 106         Coolidge         GA          USA Florida State
-#&gt; 107   Powder Springs         GA          USA Florida State
-#&gt; 108      Saint Louis         MO          USA Florida State
-#&gt; 109          Atlanta         GA          USA Florida State
-#&gt; 110        Pensacola         FL          USA Florida State
-#&gt; 111    Miami Gardens         FL          USA Florida State
-#&gt; 112            Tampa         FL          USA Florida State
-#&gt; 113       Chesapeake         VA          USA Florida State
-#&gt; 114          Pahokee         FL          USA Florida State
-#&gt; 115            Miami         FL          USA Florida State
-#&gt; 116         Leesburg         FL          USA Florida State
-#&gt; 117       Greenville         FL          USA Florida State
-#&gt; 118        Rockledge         FL          USA Florida State
-#&gt; 119    Daytona Beach         FL          USA Florida State
-#&gt; 120  West Palm Beach         FL          USA Florida State
-#&gt; 121          Brandon         MS          USA Florida State
-#&gt; 122           Odessa         FL          USA Florida State
-#&gt; 123     Olive Branch         MS          USA Florida State</div><div class='input'>
+<span class='fu'>cfb_team_roster</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2020-12-26 15:14:49: Scraping team roster...</span></div><div class='output co'>#&gt;     athlete_id first_name        last_name          team weight height jersey
+#&gt; 1       501097      Nigel          Terrell Florida State     NA     74     43
+#&gt; 2       534576       P.J.         Williams Florida State     NA     72     26
+#&gt; 3       501075       Chad            Abram Florida State     NA     72     41
+#&gt; 4       546778       Nate          Andrews Florida State    214     72     29
+#&gt; 5       517388      James       Wilder Jr. Florida State     NA     NA     NA
+#&gt; 6       517377       Nick          O'Leary Florida State     NA     75     35
+#&gt; 7       535422    Roberto           Aguayo Florida State     NA     73     19
+#&gt; 8       546795   Jonathan        Hernandez Florida State    230     76     44
+#&gt; 9       503330      Kevin           Haplea Florida State     NA     76     33
+#&gt; 10      514119     Kelvin         Benjamin Florida State     NA     77      1
+#&gt; 11      501076   Terrence           Brooks Florida State     NA     71     31
+#&gt; 12      546810      Jalen           Ramsey Florida State     NA     73      8
+#&gt; 13      546805       E.J.       Levenberry Florida State    250     75     12
+#&gt; 14      551553      Jared          Jackson Florida State    199     74     87
+#&gt; 15      501082     Jarred          Haggins Florida State     NA     72     12
+#&gt; 16      546814   DeMarcus           Walker Florida State     NA     76     44
+#&gt; 17      546817      Jesus           Wilson Florida State     NA     70      3
+#&gt; 18      501535      Kenny             Shaw Florida State     NA     72     81
+#&gt; 19      501083  Christian            Jones Florida State     NA     76      7
+#&gt; 20      546809        Cam           Ponder Florida State     NA     NA     NA
+#&gt; 21      530282      Cason           Beatty Florida State     NA     75     38
+#&gt; 22      517381     Keelin            Smith Florida State     NA     75     37
+#&gt; 23      517387       Nick          Waisome Florida State     NA     70      6
+#&gt; 24      530299       Sean          Maguire Florida State     NA     75     10
+#&gt; 25      517364      Tyler           Hunter Florida State     NA     71      1
+#&gt; 26      501095     Telvin            Smith Florida State     NA     75     22
+#&gt; 27      530289     Ronald            Darby Florida State     NA     71      3
+#&gt; 28      530301     Reggie         Northrup Florida State     NA     73      5
+#&gt; 29      480772        Dan            Hicks Florida State     NA     76      6
+#&gt; 30      546816     Kermit        Whitfield Florida State     NA     68      8
+#&gt; 31      514136     Rashad       Greene Sr. Florida State     NA     NA     NA
+#&gt; 32      530303     Justin           Shanks Florida State     NA     74     92
+#&gt; 33      514121   Lamarcus           Brutus Florida State     NA     72     42
+#&gt; 34      546800     Isaiah            Jones Florida State    195     76     88
+#&gt; 35      546804      Bryan         LaCivita Florida State    178     72     83
+#&gt; 36      546813    Matthew           Thomas Florida State    227     76      6
+#&gt; 37      530308     Jameis          Winston Florida State     NA     76      5
+#&gt; 38      530302      Mario           Pender Florida State     NA     70      7
+#&gt; 39      501077     Shayne          Broxsie Florida State     NA     74     42
+#&gt; 40      530285       Will          Burnham Florida State     NA     72     45
+#&gt; 41      546794       Ryan            Green Florida State    204     70      7
+#&gt; 42      480781    Jacobbi         McDaniel Florida State     NA     72     55
+#&gt; 43      501553  Christian            Green Florida State     NA     74     89
+#&gt; 44      517390     Karlos         Williams Florida State     NA     73      9
+#&gt; 45      514134    Devonta          Freeman Florida State     NA     69      8
+#&gt; 46      514124       Jake            Coker Florida State     NA     77     14
+#&gt; 47      546815    Marquez            White Florida State     NA     72     27
+#&gt; 48      546801     Jeremy             Kerr Florida State     NA     78     85
+#&gt; 49      546812    Freddie        Stevenson Florida State     NA     73     23
+#&gt; 50      517382   Terrance            Smith Florida State     NA     76     24
+#&gt; 51      501084   Lamarcus           Joyner Florida State     NA     68     20
+#&gt; 52      530290      Mario      Edwards Jr. Florida State     NA     NA     NA
+#&gt; 53      546798 Ro'Derrick          Hoskins Florida State    240     75     18
+#&gt; 54     3921562     Marcus            Lewis Florida State    197     73      8
+#&gt; 55    -1010895     Wilson             Bell Florida State    320     77     78
+#&gt; 56    -1010896      Keith           Bryant Florida State    274     74     95
+#&gt; 57    -1010918      Keith            Weeks Florida State    280     76     66
+#&gt; 58    -1010920      Colin            Blake Florida State    198     75     30
+#&gt; 59    -1010923      Chris           Casher Florida State    256     76     21
+#&gt; 60    -1010933    Barrett           Kernon Florida State    247     76     69
+#&gt; 61    -1010936       Nile Lawrence-Stample Florida State    302     73     99
+#&gt; 62    -1010937     Tyrell            Lyons Florida State    219     73     22
+#&gt; 63    -1010939    Derrick    Mitchell, Jr. Florida State    305     76     11
+#&gt; 64    -1010941    Giorgio         Newberry Florida State    295     78      4
+#&gt; 65    -1010950      Danny            Adams Florida State    193     69     40
+#&gt; 66    -1010952     Austin           Barron Florida State    293     75     62
+#&gt; 67    -1010953     Marcel       Benalcazar Florida State    305     78     76
+#&gt; 68    -1010954       Brad            Bentz Florida State    265     74     93
+#&gt; 69    -1010956      Ruben           Carter Florida State    306     76     65
+#&gt; 70    -1010957       Troy             Cook Florida State    198     74     19
+#&gt; 71    -1010961      Mario     Edwards, Jr. Florida State    294     75     15
+#&gt; 72    -1010962      Ukeme           Eligwe Florida State    239     74     52
+#&gt; 73    -1010963    Cameron           Erving Florida State    308     78     75
+#&gt; 74    -1010964       John     Franklin III Florida State    180     72     11
+#&gt; 75    -1010965     Rashad         Gholston Florida State    170     70     13
+#&gt; 76    -1010966      Eddie          Goldman Florida State    320     76     90
+#&gt; 77    -1010967     Rashad           Greene Florida State    180     72     80
+#&gt; 78    -1010968      Bobby             Hart Florida State    320     76     51
+#&gt; 79    -1010970       Ryan          Hoefeld Florida State    290     75     59
+#&gt; 80    -1010971    Desmond           Hollin Florida State    285     75     43
+#&gt; 81    -1010972       Tre'          Jackson Florida State    330     76     54
+#&gt; 82    -1010973       Cody              Jay Florida State    250     73     60
+#&gt; 83    -1010975      Larry             Levy Florida State    275     74     63
+#&gt; 84    -1010977      Josue           Matias Florida State    325     78     70
+#&gt; 85    -1010979        Dan          O'Neill Florida State    175     72     83
+#&gt; 86    -1010983     Andrew           Wright Florida State    214     72     59
+#&gt; 87    -1010984      Jayon            Young Florida State    223     73     46
+#&gt; 88    -1010986   Jonathan           Akanbi Florida State     NA     NA     38
+#&gt; 89    -1010987       Ryan           Alicea Florida State    213     73     58
+#&gt; 90    -1010988     Justin           Allred Florida State    197     73     39
+#&gt; 91    -1010989       Paul           Aloise Florida State    225     71     46
+#&gt; 92    -1010990      Jared        Armstrong Florida State    185     72     23
+#&gt; 93    -1010991       Ryan           Arnold Florida State    250     75     58
+#&gt; 94    -1010992    Davarez           Bryant Florida State    247     75     82
+#&gt; 95    -1010993       Kory          Burnett Florida State    205     72     47
+#&gt; 96    -1010994      Peter        Ciappetta Florida State    211     74     43
+#&gt; 97    -1010995      Jacob            Coker Florida State    230     77     14
+#&gt; 98    -1010996     Parker           Conley Florida State    210     77     40
+#&gt; 99    -1010997     Tasean            Crews Florida State    175     71     86
+#&gt; 100   -1010998      Myles            Davis Florida State    307     74     61
+#&gt; 101   -1010999    Stephen            Davis Florida State    195     71     16
+#&gt; 102   -1011000     Gerald            Demps Florida State    200     71     23
+#&gt; 103   -1011001        Ira           Denson Florida State    330     75     55
+#&gt; 104   -1011002     Hunter           Dewitt Florida State    185     76     12
+#&gt; 105   -1011003   Reginald            Dixon Florida State    207     70     67
+#&gt; 106   -1011004     Philip           Doumar Florida State    225     73     57
+#&gt; 107   -1011005     Dorian           Earley Florida State    215     74     54
+#&gt; 108   -1011006        Ebo          Entsuah Florida State    240     71     43
+#&gt; 109   -1011007      Jacob       Fahrenkrug Florida State    326     76     60
+#&gt; 110   -1011008    Matthew             Finn Florida State    152     72     15
+#&gt; 111   -1011009  Christian         Griffith Florida State    210     78     18
+#&gt; 112   -1011010        Joe        Hernandez Florida State    210     72     73
+#&gt; 113   -1011011      Timmy         Jernigan Florida State    292     74      8
+#&gt; 114   -1011012     Pierre        Jolicouer Florida State    250     72     91
+#&gt; 115   -1011013      Jeren       Kowalewski Florida State    175     73     88
+#&gt; 116   -1011014      Larry       Lawson III Florida State    190     72      6
+#&gt; 117   -1011015   Sterling         Lovelady Florida State    291     75     53
+#&gt; 118   -1011016    Demonte       McAllister Florida State    290     74     97
+#&gt; 119   -1011017     Dorsey            Moore Florida State    205     76     16
+#&gt; 120   -1011018       Clay          Pickler Florida State    180     75     16
+#&gt; 121   -1011019    Cameron           Ponder Florida State    240     73     44
+#&gt; 122   -1011020       Jake           Romano Florida State    236     71     49
+#&gt; 123   -1011021     Junior      Saint Louis Florida State    218     74     48
+#&gt; 124   -1011022    Michael       Scheerhorn Florida State    240     76     79
+#&gt; 125   -1011023    Garrett            Scott Florida State    275     75     69
+#&gt; 126   -1011024     Nathan           Slater Florida State    223     74     45
+#&gt; 127   -1011025      Bryan            Stork Florida State    300     76     52
+#&gt; 128   -1011026    Donovan             Todd Florida State    205     71     39
+#&gt; 129   -1011027   Jonathan          Wallace Florida State    295     79     74
+#&gt; 130   -1011028   Jermaine       Washington Florida State    194     68     36
+#&gt; 131   -1011029    Levonte        Whitfield Florida State    178     67      7
+#&gt; 132   -1011030      James      Wilder, Jr. Florida State    229     74     32
+#&gt; 133   -1011031     Colton          Woodall Florida State    190     75     49
+#&gt; 134    3122936      Mavin         Saunders Florida State    256     77     89
+#&gt;     year position          home_city home_state home_country
+#&gt; 1     NA       LB             Pelham         AL          USA
+#&gt; 2     NA       DB              Ocala         FL          USA
+#&gt; 3     NA       FB           Lakeland         FL          USA
+#&gt; 4     NA       DB            Leander         TX          USA
+#&gt; 5     NA       WR               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+#&gt; 6     NA       TE Palm Beach Gardens         FL          USA
+#&gt; 7     NA       PK           Mascotte         FL          USA
+#&gt; 8     NA        P            Houston         TX          USA
+#&gt; 9     NA       TE          Annandale         NJ          USA
+#&gt; 10    NA       WR        Belle Glade         FL          USA
+#&gt; 11    NA       DB          Dunnellon         FL          USA
+#&gt; 12    NA       DB             Smyrna         TN          USA
+#&gt; 13    NA       LB            Chicago         IL          USA
+#&gt; 14    NA       WR            Lubbock         TX          USA
+#&gt; 15    NA       WR           Lakeland         FL          USA
+#&gt; 16    NA       DE       Jacksonville         FL          USA
+#&gt; 17    NA       WR              Miami         FL          USA
+#&gt; 18    NA       WR            Orlando         FL          USA
+#&gt; 19    NA       LB        Winter Park         FL          USA
+#&gt; 20    NA     &lt;NA&gt;               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+#&gt; 21    NA        P          Charlotte         NC          USA
+#&gt; 22    NA       DB        Fort Pierce         FL          USA
+#&gt; 23    NA       DB          Groveland         FL          USA
+#&gt; 24    NA       QB             Sparta         NJ          USA
+#&gt; 25    NA       DB           Valdosta         GA          USA
+#&gt; 26    NA       LB           Valdosta         GA          USA
+#&gt; 27    NA       CB          Oxon Hill         MD          USA
+#&gt; 28    NA       LB       Jacksonville         FL          USA
+#&gt; 29    NA       DE             Oxford         MS          USA
+#&gt; 30    NA       WR            Orlando         FL          USA
+#&gt; 31    NA     &lt;NA&gt;               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+#&gt; 32    NA       DT         Prattville         AL          USA
+#&gt; 33    NA       DB     Port St. Lucie         FL          USA
+#&gt; 34    NA       WR            Lubbock         TX          USA
+#&gt; 35    NA       WR        Gainesville         FL          USA
+#&gt; 36    NA       LB            Chicago         IL          USA
+#&gt; 37    NA       QB           Hueytown         AL          USA
+#&gt; 38    NA       RB         Cape Coral         FL          USA
+#&gt; 39    NA       TE         Monticello         FL          USA
+#&gt; 40    NA       RB             Lithia         FL          USA
+#&gt; 41    NA       RB          Ewa Beach         HI          USA
+#&gt; 42    NA       DT         Greenville         FL          USA
+#&gt; 43    NA       WR              Tampa         FL          USA
+#&gt; 44    NA       RB          Davenport         FL          USA
+#&gt; 45    NA       RB              Miami         FL          USA
+#&gt; 46    NA       QB             Mobile         AL          USA
+#&gt; 47    NA       DB             Dothan         AL          USA
+#&gt; 48    NA       TE     St. Petersburg         FL          USA
+#&gt; 49    NA       FB             Bartow         FL          USA
+#&gt; 50    NA       LB            Decatur         GA          USA
+#&gt; 51    NA       DB     Ft. Lauderdale         FL          USA
+#&gt; 52    NA       RB               &lt;NA&gt;       &lt;NA&gt;         &lt;NA&gt;
+#&gt; 53    NA       LB            Chicago         IL          USA
+#&gt; 54     4       DB   District Heights         MD          USA
+#&gt; 55    NA       OL             Mobile         AL          USA
+#&gt; 56    NA       DE       Delray Beach         FL          USA
+#&gt; 57    NA       OL            Valrico         FL          USA
+#&gt; 58    NA       DB        San Antonio         TX          USA
+#&gt; 59    NA       DE             Mobile         AL          USA
+#&gt; 60    NA       LS       Ormond Beach         FL          USA
+#&gt; 61    NA       DT    Fort Lauderdale         FL          USA
+#&gt; 62    NA       DB       Jacksonville         FL          USA
+#&gt; 63    NA       DT       Jacksonville         FL          USA
+#&gt; 64    NA       DT        Fort Pierce         FL          USA
+#&gt; 65    NA       LS     Ft. Lauderdale         FL          USA
+#&gt; 66    NA        C     Ft. Lauderdale         FL          USA
+#&gt; 67    NA       OL            Miramar         FL          USA
+#&gt; 68    NA       DL         Wellington         FL          USA
+#&gt; 69    NA       OL              Miami         FL          USA
+#&gt; 70    NA       QB              Miami         FL          USA
+#&gt; 71    NA       DE            Gautier         MS          USA
+#&gt; 72    NA       LB     Stone Mountain         GA          USA
+#&gt; 73    NA       OT           Moultrie         GA          USA
+#&gt; 74    NA       QB         Plantation         FL          USA
+#&gt; 75    NA       WR      Miami Gardens         FL          USA
+#&gt; 76    NA       DT         Washington         DC          USA
+#&gt; 77    NA       WR             Albany         GA          USA
+#&gt; 78    NA       OT         Lauderhill         FL          USA
+#&gt; 79    NA        C             Kenner         LA          USA
+#&gt; 80    NA       DE              Miami         FL          USA
+#&gt; 81    NA        G              Jesup         GA          USA
+#&gt; 82    NA       OL  Fort Walton Beach         FL          USA
+#&gt; 83    NA       OL      Boynton Beach         FL          USA
+#&gt; 84    NA        G         Union City         NJ          USA
+#&gt; 85    NA       WR            Jupiter         FL          USA
+#&gt; 86    NA       LB          Bradenton         FL          USA
+#&gt; 87    NA       TE      Coral Springs         FL          USA
+#&gt; 88    NA        ?                                        USA
+#&gt; 89    NA       LB         Wellington         FL          USA
+#&gt; 90    NA       DB      St. Augustine         FL          USA
+#&gt; 91    NA       LB          Palm City         FL          USA
+#&gt; 92    NA       QB        Gainesville         FL          USA
+#&gt; 93    NA       OL            Orlando         FL          USA
+#&gt; 94    NA       DE          Crestview         FL          USA
+#&gt; 95    NA       DB       Jacksonville         FL          USA
+#&gt; 96    NA       LB     Ft. Lauderdale         FL          USA
+#&gt; 97    NA       QB             Mobile         AL          USA
+#&gt; 98    NA       TE           Norcross         GA          USA
+#&gt; 99    NA       WR          Pensacola         FL          USA
+#&gt; 100   NA       OL        Gainesville         FL          USA
+#&gt; 101   NA       DB             Oviedo         FL          USA
+#&gt; 102   NA       DB           Valdosta         GA          USA
+#&gt; 103   NA       OL         Greenville         FL          USA
+#&gt; 104   NA       QB           Sarasota         FL          USA
+#&gt; 105   NA       LB        Tallahassee         FL          USA
+#&gt; 106   NA        ?            Jupiter         FL          USA
+#&gt; 107   NA       LB     St. Petersburg         FL          USA
+#&gt; 108   NA       FB           Clermont         FL          USA
+#&gt; 109   NA       OL        Robbinsdale         MN          USA
+#&gt; 110   NA       PK           Maitland         FL          USA
+#&gt; 111   NA       WR    West Palm Beach         FL          USA
+#&gt; 112   NA       LB        Miami Beach         FL          USA
+#&gt; 113   NA       DT          Lake City         FL          USA
+#&gt; 114   NA       DT              Miami         FL          USA
+#&gt; 115   NA       WR          Bradenton         FL          USA
+#&gt; 116   NA        P              Tampa         FL          USA
+#&gt; 117   NA       OL            Navarre         FL          USA
+#&gt; 118   NA       DT              Tampa         FL          USA
+#&gt; 119   NA       TE          Rockledge         FL          USA
+#&gt; 120   NA       PK          Grapevine         TX          USA
+#&gt; 121   NA       FB              Yulee         FL          USA
+#&gt; 122   NA       FB         Wellington         FL          USA
+#&gt; 123   NA       LB      Pompano Beach         FL          USA
+#&gt; 124   NA       OL               Lutz         FL          USA
+#&gt; 125   NA       OL    West Palm Beach         FL          USA
+#&gt; 126   NA       LB              Terry         MS          USA
+#&gt; 127   NA       OL         Vero Beach         FL          USA
+#&gt; 128   NA       DB            Sanford         FL          USA
+#&gt; 129   NA       OL       Jacksonville         FL          USA
+#&gt; 130   NA       WR       Jacksonville         FL          USA
+#&gt; 131   NA       WR            Orlando         FL          USA
+#&gt; 132   NA       RB              Tampa         FL          USA
+#&gt; 133   NA       DB     Ft. Lauderdale         FL          USA
+#&gt; 134    4       TE               &lt;NA&gt;       &lt;NA&gt;      Bahamas</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -497,7 +522,7 @@ Get a teams full roster by year. If year not selected, API defaults to most rece
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">

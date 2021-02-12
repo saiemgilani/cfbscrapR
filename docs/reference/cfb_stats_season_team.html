@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
       </span>
     </div>
 
@@ -93,13 +93,13 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-question-circle-o"></span>
+    <span class="fas fa-question-circle-o"></span>
      
     Tutorials
      
@@ -122,6 +122,9 @@
     <li>
       <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
     </li>
+    <li>
+      <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
+    </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -136,21 +139,21 @@
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Functions
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     News
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR-data">
-    <span class="fa fa-database"></span>
+    <span class="fas fa-database"></span>
      
     Data
   </a>
@@ -159,13 +162,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://twitter.com/cfbscrapR">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR/">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
     GitHub
   </a>
@@ -288,94 +291,94 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_stats_season_team</span><span class='op'>(</span>year<span class='op'>=</span><span class='fl'>2018</span>, conference <span class='op'>=</span> <span class='st'>'B12'</span>, start_week <span class='op'>=</span> <span class='fl'>1</span>,end_week <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-16 02:55:17: Scraping season team stats...</span></div><div class='output co'>#&gt;    games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
+</div><div class='output co'>#&gt; <span class='message'>2020-12-26 15:14:42: Scraping season team stats...</span></div><div class='output co'>#&gt;    games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
 #&gt; 1      7             838440        33.27143        179       288      0.6215278
-#&gt; 2      7             685080        27.18571        136       232      0.5862069
-#&gt; 3      7             815580        32.36429        160       246      0.6504065
-#&gt; 4      7             744300        29.53571        133       224      0.5937500
-#&gt; 5      7             840840        33.36667        220       319      0.6896552
-#&gt; 6      6             640980        29.67500        121       179      0.6759777
-#&gt; 7      7             732000        29.04762        137       239      0.5732218
-#&gt; 8      7             683520        27.12381         91       170      0.5352941
-#&gt; 9      7             696000        27.61905        125       176      0.7102273
-#&gt; 10     6             612720        28.36667        138       196      0.7040816
-#&gt;    net_pass_yds  pass_ypa  pass_ypr pass_TDs interceptions    int_pct rush_atts
-#&gt; 1          2198  7.631944 12.279330       13             5 0.01736111       257
-#&gt; 2          2038  8.784483 14.985294       17             8 0.03448276       277
-#&gt; 3          1760  7.154472 11.000000       13             3 0.01219512       284
-#&gt; 4          1311  5.852679  9.857143       12             3 0.01339286       240
-#&gt; 5          2681  8.404389 12.186364       17             8 0.02507837       297
-#&gt; 6          1420  7.932961 11.735537       11             3 0.01675978       200
-#&gt; 7          1584  6.627615 11.562044       12            10 0.04184100       260
-#&gt; 8          1153  6.782353 12.670330        6             5 0.02941176       291
-#&gt; 9          2111 11.994318 16.888000       26             3 0.01704545       247
-#&gt; 10         1923  9.811224 13.934783       22             8 0.04081633       199
+#&gt; 2      7             685080        33.27143        136       232      0.6215278
+#&gt; 3      7             815580        33.27143        160       246      0.6215278
+#&gt; 4      7             744300        33.27143        133       224      0.6215278
+#&gt; 5      7             840840        33.27143        220       319      0.6215278
+#&gt; 6      6             640980        33.27143        121       179      0.6215278
+#&gt; 7      7             732000        33.27143        137       239      0.6215278
+#&gt; 8      7             683520        33.27143         91       170      0.6215278
+#&gt; 9      7             696000        33.27143        125       176      0.6215278
+#&gt; 10     6             612720        33.27143        138       196      0.6215278
+#&gt;    net_pass_yds pass_ypa pass_ypr pass_TDs interceptions    int_pct rush_atts
+#&gt; 1          2198 7.631944 12.27933       13             5 0.01736111       257
+#&gt; 2          2038 7.631944 12.27933       17             8 0.01736111       277
+#&gt; 3          1760 7.631944 12.27933       13             3 0.01736111       284
+#&gt; 4          1311 7.631944 12.27933       12             3 0.01736111       240
+#&gt; 5          2681 7.631944 12.27933       17             8 0.01736111       297
+#&gt; 6          1420 7.631944 12.27933       11             3 0.01736111       200
+#&gt; 7          1584 7.631944 12.27933       12            10 0.01736111       260
+#&gt; 8          1153 7.631944 12.27933        6             5 0.01736111       291
+#&gt; 9          2111 7.631944 12.27933       26             3 0.01736111       247
+#&gt; 10         1923 7.631944 12.27933       22             8 0.01736111       199
 #&gt;    rush_yds rush_TDs rush_ypc total_yds fumbles_lost turnovers turnovers_pg
-#&gt; 1      1126       14 4.381323      3324            3         8    1.1428571
-#&gt; 2      1415       16 5.108303      3453            4        12    1.7142857
-#&gt; 3      1113       11 3.919014      2873            3         6    0.8571429
-#&gt; 4      1082        8 4.508333      2393            4         7    1.0000000
-#&gt; 5      1182       22 3.979798      3863            3        11    1.5714286
-#&gt; 6       715        6 3.575000      2135            5         8    1.3333333
-#&gt; 7      1170        8 4.500000      2754            6        16    2.2857143
-#&gt; 8      1341       12 4.608247      2494            6        11    1.5714286
-#&gt; 9      1576       19 6.380567      3687            2         5    0.7142857
-#&gt; 10      859        6 4.316583      2782            3        11    1.8333333
+#&gt; 1      1126       14 4.381323      3324            3         8     1.142857
+#&gt; 2      1415       16 4.381323      3453            4        12     1.142857
+#&gt; 3      1113       11 4.381323      2873            3         6     1.142857
+#&gt; 4      1082        8 4.381323      2393            4         7     1.142857
+#&gt; 5      1182       22 4.381323      3863            3        11     1.142857
+#&gt; 6       715        6 4.381323      2135            5         8     1.142857
+#&gt; 7      1170        8 4.381323      2754            6        16     1.142857
+#&gt; 8      1341       12 4.381323      2494            6        11     1.142857
+#&gt; 9      1576       19 4.381323      3687            2         5     1.142857
+#&gt; 10      859        6 4.381323      2782            3        11     1.142857
 #&gt;    first_downs third_downs third_down_convs third_conv_rate fourth_down_convs
 #&gt; 1          185         106               51       0.4811321                 2
-#&gt; 2          164          99               40       0.4040404                10
-#&gt; 3          162         107               46       0.4299065                 6
-#&gt; 4          120         101               33       0.3267327                 4
-#&gt; 5          209         110               54       0.4909091                 6
-#&gt; 6          112          79               28       0.3544304                 5
-#&gt; 7          140         104               41       0.3942308                 4
-#&gt; 8          116          88               37       0.4204545                 4
-#&gt; 9          165          64               30       0.4687500                 4
-#&gt; 10         139          69               34       0.4927536                 1
+#&gt; 2          164          99               40       0.4811321                10
+#&gt; 3          162         107               46       0.4811321                 6
+#&gt; 4          120         101               33       0.4811321                 4
+#&gt; 5          209         110               54       0.4811321                 6
+#&gt; 6          112          79               28       0.4811321                 5
+#&gt; 7          140         104               41       0.4811321                 4
+#&gt; 8          116          88               37       0.4811321                 4
+#&gt; 9          165          64               30       0.4811321                 4
+#&gt; 10         139          69               34       0.4811321                 1
 #&gt;    fourth_downs fourth_conv_rate penalties penalty_yds penalties_pg
-#&gt; 1             4        0.5000000        52         552     7.428571
-#&gt; 2            15        0.6666667        52         514     7.428571
-#&gt; 3             8        0.7500000        53         441     7.571429
-#&gt; 4             8        0.5000000        44         381     6.285714
-#&gt; 5            10        0.6000000        57         527     8.142857
-#&gt; 6             9        0.5555556        32         292     5.333333
-#&gt; 7            11        0.3636364        32         281     4.571429
-#&gt; 8             8        0.5000000        35         334     5.000000
-#&gt; 9             6        0.6666667        43         403     6.142857
-#&gt; 10            2        0.5000000        45         432     7.500000
+#&gt; 1             4              0.5        52         552     7.428571
+#&gt; 2            15              0.5        52         514     7.428571
+#&gt; 3             8              0.5        53         441     7.428571
+#&gt; 4             8              0.5        44         381     7.428571
+#&gt; 5            10              0.5        57         527     7.428571
+#&gt; 6             9              0.5        32         292     7.428571
+#&gt; 7            11              0.5        32         281     7.428571
+#&gt; 8             8              0.5        35         334     7.428571
+#&gt; 9             6              0.5        43         403     7.428571
+#&gt; 10            2              0.5        45         432     7.428571
 #&gt;    penalty_yds_pg yards_per_penalty kick_returns kick_return_yds
-#&gt; 1        78.85714         10.615385           14             262
-#&gt; 2        73.42857          9.884615           18             366
-#&gt; 3        63.00000          8.320755           13             250
-#&gt; 4        54.42857          8.659091           12             246
-#&gt; 5        75.28571          9.245614           17             401
-#&gt; 6        48.66667          9.125000           10             230
-#&gt; 7        40.14286          8.781250           19             408
-#&gt; 8        47.71429          9.542857           26             452
-#&gt; 9        57.57143          9.372093           15             392
-#&gt; 10       72.00000          9.600000           11             213
+#&gt; 1        78.85714          10.61538           14             262
+#&gt; 2        78.85714          10.61538           18             366
+#&gt; 3        78.85714          10.61538           13             250
+#&gt; 4        78.85714          10.61538           12             246
+#&gt; 5        78.85714          10.61538           17             401
+#&gt; 6        78.85714          10.61538           10             230
+#&gt; 7        78.85714          10.61538           19             408
+#&gt; 8        78.85714          10.61538           26             452
+#&gt; 9        78.85714          10.61538           15             392
+#&gt; 10       78.85714          10.61538           11             213
 #&gt;    kick_return_TDs kick_return_avg punt_returns punt_return_yds punt_return_TDs
 #&gt; 1                0        18.71429           13              74               1
-#&gt; 2                0        20.33333           14             107               1
-#&gt; 3                0        19.23077            9             134               1
-#&gt; 4                0        20.50000            9              59               0
-#&gt; 5                0        23.58824           10              71               0
-#&gt; 6                0        23.00000            8              74               0
-#&gt; 7                0        21.47368           11             241               2
-#&gt; 8                0        17.38462           11             156               1
-#&gt; 9                0        26.13333            9             123               1
-#&gt; 10               0        19.36364            6              58               0
+#&gt; 2                0        18.71429           14             107               1
+#&gt; 3                0        18.71429            9             134               1
+#&gt; 4                0        18.71429            9              59               0
+#&gt; 5                0        18.71429           10              71               0
+#&gt; 6                0        18.71429            8              74               0
+#&gt; 7                0        18.71429           11             241               2
+#&gt; 8                0        18.71429           11             156               1
+#&gt; 9                0        18.71429            9             123               1
+#&gt; 10               0        18.71429            6              58               0
 #&gt;    punt_return_avg passes_intercepted passes_intercepted_yds
 #&gt; 1         5.692308                  6                     22
-#&gt; 2         7.642857                  4                     39
-#&gt; 3        14.888889                  8                     59
-#&gt; 4         6.555556                 12                    285
-#&gt; 5         7.100000                  7                     56
-#&gt; 6         9.250000                  4                      0
-#&gt; 7        21.909091                  3                     21
-#&gt; 8        14.181818                  8                     45
-#&gt; 9        13.666667                  4                     55
-#&gt; 10        9.666667                  7                    128
+#&gt; 2         5.692308                  4                     39
+#&gt; 3         5.692308                  8                     59
+#&gt; 4         5.692308                 12                    285
+#&gt; 5         5.692308                  7                     56
+#&gt; 6         5.692308                  4                      0
+#&gt; 7         5.692308                  3                     21
+#&gt; 8         5.692308                  8                     45
+#&gt; 9         5.692308                  4                     55
+#&gt; 10        5.692308                  7                    128
 #&gt;    passes_intercepted_TDs
 #&gt; 1                       0
 #&gt; 2                       1
@@ -388,7 +391,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt; 9                       0
 #&gt; 10                      1</div><div class='input'>
 <span class='fu'>cfb_stats_season_team</span><span class='op'>(</span><span class='fl'>2019</span>, team <span class='op'>=</span> <span class='st'>'LSU'</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-16 02:55:18: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
+</div><div class='output co'>#&gt; <span class='message'>2020-12-26 15:14:43: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
 #&gt; 1    15            1632000        30.22222        426       567      0.7513228
 #&gt;   net_pass_yds pass_ypa pass_ypr pass_TDs interceptions    int_pct rush_atts
 #&gt; 1         6024 10.62434 14.14085       61             7 0.01234568       513
@@ -405,7 +408,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 #&gt;   passes_intercepted passes_intercepted_yds passes_intercepted_TDs
 #&gt; 1                 17                     87                      0</div><div class='input'>
 <span class='fu'>cfb_stats_season_team</span><span class='op'>(</span><span class='fl'>2013</span>, team <span class='op'>=</span> <span class='st'>"Florida State"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-16 02:55:18: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
+</div><div class='output co'>#&gt; <span class='message'>2020-12-26 15:14:44: Scraping season team stats...</span></div><div class='output co'>#&gt;   games time_of_poss_total time_of_poss_pg pass_comps pass_atts completion_pct
 #&gt; 1    14            1476720            29.3        288       442      0.6515837
 #&gt;   net_pass_yds pass_ypa pass_ypr pass_TDs interceptions    int_pct rush_atts
 #&gt; 1         4423 10.00679 15.35764       42            13 0.02941176       505
@@ -433,7 +436,7 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC<
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">

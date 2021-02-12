@@ -3,17 +3,15 @@
 \name{cfb_team_roster}
 \alias{cfb_team_roster}
 \title{Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)
-If team is not selected, API returns rosters for every team from the selected year.}
+Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.}
 \source{
 \url{https://api.collegefootballdata.com/roster}
 }
 \usage{
-cfb_team_roster(year = NULL, team = NULL)
+cfb_team_roster(year, team = NULL)
 }
 \arguments{
-\item{year}{(\emph{Integer} optional): Year,  4 digit format (\emph{YYYY})}
-
+\item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY})}
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 }
 \value{
@@ -35,13 +33,10 @@ A data frame with 12 variables:
 }
 \description{
 Team Roster
-Get a teams full roster by year. If year not selected, API defaults to most recent year (2020 as of 9/22/20)
-If team is not selected, API returns rosters for every team from the selected year.
+Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 }
 \examples{
-
-cfb_team_roster(team = "Florida State")
-
+cfb_team_roster(year = 2013, team = "Florida State")
 }
 \keyword{Roster}
 \keyword{Team}

@@ -15,14 +15,16 @@ authors:
    href: https://twitter.com/saiemgilani
   Meyappan Subbaiah:
    href: https://twitter.com/msubbaiah1
+  Jared Lee:
+   href: https://twitter.com/JaredDLee
   Parker Fleming:
    href: https://twitter.com/statsowar
   Nate Manzo:
    href: https://twitter.com/cfbNate
   Michael Egle:
    href: https://twitter.com/deceptivespeed_
-  Jared Lee:
-   href: https://twitter.com/JaredDLee
+  Eric Hess:
+   href: https://twitter.com/arbitanalytics 
   
 home:
 navbar:
@@ -45,6 +47,8 @@ navbar:
         href: articles/fourth-down-plot-tutorial.html
       - text: Rolling EPA Graphs
         href: articles/rolling-epa-graph.html
+      - text: Visualizing Team Talent with Player Recruit Rankings
+        href: articles/nth-rated-recruit.html
       - text: Expected Points Model Fundamentals
       - text: "Part 1 - Model Definition"
         href: articles/college-football-expected-points-model-fundamentals-part-i.html
@@ -71,6 +75,7 @@ reference:
   - subtitle: Games Data Functions
     desc: Functions exported by cfbscrapR sourced from games endpoint of the CollegeFootballData API
     contents:
+      - '`cfb_calendar`'
       - '`cfb_game_info`'
       - '`cfb_game_records`'
       - '`cfb_game_team_stats`'

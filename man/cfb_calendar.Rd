@@ -11,7 +11,7 @@ Returns calendar of weeks by season}
 cfb_calendar(year)
 }
 \arguments{
-\item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY})}
+\item{year}{(\emph{Integer} required): Year, 4 digit format (\emph{YYYY})}
 }
 \value{
 A data frame with 5 variables:

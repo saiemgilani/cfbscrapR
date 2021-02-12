@@ -86,7 +86,7 @@ on position groups during that year for all FBS teams." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cfbscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
       </span>
     </div>
 
@@ -94,13 +94,13 @@ on position groups during that year for all FBS teams." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-question-circle-o"></span>
+    <span class="fas fa-question-circle-o"></span>
      
     Tutorials
      
@@ -123,6 +123,9 @@ on position groups during that year for all FBS teams." />
     <li>
       <a href="../articles/rolling-epa-graph.html">Rolling EPA Graphs</a>
     </li>
+    <li>
+      <a href="../articles/nth-rated-recruit.html">Visualizing Team Talent with Player Recruit Rankings</a>
+    </li>
     <li class="dropdown-header">Expected Points Model Fundamentals</li>
     <li>
       <a href="../articles/college-football-expected-points-model-fundamentals-part-i.html">Part 1 - Model Definition</a>
@@ -137,21 +140,21 @@ on position groups during that year for all FBS teams." />
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Functions
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     News
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR-data">
-    <span class="fa fa-database"></span>
+    <span class="fas fa-database"></span>
      
     Data
   </a>
@@ -160,13 +163,13 @@ on position groups during that year for all FBS teams." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://twitter.com/cfbscrapR">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://github.com/saiemgilani/cfbscrapR/">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
     GitHub
   </a>
@@ -250,7 +253,7 @@ see the <code><a href='cfb_recruiting_team.html'>cfbscrapR::cfb_recruiting_team(
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='fu'>cfb_recruiting_position</span><span class='op'>(</span><span class='fl'>2018</span>, team<span class='op'>=</span><span class='st'>"Texas"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-16 02:55:05: Scraping position group recruiting data...</span></div><div class='output co'>#&gt;    team conference position_group avg_rating total_rating commits avg_stars
+</div><div class='output co'>#&gt; <span class='message'>2020-12-26 15:14:26: Scraping position group recruiting data...</span></div><div class='output co'>#&gt;    team conference position_group avg_rating total_rating commits avg_stars
 #&gt; 1 Texas     Big 12 Defensive Back  0.9480923      12.3252      13  4.076923
 #&gt; 2 Texas     Big 12 Defensive Line  0.9050300       9.0503      10  3.500000
 #&gt; 3 Texas     Big 12     Linebacker  0.9040250       7.2322       8  3.500000
@@ -261,7 +264,7 @@ see the <code><a href='cfb_recruiting_team.html'>cfbscrapR::cfb_recruiting_team(
 #&gt; 8 Texas     Big 12  Special Teams  0.8816556       7.9349       9  3.555556
 #&gt; 9 Texas     Big 12  All Positions  0.9173586      64.2151      70  3.785714</div><div class='input'>
 <span class='fu'>cfb_recruiting_position</span><span class='op'>(</span><span class='fl'>2016</span>, <span class='fl'>2020</span>, team<span class='op'>=</span><span class='st'>"Virginia"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-16 02:55:05: Scraping position group recruiting data...</span></div><div class='output co'>#&gt;       team conference position_group avg_rating total_rating commits avg_stars
+</div><div class='output co'>#&gt; <span class='message'>2020-12-26 15:14:26: Scraping position group recruiting data...</span></div><div class='output co'>#&gt;       team conference position_group avg_rating total_rating commits avg_stars
 #&gt; 1 Virginia        ACC Defensive Back  0.8332929      11.6661      14  2.857143
 #&gt; 2 Virginia        ACC Defensive Line  0.8512125      13.6194      16  3.125000
 #&gt; 3 Virginia        ACC     Linebacker  0.8460889      15.2296      18  3.000000
@@ -272,7 +275,7 @@ see the <code><a href='cfb_recruiting_team.html'>cfbscrapR::cfb_recruiting_team(
 #&gt; 8 Virginia        ACC  Special Teams  0.8361111       7.5250       9  2.888889
 #&gt; 9 Virginia        ACC  All Positions  0.8431211      91.9002     109  2.990826</div><div class='input'>
 <span class='fu'>cfb_recruiting_position</span><span class='op'>(</span><span class='fl'>2015</span>, <span class='fl'>2020</span>, conference <span class='op'>=</span> <span class='st'>"SEC"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>2020-12-16 02:55:06: Scraping position group recruiting data...</span></div><div class='output co'>#&gt;                  team conference position_group avg_rating total_rating commits
+</div><div class='output co'>#&gt; <span class='message'>2020-12-26 15:14:27: Scraping position group recruiting data...</span></div><div class='output co'>#&gt;                  team conference position_group avg_rating total_rating commits
 #&gt; 1             Alabama        SEC Defensive Back  0.9465250      22.7166      24
 #&gt; 2             Alabama        SEC Defensive Line  0.9543161      29.5838      31
 #&gt; 3             Alabama        SEC     Linebacker  0.9390412      15.9637      17
@@ -538,7 +541,7 @@ see the <code><a href='cfb_recruiting_team.html'>cfbscrapR::cfb_recruiting_team(
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
+  <p>Developed by <a href='https://twitter.com/saiemgilani'>Saiem Gilani</a>, <a href='https://twitter.com/msubbaiah1'>Meyappan Subbaiah</a>, <a href='https://twitter.com/JaredDLee'>Jared Lee</a>, <a href='https://twitter.com/statsowar'>Parker Fleming</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -145,6 +145,15 @@ cfb_stats_season_team <- function(year,
   check_status(res)
 
   df <- data.frame()
+  
+  #Expected column names for full season data
+  expected_colnames <- c("season", "team", "conference", "passesIntercepted", "turnovers",           
+                         "interceptionYards", "fumblesRecovered", "passCompletions", "rushingTDs", "puntReturnYards",      
+                         "games", "fourthDowns", "puntReturns", "rushingYards", "totalYards",       
+                         "kickReturnYards", "passingTDs", "rushingAttempts", "netPassingYards", "kickReturns",    
+                         "possessionTime", "fourthDownConversions", "penalties", "puntReturnTDs", "firstDowns",           
+                         "interceptionTDs", "penaltyYards", "passAttempts", "kickReturnTDs", "interceptions",
+                         "thirdDownConversions", "thirdDowns", "fumblesLost")
   tryCatch(
     expr ={
       # Get the content and return result as data.frame
@@ -153,22 +162,28 @@ cfb_stats_season_team <- function(year,
       # Pivot category columns to get stats for each team game on one row
       df <- tidyr::pivot_wider(df,
                         names_from = .data$statName,
-                        values_from = .data$statValue) %>%
+                        values_from = .data$statValue) 
+      
+      #Find missing columns, if any, and add them to found data
+      missing <- setdiff(expected_colnames, colnames(df))
+      df[missing] <- NA_real_
+      
+      df <- df %>%
         dplyr::mutate(
-          time_of_poss_pg = .data$possessionTime/3600/.data$games,
-          completion_pct = .data$passCompletions/.data$passAttempts,
-          pass_ypa = .data$netPassingYards/.data$passAttempts,
-          pass_ypr = .data$netPassingYards/.data$passCompletions,
-          int_pct = .data$interceptions/.data$passAttempts,
-          rush_ypc = .data$rushingYards/.data$rushingAttempts,
-          third_conv_rate = .data$thirdDownConversions/.data$thirdDowns,
-          fourth_conv_rate = .data$fourthDownConversions/.data$fourthDowns,
-          penalties_pg = .data$penalties/.data$games,
-          penalty_yds_pg = .data$penaltyYards/.data$games,
-          yards_per_penalty = .data$penaltyYards/.data$penalties,
-          turnovers_pg = .data$turnovers/.data$games,
-          kick_return_avg = .data$kickReturnYards/.data$kickReturns,
-          punt_return_avg = .data$puntReturnYards/.data$puntReturns) %>%
+          time_of_poss_pg = ifelse(is.na("games"), NA_real_, .data$possessionTime/3600/.data$games),
+          completion_pct = ifelse(is.na("passAttempts"), NA_real_ , .data$passCompletions/.data$passAttempts),
+          pass_ypa = ifelse(is.na("passAttempts"), NA_real_, .data$netPassingYards/.data$passAttempts),
+          pass_ypr = ifelse(is.na("passCompletions"), NA_real_, .data$netPassingYards/.data$passCompletions),
+          int_pct = ifelse(is.na("passAttempts"), NA_real_, .data$interceptions/.data$passAttempts),
+          rush_ypc = ifelse(is.na("rushingAttempts"), NA_real_, .data$rushingYards/.data$rushingAttempts),
+          third_conv_rate = ifelse(is.na("thirdDowns"), NA_real_, .data$thirdDownConversions/.data$thirdDowns),
+          fourth_conv_rate = ifelse(is.na("fourthDowns"), NA_real_, .data$fourthDownConversions/.data$fourthDowns),
+          penalties_pg = ifelse(is.na("games"), NA_real_, .data$penalties/.data$games),
+          penalty_yds_pg = ifelse(is.na("games"), NA_real_, .data$penaltyYards/.data$games),
+          yards_per_penalty = ifelse(is.na("penalties"), NA_real_, .data$penaltyYards/.data$penalties),
+          turnovers_pg = ifelse(is.na("games"), NA_real_, .data$turnovers/.data$games),
+          kick_return_avg = ifelse(is.na("kickReturns"), NA_real_, .data$kickReturnYards/.data$kickReturns),
+          punt_return_avg = ifelse(is.na("puntReturns"), NA_real_, .data$puntReturnYards/.data$puntReturns)) %>% 
         dplyr::select(
           .data$season, .data$team, .data$conference,
           .data$games, .data$possessionTime, .data$time_of_poss_pg,
