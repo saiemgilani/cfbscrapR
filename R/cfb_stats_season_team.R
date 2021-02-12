@@ -8,9 +8,12 @@
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' 
-#' @return A data frame with 43 variables:
+#'
+#' @return A data frame with 46 variables:
 #' \describe{
+#'   \item{\code{games}}{integer.}
+#'   \item{\code{team}}{character.}
+#'   \item{\code{conference}}{character.}
 #'   \item{\code{games}}{integer.}
 #'   \item{\code{time_of_poss_total}}{integer.}
 #'   \item{\code{time_of_poss_pg}}{double.}
@@ -104,7 +107,7 @@ cfb_stats_season_team <- function(year,
     # Encode conference parameter for URL, if not NULL
     conference = utils::URLencode(conference, reserved = TRUE)
   }
-  
+
   if(!is.null(start_week)){
     # Check if start_week is numeric, if not NULL
     assertthat::assert_that(is.numeric(start_week) & nchar(start_week) <= 2,
@@ -140,13 +143,13 @@ cfb_stats_season_team <- function(year,
 
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
     expr ={
       # Get the content and return result as data.frame
-      df = jsonlite::fromJSON(full_url) 
-      
+      df = jsonlite::fromJSON(full_url)
+
       # Pivot category columns to get stats for each team game on one row
       df <- tidyr::pivot_wider(df,
                         names_from = .data$statName,
@@ -165,25 +168,26 @@ cfb_stats_season_team <- function(year,
           yards_per_penalty = .data$penaltyYards/.data$penalties,
           turnovers_pg = .data$turnovers/.data$games,
           kick_return_avg = .data$kickReturnYards/.data$kickReturns,
-          punt_return_avg = .data$puntReturnYards/.data$puntReturns) %>% 
+          punt_return_avg = .data$puntReturnYards/.data$puntReturns) %>%
         dplyr::select(
+          .data$season, .data$team, .data$conference,
           .data$games, .data$possessionTime, .data$time_of_poss_pg,
           .data$passCompletions, .data$passAttempts, .data$completion_pct,
-          .data$netPassingYards,.data$pass_ypa,.data$pass_ypr, 
+          .data$netPassingYards,.data$pass_ypa,.data$pass_ypr,
           .data$passingTDs, .data$interceptions,.data$int_pct,
           .data$rushingAttempts, .data$rushingYards, .data$rushingTDs,
-          .data$rush_ypc, .data$totalYards, 
+          .data$rush_ypc, .data$totalYards,
           .data$fumblesLost, .data$turnovers,.data$turnovers_pg,
           .data$firstDowns, .data$thirdDowns, .data$thirdDownConversions,
-          .data$third_conv_rate,.data$fourthDownConversions, 
+          .data$third_conv_rate,.data$fourthDownConversions,
           .data$fourthDowns,.data$fourth_conv_rate,
           .data$penalties, .data$penaltyYards,.data$penalties_pg,
           .data$penalty_yds_pg, .data$yards_per_penalty,
-          .data$kickReturns, .data$kickReturnYards, 
+          .data$kickReturns, .data$kickReturnYards,
           .data$kickReturnTDs,.data$kick_return_avg,
-          .data$puntReturns, .data$puntReturnYards, 
+          .data$puntReturns, .data$puntReturnYards,
           .data$puntReturnTDs,.data$punt_return_avg,
-          .data$passesIntercepted, .data$interceptionYards, .data$interceptionTDs) %>% 
+          .data$passesIntercepted, .data$interceptionYards, .data$interceptionTDs) %>%
         dplyr::rename(
           time_of_poss_total=.data$possessionTime,
           pass_comps = .data$passCompletions,
@@ -209,9 +213,9 @@ cfb_stats_season_team <- function(year,
           punt_return_TDs = .data$puntReturnTDs,
           passes_intercepted = .data$passesIntercepted,
           passes_intercepted_yds = .data$interceptionYards,
-          passes_intercepted_TDs = .data$interceptionTDs) %>% 
+          passes_intercepted_TDs = .data$interceptionTDs) %>%
         as.data.frame()
-      
+
       message(glue::glue("{Sys.time()}: Scraping season team stats..."))
     },
     error = function(e) {
