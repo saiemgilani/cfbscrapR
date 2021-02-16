@@ -18,24 +18,17 @@ ncaa_pbp <- function(game_id) {
   
   pbp.df <- as.data.frame(pbp.json$periods)
   
-  game.plays <- do.call("rbind", apply(pbp.df, 1, function(x) {
-    possessions <- x["possessions"]
-    quarter <- x["shortTitle"]
-    
-    poss.df <- as.data.frame(possessions[[1]])
-    print(head(poss.df))
-    quarter.plays <- do.call("rbind", apply(poss.df, 1, function(x) {
-      plays <- x["plays"]
-      time <- x["time"]
-      
-      plays.df <- as.data.frame(plays)
-      plays.df$Time <- time
-      return(plays.df)
-    }))
-    
-    quarter.plays$Quarter <- quarter
-    return(quarter.plays)
-  }))
+  pbp.final <- pbp.df %>%
+    purrr::map_if(is.data.frame, list) %>%
+    dplyr::as_tibble() %>%
+    tidyr::unnest(.data$possessions) %>%
+    purrr::map_if(is.data.frame, list) %>%
+    dplyr::as_tibble() %>%
+    tidyr::unnest(.data$plays, names_repair = "unique") %>%
+    select(shortTitle, teamId...3, time, scoreText, driveText, visitingScore, homeScore) %>%
+    rename("quarter" = .data$shortTitle,
+           "team_id" = .data$teamId...3) %>%
+    janitor::clean_names()
   
-  return(game.plays)
+  return(pbp.final)
 }
