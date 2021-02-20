@@ -12,7 +12,6 @@ cfb_team_roster(year, team = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY})}
-
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 }
 \value{
@@ -37,9 +36,7 @@ Team Roster
 Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 }
 \examples{
-
 cfb_team_roster(year = 2013, team = "Florida State")
-
 }
 \keyword{Roster}
 \keyword{Team}

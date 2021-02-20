@@ -7,14 +7,15 @@
 #' @param conference (\emph{String} optional): Conference abbreviation - SRS information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' 
-#' @return A data frame with 5 variables:
+#'
+#' @return A data frame with 6 variables:
 #' \describe{
 #'   \item{\code{year}}{integer.}
 #'   \item{\code{team}}{character.}
 #'   \item{\code{conference}}{character.}
 #'   \item{\code{division}}{logical.}
-#'   \item{\code{rating}}{character.}
+#'   \item{\code{rating}}{double.}
+#'   \item{\code{ranking}}{integer.}
 #' }
 #' @source \url{https://api.collegefootballdata.com/ratings/srs}
 #' @keywords SRS
@@ -77,14 +78,16 @@ cfb_ratings_srs <- function(year=NULL,team=NULL,conference=NULL){
 
   # Check the result
   check_status(res)
-  
+
   df <- data.frame()
   tryCatch(
-    expr ={  
+    expr ={
       # Get the content and return it as data.frame
-      df = jsonlite::fromJSON(full_url) %>% 
-        as.data.frame()
-      
+      df = jsonlite::fromJSON(full_url) %>%
+        as.data.frame() %>%
+        mutate(rating = as.numeric(.data$rating),
+               ranking = as.integer(.data$ranking))
+
       message(glue::glue("{Sys.time()}: Scraping simple rating system (SRS) data..."))
     },
     error = function(e) {

@@ -17,7 +17,7 @@ A data frame with 3 variables:
 \describe{
   \item{\code{year}}{integer.}
   \item{\code{school}}{character.}
-  \item{\code{talent}}{character.}
+  \item{\code{talent}}{double.}
 }
 }
 \description{

@@ -6,7 +6,7 @@ y <- cfb_ratings_srs(year = 2012, conference = 'SEC')
 
 z <- cfb_ratings_srs(year = 2016, conference = 'ACC')
 
-cols <- c('year','team', 'conference', 'division', 'rating')
+cols <- c('year','team', 'conference', 'division', 'rating', 'ranking')
 
 test_that("CFB Conference Ratings - Bill C.'s SP+", {
   expect_equal(colnames(x), cols)

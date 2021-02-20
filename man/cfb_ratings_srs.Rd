@@ -19,13 +19,14 @@ Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr}
 }
 \value{
-A data frame with 5 variables:
+A data frame with 6 variables:
 \describe{
   \item{\code{year}}{integer.}
   \item{\code{team}}{character.}
   \item{\code{conference}}{character.}
   \item{\code{division}}{logical.}
-  \item{\code{rating}}{character.}
+  \item{\code{rating}}{double.}
+  \item{\code{ranking}}{integer.}
 }
 }
 \description{
