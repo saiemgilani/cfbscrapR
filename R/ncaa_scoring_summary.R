@@ -20,7 +20,13 @@ ncaa_scoring_summary <- function(game_id) {
     purrr::map_if(is.data.frame, list) %>%
     dplyr::as_tibble() %>%
     tidyr::unnest(.data$summary) %>%
+    dplyr::mutate(series_order = row_number()) %>%
     janitor::clean_names()
   
-  return(summary.df)
+  meta.data.df <- as.data.frame(scoring.json$meta$teams) %>% select(id, homeTeam, shortname)
+  scoring.summary.final <- merge(summary.df, meta.data.df, by.x = "team_id", by.y = "id")
+  scoring.summary.final <- scoring.summary.final %>% arrange(series_order) %>% 
+    janitor::clean_names()
+  
+  return(scoring.summary.final)
 }

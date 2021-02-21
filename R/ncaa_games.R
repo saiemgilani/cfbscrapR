@@ -13,13 +13,13 @@ ncaa_games <- function(week, year) {
   full_url <- paste(base_url, year, week, "scoreboard.json", sep="/")
   
   # Check for internet
-  check_internet()
+  #check_internet()
   
   # Create the GET request and set response as res
   res <- httr::GET(full_url)
   
   # Check the result
-  check_status(res)
+  #check_status(res)
   
   games.json <- fromJSON(full_url, flatten = TRUE)
   
@@ -36,8 +36,9 @@ ncaa_games <- function(week, year) {
     return(home.conf)
   })
   
-  drops <- c("game.away.conferences", "game.home.conferences")
-  games.final <- games[,!(names(games) %in% drops)]
+  games.final <- games %>% separate(game.url, c("empty", "game", "game.id"), "/", remove = FALSE) %>%
+    select(-c(game.away.conferences, game.home.conferences, empty, game)) %>%
+    janitor::clean_names()
   
   return(games.final)
 }
