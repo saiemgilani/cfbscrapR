@@ -1,23 +1,23 @@
 #' Get SRS historical rating data
 #'
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - SRS information by conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - SRS information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
 #' @return A data frame with 6 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{division}}{logical.}
-#'   \item{\code{rating}}{double.}
-#'   \item{\code{ranking}}{integer.}
+#'   \item{`year`}{integer.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`division`}{logical.}
+#'   \item{`rating`}{double.}
+#'   \item{`ranking`}{integer.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ratings/srs}
+#' @source <https://api.collegefootballdata.com/ratings/srs>
 #' @keywords SRS
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

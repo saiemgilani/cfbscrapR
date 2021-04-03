@@ -1,10 +1,10 @@
 #' Calendar
 #' Returns calendar of weeks by season
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
 #'
 #' @return A data frame with 5 variables:
-#' @source \url{https://api.collegefootballdata.com/calendar}
+#' @source <https://api.collegefootballdata.com/calendar>
 #' @importFrom dplyr rename mutate
 #' @importFrom janitor clean_names
 #' @importFrom jsonlite fromJSON

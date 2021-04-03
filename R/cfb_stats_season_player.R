@@ -1,81 +1,81 @@
 #' Get Season Statistics by Player
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (\emph{Integer} optional): Ending Week - values range fom 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param category (\emph{String} optional): Category filter (e.g defensive)\cr
+#' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range fom 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param category (*String* optional): Category filter (e.g defensive)\cr
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns\cr
 #' 
 #' @return A data frame with 59 variables:
 #' \describe{
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{athlete_id}}{character.}
-#'   \item{\code{player}}{character.}
-#'   \item{\code{category}}{character.}
-#'   \item{\code{passing_completions}}{double.}
-#'   \item{\code{passing_att}}{double.}
-#'   \item{\code{passing_pct}}{double.}
-#'   \item{\code{passing_yds}}{double.}
-#'   \item{\code{passing_td}}{double.}
-#'   \item{\code{passing_int}}{double.}
-#'   \item{\code{passing_ypa}}{double.}
-#'   \item{\code{rushing_car}}{double.}
-#'   \item{\code{rushing_yds}}{double.}
-#'   \item{\code{rushing_td}}{double.}
-#'   \item{\code{rushing_ypc}}{double.}
-#'   \item{\code{rushing_long}}{double.}
-#'   \item{\code{receiving_rec}}{double.}
-#'   \item{\code{receiving_yds}}{double.}
-#'   \item{\code{receiving_td}}{double.}
-#'   \item{\code{receiving_ypr}}{double.}
-#'   \item{\code{receiving_long}}{double.}
-#'   \item{\code{fumbles_fum}}{double.}
-#'   \item{\code{fumbles_rec}}{double.}
-#'   \item{\code{fumbles_lost}}{double.}
-#'   \item{\code{defensive_solo}}{double.}
-#'   \item{\code{defensive_tot}}{double.}
-#'   \item{\code{defensive_tfl}}{double.}
-#'   \item{\code{defensive_sacks}}{double.}
-#'   \item{\code{defensive_qb_hur}}{double.}
-#'   \item{\code{interceptions_int}}{double.}
-#'   \item{\code{interceptions_yds}}{double.}
-#'   \item{\code{interceptions_avg}}{double.}
-#'   \item{\code{interceptions_td}}{double.}
-#'   \item{\code{defensive_pd}}{double.}
-#'   \item{\code{defensive_td}}{double.}
-#'   \item{\code{kicking_fgm}}{double.}
-#'   \item{\code{kicking_fga}}{double.}
-#'   \item{\code{kicking_pct}}{double.}
-#'   \item{\code{kicking_xpa}}{double.}
-#'   \item{\code{kicking_xpm}}{double.}
-#'   \item{\code{kicking_pts}}{double.}
-#'   \item{\code{kicking_long}}{double.}
-#'   \item{\code{kick_returns_no}}{double.}
-#'   \item{\code{kick_returns_yds}}{double.}
-#'   \item{\code{kick_returns_avg}}{double.}
-#'   \item{\code{kick_returns_td}}{double.}
-#'   \item{\code{kick_returns_long}}{double.}
-#'   \item{\code{punting_no}}{double.}
-#'   \item{\code{punting_yds}}{double.}
-#'   \item{\code{punting_ypp}}{double.}
-#'   \item{\code{punting_long}}{double.}
-#'   \item{\code{punting_in_20}}{double.}
-#'   \item{\code{punting_tb}}{double.}
-#'   \item{\code{punt_returns_no}}{double.}
-#'   \item{\code{punt_returns_yds}}{double.}
-#'   \item{\code{punt_returns_avg}}{double.}
-#'   \item{\code{punt_returns_td}}{double.}
-#'   \item{\code{punt_returns_long}}{double.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`athlete_id`}{character.}
+#'   \item{`player`}{character.}
+#'   \item{`category`}{character.}
+#'   \item{`passing_completions`}{double.}
+#'   \item{`passing_att`}{double.}
+#'   \item{`passing_pct`}{double.}
+#'   \item{`passing_yds`}{double.}
+#'   \item{`passing_td`}{double.}
+#'   \item{`passing_int`}{double.}
+#'   \item{`passing_ypa`}{double.}
+#'   \item{`rushing_car`}{double.}
+#'   \item{`rushing_yds`}{double.}
+#'   \item{`rushing_td`}{double.}
+#'   \item{`rushing_ypc`}{double.}
+#'   \item{`rushing_long`}{double.}
+#'   \item{`receiving_rec`}{double.}
+#'   \item{`receiving_yds`}{double.}
+#'   \item{`receiving_td`}{double.}
+#'   \item{`receiving_ypr`}{double.}
+#'   \item{`receiving_long`}{double.}
+#'   \item{`fumbles_fum`}{double.}
+#'   \item{`fumbles_rec`}{double.}
+#'   \item{`fumbles_lost`}{double.}
+#'   \item{`defensive_solo`}{double.}
+#'   \item{`defensive_tot`}{double.}
+#'   \item{`defensive_tfl`}{double.}
+#'   \item{`defensive_sacks`}{double.}
+#'   \item{`defensive_qb_hur`}{double.}
+#'   \item{`interceptions_int`}{double.}
+#'   \item{`interceptions_yds`}{double.}
+#'   \item{`interceptions_avg`}{double.}
+#'   \item{`interceptions_td`}{double.}
+#'   \item{`defensive_pd`}{double.}
+#'   \item{`defensive_td`}{double.}
+#'   \item{`kicking_fgm`}{double.}
+#'   \item{`kicking_fga`}{double.}
+#'   \item{`kicking_pct`}{double.}
+#'   \item{`kicking_xpa`}{double.}
+#'   \item{`kicking_xpm`}{double.}
+#'   \item{`kicking_pts`}{double.}
+#'   \item{`kicking_long`}{double.}
+#'   \item{`kick_returns_no`}{double.}
+#'   \item{`kick_returns_yds`}{double.}
+#'   \item{`kick_returns_avg`}{double.}
+#'   \item{`kick_returns_td`}{double.}
+#'   \item{`kick_returns_long`}{double.}
+#'   \item{`punting_no`}{double.}
+#'   \item{`punting_yds`}{double.}
+#'   \item{`punting_ypp`}{double.}
+#'   \item{`punting_long`}{double.}
+#'   \item{`punting_in_20`}{double.}
+#'   \item{`punting_tb`}{double.}
+#'   \item{`punt_returns_no`}{double.}
+#'   \item{`punt_returns_yds`}{double.}
+#'   \item{`punt_returns_avg`}{double.}
+#'   \item{`punt_returns_td`}{double.}
+#'   \item{`punt_returns_long`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/player/season}
+#' @source <https://api.collegefootballdata.com/stats/player/season>
 #' @keywords Player Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

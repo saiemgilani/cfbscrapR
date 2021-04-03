@@ -1,45 +1,45 @@
 #' Get results information from games
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param home_team (\emph{String} optional): Home D-I Team
-#' @param away_team (\emph{String} optional): Away D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param home_team (*String* optional): Home D-I Team
+#' @param away_team (*String* optional): Away D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
-#' @param quarter_scores (\emph{Logical} default FALSE): This is a parameter to return the
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game\cr
+#' @param quarter_scores (*Logical* default FALSE): This is a parameter to return the
 #' list columns that give the score at each quarter: home_line_scores and away_line scores.\cr
 #' I have defaulted the parameter to false so that you will not have to go to the trouble of dropping it.
 #' 
 #' @return A data frame with 22 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{start_date}}{character.}
-#'   \item{\code{start_time_tbd}}{logical.}
-#'   \item{\code{neutral_site}}{logical.}
-#'   \item{\code{conference_game}}{logical.}
-#'   \item{\code{attendance}}{integer.}
-#'   \item{\code{venue_id}}{integer.}
-#'   \item{\code{venue}}{character.}
-#'   \item{\code{home_id}}{integer.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{home_conference}}{character.}
-#'   \item{\code{home_points}}{integer.}
-#'   \item{\code{home_post_win_prob}}{character.}
-#'   \item{\code{away_id}}{integer.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{away_conference}}{character.}
-#'   \item{\code{away_points}}{integer.}
-#'   \item{\code{away_post_win_prob}}{character.}
-#'   \item{\code{excitement_index}}{character.}
+#'   \item{`game_id`}{integer.}
+#'   \item{`season`}{integer.}
+#'   \item{`week`}{integer.}
+#'   \item{`season_type`}{character.}
+#'   \item{`start_date`}{character.}
+#'   \item{`start_time_tbd`}{logical.}
+#'   \item{`neutral_site`}{logical.}
+#'   \item{`conference_game`}{logical.}
+#'   \item{`attendance`}{integer.}
+#'   \item{`venue_id`}{integer.}
+#'   \item{`venue`}{character.}
+#'   \item{`home_id`}{integer.}
+#'   \item{`home_team`}{character.}
+#'   \item{`home_conference`}{character.}
+#'   \item{`home_points`}{integer.}
+#'   \item{`home_post_win_prob`}{character.}
+#'   \item{`away_id`}{integer.}
+#'   \item{`away_team`}{character.}
+#'   \item{`away_conference`}{character.}
+#'   \item{`away_points`}{integer.}
+#'   \item{`away_post_win_prob`}{character.}
+#'   \item{`excitement_index`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games}
+#' @source <https://api.collegefootballdata.com/games>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

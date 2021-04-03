@@ -2,23 +2,23 @@
 #'
 #' Postseason polls are after Week 13
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Season type - regular or postseason
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Season type - regular or postseason
 #' 
 #' @return A data frame with 9 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{poll}}{character.}
-#'   \item{\code{rank}}{integer.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{first_place_votes}}{integer.}
-#'   \item{\code{points}}{integer.}
+#'   \item{`season`}{integer.}
+#'   \item{`season_type`}{character.}
+#'   \item{`week`}{integer.}
+#'   \item{`poll`}{character.}
+#'   \item{`rank`}{integer.}
+#'   \item{`school`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`first_place_votes`}{integer.}
+#'   \item{`points`}{integer.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/rankings}
+#' @source <https://api.collegefootballdata.com/rankings>
 #' @keywords CFB Rankings
 #' @importFrom assertthat assert_that
 #' @importFrom jsonlite fromJSON

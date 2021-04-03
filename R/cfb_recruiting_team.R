@@ -1,25 +1,25 @@
 #' CFB Recruiting Information - Team Rankings
 #'
 #' Gets CFB team recruiting ranks with filters available for year and team.
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #'
 #' If you would like CFB recruiting information for players, please
-#' see the \code{\link[cfbscrapR:cfb_recruiting_player]{cfbscrapR::cfb_recruiting_player()}} function
+#' see the [cfbscrapR::cfb_recruiting_player()] function
 #'
 #' If you would like to get CFB recruiting information based on position groups during a
-#' time period for all FBS teams, please see the \code{\link[cfbscrapR:cfb_recruiting_position]{cfbscrapR::cfb_recruiting_position()}} function.
+#' time period for all FBS teams, please see the [cfbscrapR::cfb_recruiting_position()] function.
 #'
-#' @param year (\emph{Integer} optional): Recruiting Class Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
+#' @param year (*Integer* optional): Recruiting Class Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
+#' @param team (*String* optional): Team - Select a valid team, D1 football
 #'
 #' @return A data frame with 4 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{rank}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{points}}{character.}
+#'   \item{`year`}{integer.}
+#'   \item{`rank`}{integer.}
+#'   \item{`team`}{character.}
+#'   \item{`points`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/recruiting/teams}
+#' @source <https://api.collegefootballdata.com/recruiting/teams>
 #' @keywords Recruiting
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

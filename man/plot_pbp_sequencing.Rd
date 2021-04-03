@@ -7,7 +7,7 @@
 plot_pbp_sequencing(df)
 }
 \arguments{
-\item{df}{Play-by-Play data frame (can be retrieved from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})}
+\item{df}{Play-by-Play data frame (can be retrieved from \code{\link[=cfb_pbp_data]{cfb_pbp_data()}})}
 }
 \description{
 Plot the Drive/PBP Sequencing

@@ -21,12 +21,12 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \value{
 A data frame with 6 variables:
 \describe{
-  \item{\code{year}}{integer.}
-  \item{\code{team}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{division}}{logical.}
-  \item{\code{rating}}{double.}
-  \item{\code{ranking}}{integer.}
+\item{\code{year}}{integer.}
+\item{\code{team}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{division}}{logical.}
+\item{\code{rating}}{double.}
+\item{\code{ranking}}{integer.}
 }
 }
 \description{

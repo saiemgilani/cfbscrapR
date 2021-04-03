@@ -1,7 +1,7 @@
 #' Clean Drive Information
 #' Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column
 #'
-#' @param drive_df (\emph{data.frame} required) Drive dataframe pulled from API via the `cfb_drives()` function
+#' @param drive_df (*data.frame* required) Drive dataframe pulled from API via the `cfb_drives()` function
 #' @details Cleans CFB (D-I) Drive-By-Drive Data to create `pts_drive` column. Requires the following columns be present:
 #' \itemize{
 #' \item{drive_id}{Returned as `drive_id`}

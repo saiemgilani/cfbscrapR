@@ -12,8 +12,8 @@ cfb_stats_categories()
 \value{
 A data frame with 38 values:
 \describe{
-  \item{name}{Statistics Categories}
-  ...
+\item{name}{Statistics Categories}
+...
 }
 }
 \description{

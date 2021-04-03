@@ -15,9 +15,9 @@ cfb_team_talent(year = NULL)
 \value{
 A data frame with 3 variables:
 \describe{
-  \item{\code{year}}{integer.}
-  \item{\code{school}}{character.}
-  \item{\code{talent}}{double.}
+\item{\code{year}}{integer.}
+\item{\code{school}}{character.}
+\item{\code{talent}}{double.}
 }
 }
 \description{

@@ -1,33 +1,33 @@
 #' Get team game averages for Predicted Points Added (PPA)
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #'
 #' @return A data frame with 18 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{opponent}}{character.}
-#'   \item{\code{off_overall}}{character.}
-#'   \item{\code{off_passing}}{character.}
-#'   \item{\code{off_rushing}}{character.}
-#'   \item{\code{off_first_down}}{character.}
-#'   \item{\code{off_second_down}}{character.}
-#'   \item{\code{off_third_down}}{character.}
-#'   \item{\code{def_overall}}{character.}
-#'   \item{\code{def_passing}}{character.}
-#'   \item{\code{def_rushing}}{character.}
-#'   \item{\code{def_first_down}}{character.}
-#'   \item{\code{def_second_down}}{character.}
-#'   \item{\code{def_third_down}}{character.}
+#'   \item{`game_id`}{integer.}
+#'   \item{`season`}{integer.}
+#'   \item{`week`}{integer.}
+#'   \item{`conference`}{character.}
+#'   \item{`team`}{character.}
+#'   \item{`opponent`}{character.}
+#'   \item{`off_overall`}{character.}
+#'   \item{`off_passing`}{character.}
+#'   \item{`off_rushing`}{character.}
+#'   \item{`off_first_down`}{character.}
+#'   \item{`off_second_down`}{character.}
+#'   \item{`off_third_down`}{character.}
+#'   \item{`def_overall`}{character.}
+#'   \item{`def_passing`}{character.}
+#'   \item{`def_rushing`}{character.}
+#'   \item{`def_first_down`}{character.}
+#'   \item{`def_second_down`}{character.}
+#'   \item{`def_third_down`}{character.}
 #' }
 #' @keywords Teams Predicted Points 
 #' @importFrom attempt stop_if_all

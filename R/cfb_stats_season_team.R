@@ -1,64 +1,64 @@
 #' Get Season Statistics by Team
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #'
 #' @return A data frame with 46 variables:
 #' \describe{
-#'   \item{\code{games}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{games}}{integer.}
-#'   \item{\code{time_of_poss_total}}{integer.}
-#'   \item{\code{time_of_poss_pg}}{double.}
-#'   \item{\code{pass_comps}}{integer.}
-#'   \item{\code{pass_atts}}{integer.}
-#'   \item{\code{completion_pct}}{double.}
-#'   \item{\code{net_pass_yds}}{integer.}
-#'   \item{\code{pass_ypa}}{double.}
-#'   \item{\code{pass_ypr}}{double.}
-#'   \item{\code{pass_TDs}}{integer.}
-#'   \item{\code{interceptions}}{integer.}
-#'   \item{\code{int_pct}}{double.}
-#'   \item{\code{rush_atts}}{integer.}
-#'   \item{\code{rush_yds}}{integer.}
-#'   \item{\code{rush_TDs}}{integer.}
-#'   \item{\code{rush_ypc}}{double.}
-#'   \item{\code{total_yds}}{integer.}
-#'   \item{\code{fumbles_lost}}{integer.}
-#'   \item{\code{turnovers}}{integer.}
-#'   \item{\code{turnovers_pg}}{double.}
-#'   \item{\code{first_downs}}{integer.}
-#'   \item{\code{third_downs}}{integer.}
-#'   \item{\code{third_down_convs}}{integer.}
-#'   \item{\code{third_conv_rate}}{double.}
-#'   \item{\code{fourth_down_convs}}{integer.}
-#'   \item{\code{fourth_downs}}{integer.}
-#'   \item{\code{fourth_conv_rate}}{double.}
-#'   \item{\code{penalties}}{integer.}
-#'   \item{\code{penalty_yds}}{integer.}
-#'   \item{\code{penalties_pg}}{double.}
-#'   \item{\code{penalty_yds_pg}}{double.}
-#'   \item{\code{yards_per_penalty}}{double.}
-#'   \item{\code{kick_returns}}{integer.}
-#'   \item{\code{kick_return_yds}}{integer.}
-#'   \item{\code{kick_return_TDs}}{integer.}
-#'   \item{\code{kick_return_avg}}{double.}
-#'   \item{\code{punt_returns}}{integer.}
-#'   \item{\code{punt_return_yds}}{integer.}
-#'   \item{\code{punt_return_TDs}}{integer.}
-#'   \item{\code{punt_return_avg}}{double.}
-#'   \item{\code{passes_intercepted}}{integer.}
-#'   \item{\code{passes_intercepted_yds}}{integer.}
-#'   \item{\code{passes_intercepted_TDs}}{integer.}
+#'   \item{`games`}{integer.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`games`}{integer.}
+#'   \item{`time_of_poss_total`}{integer.}
+#'   \item{`time_of_poss_pg`}{double.}
+#'   \item{`pass_comps`}{integer.}
+#'   \item{`pass_atts`}{integer.}
+#'   \item{`completion_pct`}{double.}
+#'   \item{`net_pass_yds`}{integer.}
+#'   \item{`pass_ypa`}{double.}
+#'   \item{`pass_ypr`}{double.}
+#'   \item{`pass_TDs`}{integer.}
+#'   \item{`interceptions`}{integer.}
+#'   \item{`int_pct`}{double.}
+#'   \item{`rush_atts`}{integer.}
+#'   \item{`rush_yds`}{integer.}
+#'   \item{`rush_TDs`}{integer.}
+#'   \item{`rush_ypc`}{double.}
+#'   \item{`total_yds`}{integer.}
+#'   \item{`fumbles_lost`}{integer.}
+#'   \item{`turnovers`}{integer.}
+#'   \item{`turnovers_pg`}{double.}
+#'   \item{`first_downs`}{integer.}
+#'   \item{`third_downs`}{integer.}
+#'   \item{`third_down_convs`}{integer.}
+#'   \item{`third_conv_rate`}{double.}
+#'   \item{`fourth_down_convs`}{integer.}
+#'   \item{`fourth_downs`}{integer.}
+#'   \item{`fourth_conv_rate`}{double.}
+#'   \item{`penalties`}{integer.}
+#'   \item{`penalty_yds`}{integer.}
+#'   \item{`penalties_pg`}{double.}
+#'   \item{`penalty_yds_pg`}{double.}
+#'   \item{`yards_per_penalty`}{double.}
+#'   \item{`kick_returns`}{integer.}
+#'   \item{`kick_return_yds`}{integer.}
+#'   \item{`kick_return_TDs`}{integer.}
+#'   \item{`kick_return_avg`}{double.}
+#'   \item{`punt_returns`}{integer.}
+#'   \item{`punt_return_yds`}{integer.}
+#'   \item{`punt_return_TDs`}{integer.}
+#'   \item{`punt_return_avg`}{double.}
+#'   \item{`passes_intercepted`}{integer.}
+#'   \item{`passes_intercepted_yds`}{integer.}
+#'   \item{`passes_intercepted_TDs`}{integer.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/season}
+#' @source <https://api.collegefootballdata.com/stats/season>
 #' @keywords Team Season Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

@@ -9,7 +9,7 @@
 #'   \item{abbreviation}{Conference abbreviation}
 #'   ...
 #' }
-#' @source \url{https://api.collegefootballdata.com/conferences}
+#' @source <https://api.collegefootballdata.com/conferences>
 #' @keywords Conferences
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

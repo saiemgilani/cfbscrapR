@@ -11,16 +11,16 @@ cfb_metrics_espn_wp(game_id)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
+Can be found using the \code{\link[=cfb_game_info]{cfb_game_info()}} function}
 }
 \value{
 A data frame with 5 variables:
 \describe{
-  \item{\code{espn_game_id}}{character.}
-  \item{\code{play_id}}{character.}
-  \item{\code{seconds_left}}{integer.}
-  \item{\code{home_win_percentage}}{double.}
-  \item{\code{away_win_percentage}}{double.}
+\item{\code{espn_game_id}}{character.}
+\item{\code{play_id}}{character.}
+\item{\code{seconds_left}}{integer.}
+\item{\code{home_win_percentage}}{double.}
+\item{\code{away_win_percentage}}{double.}
 }
 }
 \description{

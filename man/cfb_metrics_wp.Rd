@@ -11,27 +11,27 @@ cfb_metrics_wp(game_id)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
+Can be found using the \code{\link[=cfb_game_info]{cfb_game_info()}} function}
 }
 \value{
 A data frame with 16 variables:
 \describe{
-  \item{\code{play_id}}{character.}
-  \item{\code{play_text}}{character.}
-  \item{\code{home_id}}{integer.}
-  \item{\code{home}}{character.}
-  \item{\code{away_id}}{integer.}
-  \item{\code{away}}{character.}
-  \item{\code{spread}}{character.}
-  \item{\code{home_ball}}{logical.}
-  \item{\code{home_score}}{integer.}
-  \item{\code{away_score}}{integer.}
-  \item{\code{down}}{integer.}
-  \item{\code{distance}}{integer.}
-  \item{\code{home_win_prob}}{character.}
-  \item{\code{away_win_prob}}{double.}
-  \item{\code{play_number}}{integer.}
-  \item{\code{yard_line}}{integer.}
+\item{\code{play_id}}{character.}
+\item{\code{play_text}}{character.}
+\item{\code{home_id}}{integer.}
+\item{\code{home}}{character.}
+\item{\code{away_id}}{integer.}
+\item{\code{away}}{character.}
+\item{\code{spread}}{character.}
+\item{\code{home_ball}}{logical.}
+\item{\code{home_score}}{integer.}
+\item{\code{away_score}}{integer.}
+\item{\code{down}}{integer.}
+\item{\code{distance}}{integer.}
+\item{\code{home_win_prob}}{character.}
+\item{\code{away_win_prob}}{double.}
+\item{\code{play_number}}{integer.}
+\item{\code{yard_line}}{integer.}
 }
 }
 \description{

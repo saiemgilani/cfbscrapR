@@ -1,6 +1,6 @@
 #' Add yardage extracted from play text
 #' 
-#' @param play_df (\emph{data.frame} required) Extracts yardage information from Play-by-Play data frame, as pulled from `cfb_pbp_data()`
+#' @param play_df (*data.frame* required) Extracts yardage information from Play-by-Play data frame, as pulled from `cfb_pbp_data()`
 #' @details Cleans CFB (D-I) Drive-By-Drive Data to create yardage column. Requires the following columns be present:
 #' \describe{
 #'  \item{play_text}{.}

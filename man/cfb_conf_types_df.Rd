@@ -7,11 +7,11 @@
 \format{
 A data frame with 11 rows and 4 variables:
 \describe{
-  \item{id}{Referencing conference id}
-  \item{name}{Conference name}
-  \item{short_name}{Short name for Conference}
-  \item{abbreviation}{Conference abbreviation}
-  ...
+\item{id}{Referencing conference id}
+\item{name}{Conference name}
+\item{short_name}{Short name for Conference}
+\item{abbreviation}{Conference abbreviation}
+...
 }
 }
 \source{

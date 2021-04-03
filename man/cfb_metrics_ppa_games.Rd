@@ -28,24 +28,24 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \value{
 A data frame with 18 variables:
 \describe{
-  \item{\code{game_id}}{integer.}
-  \item{\code{season}}{integer.}
-  \item{\code{week}}{integer.}
-  \item{\code{conference}}{character.}
-  \item{\code{team}}{character.}
-  \item{\code{opponent}}{character.}
-  \item{\code{off_overall}}{character.}
-  \item{\code{off_passing}}{character.}
-  \item{\code{off_rushing}}{character.}
-  \item{\code{off_first_down}}{character.}
-  \item{\code{off_second_down}}{character.}
-  \item{\code{off_third_down}}{character.}
-  \item{\code{def_overall}}{character.}
-  \item{\code{def_passing}}{character.}
-  \item{\code{def_rushing}}{character.}
-  \item{\code{def_first_down}}{character.}
-  \item{\code{def_second_down}}{character.}
-  \item{\code{def_third_down}}{character.}
+\item{\code{game_id}}{integer.}
+\item{\code{season}}{integer.}
+\item{\code{week}}{integer.}
+\item{\code{conference}}{character.}
+\item{\code{team}}{character.}
+\item{\code{opponent}}{character.}
+\item{\code{off_overall}}{character.}
+\item{\code{off_passing}}{character.}
+\item{\code{off_rushing}}{character.}
+\item{\code{off_first_down}}{character.}
+\item{\code{off_second_down}}{character.}
+\item{\code{off_third_down}}{character.}
+\item{\code{def_overall}}{character.}
+\item{\code{def_passing}}{character.}
+\item{\code{def_rushing}}{character.}
+\item{\code{def_first_down}}{character.}
+\item{\code{def_second_down}}{character.}
+\item{\code{def_third_down}}{character.}
 }
 }
 \description{

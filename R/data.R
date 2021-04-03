@@ -11,7 +11,7 @@
 #'   \item{abbreviation}{play type abbreviation used for function call}
 #'   ...
 #' }
-#' @source \url{https://api.collegefootballdata.com}
+#' @source <https://api.collegefootballdata.com>
 "cfb_play_type_df"
 
 
@@ -28,5 +28,5 @@
 #'   \item{abbreviation}{Conference abbreviation}
 #'   ...
 #' }
-#' @source \url{https://api.collegefootballdata.com}
+#' @source <https://api.collegefootballdata.com>
 "cfb_conf_types_df"

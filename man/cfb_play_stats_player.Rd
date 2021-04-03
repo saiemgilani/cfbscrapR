@@ -25,73 +25,73 @@ cfb_play_stats_player(
 \item{team}{(\emph{String} optional): D-I Team}
 
 \item{game_id}{(\emph{Integer} optional): Game ID filter for querying a single game\cr
-Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
+Can be found using the \code{\link[=cfb_game_info]{cfb_game_info()}} function}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.}
+Can be found using the \code{\link[=cfb_player_info]{cfb_player_info()}} function.}
 
 \item{stat_type_id}{(\emph{Integer} optional): Stat Type ID filter for querying a single stat type\cr
-Can be found using the \code{\link[cfbscrapR:cfb_play_stats_types]{cfbscrapR::cfb_play_stats_types()}} function}
+Can be found using the \code{\link[=cfb_play_stats_types]{cfb_play_stats_types()}} function}
 
 \item{season_type}{(\emph{String} default regular): Select Season Type: regular, postseason, or both}
 }
 \value{
 A data frame with 54 variables:
 \describe{
-  \item{\code{play_id}}{character.}
-  \item{\code{game_id}}{integer.}
-  \item{\code{season}}{integer.}
-  \item{\code{week}}{integer.}
-  \item{\code{opponent}}{character.}
-  \item{\code{team_score}}{integer.}
-  \item{\code{opponent_score}}{integer.}
-  \item{\code{drive_id}}{character.}
-  \item{\code{period}}{integer.}
-  \item{\code{yards_to_goal}}{integer.}
-  \item{\code{down}}{integer.}
-  \item{\code{distance}}{integer.}
-  \item{\code{reception_player_id}}{character.}
-  \item{\code{reception_player}}{character.}
-  \item{\code{reception_yds}}{integer.}
-  \item{\code{completion_player_id}}{character.}
-  \item{\code{completion_player}}{character.}
-  \item{\code{completion_yds}}{integer.}
-  \item{\code{rush_player_id}}{character.}
-  \item{\code{rush_player}}{character.}
-  \item{\code{rush_yds}}{integer.}
-  \item{\code{interception_player_id}}{character.}
-  \item{\code{interception_player}}{character.}
-  \item{\code{interception_stat}}{integer.}
-  \item{\code{interception_thrown_player_id}}{character.}
-  \item{\code{interception_thrown_player}}{character.}
-  \item{\code{interception_thrown_stat}}{integer.}
-  \item{\code{touchdown_player_id}}{character.}
-  \item{\code{touchdown_player}}{character.}
-  \item{\code{touchdown_stat}}{integer.}
-  \item{\code{incompletion_player_id}}{character.}
-  \item{\code{incompletion_player}}{character.}
-  \item{\code{incompletion_stat}}{integer.}
-  \item{\code{target_player_id}}{character.}
-  \item{\code{target_player}}{character.}
-  \item{\code{target_stat}}{integer.}
-  \item{\code{fumble_recovered_player_id}}{logical.}
-  \item{\code{fumble_recovered_player}}{logical.}
-  \item{\code{fumble_recovered_stat}}{logical.}
-  \item{\code{fumble_forced_player_id}}{logical.}
-  \item{\code{fumble_forced_player}}{logical.}
-  \item{\code{fumble_forced_stat}}{logical.}
-  \item{\code{fumble_player_id}}{logical.}
-  \item{\code{fumble_player}}{logical.}
-  \item{\code{fumble_stat}}{logical.}
-  \item{\code{sack_player_id}}{character.}
-  \item{\code{sack_player}}{character.}
-  \item{\code{sack_stat}}{integer.}
-  \item{\code{sack_taken_player_id}}{character.}
-  \item{\code{sack_taken_player}}{character.}
-  \item{\code{sack_taken_stat}}{integer.}
-  \item{\code{pass_breakup_player_id}}{logical.}
-  \item{\code{pass_breakup_player}}{logical.}
-  \item{\code{pass_breakup_stat}}{logical.}
+\item{\code{play_id}}{character.}
+\item{\code{game_id}}{integer.}
+\item{\code{season}}{integer.}
+\item{\code{week}}{integer.}
+\item{\code{opponent}}{character.}
+\item{\code{team_score}}{integer.}
+\item{\code{opponent_score}}{integer.}
+\item{\code{drive_id}}{character.}
+\item{\code{period}}{integer.}
+\item{\code{yards_to_goal}}{integer.}
+\item{\code{down}}{integer.}
+\item{\code{distance}}{integer.}
+\item{\code{reception_player_id}}{character.}
+\item{\code{reception_player}}{character.}
+\item{\code{reception_yds}}{integer.}
+\item{\code{completion_player_id}}{character.}
+\item{\code{completion_player}}{character.}
+\item{\code{completion_yds}}{integer.}
+\item{\code{rush_player_id}}{character.}
+\item{\code{rush_player}}{character.}
+\item{\code{rush_yds}}{integer.}
+\item{\code{interception_player_id}}{character.}
+\item{\code{interception_player}}{character.}
+\item{\code{interception_stat}}{integer.}
+\item{\code{interception_thrown_player_id}}{character.}
+\item{\code{interception_thrown_player}}{character.}
+\item{\code{interception_thrown_stat}}{integer.}
+\item{\code{touchdown_player_id}}{character.}
+\item{\code{touchdown_player}}{character.}
+\item{\code{touchdown_stat}}{integer.}
+\item{\code{incompletion_player_id}}{character.}
+\item{\code{incompletion_player}}{character.}
+\item{\code{incompletion_stat}}{integer.}
+\item{\code{target_player_id}}{character.}
+\item{\code{target_player}}{character.}
+\item{\code{target_stat}}{integer.}
+\item{\code{fumble_recovered_player_id}}{logical.}
+\item{\code{fumble_recovered_player}}{logical.}
+\item{\code{fumble_recovered_stat}}{logical.}
+\item{\code{fumble_forced_player_id}}{logical.}
+\item{\code{fumble_forced_player}}{logical.}
+\item{\code{fumble_forced_stat}}{logical.}
+\item{\code{fumble_player_id}}{logical.}
+\item{\code{fumble_player}}{logical.}
+\item{\code{fumble_stat}}{logical.}
+\item{\code{sack_player_id}}{character.}
+\item{\code{sack_player}}{character.}
+\item{\code{sack_stat}}{integer.}
+\item{\code{sack_taken_player_id}}{character.}
+\item{\code{sack_taken_player}}{character.}
+\item{\code{sack_taken_stat}}{integer.}
+\item{\code{pass_breakup_player_id}}{logical.}
+\item{\code{pass_breakup_player}}{logical.}
+\item{\code{pass_breakup_stat}}{logical.}
 }
 }
 \description{

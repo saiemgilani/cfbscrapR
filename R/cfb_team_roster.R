@@ -1,26 +1,26 @@
 #' Team Roster
 #' Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 #'
-#' @param year (\emph{Integer} required): Year,  4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): Team, select a valid team in D-I football
+#' @param year (*Integer* required): Year,  4 digit format (*YYYY*)
+#' @param team (*String* optional): Team, select a valid team in D-I football
 #'
 #'
 #' @return A data frame with 12 variables:
 #' \describe{
-#'   \item{\code{athlete_id}}{character.}
-#'   \item{\code{first_name}}{character.}
-#'   \item{\code{last_name}}{character.}
-#'   \item{\code{weight}}{integer.}
-#'   \item{\code{height}}{integer.}
-#'   \item{\code{jersey}}{integer.}
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{home_city}}{character.}
-#'   \item{\code{home_state}}{character.}
-#'   \item{\code{home_country}}{character.}
-#'   \item{\code{team}}{character.}
+#'   \item{`athlete_id`}{character.}
+#'   \item{`first_name`}{character.}
+#'   \item{`last_name`}{character.}
+#'   \item{`weight`}{integer.}
+#'   \item{`height`}{integer.}
+#'   \item{`jersey`}{integer.}
+#'   \item{`year`}{integer.}
+#'   \item{`position`}{character.}
+#'   \item{`home_city`}{character.}
+#'   \item{`home_state`}{character.}
+#'   \item{`home_country`}{character.}
+#'   \item{`team`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/roster}
+#' @source <https://api.collegefootballdata.com/roster>
 #' @keywords Team Roster
 #' @importFrom dplyr rename mutate
 #' @importFrom jsonlite fromJSON

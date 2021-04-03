@@ -14,10 +14,10 @@ plot_wpa(
 )
 }
 \arguments{
-\item{dat}{(\emph{data.frame} required) Play-by-Play data.frame as can be retrieved from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}}}
+\item{dat}{(\emph{data.frame} required) Play-by-Play data.frame as can be retrieved from \code{\link[=cfb_pbp_data]{cfb_pbp_data()}}}
 
 \item{game_id}{(\emph{Integer} optional) Game ID filter for querying a single game
-Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
+Can be found using the \code{\link[=cfb_game_info]{cfb_game_info()}} function}
 
 \item{away_color}{color selection for the away team}
 

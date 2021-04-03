@@ -19,15 +19,15 @@ cfb_rankings(year, week = NULL, season_type = "regular")
 \value{
 A data frame with 9 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{season_type}}{character.}
-  \item{\code{week}}{integer.}
-  \item{\code{poll}}{character.}
-  \item{\code{rank}}{integer.}
-  \item{\code{school}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{first_place_votes}}{integer.}
-  \item{\code{points}}{integer.}
+\item{\code{season}}{integer.}
+\item{\code{season_type}}{character.}
+\item{\code{week}}{integer.}
+\item{\code{poll}}{character.}
+\item{\code{rank}}{integer.}
+\item{\code{school}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{first_place_votes}}{integer.}
+\item{\code{points}}{integer.}
 }
 }
 \description{

@@ -28,12 +28,14 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 
 \item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\cr
 Position Group  - options include:\cr
- * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
- * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
- * Special Teams: K, P, LS, PK\cr}
+\itemize{
+\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
+\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+\item Special Teams: K, P, LS, PK\cr
+}}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.}
+Can be found using the \code{\link[=cfb_player_info]{cfb_player_info()}} function.}
 
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
 
@@ -42,29 +44,29 @@ Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_pla
 \value{
 A data frame with 23 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{id}}{character.}
-  \item{\code{name}}{character.}
-  \item{\code{position}}{character.}
-  \item{\code{team}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{countable_plays}}{integer.}
-  \item{\code{avg_PPA_all}}{double.}
-  \item{\code{avg_PPA_pass}}{double.}
-  \item{\code{avg_PPA_rush}}{double.}
-  \item{\code{avg_PPA_first_down}}{double.}
-  \item{\code{avg_PPA_second_down}}{double.}
-  \item{\code{avg_PPA_third_down}}{double.}
-  \item{\code{avg_PPA_standard_downs}}{double.}
-  \item{\code{avg_PPA_passing_downs}}{double.}
-  \item{\code{total_PPA_all}}{double.}
-  \item{\code{total_PPA_pass}}{double.}
-  \item{\code{total_PPA_rush}}{double.}
-  \item{\code{total_PPA_first_down}}{double.}
-  \item{\code{total_PPA_second_down}}{double.}
-  \item{\code{total_PPA_third_down}}{double.}
-  \item{\code{total_PPA_standard_downs}}{double.}
-  \item{\code{total_PPA_passing_downs}}{double.}
+\item{\code{season}}{integer.}
+\item{\code{id}}{character.}
+\item{\code{name}}{character.}
+\item{\code{position}}{character.}
+\item{\code{team}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{countable_plays}}{integer.}
+\item{\code{avg_PPA_all}}{double.}
+\item{\code{avg_PPA_pass}}{double.}
+\item{\code{avg_PPA_rush}}{double.}
+\item{\code{avg_PPA_first_down}}{double.}
+\item{\code{avg_PPA_second_down}}{double.}
+\item{\code{avg_PPA_third_down}}{double.}
+\item{\code{avg_PPA_standard_downs}}{double.}
+\item{\code{avg_PPA_passing_downs}}{double.}
+\item{\code{total_PPA_all}}{double.}
+\item{\code{total_PPA_pass}}{double.}
+\item{\code{total_PPA_rush}}{double.}
+\item{\code{total_PPA_first_down}}{double.}
+\item{\code{total_PPA_second_down}}{double.}
+\item{\code{total_PPA_third_down}}{double.}
+\item{\code{total_PPA_standard_downs}}{double.}
+\item{\code{total_PPA_passing_downs}}{double.}
 }
 }
 \description{

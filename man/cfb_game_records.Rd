@@ -21,26 +21,26 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \value{
 A data frame with 20 variables:
 \describe{
-  \item{\code{year}}{integer.}
-  \item{\code{team}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{division}}{character.}
-  \item{\code{total_games}}{integer.}
-  \item{\code{total_wins}}{integer.}
-  \item{\code{total_losses}}{integer.}
-  \item{\code{total_ties}}{integer.}
-  \item{\code{conference_games}}{integer.}
-  \item{\code{conference_wins}}{integer.}
-  \item{\code{conference_losses}}{integer.}
-  \item{\code{conference_ties}}{integer.}
-  \item{\code{home_games}}{integer.}
-  \item{\code{home_wins}}{integer.}
-  \item{\code{home_losses}}{integer.}
-  \item{\code{home_ties}}{integer.}
-  \item{\code{away_games}}{integer.}
-  \item{\code{away_wins}}{integer.}
-  \item{\code{away_losses}}{integer.}
-  \item{\code{away_ties}}{integer.}
+\item{\code{year}}{integer.}
+\item{\code{team}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{division}}{character.}
+\item{\code{total_games}}{integer.}
+\item{\code{total_wins}}{integer.}
+\item{\code{total_losses}}{integer.}
+\item{\code{total_ties}}{integer.}
+\item{\code{conference_games}}{integer.}
+\item{\code{conference_wins}}{integer.}
+\item{\code{conference_losses}}{integer.}
+\item{\code{conference_ties}}{integer.}
+\item{\code{home_games}}{integer.}
+\item{\code{home_wins}}{integer.}
+\item{\code{home_losses}}{integer.}
+\item{\code{home_ties}}{integer.}
+\item{\code{away_games}}{integer.}
+\item{\code{away_wins}}{integer.}
+\item{\code{away_losses}}{integer.}
+\item{\code{away_ties}}{integer.}
 }
 }
 \description{

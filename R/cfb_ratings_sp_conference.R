@@ -1,39 +1,39 @@
 #' Get conference-level S&P+ historical rating data
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #'
 #' @return A data frame with 25 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{rating}}{double.}
-#'   \item{\code{second_order_wins}}{logical.}
-#'   \item{\code{sos}}{logical.}
-#'   \item{\code{offense_rating}}{double.}
-#'   \item{\code{offense_success}}{logical.}
-#'   \item{\code{offense_explosiveness}}{logical.}
-#'   \item{\code{offense_rushing}}{logical.}
-#'   \item{\code{offense_passing}}{logical.}
-#'   \item{\code{offense_standard_downs}}{logical.}
-#'   \item{\code{offense_passing_downs}}{logical.}
-#'   \item{\code{offense_run_rate}}{logical.}
-#'   \item{\code{offense_pace}}{logical.}
-#'   \item{\code{defense_rating}}{double.}
-#'   \item{\code{defense_success}}{logical.}
-#'   \item{\code{defense_explosiveness}}{logical.}
-#'   \item{\code{defense_rushing}}{logical.}
-#'   \item{\code{defense_passing}}{logical.}
-#'   \item{\code{defense_standard_downs}}{logical.}
-#'   \item{\code{defense_passing_downs}}{logical.}
-#'   \item{\code{defense_havoc_total}}{logical.}
-#'   \item{\code{defense_havoc_front_seven}}{logical.}
-#'   \item{\code{defense_havoc_db}}{logical.}
-#'   \item{\code{special_teams_rating}}{double.}
+#'   \item{`year`}{integer.}
+#'   \item{`conference`}{character.}
+#'   \item{`rating`}{double.}
+#'   \item{`second_order_wins`}{logical.}
+#'   \item{`sos`}{logical.}
+#'   \item{`offense_rating`}{double.}
+#'   \item{`offense_success`}{logical.}
+#'   \item{`offense_explosiveness`}{logical.}
+#'   \item{`offense_rushing`}{logical.}
+#'   \item{`offense_passing`}{logical.}
+#'   \item{`offense_standard_downs`}{logical.}
+#'   \item{`offense_passing_downs`}{logical.}
+#'   \item{`offense_run_rate`}{logical.}
+#'   \item{`offense_pace`}{logical.}
+#'   \item{`defense_rating`}{double.}
+#'   \item{`defense_success`}{logical.}
+#'   \item{`defense_explosiveness`}{logical.}
+#'   \item{`defense_rushing`}{logical.}
+#'   \item{`defense_passing`}{logical.}
+#'   \item{`defense_standard_downs`}{logical.}
+#'   \item{`defense_passing_downs`}{logical.}
+#'   \item{`defense_havoc_total`}{logical.}
+#'   \item{`defense_havoc_front_seven`}{logical.}
+#'   \item{`defense_havoc_db`}{logical.}
+#'   \item{`special_teams_rating`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ratings/sp/conferences}
+#' @source <https://api.collegefootballdata.com/ratings/sp/conferences>
 #' @keywords SP+
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

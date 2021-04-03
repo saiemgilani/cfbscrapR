@@ -1,18 +1,18 @@
 #' Get win probability chart data from ESPN
 #' 
 #' Graciously contributed by MrCaseB:
-#' @source \url{https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07}
+#' @source <https://gist.github.com/mrcaseb/0f868193affb4be152e8e82c43a4dc07>
 #' 
-#' @param game_id (\emph{Integer} required): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
+#' @param game_id (*Integer* required): Game ID filter for querying a single game\cr
+#' Can be found using the [cfbscrapR::cfb_game_info()] function
 #' 
 #' @return A data frame with 5 variables:
 #' \describe{
-#'   \item{\code{espn_game_id}}{character.}
-#'   \item{\code{play_id}}{character.}
-#'   \item{\code{seconds_left}}{integer.}
-#'   \item{\code{home_win_percentage}}{double.}
-#'   \item{\code{away_win_percentage}}{double.}
+#'   \item{`espn_game_id`}{character.}
+#'   \item{`play_id`}{character.}
+#'   \item{`seconds_left`}{integer.}
+#'   \item{`home_win_percentage`}{double.}
+#'   \item{`away_win_percentage`}{double.}
 #' }
 #' @keywords Win Probability Chart Data
 #' @importFrom jsonlite fromJSON

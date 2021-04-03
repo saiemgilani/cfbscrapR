@@ -1,25 +1,25 @@
 #' Get matchup history between two teams.
 #'
-#' @param team1 (\emph{String} required): D-I Team 1
-#' @param team2 (\emph{String} required): D-I Team 2
-#' @param min_year (\emph{Integer} optional): Minimum of year range, 4 digit format (\emph{YYYY})
-#' @param max_year (\emph{Integer} optional): Maximum of year range, 4 digit format (\emph{YYYY})
+#' @param team1 (*String* required): D-I Team 1
+#' @param team2 (*String* required): D-I Team 2
+#' @param min_year (*Integer* optional): Minimum of year range, 4 digit format (*YYYY*)
+#' @param max_year (*Integer* optional): Maximum of year range, 4 digit format (*YYYY*)
 #' 
 #' @return A data frame with 11 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{date}}{character.}
-#'   \item{\code{neutral_site}}{logical.}
-#'   \item{\code{venue}}{character.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{home_score}}{integer.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{away_score}}{integer.}
-#'   \item{\code{winner}}{character.}
+#'   \item{`season`}{integer.}
+#'   \item{`week`}{integer.}
+#'   \item{`season_type`}{character.}
+#'   \item{`date`}{character.}
+#'   \item{`neutral_site`}{logical.}
+#'   \item{`venue`}{character.}
+#'   \item{`home_team`}{character.}
+#'   \item{`home_score`}{integer.}
+#'   \item{`away_team`}{character.}
+#'   \item{`away_score`}{integer.}
+#'   \item{`winner`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/teams/matchup}
+#' @source <https://api.collegefootballdata.com/teams/matchup>
 #' @keywords Team Matchup
 #' @importFrom attempt stop_if_any
 #' @importFrom jsonlite fromJSON

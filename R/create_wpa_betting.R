@@ -3,8 +3,8 @@
 #'
 #'
 #' Extracts raw game by game data.
-#' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
-#' @param wp_model (\emph{model} default cfbscrapR:wp_model): Win Probability (WP) Model
+#' @param df (*data.frame* required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
+#' @param wp_model (*model* default cfbscrapR:wp_model): Win Probability (WP) Model
 #'
 #' @keywords internal
 #' @importFrom dplyr mutate lag lead filter case_when arrange
@@ -160,7 +160,7 @@ create_wpa_betting <- function(df, wp_model = cfbscrapR:::wp_model) {
 #' WPA Calcs
 #'
 #' Extracts raw game by game data.
-#' @param df (\emph{data.frame} required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
+#' @param df (*data.frame* required): Clean Play-by-Play data.frame with Expected Points Added (EPA) calculations
 #' @keywords internal
 #' @import dplyr
 #' @import tidyr

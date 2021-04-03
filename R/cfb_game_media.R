@@ -1,31 +1,31 @@
 #' Get Game media information (TV, radio, etc)
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default both): Select Season Type, regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default both): Select Season Type, regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param media_type (\emph{String} optional): Media type filter: tv, radio, web, ppv, or mobile
+#' @param media_type (*String* optional): Media type filter: tv, radio, web, ppv, or mobile
 #' 
 #' @return A data frame with 13 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{start_time}}{character.}
-#'   \item{\code{is_start_time_tbd}}{logical.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{home_conference}}{character.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{away_conference}}{character.}
-#'   \item{\code{tv}}{list.}
-#'   \item{\code{radio}}{logical.}
-#'   \item{\code{web}}{list.}
+#'   \item{`game_id`}{integer.}
+#'   \item{`season`}{integer.}
+#'   \item{`week`}{integer.}
+#'   \item{`season_type`}{character.}
+#'   \item{`start_time`}{character.}
+#'   \item{`is_start_time_tbd`}{logical.}
+#'   \item{`home_team`}{character.}
+#'   \item{`home_conference`}{character.}
+#'   \item{`away_team`}{character.}
+#'   \item{`away_conference`}{character.}
+#'   \item{`tv`}{list.}
+#'   \item{`radio`}{logical.}
+#'   \item{`web`}{list.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games/media}
+#' @source <https://api.collegefootballdata.com/games/media>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

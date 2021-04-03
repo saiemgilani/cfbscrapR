@@ -1,48 +1,48 @@
 #' Get results information from games
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param season_type (\emph{String} default regular): Select Season Type: regular, postseason, or both
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param offense_team (\emph{String} optional): Offense D-I Team
-#' @param defense_team (\emph{String} optional): Defense D-I Team
-#' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param season_type (*String* default regular): Select Season Type: regular, postseason, or both
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param offense_team (*String* optional): Offense D-I Team
+#' @param defense_team (*String* optional): Defense D-I Team
+#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param offense_conference (\emph{String} optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param offense_conference (*String* optional): Offense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param defense_conference (\emph{String} optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param defense_conference (*String* optional): Defense DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' 
 #' @return A data frame with 23 variables as follows:
 #' \describe{
-#'   \item{\code{offense}}{character. Drive offense.}
-#'   \item{\code{offense_conference}}{character. Drive offense's conference.}
-#'   \item{\code{defense}}{character. Drive defense.}
-#'   \item{\code{defense_conference}}{character. Drive defense's conference.}
-#'   \item{\code{game_id}}{integer. Unique game identifier - `game_id`.}
-#'   \item{\code{drive_id}}{character. Unique drive identifier - `drive_id`.}
-#'   \item{\code{drive_number}}{integer. Drive number in game.}
-#'   \item{\code{scoring}}{logical. Drive ends in a score.}
-#'   \item{\code{start_period}}{integer. Period (or Quarter) in which the drive starts.}
-#'   \item{\code{start_yardline}}{integer.  Yard line at the drive start.}
-#'   \item{\code{start_yards_to_goal}}{integer. Yards-to-Goal at the drive start.}
-#'   \item{\code{end_period}}{integer. Period (or Quarter) in which the drive ends.}
-#'   \item{\code{end_yardline}}{integer. Yard line at drive end.}
-#'   \item{\code{end_yards_to_goal}}{integer. Yards-to-Goal at drive end.}
-#'   \item{\code{plays}}{integer. Number of drive plays.}
-#'   \item{\code{yards}}{integer. Total drive yards.}
-#'   \item{\code{drive_result}}{character. Result of the drive description.}
-#'   \item{\code{time_minutes_start}}{integer. Minutes at drive start.}
-#'   \item{\code{time_seconds_start}}{integer. Seconds at drive start.}
-#'   \item{\code{time_minutes_end}}{integer. Minutes at drive end.}
-#'   \item{\code{time_seconds_end}}{integer. Seconds at drive end.}
-#'   \item{\code{time_minutes_elapsed}}{double. Minutes elapsed during drive.}
-#'   \item{\code{time_seconds_elapsed}}{integer. Seconds elapsed during drive.}
+#'   \item{`offense`}{character. Drive offense.}
+#'   \item{`offense_conference`}{character. Drive offense's conference.}
+#'   \item{`defense`}{character. Drive defense.}
+#'   \item{`defense_conference`}{character. Drive defense's conference.}
+#'   \item{`game_id`}{integer. Unique game identifier - `game_id`.}
+#'   \item{`drive_id`}{character. Unique drive identifier - `drive_id`.}
+#'   \item{`drive_number`}{integer. Drive number in game.}
+#'   \item{`scoring`}{logical. Drive ends in a score.}
+#'   \item{`start_period`}{integer. Period (or Quarter) in which the drive starts.}
+#'   \item{`start_yardline`}{integer.  Yard line at the drive start.}
+#'   \item{`start_yards_to_goal`}{integer. Yards-to-Goal at the drive start.}
+#'   \item{`end_period`}{integer. Period (or Quarter) in which the drive ends.}
+#'   \item{`end_yardline`}{integer. Yard line at drive end.}
+#'   \item{`end_yards_to_goal`}{integer. Yards-to-Goal at drive end.}
+#'   \item{`plays`}{integer. Number of drive plays.}
+#'   \item{`yards`}{integer. Total drive yards.}
+#'   \item{`drive_result`}{character. Result of the drive description.}
+#'   \item{`time_minutes_start`}{integer. Minutes at drive start.}
+#'   \item{`time_seconds_start`}{integer. Seconds at drive start.}
+#'   \item{`time_minutes_end`}{integer. Minutes at drive end.}
+#'   \item{`time_seconds_end`}{integer. Seconds at drive end.}
+#'   \item{`time_minutes_elapsed`}{double. Minutes elapsed during drive.}
+#'   \item{`time_seconds_elapsed`}{integer. Seconds elapsed during drive.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/drives}
+#' @source <https://api.collegefootballdata.com/drives>
 #' @keywords Drives
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

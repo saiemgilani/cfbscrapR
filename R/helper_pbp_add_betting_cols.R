@@ -1,10 +1,10 @@
 #' Add Betting columns
 #' This is only for DI-FBS football
 #'
-#' @param play_df (\emph{data.frame} required): Play-By-Play dataframe as pulled from `cfb_pbp_dat()`, `clean_pbp_dat()`,`penalty_detection()`
-#' @param g_id (\emph{Integer} optional): Game ID filter for querying a single game
+#' @param play_df (*data.frame* required): Play-By-Play dataframe as pulled from `cfb_pbp_dat()`, `clean_pbp_dat()`,`penalty_detection()`
+#' @param g_id (*Integer* optional): Game ID filter for querying a single game
 #' Can be found using the `cfb_game_info()` function
-#' @param yr (\emph{Integer} optional): Select year (example: 2018)
+#' @param yr (*Integer* optional): Select year (example: 2018)
 #' @details Add Betting columns. Requires the following parameters to be present:
 #' \itemize{
 #' \item{play_df}{Play-By-Play dataframe as pulled from `cfb_pbp_dat()` and `clean_pbp_dat()`}

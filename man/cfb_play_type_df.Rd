@@ -7,10 +7,10 @@
 \format{
 A data frame with 45 rows and 3 variables:
 \describe{
-  \item{id}{Referencing play id}
-  \item{text}{play type description}
-  \item{abbreviation}{play type abbreviation used for function call}
-  ...
+\item{id}{Referencing play id}
+\item{text}{play type description}
+\item{abbreviation}{play type abbreviation used for function call}
+...
 }
 }
 \source{

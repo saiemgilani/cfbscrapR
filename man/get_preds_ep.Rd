@@ -7,7 +7,7 @@
 get_preds_ep(pbp, ep_model = cfbscrapR:::ep_model)
 }
 \arguments{
-\item{pbp}{(\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function}
+\item{pbp}{(\emph{data.frame} required) Play-by-Play dataframe pulled from API via the \code{cfb_pbp_data()} function}
 
 \item{ep_model}{(\emph{model} default cfbscrapR:::ep_model): Expected Points (EP) Model}
 }

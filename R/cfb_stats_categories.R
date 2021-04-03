@@ -7,7 +7,7 @@
 #'   \item{name}{Statistics Categories}
 #'   ...
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/categories}
+#' @source <https://api.collegefootballdata.com/stats/categories>
 #' @keywords Stats Categories
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

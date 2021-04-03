@@ -9,7 +9,7 @@
 #'   \item{name}{Type of play stats}
 #'   ...
 #' }
-#' @source \url{https://api.collegefootballdata.com/play/stat/types}
+#' @source <https://api.collegefootballdata.com/play/stat/types>
 #' @keywords Plays
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

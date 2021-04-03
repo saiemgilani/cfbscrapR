@@ -1,47 +1,47 @@
 #' Get player season averages for Predicted Points Added (PPA)
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - S&P+ information by conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - S&P+ information by conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param position (\emph{string} optional): Position abbreviation of the player you are searching for.\cr
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-#' Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.
-#' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
+#' Can be found using the [cfbscrapR::cfb_player_info()] function.
+#' @param threshold (*Integer* optional): Minimum threshold of plays.
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
 #' @return A data frame with 23 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{id}}{character.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{countable_plays}}{integer.}
-#'   \item{\code{avg_PPA_all}}{double.}
-#'   \item{\code{avg_PPA_pass}}{double.}
-#'   \item{\code{avg_PPA_rush}}{double.}
-#'   \item{\code{avg_PPA_first_down}}{double.}
-#'   \item{\code{avg_PPA_second_down}}{double.}
-#'   \item{\code{avg_PPA_third_down}}{double.}
-#'   \item{\code{avg_PPA_standard_downs}}{double.}
-#'   \item{\code{avg_PPA_passing_downs}}{double.}
-#'   \item{\code{total_PPA_all}}{double.}
-#'   \item{\code{total_PPA_pass}}{double.}
-#'   \item{\code{total_PPA_rush}}{double.}
-#'   \item{\code{total_PPA_first_down}}{double.}
-#'   \item{\code{total_PPA_second_down}}{double.}
-#'   \item{\code{total_PPA_third_down}}{double.}
-#'   \item{\code{total_PPA_standard_downs}}{double.}
-#'   \item{\code{total_PPA_passing_downs}}{double.}
+#'   \item{`season`}{integer.}
+#'   \item{`id`}{character.}
+#'   \item{`name`}{character.}
+#'   \item{`position`}{character.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`countable_plays`}{integer.}
+#'   \item{`avg_PPA_all`}{double.}
+#'   \item{`avg_PPA_pass`}{double.}
+#'   \item{`avg_PPA_rush`}{double.}
+#'   \item{`avg_PPA_first_down`}{double.}
+#'   \item{`avg_PPA_second_down`}{double.}
+#'   \item{`avg_PPA_third_down`}{double.}
+#'   \item{`avg_PPA_standard_downs`}{double.}
+#'   \item{`avg_PPA_passing_downs`}{double.}
+#'   \item{`total_PPA_all`}{double.}
+#'   \item{`total_PPA_pass`}{double.}
+#'   \item{`total_PPA_rush`}{double.}
+#'   \item{`total_PPA_first_down`}{double.}
+#'   \item{`total_PPA_second_down`}{double.}
+#'   \item{`total_PPA_third_down`}{double.}
+#'   \item{`total_PPA_standard_downs`}{double.}
+#'   \item{`total_PPA_passing_downs`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/players/season}
+#' @source <https://api.collegefootballdata.com/ppa/players/season>
 #' @keywords Players Predicted Points Season Averages
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

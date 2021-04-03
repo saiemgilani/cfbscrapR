@@ -12,9 +12,9 @@ cfb_play_stats_types()
 \value{
 A data frame with 22 rows and 2 variables:
 \describe{
-  \item{play_stat_type_id}{Referencing play stat type ID}
-  \item{name}{Type of play stats}
-  ...
+\item{play_stat_type_id}{Referencing play stat type ID}
+\item{name}{Type of play stats}
+...
 }
 }
 \description{

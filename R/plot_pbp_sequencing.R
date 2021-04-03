@@ -1,6 +1,6 @@
 #' Plot the Drive/PBP Sequencing
 #'
-#' @param df Play-by-Play data frame (can be retrieved from \code{\link[cfbscrapR:cfb_pbp_data]{cfbscrapR::cfb_pbp_data()}})
+#' @param df Play-by-Play data frame (can be retrieved from [cfbscrapR::cfb_pbp_data()])
 #' @keywords Plot PbP
 #' @importFrom dplyr group_by filter ungroup mutate 
 #' @import ggplot2

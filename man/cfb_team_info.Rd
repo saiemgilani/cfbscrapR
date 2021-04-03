@@ -24,18 +24,18 @@ If year is left blank while only_fbs is TRUE, then will return values for most c
 \value{
 A data frame with 12 variables:
 \describe{
-  \item{\code{team_id}}{integer.}
-  \item{\code{school}}{character.}
-  \item{\code{mascot}}{character.}
-  \item{\code{abbreviation}}{character.}
-  \item{\code{alt_name1}}{character.}
-  \item{\code{alt_name2}}{character.}
-  \item{\code{alt_name3}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{division}}{character.}
-  \item{\code{color}}{character.}
-  \item{\code{alt_color}}{character.}
-  \item{\code{logos}}{list.}
+\item{\code{team_id}}{integer.}
+\item{\code{school}}{character.}
+\item{\code{mascot}}{character.}
+\item{\code{abbreviation}}{character.}
+\item{\code{alt_name1}}{character.}
+\item{\code{alt_name2}}{character.}
+\item{\code{alt_name3}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{division}}{character.}
+\item{\code{color}}{character.}
+\item{\code{alt_color}}{character.}
+\item{\code{logos}}{list.}
 }
 }
 \description{

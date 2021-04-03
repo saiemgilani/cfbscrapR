@@ -14,9 +14,11 @@ cfb_player_info(search_term, position = NULL, team = NULL, year = NULL)
 
 \item{position}{(\emph{string} optional): Position of the player you are searching for.\cr
 Position Group  - options include:\cr
- * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
- * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
- * Special Teams: K, P, LS, PK\cr}
+\itemize{
+\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
+\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+\item Special Teams: K, P, LS, PK\cr
+}}
 
 \item{team}{(\emph{String} optional): Team - Select a valid team, D1 football}
 
@@ -26,22 +28,22 @@ If left NULL, API default will only provide results for most recent year of fina
 \value{
 A data frame with 12 variables:
 \describe{
-  \item{\code{athlete_id}}{character. Unique player identifier - `athlete_id`.}
-  \item{\code{team}}{character. Team of the player.}
-  \item{\code{name}}{character. Player name.}
-  \item{\code{first_name}}{character. Player first name.}
-  \item{\code{last_name}}{character. Player last name.}
-  \item{\code{weight}}{integer. Player weight.}
-  \item{\code{height}}{integer. Player height.}
-  \item{\code{jersey}}{integer. Player jersey number.}
-  \item{\code{position}}{character. Player position.}
-  \item{\code{home_town}}{character. Player home town.}
-  \item{\code{team_color}}{character. Player team color.}
-  \item{\code{team_color_secondary}}{character. Player team secondary color.}
+\item{\code{athlete_id}}{character. Unique player identifier - \code{athlete_id}.}
+\item{\code{team}}{character. Team of the player.}
+\item{\code{name}}{character. Player name.}
+\item{\code{first_name}}{character. Player first name.}
+\item{\code{last_name}}{character. Player last name.}
+\item{\code{weight}}{integer. Player weight.}
+\item{\code{height}}{integer. Player height.}
+\item{\code{jersey}}{integer. Player jersey number.}
+\item{\code{position}}{character. Player position.}
+\item{\code{home_town}}{character. Player home town.}
+\item{\code{team_color}}{character. Player team color.}
+\item{\code{team_color_secondary}}{character. Player team secondary color.}
 }
 }
 \description{
-A player search function with \strong{`search_term`} as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
+A player search function with \strong{\code{search_term}} as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
 Would not recommend using the position group filter,it feels arbitrary and pernicious,
 but it is there. May fortune favor you should you choose to use it.
 }

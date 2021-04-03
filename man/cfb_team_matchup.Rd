@@ -21,17 +21,17 @@ cfb_team_matchup(team1, team2, min_year = NULL, max_year = NULL)
 \value{
 A data frame with 11 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{week}}{integer.}
-  \item{\code{season_type}}{character.}
-  \item{\code{date}}{character.}
-  \item{\code{neutral_site}}{logical.}
-  \item{\code{venue}}{character.}
-  \item{\code{home_team}}{character.}
-  \item{\code{home_score}}{integer.}
-  \item{\code{away_team}}{character.}
-  \item{\code{away_score}}{integer.}
-  \item{\code{winner}}{character.}
+\item{\code{season}}{integer.}
+\item{\code{week}}{integer.}
+\item{\code{season_type}}{character.}
+\item{\code{date}}{character.}
+\item{\code{neutral_site}}{logical.}
+\item{\code{venue}}{character.}
+\item{\code{home_team}}{character.}
+\item{\code{home_score}}{integer.}
+\item{\code{away_team}}{character.}
+\item{\code{away_score}}{integer.}
+\item{\code{winner}}{character.}
 }
 }
 \description{

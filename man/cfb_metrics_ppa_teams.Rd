@@ -28,27 +28,27 @@ Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain
 \value{
 A data frame with 21 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{conference}}{character.}
-  \item{\code{team}}{character.}
-  \item{\code{off_overall}}{character.}
-  \item{\code{off_passing}}{character.}
-  \item{\code{off_rushing}}{character.}
-  \item{\code{off_first_down}}{character.}
-  \item{\code{off_second_down}}{character.}
-  \item{\code{off_third_down}}{character.}
-  \item{\code{off_cumulative_total}}{character.}
-  \item{\code{off_cumulative_passing}}{character.}
-  \item{\code{off_cumulative_rushing}}{character.}
-  \item{\code{def_overall}}{character.}
-  \item{\code{def_passing}}{character.}
-  \item{\code{def_rushing}}{character.}
-  \item{\code{def_first_down}}{character.}
-  \item{\code{def_second_down}}{character.}
-  \item{\code{def_third_down}}{character.}
-  \item{\code{def_cumulative_total}}{character.}
-  \item{\code{def_cumulative_passing}}{character.}
-  \item{\code{def_cumulative_rushing}}{character.}
+\item{\code{season}}{integer.}
+\item{\code{conference}}{character.}
+\item{\code{team}}{character.}
+\item{\code{off_overall}}{character.}
+\item{\code{off_passing}}{character.}
+\item{\code{off_rushing}}{character.}
+\item{\code{off_first_down}}{character.}
+\item{\code{off_second_down}}{character.}
+\item{\code{off_third_down}}{character.}
+\item{\code{off_cumulative_total}}{character.}
+\item{\code{off_cumulative_passing}}{character.}
+\item{\code{off_cumulative_rushing}}{character.}
+\item{\code{def_overall}}{character.}
+\item{\code{def_passing}}{character.}
+\item{\code{def_rushing}}{character.}
+\item{\code{def_first_down}}{character.}
+\item{\code{def_second_down}}{character.}
+\item{\code{def_third_down}}{character.}
+\item{\code{def_cumulative_total}}{character.}
+\item{\code{def_cumulative_passing}}{character.}
+\item{\code{def_cumulative_rushing}}{character.}
 }
 }
 \description{

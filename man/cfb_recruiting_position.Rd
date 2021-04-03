@@ -28,13 +28,13 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 \value{
 A data frame with 7 variables:
 \describe{
-  \item{\code{team}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{position_group}}{character.}
-  \item{\code{avg_rating}}{double.}
-  \item{\code{total_rating}}{double.}
-  \item{\code{commits}}{integer.}
-  \item{\code{avg_stars}}{double.}
+\item{\code{team}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{position_group}}{character.}
+\item{\code{avg_rating}}{double.}
+\item{\code{total_rating}}{double.}
+\item{\code{commits}}{integer.}
+\item{\code{avg_stars}}{double.}
 }
 }
 \description{
@@ -43,10 +43,10 @@ on position groups during that year for all FBS teams.
 }
 \details{
 If you would like CFB recruiting information for players, please
-see the \code{\link[cfbscrapR:cfb_recruiting_player]{cfbscrapR::cfb_recruiting_player()}} function
- 
-If you would like CFB recruiting information for teams, please 
-see the \code{\link[cfbscrapR:cfb_recruiting_team]{cfbscrapR::cfb_recruiting_team()}} function
+see the \code{\link[=cfb_recruiting_player]{cfb_recruiting_player()}} function
+
+If you would like CFB recruiting information for teams, please
+see the \code{\link[=cfb_recruiting_team]{cfb_recruiting_team()}} function
 }
 \examples{
 

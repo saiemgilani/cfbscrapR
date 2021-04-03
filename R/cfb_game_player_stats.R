@@ -1,55 +1,55 @@
 #' Get results information from games
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
-#' @param team (\emph{String} optional): D-I Team
-#' @param category (\emph{String} optional): Category filter (e.g defensive)\cr
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param team (*String* optional): D-I Team
+#' @param category (*String* optional): Category filter (e.g defensive)\cr
 #' Offense: passing, receiving, rushing\cr
 #' Defense: defensive, fumbles, interceptions\cr
 #' Special Teams: punting, puntReturns, kicking, kickReturns\cr
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
+#' Can be found using the [cfbscrapR::cfb_game_info()] function
 #'
 #' @return A data frame with 32 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{home_away}}{character.}
-#'   \item{\code{points}}{integer.}
-#'   \item{\code{category}}{character.}
-#'   \item{\code{athlete_id}}{character.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{c_att}}{character.}
-#'   \item{\code{yds}}{double.}
-#'   \item{\code{avg}}{double.}
-#'   \item{\code{td}}{double.}
-#'   \item{\code{int}}{double.}
-#'   \item{\code{qbr}}{double.}
-#'   \item{\code{car}}{double.}
-#'   \item{\code{long}}{double.}
-#'   \item{\code{rec}}{double.}
-#'   \item{\code{no}}{double.}
-#'   \item{\code{fg}}{character.}
-#'   \item{\code{pct}}{double.}
-#'   \item{\code{xp}}{character.}
-#'   \item{\code{pts}}{double.}
-#'   \item{\code{tb}}{double.}
-#'   \item{\code{in_20}}{double.}
-#'   \item{\code{fum}}{double.}
-#'   \item{\code{lost}}{double.}
-#'   \item{\code{tot}}{double.}
-#'   \item{\code{solo}}{double.}
-#'   \item{\code{sacks}}{double.}
-#'   \item{\code{tfl}}{double.}
-#'   \item{\code{pd}}{double.}
-#'   \item{\code{qb_hur}}{double.}
+#'   \item{`game_id`}{integer.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`home_away`}{character.}
+#'   \item{`points`}{integer.}
+#'   \item{`category`}{character.}
+#'   \item{`athlete_id`}{character.}
+#'   \item{`name`}{character.}
+#'   \item{`c_att`}{character.}
+#'   \item{`yds`}{double.}
+#'   \item{`avg`}{double.}
+#'   \item{`td`}{double.}
+#'   \item{`int`}{double.}
+#'   \item{`qbr`}{double.}
+#'   \item{`car`}{double.}
+#'   \item{`long`}{double.}
+#'   \item{`rec`}{double.}
+#'   \item{`no`}{double.}
+#'   \item{`fg`}{character.}
+#'   \item{`pct`}{double.}
+#'   \item{`xp`}{character.}
+#'   \item{`pts`}{double.}
+#'   \item{`tb`}{double.}
+#'   \item{`in_20`}{double.}
+#'   \item{`fum`}{double.}
+#'   \item{`lost`}{double.}
+#'   \item{`tot`}{double.}
+#'   \item{`solo`}{double.}
+#'   \item{`sacks`}{double.}
+#'   \item{`tfl`}{double.}
+#'   \item{`pd`}{double.}
+#'   \item{`qb_hur`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games/players}
+#' @source <https://api.collegefootballdata.com/games/players>
 #' @keywords Game Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

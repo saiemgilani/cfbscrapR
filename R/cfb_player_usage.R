@@ -1,39 +1,39 @@
 #' Player Information Search
 #'
-#' A player usage function with \strong{Year} as a required input.
+#' A player usage function with **Year** as a required input.
 #'
-#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param position (\emph{string} optional): Position of the player you are searching for.\cr
+#' @param position (*string* optional): Position of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete
-#' Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete
+#' Can be found using the [cfbscrapR::cfb_player_info()] function.
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
 #'
 #' @return A data frame with 14 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{athlete_id}}{character.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{usg_overall}}{double.}
-#'   \item{\code{usg_pass}}{double.}
-#'   \item{\code{usg_rush}}{double.}
-#'   \item{\code{usg_1st_down}}{double.}
-#'   \item{\code{usg_2nd_down}}{double.}
-#'   \item{\code{usg_3rd_down}}{double.}
-#'   \item{\code{usg_standard_downs}}{double.}
-#'   \item{\code{usg_passing_downs}}{double.}
+#'   \item{`season`}{integer.}
+#'   \item{`athlete_id`}{character.}
+#'   \item{`name`}{character.}
+#'   \item{`position`}{character.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`usg_overall`}{double.}
+#'   \item{`usg_pass`}{double.}
+#'   \item{`usg_rush`}{double.}
+#'   \item{`usg_1st_down`}{double.}
+#'   \item{`usg_2nd_down`}{double.}
+#'   \item{`usg_3rd_down`}{double.}
+#'   \item{`usg_standard_downs`}{double.}
+#'   \item{`usg_passing_downs`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/player/usage}
+#' @source <https://api.collegefootballdata.com/player/usage>
 #' @keywords Player Usage
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

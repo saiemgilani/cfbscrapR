@@ -1,5 +1,5 @@
 #' Select the columns needed for EP predictions
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select 
 #' @importFrom tidyr everything
 ep_model_select <- function(pbp) {
@@ -22,7 +22,7 @@ ep_model_select <- function(pbp) {
 }
 
 #' Select the columns needed for EP predictions
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select 
 #' @importFrom tidyr everything
 ep_model_select_check <- function(pbp) {
@@ -66,7 +66,7 @@ ep_model_select_check <- function(pbp) {
 }
 
 #' Select the columns needed for WP predictions
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select 
 #' @importFrom tidyr everything
 
@@ -107,7 +107,7 @@ wp_model_select <- function(pbp) {
 
 
 #' Select the columns needed for WP predictions
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 wp_model_select_check <- function(pbp) {
@@ -159,7 +159,7 @@ wp_model_select_check <- function(pbp) {
 }
 
 #' Select the columns needed for EP predictions
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select 
 ep_fg_model_select <- function(pbp) {
   
@@ -180,12 +180,11 @@ ep_fg_model_select <- function(pbp) {
 }
 
 #' Select the columns needed for EP predictions
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
-#' @param ep_model (\emph{model} default cfbscrapR:::ep_model): Expected Points (EP) Model
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' @param ep_model (*model* default cfbscrapR:::ep_model): Expected Points (EP) Model
 #' @importFrom dplyr select 
-#' @importFrom stats predict
 get_preds_ep <- function(pbp, ep_model = cfbscrapR:::ep_model){
   
-  preds <- stats::predict(ep_model,pbp)
+  preds <- predict(ep_model,pbp, type='prob')
   
 }

@@ -12,23 +12,24 @@ cfb_team_roster(year, team = NULL)
 }
 \arguments{
 \item{year}{(\emph{Integer} required): Year,  4 digit format (\emph{YYYY})}
+
 \item{team}{(\emph{String} optional): Team, select a valid team in D-I football}
 }
 \value{
 A data frame with 12 variables:
 \describe{
-  \item{\code{athlete_id}}{character.}
-  \item{\code{first_name}}{character.}
-  \item{\code{last_name}}{character.}
-  \item{\code{weight}}{integer.}
-  \item{\code{height}}{integer.}
-  \item{\code{jersey}}{integer.}
-  \item{\code{year}}{integer.}
-  \item{\code{position}}{character.}
-  \item{\code{home_city}}{character.}
-  \item{\code{home_state}}{character.}
-  \item{\code{home_country}}{character.}
-  \item{\code{team}}{character.}
+\item{\code{athlete_id}}{character.}
+\item{\code{first_name}}{character.}
+\item{\code{last_name}}{character.}
+\item{\code{weight}}{integer.}
+\item{\code{height}}{integer.}
+\item{\code{jersey}}{integer.}
+\item{\code{year}}{integer.}
+\item{\code{position}}{character.}
+\item{\code{home_city}}{character.}
+\item{\code{home_state}}{character.}
+\item{\code{home_country}}{character.}
+\item{\code{team}}{character.}
 }
 }
 \description{
@@ -36,7 +37,9 @@ Team Roster
 Get a teams full roster by year. If team is not selected, API returns rosters for every team from the selected year.
 }
 \examples{
+
 cfb_team_roster(year = 2013, team = "Florida State")
+
 }
 \keyword{Roster}
 \keyword{Team}

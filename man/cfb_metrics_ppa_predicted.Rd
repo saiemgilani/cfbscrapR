@@ -17,8 +17,8 @@ cfb_metrics_ppa_predicted(down, distance)
 \value{
 A data frame with 2 variables:
 \describe{
-  \item{\code{yard_line}}{integer.}
-  \item{\code{predicted_points}}{character.}
+\item{\code{yard_line}}{integer.}
+\item{\code{predicted_points}}{character.}
 }
 }
 \description{

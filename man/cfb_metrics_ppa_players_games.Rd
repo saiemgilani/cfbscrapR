@@ -26,12 +26,14 @@ cfb_metrics_ppa_players_games(
 
 \item{position}{(\emph{string} optional): Position abbreviation of the player you are searching for.\cr
 Position Group  - options include:\cr
- * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
- * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
- * Special Teams: K, P, LS, PK\cr}
+\itemize{
+\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
+\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+\item Special Teams: K, P, LS, PK\cr
+}}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.}
+Can be found using the \code{\link[=cfb_player_info]{cfb_player_info()}} function.}
 
 \item{threshold}{(\emph{Integer} optional): Minimum threshold of plays.}
 
@@ -40,15 +42,15 @@ Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_pla
 \value{
 A data frame with 9 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{week}}{integer.}
-  \item{\code{name}}{character.}
-  \item{\code{position}}{character.}
-  \item{\code{team}}{character.}
-  \item{\code{opponent}}{character.}
-  \item{\code{avg_PPA_all}}{double.}
-  \item{\code{avg_PPA_pass}}{double.}
-  \item{\code{avg_PPA_rush}}{double.}
+\item{\code{season}}{integer.}
+\item{\code{week}}{integer.}
+\item{\code{name}}{character.}
+\item{\code{position}}{character.}
+\item{\code{team}}{character.}
+\item{\code{opponent}}{character.}
+\item{\code{avg_PPA_all}}{double.}
+\item{\code{avg_PPA_pass}}{double.}
+\item{\code{avg_PPA_rush}}{double.}
 }
 }
 \description{

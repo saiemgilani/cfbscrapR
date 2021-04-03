@@ -45,28 +45,28 @@ I have defaulted the parameter to false so that you will not have to go to the t
 \value{
 A data frame with 22 variables:
 \describe{
-  \item{\code{game_id}}{integer.}
-  \item{\code{season}}{integer.}
-  \item{\code{week}}{integer.}
-  \item{\code{season_type}}{character.}
-  \item{\code{start_date}}{character.}
-  \item{\code{start_time_tbd}}{logical.}
-  \item{\code{neutral_site}}{logical.}
-  \item{\code{conference_game}}{logical.}
-  \item{\code{attendance}}{integer.}
-  \item{\code{venue_id}}{integer.}
-  \item{\code{venue}}{character.}
-  \item{\code{home_id}}{integer.}
-  \item{\code{home_team}}{character.}
-  \item{\code{home_conference}}{character.}
-  \item{\code{home_points}}{integer.}
-  \item{\code{home_post_win_prob}}{character.}
-  \item{\code{away_id}}{integer.}
-  \item{\code{away_team}}{character.}
-  \item{\code{away_conference}}{character.}
-  \item{\code{away_points}}{integer.}
-  \item{\code{away_post_win_prob}}{character.}
-  \item{\code{excitement_index}}{character.}
+\item{\code{game_id}}{integer.}
+\item{\code{season}}{integer.}
+\item{\code{week}}{integer.}
+\item{\code{season_type}}{character.}
+\item{\code{start_date}}{character.}
+\item{\code{start_time_tbd}}{logical.}
+\item{\code{neutral_site}}{logical.}
+\item{\code{conference_game}}{logical.}
+\item{\code{attendance}}{integer.}
+\item{\code{venue_id}}{integer.}
+\item{\code{venue}}{character.}
+\item{\code{home_id}}{integer.}
+\item{\code{home_team}}{character.}
+\item{\code{home_conference}}{character.}
+\item{\code{home_points}}{integer.}
+\item{\code{home_post_win_prob}}{character.}
+\item{\code{away_id}}{integer.}
+\item{\code{away_team}}{character.}
+\item{\code{away_conference}}{character.}
+\item{\code{away_points}}{integer.}
+\item{\code{away_post_win_prob}}{character.}
+\item{\code{excitement_index}}{character.}
 }
 }
 \description{

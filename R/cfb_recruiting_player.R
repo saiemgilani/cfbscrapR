@@ -2,41 +2,41 @@
 #' Gets CFB recruiting information for a single year with filters available for team,
 #' recruit type, state and position.
 #'
-#' At least one of \strong{year} or \strong{team} must be specified for the function to run
+#' At least one of **year** or **team** must be specified for the function to run
 #'
-#' If you would like CFB recruiting information for teams, please see the \code{\link[cfbscrapR:cfb_recruiting_team]{cfbscrapR::cfb_recruiting_team()}}  function
+#' If you would like CFB recruiting information for teams, please see the [cfbscrapR::cfb_recruiting_team()]  function
 #'
 #' If you would like to get cfb recruiting information based on position groups during a
-#' time period for all FBS teams, please see the \code{\link[cfbscrapR:cfb_recruiting_position]{cfbscrapR::cfb_recruiting_position()}} function.
+#' time period for all FBS teams, please see the [cfbscrapR::cfb_recruiting_position()] function.
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}) - Minimum: 2000, Maximum: 2020 currently
-#' @param team (\emph{String} optional): D-I Team
-#' @param recruit_type (\emph{String} optional): default API return is 'HighSchool', other options include 'JUCO'
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*) - Minimum: 2000, Maximum: 2020 currently
+#' @param team (*String* optional): D-I Team
+#' @param recruit_type (*String* optional): default API return is 'HighSchool', other options include 'JUCO'
 #' or 'PrepSchool'  - For position group information
-#' @param state (\emph{String} optional): Two letter State abbreviation
-#' @param position (\emph{String} optional): Position Group  - options include:\cr
+#' @param state (*String* optional): Two letter State abbreviation
+#' @param position (*String* optional): Position Group  - options include:\cr
 #'  * Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
 #'  * Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
 #'  * Special Teams: 'K', 'P'\cr
 #'  
 #' @return A data frame with 14 variables:
 #' \describe{
-#'   \item{\code{recruit_type}}{character.}
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{ranking}}{integer.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{committed_to}}{character.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{height}}{double.}
-#'   \item{\code{weight}}{integer.}
-#'   \item{\code{stars}}{integer.}
-#'   \item{\code{rating}}{double.}
-#'   \item{\code{city}}{character.}
-#'   \item{\code{state_province}}{character.}
-#'   \item{\code{country}}{character.}
+#'   \item{`recruit_type`}{character.}
+#'   \item{`year`}{integer.}
+#'   \item{`ranking`}{integer.}
+#'   \item{`name`}{character.}
+#'   \item{`school`}{character.}
+#'   \item{`committed_to`}{character.}
+#'   \item{`position`}{character.}
+#'   \item{`height`}{double.}
+#'   \item{`weight`}{integer.}
+#'   \item{`stars`}{integer.}
+#'   \item{`rating`}{double.}
+#'   \item{`city`}{character.}
+#'   \item{`state_province`}{character.}
+#'   \item{`country`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/recruiting/players}
+#' @source <https://api.collegefootballdata.com/recruiting/players>
 #' @keywords Recruiting
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

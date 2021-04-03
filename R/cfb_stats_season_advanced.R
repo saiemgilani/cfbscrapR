@@ -1,94 +1,94 @@
 #' Get Season Advanced Statistics by Team
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
-#' @param start_week (\emph{Integer} optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param end_week (\emph{Integer} optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)
+#' @param start_week (*Integer* optional): Starting Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param end_week (*Integer* optional): Ending Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
 #' 
 #' @return A data frame with 79 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{off_plays}}{integer.}
-#'   \item{\code{off_drives}}{integer.}
-#'   \item{\code{off_ppa}}{double.}
-#'   \item{\code{off_total_ppa}}{double.}
-#'   \item{\code{off_success_rate}}{double.}
-#'   \item{\code{off_explosiveness}}{double.}
-#'   \item{\code{off_power_success}}{double.}
-#'   \item{\code{off_stuff_rate}}{double.}
-#'   \item{\code{off_line_yds}}{double.}
-#'   \item{\code{off_line_yds_total}}{integer.}
-#'   \item{\code{off_second_lvl_yds}}{double.}
-#'   \item{\code{off_second_lvl_yds_total}}{integer.}
-#'   \item{\code{off_open_field_yds}}{double.}
-#'   \item{\code{off_open_field_yds_total}}{integer.}
-#'   \item{\code{off_pts_per_opp}}{double.}
-#'   \item{\code{off_field_pos_avg_start}}{double.}
-#'   \item{\code{off_field_pos_avg_predicted_points}}{double.}
-#'   \item{\code{off_havoc_total}}{double.}
-#'   \item{\code{off_havoc_front_seven}}{double.}
-#'   \item{\code{off_havoc_db}}{double.}
-#'   \item{\code{off_standard_downs_rate}}{double.}
-#'   \item{\code{off_standard_downs_ppa}}{double.}
-#'   \item{\code{off_standard_downs_success_rate}}{double.}
-#'   \item{\code{off_standard_downs_explosiveness}}{double.}
-#'   \item{\code{off_passing_downs_rate}}{double.}
-#'   \item{\code{off_passing_downs_ppa}}{double.}
-#'   \item{\code{off_passing_downs_success_rate}}{double.}
-#'   \item{\code{off_passing_downs_explosiveness}}{double.}
-#'   \item{\code{off_rushing_plays_rate}}{double.}
-#'   \item{\code{off_rushing_plays_ppa}}{double.}
-#'   \item{\code{off_rushing_plays_total_ppa}}{double.}
-#'   \item{\code{off_rushing_plays_success_rate}}{double.}
-#'   \item{\code{off_rushing_plays_explosiveness}}{double.}
-#'   \item{\code{off_passing_plays_rate}}{double.}
-#'   \item{\code{off_passing_plays_ppa}}{double.}
-#'   \item{\code{off_passing_plays_total_ppa}}{double.}
-#'   \item{\code{off_passing_plays_success_rate}}{double.}
-#'   \item{\code{off_passing_plays_explosiveness}}{double.}
-#'   \item{\code{def_plays}}{integer.}
-#'   \item{\code{def_drives}}{integer.}
-#'   \item{\code{def_ppa}}{double.}
-#'   \item{\code{def_total_ppa}}{double.}
-#'   \item{\code{def_success_rate}}{double.}
-#'   \item{\code{def_explosiveness}}{double.}
-#'   \item{\code{def_power_success}}{double.}
-#'   \item{\code{def_stuff_rate}}{double.}
-#'   \item{\code{def_line_yds}}{double.}
-#'   \item{\code{def_line_yds_total}}{integer.}
-#'   \item{\code{def_second_lvl_yds}}{double.}
-#'   \item{\code{def_second_lvl_yds_total}}{integer.}
-#'   \item{\code{def_open_field_yds}}{double.}
-#'   \item{\code{def_open_field_yds_total}}{integer.}
-#'   \item{\code{def_pts_per_opp}}{double.}
-#'   \item{\code{def_field_pos_avg_start}}{integer.}
-#'   \item{\code{def_field_pos_avg_predicted_points}}{double.}
-#'   \item{\code{def_havoc_total}}{double.}
-#'   \item{\code{def_havoc_front_seven}}{double.}
-#'   \item{\code{def_havoc_db}}{double.}
-#'   \item{\code{def_standard_downs_rate}}{double.}
-#'   \item{\code{def_standard_downs_ppa}}{double.}
-#'   \item{\code{def_standard_downs_success_rate}}{double.}
-#'   \item{\code{def_standard_downs_explosiveness}}{double.}
-#'   \item{\code{def_passing_downs_rate}}{double.}
-#'   \item{\code{def_passing_downs_ppa}}{double.}
-#'   \item{\code{def_passing_downs_total_ppa}}{double.}
-#'   \item{\code{def_passing_downs_success_rate}}{double.}
-#'   \item{\code{def_passing_downs_explosiveness}}{double.}
-#'   \item{\code{def_rushing_plays_rate}}{double.}
-#'   \item{\code{def_rushing_plays_ppa}}{double.}
-#'   \item{\code{def_rushing_plays_total_ppa}}{double.}
-#'   \item{\code{def_rushing_plays_success_rate}}{double.}
-#'   \item{\code{def_rushing_plays_explosiveness}}{double.}
-#'   \item{\code{def_passing_plays_rate}}{double.}
-#'   \item{\code{def_passing_plays_ppa}}{double.}
-#'   \item{\code{def_passing_plays_success_rate}}{double.}
-#'   \item{\code{def_passing_plays_explosiveness}}{double.}
+#'   \item{`season`}{integer.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`off_plays`}{integer.}
+#'   \item{`off_drives`}{integer.}
+#'   \item{`off_ppa`}{double.}
+#'   \item{`off_total_ppa`}{double.}
+#'   \item{`off_success_rate`}{double.}
+#'   \item{`off_explosiveness`}{double.}
+#'   \item{`off_power_success`}{double.}
+#'   \item{`off_stuff_rate`}{double.}
+#'   \item{`off_line_yds`}{double.}
+#'   \item{`off_line_yds_total`}{integer.}
+#'   \item{`off_second_lvl_yds`}{double.}
+#'   \item{`off_second_lvl_yds_total`}{integer.}
+#'   \item{`off_open_field_yds`}{double.}
+#'   \item{`off_open_field_yds_total`}{integer.}
+#'   \item{`off_pts_per_opp`}{double.}
+#'   \item{`off_field_pos_avg_start`}{double.}
+#'   \item{`off_field_pos_avg_predicted_points`}{double.}
+#'   \item{`off_havoc_total`}{double.}
+#'   \item{`off_havoc_front_seven`}{double.}
+#'   \item{`off_havoc_db`}{double.}
+#'   \item{`off_standard_downs_rate`}{double.}
+#'   \item{`off_standard_downs_ppa`}{double.}
+#'   \item{`off_standard_downs_success_rate`}{double.}
+#'   \item{`off_standard_downs_explosiveness`}{double.}
+#'   \item{`off_passing_downs_rate`}{double.}
+#'   \item{`off_passing_downs_ppa`}{double.}
+#'   \item{`off_passing_downs_success_rate`}{double.}
+#'   \item{`off_passing_downs_explosiveness`}{double.}
+#'   \item{`off_rushing_plays_rate`}{double.}
+#'   \item{`off_rushing_plays_ppa`}{double.}
+#'   \item{`off_rushing_plays_total_ppa`}{double.}
+#'   \item{`off_rushing_plays_success_rate`}{double.}
+#'   \item{`off_rushing_plays_explosiveness`}{double.}
+#'   \item{`off_passing_plays_rate`}{double.}
+#'   \item{`off_passing_plays_ppa`}{double.}
+#'   \item{`off_passing_plays_total_ppa`}{double.}
+#'   \item{`off_passing_plays_success_rate`}{double.}
+#'   \item{`off_passing_plays_explosiveness`}{double.}
+#'   \item{`def_plays`}{integer.}
+#'   \item{`def_drives`}{integer.}
+#'   \item{`def_ppa`}{double.}
+#'   \item{`def_total_ppa`}{double.}
+#'   \item{`def_success_rate`}{double.}
+#'   \item{`def_explosiveness`}{double.}
+#'   \item{`def_power_success`}{double.}
+#'   \item{`def_stuff_rate`}{double.}
+#'   \item{`def_line_yds`}{double.}
+#'   \item{`def_line_yds_total`}{integer.}
+#'   \item{`def_second_lvl_yds`}{double.}
+#'   \item{`def_second_lvl_yds_total`}{integer.}
+#'   \item{`def_open_field_yds`}{double.}
+#'   \item{`def_open_field_yds_total`}{integer.}
+#'   \item{`def_pts_per_opp`}{double.}
+#'   \item{`def_field_pos_avg_start`}{integer.}
+#'   \item{`def_field_pos_avg_predicted_points`}{double.}
+#'   \item{`def_havoc_total`}{double.}
+#'   \item{`def_havoc_front_seven`}{double.}
+#'   \item{`def_havoc_db`}{double.}
+#'   \item{`def_standard_downs_rate`}{double.}
+#'   \item{`def_standard_downs_ppa`}{double.}
+#'   \item{`def_standard_downs_success_rate`}{double.}
+#'   \item{`def_standard_downs_explosiveness`}{double.}
+#'   \item{`def_passing_downs_rate`}{double.}
+#'   \item{`def_passing_downs_ppa`}{double.}
+#'   \item{`def_passing_downs_total_ppa`}{double.}
+#'   \item{`def_passing_downs_success_rate`}{double.}
+#'   \item{`def_passing_downs_explosiveness`}{double.}
+#'   \item{`def_rushing_plays_rate`}{double.}
+#'   \item{`def_rushing_plays_ppa`}{double.}
+#'   \item{`def_rushing_plays_total_ppa`}{double.}
+#'   \item{`def_rushing_plays_success_rate`}{double.}
+#'   \item{`def_rushing_plays_explosiveness`}{double.}
+#'   \item{`def_passing_plays_rate`}{double.}
+#'   \item{`def_passing_plays_ppa`}{double.}
+#'   \item{`def_passing_plays_success_rate`}{double.}
+#'   \item{`def_passing_plays_explosiveness`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/stats/season/advanced}
+#' @source <https://api.collegefootballdata.com/stats/season/advanced>
 #' @keywords Team Season Advanced Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

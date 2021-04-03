@@ -27,32 +27,34 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\
 
 \item{position}{(\emph{string} optional): Position of the player you are searching for.\cr
 Position Group  - options include:\cr
- * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
- * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
- * Special Teams: K, P, LS, PK\cr}
+\itemize{
+\item Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
+\item Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
+\item Special Teams: K, P, LS, PK\cr
+}}
 
 \item{athlete_id}{(\emph{Integer} optional): Athlete ID filter for querying a single athlete
-Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.}
+Can be found using the \code{\link[=cfb_player_info]{cfb_player_info()}} function.}
 
 \item{excl_garbage_time}{(\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE/FALSE)}
 }
 \value{
 A data frame with 14 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{athlete_id}}{character.}
-  \item{\code{name}}{character.}
-  \item{\code{position}}{character.}
-  \item{\code{team}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{usg_overall}}{double.}
-  \item{\code{usg_pass}}{double.}
-  \item{\code{usg_rush}}{double.}
-  \item{\code{usg_1st_down}}{double.}
-  \item{\code{usg_2nd_down}}{double.}
-  \item{\code{usg_3rd_down}}{double.}
-  \item{\code{usg_standard_downs}}{double.}
-  \item{\code{usg_passing_downs}}{double.}
+\item{\code{season}}{integer.}
+\item{\code{athlete_id}}{character.}
+\item{\code{name}}{character.}
+\item{\code{position}}{character.}
+\item{\code{team}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{usg_overall}}{double.}
+\item{\code{usg_pass}}{double.}
+\item{\code{usg_rush}}{double.}
+\item{\code{usg_1st_down}}{double.}
+\item{\code{usg_2nd_down}}{double.}
+\item{\code{usg_3rd_down}}{double.}
+\item{\code{usg_standard_downs}}{double.}
+\item{\code{usg_passing_downs}}{double.}
 }
 }
 \description{

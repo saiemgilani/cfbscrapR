@@ -21,21 +21,21 @@ Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC}
 \value{
 A data frame with 15 variables:
 \describe{
-  \item{\code{season}}{integer.}
-  \item{\code{team}}{character.}
-  \item{\code{conference}}{character.}
-  \item{\code{total_ppa}}{double.}
-  \item{\code{total_passing_ppa}}{double.}
-  \item{\code{total_receiving_ppa}}{double.}
-  \item{\code{total_rushing_ppa}}{double.}
-  \item{\code{percent_ppa}}{double.}
-  \item{\code{percent_passing_ppa}}{double.}
-  \item{\code{percent_receiving_ppa}}{double.}
-  \item{\code{percent_rushing_ppa}}{double.}
-  \item{\code{usage}}{double.}
-  \item{\code{passing_usage}}{double.}
-  \item{\code{receiving_usage}}{double.}
-  \item{\code{rushing_usage}}{double.}
+\item{\code{season}}{integer.}
+\item{\code{team}}{character.}
+\item{\code{conference}}{character.}
+\item{\code{total_ppa}}{double.}
+\item{\code{total_passing_ppa}}{double.}
+\item{\code{total_receiving_ppa}}{double.}
+\item{\code{total_rushing_ppa}}{double.}
+\item{\code{percent_ppa}}{double.}
+\item{\code{percent_passing_ppa}}{double.}
+\item{\code{percent_receiving_ppa}}{double.}
+\item{\code{percent_rushing_ppa}}{double.}
+\item{\code{usage}}{double.}
+\item{\code{passing_usage}}{double.}
+\item{\code{receiving_usage}}{double.}
+\item{\code{rushing_usage}}{double.}
 }
 }
 \description{

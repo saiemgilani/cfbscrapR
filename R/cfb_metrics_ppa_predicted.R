@@ -1,14 +1,14 @@
 #' Calculate Predicted Points using Down and Distance
 #'
-#' @param down (\emph{Integer} required): Down filter
-#' @param distance (\emph{Integer} required): Distance filter
+#' @param down (*Integer* required): Down filter
+#' @param distance (*Integer* required): Distance filter
 #' 
 #' @return A data frame with 2 variables:
 #' \describe{
-#'   \item{\code{yard_line}}{integer.}
-#'   \item{\code{predicted_points}}{character.}
+#'   \item{`yard_line`}{integer.}
+#'   \item{`predicted_points`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/predicted}
+#' @source <https://api.collegefootballdata.com/ppa/predicted>
 #' @keywords Predicted Points 
 #' @importFrom attempt stop_if_any
 #' @importFrom jsonlite fromJSON

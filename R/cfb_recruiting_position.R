@@ -4,29 +4,29 @@
 #' on position groups during that year for all FBS teams.
 #' 
 #' If you would like CFB recruiting information for players, please
-#' see the \code{\link[cfbscrapR:cfb_recruiting_player]{cfbscrapR::cfb_recruiting_player()}} function
+#' see the [cfbscrapR::cfb_recruiting_player()] function
 #'  
 #' If you would like CFB recruiting information for teams, please 
-#' see the \code{\link[cfbscrapR:cfb_recruiting_team]{cfbscrapR::cfb_recruiting_team()}} function
+#' see the [cfbscrapR::cfb_recruiting_team()] function
 #' 
-#' @param start_year (\emph{Integer} optional): Start Year, 4 digit format (\emph{YYYY}). \emph{Note: 2000 is the minimum value}
-#' @param end_year (\emph{Integer} optional): End Year,  4 digit format (\emph{YYYY}). \emph{Note: 2020 is the maximum value currently}
-#' @param team (\emph{String} optional): Team - Select a valid team, D-I football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param start_year (*Integer* optional): Start Year, 4 digit format (*YYYY*). *Note: 2000 is the minimum value*
+#' @param end_year (*Integer* optional): End Year,  4 digit format (*YYYY*). *Note: 2020 is the maximum value currently*
+#' @param team (*String* optional): Team - Select a valid team, D-I football
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' 
 #' @return A data frame with 7 variables:
 #' \describe{
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{position_group}}{character.}
-#'   \item{\code{avg_rating}}{double.}
-#'   \item{\code{total_rating}}{double.}
-#'   \item{\code{commits}}{integer.}
-#'   \item{\code{avg_stars}}{double.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`position_group`}{character.}
+#'   \item{`avg_rating`}{double.}
+#'   \item{`total_rating`}{double.}
+#'   \item{`commits`}{integer.}
+#'   \item{`avg_stars`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/recruiting/groups}
+#' @source <https://api.collegefootballdata.com/recruiting/groups>
 #' @keywords Recruiting
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

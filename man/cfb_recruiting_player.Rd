@@ -28,37 +28,39 @@ or 'PrepSchool'  - For position group information}
 \item{state}{(\emph{String} optional): Two letter State abbreviation}
 
 \item{position}{(\emph{String} optional): Position Group  - options include:\cr
-* Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
-* Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
-* Special Teams: 'K', 'P'\cr}
+\itemize{
+\item Offense: 'PRO', 'DUAL', 'RB', 'FB', 'TE',  'OT', 'OG', 'OC', 'WR'\cr
+\item Defense: 'CB', 'S', 'OLB', 'ILB', 'WDE', 'SDE', 'DT'\cr
+\item Special Teams: 'K', 'P'\cr
+}}
 }
 \value{
 A data frame with 14 variables:
 \describe{
-  \item{\code{recruit_type}}{character.}
-  \item{\code{year}}{integer.}
-  \item{\code{ranking}}{integer.}
-  \item{\code{name}}{character.}
-  \item{\code{school}}{character.}
-  \item{\code{committed_to}}{character.}
-  \item{\code{position}}{character.}
-  \item{\code{height}}{double.}
-  \item{\code{weight}}{integer.}
-  \item{\code{stars}}{integer.}
-  \item{\code{rating}}{double.}
-  \item{\code{city}}{character.}
-  \item{\code{state_province}}{character.}
-  \item{\code{country}}{character.}
+\item{\code{recruit_type}}{character.}
+\item{\code{year}}{integer.}
+\item{\code{ranking}}{integer.}
+\item{\code{name}}{character.}
+\item{\code{school}}{character.}
+\item{\code{committed_to}}{character.}
+\item{\code{position}}{character.}
+\item{\code{height}}{double.}
+\item{\code{weight}}{integer.}
+\item{\code{stars}}{integer.}
+\item{\code{rating}}{double.}
+\item{\code{city}}{character.}
+\item{\code{state_province}}{character.}
+\item{\code{country}}{character.}
 }
 }
 \description{
 At least one of \strong{year} or \strong{team} must be specified for the function to run
 }
 \details{
-If you would like CFB recruiting information for teams, please see the \code{\link[cfbscrapR:cfb_recruiting_team]{cfbscrapR::cfb_recruiting_team()}}  function
+If you would like CFB recruiting information for teams, please see the \code{\link[=cfb_recruiting_team]{cfb_recruiting_team()}}  function
 
 If you would like to get cfb recruiting information based on position groups during a
-time period for all FBS teams, please see the \code{\link[cfbscrapR:cfb_recruiting_position]{cfbscrapR::cfb_recruiting_position()}} function.
+time period for all FBS teams, please see the \code{\link[=cfb_recruiting_position]{cfb_recruiting_position()}} function.
 }
 \examples{
 

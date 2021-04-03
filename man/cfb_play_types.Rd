@@ -10,12 +10,12 @@
 cfb_play_types()
 }
 \value{
-A data frame with 46 rows and 3 variables:
+A data frame with 48 rows and 3 variables:
 \describe{
-  \item{play_type_id}{Referencing play type id}
-  \item{text}{play type description}
-  \item{abbreviation}{play type abbreviation used for function call}
-  ...
+\item{play_type_id}{Referencing play type id}
+\item{text}{play type description}
+\item{abbreviation}{play type abbreviation used for function call}
+...
 }
 }
 \description{

@@ -1,34 +1,34 @@
 #' Get Team records by year
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): DI Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param conference (*String* optional): DI Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
 #' @return A data frame with 20 variables:
 #' \describe{
-#'   \item{\code{year}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{division}}{character.}
-#'   \item{\code{total_games}}{integer.}
-#'   \item{\code{total_wins}}{integer.}
-#'   \item{\code{total_losses}}{integer.}
-#'   \item{\code{total_ties}}{integer.}
-#'   \item{\code{conference_games}}{integer.}
-#'   \item{\code{conference_wins}}{integer.}
-#'   \item{\code{conference_losses}}{integer.}
-#'   \item{\code{conference_ties}}{integer.}
-#'   \item{\code{home_games}}{integer.}
-#'   \item{\code{home_wins}}{integer.}
-#'   \item{\code{home_losses}}{integer.}
-#'   \item{\code{home_ties}}{integer.}
-#'   \item{\code{away_games}}{integer.}
-#'   \item{\code{away_wins}}{integer.}
-#'   \item{\code{away_losses}}{integer.}
-#'   \item{\code{away_ties}}{integer.}
+#'   \item{`year`}{integer.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`division`}{character.}
+#'   \item{`total_games`}{integer.}
+#'   \item{`total_wins`}{integer.}
+#'   \item{`total_losses`}{integer.}
+#'   \item{`total_ties`}{integer.}
+#'   \item{`conference_games`}{integer.}
+#'   \item{`conference_wins`}{integer.}
+#'   \item{`conference_losses`}{integer.}
+#'   \item{`conference_ties`}{integer.}
+#'   \item{`home_games`}{integer.}
+#'   \item{`home_wins`}{integer.}
+#'   \item{`home_losses`}{integer.}
+#'   \item{`home_ties`}{integer.}
+#'   \item{`away_games`}{integer.}
+#'   \item{`away_wins`}{integer.}
+#'   \item{`away_losses`}{integer.}
+#'   \item{`away_ties`}{integer.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/records}
+#' @source <https://api.collegefootballdata.com/records>
 #' @keywords Team Info
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

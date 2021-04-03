@@ -10,7 +10,7 @@
 #'   \item{abbreviation}{play type abbreviation used for function call}
 #'   ...
 #' }
-#' @source \url{https://api.collegefootballdata.com/play/types}
+#' @source <https://api.collegefootballdata.com/play/types>
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET
 #' @importFrom utils URLencode

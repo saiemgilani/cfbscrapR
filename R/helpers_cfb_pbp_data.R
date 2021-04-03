@@ -1,5 +1,5 @@
-#' Select the columns needed for \code{penalty_detection()}
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' Select the columns needed for `penalty_detection()`
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 
@@ -34,8 +34,8 @@ penalty_detection_select <- function(pbp) {
 
 
 
-#' Select the columns needed for \code{add_play_counts()}
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' Select the columns needed for `add_play_counts()`
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 
@@ -101,8 +101,8 @@ add_play_counts_select <- function(pbp) {
 }
 
 
-#' Select the columns needed for \code{clean_pbp_dat()}
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' Select the columns needed for `clean_pbp_dat()`
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 
@@ -177,8 +177,8 @@ clean_pbp_dat_select <- function(pbp) {
   return(pbp)
 }
 
-#' Select the columns needed for \code{add_yardage()}
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' Select the columns needed for `add_yardage()`
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 
@@ -273,8 +273,8 @@ add_yardage_select <- function(pbp) {
 }
 
 
-#' Select the columns needed for \code{add_player_cols()}
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' Select the columns needed for `add_player_cols()`
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 
@@ -378,8 +378,8 @@ add_player_cols_select <- function(pbp) {
 }
 
 
-#' Select the columns needed for \code{clean_drive_dat()}
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' Select the columns needed for `clean_drive_dat()`
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 
@@ -474,8 +474,8 @@ clean_drive_dat_select <- function(pbp) {
 }
 
 
-#' Select the columns needed for \code{prep_epa_df_after()}
-#' @param pbp (\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
+#' Select the columns needed for `prep_epa_df_after()`
+#' @param pbp (*data.frame* required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function
 #' @importFrom dplyr select
 #' @importFrom tidyr everything
 

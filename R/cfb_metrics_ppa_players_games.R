@@ -1,31 +1,31 @@
 #' Get player game averages for Predicted Points Added (PPA)
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param position (\emph{string} optional): Position abbreviation of the player you are searching for.\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param position (*string* optional): Position abbreviation of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
-#' @param athlete_id (\emph{Integer} optional): Athlete ID filter for querying a single athlete\cr
-#' Can be found using the \code{\link[cfbscrapR:cfb_player_info]{cfbscrapR::cfb_player_info()}} function.
-#' @param threshold (\emph{Integer} optional): Minimum threshold of plays.
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param athlete_id (*Integer* optional): Athlete ID filter for querying a single athlete\cr
+#' Can be found using the [cfbscrapR::cfb_player_info()] function.
+#' @param threshold (*Integer* optional): Minimum threshold of plays.
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
 #' @return A data frame with 9 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{name}}{character.}
-#'   \item{\code{position}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{opponent}}{character.}
-#'   \item{\code{avg_PPA_all}}{double.}
-#'   \item{\code{avg_PPA_pass}}{double.}
-#'   \item{\code{avg_PPA_rush}}{double.}
+#'   \item{`season`}{integer.}
+#'   \item{`week`}{integer.}
+#'   \item{`name`}{character.}
+#'   \item{`position`}{character.}
+#'   \item{`team`}{character.}
+#'   \item{`opponent`}{character.}
+#'   \item{`avg_PPA_all`}{double.}
+#'   \item{`avg_PPA_pass`}{double.}
+#'   \item{`avg_PPA_rush`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/players/games}
+#' @source <https://api.collegefootballdata.com/ppa/players/games>
 #' @keywords Players Predicted Points 
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

@@ -2,29 +2,29 @@
 #' Lists all teams in conference or all D-I teams if conference is left NULL
 #' Current support only for D-I
 #'
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC,\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param only_fbs (\emph{Logical} default TRUE): Filter for only returning FBS teams for a given year.\cr
+#' @param only_fbs (*Logical* default TRUE): Filter for only returning FBS teams for a given year.\cr
 #' If year is left blank while only_fbs is TRUE, then will return values for most current year
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}). Filter for getting a list of major division team for a given year
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*). Filter for getting a list of major division team for a given year
 #'
 #' @return A data frame with 12 variables:
 #' \describe{
-#'   \item{\code{team_id}}{integer.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{mascot}}{character.}
-#'   \item{\code{abbreviation}}{character.}
-#'   \item{\code{alt_name1}}{character.}
-#'   \item{\code{alt_name2}}{character.}
-#'   \item{\code{alt_name3}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{division}}{character.}
-#'   \item{\code{color}}{character.}
-#'   \item{\code{alt_color}}{character.}
-#'   \item{\code{logos}}{list.}
+#'   \item{`team_id`}{integer.}
+#'   \item{`school`}{character.}
+#'   \item{`mascot`}{character.}
+#'   \item{`abbreviation`}{character.}
+#'   \item{`alt_name1`}{character.}
+#'   \item{`alt_name2`}{character.}
+#'   \item{`alt_name3`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`division`}{character.}
+#'   \item{`color`}{character.}
+#'   \item{`alt_color`}{character.}
+#'   \item{`logos`}{list.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/teams}
+#' @source <https://api.collegefootballdata.com/teams>
 #' @keywords Teams
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

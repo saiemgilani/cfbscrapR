@@ -7,7 +7,7 @@
 prep_epa_df_after_select(pbp)
 }
 \arguments{
-\item{pbp}{(\emph{data.frame} required) Play-by-Play dataframe pulled from API via the `cfb_pbp_data()` function}
+\item{pbp}{(\emph{data.frame} required) Play-by-Play dataframe pulled from API via the \code{cfb_pbp_data()} function}
 }
 \description{
 Select the columns needed for \code{prep_epa_df_after()}

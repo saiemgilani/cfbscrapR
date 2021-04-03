@@ -1,31 +1,31 @@
 #' Player Information Search
 #'
-#' A player usage function with \strong{Year} as a required input.
+#' A player usage function with **Year** as a required input.
 #'
-#' @param year (\emph{Integer} required, default 2019): Year, 4 digit format (\emph{YYYY}).
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required, default 2019): Year, 4 digit format (*YYYY*).
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC
 #' @return A data frame with 15 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{total_ppa}}{double.}
-#'   \item{\code{total_passing_ppa}}{double.}
-#'   \item{\code{total_receiving_ppa}}{double.}
-#'   \item{\code{total_rushing_ppa}}{double.}
-#'   \item{\code{percent_ppa}}{double.}
-#'   \item{\code{percent_passing_ppa}}{double.}
-#'   \item{\code{percent_receiving_ppa}}{double.}
-#'   \item{\code{percent_rushing_ppa}}{double.}
-#'   \item{\code{usage}}{double.}
-#'   \item{\code{passing_usage}}{double.}
-#'   \item{\code{receiving_usage}}{double.}
-#'   \item{\code{rushing_usage}}{double.}
+#'   \item{`season`}{integer.}
+#'   \item{`team`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`total_ppa`}{double.}
+#'   \item{`total_passing_ppa`}{double.}
+#'   \item{`total_receiving_ppa`}{double.}
+#'   \item{`total_rushing_ppa`}{double.}
+#'   \item{`percent_ppa`}{double.}
+#'   \item{`percent_passing_ppa`}{double.}
+#'   \item{`percent_receiving_ppa`}{double.}
+#'   \item{`percent_rushing_ppa`}{double.}
+#'   \item{`usage`}{double.}
+#'   \item{`passing_usage`}{double.}
+#'   \item{`receiving_usage`}{double.}
+#'   \item{`rushing_usage`}{double.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/player/returning}
+#' @source <https://api.collegefootballdata.com/player/returning>
 #' @keywords Returning Production
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

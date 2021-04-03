@@ -1,36 +1,36 @@
 #' Get Betting information from games
 #'
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game
-#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
-#' @param year (\emph{Integer} required): Year, 4 digit format(\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
-#' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
-#' @param team (\emph{String} optional): D-I Team
-#' @param home_team (\emph{String} optional): Home D-I Team
-#' @param away_team (\emph{String} optional): Away D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game
+#' Can be found using the [cfbscrapR::cfb_game_info()] function
+#' @param year (*Integer* required): Year, 4 digit format(*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier)
+#' @param season_type (*String* default regular): Select Season Type: regular or postseason
+#' @param team (*String* optional): D-I Team
+#' @param home_team (*String* optional): Home D-I Team
+#' @param away_team (*String* optional): Away D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param line_provider (\emph{String} optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
+#' @param line_provider (*String* optional): Select Line Provider - Caesars, consensus, numberfire, or teamrankings
 #' 
 #' @return Betting information for games with the following columns:
 #' \describe{
-#'   \item{\code{game_id}}{integer. Unique game identifier - `game_id`.}
-#'   \item{\code{season}}{integer. Season parameter.}
-#'   \item{\code{season_type}}{character. Season Type (regular, postseason, both).}
-#'   \item{\code{week}}{integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
-#'   \item{\code{home_team}}{character. Home D-I Team.}
-#'   \item{\code{home_conference}}{character. Home D-I Conference.}
-#'   \item{\code{home_score}}{integer. Home Score.}
-#'   \item{\code{away_team}}{character. Away D-I Team.}
-#'   \item{\code{away_conference}}{character. Away D-I Conference.}
-#'   \item{\code{away_score}}{integer. Away Score.}
-#'   \item{\code{provider}}{character. Line provider.}
-#'   \item{\code{spread}}{character. Spread for the game.}
-#'   \item{\code{formatted_spread}}{character. Formatted spread for the game.}
-#'   \item{\code{over_under}}{character. Over/Under for the game.}
+#'   \item{`game_id`}{integer. Unique game identifier - `game_id`.}
+#'   \item{`season`}{integer. Season parameter.}
+#'   \item{`season_type`}{character. Season Type (regular, postseason, both).}
+#'   \item{`week`}{integer. Week, values from 1-15, 1-14 for seasons pre-playoff (i.e. 2013 or earlier).}
+#'   \item{`home_team`}{character. Home D-I Team.}
+#'   \item{`home_conference`}{character. Home D-I Conference.}
+#'   \item{`home_score`}{integer. Home Score.}
+#'   \item{`away_team`}{character. Away D-I Team.}
+#'   \item{`away_conference`}{character. Away D-I Conference.}
+#'   \item{`away_score`}{integer. Away Score.}
+#'   \item{`provider`}{character. Line provider.}
+#'   \item{`spread`}{character. Spread for the game.}
+#'   \item{`formatted_spread`}{character. Formatted spread for the game.}
+#'   \item{`over_under`}{character. Over/Under for the game.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/lines}
+#' @source <https://api.collegefootballdata.com/lines>
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

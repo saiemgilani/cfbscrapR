@@ -11,82 +11,82 @@ cfb_game_box_advanced(game_id, long = FALSE)
 }
 \arguments{
 \item{game_id}{(\emph{Integer} required): Game ID filter for querying a single game
-Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function}
+Can be found using the \code{\link[=cfb_game_info]{cfb_game_info()}} function}
 
-\item{long}{(\emph{Logical} default `FALSE`): Return the data in a long format.}
+\item{long}{(\emph{Logical} default \code{FALSE}): Return the data in a long format.}
 }
 \value{
 A data frame with 2 rows and 69 variables:
 \describe{
-  \item{\code{team}}{character.}
-  \item{\code{plays}}{double.}
-  \item{\code{ppa_overall_total}}{double.}
-  \item{\code{ppa_overall_quarter1}}{double.}
-  \item{\code{ppa_overall_quarter2}}{double.}
-  \item{\code{ppa_overall_quarter3}}{double.}
-  \item{\code{ppa_overall_quarter4}}{double.}
-  \item{\code{ppa_passing_total}}{double.}
-  \item{\code{ppa_passing_quarter1}}{double.}
-  \item{\code{ppa_passing_quarter2}}{double.}
-  \item{\code{ppa_passing_quarter3}}{double.}
-  \item{\code{ppa_passing_quarter4}}{double.}
-  \item{\code{ppa_rushing_total}}{double.}
-  \item{\code{ppa_rushing_quarter1}}{double.}
-  \item{\code{ppa_rushing_quarter2}}{double.}
-  \item{\code{ppa_rushing_quarter3}}{double.}
-  \item{\code{ppa_rushing_quarter4}}{double.}
-  \item{\code{cumulative_ppa_plays}}{double.}
-  \item{\code{cumulative_ppa_overall_total}}{double.}
-  \item{\code{cumulative_ppa_overall_quarter1}}{double.}
-  \item{\code{cumulative_ppa_overall_quarter2}}{double.}
-  \item{\code{cumulative_ppa_overall_quarter3}}{double.}
-  \item{\code{cumulative_ppa_overall_quarter4}}{double.}
-  \item{\code{cumulative_ppa_passing_total}}{double.}
-  \item{\code{cumulative_ppa_passing_quarter1}}{double.}
-  \item{\code{cumulative_ppa_passing_quarter2}}{double.}
-  \item{\code{cumulative_ppa_passing_quarter3}}{double.}
-  \item{\code{cumulative_ppa_passing_quarter4}}{double.}
-  \item{\code{cumulative_ppa_rushing_total}}{double.}
-  \item{\code{cumulative_ppa_rushing_quarter1}}{double.}
-  \item{\code{cumulative_ppa_rushing_quarter2}}{double.}
-  \item{\code{cumulative_ppa_rushing_quarter3}}{double.}
-  \item{\code{cumulative_ppa_rushing_quarter4}}{double.}
-  \item{\code{success_rates_overall_total}}{double.}
-  \item{\code{success_rates_overall_quarter1}}{double.}
-  \item{\code{success_rates_overall_quarter2}}{double.}
-  \item{\code{success_rates_overall_quarter3}}{double.}
-  \item{\code{success_rates_overall_quarter4}}{double.}
-  \item{\code{success_rates_standard_downs_total}}{double.}
-  \item{\code{success_rates_standard_downs_quarter1}}{double.}
-  \item{\code{success_rates_standard_downs_quarter2}}{double.}
-  \item{\code{success_rates_standard_downs_quarter3}}{double.}
-  \item{\code{success_rates_standard_downs_quarter4}}{double.}
-  \item{\code{success_rates_passing_downs_total}}{double.}
-  \item{\code{success_rates_passing_downs_quarter1}}{double.}
-  \item{\code{success_rates_passing_downs_quarter2}}{double.}
-  \item{\code{success_rates_passing_downs_quarter3}}{double.}
-  \item{\code{success_rates_passing_downs_quarter4}}{double.}
-  \item{\code{explosiveness_overall_total}}{double.}
-  \item{\code{explosiveness_overall_quarter1}}{double.}
-  \item{\code{explosiveness_overall_quarter2}}{double.}
-  \item{\code{explosiveness_overall_quarter3}}{double.}
-  \item{\code{explosiveness_overall_quarter4}}{double.}
-  \item{\code{rushing_power_success}}{double.}
-  \item{\code{rushing_stuff_rate}}{double.}
-  \item{\code{rushing_line_yds}}{double.}
-  \item{\code{rushing_line_yd_avg}}{double.}
-  \item{\code{rushing_second_lvl_yds}}{double.}
-  \item{\code{rushing_second_lvl_yd_avg}}{double.}
-  \item{\code{rushing_open_field_yds}}{double.}
-  \item{\code{rushing_open_field_yd_avg}}{double.}
-  \item{\code{havoc_total}}{double.}
-  \item{\code{havoc_front_seven}}{double.}
-  \item{\code{havoc_db}}{double.}
-  \item{\code{scoring_opps_opportunities}}{double.}
-  \item{\code{scoring_opps_points}}{double.}
-  \item{\code{scoring_opps_pts_per_opp}}{double.}
-  \item{\code{field_pos_avg_start}}{double.}
-  \item{\code{field_pos_avg_starting_predicted_pts}}{double.}
+\item{\code{team}}{character.}
+\item{\code{plays}}{double.}
+\item{\code{ppa_overall_total}}{double.}
+\item{\code{ppa_overall_quarter1}}{double.}
+\item{\code{ppa_overall_quarter2}}{double.}
+\item{\code{ppa_overall_quarter3}}{double.}
+\item{\code{ppa_overall_quarter4}}{double.}
+\item{\code{ppa_passing_total}}{double.}
+\item{\code{ppa_passing_quarter1}}{double.}
+\item{\code{ppa_passing_quarter2}}{double.}
+\item{\code{ppa_passing_quarter3}}{double.}
+\item{\code{ppa_passing_quarter4}}{double.}
+\item{\code{ppa_rushing_total}}{double.}
+\item{\code{ppa_rushing_quarter1}}{double.}
+\item{\code{ppa_rushing_quarter2}}{double.}
+\item{\code{ppa_rushing_quarter3}}{double.}
+\item{\code{ppa_rushing_quarter4}}{double.}
+\item{\code{cumulative_ppa_plays}}{double.}
+\item{\code{cumulative_ppa_overall_total}}{double.}
+\item{\code{cumulative_ppa_overall_quarter1}}{double.}
+\item{\code{cumulative_ppa_overall_quarter2}}{double.}
+\item{\code{cumulative_ppa_overall_quarter3}}{double.}
+\item{\code{cumulative_ppa_overall_quarter4}}{double.}
+\item{\code{cumulative_ppa_passing_total}}{double.}
+\item{\code{cumulative_ppa_passing_quarter1}}{double.}
+\item{\code{cumulative_ppa_passing_quarter2}}{double.}
+\item{\code{cumulative_ppa_passing_quarter3}}{double.}
+\item{\code{cumulative_ppa_passing_quarter4}}{double.}
+\item{\code{cumulative_ppa_rushing_total}}{double.}
+\item{\code{cumulative_ppa_rushing_quarter1}}{double.}
+\item{\code{cumulative_ppa_rushing_quarter2}}{double.}
+\item{\code{cumulative_ppa_rushing_quarter3}}{double.}
+\item{\code{cumulative_ppa_rushing_quarter4}}{double.}
+\item{\code{success_rates_overall_total}}{double.}
+\item{\code{success_rates_overall_quarter1}}{double.}
+\item{\code{success_rates_overall_quarter2}}{double.}
+\item{\code{success_rates_overall_quarter3}}{double.}
+\item{\code{success_rates_overall_quarter4}}{double.}
+\item{\code{success_rates_standard_downs_total}}{double.}
+\item{\code{success_rates_standard_downs_quarter1}}{double.}
+\item{\code{success_rates_standard_downs_quarter2}}{double.}
+\item{\code{success_rates_standard_downs_quarter3}}{double.}
+\item{\code{success_rates_standard_downs_quarter4}}{double.}
+\item{\code{success_rates_passing_downs_total}}{double.}
+\item{\code{success_rates_passing_downs_quarter1}}{double.}
+\item{\code{success_rates_passing_downs_quarter2}}{double.}
+\item{\code{success_rates_passing_downs_quarter3}}{double.}
+\item{\code{success_rates_passing_downs_quarter4}}{double.}
+\item{\code{explosiveness_overall_total}}{double.}
+\item{\code{explosiveness_overall_quarter1}}{double.}
+\item{\code{explosiveness_overall_quarter2}}{double.}
+\item{\code{explosiveness_overall_quarter3}}{double.}
+\item{\code{explosiveness_overall_quarter4}}{double.}
+\item{\code{rushing_power_success}}{double.}
+\item{\code{rushing_stuff_rate}}{double.}
+\item{\code{rushing_line_yds}}{double.}
+\item{\code{rushing_line_yd_avg}}{double.}
+\item{\code{rushing_second_lvl_yds}}{double.}
+\item{\code{rushing_second_lvl_yd_avg}}{double.}
+\item{\code{rushing_open_field_yds}}{double.}
+\item{\code{rushing_open_field_yd_avg}}{double.}
+\item{\code{havoc_total}}{double.}
+\item{\code{havoc_front_seven}}{double.}
+\item{\code{havoc_db}}{double.}
+\item{\code{scoring_opps_opportunities}}{double.}
+\item{\code{scoring_opps_points}}{double.}
+\item{\code{scoring_opps_pts_per_opp}}{double.}
+\item{\code{field_pos_avg_start}}{double.}
+\item{\code{field_pos_avg_starting_predicted_pts}}{double.}
 }
 }
 \description{

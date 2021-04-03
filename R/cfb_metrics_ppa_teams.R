@@ -1,37 +1,37 @@
 #' Get team averages for Predicted Points Added (PPA)
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference name - select a valid FBS conference\cr
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference name - select a valid FBS conference\cr
 #' Conference names P5: ACC,  Big 12, Big Ten, SEC, Pac-12\cr
 #' Conference names G5 and FBS Independents: Conference USA, Mid-American, Mountain West, FBS Independents, American Athletic\cr
-#' @param excl_garbage_time (\emph{Logical} default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
+#' @param excl_garbage_time (*Logical* default FALSE): Select whether to exclude Garbage Time (TRUE or FALSE)
 #' 
 #' @return A data frame with 21 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{team}}{character.}
-#'   \item{\code{off_overall}}{character.}
-#'   \item{\code{off_passing}}{character.}
-#'   \item{\code{off_rushing}}{character.}
-#'   \item{\code{off_first_down}}{character.}
-#'   \item{\code{off_second_down}}{character.}
-#'   \item{\code{off_third_down}}{character.}
-#'   \item{\code{off_cumulative_total}}{character.}
-#'   \item{\code{off_cumulative_passing}}{character.}
-#'   \item{\code{off_cumulative_rushing}}{character.}
-#'   \item{\code{def_overall}}{character.}
-#'   \item{\code{def_passing}}{character.}
-#'   \item{\code{def_rushing}}{character.}
-#'   \item{\code{def_first_down}}{character.}
-#'   \item{\code{def_second_down}}{character.}
-#'   \item{\code{def_third_down}}{character.}
-#'   \item{\code{def_cumulative_total}}{character.}
-#'   \item{\code{def_cumulative_passing}}{character.}
-#'   \item{\code{def_cumulative_rushing}}{character.}
+#'   \item{`season`}{integer.}
+#'   \item{`conference`}{character.}
+#'   \item{`team`}{character.}
+#'   \item{`off_overall`}{character.}
+#'   \item{`off_passing`}{character.}
+#'   \item{`off_rushing`}{character.}
+#'   \item{`off_first_down`}{character.}
+#'   \item{`off_second_down`}{character.}
+#'   \item{`off_third_down`}{character.}
+#'   \item{`off_cumulative_total`}{character.}
+#'   \item{`off_cumulative_passing`}{character.}
+#'   \item{`off_cumulative_rushing`}{character.}
+#'   \item{`def_overall`}{character.}
+#'   \item{`def_passing`}{character.}
+#'   \item{`def_rushing`}{character.}
+#'   \item{`def_first_down`}{character.}
+#'   \item{`def_second_down`}{character.}
+#'   \item{`def_third_down`}{character.}
+#'   \item{`def_cumulative_total`}{character.}
+#'   \item{`def_cumulative_passing`}{character.}
+#'   \item{`def_cumulative_rushing`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/ppa/teams}
+#' @source <https://api.collegefootballdata.com/ppa/teams>
 #' @keywords Teams Predicted Points 
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON

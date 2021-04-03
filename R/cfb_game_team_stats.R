@@ -1,98 +1,98 @@
 #' Get Team Statistics by Game
 #'
-#' @param year (\emph{Integer} required): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param season_type (\emph{String} default: regular): Select Season Type - regular, postseason, or both
-#' @param team (\emph{String} optional): D-I Team
-#' @param conference (\emph{String} optional): Conference abbreviation - Select a valid FBS conference\cr
+#' @param year (*Integer* required): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values range from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param season_type (*String* default: regular): Select Season Type - regular, postseason, or both
+#' @param team (*String* optional): D-I Team
+#' @param conference (*String* optional): Conference abbreviation - Select a valid FBS conference\cr
 #' Conference abbreviations P5: ACC, B12, B1G, SEC, PAC\cr
 #' Conference abbreviations G5 and FBS Independents: CUSA, MAC, MWC, Ind, SBC, AAC\cr
-#' @param game_id (\emph{Integer} optional): Game ID filter for querying a single game\cr
-#' Can be found using the \code{\link[cfbscrapR:cfb_game_info]{cfbscrapR::cfb_game_info()}} function
-#' @param rows_per_team (\emph{Integer} default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
+#' @param game_id (*Integer* optional): Game ID filter for querying a single game\cr
+#' Can be found using the [cfbscrapR::cfb_game_info()] function
+#' @param rows_per_team (*Integer* default 1): Both Teams for each game on one or two row(s), Options: 1 or 2
 #'
 #' @return A data frame with 78 variables:
 #' \describe{
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{school}}{character.}
-#'   \item{\code{conference}}{character.}
-#'   \item{\code{home_away}}{character.}
-#'   \item{\code{points}}{integer.}
-#'   \item{\code{total_yards}}{character.}
-#'   \item{\code{net_passing_yards}}{character.}
-#'   \item{\code{completion_attempts}}{character.}
-#'   \item{\code{passing_tds}}{character.}
-#'   \item{\code{yards_per_pass}}{character.}
-#'   \item{\code{passes_intercepted}}{character.}
-#'   \item{\code{interception_yards}}{character.}
-#'   \item{\code{interception_tds}}{character.}
-#'   \item{\code{rushing_attempts}}{character.}
-#'   \item{\code{rushing_yards}}{character.}
-#'   \item{\code{rush_tds}}{character.}
-#'   \item{\code{yards_per_rush_attempt}}{character.}
-#'   \item{\code{first_downs}}{character.}
-#'   \item{\code{third_down_eff}}{character.}
-#'   \item{\code{fourth_down_eff}}{character.}
-#'   \item{\code{punt_returns}}{character.}
-#'   \item{\code{punt_return_yards}}{character.}
-#'   \item{\code{punt_return_tds}}{character.}
-#'   \item{\code{kick_return_yards}}{character.}
-#'   \item{\code{kick_return_tds}}{character.}
-#'   \item{\code{kick_returns}}{character.}
-#'   \item{\code{kicking_points}}{character.}
-#'   \item{\code{fumbles_recovered}}{character.}
-#'   \item{\code{fumbles_lost}}{character.}
-#'   \item{\code{total_fumbles}}{character.}
-#'   \item{\code{tackles}}{character.}
-#'   \item{\code{tackles_for_loss}}{character.}
-#'   \item{\code{sacks}}{character.}
-#'   \item{\code{qb_hurries}}{character.}
-#'   \item{\code{interceptions}}{character.}
-#'   \item{\code{passes_deflected}}{character.}
-#'   \item{\code{turnovers}}{character.}
-#'   \item{\code{defensive_tds}}{character.}
-#'   \item{\code{total_penalties_yards}}{character.}
-#'   \item{\code{possession_time}}{character.}
-#'   \item{\code{conference_allowed}}{character.}
-#'   \item{\code{home_away_allowed}}{character.}
-#'   \item{\code{points_allowed}}{integer.}
-#'   \item{\code{total_yards_allowed}}{character.}
-#'   \item{\code{net_passing_yards_allowed}}{character.}
-#'   \item{\code{completion_attempts_allowed}}{character.}
-#'   \item{\code{passing_tds_allowed}}{character.}
-#'   \item{\code{yards_per_pass_allowed}}{character.}
-#'   \item{\code{passes_intercepted_allowed}}{character.}
-#'   \item{\code{interception_yards_allowed}}{character.}
-#'   \item{\code{interception_tds_allowed}}{character.}
-#'   \item{\code{rushing_attempts_allowed}}{character.}
-#'   \item{\code{rushing_yards_allowed}}{character.}
-#'   \item{\code{rush_tds_allowed}}{character.}
-#'   \item{\code{yards_per_rush_attempt_allowed}}{character.}
-#'   \item{\code{first_downs_allowed}}{character.}
-#'   \item{\code{third_down_eff_allowed}}{character.}
-#'   \item{\code{fourth_down_eff_allowed}}{character.}
-#'   \item{\code{punt_returns_allowed}}{character.}
-#'   \item{\code{punt_return_yards_allowed}}{character.}
-#'   \item{\code{punt_return_tds_allowed}}{character.}
-#'   \item{\code{kick_return_yards_allowed}}{character.}
-#'   \item{\code{kick_return_tds_allowed}}{character.}
-#'   \item{\code{kick_returns_allowed}}{character.}
-#'   \item{\code{kicking_points_allowed}}{character.}
-#'   \item{\code{fumbles_recovered_allowed}}{character.}
-#'   \item{\code{fumbles_lost_allowed}}{character.}
-#'   \item{\code{total_fumbles_allowed}}{character.}
-#'   \item{\code{tackles_allowed}}{character.}
-#'   \item{\code{tackles_for_loss_allowed}}{character.}
-#'   \item{\code{sacks_allowed}}{character.}
-#'   \item{\code{qb_hurries_allowed}}{character.}
-#'   \item{\code{interceptions_allowed}}{character.}
-#'   \item{\code{passes_deflected_allowed}}{character.}
-#'   \item{\code{turnovers_allowed}}{character.}
-#'   \item{\code{defensive_tds_allowed}}{character.}
-#'   \item{\code{total_penalties_yards_allowed}}{character.}
-#'   \item{\code{possession_time_allowed}}{character.}
+#'   \item{`game_id`}{integer.}
+#'   \item{`school`}{character.}
+#'   \item{`conference`}{character.}
+#'   \item{`home_away`}{character.}
+#'   \item{`points`}{integer.}
+#'   \item{`total_yards`}{character.}
+#'   \item{`net_passing_yards`}{character.}
+#'   \item{`completion_attempts`}{character.}
+#'   \item{`passing_tds`}{character.}
+#'   \item{`yards_per_pass`}{character.}
+#'   \item{`passes_intercepted`}{character.}
+#'   \item{`interception_yards`}{character.}
+#'   \item{`interception_tds`}{character.}
+#'   \item{`rushing_attempts`}{character.}
+#'   \item{`rushing_yards`}{character.}
+#'   \item{`rush_tds`}{character.}
+#'   \item{`yards_per_rush_attempt`}{character.}
+#'   \item{`first_downs`}{character.}
+#'   \item{`third_down_eff`}{character.}
+#'   \item{`fourth_down_eff`}{character.}
+#'   \item{`punt_returns`}{character.}
+#'   \item{`punt_return_yards`}{character.}
+#'   \item{`punt_return_tds`}{character.}
+#'   \item{`kick_return_yards`}{character.}
+#'   \item{`kick_return_tds`}{character.}
+#'   \item{`kick_returns`}{character.}
+#'   \item{`kicking_points`}{character.}
+#'   \item{`fumbles_recovered`}{character.}
+#'   \item{`fumbles_lost`}{character.}
+#'   \item{`total_fumbles`}{character.}
+#'   \item{`tackles`}{character.}
+#'   \item{`tackles_for_loss`}{character.}
+#'   \item{`sacks`}{character.}
+#'   \item{`qb_hurries`}{character.}
+#'   \item{`interceptions`}{character.}
+#'   \item{`passes_deflected`}{character.}
+#'   \item{`turnovers`}{character.}
+#'   \item{`defensive_tds`}{character.}
+#'   \item{`total_penalties_yards`}{character.}
+#'   \item{`possession_time`}{character.}
+#'   \item{`conference_allowed`}{character.}
+#'   \item{`home_away_allowed`}{character.}
+#'   \item{`points_allowed`}{integer.}
+#'   \item{`total_yards_allowed`}{character.}
+#'   \item{`net_passing_yards_allowed`}{character.}
+#'   \item{`completion_attempts_allowed`}{character.}
+#'   \item{`passing_tds_allowed`}{character.}
+#'   \item{`yards_per_pass_allowed`}{character.}
+#'   \item{`passes_intercepted_allowed`}{character.}
+#'   \item{`interception_yards_allowed`}{character.}
+#'   \item{`interception_tds_allowed`}{character.}
+#'   \item{`rushing_attempts_allowed`}{character.}
+#'   \item{`rushing_yards_allowed`}{character.}
+#'   \item{`rush_tds_allowed`}{character.}
+#'   \item{`yards_per_rush_attempt_allowed`}{character.}
+#'   \item{`first_downs_allowed`}{character.}
+#'   \item{`third_down_eff_allowed`}{character.}
+#'   \item{`fourth_down_eff_allowed`}{character.}
+#'   \item{`punt_returns_allowed`}{character.}
+#'   \item{`punt_return_yards_allowed`}{character.}
+#'   \item{`punt_return_tds_allowed`}{character.}
+#'   \item{`kick_return_yards_allowed`}{character.}
+#'   \item{`kick_return_tds_allowed`}{character.}
+#'   \item{`kick_returns_allowed`}{character.}
+#'   \item{`kicking_points_allowed`}{character.}
+#'   \item{`fumbles_recovered_allowed`}{character.}
+#'   \item{`fumbles_lost_allowed`}{character.}
+#'   \item{`total_fumbles_allowed`}{character.}
+#'   \item{`tackles_allowed`}{character.}
+#'   \item{`tackles_for_loss_allowed`}{character.}
+#'   \item{`sacks_allowed`}{character.}
+#'   \item{`qb_hurries_allowed`}{character.}
+#'   \item{`interceptions_allowed`}{character.}
+#'   \item{`passes_deflected_allowed`}{character.}
+#'   \item{`turnovers_allowed`}{character.}
+#'   \item{`defensive_tds_allowed`}{character.}
+#'   \item{`total_penalties_yards_allowed`}{character.}
+#'   \item{`possession_time_allowed`}{character.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/games/teams}
+#' @source <https://api.collegefootballdata.com/games/teams>
 #' @keywords Team Game Stats
 #' @importFrom jsonlite fromJSON
 #' @importFrom httr GET

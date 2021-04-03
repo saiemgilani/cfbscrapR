@@ -1,21 +1,21 @@
 #' Get Pre-game Win Probability Data from API
 #'
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY})
-#' @param week (\emph{Integer} optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
-#' @param team (\emph{String} optional): D-I Team
-#' @param season_type (\emph{String} default regular): Select Season Type: regular or postseason
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*)
+#' @param week (*Integer* optional): Week - values from 1-15, 1-14 for seasons pre-playoff, i.e. 2013 or earlier
+#' @param team (*String* optional): D-I Team
+#' @param season_type (*String* default regular): Select Season Type: regular or postseason
 #' 
 #' @return A data frame with 9 variables:
 #' \describe{
-#'   \item{\code{season}}{integer.}
-#'   \item{\code{season_type}}{character.}
-#'   \item{\code{week}}{integer.}
-#'   \item{\code{game_id}}{integer.}
-#'   \item{\code{home_team}}{character.}
-#'   \item{\code{away_team}}{character.}
-#'   \item{\code{spread}}{integer.}
-#'   \item{\code{home_win_prob}}{double.}
-#'   \item{\code{away_win_prob}}{double.}
+#'   \item{`season`}{integer.}
+#'   \item{`season_type`}{character.}
+#'   \item{`week`}{integer.}
+#'   \item{`game_id`}{integer.}
+#'   \item{`home_team`}{character.}
+#'   \item{`away_team`}{character.}
+#'   \item{`spread`}{integer.}
+#'   \item{`home_win_prob`}{double.}
+#'   \item{`away_win_prob`}{double.}
 #' }
 #' @keywords Pre-game Win Probability Data
 #' @importFrom jsonlite fromJSON

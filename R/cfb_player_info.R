@@ -1,34 +1,34 @@
 #' Player Information Search
 #'
-#' A player search function with \strong{`search_term`} as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
+#' A player search function with **`search_term`** as a required input. If left NULL, API default will only provide results for most recent year of final rosters: 2019
 #' Would not recommend using the position group filter,it feels arbitrary and pernicious,
 #' but it is there. May fortune favor you should you choose to use it.
 #'
-#' @param search_term (\emph{String} required): Search term for the player you are trying to look up
-#' @param position (\emph{string} optional): Position of the player you are searching for.\cr
+#' @param search_term (*String* required): Search term for the player you are trying to look up
+#' @param position (*string* optional): Position of the player you are searching for.\cr
 #' Position Group  - options include:\cr
 #'  * Offense: QB, RB, FB, TE,  OL, G, OT, C, WR\cr
 #'  * Defense: DB, CB, S, LB,  DE, DT, NT, DL\cr
 #'  * Special Teams: K, P, LS, PK\cr
-#' @param team (\emph{String} optional): Team - Select a valid team, D1 football
-#' @param year (\emph{Integer} optional): Year, 4 digit format (\emph{YYYY}).
+#' @param team (*String* optional): Team - Select a valid team, D1 football
+#' @param year (*Integer* optional): Year, 4 digit format (*YYYY*).
 #' If left NULL, API default will only provide results for most recent year of final rosters: 2020\cr
 #' @return A data frame with 12 variables:
 #' \describe{
-#'   \item{\code{athlete_id}}{character. Unique player identifier - `athlete_id`.}
-#'   \item{\code{team}}{character. Team of the player.}
-#'   \item{\code{name}}{character. Player name.}
-#'   \item{\code{first_name}}{character. Player first name.}
-#'   \item{\code{last_name}}{character. Player last name.}
-#'   \item{\code{weight}}{integer. Player weight.}
-#'   \item{\code{height}}{integer. Player height.}
-#'   \item{\code{jersey}}{integer. Player jersey number.}
-#'   \item{\code{position}}{character. Player position.}
-#'   \item{\code{home_town}}{character. Player home town.}
-#'   \item{\code{team_color}}{character. Player team color.}
-#'   \item{\code{team_color_secondary}}{character. Player team secondary color.}
+#'   \item{`athlete_id`}{character. Unique player identifier - `athlete_id`.}
+#'   \item{`team`}{character. Team of the player.}
+#'   \item{`name`}{character. Player name.}
+#'   \item{`first_name`}{character. Player first name.}
+#'   \item{`last_name`}{character. Player last name.}
+#'   \item{`weight`}{integer. Player weight.}
+#'   \item{`height`}{integer. Player height.}
+#'   \item{`jersey`}{integer. Player jersey number.}
+#'   \item{`position`}{character. Player position.}
+#'   \item{`home_town`}{character. Player home town.}
+#'   \item{`team_color`}{character. Player team color.}
+#'   \item{`team_color_secondary`}{character. Player team secondary color.}
 #' }
-#' @source \url{https://api.collegefootballdata.com/player/search}
+#' @source <https://api.collegefootballdata.com/player/search>
 #' @keywords Recruiting
 #' @importFrom attempt stop_if_all
 #' @importFrom jsonlite fromJSON
